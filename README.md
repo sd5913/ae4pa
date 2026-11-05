@@ -88,7 +88,7 @@ Windows 和 macOS 的成员使用同一个仓库与同一准确版本的 Godot�
 
 公共接口文档已区分底座中可用的接口与后续功能约定；具体交互将在相应功能开发时逐步补充。
 
-底座回归可使用 Godot 运行 `scenes/tests/core/foundation_smoke.gd`，命令和覆盖范围见组员接入说明。公共底座的共享入口是云端 main；组员同步后先运行 F5，再运行自己的 F6 测试场景，发布记录见进度文档及仓库 PR。
+底座回归可使用 Godot 运行 `scenes/tests/core/foundation_smoke.gd`，命令和覆盖范围见组员接入说明。公共底座的共享入口是云端 main；组员同步后先运行 F5，再运行自己的 F6 测试场景。本次发布记录见 [公共底座 PR #2](https://github.com/sd5913/ae4pa/pull/2) 及进度文档。
 
 README 由 A 初始建立、D 后续维护；运行环境和公共接口变动由 A 确认后同步。
 
