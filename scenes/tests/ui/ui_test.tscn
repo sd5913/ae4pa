@@ -1,18 +1,51 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/test_corridor.tscn" id="1_corridor"]
+[ext_resource type="Script" path="res://scenes/tests/ui/ui_test.gd" id="2_script"]
+[ext_resource type="PackedScene" path="res://scenes/ui/main_menu.tscn" id="3_menu"]
+[ext_resource type="PackedScene" path="res://scenes/ui/help.tscn" id="4_help"]
+[ext_resource type="PackedScene" path="res://scenes/ui/failure.tscn" id="5_failure"]
 
 [node name="UITest" type="Node2D"]
+script = ExtResource("2_script")
 
 [node name="Corridor" parent="." instance=ExtResource("1_corridor")]
 
 [node name="UISlot" type="CanvasLayer" parent="."]
 layer = 10
 
-[node name="TestLabel" type="Label" parent="UISlot"]
+[node name="MainMenu" parent="UISlot" instance=ExtResource("3_menu")]
+
+[node name="Help" parent="UISlot" instance=ExtResource("4_help")]
+
+[node name="Failure" parent="UISlot" instance=ExtResource("5_failure")]
+
+[node name="Status" type="Label" parent="UISlot"]
 offset_left = 32.0
-offset_top = 28.0
-offset_right = 1200.0
-offset_bottom = 90.0
-theme_override_font_sizes/font_size = 24
-text = "D · 界面测试骨架 | A / D 移动 | 请在 UISlot 接入界面"
+offset_top = 24.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 20
+text = "D · 独立 UI 测试"
+
+[node name="FailureControls" type="HBoxContainer" parent="UISlot"]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 32.0
+offset_top = -64.0
+offset_bottom = -24.0
+grow_vertical = 0
+theme_override_constants/separation = 12
+
+[node name="ReasonChoice" type="OptionButton" parent="UISlot/FailureControls"]
+layout_mode = 2
+custom_minimum_size = Vector2(284, 0)
+theme_override_font_sizes/font_size = 19
+
+[node name="SimulateFailure" type="Button" parent="UISlot/FailureControls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "模拟失败（仅测试）"
+
+[connection signal="pressed" from="UISlot/FailureControls/SimulateFailure" to="." method="_on_simulate_failure_pressed"]
