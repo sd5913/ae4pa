@@ -14,7 +14,7 @@
 
 ## B C D 第一次打开
 
-先阅读 [README](../README.md)、[游戏规则](game-design.md) 和 [公共接口](interfaces.md)，再按 [环境配置](environment.md) 导入 `project.godot`。首次导入让 Godot 完成资源和 HotelPlayer 类型扫描。
+先阅读 [README](../README.md)、[项目主策划](game-design.md)、[开发分工文档 1.0](team-plan.md) 和 [公共接口](interfaces.md)，再按 [环境配置](environment.md) 导入 `project.godot`。首次导入让 Godot 完成资源和 HotelPlayer 类型扫描。
 
 开始修改前检查自己的未提交内容和当前分支，再同步 A 发布的底座。仓库已有 `work/member-1` 至 `work/member-4`，由 A 确认人员对应关系后沿用。同步时先更新 main，再合入自己的分支；逐步操作见 [GitHub 协作指南](github-collaboration-guide.md)。
 

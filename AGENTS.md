@@ -5,16 +5,16 @@
 ## 开始工作
 
 1. 检查 `git status --short --branch` 和本次相关文件，保留已有修改。
-2. 阅读 `README.md`、`docs/game-design.md`，定位 `PLANS.md` 中当前编号及 `docs/progress.md` 的最近记录。
+2. 阅读 `README.md`、`docs/game-design.md`、`docs/team-plan.md`，定位 `PLANS.md` 中当前编号及 `docs/progress.md` 的最近记录。
 3. 涉及模块接入时读取 `docs/interfaces.md`，区分文档约定与真实已实现接口；文档存在不代表对应代码已可用。
 4. 按用户授权范围依编号顺序推进。用户指定单项时完成该项后报告；用户要求继续后续任务时可连续完成当前可执行的公共底座工作。B/C/D 的组件仍按分工交付，人工／跨机器验收不得代记通过。
 
 ## 资料和状态
 
-- 玩法以 `docs/game-design.md` 整理的策划案 V3 为基线，分工和排期参考三周执行手册 V2；冲突和后续决定记录在游戏规则文档。
+- 现行玩法以 `docs/game-design.md` 主策划为准，职责和排期以 `docs/team-plan.md` 分工文档 1.0 为准。源策划 V3.0 和三周执行手册 V2 是整合依据；冲突、用户决定和待定事项已集中记录在主策划。
 - `PLANS.md` 维护执行顺序和任务完成标准；`docs/progress.md` 维护实际验证证据及交接。
 - `docs/qa.md` 维护验收用例和 BUG。README 说明当前如何打开和运行项目。
-- `docs/interfaces.md` 维护按 V2 分工的公共签名、信号、数据标识、输入归属和接入方式；A 组织确认，B/C/D 维护各自模块的接口说明。
+- `docs/interfaces.md` 维护按现行分工的公共签名、信号、数据标识、输入归属和接入方式；A 组织确认，B/C/D 维护各自模块的接口说明。
 - 把“已实现”“已验证”“计划中”“待确认”分别写清楚。缺文件、缺环境或未运行的检查不能标记通过。
 - 用户已要求背包和详细交互边做边确认。这些问题在对应功能阶段处理，不阻塞基础文档和环境搭建，也不提前实现未定行为。
 
@@ -30,7 +30,7 @@
 
 | 负责人 | 文件范围 |
 |---|---|
-| A | `project.godot`、`scenes/main.tscn`、`scenes/player/`、`scenes/levels/`、`scripts/game_manager.gd`、公共框架和整合文档 |
+| A | `project.godot`、`scenes/main.tscn` 及相邻脚本、`scenes/player/`、`scenes/levels/`、`scripts/game_manager.gd`、公共框架和整合文档 |
 | B | `scenes/staff/`、`scripts/card_manager.gd` |
 | C | `scenes/doors/` |
 | D | `scenes/ui/`、测试与 BUG 记录、玩法说明和交付材料 |
