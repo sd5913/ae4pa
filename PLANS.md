@@ -8,7 +8,7 @@
 
 **Tech Stack:** Godot 4.7.2 标准版、GDScript、Compatibility、Git、GitHub Desktop。本机 MCP 与命令行版本为 `4.7.2.stable.official.ed1daf0bf`；其他成员安装和跨机器运行结果尚未确认。
 
-**Spec:** [游戏规则与资料口径](docs/game-design.md)。
+**Spec:** [项目主策划与资料口径](docs/game-design.md)。人员任务和交付标准见 [四人开发分工文档 1.0](docs/team-plan.md)；本文件继续维护仓库执行编号和实际状态。
 
 ## 全局约束
 
@@ -16,7 +16,7 @@
 - 三张卡为 SECURITY、CLEANER、MANAGER；拥有三张、佩戴最多两张、当前生效一张。
 - 五类怪物为 EYE、NOSE、HAT、EAR、CHECKER；共用房门组件，关闭、预警、开启三状态。
 - 不制作跳跃、战斗、血条、追逐 AI、进入客房、联网和程序生成地图。
-- 人员分工及排期参考三周执行手册 V2；玩法参考策划案 V3。具体冲突见 Spec。
+- 人员分工及排期按仓库分工文档 1.0；玩法按项目主策划。源三周手册 V2 与策划案 V3 的冲突处理见 Spec。
 - Windows 优先、Web 后续为依据 V2 提出的交付建议；课程平台要求尚未核实。
 - 用户已安排 Windows/macOS 分别试玩放在公共底座完成后；导出平台在对应阶段验证。
 - 背包和详细交互在相关功能阶段逐步确认；任务 03 先完成最小基础接口，不用这些未决细节阻塞底座。
