@@ -1,0 +1,59 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://scenes/levels/test_corridor.tscn" id="2_corridor"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="World" type="Node2D" parent="."]
+
+[node name="TestCorridor" parent="World" instance=ExtResource("2_corridor")]
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Fill" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.075, 0.1, 0.12, 1)
+
+[node name="DeveloperOverlay" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Margin" type="MarginContainer" parent="DeveloperOverlay"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 32.0
+offset_top = 28.0
+offset_right = -32.0
+offset_bottom = 150.0
+grow_horizontal = 2
+mouse_filter = 2
+
+[node name="Info" type="VBoxContainer" parent="DeveloperOverlay/Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="DeveloperOverlay/Margin/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.95, 0.92, 0.84, 1)
+theme_override_font_sizes/font_size = 28
+text = "TEST · 怪物员工通道公共底座"
+
+[node name="State" type="Label" parent="DeveloperOverlay/Margin/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.72, 0.39, 1)
+theme_override_font_sizes/font_size = 18
+text = "正在加载公共管理器"
+
+[node name="Help" type="Label" parent="DeveloperOverlay/Margin/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.68, 0.74, 0.75, 1)
+theme_override_font_sizes/font_size = 18
+text = "A / D 或方向键左右移动 · 员工、房门和正式 UI 由 B / C / D 后续接入"
