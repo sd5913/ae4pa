@@ -1,40 +1,97 @@
-# Identity Shift
+# 怪物员工通道 Monster Staff Access
 
-*Working title; the game title and setting may change during development.*
+四人协作的单人 2D 横向潜行解谜游戏。主角潜入五层怪物旅馆，在一楼偷取三张员工 ID，观察五种怪物的开门规则，在三楼 309 救出闺蜜，最后从五楼出口逃离。
 
-## About the game
+当前已有可运行的公共底座：主场景、两个管理器骨架、主角左右移动、横向相机和测试走廊。员工、房门与正式 UI 尚待 B/C/D 实现，五层主线尚未接入。已完成的工作和验证证据见 [进度记录](docs/progress.md)。
 
-This is a single-player 2D side-scrolling stealth and puzzle game. The player enters a restricted place and, being weak in combat, relies on disguises and clever planning rather than fighting.
+## 游戏范围
 
-The current concept takes place in a shopping mall run by monsters. The player collects staff ID cards and impersonates different workers. Each identity provides a distinct ability or access privilege that can help solve puzzles and open new routes.
+- 主角只左右移动；通过观察、等待和切换身份前进。
+- 已获得的保安、保洁、经理 ID 不丢弃；最多佩戴两张，当前生效一张。
+- 独眼客对应保安卡，长鼻客对应保洁卡，礼帽客对应经理卡；大耳客要求停步，核验客面前不能换证。
+- 房门按关闭、预警、开启循环；只有开门且在检测区内才判定怪物规则。
+- 失败后重试本层；不制作跳跃、战斗、血条、追逐 AI 或进入客房。
 
-## Core gameplay
+完整规则及源文档冲突处理见 [游戏规则](docs/game-design.md)。背包、暂停和详细交互将在对应功能开发时确认。
 
-1. Observe the area and its obstacles.
-2. Choose which worker identities will help in the current section.
-3. Use their abilities and access privileges to avoid suspicion and solve puzzles.
-4. Switch identities as needed and find a way forward.
+## 开发环境
 
-The player can carry up to two ID cards at a time, so choosing which cards to keep is part of the puzzle.
+| 项目 | 当前约定 |
+|---|---|
+| 引擎 | Godot 4.x 正式版；本机 MCP 与命令行均返回 `4.7.2.stable.official.ed1daf0bf` |
+| 团队版本 | 使用 Godot 4.7.2 标准版（GDScript）；本机已核对，其他成员安装结果待验证 |
+| 脚本 | GDScript |
+| 渲染 | Compatibility；当前配置为 `gl_compatibility` |
+| 画面 | 1280×720 逻辑分辨率及初始窗口；`canvas_items` 缩放、`keep` 保持比例 |
+| 协作 | Git、GitHub Desktop、个人功能分支和 Pull Request |
+| 开发系统 | Windows / macOS 共用源项目；公共底座完成后分别试玩 |
+| 导出 | 在导出阶段按目标平台生成并实际测试；最终必交平台依课程要求确认 |
 
-### Example identities
+Windows 和 macOS 的成员使用同一个仓库与同一准确版本的 Godot，资源使用项目相对路径（如 `res://assets/...`），文件名统一小写英文和下划线。导出版本的可运行性需要分别验证。
 
-| ID card | Example use |
-| --- | --- |
-| Security | Pass guards or security checks |
-| Cleaner | Access vents or cleaning areas |
-| Warehouse | Move heavy boxes |
+## 如何打开当前项目
 
-These examples are provisional and may change as the game develops.
+1. 用 GitHub Desktop 克隆共同仓库；已有本地副本时先检查并保留自己的未提交修改。
+2. 打开 Godot 项目管理器，选择“导入”，定位到仓库中的 `project.godot`。
+3. 进入编辑器后核对 Godot 版本为 4.7.2。首次资源导入产生的 `.godot/` 缓存由本机生成，不提交。
+4. 按 F5 运行 `scenes/main.tscn`，进入公共测试走廊，按 A/D 或左右箭头移动，松开停止。
+5. F6 运行当前测试场景。各成员的入口见 [组员接入说明](docs/onboarding.md)。
 
-## Project status
+不要为个人功能另建一套 Godot 项目。运行入口和验证方法随底座完成更新到本文件。
 
-This project is at an early concept stage. The identity-switching mechanic is the main design focus. The monsters, shopping mall, characters, story, and example card abilities are temporary ideas and may be changed or replaced.
+## 已配置的输入映射
 
-## Development and play
+以下输入映射已写入 `project.godot` 并由 Godot 重新读取验证。按键使用物理键位；目前只有左右移动已实现，其他动作及背包交互将在对应功能阶段接入。
 
-The game engine, supported platforms, and run instructions have not been decided yet. This section will be updated when a playable version and its development setup are available.
+| 动作名称 | 按键 | 功能 |
+|---|---|---|
+| `move_left` | A / 左箭头 | 左移 |
+| `move_right` | D / 右箭头 | 右移 |
+| `interact` | E | 偷卡、救援、出口交互 |
+| `switch_id` | Q | 切换当前佩戴卡 |
+| `open_bag` | I | 打开背包 |
+| `open_help` | H | 查看说明和怪物手册 |
+| `pause` | Esc | 暂停／菜单 |
 
-## Credits and tools
+## 四人分工
 
-Credits for code, artwork, audio, other assets, and development tools will be added as they are selected and used. AI tools used during development will also be documented here.
+| 成员 | 功能 | 主要文件范围 |
+|---|---|---|
+| A 组长 | 公共设置、主角、场景组装、楼层、救援流程、重试和打包 | `project.godot`、`scenes/main.tscn`、`scenes/player/`、`scenes/levels/`、`scripts/game_manager.gd` |
+| B | 工作人员、偷卡、三卡数据和装备切换 | `scenes/staff/`、`scripts/card_manager.gd` |
+| C | 通用房门、计时、五种怪物检测 | `scenes/doors/` |
+| D | 菜单、HUD、背包界面、图鉴、对白、失败／结局、测试记录 | `scenes/ui/`、`docs/qa.md` |
+
+仓库已有 `work/member-1` 至 `work/member-4`，由 A 确认各自对应成员后沿用；具体操作见 [GitHub 四人协作指南](docs/github-collaboration-guide.md)。
+
+上述功能目录和成员独立测试场景已建立；B/C/D 的正式组件目录目前为空。美术由全员共同选择，再由使用者导入自己负责的场景。
+
+## 协作流程
+
+每次开始先同步最新 main，并检查当前分支和修改清单。在自己的模块和独立测试场景开发；完成后写清改动、实际测试和 A 需要接入的位置，再提交 PR。A 每接入一个模块就回归已有功能，main 只接收可运行的版本。
+
+跨模块修改先明确范围和接口；不得通过复制卡片数据、另建管理器或重写他人模块绕过接入问题。当前按编号逐项推进，具体任务见 [执行清单](PLANS.md)。
+
+## 文档入口
+
+| 文档 | 用途 |
+|---|---|
+| [执行清单](PLANS.md) | 阶段顺序、文件范围和完成标准 |
+| [游戏规则](docs/game-design.md) | 玩法、楼层、人员归属及待确认问题 |
+| [公共接口](docs/interfaces.md) | A/B/C/D 的函数、信号、数据、输入归属和场景接入约定 |
+| [环境配置](docs/environment.md) | 准确版本、画面、输入、跨系统接入和配置检查方法 |
+| [组员接入](docs/onboarding.md) | F5/F6 入口、B/C/D 第一份交付、可用接口和人工验收事项 |
+| [GitHub 协作指南](docs/github-collaboration-guide.md) | 分支、Commit／Push、PR、A 合并、同步 main 和冲突处理 |
+| [AI 开发规则](AGENTS.md) | AI 工作范围、资料优先级和验证要求 |
+| [测试与 BUG 记录](docs/qa.md) | 游戏验收用例、基础检查、BUG 模板 |
+| [进度记录](docs/progress.md) | 实际完成的工作、证据、限制和交接 |
+
+公共接口文档已区分底座中可用的接口与后续功能约定；具体交互将在相应功能开发时逐步补充。
+
+底座回归可使用 Godot 运行 `scenes/tests/core/foundation_smoke.gd`，命令和覆盖范围见组员接入说明。公共底座的共享入口是云端 main；组员同步后先运行 F5，再运行自己的 F6 测试场景。本次发布记录见 [公共底座 PR #2](https://github.com/sd5913/ae4pa/pull/2) 及进度文档。
+
+README 由 A 初始建立、D 后续维护；运行环境和公共接口变动由 A 确认后同步。
+
+## 素材与工具署名
+
+当前开发使用 Godot、Git 和 Codex。正式采用的图片、音效、字体及其来源、许可和 AI 生成工具将在素材选定后补充，不把候选资源写成已采用素材。

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/test_corridor.tscn" id="1_corridor"]
+
+[node name="DoorsTest" type="Node2D"]
+
+[node name="Corridor" parent="." instance=ExtResource("1_corridor")]
+
+[node name="DoorSlot" type="Node2D" parent="."]
+position = Vector2(1500, 560)
+
+[node name="TestLabel" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Label" type="Label" parent="TestLabel"]
+offset_left = 32.0
+offset_top = 28.0
+offset_right = 1200.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 24
+text = "C · 房门测试骨架 | A / D 移动 | 请在 DoorSlot 接入通用门"

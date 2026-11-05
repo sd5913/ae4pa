@@ -2,6 +2,9 @@
 .godot/
 /android/
 
+# Exported game packages (source assets stay tracked)
+/builds/
+
 # macOS metadata
 .DS_Store
 
