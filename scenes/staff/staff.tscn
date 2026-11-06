@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dk28c5ga3ah6c"]
 
+[ext_resource type="Script" uid="uid://cl4ot6avnt8hm" path="res://scenes/staff/staff.gd" id="1_x6oaq"]
+
 [sub_resource type="Animation" id="Animation_x6oaq"]
 length = 0.001
 tracks/0/type = "value"
@@ -38,7 +40,11 @@ _data = {
 &"look_around": SubResource("Animation_j4sw3")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b35xr"]
+size = Vector2(100, 100)
+
 [node name="Staff" type="Node2D" unique_id=1529652639]
+script = ExtResource("1_x6oaq")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=1927931577]
 color = Color(0.32156864, 0.47843137, 0.6117647, 1)
@@ -53,5 +59,10 @@ polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 libraries/ = SubResource("AnimationLibrary_x6oaq")
 autoplay = &"look_around"
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=611197708]
+[node name="StealArea" type="Area2D" parent="." unique_id=996756406]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StealArea" unique_id=655430713]
 position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_b35xr")
+
+[connection signal="body_entered" from="StealArea" to="." method="_on_steal_area_body_entered"]
