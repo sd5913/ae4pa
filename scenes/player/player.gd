@@ -1,5 +1,5 @@
 class_name HotelPlayer
-extends Node2D
+extends CharacterBody2D
 
 @export var walk_speed: float = 160.0
 
