@@ -66,3 +66,4 @@ position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_b35xr")
 
 [connection signal="body_entered" from="StealArea" to="." method="_on_steal_area_body_entered"]
+[connection signal="body_exited" from="StealArea" to="." method="_on_steal_area_body_exited"]
