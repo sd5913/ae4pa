@@ -38,7 +38,7 @@ func _on_identity_changed(_action: String) -> void:
 
 func _update_status() -> void:
 	status_label.text = (
-		"STAFF TEST | A/D move, E steal, Q switch identity\n"
+		"STAFF TEST | A/D move, stand behind, hold E 0.8s, Q switch identity\n"
 		+ "Test equip: 1=SECURITY→A, 2=CLEANER→B, 3=MANAGER→A, 0=clear active slot\n"
 		+ "Owned: %s | Slots: %s | Active slot: %d | Identity: %s"
 		% [
