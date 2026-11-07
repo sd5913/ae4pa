@@ -1,0 +1,50 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/test_corridor.tscn" id="1_corridor"]
+[ext_resource type="PackedScene" path="res://scenes/doors/monster_door.tscn" id="2_door"]
+[ext_resource type="Script" path="res://scenes/tests/doors/doors_test.gd" id="3_test"]
+[ext_resource type="Script" path="res://scenes/tests/doors/range_overlay.gd" id="4_overlay"]
+
+[node name="MultiDoorsTest" type="Node2D"]
+script = ExtResource("3_test")
+spawn_x = 192.0
+
+[node name="Corridor" parent="." instance=ExtResource("1_corridor")]
+
+[node name="DoorSlot" type="Node2D" parent="."]
+
+[node name="Door201" parent="DoorSlot" instance=ExtResource("2_door")]
+position = Vector2(700, 560)
+
+[node name="Door202" parent="DoorSlot" instance=ExtResource("2_door")]
+position = Vector2(1400, 560)
+room_id = "202"
+monster_type = "EAR"
+offset = 2.0
+
+[node name="Door203" parent="DoorSlot" instance=ExtResource("2_door")]
+position = Vector2(2100, 560)
+room_id = "203"
+monster_type = "CHECKER"
+offset = 4.0
+
+[node name="RangeOverlay" type="Node2D" parent="."]
+script = ExtResource("4_overlay")
+
+[node name="TestLabel" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="Label" type="Label" parent="TestLabel"]
+offset_left = 32.0
+offset_top = 28.0
+offset_right = 1240.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 22
+text = "三门错相位：201 独眼 / 202 大耳 / 203 核验 | 初始相位 0 / 2 / 4 秒\nA/D 移动 | 1/2/3 配卡 | Q 切卡 | R 重开 | 绿带为门间安全区（520px）"
+
+[node name="Status" type="Label" parent="TestLabel"]
+offset_left = 32.0
+offset_top = 104.0
+offset_right = 1240.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 20

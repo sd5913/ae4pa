@@ -12,6 +12,8 @@ extends Node2D
 @export_range(0.01, 60.0, 0.01) var warning_time: float = 1.4
 @export_range(0.01, 60.0, 0.01) var open_time: float = 2.8
 @export_range(0.0, 500.0, 1.0) var radius: float = 90.0
+## Seconds already elapsed in the cycle. Reset reproduces this configured phase.
+@export_range(-600.0, 600.0, 0.1) var offset: float = 0.0
 @export_enum("EYE", "NOSE", "HAT", "EAR", "CHECKER") var monster_type: String = "EYE"
 
 var door_state: String = "CLOSED"
@@ -74,6 +76,12 @@ func _process(delta: float) -> void:
 	var warning: float = maxf(warning_time, 0.01)
 	var opened: float = maxf(open_time, 0.01)
 	_cycle_time = fposmod(_cycle_time + delta, closed + warning + opened)
+	_update_phase()
+
+
+func _update_phase() -> void:
+	var closed: float = maxf(closed_time, 0.01)
+	var warning: float = maxf(warning_time, 0.01)
 	var next_state: String = "CLOSED"
 	if _cycle_time >= closed + warning:
 		next_state = "OPEN"
@@ -88,10 +96,11 @@ func _process(delta: float) -> void:
 
 
 func reset_cycle() -> void:
-	_cycle_time = 0.0
-	door_state = "CLOSED"
+	var total: float = maxf(closed_time, 0.01) + maxf(warning_time, 0.01) + maxf(open_time, 0.01)
+	_cycle_time = fposmod(offset, total)
 	if is_node_ready():
 		_refresh_visuals()
+		_update_phase()
 
 
 func _refresh_visuals() -> void:

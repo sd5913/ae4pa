@@ -226,3 +226,14 @@
 - F6：scenes/tests/doors/doors_test.tscn，F1～F5 选择五怪并重置；1/2/3 配三卡，4 测备用槽装备，Q 调 B 切卡，R 重开。正式图仍用既有占位图，类型文字用于明确区分，没有把美术候选自动采用。
 - 验证：Godot 4.7.2 导入成功；monster_rules_smoke.gd 输出 PASS，600 组五怪状态/距离/卡片/移动组合、30 组真实切卡/装备事件、刷新隔离、暂停、重复/空绑定、真实移动处理顺序、移出树解绑通过；door_cycle_smoke.gd、eye_door_smoke.gd、foundation_smoke.gd 回归均通过，退出码均为 0。git diff --check 无诊断。
 - 限制：C-09 的 offset、C-10 多门相位与安全区、C-12 完整人工回归、C-13 最终交接仍待后续；未将独立组件测试当作主游戏接入、跨电脑试玩或导出通过。
+
+## 2026年11月7日 C-09～C-13 参数、错相位与组件交接（Windows，Asia/Shanghai）
+
+- 开工：工作区干净，fetch 后确认个人远端及 origin/main 已同步，无新合并。沿用 work/member-C-yinshiqi；PR #9 尚未合并，后续交付更新该 PR。
+- C-09：补齐 offset 检查器参数，表示已走过的周期秒数，支持正负值和跨周期取模；reset_cycle 恢复配置相位，默认 0 从 CLOSED 开始。七个导出字段及自定义时长/偏移/复位由实际 Godot 检查通过。
+- C-10：新增 multi_doors_test.tscn，三扇同源门 x=700/1400/2100，类型 EYE/EAR/CHECKER，offset=0/2/4；门间默认安全区 520px。测试专用 range_overlay 标示范围与安全区，不进入正式组件。五种起始时刻下，真实 HotelPlayer 移动方法的无卡等待通过模拟均成功；不是人工试玩结果。
+- C-11：沿用统一 GameManager.fail 三种 reason；新增验证持续检测及后续换卡不会重复发出本次失败通知。三种原因已有五怪矩阵核对，未新增另一套失败信号。
+- C-12：本机自动回归通过：door_cycle_smoke（20 轮与真实帧）、eye_door_smoke（60 组）、monster_rules_smoke（600 组规则和 30 组真实身份事件）、新增 door_handoff_smoke（参数/相位/安全间距/五条等待通路/失败去重/20 个楼层标记兼容性）。foundation_smoke 和 floor_flow_smoke 也均 PASS，退出码 0。人工操作复核与团队整合验收未代记通过。
+- C-13：门 README 补齐参数边界、A 按 Room Marker 元数据实例化的示例、绑定与重试/销毁职责；新增 acceptance.md 验证记录和人工用例。更新 interfaces 的真实状态，修正旧“只有 EYE/尚无 offset”的描述。检查探针在 A 的 2F～5F 共 20 个标记正确实例化同一门，未保存或改动 A 的楼层。
+- 画面与环境：Godot 4.7.2.stable.official.ed1daf0bf 导入成功；实际 OpenGL 渲染查看缩放全景下三种状态和安全区色带，截图为暂存阶段的视觉证据，不是试玩。MCP 正常运行 multi_doors_test，errors 为空，验收后停止；git diff --check 无诊断。
+- 范围：只改 C 门模块、测试场景/脚本和必要接口/进度文档；没有改主场景、项目设置或 A/B/D 实现。仍用占位图，正式美术、主线装配、团队人工试玩、导出与最终难度调优待 A/D 后续验收。

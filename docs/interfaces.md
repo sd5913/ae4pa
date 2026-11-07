@@ -153,9 +153,9 @@ E 的按住／松开检测属于 B 的偷窃功能；A 负责救援和出口 E�
 
 ## 7 C 提供通用房门
 
-**C-06～C-08 实现补充（2026-11-07）：** 同一 `monster_door` 已实现 EYE/NOSE/HAT 当前卡表、EAR 实际移动检查、CHECKER 同步 `identity_changed` 检查。`setup(player)` 重复绑定不重复订阅，移出场景树断开通知；暂停/非游玩/无有效主角不检查。EAR 的物理优先级为 1，在默认 Player 后读取本帧位移。备用槽装备也属于核验事件，空槽切换沿用 B 实际发出的信号，无效装备和普通刷新不伪造事件。`offset`、多门相位及正式美术仍待后续任务；本段仅更新 C 模块实现状态，不变更公共签名。
+**C-06～C-13 实现补充（2026-11-07）：** 同一 `monster_door` 已实现 EYE/NOSE/HAT 当前卡表、EAR 实际移动检查、CHECKER 同步 `identity_changed` 检查。`setup(player)` 重复绑定不重复订阅，移出场景树断开通知；暂停/非游玩/无有效主角不检查。EAR 的物理优先级为 1，在默认 Player 后读取本帧位移。备用槽装备也属于核验事件，空槽切换沿用 B 实际发出的信号，无效装备和普通刷新不伪造事件。已提供三门错相位测试与本机自动回归；正式美术、主游戏整合及团队试玩未完成。
 
-以下为目标约定。当前 C-01—05 的实际字段为 `room_id`、`closed_time`、`warning_time`、`open_time`、`radius`、`monster_type`，尚无 offset；只实现 EYE。接入以 [门模块说明](../scenes/doors/README.md) 和源码为准，不把其余类型配置当作规则已完成。
+下表七个字段均已在检查器暴露。`offset` 表示已走过的周期秒数，按三段总长取模（支持负值）；`reset_cycle()` 恢复此配置相位，不保证总为 CLOSED。默认 0 从 CLOSED 开始。参数在实例化前设置，或修改后调用 reset_cycle。选用 OPEN 相位可能在出生点立即检测，A 应将出生点放在范围外并保留预警与等待空间。接入示例、参数边界和验收限制见 [门模块说明](../scenes/doors/README.md)。
 
 目标文件：`scenes/doors/monster_door.tscn` 和相邻脚本。五怪共用组件，只更改配置及素材。
 
