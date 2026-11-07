@@ -141,8 +141,77 @@
 - 本次仅修改 Markdown，未修改游戏代码、场景或项目设置；游戏运行结果沿用公共底座既有证据，未重新执行功能测试。
 - 验证：11 份 Markdown 的 61 个本地链接、空白／结尾换行／代码块检查通过；BASE 四项、A/B/D 各 12 项、C 的 13 项编号连续，20 个怪物房号对应及 T01—T14 编号核对通过，`git diff --check` 无诊断。
 
-## 后续记录格式
+## 2026年11月6日 A 第1周复核与接入准备
+
+- 用户授权完成 A 本周任务；按分工文档确定为 11/5—11/11 的底座、主角、测试走廊和首次整合，沿用个人分支，开始时工作区干净。
+- 本机基线 `cfd0efbc04814f4f17b99822c74589252f1ed9dc`。通过 GitHub 连接器只读查询 main 完整文件树，返回 `2d250fe0ffda5af209a9748a1e062be080b3091f`，员工／门／UI 功能目录仅有 `.gitkeep`；打开的 PR 查询为空。未据此推断其他分支或成员电脑的开发状态。
+- 执行本机 `Downloads/Godot.app/Contents/MacOS/Godot --version`，返回 `4.7.2.stable.official.ed1daf0bf`；用该可执行文件运行 `--headless --path . --log-file /tmp/ae4pa-week1-foundation.log --script res://scenes/tests/core/foundation_smoke.gd`，断言通过、退出码 0。
+- 将 git 跟踪的源码复制到临时目录，不复制 `.git`／`.godot`；执行 `--headless --editor --path <副本> --import` 后执行同一回归，均退出码 0，回归打印 PASS。副本与日志位于本机临时目录 `ae4pa-week1-vb0l1xb_`，不提交。
+- 限制：上述运行出现 macOS 系统证书读取错误；导入还出现受限用户目录的编辑器设置保存失败。未观察到脚本／资源加载失败，不能报告零错误。本轮未重新做原生画面检查、成员电脑或 Windows 验收，也未执行 T01—T14。
+- 修改 `docs/a_week_1.md`、PLANS 与组员接入说明：集中记录 A-01—04、本周组件交付清单、B→C→D 接入顺序、验收回报格式及待测项；未修改游戏代码或代写成员模块。
+- 文档检查：4 份改动 Markdown（含新增文件）的 18 个本地链接、行尾空白、结尾换行和代码块闭合检查通过；`git diff --check` 无诊断。
+- 当前缺少可接入的 B/C/D 业务组件；任务 07 保持进行中、08 保持未开始。导出模板目录为空，未制作导出包；本轮未提交、推送、合并或向成员发送消息。
+
+## 2026年11月6日 A-07 五层占位与独立切换
+
+- 用户明确授权在等待 B/C/D 交付期间提前开发 A-07，指定自己的分支。实际远端名称为 `work/member-A-liuling`；fetch 后发现该分支仍在 `4192a1a`，本地从最新 `origin/main` 的 `2d250fe` 建立同名分支并设置对应 upstream，保留此前 4 份未提交文档。没有强推、重置、提交或更新远端分支。
+- 实现文件：`scenes/levels/floor_base.tscn`、`floor.gd`、`floor_1.tscn`—`floor_5.tscn`、`scripts/game_manager.gd`、`scenes/tests/core/floors_test.tscn`／`.gd`，以及 Godot 生成的新增脚本 UID。F5 主场景、Player、CardManager 和 B/C/D 模块保持原状。
+- 五层原型均为 3600×720，出生点 `(192, 560)`，边界 64—3536；1F 三员工接入位、2F—5F 按主策划的 20 个房号／怪物标记、309 救援位与五楼 EXIT 均为占位。默认门间隔 450，按半径 90 预留 270 像素安全空间，真实门接入后再实测节奏。
+- GameManager 支持可选楼层宿主、顺序换层、LOADING 期间禁止游玩和完成后的 floor_changed；换层不重置卡片或 has_friend。正式 E 只在出口 70 像素内请求下一层，1F 依赖真实三卡、3F 依赖 has_friend；5F 暂不实现结局。F6 预览的开发跳转必须显式启用并使用 editor 可执行程序，不授予假卡、不标记救援，导出禁用防护已代码核对，实际导出包尚未验证。
+- 验证先后：新增 `floor_flow_smoke.gd` 首次运行因五层资源／方法缺失而失败（退出码 1）；实现后通过。检查覆盖顺序／越界／重复请求、缺卡／未救援拦截、失败后禁止跳转、场景释放、单主角、入口、相机、边界、远处 E 无效及近处 E 换层、一次成功只通知一次、开发按钮不伪造状态、4F／5F 保留已救援状态夹具、新局回 1F。修正了测试监听器捕获已释放宿主的问题，最终日志没有该脚本错误。
+- 本机命令使用 `Downloads/Godot.app/Contents/MacOS/Godot`：`--headless --path . --log-file /tmp/ae4pa-a07-green.log --script res://scenes/tests/core/floor_flow_smoke.gd` 与 `--headless --path . --log-file /tmp/ae4pa-a07-foundation.log --script res://scenes/tests/core/foundation_smoke.gd` 均打印 PASS、退出码 0。
+- 干净源码：复制当前跟踪及新增源文件到临时目录 `ae4pa-a07-clean-ute5ys7g`，不含 `.godot`／`.git`；编辑器重新导入和上述两项回归均退出码 0，日志为 `/tmp/ae4pa-a07-clean-import.log`、`ae4pa-a07-clean-flow.log`、`ae4pa-a07-clean-foundation.log`。受限回归仍打印已知 macOS 系统证书读取错误，不宣称零错误；原工作区编辑器导入曾提示无法启动用户配置的外部文本编辑器，随后退回内置编辑器，干净副本未出现此提示。
+- 实际渲染：Mac OpenGL 4.1 Metal／Compatibility 渲染 F6 预览，检查 1F 入口、2F 中段、3F 309／出口及 5F EXIT 的 1280×720 临时截图，中文、房号、状态、按钮和角色无重叠；截图位于 `/tmp/ae4pa-a07-floor-1.png` 等，不属于正式素材。该检查未进行鼠标人工试玩。
+- 最终只读审阅者核对本次代码与主策划，未报告 Critical／Important／Minor 问题，并独立运行两项回归通过；未修改源文件。文档同步 README、接口、PLANS、组员接入、分工文档当前状态及 A 周清单，实施细节见 `docs/a07_floor_plan.md`。
+- 文档／范围检查：22 份改动或新增文本文件（含前轮文档）的行尾空白、结尾换行及 Markdown 代码块检查通过，57 个本地链接存在，`git diff --check` 无诊断；未修改 B/C/D 业务文件、CardManager、主场景、项目设置或 Player。
+- 限制：B/C/D 组件、真实三卡获得后的通行、309 实际救援、重试、淡入淡出、正式入口／UI／结局、Windows 与导出仍未验收。任务 10 只进入“A-07 占位／切换已验证”，没有把 T01—T14 或完整主线标记通过。
+
+## 后续记录填写要求
 
 每项记录日期与 `Asia/Hong_Kong` 时区、当前任务、实际修改文件、关键决定、执行过的检查及结果、未测事项、阻塞和下一步。只有确实执行并观察到结果的检查才能写通过。
 
 成员提供的测试结果标记为“成员报告”，与当前操作者亲自观察的结果区分。涉及其他系统时写明 Windows/macOS、准确版本和目标机器。
+
+## 2026年11月7日 C-01 通用房门（Windows，UTC+08:00）
+
+- 分支：work/member-C-yinshiqi；开工无未提交改动，fetch 后将 origin/main 的 8882f0e 快进同步到个人分支。
+- 文件：scenes/doors/monster_door.tscn、monster_door.gd 及 UID、模块 README；更新 scenes/tests/doors/doors_test.tscn，新增相邻脚本及 UID。
+- 实现：一套 Node2D 通用门，门底中央为原点；room_id 可在检查器及运行时更新；Polygon2D 独眼占位图；独立场景同时展示 201、202 两个同源实例。
+- 底座验证：Godot 4.7.2.stable.official.ed1daf0bf 控制台导入成功；foundation_smoke.gd 输出 PASS（启动、管理器、卡片查询隔离、失败、移动、边界、相机）。MCP 启动主场景，Compatibility/NVIDIA 渲染，errors 为空，随后停止测试进程。
+- C-01 验证：本机临时 SceneTree 检查加载独立场景，确认初始房号 201/202；将第二扇改为 309 后第一扇仍为 201。实际 OpenGL 渲染并查看 1280×720 截图，两个门号和占位图均清楚。检查输出 PASS，退出码 0。临时检查脚本和截图保留本机，不进入源码。
+- F6 入口：res://scenes/tests/doors/doors_test.tscn。A/D 或方向键移动；起点设在门旁便于检查。
+- 限制：只完成 C-01 静态组件，未实现 C-02 起的计时、状态切换、检测、setup/reset_cycle 和五怪；占位怪物当前持续可见，不代表开门状态。未接入 main，未做主线验收、导出或其他电脑试玩。
+- 交接：A 可复用场景并配置 room_id，完整说明在 scenes/doors/README.md；后续实现 C-02，再补预警和危险规则。
+
+## 2026年11月7日 C-02 三状态循环（Windows，UTC+08:00）
+
+- 开工：工作区干净，fetch 后个人远端及 origin/main 均已同步，无新增合并。
+- 修改：monster_door.gd/.tscn、模块 README、doors_test.tscn；新增 door_cycle_smoke.gd 及 UID。
+- 实现：CLOSED 5.5s → WARNING 1.4s → OPEN 2.8s 重复循环，保留帧间余量；时长可配置且最小为 0.01s；每门独立计时。非 PLAYING 冻结，编辑器不自动播放，reset_cycle 回到关闭；开门显示占位怪物，关闭/预警隐藏，附状态文字。
+- 验证：Godot 4.7.2 控制台执行 door_cycle_smoke.gd 输出 PASS，覆盖默认时长边界、20 轮、长帧余量、实例独立、失败冻结、重置和引擎真实帧两轮循环。测试脚本首次类型推断错误已修正后重跑通过。
+- 回归：重新导入和 foundation_smoke.gd 通过；MCP 启动 doors_test.tscn，Compatibility/NVIDIA 图形输出，errors 为空。
+- F6 入口仍为 scenes/tests/doors/doors_test.tscn；自动检查为 --headless --path . --script res://scenes/tests/doors/door_cycle_smoke.gd。
+- 限制：醒目预警为 C-03，检测区及五怪判定、相位和主游戏接入尚未完成；没有把状态文字当成最终视觉预警。未做导出、跨电脑或主线验收。
+
+## 2026年11月7日 C-03/C-04/C-05 独眼门（Windows，UTC+08:00）
+
+- 开工：工作区干净，fetch 后确认 origin/main 和个人分支已同步。沿用同一组件，不改主场景或 B 的卡片管理器。
+- 修改：monster_door.gd/.tscn、门 README、doors_test.gd/.tscn；新增 eye_door_smoke.gd 及 UID。
+- C-03：预警门框交替变色并显示“! 即将开门 !”；只有开启显示怪物。实际 OpenGL 截图核对预警文字、隐藏和开启显示无重叠；截图保留本机 outputs，不作为游戏素材。
+- C-04：setup(player) 注入主角，在 PLAYING/OPEN 且主角有效时按 global_position.x 比较，默认半径 90；正负边界包含，外侧安全。水平游戏不额外限定 y；未绑定/已释放主角时不检测。
+- C-05：仅 EYE 规则读取真实 CardManager.active_card，SECURITY 安全，其他卡或 NONE 调用 GameManager.fail("WRONG_CARD")。其他 monster_type 只预留，不宣称已完成。
+- F6：scenes/tests/doors/doors_test.tscn，1 获取并佩戴保安卡、2 获取并佩戴保洁卡、R 重开；调试准备调用 B 的 collect_card/equip_card，屏幕显示真实当前卡、状态和失败原因。
+- 验证：Godot 4.7.2 执行 eye_door_smoke.gd，60 组（三状态×五个水平距离×四种卡）通过，覆盖 ±90 边界及 ±90.1 外侧、平移父节点后的世界坐标、预警闪动、怪物显隐、缺失/重复绑定主角。door_cycle_smoke.gd 和 foundation_smoke.gd 均输出 PASS；资源导入成功。
+- 限制：尚未实现 C-06 起的其他怪物、offset、多门节奏和平衡；未接入主游戏、未导出或跨电脑试玩。自动用例通过不等于完整主线通过。
+
+## 2026年11月7日 A-07 发布准备与后续任务检查（Asia/Shanghai）
+
+- 用户澄清本轮 Git 操作为“把本地 A-07 上传，并通过 PR 合入云端 main”，不是单纯拉取更新；保留 A 分支和全部成员历史，不直接推送 main。
+- 开始时 A 分支位于 `2d250fe`，本地 A-07 尚未提交。fetch 后云端 main 为 `466620a`，已包含 B 两份交付 PR 和 C 的独眼门 PR。将本地全部未提交／新增文件保存为安全 stash `57e8f42f78ef3bd9bed0e0050aa722b521457f32`，A 分支快进 main 后应用快照成功，无合并冲突；该快照保留用于恢复。
+- 本机 `project.godot` 被编辑器改为 `core_test.tscn` 默认入口并移除显式 keep 设置；按保留已有改动规则留在本地，不纳入本次提交。发布候选源码副本采用 git 中的 `scenes/main.tscn` 正式入口；下述验证针对发布源码，不将本地未提交设置冒充已测试发布配置。
+- 在 A-07 流程检查中补充使用 B 的真实 collect_card／equip_card：三卡满足后可从 1F 正常上 2F，拥有卡片与佩戴槽保持。其余 A-07 生产逻辑没有为发布另加功能，未代写或更改 B/C/D 模块。
+- 干净候选副本 `ae4pa-a07-publish-eajdnl4r` 不含 `.godot`／`.git`，导入完成、退出码 0；同一副本分别运行 `floor_flow_smoke.gd`、`foundation_smoke.gd`、`staff_core_smoke.tscn`、`door_cycle_smoke.gd`（--max-fps 60）和 `eye_door_smoke.gd`，5 项均打印 PASS、退出码 0。真实可执行文件为本机 Downloads 下的 Godot.app，准确版本沿用 `4.7.2.stable.official.ed1daf0bf`。日志保存在 `/tmp/ae4pa-a07-publish-*.log`。
+- 限制：受限运行仍有 macOS CA 证书读取错误，导入还报告用户目录编辑器设置保存失败；未见脚本解析或场景加载错误，不报告零错误。此次未新增人工／跨机器／导出／完整主线验收。
+- 已更新 README、PLANS、接口和接入说明中的实际状态，区分 B/C 已交付与 A 尚未组装。B 实际长按参数为 steal_hold_time，C 实际门参数为 room_id／closed_time／warning_time／open_time／radius，接入时不能直接使用旧文档中的计划字段。
+- 后续优先顺序：A-05 在测试走廊接入 B 员工及卡片 → A-06 接入 C 独眼门 → A 的本层重试与 D 失败页连接（D 正式界面仍待交付）。之后推进 A-08 的 309 与跟随。需要先协调的现有差异：B 正面偷窃只拒绝操作，主策划要求立即 STAFF_CAUGHT；B 的现有测试也明确期待正面尝试后继续 PLAYING，不能据此给 T01 记通过。
+- 本条为发布前记录；提交 SHA、PR 及最终 main 状态由本轮发布后核实，不在操作前预写成功。

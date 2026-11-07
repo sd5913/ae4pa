@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/floor_base.tscn" id="1_base"]
+
+[node name="Floor1" instance=ExtResource("1_base")]
+floor_number = 1
+
+[node name="SecuritySlot" type="Marker2D" parent="StaffRoot" index="0"]
+position = Vector2(800, 560)
+metadata/card_id = "SECURITY"
+
+[node name="CleanerSlot" type="Marker2D" parent="StaffRoot" index="1"]
+position = Vector2(1600, 560)
+metadata/card_id = "CLEANER"
+
+[node name="ManagerSlot" type="Marker2D" parent="StaffRoot" index="2"]
+position = Vector2(2400, 560)
+metadata/card_id = "MANAGER"
