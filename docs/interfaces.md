@@ -153,6 +153,8 @@ E 的按住／松开检测属于 B 的偷窃功能；A 负责救援和出口 E�
 
 ## 7 C 提供通用房门
 
+**C-06～C-08 实现补充（2026-11-07）：** 同一 `monster_door` 已实现 EYE/NOSE/HAT 当前卡表、EAR 实际移动检查、CHECKER 同步 `identity_changed` 检查。`setup(player)` 重复绑定不重复订阅，移出场景树断开通知；暂停/非游玩/无有效主角不检查。EAR 的物理优先级为 1，在默认 Player 后读取本帧位移。备用槽装备也属于核验事件，空槽切换沿用 B 实际发出的信号，无效装备和普通刷新不伪造事件。`offset`、多门相位及正式美术仍待后续任务；本段仅更新 C 模块实现状态，不变更公共签名。
+
 以下为目标约定。当前 C-01—05 的实际字段为 `room_id`、`closed_time`、`warning_time`、`open_time`、`radius`、`monster_type`，尚无 offset；只实现 EYE。接入以 [门模块说明](../scenes/doors/README.md) 和源码为准，不把其余类型配置当作规则已完成。
 
 目标文件：`scenes/doors/monster_door.tscn` 和相邻脚本。五怪共用组件，只更改配置及素材。

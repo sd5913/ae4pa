@@ -19,6 +19,18 @@ func _unhandled_key_input(event: InputEvent) -> void:
 	elif event.keycode == KEY_2:
 		CardManager.collect_card("CLEANER")
 		CardManager.equip_card("CLEANER", CardManager.active_slot)
+	elif event.keycode == KEY_3:
+		CardManager.collect_card("MANAGER")
+		CardManager.equip_card("MANAGER", CardManager.active_slot)
+	elif event.keycode == KEY_4:
+		# Test the spare-slot equip event without writing card state directly.
+		CardManager.collect_card("MANAGER")
+		CardManager.equip_card("MANAGER", 1 - CardManager.active_slot)
+	elif event.keycode >= KEY_F1 and event.keycode <= KEY_F5:
+		var types: Array[String] = ["EYE", "NOSE", "HAT", "EAR", "CHECKER"]
+		for door: Node in $DoorSlot.get_children():
+			door.monster_type = types[event.keycode - KEY_F1]
+			door.reset_cycle()
 	elif event.keycode == KEY_R:
 		GameManager.start_game()
 		$Corridor/Player.global_position = Vector2(1280, 560)

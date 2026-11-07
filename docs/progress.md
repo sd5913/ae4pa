@@ -215,3 +215,14 @@
 - 已更新 README、PLANS、接口和接入说明中的实际状态，区分 B/C 已交付与 A 尚未组装。B 实际长按参数为 steal_hold_time，C 实际门参数为 room_id／closed_time／warning_time／open_time／radius，接入时不能直接使用旧文档中的计划字段。
 - 后续优先顺序：A-05 在测试走廊接入 B 员工及卡片 → A-06 接入 C 独眼门 → A 的本层重试与 D 失败页连接（D 正式界面仍待交付）。之后推进 A-08 的 309 与跟随。需要先协调的现有差异：B 正面偷窃只拒绝操作，主策划要求立即 STAFF_CAUGHT；B 的现有测试也明确期待正面尝试后继续 PLAYING，不能据此给 T01 记通过。
 - 本条为发布前记录；提交 SHA、PR 及最终 main 状态由本轮发布后核实，不在操作前预写成功。
+
+## 2026年11月7日 C-06/C-07/C-08 其余四怪规则（Windows，Asia/Shanghai）
+
+- 开工：个人分支工作区干净；fetch 后从 cf0a01d 快进同步 origin/main 的 51507f2，保留 A/B/C 全部已合并内容。PR #6 已合并，本轮作为新的功能 PR 交付。
+- 修改：scenes/doors/monster_door.gd、模块 README、doors_test.gd/.tscn；新增 monster_rules_smoke.gd 及 UID；补充 docs/interfaces.md 的 C 实现状态，不变更公共签名。
+- C-06：EYE/NOSE/HAT 共享当前卡对照表，分别要求 SECURITY/CLEANER/MANAGER；错误或 NONE 上报 WRONG_CARD。未复制门脚本，也未修改 B 的卡片数据。
+- C-07：EAR 在 OPEN/PLAYING/水平范围内读取 HotelPlayer.is_moving，上报 MOVED_NEAR_EAR；卡片无保护。门物理处理优先级 1，在默认 Player 后读取本帧位移，沿用 A 的边界与反向键抵消约定。
+- C-08：CHECKER 同步监听真实 identity_changed，SWITCH_ACTIVE/EQUIP_CARD（包括备用槽）在危险区上报 SWITCHED_NEAR_CHECKER；普通行走、cards_changed、收集、重复或无效装备不触发。setup 重复调用仅一个连接，移出树即解绑，无有效主角/暂停/非游玩安全。空槽切换按 B 当前发出的真实信号处理，不另定规则。
+- F6：scenes/tests/doors/doors_test.tscn，F1～F5 选择五怪并重置；1/2/3 配三卡，4 测备用槽装备，Q 调 B 切卡，R 重开。正式图仍用既有占位图，类型文字用于明确区分，没有把美术候选自动采用。
+- 验证：Godot 4.7.2 导入成功；monster_rules_smoke.gd 输出 PASS，600 组五怪状态/距离/卡片/移动组合、30 组真实切卡/装备事件、刷新隔离、暂停、重复/空绑定、真实移动处理顺序、移出树解绑通过；door_cycle_smoke.gd、eye_door_smoke.gd、foundation_smoke.gd 回归均通过，退出码均为 0。git diff --check 无诊断。
+- 限制：C-09 的 offset、C-10 多门相位与安全区、C-12 完整人工回归、C-13 最终交接仍待后续；未将独立组件测试当作主游戏接入、跨电脑试玩或导出通过。
