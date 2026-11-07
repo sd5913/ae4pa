@@ -6,14 +6,16 @@
 
 函数表示“调用另一个模块做事”，信号表示“通知其他模块某事已经发生”。调用者按本文约定使用接口，模块内部实现由对应负责人决定。
 
-**当前状态：公共管理器骨架、Player、主场景和测试走廊已实现并在 A 本机验证。** 员工、房门、正式 UI 和后续流程尚未实现。V2 规定了职责和功能，但没有固定以下全部函数名、参数和信号；这些名称是本次为协作拟定的约定。A 组织 B/C/D 对照文档接入，成员确认仍待进行。背包、暂停及详细交互继续在相应功能阶段确认。
+**当前状态：公共管理器、Player、主场景、测试走廊及 A-07 五层占位／切换已实现并在 A 本机验证。** 2026-11-07 已同步 main 中 B 的员工／三卡双槽与 C 的三状态独眼门，尚未组装到主流程；正式 UI、救援、重试和通关仍待实现。V2 未固定的函数名称是协作约定，文档目标不等于组件已按目标验收；背包、暂停及详细交互继续在相应阶段确认。
 
 | 模块 | 当前真实可用 | 尚待实现 |
 |---|---|---|
-| GameManager | 四个状态字段、`start_game`、`fail`、`state_changed`、`game_failed` | 楼层、重试、救援、通关和返回菜单 |
-| CardManager | 当前卡／槽只读属性、查询副本、`has_card`、`has_all_cards`、`reset_for_new_game`、`cards_changed` | 收集、切换和装备操作；`identity_changed` 已声明但尚无主动换卡行为 |
+| GameManager | 四个状态字段、`start_game`、`fail`、`set_floor_host`、`go_to_floor`、`floor_changed`，受限开发预览；原有状态／失败通知 | 重试、救援、通关和返回菜单；真实组件绑定 |
+| CardManager | 查询／重置、`collect_card`、`switch_active`、`equip_card`、Q 输入、`cards_changed`／`identity_changed` 实际通知 | UI 接入；空槽／无效操作等规则确认及非游玩输入边界验收 |
 | HotelPlayer | 移动、`is_moving`、朝向、`set_walk_bounds`、`set_movement_locked`、相机 | 偷卡／怪物／剧情组件的实际接入 |
-| 员工／房门／正式 UI | 仅独立测试场景骨架和放置 slot | 本文各模块的业务接口与功能 |
+| 员工 | `staff.tscn`、`setup(player)`、转身、长按偷取、取消和回头失败，独立场景可测 | 正面偷取当前仅拒绝，尚不符合主策划立即失败；预警和主流程接入 |
+| 房门 | `monster_door.tscn`、`setup(player)`、`reset_cycle`、三状态、可见预警、EYE 检测 | 其他四怪、offset 和主流程接入；实参以门 README 为准 |
+| 正式 UI | 仅独立测试骨架 | 菜单、HUD、背包、剧情、失败／结局页面 |
 
 ## 1 负责人和依赖
 
@@ -38,10 +40,10 @@ A 先发布可运行公共底座，B/C/D 再从该版本开发。A 创建 CardMa
 | 佩戴槽 | `int`，`0` 或 `1` | `0` 为槽 A，`1` 为槽 B |
 | 怪物 | `"EYE"`、`"NOSE"`、`"HAT"`、`"EAR"`、`"CHECKER"` | 全部使用同一个门组件 |
 | 门状态 | `"CLOSED"`、`"WARNING"`、`"OPEN"` | 只有 OPEN 执行怪物检测 |
-| 游戏状态 | `"MENU"`、`"INTRO"`、`"PLAYING"`、`"RESCUE_DIALOGUE"`、`"FAILED"`、`"WON"` | 基础阶段先提供 MENU／PLAYING／FAILED；剧情和通关状态随功能接入 |
+| 游戏状态 | `"MENU"`、`"LOADING"`、`"INTRO"`、`"PLAYING"`、`"RESCUE_DIALOGUE"`、`"FAILED"`、`"WON"` | 已提供 MENU／PLAYING／FAILED 及同步换层期间的 LOADING；剧情和通关状态随功能接入 |
 | 失败原因 | `"STAFF_CAUGHT"`、`"WRONG_CARD"`、`"MOVED_NEAR_EAR"`、`"SWITCHED_NEAR_CHECKER"` | B/C 报告标识，D 转成中文 |
 | 楼层 | `int`，`1`—`5` | 不用场景文件名或字符串代替 |
-| 主角类型 | `HotelPlayer`，继承 `Node2D` | A 在 Player 脚本声明该类名；B/C 使用相同类型 |
+| 主角类型 | `HotelPlayer`，当前继承 `CharacterBody2D` | main 已引入员工检测所需碰撞；仍使用现有水平移动接口 |
 | 世界位置 | `Vector2`；横向判定使用 `global_position.x` | 玩家、员工和房门比较同一世界坐标，不混用不同父节点的局部 x |
 
 `GameManager` 和 `CardManager` 是两个 Autoload 名称，只由 A 修改 `project.godot` 配置。主角、员工、房门和 UI 作为场景实例接入，不新增另一套全局管理器。
@@ -59,10 +61,12 @@ A 先发布可运行公共底座，B/C/D 再从该版本开发。A 创建 CardMa
 
 | 函数签名 | 调用者 | 职责 | 实现阶段 |
 |---|---|---|---|
-| `start_game() -> void` | A 接收 D 的开始／重新开始请求后调用 | 初始化新一局，重置卡片、楼层和救援进度；底座测试先进入 PLAYING，正式开场和 1F 由 A 后续接入 | 任务 05 提供骨架；任务 08 接正式流程 |
+| `start_game() -> void` | A 接收 D 的开始／重新开始请求后调用 | 重置卡片、楼层、失败和救援进度；已注册宿主时重新装载 1F，否则沿用独立测试的 PLAYING 行为 | 已实现；正式开场仍待接入 |
 | `fail(reason: String) -> void` | B 的员工、C 的门 | 仅在 PLAYING 接受失败，先更新为 FAILED 再通知 UI；同次失败不重复处理 | 任务 05 |
 | `retry_floor() -> void` | A 接收 D 的 Retry 请求后调用 | 重新进入当前楼层入口并重置门计时；卡片、装备和救援恢复按对应功能阶段的规则执行 | 任务 08、10 |
-| `go_to_floor(floor_number: int) -> void` | A 的楼层出口逻辑 | 检查通行条件，装载目标楼层，摆好主角并绑定组件后恢复游玩 | 任务 10 |
+| `set_floor_host(host: Node2D, enable_preview: bool = false) -> void` | A 的场景入口 | 指定只容纳楼层实例的 World；默认不开启开发预览。宿主须位于世界原点、无旋转、缩放 1 | A-07 已实现 |
+| `go_to_floor(floor_number: int) -> void` | A 的楼层出口逻辑 | 仅 PLAYING、有有效宿主时接受前往下一层；1F 检查真实三卡，3F 检查 has_friend；拒绝跳层、回退及越界 | A-07 已实现；真实 CardManager 三卡通行及装备保留自动检查通过，实际偷卡上楼仍待场景组装 |
+| `preview_floor(floor_number: int) -> void` | A 的 F6 开发入口 | 仅宿主显式开启预览、使用 editor 可执行程序且处于 PLAYING 时可跳到 1—5F；不改变卡片或救援数据，导出程序中禁用 | A-07 开发工具，正式流程不调用 |
 | `rescue_friend() -> void` | A 的 309 流程 | 完成救援进度，同一局重复调用不重复触发救援通知 | 任务 10 |
 | `win() -> void` | A 的 5F 出口逻辑 | 进入 WON，停止游玩输入并通知 D 显示结局；重复触发不重复结算 | 任务 10 |
 | `return_to_menu() -> void` | A 接收 D 的返回菜单请求后调用 | 返回 MENU；新一局重置仍统一经过 `start_game()` | 菜单接入阶段 |
@@ -75,7 +79,9 @@ A 先发布可运行公共底座，B/C/D 再从该版本开发。A 创建 CardMa
 | `friend_rescued()` | 救援进度首次完成后 | A 的跟随显示、D 的任务提示 |
 | `game_won()` | 进入 WON 后 | D 的通关界面，由 A 连接 |
 
-基础阶段只要求 `state_changed`、`game_failed`、`start_game`、`fail` 及上述字段真实可用。其他接口先登记，未实现前不得把它们接到可点击按钮或把无操作的空函数当成完成。
+当前可用接口以上表为准；`retry_floor`、`rescue_friend`、`win`、`return_to_menu` 及救援／结局信号仍仅为约定，不得把未实现接口接到可点击按钮或把空函数当成完成。
+
+A-07 的装载顺序为：读取／实例化场景 → LOADING → 旧层移出树并排队释放 → 更新 current_floor → 新层加入宿主、完成出生点与相机配置 → PLAYING → floor_changed。换层不调用 CardManager 重置，也不改变 has_friend。员工／房门 setup 和正式 UI 将在实际组件接入时补入此流程；当前五层仅有接入位置，不宣称组件绑定完成。
 
 关卡装载过程中由 A 禁止玩家和怪物检测，待绑定完成再允许 PLAYING；具体装载实现属于 A 的内部职责。失败和对白阶段也不继续处理游玩输入。暂停树与 UI 的详细处理在相应功能阶段确定，不在本文件预先指定背包是否暂停。
 
@@ -99,7 +105,7 @@ A 先发布可运行公共底座，B/C/D 再从该版本开发。A 创建 CardMa
 | `switch_active() -> bool` | B 的 Q 输入处理 | 请求切换当前佩戴卡；成功操作返回 true | B 的切卡阶段 |
 | `equip_card(card_id: String, slot_index: int) -> bool` | D 的背包按钮 | 请求调整指定槽，保留三卡所有权且最多佩戴两张；成功操作返回 true | B/D 的装备阶段 |
 
-基础阶段实现空数据读取和重置即可。未完成的收集／切卡／装备功能保持“未实现”，不要在多个脚本中各写临时卡片逻辑来假装可用。
+上述收集／切卡／装备方法已由 B 在 main 实现；空槽切换、重复装备和非 PLAYING 输入的实际行为仍需在相应接入阶段与规则核对，不因已有方法就视为全部验收。不得另存一套卡片数据。
 
 | 信号签名 | 作用 | 接收者 |
 |---|---|---|
@@ -128,6 +134,8 @@ Player 不保存当前卡和背包副本；需要身份时读取 CardManager。
 
 ## 6 B 提供工作人员场景
 
+以下为目标约定。当前实际 `staff.gd` 使用 `steal_hold_time`（默认 0.8）而非 `steal_duration`，转身由场景 TurnTimer 配置，未暴露 turn_interval 或实现转身预告；正面尝试只发失败的 steal_attempted 通知，没有调用 GameManager.fail。A 接入前需协调这些差异，不直接使用下表中尚不存在的导出字段。
+
 目标文件：`scenes/staff/staff.tscn` 和相邻脚本。保安、保洁、经理使用同一个组件。
 
 | 公开配置 | 类型 | 原型起点 |
@@ -144,6 +152,8 @@ B 负责转身、背后判定、偷窃计时和卡片收集。成功调用 `Card
 E 的按住／松开检测属于 B 的偷窃功能；A 负责救援和出口 E。正式场景接入时 A/B 统一有效目标，避免一次 E 同时偷卡和换楼层。目标优先级及取消细节在任务 08 确认。
 
 ## 7 C 提供通用房门
+
+以下为目标约定。当前 C-01—05 的实际字段为 `room_id`、`closed_time`、`warning_time`、`open_time`、`radius`、`monster_type`，尚无 offset；只实现 EYE。接入以 [门模块说明](../scenes/doors/README.md) 和源码为准，不把其余类型配置当作规则已完成。
 
 目标文件：`scenes/doors/monster_door.tscn` 和相邻脚本。五怪共用组件，只更改配置及素材。
 
