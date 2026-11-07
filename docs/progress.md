@@ -146,3 +146,35 @@
 每项记录日期与 `Asia/Hong_Kong` 时区、当前任务、实际修改文件、关键决定、执行过的检查及结果、未测事项、阻塞和下一步。只有确实执行并观察到结果的检查才能写通过。
 
 成员提供的测试结果标记为“成员报告”，与当前操作者亲自观察的结果区分。涉及其他系统时写明 Windows/macOS、准确版本和目标机器。
+
+## 2026年11月7日 C-01 通用房门（Windows，UTC+08:00）
+
+- 分支：work/member-C-yinshiqi；开工无未提交改动，fetch 后将 origin/main 的 8882f0e 快进同步到个人分支。
+- 文件：scenes/doors/monster_door.tscn、monster_door.gd 及 UID、模块 README；更新 scenes/tests/doors/doors_test.tscn，新增相邻脚本及 UID。
+- 实现：一套 Node2D 通用门，门底中央为原点；room_id 可在检查器及运行时更新；Polygon2D 独眼占位图；独立场景同时展示 201、202 两个同源实例。
+- 底座验证：Godot 4.7.2.stable.official.ed1daf0bf 控制台导入成功；foundation_smoke.gd 输出 PASS（启动、管理器、卡片查询隔离、失败、移动、边界、相机）。MCP 启动主场景，Compatibility/NVIDIA 渲染，errors 为空，随后停止测试进程。
+- C-01 验证：本机临时 SceneTree 检查加载独立场景，确认初始房号 201/202；将第二扇改为 309 后第一扇仍为 201。实际 OpenGL 渲染并查看 1280×720 截图，两个门号和占位图均清楚。检查输出 PASS，退出码 0。临时检查脚本和截图保留本机，不进入源码。
+- F6 入口：res://scenes/tests/doors/doors_test.tscn。A/D 或方向键移动；起点设在门旁便于检查。
+- 限制：只完成 C-01 静态组件，未实现 C-02 起的计时、状态切换、检测、setup/reset_cycle 和五怪；占位怪物当前持续可见，不代表开门状态。未接入 main，未做主线验收、导出或其他电脑试玩。
+- 交接：A 可复用场景并配置 room_id，完整说明在 scenes/doors/README.md；后续实现 C-02，再补预警和危险规则。
+
+## 2026年11月7日 C-02 三状态循环（Windows，UTC+08:00）
+
+- 开工：工作区干净，fetch 后个人远端及 origin/main 均已同步，无新增合并。
+- 修改：monster_door.gd/.tscn、模块 README、doors_test.tscn；新增 door_cycle_smoke.gd 及 UID。
+- 实现：CLOSED 5.5s → WARNING 1.4s → OPEN 2.8s 重复循环，保留帧间余量；时长可配置且最小为 0.01s；每门独立计时。非 PLAYING 冻结，编辑器不自动播放，reset_cycle 回到关闭；开门显示占位怪物，关闭/预警隐藏，附状态文字。
+- 验证：Godot 4.7.2 控制台执行 door_cycle_smoke.gd 输出 PASS，覆盖默认时长边界、20 轮、长帧余量、实例独立、失败冻结、重置和引擎真实帧两轮循环。测试脚本首次类型推断错误已修正后重跑通过。
+- 回归：重新导入和 foundation_smoke.gd 通过；MCP 启动 doors_test.tscn，Compatibility/NVIDIA 图形输出，errors 为空。
+- F6 入口仍为 scenes/tests/doors/doors_test.tscn；自动检查为 --headless --path . --script res://scenes/tests/doors/door_cycle_smoke.gd。
+- 限制：醒目预警为 C-03，检测区及五怪判定、相位和主游戏接入尚未完成；没有把状态文字当成最终视觉预警。未做导出、跨电脑或主线验收。
+
+## 2026年11月7日 C-03/C-04/C-05 独眼门（Windows，UTC+08:00）
+
+- 开工：工作区干净，fetch 后确认 origin/main 和个人分支已同步。沿用同一组件，不改主场景或 B 的卡片管理器。
+- 修改：monster_door.gd/.tscn、门 README、doors_test.gd/.tscn；新增 eye_door_smoke.gd 及 UID。
+- C-03：预警门框交替变色并显示“! 即将开门 !”；只有开启显示怪物。实际 OpenGL 截图核对预警文字、隐藏和开启显示无重叠；截图保留本机 outputs，不作为游戏素材。
+- C-04：setup(player) 注入主角，在 PLAYING/OPEN 且主角有效时按 global_position.x 比较，默认半径 90；正负边界包含，外侧安全。水平游戏不额外限定 y；未绑定/已释放主角时不检测。
+- C-05：仅 EYE 规则读取真实 CardManager.active_card，SECURITY 安全，其他卡或 NONE 调用 GameManager.fail("WRONG_CARD")。其他 monster_type 只预留，不宣称已完成。
+- F6：scenes/tests/doors/doors_test.tscn，1 获取并佩戴保安卡、2 获取并佩戴保洁卡、R 重开；调试准备调用 B 的 collect_card/equip_card，屏幕显示真实当前卡、状态和失败原因。
+- 验证：Godot 4.7.2 执行 eye_door_smoke.gd，60 组（三状态×五个水平距离×四种卡）通过，覆盖 ±90 边界及 ±90.1 外侧、平移父节点后的世界坐标、预警闪动、怪物显隐、缺失/重复绑定主角。door_cycle_smoke.gd 和 foundation_smoke.gd 均输出 PASS；资源导入成功。
+- 限制：尚未实现 C-06 起的其他怪物、offset、多门节奏和平衡；未接入主游戏、未导出或跨电脑试玩。自动用例通过不等于完整主线通过。

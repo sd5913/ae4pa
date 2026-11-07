@@ -1,13 +1,22 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/test_corridor.tscn" id="1_corridor"]
+[ext_resource type="PackedScene" path="res://scenes/doors/monster_door.tscn" id="2_door"]
+[ext_resource type="Script" path="res://scenes/tests/doors/doors_test.gd" id="3_test"]
 
 [node name="DoorsTest" type="Node2D"]
+script = ExtResource("3_test")
 
 [node name="Corridor" parent="." instance=ExtResource("1_corridor")]
 
 [node name="DoorSlot" type="Node2D" parent="."]
 position = Vector2(1500, 560)
+
+[node name="Door201" parent="DoorSlot" instance=ExtResource("2_door")]
+
+[node name="Door202" parent="DoorSlot" instance=ExtResource("2_door")]
+position = Vector2(320, 0)
+room_id = "202"
 
 [node name="TestLabel" type="CanvasLayer" parent="."]
 layer = 10
@@ -18,4 +27,11 @@ offset_top = 28.0
 offset_right = 1200.0
 offset_bottom = 90.0
 theme_override_font_sizes/font_size = 24
-text = "C · 房门测试骨架 | A / D 移动 | 请在 DoorSlot 接入通用门"
+text = "C-03~05 · 独眼门 | A / D 移动 | 1 保安卡 / 2 保洁卡 / R 重开\n关闭 5.5s → 预警 1.4s → 开启 2.8s | 开门且 ±90px 内须保安卡"
+
+[node name="Status" type="Label" parent="TestLabel"]
+offset_left = 32.0
+offset_top = 104.0
+offset_right = 1240.0
+offset_bottom = 140.0
+theme_override_font_sizes/font_size = 22
