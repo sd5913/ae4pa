@@ -57,7 +57,10 @@ polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1861999390]
 libraries/ = SubResource("AnimationLibrary_x6oaq")
-autoplay = &"look_around"
+
+[node name="TurnTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 
 [node name="StealArea" type="Area2D" parent="." unique_id=996756406]
 
@@ -67,3 +70,4 @@ shape = SubResource("RectangleShape2D_b35xr")
 
 [connection signal="body_entered" from="StealArea" to="." method="_on_steal_area_body_entered"]
 [connection signal="body_exited" from="StealArea" to="." method="_on_steal_area_body_exited"]
+[connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]
