@@ -48,3 +48,13 @@ offset_bottom = 40.0
 theme_override_font_sizes/font_size = 18
 text = "CLOSED"
 horizontal_alignment = 1
+
+[node name="WarningLabel" type="Label" parent="."]
+visible = false
+offset_left = -130.0
+offset_top = -270.0
+offset_right = 130.0
+offset_bottom = -234.0
+theme_override_font_sizes/font_size = 22
+text = "! 即将开门 !"
+horizontal_alignment = 1
