@@ -1,10 +1,12 @@
 # 组员接入公共底座
 
-公共底座目前可以运行：有主场景、GameManager、CardManager 空数据骨架、主角和测试走廊。B/C/D 的独立测试场景可以加载，但没有员工、房门或正式 UI 功能。所有成员使用 Godot 4.7.2 标准版和同一仓库。
+公共底座目前可以运行：有主场景、GameManager、CardManager、主角和测试走廊，另有 A-07 独立五层预览。2026-11-07 main 已有 B 的员工／卡片与 C 的独眼门，分别在自己的测试场景运行；A 尚未把它们接入主流程，D 的正式 UI 仍待交付。所有成员使用 Godot 4.7.2 标准版和同一仓库。
 
 公共底座以云端 main 为共享入口。接入前检查 main 已包含 `scenes/main.tscn`、两个管理器脚本和本文，再把最新 main 同步到自己的分支。具体发布提交与 PR 记录见 [进度文档](progress.md)。
 
 ## A 交接前核对
+
+A 本周完成状态、组件接收顺序和成员回报格式见 [A 第 1 周执行与交接](a_week_1.md)。
 
 1. 用 Godot 打开项目并按 F5，确认进入公共测试走廊。
 2. 左右移动、松键停止、走到两端，核对相机和边界。
@@ -23,6 +25,7 @@
 | 成员 | F6 入口 | 开始修改的位置 | 当前骨架提供什么 |
 |---|---|---|---|
 | A | `scenes/tests/core/core_test.tscn` | `scenes/player/`、`scenes/levels/`、`scripts/game_manager.gd` | 主角、相机、走廊、开发状态显示 |
+| A 五层 | `scenes/tests/core/floors_test.tscn` | 五层场景与 GameManager | 独立换层预览、入口、相机和组件接入位置 |
 | B | `scenes/tests/staff/staff_test.tscn` | `scenes/staff/`、`scripts/card_manager.gd` | `StaffSlot` 放员工；主角为 `Corridor/Player` |
 | C | `scenes/tests/doors/doors_test.tscn` | `scenes/doors/` | `DoorSlot` 放门；主角为 `Corridor/Player` |
 | D | `scenes/tests/ui/ui_test.tscn` | `scenes/ui/` | `UISlot` 是 CanvasLayer，放菜单／HUD／提示等 UI |
@@ -41,15 +44,19 @@ D 先交开始菜单、失败界面和操作说明。HUD 可以先显示真实�
 
 ## 当前可用与待实现
 
-- 可用：两个 Autoload；GameManager 的新局、失败及状态通知；CardManager 的空数据读取／查询／重置；HotelPlayer 的移动、锁定和世界坐标边界。
-- 待 B：收集卡片、Q 切换、装备替换和实际换卡通知。
-- 待 C：门计时、五怪规则、预警与检测。
+- 可用：两个 Autoload；GameManager 新局、失败、五层装载及通知；CardManager 查询／重置／收集／双槽／Q／装备／换卡通知；HotelPlayer 移动、锁定和世界坐标边界。
+- B 已交付：员工转身、长按偷取、取消、回头失败、三卡双槽；正面偷取仅拒绝，与主策划立即失败存在差异，待整合协调。
+- C 已交付：门计时、预警和独眼客检测；其他四怪和 offset 仍待实现。
 - 待 D：菜单、HUD、背包、手册、对白、失败／结局界面。
-- 待 A 接入：楼层切换、重试、309 救援和五楼通关。暂时没有 Retry 按钮或出口交互。
+- A 已实现：独立五层占位场景、换层及真实条件拦截；未接实际员工／房门。待 A：重试、309 救援、五楼通关和正式主入口接入。暂时没有 Retry 或通关操作。
 
 详细签名和阶段见公共接口文档；不要调用尚未实现的方法。背包、暂停和其他详细交互继续在对应功能开发时确认。
 
 ## 测试走廊的当前约束
+
+A 使用 `work/member-A-liuling`。五层预览打开 `scenes/tests/core/floors_test.tscn` 按 F6；顶部开发按钮可逐层跳过条件，重开回到 1F。右端 70 像素内按 E 走正式通行检查：缺三卡的 1F 和未救援的 3F 会被拦住；2F／4F 可正常上楼。5F 只有 EXIT 占位，不触发结局。F5 和其他成员的 F6 入口保持原状。
+
+五层宽 3600，出生点 `(192, 560)`，行走 x 为 64—3536，相机 x 为 0—3600；均按世界原点放置。`StaffRoot/*Slot` 放员工，`DoorRoot/Room201` 等 Marker2D 放门，组件以局部原点对齐；门标记的 metadata 提供 room_number／monster_type，A 接入 C 组件时写入其公开配置，不自动当作已创建房门。2F—5F 五门 x 为 700、1150、1600、2050、2500，相邻默认检测区间留 270 像素。3F 的 `Interactions/RescuePoint` 为 309 接入位置，所有楼层 `Interactions/ExitPoint` 位于 `(3400, 560)`。
 
 测试走廊宽 2800、高 720，默认出生点为世界坐标 `(192, 560)`，可行走 x 为 64—2736，速度 160 像素／秒。`TestCorridor` 及其父节点保持原点、无旋转、缩放为 1；当前模板的相机和边界按这个摆放方式设置，尚未支持整体偏移后的自动边界换算。
 
@@ -68,6 +75,8 @@ godot --headless --path . --script res://scenes/tests/core/foundation_smoke.gd
 若没有 PATH，使用自己的 Godot 可执行文件路径；PowerShell 使用 `&` 调用带空格的程序路径。首次克隆先在编辑器完成导入，或先用 Godot `--headless --editor --path . --import` 扫描资源和全局类型。
 
 自动检查覆盖底座，不替代 B/C/D 模块验收。上传 PR 时填写：改了哪些文件、如何 F6 运行、调用哪些公共接口、实际测试结果、需要 A 接哪里及未完成项。A 按 B→C→D 顺序接入，每次回归已有行为。
+
+涉及五层流程时另运行 `godot --headless --path . --script res://scenes/tests/core/floor_flow_smoke.gd`。该检查已通过 B 的真实 collect_card／equip_card 验证三卡上楼及跨层装备保留，不往 CardManager 填假卡；员工偷取后亲自走到出口的联合流程仍待场景组装。3F 跨层状态检查使用 A 的已救援状态夹具，不代表救援功能已完成。
 
 ## 尚待人工完成
 

@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/floor_base.tscn" id="1_base"]
+
+[node name="Floor2" instance=ExtResource("1_base")]
+floor_number = 2
+
+[node name="Room201" type="Marker2D" parent="DoorRoot" index="0"]
+position = Vector2(700, 560)
+metadata/room_number = 201
+metadata/monster_type = "EYE"
+
+[node name="Room202" type="Marker2D" parent="DoorRoot" index="1"]
+position = Vector2(1150, 560)
+metadata/room_number = 202
+metadata/monster_type = "NOSE"
+
+[node name="Room203" type="Marker2D" parent="DoorRoot" index="2"]
+position = Vector2(1600, 560)
+metadata/room_number = 203
+metadata/monster_type = "EAR"
+
+[node name="Room204" type="Marker2D" parent="DoorRoot" index="3"]
+position = Vector2(2050, 560)
+metadata/room_number = 204
+metadata/monster_type = "HAT"
+
+[node name="Room205" type="Marker2D" parent="DoorRoot" index="4"]
+position = Vector2(2500, 560)
+metadata/room_number = 205
+metadata/monster_type = "CHECKER"
