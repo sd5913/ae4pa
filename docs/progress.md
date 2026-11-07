@@ -157,3 +157,13 @@
 - F6 入口：res://scenes/tests/doors/doors_test.tscn。A/D 或方向键移动；起点设在门旁便于检查。
 - 限制：只完成 C-01 静态组件，未实现 C-02 起的计时、状态切换、检测、setup/reset_cycle 和五怪；占位怪物当前持续可见，不代表开门状态。未接入 main，未做主线验收、导出或其他电脑试玩。
 - 交接：A 可复用场景并配置 room_id，完整说明在 scenes/doors/README.md；后续实现 C-02，再补预警和危险规则。
+
+## 2026年11月7日 C-02 三状态循环（Windows，UTC+08:00）
+
+- 开工：工作区干净，fetch 后个人远端及 origin/main 均已同步，无新增合并。
+- 修改：monster_door.gd/.tscn、模块 README、doors_test.tscn；新增 door_cycle_smoke.gd 及 UID。
+- 实现：CLOSED 5.5s → WARNING 1.4s → OPEN 2.8s 重复循环，保留帧间余量；时长可配置且最小为 0.01s；每门独立计时。非 PLAYING 冻结，编辑器不自动播放，reset_cycle 回到关闭；开门显示占位怪物，关闭/预警隐藏，附状态文字。
+- 验证：Godot 4.7.2 控制台执行 door_cycle_smoke.gd 输出 PASS，覆盖默认时长边界、20 轮、长帧余量、实例独立、失败冻结、重置和引擎真实帧两轮循环。测试脚本首次类型推断错误已修正后重跑通过。
+- 回归：重新导入和 foundation_smoke.gd 通过；MCP 启动 doors_test.tscn，Compatibility/NVIDIA 图形输出，errors 为空。
+- F6 入口仍为 scenes/tests/doors/doors_test.tscn；自动检查为 --headless --path . --script res://scenes/tests/doors/door_cycle_smoke.gd。
+- 限制：醒目预警为 C-03，检测区及五怪判定、相位和主游戏接入尚未完成；没有把状态文字当成最终视觉预警。未做导出、跨电脑或主线验收。
