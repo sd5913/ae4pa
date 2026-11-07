@@ -102,12 +102,71 @@ func _ready() -> void:
 	_expect(_cards_changed_count >= 4, "cards_changed did not cover card/equipment changes.")
 	_expect(_identity_actions.has("EQUIP_CARD"), "EQUIP_CARD identity signal was not emitted.")
 	_expect(_identity_actions.has("SWITCH_ACTIVE"), "SWITCH_ACTIVE identity signal was not emitted.")
+	_run_card_manager_boundary_tests(card_manager)
 
 	if _failed:
 		get_tree().quit(1)
 		return
-	print("PASS: hold stealing, cancellation, turn detection, three cards, slots, Q, and signals.")
+	print("PASS: staff flow and CardManager boundary cases, state copies, signals, input, and reset.")
 	get_tree().quit(0)
+
+
+func _run_card_manager_boundary_tests(card_manager: Node) -> void:
+	_cards_changed_count = 0
+	_identity_actions.clear()
+	card_manager.reset_for_new_game()
+	_expect(_cards_changed_count == 1, "New-game reset should emit cards_changed once.")
+	_expect(_identity_actions.is_empty(), "New-game reset must not emit identity_changed.")
+
+	_expect(not card_manager.collect_card("INVALID"), "Invalid card ID should be rejected.")
+	_expect(not card_manager.collect_card("NONE"), "NONE must not be collectible.")
+	_expect(_cards_changed_count == 1, "Invalid collection emitted cards_changed.")
+	_expect(card_manager.collect_card("SECURITY"), "Valid SECURITY collection failed.")
+	_expect(not card_manager.collect_card("SECURITY"), "Duplicate collection should be rejected.")
+	_expect(_cards_changed_count == 2, "Collection or duplicate collection signal count is incorrect.")
+
+	var owned_copy: Array[String] = card_manager.get_owned_cards()
+	owned_copy.append("MANAGER")
+	var equipped_copy: Array[String] = card_manager.get_equipped_cards()
+	equipped_copy[0] = "MANAGER"
+	_expect(card_manager.get_owned_cards() == ["SECURITY"], "Owned-card query did not return a copy.")
+	_expect(card_manager.get_equipped_cards() == ["SECURITY", "NONE"], "Equipped-card query did not return a copy.")
+
+	_expect(not card_manager.equip_card("SECURITY", -1), "Negative slot should be rejected.")
+	_expect(not card_manager.equip_card("SECURITY", 2), "Out-of-range slot should be rejected.")
+	_expect(not card_manager.equip_card("CLEANER", 1), "Unowned card should not be equipped.")
+	_expect(not card_manager.equip_card("INVALID", 1), "Invalid card should not be equipped.")
+	_expect(not card_manager.equip_card("SECURITY", 0), "Repeated equipment should be rejected.")
+	_expect(_cards_changed_count == 2 and _identity_actions.is_empty(), "Invalid equipment emitted a signal.")
+
+	_expect(card_manager.collect_card("CLEANER"), "Valid CLEANER collection failed.")
+	_expect(card_manager.equip_card("SECURITY", 1), "Cross-slot equipment failed.")
+	_expect(card_manager.get_equipped_cards() == ["NONE", "SECURITY"], "Cross-slot equipment did not remove the duplicate.")
+	_expect(_cards_changed_count == 4, "Cross-slot equipment cards_changed count is incorrect.")
+	_expect(_identity_actions == ["EQUIP_CARD"], "Cross-slot equipment identity signal is incorrect.")
+	_expect(not card_manager.equip_card("SECURITY", 1), "Repeated cross-slot equipment should be rejected.")
+
+	_expect(card_manager.active_slot == 0 and card_manager.active_card == "NONE", "Active empty slot state is incorrect.")
+	_expect(card_manager.switch_active(), "Switching from an empty slot should remain allowed.")
+	_expect(card_manager.active_slot == 1 and card_manager.active_card == "SECURITY", "Empty-slot switch did not select slot B.")
+	_expect(card_manager.switch_active(), "Switching back to the empty slot should remain allowed.")
+	_expect(card_manager.active_slot == 0 and card_manager.active_card == "NONE", "Switch back did not preserve empty-slot behavior.")
+	_expect(_cards_changed_count == 6, "Empty-slot switching cards_changed count is incorrect.")
+	_expect(_identity_actions == ["EQUIP_CARD", "SWITCH_ACTIVE", "SWITCH_ACTIVE"], "Empty-slot switching identity signals are incorrect.")
+
+	_expect(card_manager.equip_card("NONE", 1), "Clearing an occupied slot failed.")
+	_expect(card_manager.collect_card("MANAGER"), "Valid MANAGER collection failed.")
+	_expect(card_manager.has_all_cards(), "All-card query failed after collecting three cards.")
+	_expect(_cards_changed_count == 8, "Clear/collection cards_changed count is incorrect.")
+	_expect(_identity_actions.back() == "EQUIP_CARD", "Clearing a slot did not emit EQUIP_CARD.")
+
+	var identity_count_before_reset: int = _identity_actions.size()
+	card_manager.reset_for_new_game()
+	_expect(card_manager.get_owned_cards().is_empty(), "New game did not clear owned cards.")
+	_expect(card_manager.get_equipped_cards() == ["NONE", "NONE"], "New game did not clear both slots.")
+	_expect(card_manager.active_slot == 0 and card_manager.active_card == "NONE", "New game did not restore slot A/NONE.")
+	_expect(_cards_changed_count == 9, "Final reset cards_changed count is incorrect.")
+	_expect(_identity_actions.size() == identity_count_before_reset, "Reset incorrectly emitted identity_changed.")
 
 
 func _expect(condition: bool, message: String) -> void:
