@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/doors/monster_door.gd" id="1_door"]
+
+[node name="MonsterDoor" type="Node2D"]
+script = ExtResource("1_door")
+
+[node name="Frame" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-64, 0, -64, -192, 64, -192, 64, 0)
+color = Color(0.65, 0.55, 0.38, 1)
+
+[node name="DoorPanel" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-54, 0, -54, -182, 54, -182, 54, 0)
+color = Color(0.16, 0.12, 0.16, 1)
+
+[node name="Handle" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(38, -76, 38, -66, 45, -66, 45, -76)
+color = Color(0.9, 0.75, 0.45, 1)
+
+[node name="MonsterPlaceholder" type="Node2D" parent="."]
+
+[node name="Body" type="Polygon2D" parent="MonsterPlaceholder"]
+polygon = PackedVector2Array(-35, -28, -39, -96, -24, -137, 0, -149, 24, -137, 39, -96, 35, -28)
+color = Color(0.3, 0.46, 0.61, 1)
+
+[node name="Eye" type="Polygon2D" parent="MonsterPlaceholder"]
+polygon = PackedVector2Array(-25, -108, -12, -122, 12, -122, 25, -108, 12, -94, -12, -94)
+color = Color(0.94, 0.94, 0.84, 1)
+
+[node name="Pupil" type="Polygon2D" parent="MonsterPlaceholder"]
+polygon = PackedVector2Array(-6, -116, 6, -116, 6, -100, -6, -100)
+color = Color(0.06, 0.09, 0.14, 1)
+
+[node name="RoomNumber" type="Label" parent="."]
+offset_left = -64.0
+offset_top = -230.0
+offset_right = 64.0
+offset_bottom = -194.0
+theme_override_font_sizes/font_size = 26
+text = "201"
+horizontal_alignment = 1
