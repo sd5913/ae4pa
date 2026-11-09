@@ -5,6 +5,8 @@ const MainMenuScreen = preload("res://scenes/ui/main_menu.gd")
 const HelpScreen = preload("res://scenes/ui/help.gd")
 const FailureScreen = preload("res://scenes/ui/failure.gd")
 const BagScreen = preload("res://scenes/ui/bag.gd")
+const DialogueScreen = preload("res://scenes/ui/dialogue.gd")
+const WinScreen = preload("res://scenes/ui/win.gd")
 
 const EXPECTED_REASONS := {
 	"STAFF_CAUGHT": "偷窃被发现",
@@ -16,6 +18,8 @@ const EXPECTED_REASONS := {
 @onready var _menu: MainMenuScreen = $UISlot/MainMenu
 @onready var _help: HelpScreen = $UISlot/Help
 @onready var _bag: BagScreen = $UISlot/Bag
+@onready var _dialogue: DialogueScreen = $UISlot/Dialogue
+@onready var _win: WinScreen = $UISlot/Win
 @onready var _failure: FailureScreen = $UISlot/Failure
 @onready var _hud: Control = $UISlot/HUD
 @onready var _status: Label = $UISlot/Status
@@ -28,6 +32,7 @@ func _ready() -> void:
 	_menu.help_requested.connect(_help.open_help)
 	_failure.retry_requested.connect(_show_status.bind("收到重试本层请求 · 待 A 接入"))
 	_failure.return_to_menu_requested.connect(_show_status.bind("收到返回菜单请求 · 待 A 接入"))
+	_dialogue.dialogue_finished.connect(_on_dialogue_finished)
 	GameManager.game_failed.connect(_on_game_failed)
 	GameManager.game_failed.connect(_failure.show_failure)
 	GameManager.state_changed.connect(_update_overlay_shortcuts.unbind(1))
@@ -55,6 +60,18 @@ func _on_start_requested() -> void:
 
 func _on_simulate_failure_pressed() -> void:
 	GameManager.fail(_reason_choice.get_selected_metadata())
+
+
+func _on_show_intro_pressed() -> void:
+	_dialogue.show_dialogue("INTRO")
+
+
+func _on_show_rescue_pressed() -> void:
+	_dialogue.show_dialogue("RESCUE_309")
+
+
+func _on_dialogue_finished(dialogue_id: String) -> void:
+	_show_status("对白 %s 已完成 · 测试入口" % dialogue_id)
 
 
 func _on_game_failed(_reason: String) -> void:
@@ -85,10 +102,20 @@ func _run_smoke() -> void:
 
 	var help_button: Button = _menu.get_node("%HelpButton")
 	var close_button: Button = _help.get_node("%CloseButton")
+	var page_next: Button = _help.get_node("%NextButton")
+	var page_previous: Button = _help.get_node("%PreviousButton")
 	_check(not _help.visible and not _failure.visible, "Overlays start hidden", failures)
 	help_button.grab_focus()
 	help_button.pressed.emit()
 	_check(_help.visible and close_button.has_focus(), "Help opens and takes focus", failures)
+	_check(_help.get_node("%PageIndicator").text == "1 / 2", "Menu opens the work-card page", failures)
+	_check_help_content(failures)
+	page_next.pressed.emit()
+	_check(_help.get_node("%PageIndicator").text == "2 / 2" and _help.get_node("%MonsterPage").visible,
+		"Next page opens the monster encyclopedia", failures)
+	page_previous.pressed.emit()
+	_check(_help.get_node("%PageIndicator").text == "1 / 2" and _help.get_node("%WorkCardPage").visible,
+		"Previous page returns to work cards", failures)
 	close_button.pressed.emit()
 	_check(not _help.visible and help_button.has_focus(), "Help closes and restores focus", failures)
 	_help.open_help()
@@ -101,8 +128,11 @@ func _run_smoke() -> void:
 	help_key.pressed = true
 	get_viewport().push_input(help_key)
 	_check(_help.visible, "Mapped H key opens help", failures)
+	page_next.pressed.emit()
 	get_viewport().push_input(help_key)
-	_check(not _help.visible, "Mapped H key closes help", failures)
+	_check(not _help.visible, "Mapped H key closes help from the monster page", failures)
+	_check_dialogue(failures)
+	_check_win(failures)
 
 	var floor_value: Label = _hud.get_node("%FloorValue")
 	var active_card_value: Label = _hud.get_node("%ActiveCardValue")
@@ -158,13 +188,122 @@ func _run_smoke() -> void:
 	_check(GameManager.game_state == "FAILED", "Retry/menu only emit requests in this test", failures)
 
 	if failures.is_empty():
-		print("PASS: menu requests, help visibility and focus, four GameManager failure messages, fallback, retry/menu requests.")
+		print("PASS: menu and H open/close help, both encyclopedia pages, all three card IDs, five monster rules and confirmed failure IDs.")
+		print("PASS: four GameManager failure messages, fallback, retry/menu requests.")
+		print("PASS: INTRO and RESCUE_309 dialogue text, progression, skip, interact key and completion signals.")
+		print("PASS: win screen display and restart/menu request signals without changing game state.")
 		print("PASS: HUD initial floor and empty cards, first show, new game, cards_changed and state_changed.")
 		print("PASS: bag open/close, three owned cards, equip and replace both slots, active identity and HUD refresh, invalid requests and pause state.")
 	else:
 		for failure: String in failures:
 			push_error(failure)
 	get_tree().quit(0 if failures.is_empty() else 1)
+
+
+func _check_help_content(failures: Array[String]) -> void:
+	var work_page: Control = _help.get_node("%WorkCardPage")
+	var monster_page: Control = _help.get_node("%MonsterPage")
+	for node_name: String in ["SecurityId", "CleanerId", "ManagerId"]:
+		_check(not str(work_page.get_node(node_name).text).is_empty(), "Work-card page includes " + node_name, failures)
+	for node_name: String in ["SECURITY", "CLEANER", "MANAGER"]:
+		var all_text := ""
+		for child: Node in work_page.get_children():
+			if child is Label:
+				all_text += child.text + " "
+		_check(all_text.contains(node_name), "Work-card page uses public ID " + node_name, failures)
+	_check(work_page.get_node("SecurityRule").text.contains("EYE") and work_page.get_node("SecurityRule").text.contains("独眼客"),
+		"SECURITY rule matches EYE", failures)
+	_check(work_page.get_node("CleanerRule").text.contains("NOSE") and work_page.get_node("CleanerRule").text.contains("长鼻客"),
+		"CLEANER rule matches NOSE", failures)
+	_check(work_page.get_node("ManagerRule").text.contains("HAT") and work_page.get_node("ManagerRule").text.contains("礼帽客"),
+		"MANAGER rule matches HAT", failures)
+
+	var expected_monsters := {
+		"EyeId": "EYE", "NoseId": "NOSE", "HatId": "HAT", "EarId": "EAR", "CheckerId": "CHECKER",
+	}
+	for node_name: String in expected_monsters:
+		_check(monster_page.get_node(node_name).text.contains(expected_monsters[node_name]),
+			"Monster page includes public ID " + expected_monsters[node_name], failures)
+	_check(monster_page.get_node("EyeRule").text.contains("SECURITY") and monster_page.get_node("EyeRule").text.contains("WRONG_CARD"),
+		"EYE rule documents required card and failure ID", failures)
+	_check(monster_page.get_node("NoseRule").text.contains("CLEANER") and monster_page.get_node("NoseRule").text.contains("WRONG_CARD"),
+		"NOSE rule documents required card and failure ID", failures)
+	_check(monster_page.get_node("HatRule").text.contains("MANAGER") and monster_page.get_node("HatRule").text.contains("WRONG_CARD"),
+		"HAT rule documents required card and failure ID", failures)
+	_check(monster_page.get_node("EarRule").text.contains("MOVED_NEAR_EAR"), "EAR rule documents confirmed failure ID", failures)
+	_check(monster_page.get_node("CheckerRule").text.contains("SWITCHED_NEAR_CHECKER"),
+		"CHECKER rule documents confirmed failure ID", failures)
+	_check(monster_page.get_node("Unconfirmed").text.contains("待确认"), "Unconfirmed edge rules are labeled", failures)
+
+
+func _check_dialogue(failures: Array[String]) -> void:
+	var completed: Array[String] = []
+	_dialogue.dialogue_finished.connect(func(dialogue_id: String) -> void: completed.append(dialogue_id))
+	var line: Label = _dialogue.get_node("%Line")
+	var continue_button: Button = _dialogue.get_node("%ContinueButton")
+	var skip_button: Button = _dialogue.get_node("%SkipButton")
+
+	_check(not _dialogue.visible, "Dialogue starts hidden", failures)
+	_dialogue.show_dialogue("INTRO")
+	_check(_dialogue.visible and line.text == "他们不让我离开……我在309号房。",
+		"INTRO starts with the confirmed phone message", failures)
+	_check(continue_button.text == "继续" and skip_button.text == "跳过", "Dialogue offers continue and skip", failures)
+	continue_button.pressed.emit()
+	_check(line.text == "前往 309 房间，营救被困的同伴。", "Continue advances to the confirmed rescue goal", failures)
+	continue_button.pressed.emit()
+	_check(not _dialogue.visible and completed == ["INTRO"], "Finishing the last line emits INTRO once", failures)
+
+	completed.clear()
+	_dialogue.show_dialogue("INTRO")
+	skip_button.pressed.emit()
+	_check(not _dialogue.visible and completed == ["INTRO"], "Skip ends INTRO and emits completion", failures)
+
+	completed.clear()
+	_dialogue.show_dialogue("INTRO")
+	var interact_key := InputEventKey.new()
+	interact_key.physical_keycode = KEY_E
+	interact_key.pressed = true
+	get_viewport().push_input(interact_key)
+	_check(line.text == "前往 309 房间，营救被困的同伴。", "Mapped E confirms and advances dialogue", failures)
+	get_viewport().push_input(interact_key)
+	_check(not _dialogue.visible and completed == ["INTRO"], "Mapped E completes INTRO", failures)
+
+	completed.clear()
+	_dialogue.show_dialogue("RESCUE_309")
+	_check(_dialogue.visible and line.text == "你终于来了！" and _dialogue.get_node("%Speaker").text == "闺蜜",
+		"RESCUE_309 shows the confirmed first rescue line", failures)
+	continue_button.pressed.emit()
+	_check(line.text == "下面的路被封了，五楼有紧急出口！",
+		"RESCUE_309 continues to the confirmed route information", failures)
+	continue_button.pressed.emit()
+	_check(not _dialogue.visible and completed == ["RESCUE_309"],
+		"Finishing rescue dialogue emits RESCUE_309 once", failures)
+
+	completed.clear()
+	_dialogue.show_dialogue("RESCUE_309")
+	skip_button.pressed.emit()
+	_check(not _dialogue.visible and completed == ["RESCUE_309"],
+		"Skipping rescue dialogue emits RESCUE_309", failures)
+
+
+func _check_win(failures: Array[String]) -> void:
+	var requests: Array[String] = []
+	_win.restart_requested.connect(func() -> void: requests.append("restart"))
+	_win.return_to_menu_requested.connect(func() -> void: requests.append("menu"))
+	var game_state_before: String = GameManager.game_state
+	_check(not _win.visible, "Win screen starts hidden", failures)
+	_win.show_win()
+	_check(_win.visible and _win.get_node("%Title").text == "ESCAPED", "show_win displays the ending", failures)
+	_check(_win.get_node("%Ending").text.contains("同伴"), "Win screen confirms both escaped", failures)
+	_check(_win.get_node("%StatisticsNote").text.contains("待 A 接入"), "Unavailable statistics are not fabricated", failures)
+	var restart_button: Button = _win.get_node("%RestartButton")
+	var return_button: Button = _win.get_node("%ReturnButton")
+	restart_button.pressed.emit()
+	_check(requests == ["restart"], "Restart button emits its request", failures)
+	_check(GameManager.game_state == game_state_before, "Restart request does not change game state", failures)
+	return_button.pressed.emit()
+	_check(requests == ["restart", "menu"], "Return button emits its request", failures)
+	_check(GameManager.game_state == game_state_before, "Return request does not change game state", failures)
 
 
 func _check_bag(failures: Array[String]) -> void:

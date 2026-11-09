@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/test_corridor.tscn" id="1_corridor"]
 [ext_resource type="Script" path="res://scenes/tests/ui/ui_test.gd" id="2_script"]
@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/failure.tscn" id="5_failure"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="6_hud"]
 [ext_resource type="PackedScene" path="res://scenes/ui/bag.tscn" id="7_bag"]
+[ext_resource type="PackedScene" path="res://scenes/ui/dialogue.tscn" id="8_dialogue"]
+[ext_resource type="PackedScene" path="res://scenes/ui/win.tscn" id="9_win"]
 
 [node name="UITest" type="Node2D"]
 script = ExtResource("2_script")
@@ -24,6 +26,10 @@ visible = false
 [node name="Help" parent="UISlot" instance=ExtResource("4_help")]
 
 [node name="Bag" parent="UISlot" instance=ExtResource("7_bag")]
+
+[node name="Dialogue" parent="UISlot" instance=ExtResource("8_dialogue")]
+
+[node name="Win" parent="UISlot" instance=ExtResource("9_win")]
 
 [node name="Failure" parent="UISlot" instance=ExtResource("5_failure")]
 
@@ -47,18 +53,30 @@ theme_override_constants/separation = 12
 
 [node name="ReasonChoice" type="OptionButton" parent="UISlot/FailureControls"]
 layout_mode = 2
-custom_minimum_size = Vector2(284, 0)
-theme_override_font_sizes/font_size = 19
+custom_minimum_size = Vector2(210, 0)
+theme_override_font_sizes/font_size = 16
 
 [node name="SimulateFailure" type="Button" parent="UISlot/FailureControls"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 16
 text = "模拟失败（仅测试）"
 
 [node name="OpenBag" type="Button" parent="UISlot/FailureControls"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 16
 text = "打开背包（I）"
+
+[node name="ShowIntro" type="Button" parent="UISlot/FailureControls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "测试开场对白"
+
+[node name="ShowRescue" type="Button" parent="UISlot/FailureControls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "测试救援对白"
 
 [connection signal="pressed" from="UISlot/FailureControls/SimulateFailure" to="." method="_on_simulate_failure_pressed"]
 [connection signal="pressed" from="UISlot/FailureControls/OpenBag" to="UISlot/Bag" method="open_bag"]
+[connection signal="pressed" from="UISlot/FailureControls/ShowIntro" to="." method="_on_show_intro_pressed"]
+[connection signal="pressed" from="UISlot/FailureControls/ShowRescue" to="." method="_on_show_rescue_pressed"]
