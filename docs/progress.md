@@ -300,3 +300,10 @@
 - 发布前仅调整文档状态、授权日期及共享运行入口：共享 main 仍是公共测试走廊，A-05 的 1F 员工接入和 staff_floor_smoke 仍仅在 A 本地，避免成员误以为本次文档包含这些代码。28 项分工和里程碑未改变，标注的衔接建议仍按 M0／相应功能阶段确认。
 - 验证：`git diff --check` 无诊断；16 份 Markdown、95 个相对链接、5 个锚点、591 个表格行、成员任务编号和 V4 未执行状态检查通过。文件摘要核对无非 Markdown 改动；本轮为纯文档发布，不重跑 Godot，不新增游戏／跨机器验收。
 - 本条记录发布准备事实；实际分支、提交和 PR 结果将在上传成功后追加。GitHub 分支／PR 状态为远端发布依据，不预先声称已合入 main。
+
+## 2026年11月11日 V4 文档分支上传与 PR（Asia/Hong_Kong）
+
+- 以 GitHub main 的 `df4a3eb283d8588122c661404771a7aeade10d94` 为基线，在仓库外的干净发布副本建立 `docs/v4-plan-20261111`；提交 `88eb446f384c824b859b293fca56e176826becfb`，仅 14 份 Markdown。
+- 文档分支已推送至 `origin/docs/v4-plan-20261111`；创建 [PR #10](https://github.com/sd5913/ae4pa/pull/10)，base `main`、head 为文档分支。GitHub 比较结果：ahead 1、behind 0，变更清单恰为 14 份 Markdown，没有 `.gd`、`.tscn`、`project.godot`、`.vscode` 或素材。
+- 干净发布副本执行 `git diff --cached --check` 无诊断，96 个 Markdown 相对链接核对无缺失；源码功能未改动，本轮未跑 Godot。A 原工作分支及未提交 A-05 游戏代码、本机设置未被提交或重置。
+- 本记录写入时 PR 仍为 open，尚未把它冒充 main 已合并。实际合并状态和 main SHA 须在远端核实后另记。
