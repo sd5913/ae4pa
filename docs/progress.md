@@ -237,3 +237,73 @@
 - C-13：门 README 补齐参数边界、A 按 Room Marker 元数据实例化的示例、绑定与重试/销毁职责；新增 acceptance.md 验证记录和人工用例。更新 interfaces 的真实状态，修正旧“只有 EYE/尚无 offset”的描述。检查探针在 A 的 2F～5F 共 20 个标记正确实例化同一门，未保存或改动 A 的楼层。
 - 画面与环境：Godot 4.7.2.stable.official.ed1daf0bf 导入成功；实际 OpenGL 渲染查看缩放全景下三种状态和安全区色带，截图为暂存阶段的视觉证据，不是试玩。MCP 正常运行 multi_doors_test，errors 为空，验收后停止；git diff --check 无诊断。
 - 范围：只改 C 门模块、测试场景/脚本和必要接口/进度文档；没有改主场景、项目设置或 A/B/D 实现。仍用占位图，正式美术、主线装配、团队人工试玩、导出与最终难度调优待 A/D 后续验收。
+
+## 2026年11月7日 A-07 上传与 PR 交接（Asia/Shanghai）
+
+- 已提交源码与文档：`0b4fbd1c37a2afdc36e5c367edd75f2c32b3245e`，22 个文件，已正常推送至 `origin/work/member-A-liuling`，不含本机 project.godot 设置、Godot 缓存或 B/C 模块修改。
+- 发布 PR：[A-07：五层占位场景与受条件约束的楼层切换 #7](https://github.com/sd5913/ae4pa/pull/7)，目标 main。用户已授权合入，最终合并状态和 main 提交以该 PR 页面为准；保留长期 A 分支。
+- 本轮兼容性只读复核未发现 A-07 新增的 Critical／Important 问题；发布候选代码与已验证的干净源码副本一致。58 个本地 Markdown 链接与空白检查通过，成员原有进度记录完整保留。
+
+## 2026年11月7日 main 合入确认与 A 后续任务检查（Asia/Shanghai）
+
+- GitHub 实时查询确认 PR #7 已合并，main 为 `f8504ae0fa0179bbc58f4611be21da5d1c1cf5cd`。本机 origin/main 已指向同一提交，与原 A 分支 `0b4fbd1` 文件树完全一致，只多出合并记录。
+- 本轮 fetch 曾被自动审批服务 HTTP 403 阻止，未执行；通过 GitHub 只读接口核实 main 后，经正常审批执行 `git merge --ff-only f8504ae0fa0179bbc58f4611be21da5d1c1cf5cd` 成功，将当前 `work/member-A-liuling` 快进到该 main 提交。没有改写远端分支或丢弃本地修改。
+- 保留此前未提交的 `docs/progress.md` 交接记录和 `project.godot` 编辑器设置。后者仍以 core_test 为本机默认入口，未擅自恢复为仓库 main 入口；它不是新发布配置。
+- 对照实际源码确认：main 有三卡／双槽／员工与三状态独眼门，但 floor.gd 仍只放置标记，没有实例化和 setup 员工／门；GameManager 尚无 retry_floor、rescue_friend、win 或返回菜单实现；scenes/ui 无正式组件。
+- 推荐依次推进 A-05（1F 放入三员工、绑定 Player、真实偷卡与集齐上楼）→ A-06（测试走廊或 2F 接入独眼门并连接失败反馈）→ A-09（本层重试逻辑及后续 D 按钮连接）。A-08 的救援和跟随也可独立制作逻辑，再接 D 对白；3F 救援后重试／装备恢复细节仍需确认。
+- 现有 B 正面偷卡仍只拒绝而不报告 STAFF_CAUGHT，C 其他四怪／offset、D UI 仍待交付或协调；本轮未代改这些模块。只同步合并记录、读源码和更新本记录，没有功能变更；未重复运行 Godot，不把上一轮五项回归结果写成今日新增验收。
+
+## 2026年11月7日 A-05 员工与卡片接入（Asia/Shanghai）
+
+- 用户授权先做 A-05，并明确 B 正面偷卡下一步自行迭代；保留现有拒绝操作，不在 A 端代写失败判定，不记 T01 通过。当前分支 `work/member-A-liuling`，起点 `f8504ae`；已有进度和 project.godot 本机设置原样保留，本轮未提交／推送。
+- 代码：`scenes/levels/floor_1.tscn` 在既有三个 Slot 下实例化 B 同一个 staff.tscn，仅配置 card_id；`floor.gd` 绑定同一 Player、连接 card_stolen，显示真实朝向／附近长按／偷取中／已取得文字，转发 notice_requested 临时反馈。移除原员工圆形占位，没有改 B 脚本或复制卡片数据。
+- 入口：`scenes/main.tscn`／`.gd` 从原空走廊改为注册楼层宿主并开始真实 1F，读取 CardManager 更新收集数、双槽和当前卡；`floors_test.tscn`／`.gd` 同步获得／失败反馈并保留明确的开发跳层。两者“开发新局”都调用 start_game，重新偷卡，不冒充本层重试。B/C 原 F6 和 test_corridor 保留。
+- 新增 `staff_floor_smoke.gd` 及 UID：首次运行因缺少三员工实例而退出 1；实现后使用真实 InputEventAction E／Q、Area2D 检测及正常长按计时完成三卡获取和去重，验证远处 E、提前松键取消、缺卡与两卡不能上楼、第三张留背包、一次 Q、真实 E 上 2F、拥有卡／双槽／当前卡保留、入口重定位、回头失败与开发新局。成功路径固定员工朝向、重新摆放主角以缩短走路；回头失败调用 B 超时处理函数，不能代替自然转身节奏的人工试玩。
+- 调试证据：瞬移主角后员工检测区要到第三个物理帧才退出，前两帧仍可能接走 E；用临时诊断脚本观察 overlap 和范围标记后，把自动测试的瞬移准备改为等待 4 个物理帧并确认检测区已退出，没有因此改变实际输入规则。首次加载 B 场景的旧 UID 缓存警告经 Godot 重新导入消失，未改 B 的 UID 文件。
+- 回归：foundation_smoke 更新为检查新 3600 宽主楼层及保留的 2800 测试走廊，开始新局后重新取得已重载的 Player，继续检查移动／失败锁定／相机。没有删去既有行为检查来迁就新入口。
+- 干净源码副本 `ae4pa-a05-clean-c_m29y4z` 不含 `.git`／`.godot`，project.godot 使用 HEAD 正式入口；重新导入退出码 0。6 项检查均 PASS、退出码 0：staff_floor_smoke（--max-fps 120）、foundation_smoke、floor_flow_smoke、B staff_core_smoke.tscn、C door_cycle_smoke（--max-fps 60）、C eye_door_smoke。真实可执行文件为本机 Downloads 下 Godot.app，日志为 `/tmp/ae4pa-a05-check-*.log`；受限运行仍有已知 macOS 证书和编辑器设置保存错误，不报告零错误。原工作区的自定义默认入口未改写，正式 F5 配置断言在干净源码副本执行。
+- 实际画面：Mac OpenGL 4.1 Metal／Compatibility 运行 main，用 E 获得三卡并上楼，查看 1280×720 的靠近、长按、保安卡成功、三卡齐全和 2F 截图（`/tmp/ae4pa-a05-before.png`、`holding.png`、`security.png`、`three_cards.png`、`floor_2.png`，均带相同 ae4pa-a05- 前缀）。中文、角色、临时双槽和获得提示没有重叠；截图不作为正式素材提交。本次未人工鼠标／自然时序完整试玩。
+- 只读审查未发现 Critical／Important 问题，指出两条反馈断言可能假通过：初始提示非空、CLEANER 已出现在备用槽。已改为检查实际获得的卡名和明确的当前卡字段；在临时副本断开通知／刷新连接后确实观察到四条预期失败，恢复真实连接后再次 PASS、退出码 0。生产文件未做测试性断连。
+- 更新 README、接口、组员接入、分工当前状态、PLANS 和 `a05_staff_plan.md`。A-05 接入部分完成，任务 08 仍进行中；下一步 A-06 接 C 的真实独眼门。房门、正式 UI、背包、重试、救援、结局和 Windows／导出没有在本轮标记通过。
+
+## 2026年11月7日 A 本机 Godot／VS Code 连接修复（Asia/Shanghai）
+
+- 用户报告 VS Code 语言服务器连接失败及 Godot 外部编辑器启动失败。核对本机发现 Godot 已启用外部编辑器但 exec_path 为空，语言服务监听 6005；当前 Godot Tools 插件默认连接 6008。
+- 保留用户新建的 `.vscode/settings.json` 中既有 Godot 程序路径，仅加入 godotTools.lsp.serverPort=6005；该文件含本机路径，未提交或当成团队通用配置发布。
+- 用户明确同意修正为 VS Code 后，通过正在运行的 Godot 编辑器设置 UI 填入本机 Code 可执行文件和 `{project} --goto {file}:{line}:{col}` 参数，保持使用外部编辑器开启；没有改游戏脚本或共享项目设置。
+- 验证：读取保存后的 Godot 设置与工作区 JSON，路径、参数和 6005 端口符合预期；lsof 观察到 Code 与 Godot 在 6005 上双向 ESTABLISHED。Godot 双击脚本后原错误计数仍为 4，没有新增同类外部编辑器错误；未将旧日志计数当成新错误。此次没有重新运行游戏回归。
+
+## 2026年11月9日 A 同步最新 main（Asia/Hong_Kong）
+
+- 用户授权拉取最新内容。先 fetch origin，再在原 work/member-A-liuling 分支从 f8504ae 快进至 origin/main 的 df4a3eb283d8588122c661404771a7aeade10d94；未切换分支、提交、推送或改写远端。新增内容为 B 卡片边界测试及 C 五怪规则、offset、多门测试与组件交接。
+- 同步前保存 18 个本地文件的临时字节备份，并建立安全 stash 0540f21c3721efaf743491e89da4ae1bd7f62c59，恢复后保留该快照。进度文档因双方追加而冲突，完整保留 C 与 A 两方记录；接口文档自动合并并检查两方改动。其余 16 个原文件与备份逐字节一致，所有本地修改恢复为未暂存状态。
+- 验证：干净临时源码副本 ae4pa-pull-verify-20261109-evic8ywy 使用 HEAD 的正式 project.godot，工作区本机入口与 VS Code 配置不改写。Godot 4.7.2 headless 导入退出码 0；以 --max-fps 120 运行 foundation_smoke.gd、staff_floor_smoke.gd、monster_rules_smoke.gd、door_handoff_smoke.gd，均输出 PASS、退出码 0。日志 /tmp/ae4pa-pull-*.log；受限环境仍有 user:// 日志写入、macOS 证书和导入时编辑器设置保存错误，未报告零错误。git diff --check 通过，无未解决的 Git 冲突。
+- 限制：本轮只同步代码及验证兼容性，没有将 C 房门装配进主流程，没有更改员工分布或策划规则，也没有代记人工试玩、Windows 或导出验收。
+
+## 2026年11月10日 V4 策划与 ABCD 分工本地审阅稿（Asia/Hong_Kong）
+
+- 用户要求：按新版 PDF 检查整体改造范围，更新仓库策划与详细 ABCD 分工，先看本地文件再上传 GitHub。本轮进一步确认“按里程碑安排，日期待定”，不沿用原 11 月 25 日交付承诺。
+- 开工基线：`work/member-A-liuling`，HEAD `df4a3eb`，相对个人 origin 分支 ahead 6；已有 A-05 源码／文档、project.godot 和 .vscode 本机改动。先将原文档及 89 个已跟踪／非忽略未跟踪文件的 SHA-256 摘要保存在临时目录 `ae4pa_v4_review_baseline`，没有切分支、stash、重置或覆盖游戏文件。
+- 来源：读取用户提供的 V4.0 PDF 共 15 页，系统无 Poppler／pypdf，使用本机 Swift PDFKit 提取全部文字并渲染页面，核对卡片、任务、检查点、分工、验收表；临时文字和页面放 `ae4pa_v4_pdf`，不进源码。Swift 默认模块缓存受沙箱限制，改用临时目录缓存后成功，不需要改系统配置。源 PDF 未更改、未复制上传。
+- 当前事实核对：阅读 GameManager、CardManager、Staff、Door、Floor 及相关文档；B 员工／三卡、C 五怪／offset 已有，本地 A-05 已接 1F；任务、回访、检查点、工作点、剧情门和正式 UI 仍待实现。GitHub 连接器只读读取 main 的 `docs/team-plan.md`，确认远端仍为分工 1.0；没有执行 fetch 或远端写入。
+- 核心文档：`docs/game-design.md` 改为 V4.0 整合审阅稿，包含五任务全流程、工作权限、普通退回／剧情拦截、回访、快照、笔记和门表；`docs/team-plan.md` 升级 2.0，保留 ABCD，分成 28 个成员任务，逐项写前置、步骤、交付与验收，采用 M0—M4；新增 `docs/v4-migration.md` 汇总源码影响、PDF 页码、10 项衔接建议和后续上传范围。
+- 配套文档：PLANS 新增 V4-00—08 队列，原 01—12 清单完整归档到 `docs/archive/plans_v3.md`（仅调整相对链接）；接口保留旧兼容事实并新增尚未实现的 §13 提案；QA 保留旧证据／V3 用例，新增 14 项 V4 主线与 14 项边界检查，均未执行。同步 README、AGENTS、onboarding；a_week_1／a05_staff_plan／a07_floor_plan 只增加旧阶段提示，历史正文保留。
+- 规则区分：源案明确与整合建议分开。提前偷卡、背包暂停中的核验、双向退回、接受后的工作路线、任务 03 批准即完成、卡片边界、救援后回访、笔记解锁、计时边界等仍待审阅。卡片“永久”按源案检查点例外处理：撤销本任务所得，保留前序已完成成果。
+- 独立文档审查：只读 builder check 发现源案 401 在 402 接任务前，无法自然承担任务 04 倒计时教学；已统一改为接取前停步复习并注明原因。其余主策划／ABCD／里程碑与来源未发现重要遗漏或分工冲突；配套文档完成后的第二次定向只读核对也未发现接口 §13、PLANS 与 V4 QA 的显著矛盾。没有把审查当作运行游戏验收。
+- 文档验证：`git diff --check` 无诊断；临时脚本检查 16 份 Markdown、95 个本地链接（含 5 个标题锚点）、591 个表格行、ABCD 编号及 V4-T／E 状态，退出码 0。原 PLANS 归档与改稿前内容在调整链接后完全一致，既有 progress 历史完整保留；文件摘要对照显示本轮没有任何非 Markdown 文件变化，原 A-05 脚本／场景、测试、project.godot、.vscode 原样保留。
+- 限制与交接：只完成文档稿与静态检查，未运行 Godot、未实现新功能、未新增人工／跨机器／导出／主线通过记录；未暂存、提交、推送、创建 PR 或合并。用户先审阅两份主文档与改造说明；确认后再核对最新远端，准备仅含已审阅文档的提交，避免把当前 ahead 历史和未审阅 A-05 代码混入上传。
+
+## 2026年11月11日 V4 文档上传准备（Asia/Hong_Kong）
+
+- 用户已审阅上一轮文件并明确回复“可以 上传更新一下”，本次只发布 V4 主策划、ABCD 分工及配套 Markdown，不发布本地 A-05 游戏代码、测试脚本或机器设置。
+- GitHub 实时读取 main 指向 `df4a3eb283d8588122c661404771a7aeade10d94`，与当前本地 HEAD 一致；没有新的远端成员改动需要合并。原 A 分支、索引和未提交游戏文件保留，发布使用独立文档分支。
+- 发布前仅调整文档状态、授权日期及共享运行入口：共享 main 仍是公共测试走廊，A-05 的 1F 员工接入和 staff_floor_smoke 仍仅在 A 本地，避免成员误以为本次文档包含这些代码。28 项分工和里程碑未改变，标注的衔接建议仍按 M0／相应功能阶段确认。
+- 验证：`git diff --check` 无诊断；16 份 Markdown、95 个相对链接、5 个锚点、591 个表格行、成员任务编号和 V4 未执行状态检查通过。文件摘要核对无非 Markdown 改动；本轮为纯文档发布，不重跑 Godot，不新增游戏／跨机器验收。
+- 本条记录发布准备事实；实际分支、提交和 PR 结果将在上传成功后追加。GitHub 分支／PR 状态为远端发布依据，不预先声称已合入 main。
+
+## 2026年11月11日 V4 文档分支上传与 PR（Asia/Hong_Kong）
+
+- 以 GitHub main 的 `df4a3eb283d8588122c661404771a7aeade10d94` 为基线，在仓库外的干净发布副本建立 `docs/v4-plan-20261111`；提交 `88eb446f384c824b859b293fca56e176826becfb`，仅 14 份 Markdown。
+- 文档分支已推送至 `origin/docs/v4-plan-20261111`；创建 [PR #10](https://github.com/sd5913/ae4pa/pull/10)，base `main`、head 为文档分支。GitHub 比较结果：ahead 1、behind 0，变更清单恰为 14 份 Markdown，没有 `.gd`、`.tscn`、`project.godot`、`.vscode` 或素材。
+- 干净发布副本执行 `git diff --cached --check` 无诊断，96 个 Markdown 相对链接核对无缺失；源码功能未改动，本轮未跑 Godot。A 原工作分支及未提交 A-05 游戏代码、本机设置未被提交或重置。
+- 本记录写入时 PR 仍为 open，尚未把它冒充 main 已合并。实际合并状态和 main SHA 须在远端核实后另记。
