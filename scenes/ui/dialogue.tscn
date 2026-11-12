@@ -1,0 +1,199 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/dialogue.gd" id="1_script"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/visual_novel/dialogue_frame.png" id="3_frame"]
+
+[node name="Dialogue" type="Control"]
+visible = false
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_script")
+
+[node name="Background" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Tint" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.03, 0.035, 0.07, 0.22)
+
+[node name="Portrait" type="TextureRect" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SMSPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 170.0
+offset_top = -295.0
+offset_right = 620.0
+offset_bottom = 300.0
+grow_horizontal = 0
+grow_vertical = 0
+mouse_filter = 2
+
+[node name="Phone" type="VBoxContainer" parent="SMSPanel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PhoneHeader" type="Label" parent="SMSPanel/Phone"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.93, 0.72, 0.42, 1)
+theme_override_font_sizes/font_size = 18
+text = "深夜  ·  与闺蜜的聊天"
+horizontal_alignment = 1
+
+[node name="SMSScroll" type="ScrollContainer" parent="SMSPanel/Phone"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(420, 520)
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+vertical_scroll_mode = 2
+
+[node name="SMSHistory" type="VBoxContainer" parent="SMSPanel/Phone/SMSScroll"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 8
+
+[node name="DialogueFrame" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.035
+anchor_top = 0.43
+anchor_right = 0.965
+anchor_bottom = 1.03
+offset_top = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_frame")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Speaker" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.12
+anchor_top = 0.51
+anchor_right = 0.58
+anchor_bottom = 0.58
+offset_left = 2.0
+offset_top = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+theme_override_colors/font_color = Color(0.28, 0.16, 0.08, 1)
+theme_override_font_sizes/font_size = 22
+mouse_filter = 2
+
+[node name="Line" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.12
+anchor_top = 0.59
+anchor_right = 0.88
+anchor_bottom = 0.87
+offset_left = 2.0
+offset_top = 0.0
+offset_right = -2.0
+offset_bottom = -1.0
+theme_override_colors/font_color = Color(0.2, 0.13, 0.08, 1)
+theme_override_font_sizes/font_size = 26
+autowrap_mode = 2
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="StageCue" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_left = 0.18
+anchor_top = 0.13
+anchor_right = 0.82
+anchor_bottom = 0.4
+theme_override_colors/font_color = Color(1, 0.94, 0.82, 1)
+theme_override_colors/font_shadow_color = Color(0.02, 0.025, 0.04, 0.92)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 24
+autowrap_mode = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_left = 0.12
+anchor_top = 0.57
+anchor_right = 0.88
+anchor_bottom = 0.8
+theme_override_colors/font_color = Color(0.36, 0.19, 0.07, 1)
+theme_override_font_sizes/font_size = 46
+horizontal_alignment = 1
+vertical_alignment = 1
+mouse_filter = 2
+
+[node name="ContinueButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.68
+anchor_top = 0.89
+anchor_right = 0.88
+anchor_bottom = 0.96
+text = "继续"
+
+[node name="SkipButton" type="Button" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+anchor_left = 0.08
+anchor_top = 0.91
+anchor_right = 0.3
+anchor_bottom = 0.97
+text = "跳过已读序章"
+
+[node name="Fade" type="ColorRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)
+
+[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="SkipButton" to="." method="_on_skip_pressed"]
