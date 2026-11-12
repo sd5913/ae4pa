@@ -428,3 +428,13 @@
 - README／PLANS／接口 §16／清单结果同步，新增 assets/backgrounds/README.md 说明用户提供的五张预览图及缺门／静态人物限制；完整 M1 仍受 B 快照／清理／正面失败和 D 任务面板／HUD／失败页约束，检查点不伪造，后四任务运行不提前启用。
 - 上传范围为当前已验证的 A 框架、楼层、任务定义、core 检查、整合文档、独立背景预览及五张引用 PNG／导入描述、用户三份原始 CSV／keep 描述。本机 .vscode、原素材 hotel_floors_4k.zip 和仅显式默认伸缩配置差异的 project.godot 留本地；Godot 缓存不提交。按用户要求只集中 push 到个人分支，不自动创建 PR 或合并 main；最终发布成功以远端 SHA 为准。
 - 提交前审查共 64 个文件，B/C/D 模块字节保持不变；70 个本地链接／11 个锚点及所有本轮文本空白通过，git diff --cached --check 无诊断。使用 git checkout-index 导出精确暂存树到 `/private/tmp/ae4pa-release-verify-2cz05vi1`，无本机配置／ZIP／缓存依赖；首次 Godot 导入退出 0，foundation／intro_flow／safe_return／task_01_core 四项在该干净源码副本再验 PASS／退出 0。导入仍只有已记录的宿主设置／证书诊断。
+
+## 2026年11月12日 五层场景图占位接入与 main 发布
+
+- 用户要求将 hotel_floors_4k.zip 中的场景图按楼层摆放并推送 main。压缩包五张 PNG 与 assets/backgrounds/floor_1.png 至 floor_5.png 逐字节一致。最新共享基线为 25faec29eaa06a6ea802d74d97c0298d4f62c7ab，已包含 A PR #15 和 B PR #14。
+- 在个人功能分支 work/member-A-floor-art、独立工作区 `/private/tmp/ae4pa-floor-art-main` 完成本轮。当前 A 工作区的开工文件摘要位于 `/private/tmp/ae4pa-floor-placement-bew1z7sd/local_manifest.json`，供保留首轮试玩的本地修改时核对。
+- floor_base.tscn 新增首个子节点 FloorBackground。五个 floor_N.tscn 分别引用对应 PNG 的 AtlasTexture，采用既有预览的透明内容区域，统一等比缩放 0.9375 至 3600 宽。图中地面线对齐世界 y560，各层背景顶部 y 为 106.25、190.625、190.625、152.1875、-53.125。实际楼层及 F5 序章后的 1F 现可显示图片，Godot 编辑器打开楼层也能看到占位素材。
+- 当前图片带有静态人物、门扇和灯光，3F 缺 305、5F 缺 504／505，部分图中门位与交互节点存在偏移。后续美术接入需拆动态层、补门号、校准交互和安全点。此轮完成用户要求的分层场景图占位。
+- Godot 4.7.2 的临时实际场景探针 `/private/tmp/ae4pa_floor_placement_probe.gd` 检查五层图片映射、Atlas 取景、等比／3600 宽、地面对齐、背景位于主角之前的绘制顺序及原出生点，headless 与原生图形均 PASS／退出 0。原生 Compatibility／OpenGL 4.1 Metal 截图 `/private/tmp/ae4pa-placed-floor-1.png` 至 -5.png 和 ae4pa-placed-main.png 已逐张目视检查。
+- 独立工作区改动前 foundation 回归 PASS，改动后 foundation_smoke、floor_flow_smoke、intro_flow_smoke、safe_return_smoke 四项均 PASS／退出 0。日志位于 `/private/tmp/ae4pa-placement-*.log`。headless 有既有 macOS 系统证书诊断，初次编辑器导入另有沙箱内用户设置保存受限诊断。
+- README 和 assets/backgrounds/README.md 已同步实际主场景接法与占位限制。用户已授权这批背景接入提交并推送 main，发布结果由 Git 提交及远端 SHA 核对。
