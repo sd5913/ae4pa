@@ -331,3 +331,9 @@
 - 用户以 A 身份回复“按照你的建议来”，确认：接受对应任务后才允许偷该任务奖励，未接任务 E 只提示；正式楼层由 A 为 E 选唯一目标；B 提供卡片深拷贝快照及原子恢复，A 在接任务前保存并在失败重试时恢复。
 - 更新 `docs/a_v4_m0_handoff.md` 为“A 已确认，待 B/C/D 核对接法”，列出 B-V4-01—03 的逐步实施和验收；同步 `docs/interfaces.md`、`docs/v4-migration.md`、`docs/game-design.md` 与 `PLANS.md` 的规则状态。D-01 首次开场跳过及 D-02／03／04／09 的剩余细节仍待确认，V4-01 不标完成。
 - 本轮仅更新文档，没有修改 B 的员工／CardManager、本地 A 游戏脚本、项目设置或场景；确认接口不等于已实现。未提交、推送或向成员发送消息，B 的本地修复状态仍以其实际分支／PR 为准。
+
+## 2026年11月12日 A 确认的 M0 文档分支推送（Asia/Hong_Kong）
+
+- 用户明确要求先推送 Git。为避免把 A 分支 ahead 提交、未提交游戏代码和本机配置一起发布，在 `/private/tmp` 的干净副本基于远端 main `3611adc3521c538321885fca36c67af1318d0ccb` 新建 `docs/m0-a-confirm-20261112`。
+- 初始提交 `b28204212461f6d54422908371f77d62724ab7db` 只含六份 Markdown：`PLANS.md`、`docs/a_v4_m0_handoff.md`、`docs/game-design.md`、`docs/interfaces.md`、`docs/progress.md`、`docs/v4-migration.md`；`git diff --cached --check`、本地链接和空白检查通过，没有 `.gd`、`.tscn`、`project.godot` 或 B/C/D 模块文件。
+- 已推送该独立分支；远端只读核对分支指向初始提交，main 仍为 `3611adc`。本条发布记录由后续文档提交补入同一分支；未创建 PR、未合并 main，A 原工作分支及未提交修改未变。
