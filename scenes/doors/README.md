@@ -1,5 +1,7 @@
 # C-01 至 C-13 通用房门交接
 
+> **2026-11-12 V4 迁移：** 当前 NORMAL 门已经改为只报告违规事件，STORY 门提供固定剧情触发与交付请求。下方 V3 的 GameManager.fail／FAILED 说明是历史基线，不能作为当前接入方式；本轮接口、F6、实测和待联调项以 [C-V4-01～03 交接](v4_handoff.md) 为准。旧 V3 失败断言脚本不能直接作为 V4 通过证据，600 组检测和真实核验事件已迁入 v4_doors_smoke。
+
 - 场景：`res://scenes/doors/monster_door.tscn`。Node2D 原点为门底中央，与走廊地面 y 对齐。
 - 检查器中的 `room_id` 修改门号，编辑器和运行时均刷新。复制场景实例即可摆多扇门，实例参数互不影响。
 - `MonsterPlaceholder` 是由 Polygon2D 组成的独眼占位图，不是正式美术。仅 OPEN 显示；关闭和预警时显示门板。
