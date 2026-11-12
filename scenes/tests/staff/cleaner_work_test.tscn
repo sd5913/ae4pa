@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/levels/test_corridor.tscn" id="1_corridor"]
+[ext_resource type="PackedScene" path="res://scenes/staff/staff.tscn" id="2_staff"]
+[ext_resource type="PackedScene" path="res://scenes/work/cleaning_spot.tscn" id="3_spot"]
+[ext_resource type="Script" path="res://scenes/tests/staff/cleaner_work_test.gd" id="4_test"]
+
+[node name="CleanerWorkTest" type="Node2D"]
+script = ExtResource("4_test")
+
+[node name="Corridor" parent="." instance=ExtResource("1_corridor")]
+
+[node name="Cleaner" parent="." instance=ExtResource("2_staff")]
+position = Vector2(650, 560)
+card_id = "CLEANER"
+target_id = "LOBBY_CLEANER"
+requires_task_eligibility = true
+
+[node name="CleaningSpot" parent="." instance=ExtResource("3_spot")]
+position = Vector2(1000, 560)
+target_id = "STAIN_201"
+
+[node name="Status" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Status"]
+offset_left = 24.0
+offset_top = 24.0
+offset_right = 1240.0
+offset_bottom = 90.0
+theme_override_font_sizes/font_size = 17
+text = "CLEANER V4 TEST"
