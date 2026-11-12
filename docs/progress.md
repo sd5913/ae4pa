@@ -307,3 +307,33 @@
 - 文档分支已推送至 `origin/docs/v4-plan-20261111`；创建 [PR #10](https://github.com/sd5913/ae4pa/pull/10)，base `main`、head 为文档分支。GitHub 比较结果：ahead 1、behind 0，变更清单恰为 14 份 Markdown，没有 `.gd`、`.tscn`、`project.godot`、`.vscode` 或素材。
 - 干净发布副本执行 `git diff --cached --check` 无诊断，96 个 Markdown 相对链接核对无缺失；源码功能未改动，本轮未跑 Godot。A 原工作分支及未提交 A-05 游戏代码、本机设置未被提交或重置。
 - 本记录写入时 PR 仍为 open，尚未把它冒充 main 已合并。实际合并状态和 main SHA 须在远端核实后另记。
+
+## 2026年11月11日 A-V4-01／02／03 首轮本地实现（Asia/Hong_Kong）
+
+- 用户以 A 身份要求依当前 `PLANS.md` 与 ABCD 分工继续任务。开工分支 `work/member-A-liuling`，相对个人远端 ahead 6；原有 A-05 代码、V4 文档和 `project.godot`／`.vscode` 本机改动均保留，未提交、推送或改写成员模块。
+- A-V4-01：新增 `docs/a_v4_m0_handoff.md`，列出 D-01／02／03／04／09 首轮实施假设、任务／物件 ID、201 路线、E/Q/I 归属和完整调用链。B/C/D 尚未逐项确认，M0 未标完成；后段 D-05—08／10 仍按里程碑待确认。
+- A-V4-02：`scripts/game_manager.gd` 新增任务 01 的 AVAILABLE→ACTIVE→READY_TO_SUBMIT→COMPLETED／FAILED 状态、210 秒计时、多个模态 ID 停表、清洁权限与去重、交付结算、超时及有效任务内被抓通知；`get_task_view` 等返回副本。清洁后继续计时，归零拒绝工作／交付。测试先因不存在 `offer_task` 失败，后又抓到“待交付提前停表”和“待交付被抓未更新任务状态”两处错误，修正后 `task_01_smoke.gd` 通过。
+- A-V4-03 的最小范围：GameManager 改为经理对白完成标志开放 2F，移除 1F 三卡门槛；记录已到达层、核对真实楼梯位置，允许 1F↔2F。`floor_base.tscn` 增加左端返程点，`floor.gd` 用同一个 E 请求楼梯、更新提示；回到下层时出生在右端安全楼梯。`scenes/main.tscn`／`.gd` 增加明确标注的开发代记经理对白按钮，以便 D 正式对白交付前测试；不把按钮算正式剧情通过。
+- 回归：新增 `floor_return_smoke.gd` 验证无卡上楼、远距离／非法目标拒绝、返程出生点及任务／秒数保留；把旧 `floor_flow_smoke.gd`、`staff_floor_smoke.gd` 中“三卡上楼／不准回退”的过时预期改为 V4。保留三卡／双槽的真实 B 数据检查与开发预览隔离。
+- 真实验证：本地 Godot `4.7.2.stable.official.ed1daf0bf`。工作区 `foundation_smoke.gd` 因原有未提交 `project.godot` 的 F5 入口为 `core_test.tscn`，仅“F5 uses the shared main scene”断言失败；未为通过测试改动该本机设置。复制当前源码到 `/private/tmp/ae4pa-v4-verify-1h0HlZ`，仅在临时副本将 F5 入口设为共享 `main.tscn`，完成 Godot 导入后，`foundation_smoke.gd`、`task_01_smoke.gd`、`floor_return_smoke.gd`、`floor_flow_smoke.gd`、`staff_floor_smoke.gd` 均打印 PASS 且退出码 0。运行出现 macOS 系统证书诊断；导入时还出现受限用户目录的编辑器设置保存错误，不能称零错误。
+- 文档／格式核对：`git diff --check` 退出码 0；本轮相关 Markdown 的本地相对链接检查通过；新增 M0 文档和两份独立脚本均有结尾换行且无行尾空白。
+- 限制：任务 01 目前只在独立测试中走通状态接口。B 卡片深拷贝快照／奖励门控、C 201／普通退回、D 正式对白／面板／楼梯 UI 尚未交付；接受前检查点、失败恢复、世界模态冻结、201 实景、任务 02—05、人工试玩和跨机器验收均未完成。当前 1F 旧员工仍可提前偷三卡，2F／3F 现有门标记仍为旧类型，不能把本次称作 201 可玩闭环。
+
+## 2026年11月12日 B 对 M0 接口的反馈（Asia/Hong_Kong）
+
+- 用户转发 B 的截图反馈：B 表示旧员工偷卡、三卡双槽和测试已完成，建议先统一任务解锁偷卡、E 键交互和任务失败卡片恢复，再开发 B 的 V4 增量；并提醒其正面偷卡修复、转身预告和成功反馈可能仍只在 B 本地，不能覆盖或当作已提交。
+- A 只读核对当前工作区：`scenes/staff/staff.gd` 仍自行监听 E、没有任务门控；`scripts/card_manager.gd` 尚无导出／恢复快照。原有 A 分支与未提交文件保留，未改 B/C/D 模块。
+- 将三项规则写进 `docs/a_v4_m0_handoff.md` 第 6 节，并在 `docs/interfaces.md` 与 `PLANS.md` 指向同一草案。内容明确任务状态／目标 ID、A 唯一 E 路由、B 快照结构与原子恢复、A 的重试顺序及最小验收；A/B 仍需共同确认后才标为冻结。本轮只改协作文档，没有实现新接口或运行游戏验收。
+- GitHub 连接器的 open PR 列表查询返回空列表；随后的 B 分支与 PR #8 读取遭 HTTP 403，无法据此核实 B 最新本地修复或其远端状态。本地 Git 历史显示旧 PR #8 已在此前合并，不能据此推断截图所说的新修复已发布。
+
+## 2026年11月12日 A 确认三项 M0 约定（Asia/Hong_Kong）
+
+- 用户以 A 身份回复“按照你的建议来”，确认：接受对应任务后才允许偷该任务奖励，未接任务 E 只提示；正式楼层由 A 为 E 选唯一目标；B 提供卡片深拷贝快照及原子恢复，A 在接任务前保存并在失败重试时恢复。
+- 更新 `docs/a_v4_m0_handoff.md` 为“A 已确认，待 B/C/D 核对接法”，列出 B-V4-01—03 的逐步实施和验收；同步 `docs/interfaces.md`、`docs/v4-migration.md`、`docs/game-design.md` 与 `PLANS.md` 的规则状态。D-01 首次开场跳过及 D-02／03／04／09 的剩余细节仍待确认，V4-01 不标完成。
+- 本轮仅更新文档，没有修改 B 的员工／CardManager、本地 A 游戏脚本、项目设置或场景；确认接口不等于已实现。未提交、推送或向成员发送消息，B 的本地修复状态仍以其实际分支／PR 为准。
+
+## 2026年11月12日 A 确认的 M0 文档分支推送（Asia/Hong_Kong）
+
+- 用户明确要求先推送 Git。为避免把 A 分支 ahead 提交、未提交游戏代码和本机配置一起发布，在 `/private/tmp` 的干净副本基于远端 main `3611adc3521c538321885fca36c67af1318d0ccb` 新建 `docs/m0-a-confirm-20261112`。
+- 初始提交 `b28204212461f6d54422908371f77d62724ab7db` 只含六份 Markdown：`PLANS.md`、`docs/a_v4_m0_handoff.md`、`docs/game-design.md`、`docs/interfaces.md`、`docs/progress.md`、`docs/v4-migration.md`；`git diff --cached --check`、本地链接和空白检查通过，没有 `.gd`、`.tscn`、`project.godot` 或 B/C/D 模块文件。
+- 已推送该独立分支；远端只读核对分支指向初始提交，main 仍为 `3611adc`。本条发布记录由后续文档提交补入同一分支；未创建 PR、未合并 main，A 原工作分支及未提交修改未变。
