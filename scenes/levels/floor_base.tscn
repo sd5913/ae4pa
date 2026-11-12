@@ -17,6 +17,17 @@ position = Vector2(192, 560)
 
 [node name="Interactions" type="Node2D" parent="."]
 
+[node name="ReturnPoint" type="Marker2D" parent="Interactions"]
+position = Vector2(192, 560)
+
+[node name="Hint" type="Label" parent="Interactions/ReturnPoint"]
+offset_left = -100.0
+offset_top = 30.0
+offset_right = 220.0
+offset_bottom = 100.0
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+
 [node name="ExitPoint" type="Marker2D" parent="Interactions"]
 position = Vector2(3400, 560)
 

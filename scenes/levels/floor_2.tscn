@@ -4,28 +4,67 @@
 
 [node name="Floor2" instance=ExtResource("1_base")]
 floor_number = 2
+task_01_barrier_x = 1250.0
 
 [node name="Room201" type="Marker2D" parent="DoorRoot" index="0"]
 position = Vector2(700, 560)
 metadata/room_number = 201
-metadata/monster_type = "EYE"
-
-[node name="Room202" type="Marker2D" parent="DoorRoot" index="1"]
-position = Vector2(1150, 560)
-metadata/room_number = 202
 metadata/monster_type = "NOSE"
 
+[node name="Room202" type="Marker2D" parent="DoorRoot" index="1"]
+position = Vector2(1550, 560)
+metadata/room_number = 202
+metadata/monster_type = "EYE"
+
 [node name="Room203" type="Marker2D" parent="DoorRoot" index="2"]
-position = Vector2(1600, 560)
+position = Vector2(2000, 560)
 metadata/room_number = 203
 metadata/monster_type = "EAR"
 
 [node name="Room204" type="Marker2D" parent="DoorRoot" index="3"]
-position = Vector2(2050, 560)
+position = Vector2(2450, 560)
 metadata/room_number = 204
-metadata/monster_type = "HAT"
+metadata/monster_type = "CHECKER"
 
 [node name="Room205" type="Marker2D" parent="DoorRoot" index="4"]
-position = Vector2(2500, 560)
+position = Vector2(2900, 560)
 metadata/room_number = 205
-metadata/monster_type = "CHECKER"
+metadata/monster_type = "HAT"
+
+[node name="Stain201Slot" type="Marker2D" parent="Interactions" index="2"]
+position = Vector2(980, 560)
+
+[node name="Hint" type="Label" parent="Interactions/Stain201Slot"]
+offset_left = -120.0
+offset_top = -90.0
+offset_right = 120.0
+offset_bottom = -40.0
+horizontal_alignment = 1
+text = "STAIN_201\nB 污渍接入位"
+
+[node name="Task01AcceptSafe" type="Marker2D" parent="Interactions" index="3"]
+position = Vector2(560, 560)
+
+[node name="Room201RightSafe" type="Marker2D" parent="Interactions" index="4"]
+position = Vector2(1120, 560)
+
+[node name="Task01Barrier" type="Node2D" parent="Interactions" index="5"]
+position = Vector2(1250, 560)
+
+[node name="Visual" type="Polygon2D" parent="Interactions/Task01Barrier"]
+polygon = PackedVector2Array(-8, -160, 8, -160, 8, 0, -8, 0)
+color = Color(0.8, 0.4, 0.3, 1)
+
+[node name="Room202LeftSafe" type="Marker2D" parent="Interactions" index="6"]
+position = Vector2(1400, 560)
+
+[node name="Room202RightSafe" type="Marker2D" parent="Interactions" index="7"]
+position = Vector2(1700, 560)
+
+[node name="Hint" type="Label" parent="Interactions/Task01Barrier"]
+offset_left = -150.0
+offset_top = 30.0
+offset_right = 150.0
+offset_bottom = 80.0
+horizontal_alignment = 1
+text = "201 交付后开放后段"

@@ -1,14 +1,12 @@
 [gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_main"]
-[ext_resource type="PackedScene" path="res://scenes/levels/test_corridor.tscn" id="2_corridor"]
+[ext_resource type="PackedScene" path="res://scenes/ui/dialogue.tscn" id="2_dialogue"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_main")
 
 [node name="World" type="Node2D" parent="."]
-
-[node name="TestCorridor" parent="World" instance=ExtResource("2_corridor")]
 
 [node name="Background" type="CanvasLayer" parent="."]
 layer = -1
@@ -38,13 +36,13 @@ mouse_filter = 2
 [node name="Info" type="VBoxContainer" parent="DeveloperOverlay/Margin"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 8
 
 [node name="Title" type="Label" parent="DeveloperOverlay/Margin/Info"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.95, 0.92, 0.84, 1)
 theme_override_font_sizes/font_size = 28
-text = "TEST · 怪物员工通道公共底座"
+text = "DEV · V4 A 侧任务与回访测试"
 
 [node name="State" type="Label" parent="DeveloperOverlay/Margin/Info"]
 layout_mode = 2
@@ -56,4 +54,21 @@ text = "正在加载公共管理器"
 layout_mode = 2
 theme_override_colors/font_color = Color(0.68, 0.74, 0.75, 1)
 theme_override_font_sizes/font_size = 18
-text = "A / D 或方向键左右移动 · 员工、房门和正式 UI 由 B / C / D 后续接入"
+text = "A / D 移动 · E 经理交谈／楼梯／201 交付 · Q 切当前卡 · 任务页面与清理待交付"
+
+[node name="Notice" type="Label" parent="DeveloperOverlay/Margin/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.78, 0.48, 1)
+theme_override_font_sizes/font_size = 18
+text = "临时开发提示"
+
+[node name="NewGame" type="Button" parent="DeveloperOverlay/Margin/Info"]
+layout_mode = 2
+size_flags_horizontal = 0
+focus_mode = 0
+text = "开发：新局（重播序章）"
+
+[node name="StoryLayer" type="CanvasLayer" parent="."]
+layer = 20
+
+[node name="Dialogue" parent="StoryLayer" instance=ExtResource("2_dialogue")]

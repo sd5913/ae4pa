@@ -53,12 +53,20 @@ func _run() -> void:
 	var main: Node = scene.instantiate()
 	root.add_child(main)
 	await process_frame
+	await _finish_prologue(main)
 	_expect(ProjectSettings.get_setting("application/run/main_scene") == "res://scenes/main.tscn", "F5 uses the shared main scene")
 	var players: Array[Node] = get_nodes_in_group("player")
 	_expect(players.size() == 1, "Main scene contains one shared player")
 	if players.size() == 1:
-		await _check_player(players[0])
+		await _check_player(players[0], 3600)
 	main.queue_free()
+	await process_frame
+	# The original reusable corridor remains available to B/C component scenes.
+	var corridor: Node = load("res://scenes/levels/test_corridor.tscn").instantiate()
+	root.add_child(corridor)
+	await process_frame
+	await _check_player(corridor.get_node("Player"), 2800)
+	corridor.queue_free()
 	await process_frame
 	for path: String in [
 		"res://scenes/tests/core/core_test.tscn",
@@ -79,7 +87,20 @@ func _run() -> void:
 	_finish()
 
 
-func _check_player(player: Node2D) -> void:
+func _finish_prologue(main: Node) -> void:
+	# Movement is checked after the actual opening yields control, never through it.
+	var opening: Control = main.get_node("StoryLayer/Dialogue")
+	await create_timer(0.6).timeout
+	opening.set_skip_transitions_for_test(true)
+	var guard: int = 0
+	while opening.visible and guard < 200:
+		opening.get_node("%ContinueButton").emit_signal("pressed")
+		guard += 1
+	_expect(guard < 200, "Main's real prologue returns control before movement checks")
+	await process_frame
+
+
+func _check_player(player: Node2D, corridor_width: int) -> void:
 	player.global_position = Vector2(192.0, 560.0)
 	Input.action_press("move_right")
 	await _physics_frames(6)
@@ -112,11 +133,11 @@ func _check_player(player: Node2D) -> void:
 	_expect(is_equal_approx(player.global_position.x, stopped_x), "A movement lock prevents walking")
 	player.call("set_movement_locked", false)
 
-	player.global_position.x = 2734.0
+	player.global_position.x = float(corridor_width - 66)
 	Input.action_press("move_right")
 	await _physics_frames(4)
 	Input.action_release("move_right")
-	_expect(is_equal_approx(player.global_position.x, 2736.0), "Right edge prevents leaving the corridor")
+	_expect(is_equal_approx(player.global_position.x, float(corridor_width - 64)), "Right edge prevents leaving the corridor")
 	player.global_position.x = 66.0
 	Input.action_press("move_left")
 	await _physics_frames(4)
@@ -131,15 +152,19 @@ func _check_player(player: Node2D) -> void:
 	Input.action_release("move_right")
 	_expect(is_equal_approx(player.global_position.x, 64.0), "Unlocking does not bypass FAILED state")
 	game.call("start_game")
+	await process_frame
+	# Main reloads the floor on a new game; component corridors keep their player.
+	player = get_nodes_in_group("player")[0]
+	stopped_x = player.global_position.x
 	Input.action_press("move_right")
 	await _physics_frames(4)
 	Input.action_release("move_right")
-	_expect(player.global_position.x > 64.0, "Starting a new session restores movement")
+	_expect(player.global_position.x > stopped_x, "Starting a new session restores movement")
 
 	var camera: Camera2D = player.get_node_or_null("Camera2D")
 	_expect(camera != null, "Player provides the shared horizontal camera")
 	if camera != null:
-		_expect(camera.limit_left == 0 and camera.limit_right == 2800, "Camera uses corridor boundaries")
+		_expect(camera.limit_left == 0 and camera.limit_right == corridor_width, "Camera uses corridor boundaries")
 		_expect(camera.limit_top == 0 and camera.limit_bottom == 720, "Camera stays within the fixed-height corridor")
 
 

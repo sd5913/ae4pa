@@ -1,8 +1,8 @@
 # 组员接入：当前基线与 V4 迁移
 
-本地 A-05 主入口可进入 1F：三员工、真实偷卡和三卡上楼已接入，另有独立五层预览；这些 A-05 改动尚未提交，不保证远端 main 已有相同入口。C 五怪／offset／多门代码已在当前源码中，尚待主线接入；D 正式 UI 仍待交付。所有成员使用 Godot 4.7.2 标准版和同一仓库。
+本地 A 工作区的 `scenes/main.tscn` 可进入 1F：三员工、真实偷卡、任务 01 状态／计时独立接口、经理对白开发代记与 1F↔2F 回访已接入；这些改动尚未提交，不保证远端 main 已有相同入口。C 五怪／offset／多门代码已在当前源码中，尚待主线接入；D 正式 UI 仍待交付。所有成员使用 Godot 4.7.2 标准版和同一仓库。
 
-**V4 文档已于 2026-11-11 获用户确认上传；当前游戏仍是旧规则基线。** 共享 main 的 F5／core_test 是公共测试走廊，员工／门用各自 F6；下文 A-05 的 1F 主入口和 staff_floor_smoke 仅在 A 本地未提交版本中，不属于这次文档发布的源码。 新任务依 [ABCD 分工 2.0](team-plan.md)、[PLANS](../PLANS.md) 和 [接口第 13 节](interfaces.md#13-v4-目标接口提案尚未实现)推进，先做 201 闭环。下面的现有 F5／F6 和坐标说明供复用，不要求按旧“三卡上楼／整层失败”继续制作新功能。
+**V4 文档已于 2026-11-11 获用户确认上传；A 本地代码正在迁移。** 远端共享 main 的 F5／core_test 是公共测试走廊，员工／门用各自 F6；A 的 1F 主入口及 V4 任务／回访代码仅在本地未提交版本中。新任务依 [ABCD 分工 2.0](team-plan.md)、[PLANS](../PLANS.md)、[M0 交接草案](a_v4_m0_handoff.md)和[接口第 13 节](interfaces.md#13-v4-目标接口提案尚未实现)推进，先做 201 闭环。下面的现有 F5／F6 和坐标说明供复用，不要求按旧“三卡上楼／整层失败”继续制作新功能。
 
 公共底座以云端 main 为共享入口。接入前检查 main 已包含 `scenes/main.tscn`、两个管理器脚本和本文，再把最新 main 同步到自己的分支。具体发布提交与 PR 记录见 [进度文档](progress.md)。
 
@@ -26,7 +26,7 @@ A 旧阶段记录见 [A 第 1 周执行与交接](a_week_1.md)；新里程碑与
 
 | 成员 | F6 入口 | 开始修改的位置 | 当前骨架提供什么 |
 |---|---|---|---|
-| A | `scenes/tests/core/core_test.tscn`（继承 main） | `scenes/player/`、`scenes/levels/`、`scripts/game_manager.gd` | 共享 main 为公共走廊；A 本地未提交 A-05 版本有 1F 三员工与三卡上楼 |
+| A | `scenes/tests/core/core_test.tscn`（旧公共走廊）、`scenes/tests/core/task_01_smoke.gd` 与 `floor_return_smoke.gd`（本地 V4） | `scenes/player/`、`scenes/levels/`、`scripts/game_manager.gd` | 远端 main 仍为公共走廊；A 本地已将 1F 上楼改为经理对白标志并支持 1F↔2F |
 | A 五层 | `scenes/tests/core/floors_test.tscn` | 五层场景与 GameManager | 独立换层预览、入口、相机和组件接入位置 |
 | B | `scenes/tests/staff/staff_test.tscn` | `scenes/staff/`、`scripts/card_manager.gd` | `StaffSlot` 放员工；主角为 `Corridor/Player` |
 | C | `scenes/tests/doors/doors_test.tscn` | `scenes/doors/` | `DoorSlot` 放门；主角为 `Corridor/Player` |
@@ -53,13 +53,13 @@ B/C 原场景与 `setup(player)` 继续复用，测试准备通过已实现业�
 - B 已交付：员工转身、长按偷取、取消、回头失败、三卡双槽，A-05 已绑定到 1F；正面偷取仅拒绝，用户同意等待 B 后续迭代，未记旧 V3-T01 通过。
 - C 已交付：门计时、预警、五怪检测、offset、多门独立测试；普通违规目前仍直接失败，V4 退回／剧情拦截待实现。
 - 待 D：菜单、HUD、背包、手册、对白、失败／结局界面。
-- A 已实现：主入口的 1F 员工／卡片接入、实际偷卡上楼、跨层保留、五层占位与换层；房门仍待接入。待 A：本层重试、309 救援、五楼通关及 D 界面连接。开发新局清空卡片，不是 Retry。
+- A 本地已实现：主入口的 1F 员工／卡片接入、任务 01 状态／计时独立入口、无卡 1F↔2F、跨层保留、五层占位与开发预览；经理对白目前只可开发代记。待 A：检查点、201 布局与交互协调、309 救援、五楼通关及 D 界面连接。开发新局清空卡片，不是 Retry。
 
 详细签名和阶段见公共接口文档；不要调用尚未实现的方法。V4 的模态停表已定，暂停换装核验等剩余衔接见改造说明决策表。
 
 ## 测试走廊的当前约束（A 本地含 A-05 的旧基线事实）
 
-A 使用 `work/member-A-liuling`。主入口现进入真实 1F；打开 `scenes/tests/core/floors_test.tscn` 按 F6 则额外提供开发跳层。靠近员工背后站定长按 E 0.8 秒取得 ID，三卡齐全后到右端 70 像素内按 E 上 2F，Q 切当前卡，状态显示读取真实双槽。未救援的 3F 仍会拦住上楼，5F 只有 EXIT 占位；本轮不改变 B/C 自己的 F6 入口和原 test_corridor。开发新局可在失败后重新偷三卡，尚未实现本层重试。
+A 使用 `work/member-A-liuling`。打开 `scenes/main.tscn` 可看到真实 1F；点击明确标注的开发按钮代记经理对白后，到右端 70 像素内按 E 可无卡上 2F，2F 左端按 E 回 1F。当前旧员工仍可提前偷卡，不能据此判定 V4 奖励门控通过；Q 切当前卡。F6 的 `scenes/tests/core/floors_test.tscn` 额外提供开发跳层。3F 需要任务 01／02 后才开放，5F 仍只有 EXIT 占位；B/C 独立 F6 入口和原 test_corridor 保留。开发新局可在失败后重开，尚未实现检查点重试。
 
 五层宽 3600，出生点 `(192, 560)`，行走 x 为 64—3536，相机 x 为 0—3600；均按世界原点放置。`StaffRoot/*Slot` 放员工，`DoorRoot/Room201` 等 Marker2D 放门，组件以局部原点对齐；门标记的 metadata 提供 room_number／monster_type，A 接入 C 组件时写入其公开配置，不自动当作已创建房门。2F—5F 五门 x 为 700、1150、1600、2050、2500，相邻默认检测区间留 270 像素。3F 的 `Interactions/RescuePoint` 为 309 接入位置，所有楼层 `Interactions/ExitPoint` 位于 `(3400, 560)`。
 
@@ -81,7 +81,7 @@ godot --headless --path . --script res://scenes/tests/core/foundation_smoke.gd
 
 自动检查覆盖底座，不替代 B/C/D 模块验收。上传 PR 时填写：改了哪些文件、如何 F6 运行、调用哪些公共接口、实际测试结果、需要 A 接哪里及未完成项。A 按 B→C→D 顺序接入，每次回归已有行为。
 
-涉及五层流程时另运行 `godot --headless --path . --script res://scenes/tests/core/floor_flow_smoke.gd`。A-05 接入检查使用 `godot --headless --path . --max-fps 120 --script res://scenes/tests/core/staff_floor_smoke.gd`，通过真实 E／Q、Area 检测和长按计时获得三卡，再到出口输入 E 验证上楼；自动检查用重新摆放主角缩短走路，自然转身节奏仍需人工试玩。3F 跨层状态使用已救援夹具，不代表救援功能完成。
+涉及五层流程时运行 `godot --headless --path . --script res://scenes/tests/core/floor_flow_smoke.gd`。A-V4-02／03 的独立检查是 `task_01_smoke.gd` 与 `floor_return_smoke.gd`（同目录）。A-05 员工接入检查使用 `godot --headless --path . --max-fps 120 --script res://scenes/tests/core/staff_floor_smoke.gd`，通过真实 E／Q、Area 检测和长按计时获得三卡，再用经理对白完成夹具验证上楼；自然转身节奏仍需人工试玩。3F 跨层状态使用已救援夹具，不代表救援功能完成。
 
 ## 尚待人工完成
 

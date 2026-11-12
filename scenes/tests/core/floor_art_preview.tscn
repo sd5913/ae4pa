@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/core/floor_art_preview.gd" id="1_preview"]
+[ext_resource type="PackedScene" path="res://scenes/player/player.tscn" id="2_player"]
+
+[node name="FloorArtPreview" type="Node2D"]
+script = ExtResource("1_preview")
+
+[node name="Backdrop" type="CanvasLayer" parent="."]
+layer = -2
+
+[node name="Fill" type="ColorRect" parent="Backdrop"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.035, 0.025, 0.055, 1)
+
+[node name="FloorBackground" type="Sprite2D" parent="."]
+centered = false
+texture_filter = 2
+
+[node name="IntegrationMarkers" type="Node2D" parent="."]
+visible = false
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(600, 560)
