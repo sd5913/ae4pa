@@ -42,6 +42,53 @@ func has_all_cards() -> bool:
 	return has_card("SECURITY") and has_card("CLEANER") and has_card("MANAGER")
 
 
+func export_snapshot() -> Dictionary:
+	return {
+		"owned_cards": _owned_cards.duplicate(true),
+		"equipped_cards": _equipped_cards.duplicate(true),
+		"active_slot": _active_slot,
+	}
+
+
+func create_snapshot() -> Dictionary:
+	return export_snapshot()
+
+
+func validate_snapshot(snapshot: Dictionary) -> bool:
+	if not snapshot.has_all(["owned_cards", "equipped_cards", "active_slot"]):
+		return false
+	if not snapshot.owned_cards is Array or not snapshot.equipped_cards is Array:
+		return false
+	var owned: Array = snapshot.owned_cards
+	var equipped: Array = snapshot.equipped_cards
+	var slot: Variant = snapshot.active_slot
+	if not slot is int or slot < 0 or slot > 1 or equipped.size() != 2:
+		return false
+	var unique_owned: Array[String] = []
+	for card: Variant in owned:
+		if not card is String or not VALID_CARDS.has(card) or unique_owned.has(card):
+			return false
+		unique_owned.append(card)
+	var equipped_cards: Array[String] = []
+	for card: Variant in equipped:
+		if not card is String or (card != "NONE" and not unique_owned.has(card)):
+			return false
+		if card != "NONE" and equipped_cards.has(card):
+			return false
+		equipped_cards.append(card)
+	return true
+
+
+func restore_snapshot(snapshot: Dictionary) -> bool:
+	if not validate_snapshot(snapshot):
+		return false
+	_owned_cards.assign(snapshot.owned_cards.duplicate(true))
+	_equipped_cards.assign(snapshot.equipped_cards.duplicate(true))
+	_active_slot = snapshot.active_slot
+	cards_changed.emit()
+	return true
+
+
 func collect_card(card_id: String) -> bool:
 	if not VALID_CARDS.has(card_id) or has_card(card_id):
 		return false

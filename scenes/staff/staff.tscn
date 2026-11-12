@@ -55,12 +55,49 @@ uv = PackedVector2Array(176, -36)
 position = Vector2(10, -48)
 polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
 
+[node name="TurnWarning" type="Label" parent="."]
+visible = false
+offset_left = -6.0
+offset_top = -94.0
+offset_right = 8.0
+offset_bottom = -70.0
+theme_override_colors/font_color = Color(1, 0.75, 0.1, 1)
+theme_override_font_sizes/font_size = 22
+text = "!"
+
+[node name="CardMarker" type="Label" parent="."]
+offset_left = -10.0
+offset_top = -40.0
+offset_right = 12.0
+offset_bottom = -22.0
+theme_override_colors/font_color = Color(0.95, 0.9, 0.3, 1)
+theme_override_font_sizes/font_size = 12
+text = "ID"
+
+[node name="FeedbackLabel" type="Label" parent="."]
+visible = false
+offset_left = -58.0
+offset_top = -122.0
+offset_right = 60.0
+offset_bottom = -98.0
+theme_override_colors/font_color = Color(0.4, 1, 0.55, 1)
+theme_override_font_sizes/font_size = 14
+text = "GOT ID"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1861999390]
 libraries/ = SubResource("AnimationLibrary_x6oaq")
 
 [node name="TurnTimer" type="Timer" parent="."]
 wait_time = 3.0
 autostart = true
+
+[node name="TurnWarningTimer" type="Timer" parent="."]
+wait_time = 2.6
+one_shot = true
+
+[node name="FeedbackTimer" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
 
 [node name="StealArea" type="Area2D" parent="." unique_id=996756406]
 
@@ -71,3 +108,5 @@ shape = SubResource("RectangleShape2D_b35xr")
 [connection signal="body_entered" from="StealArea" to="." method="_on_steal_area_body_entered"]
 [connection signal="body_exited" from="StealArea" to="." method="_on_steal_area_body_exited"]
 [connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]
+[connection signal="timeout" from="TurnWarningTimer" to="." method="_on_turn_warning_timer_timeout"]
+[connection signal="timeout" from="FeedbackTimer" to="." method="_on_feedback_timer_timeout"]

@@ -13,6 +13,7 @@ func _ready() -> void:
 	GameManager.start_game()
 	for staff: Node in staff_members:
 		staff.setup(player)
+		staff.task_failure_requested.connect(_on_task_failure_requested)
 	CardManager.cards_changed.connect(_update_status)
 	CardManager.identity_changed.connect(_on_identity_changed)
 	_update_status()
@@ -34,6 +35,11 @@ func _unhandled_key_input(event: InputEvent) -> void:
 
 func _on_identity_changed(_action: String) -> void:
 	_update_status()
+
+
+func _on_task_failure_requested(reason: String, _target_id: String) -> void:
+	# F6 compatibility adapter only. A connects this event to request_task_failure in V4.
+	GameManager.fail(reason)
 
 
 func _update_status() -> void:
