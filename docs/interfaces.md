@@ -2,17 +2,17 @@
 
 本文件按《Monster Staff Access Godot三周逐步分工 共享美术版 V2》第 01—03 部分的职责起草，供 A/B/C/D 在同一 Godot 项目中接入模块。它对应手册中建议的“接口约定.txt”，统一使用本 Markdown 文件维护，不再创建第二份接口清单。
 
-**阅读顺序：第 1—12 节是现有 V3 兼容基线及旧接口约定，不是 V4 行为规范；第 13 节是尚未实现的 V4 目标提案。新增接口经审阅并实际实现后才能接正式按钮。** 任务回访、普通门退回和任务检查点将替代旧行为，不能同时执行两套后果。
+**阅读顺序：第 1—12 节保留 V3 兼容基线及旧接口约定，遇到冲突以第 13 节和本节的“实际状态”为准；第 13 节仍以 V4 目标提案为主，A 的部分入口已在本地实现。新增接口经审阅并实际实现后才能接正式按钮。** 任务回访、普通门退回和任务检查点将替代旧行为，不能同时执行两套后果。
 
 现行产品规则见 [项目主策划](game-design.md)，人员任务及交付顺序见 [ABCD 分工 2.0](team-plan.md)。本文专门维护接口及其实现状态，本次文档整合不改变已有函数或信号。
 
 函数表示“调用另一个模块做事”，信号表示“通知其他模块某事已经发生”。调用者按本文约定使用接口，模块内部实现由对应负责人决定。
 
-**当前状态（A 本地未提交版本，不等于共享 main）：A-05 已将 B 的员工／三卡双槽接入 1F 与主入口；真实长按偷三卡、上楼和装备保留已在 A 本机验证。** C 的五怪、offset 和多门独立测试已在当前源码中，尚未组装进主流程；正式 UI、救援、重试和通关仍待实现。B 正面偷卡暂保留拒绝操作，用户确认等待 B 下一轮迭代。文档目标不等于全部验收。V4 已明确模态页面暂停任务计时；剩余交互衔接见第 13 节与主策划决策表。
+**当前状态（A 本地未提交版本，不等于共享 main）：A-05 已将 B 的员工／三卡双槽接入 1F 与主入口；A-V4-02 的任务 01 状态／计时独立入口与 A-V4-03 的 1F↔2F 回访已加入。** 正式经理对白、201 任务门／污渍、卡片快照、检查点重试、世界模态冻结与正式 UI 尚未接入；不能把独立任务测试当作 201 通关。B 正面偷卡仍只拒绝，C 五怪组件尚未组装进主流程。实现边界见 [M0 交接草案](a_v4_m0_handoff.md)。
 
 | 模块 | 当前真实可用 | 尚待实现 |
 |---|---|---|
-| GameManager | 四个状态字段、`start_game`、`fail`、`set_floor_host`、`go_to_floor`、`floor_changed`，受限开发预览；原有状态／失败通知 | 重试、救援、通关和返回菜单；真实组件绑定 |
+| GameManager | 旧状态与失败接口、任务 01 独立状态／计时入口、模态停表、经理对白完成标志、合法 1F↔2F 楼梯请求与已到达层；受限开发预览 | 卡片快照／检查点重试、正式对白与 201 组件、后续任务、救援、通关和返回菜单 |
 | CardManager | 查询／重置、`collect_card`、`switch_active`、`equip_card`、Q 输入、`cards_changed`／`identity_changed` 实际通知 | UI 接入；空槽／无效操作等规则确认及非游玩输入边界验收 |
 | HotelPlayer | 移动、`is_moving`、朝向、`set_walk_bounds`、`set_movement_locked`、相机 | 偷卡／怪物／剧情组件的实际接入 |
 | 员工 | `staff.tscn`、`setup(player)`、转身、长按偷取、取消和回头失败，已接 1F；成功通知接临时反馈 | 正面偷取当前仅拒绝，待 B 迭代；转身预告／正式 UI 反馈仍待交付 |
@@ -67,7 +67,7 @@ A 先发布可运行公共底座，B/C/D 再从该版本开发。A 创建 CardMa
 | `fail(reason: String) -> void` | B 的员工、C 的门 | 仅在 PLAYING 接受失败，先更新为 FAILED 再通知 UI；同次失败不重复处理 | 任务 05 |
 | `retry_floor() -> void` | A 接收 D 的 Retry 请求后调用 | 重新进入当前楼层入口并重置门计时；卡片、装备和救援恢复按对应功能阶段的规则执行 | 任务 08、10 |
 | `set_floor_host(host: Node2D, enable_preview: bool = false) -> void` | A 的场景入口 | 指定只容纳楼层实例的 World；默认不开启开发预览。宿主须位于世界原点、无旋转、缩放 1 | A-07 已实现 |
-| `go_to_floor(floor_number: int) -> void` | A 的楼层出口逻辑 | 仅 PLAYING、有有效宿主时接受前往下一层；1F 检查真实三卡，3F 检查 has_friend；拒绝跳层、回退及越界 | A-07 已实现；真实 CardManager 三卡通行及装备保留自动检查通过，本地 A-05 实际偷卡上楼已有验证，尚未随本轮发布 |
+| `go_to_floor(floor_number: int) -> void` | A 的旧楼层出口调用 | 现转发 V4 `request_floor_travel`，按对白／任务前置、已到达层和楼梯实际距离核对；不再以三卡判断 1F 上楼 | A-V4-03 本地已改；正式 D 楼梯列表仍待接入 |
 | `preview_floor(floor_number: int) -> void` | A 的 F6 开发入口 | 仅宿主显式开启预览、使用 editor 可执行程序且处于 PLAYING 时可跳到 1—5F；不改变卡片或救援数据，导出程序中禁用 | A-07 开发工具，正式流程不调用 |
 | `rescue_friend() -> void` | A 的 309 流程 | 完成救援进度，同一局重复调用不重复触发救援通知 | 任务 10 |
 | `win() -> void` | A 的 5F 出口逻辑 | 进入 WON，停止游玩输入并通知 D 显示结局；重复触发不重复结算 | 任务 10 |
@@ -98,7 +98,7 @@ A 的装载顺序为：读取／实例化场景 → LOADING → 旧层移出树�
 | `get_owned_cards() -> Array[String]` | 查询函数 | 返回已获得卡片的副本，外部修改返回数组不改变真实数据 |
 | `get_equipped_cards() -> Array[String]` | 查询函数 | 返回长度为 2 的佩戴槽副本，空位为 NONE |
 | `has_card(card_id: String) -> bool` | 查询函数 | 是否已经获得该卡 |
-| `has_all_cards() -> bool` | 查询函数 | 三张规定 ID 是否全部获得，供 A 检查 1F 出口 |
+| `has_all_cards() -> bool` | 查询函数 | 三张规定 ID 是否全部获得；旧 A-07 使用，V4 不以此判断 1F 上楼 |
 
 | 操作函数签名 | 调用者 | 职责 | 实现阶段 |
 |---|---|---|---|
@@ -266,7 +266,7 @@ B/C/D 提交给 A 的交接内容为：场景及脚本、公开配置说明、�
 
 ## 13 V4 目标接口提案（尚未实现）
 
-本节是审阅候选契约，不宣称方法已存在。依据为 [主策划 V4](game-design.md) 和 [D-01—D-10 衔接建议](v4-migration.md#4-需要审阅的衔接规则)，由 A 在 V4-01 组织 B/C/D 确认。源案没有要求另建任务 Autoload；首轮继续只用 GameManager／CardManager，A 可将静态五任务表放普通脚本 `scripts/task_definitions.gd`。
+本节主要是审阅候选契约；A 的部分首轮入口已在本地实现，具体见本节末的实际状态。依据为 [主策划 V4](game-design.md) 和 [D-01—D-10 衔接建议](v4-migration.md#4-需要审阅的衔接规则)，由 A 在 V4-01 组织 B/C/D 确认。源案没有要求另建任务 Autoload；首轮继续只用 GameManager／CardManager。当前只把任务 01 常量放在 GameManager，其他任务尚未实现。
 
 ### 13.1 数据与固定标识
 
@@ -313,9 +313,11 @@ B/C/D 提交给 A 的交接内容为：场景及脚本、公开配置说明、�
 
 ### 13.3 B 的组件与快照
 
-- CardManager 拟增 `export_snapshot() -> Dictionary`、`restore_snapshot(snapshot: Dictionary) -> bool`。内容只含 owned_cards／equipped_cards／active_slot，输入需验证，恢复不调用逐个 collect/equip，不发 `identity_changed`；完整恢复后通知 `cards_changed`。
+2026-11-12 用户以 A 身份确认任务门控、正式 E 路由和恢复次序，详见 [A/B 对接约定与 B 的实施步骤](a_v4_m0_handoff.md#6-b-反馈后的-ab-对接约定a-已确认)。B/C/D 仍需核对各自调用点；本节签名为目标接口，不代表 A/B 新方法已经实现或 B 的代码已经提交。
+
+- CardManager 拟增 `export_snapshot() -> Dictionary`、`restore_snapshot(snapshot: Dictionary) -> bool`。内容只含 `owned_cards`／`equipped_cards`／`active_slot`，导出必须深拷贝；恢复先完整验证，无效快照不改状态。有效恢复不调用逐个 collect/equip，不发 `identity_changed`，只发一次 `cards_changed`。
 - `collect_card`、`switch_active`、`equip_card` 保留名称；新增状态检查，快照恢复走专用接口，不借玩家操作入口绕过锁。
-- Staff 保留 `setup(player)`、`begin_steal()`、`cancel_steal()`；新增目标 ID 和奖励类型 CARD／TASK_ITEM。卡奖励继续由 B 修改 CardManager，任务文件发 `task_item_stolen(item_id: String, target_id: String)`，由 A 记事实；奖励前再次校验任务可用。
+- Staff 保留 `setup(player)`、`begin_steal()`、`cancel_steal()`；新增目标 ID 和奖励类型 CARD／TASK_ITEM。正式楼层的 E 由 A 只派发给一个目标，B 的独立 F6 可保留测试输入适配层。B 在长按开始和奖励结算前都查 A 的 `is_interaction_allowed(target_id)`；卡奖励继续由 B 修改 CardManager，任务文件发 `task_item_stolen(item_id: String, target_id: String)`，由 A 记事实。
 - 工作点拟为 `work_point.tscn`，公开 target_id、interaction_type（CLEAN／PICKUP／AUTHORIZE）、required_card、hold_duration；方法 `setup(player: HotelPlayer)`、`begin_interaction()`、`cancel_interaction()`，成功候选信号 `work_requested(target_id: String)`。A 接受 `record_work_result` 后通知刷新，组件不能先把拒绝的工作当成功。
 - 长按期间持续验证资格，离开目标／移动／松键／切卡／打开页面时取消。员工回头被发现优先上报失败；该帧不能又授卡或给文件。
 - 员工／工作点的已取／已做状态由 A/B 数据读出并刷新，场景卸载不丢。B 的局部 `_is_stealing` 只是临时进度，不进任务检查点。
@@ -355,8 +357,22 @@ A/D 统一模态栈：任务介绍／对白／笔记／背包／暂停／楼梯�
 
 ### 13.7 迁移检查
 
-- 旧 `go_to_floor` 的只前进／三卡门槛，迁移为新的合法出行检查后再接 UI；开发 `preview_floor` 继续独立。
+- 旧 `go_to_floor` 的只前进／三卡门槛已在 A 本地迁为合法楼梯请求；D 正式楼梯 UI 仍待接入，开发 `preview_floor` 继续独立。
 - 旧 `retry_floor` 仍未实现，不新增一个假空函数供 D 调用；V4 实现 `retry_current_task`。
 - 旧 C `GameManager.fail` 调用迁移为普通违规事件；B 被抓迁移为任务失败，不能把两者合并处理。
 - 保留旧自动检查中仍有效的三卡／五怪条件覆盖，对被 V4 改掉的行为先新增预期，再更新旧断言。新增任务测试路径待实现后登记，不把拟议文件名当可运行命令。
-- 本轮只是接口提案；实际新增方法／字段完成后，负责人把对应行标为“已实现”，附提交／场景与验证，再由 A 接入。
+- 新增方法／字段完成后，负责人把对应行标为“已实现”，附场景与验证，再由 A 接入。
+
+### 13.8 2026-11-11 A 本地实际状态
+
+| 入口／行为 | 实际状态 | 限制 |
+|---|---|---|
+| `complete_manager_intro() -> bool` | 已实现 A 侧故事标志；主入口有明确标记的开发代记按钮 | D 正式对白及首看流程未连接 |
+| `get_task_view()`、`get_completed_task_ids()`、`get_world_flags()` | 已实现返回副本；当前只定义任务 01 | 后四任务、完整笔记／物品表未落地 |
+| `offer_task`、`accept_task`、`record_work_result`、`submit_task` | 已实现任务 01 的状态、清理权限、交付去重与结果；独立测试通过 | 201/C 门、B 污渍点和 D 按钮尚未连接；接受前卡快照未实现 |
+| `set_modal_open(modal_id, is_open)` | 已实现多个模态共存时的任务停表 | 目前只停任务秒数，未锁 Player／门／长按；正式 UI 不可直接当完整暂停使用 |
+| `request_task_failure`、`task_failed` | 已实现任务 01 超时与有效任务内员工被抓的状态通知 | 检查点恢复待 B 快照；A 已确认无任务时不能开始偷窃，当前 B 旧员工代码尚未落实 |
+| `get_available_floors()`、`request_floor_travel()` | 已实现已到达层与下一层门槛、真实楼梯距离校验；1F↔2F 自动测试通过 | D 楼梯列表未连接；2F→3F 需要未实现的任务 02，后段回访限制待 M2 |
+| `request_safe_return`、`retry_current_task` | 尚未实现 | 依赖 C 安全点／B 卡片快照，不能接可点击正式按钮 |
+
+现有 `go_to_floor` 只转发合法楼梯请求；1F 不再查三卡。任务 01 的剩余时间由 GameManager 在 PLAYING 且无打开模态时递减，待交付阶段继续计时，归零后拒绝工作和交付。`task_01_smoke.gd`、`floor_return_smoke.gd` 为当前独立检查，验证记录见 [进度](progress.md)。
