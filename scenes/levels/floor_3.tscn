@@ -1,9 +1,19 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_base.tscn" id="1_base"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/floor_3.png" id="art_background"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_background"]
+atlas = ExtResource("art_background")
+region = Rect2(0, 866, 3840, 428)
 
 [node name="Floor3" instance=ExtResource("1_base")]
 floor_number = 3
+
+[node name="FloorBackground" parent="." index="0"]
+position = Vector2(0, 190.625)
+scale = Vector2(0.9375, 0.9375)
+texture = SubResource("AtlasTexture_background")
 
 [node name="Room301" type="Marker2D" parent="DoorRoot" index="0"]
 position = Vector2(700, 560)

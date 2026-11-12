@@ -1,10 +1,20 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_base.tscn" id="1_base"]
 [ext_resource type="PackedScene" path="res://scenes/staff/staff.tscn" id="2_staff"]
+[ext_resource type="Texture2D" path="res://assets/backgrounds/floor_1.png" id="art_background"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_background"]
+atlas = ExtResource("art_background")
+region = Rect2(0, 806, 3840, 548)
 
 [node name="Floor1" instance=ExtResource("1_base")]
 floor_number = 1
+
+[node name="FloorBackground" parent="." index="0"]
+position = Vector2(0, 106.25)
+scale = Vector2(0.9375, 0.9375)
+texture = SubResource("AtlasTexture_background")
 
 [node name="SecuritySlot" type="Marker2D" parent="StaffRoot" index="0"]
 position = Vector2(800, 560)

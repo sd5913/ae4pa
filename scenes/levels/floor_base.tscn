@@ -6,6 +6,9 @@
 [node name="Floor" type="Node2D"]
 script = ExtResource("1_floor")
 
+[node name="FloorBackground" type="Sprite2D" parent="."]
+centered = false
+
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(192, 560)
 
