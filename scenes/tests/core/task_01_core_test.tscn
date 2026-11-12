@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/core/task_01_core_test.gd" id="1_test"]
+
+[node name="Task01CoreTest" type="Node2D"]
+script = ExtResource("1_test")
+
+[node name="World" type="Node2D" parent="."]

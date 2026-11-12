@@ -28,7 +28,7 @@ func _run() -> void:
 	await _check_bounds(host.get_child(0).get_node("Player"))
 	var first: Node = host.get_child(0)
 	game.call("go_to_floor", 2)
-	_expect(host.get_child(0) == first and game.get("current_floor") == 1, "Missing real cards blocks 1F exit")
+	_expect(host.get_child(0) == first and game.get("current_floor") == 1, "Manager introduction and stair proximity gate 1F exit")
 	game.call("preview_floor", 2)
 	_expect(host.get_child(0) == first, "Normal host cannot enable preview bypass")
 	for number: int in [0, 1, 3, 6]:
@@ -39,10 +39,14 @@ func _run() -> void:
 		_expect(cards.call("collect_card", card_id), "Real collection accepts " + card_id)
 	cards.call("equip_card", "MANAGER", 1)
 	var equipped: Array = cards.call("get_equipped_cards")
+	host.get_child(0).get_node("Player").global_position.x = 3400.0
+	game.call("go_to_floor", 2)
+	_expect(game.get("current_floor") == 1, "Three cards alone no longer open 2F")
+	game.call("complete_manager_intro")
 	game.call("go_to_floor", 2)
 	await process_frame
 	_check_floor(host, 2)
-	_expect(cards.call("has_all_cards"), "Normal 1F exit preserves all collected cards")
+	_expect(cards.call("has_all_cards"), "Normal 1F exit preserves collected cards")
 	_expect(cards.call("get_equipped_cards") == equipped, "Normal transition preserves real equipped slots")
 	game.call("start_game")
 	await process_frame
@@ -53,41 +57,53 @@ func _run() -> void:
 	var on_floor_changed := func(number: int) -> void:
 		notifications.append(number)
 		_expect(game.get("game_state") == "PLAYING", "Floor listener sees PLAYING")
-		_check_floor(host, number)
+		_check_floor(host, number, number == 4 and notifications.size() > 1 and notifications[-2] == 5)
 	game.connect("floor_changed", on_floor_changed)
 	game.call("preview_floor", 2)
 	await process_frame
 	_check_floor(host, 2)
 	_expect(not is_instance_valid(first), "Previous floor is freed after replacement")
 	_expect(root.get_node("CardManager").call("get_owned_cards").is_empty(), "Preview never invents cards")
+	host.get_child(0).get_node("Player").global_position.x = 500.0
 	await _press_interact()
-	_expect(game.get("current_floor") == 2, "E at entrance cannot trigger distant stairs")
+	_expect(game.get("current_floor") == 2, "E away from both stairs cannot change floors")
 	host.get_child(0).get_node("Player").global_position.x = 3400.0
 	await _press_interact()
 	await process_frame
+	_expect(game.get("current_floor") == 2, "Incomplete 201 and 202 block 3F")
+	game.call("preview_floor", 3)
+	await process_frame
 	_check_floor(host, 3)
 	var third: Node = host.get_child(0)
+	host.get_child(0).get_node("Player").global_position.x = 3400.0
 	game.call("go_to_floor", 4)
 	_expect(host.get_child(0) == third, "Unrescued story state blocks 3F exit")
 	game.set("has_friend", true) # A-owned story fixture; rescue itself is outside A-07.
+	host.get_child(0).get_node("Player").global_position.x = 3400.0
 	game.call("go_to_floor", 4)
 	game.call("go_to_floor", 5)
+	_expect(game.get("current_floor") == 4, "Unfinished task 04 blocks 5F")
+	game.call("preview_floor", 5)
 	await process_frame
 	_check_floor(host, 5)
 	_expect(game.get("has_friend"), "4F and 5F preserve rescued story state")
 	var fifth: Node = host.get_child(0)
 	game.call("go_to_floor", 6)
+	_expect(host.get_child(0) == fifth, "5F has no sixth floor")
 	game.call("go_to_floor", 4)
-	_expect(host.get_child(0) == fifth, "5F has no sixth floor or backward transition")
+	await process_frame
+	_expect(game.get("current_floor") == 4 and not is_instance_valid(fifth), "Visited 4F is reachable from 5F")
+	_expect(host.get_child(0).get_node("Player").global_position.x > 3200.0, "Return appears beside the upper stair")
+	var fourth: Node = host.get_child(0)
 	game.call("fail", "WRONG_CARD")
 	game.call("go_to_floor", 5)
 	game.call("preview_floor", 1)
-	_expect(host.get_child(0) == fifth and game.get("game_state") == "FAILED", "Failed state blocks normal and preview requests")
+	_expect(host.get_child(0) == fourth and game.get("game_state") == "FAILED", "Failed state blocks normal and preview requests")
 	game.call("start_game")
 	await process_frame
 	_check_floor(host, 1)
 	_expect(not game.get("has_friend") and game.get("fail_reason") == "", "Restart clears story and failure")
-	_expect(notifications == [2, 3, 4, 5, 1], "Each successful load emits once; rejected requests never emit")
+	_expect(notifications == [2, 3, 4, 5, 4, 1], "Each successful load emits once; rejected requests never emit")
 
 	game.disconnect("floor_changed", on_floor_changed)
 	host.queue_free()
@@ -142,7 +158,7 @@ func _check_bounds(player: Node2D) -> void:
 	player.global_position = Vector2(192, 560)
 
 
-func _check_floor(host: Node, number: int) -> void:
+func _check_floor(host: Node, number: int, arrive_from_above: bool = false) -> void:
 	_expect(host.get_child_count() == 1, "World contains one floor")
 	if host.get_child_count() != 1:
 		return
@@ -152,7 +168,8 @@ func _check_floor(host: Node, number: int) -> void:
 	var players: Array[Node] = get_nodes_in_group("player")
 	_expect(players.size() == 1, "Exactly one player remains after loading")
 	var player: Node2D = floor_node.get_node("Player")
-	_expect(player.global_position.is_equal_approx(floor_node.get_node("SpawnPoint").global_position), "Player starts at floor entrance")
+	var expected_position: Vector2 = floor_node.get_node("Interactions/ExitPoint").global_position + Vector2(-60, 0) if arrive_from_above else floor_node.get_node("SpawnPoint").global_position
+	_expect(player.global_position.is_equal_approx(expected_position), "Player starts at the correct floor %d stair" % number)
 	var camera: Camera2D = player.get_node("Camera2D")
 	_expect(camera.limit_left == 0 and camera.limit_right == 3600, "Camera matches floor width")
 	_expect(camera.limit_top == 0 and camera.limit_bottom == 720, "Camera remains horizontal")
