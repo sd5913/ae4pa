@@ -71,9 +71,18 @@ func is_interacting() -> bool:
 	return _is_interacting
 
 
+func is_player_in_range() -> bool:
+	return _player_in_range
+
+
+func set_completed(completed: bool) -> void:
+	cancel_interaction()
+	_completion_reported = completed
+	_set_completed_visual(completed)
+
+
 func reset_completion_report() -> void:
-	_completion_reported = false
-	_set_completed_visual(false)
+	set_completed(false)
 
 
 func is_completed() -> bool:

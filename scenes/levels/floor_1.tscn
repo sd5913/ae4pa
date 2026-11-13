@@ -29,6 +29,8 @@ metadata/card_id = "CLEANER"
 
 [node name="Staff" parent="StaffRoot/CleanerSlot" instance=ExtResource("2_staff")]
 card_id = "CLEANER"
+target_id = "STAFF_CLEANER_1F"
+requires_task_eligibility = true
 
 [node name="ManagerSlot" type="Marker2D" parent="StaffRoot" index="2"]
 position = Vector2(2400, 560)

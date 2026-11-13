@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_base.tscn" id="1_base"]
 [ext_resource type="Texture2D" path="res://assets/backgrounds/floor_2.png" id="art_background"]
+[ext_resource type="PackedScene" path="res://scenes/work/cleaning_spot.tscn" id="3_cleaning_spot"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_background"]
 atlas = ExtResource("art_background")
@@ -44,13 +45,8 @@ metadata/monster_type = "HAT"
 [node name="Stain201Slot" type="Marker2D" parent="Interactions" index="2"]
 position = Vector2(980, 560)
 
-[node name="Hint" type="Label" parent="Interactions/Stain201Slot"]
-offset_left = -120.0
-offset_top = -90.0
-offset_right = 120.0
-offset_bottom = -40.0
-horizontal_alignment = 1
-text = "STAIN_201\nB 污渍接入位"
+[node name="CleaningSpot" parent="Interactions/Stain201Slot" instance=ExtResource("3_cleaning_spot")]
+target_id = "STAIN_201"
 
 [node name="Task01AcceptSafe" type="Marker2D" parent="Interactions" index="3"]
 position = Vector2(560, 560)
