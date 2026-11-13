@@ -320,6 +320,9 @@ func _check_dialogue(failures: Array[String]) -> void:
 	_dialogue.show_dialogue("RESCUE_309")
 	_check(_dialogue.visible and line.text == "你终于来了！" and _dialogue.get_node("%Speaker").text == "闺蜜",
 		"RESCUE_309 shows the confirmed first rescue line", failures)
+	var friend_portrait := _dialogue.get_node("FriendPortrait") as TextureRect
+	_check(friend_portrait.visible and friend_portrait.texture != null,
+		"RESCUE_309 displays the friend portrait", failures)
 	continue_button.pressed.emit()
 	_check(line.text == "下面的路被封了，五楼有紧急出口！",
 		"RESCUE_309 continues to the confirmed route information", failures)

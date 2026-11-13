@@ -58,6 +58,8 @@ T12 必须覆盖救援后换到 4F／5F 的状态保留。3F 救援后本层重�
 
 本次 D UI 回归没有发现需登记的阻塞 BUG；这不表示 T01—T14 或其他成员模块已验收。尚未实测的场景继续保持“未执行”，不以独立 UI 断言替代主线、门怪、员工、重试、救援、跟随或 EXIT 验收。
 
+| 2026-11-13（Asia/Shanghai）；Windows；Godot `4.7.2.stable.official.ed1daf0bf` | `work/member-D-v4-qa-fix`，基于已包含 PR #17 的 `origin/work/member-D-caizhichun` 提交 `a594bd0`；只新增 RESCUE_309 闺蜜立绘及断言、所需素材和本条 QA 记录 | 负责人：D；隔离 worktree 无窗口执行 | `scenes/tests/ui/ui_test.tscn`；Godot 控制台 `--headless --scene res://scenes/tests/ui/ui_test.tscn -- --ui-smoke` | RESCUE_309 立绘、推进和完成信号断言通过，现有菜单、说明、失败页、任务面板、通关页、HUD、背包回归通过 | 退出码 0；7 组 PASS。日志：`C:\Users\lenovo\AppData\Local\Temp\ae4pa_v4_qa_fix_worktree.log`。Windows 根证书存储读取错误未阻断测试 | 通过；仅为无窗口 UI 回归。当前 D 基线不含 V4 序章已读状态保存流程，因此本次未覆盖该状态的保存／重播测试；正式主线仍待 A 接入 |
+
 ## 在功能阶段补充的检查
 
 - 偷卡重复获取、正面／背面的范围边界、偷窃中途移动和松开 E。

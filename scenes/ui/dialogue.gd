@@ -10,6 +10,7 @@ const RESCUE_309_LINES: Array[String] = [
 	"你终于来了！",
 	"下面的路被封了，五楼有紧急出口！",
 ]
+const FRIEND_PORTRAIT_SHEET := preload("res://assets/final/ui/visual_novel/friend_expressions.png")
 const MODAL_ID := "dialogue"
 
 var _dialogue_id := ""
@@ -20,10 +21,22 @@ var _line_index := 0
 @onready var _line: Label = %Line
 @onready var _continue_button: Button = %ContinueButton
 @onready var _skip_button: Button = %SkipButton
+var _friend_portrait: TextureRect
 
 
 func _ready() -> void:
 	visibility_changed.connect(_sync_modal_state)
+	_friend_portrait = TextureRect.new()
+	_friend_portrait.name = "FriendPortrait"
+	_friend_portrait.position = Vector2(24, 142)
+	_friend_portrait.size = Vector2(225, 430)
+	_friend_portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_friend_portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_friend_portrait.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_friend_portrait.texture_filter = CanvasItem.TEXTURE_FILTER_LINEAR
+	_friend_portrait.texture = _friend_portrait_texture()
+	_friend_portrait.hide()
+	add_child(_friend_portrait)
 	_sync_modal_state()
 
 
@@ -76,6 +89,14 @@ func _finish() -> void:
 func _refresh_line() -> void:
 	_line.text = _lines[_line_index]
 	_continue_button.text = "继续"
+	_friend_portrait.visible = _dialogue_id == "RESCUE_309"
+
+
+func _friend_portrait_texture() -> AtlasTexture:
+	var portrait := AtlasTexture.new()
+	portrait.atlas = FRIEND_PORTRAIT_SHEET
+	portrait.region = Rect2(0, 0, 512, 512)
+	return portrait
 
 
 func _on_continue_pressed() -> void:
