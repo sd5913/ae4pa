@@ -59,6 +59,7 @@ func advance_interaction(delta: float) -> void:
 	_is_interacting = false
 	_elapsed = 0.0
 	_completion_reported = true
+	_set_completed_visual(true)
 	cleaning_completed.emit(target_id)
 
 
@@ -72,6 +73,17 @@ func is_interacting() -> bool:
 
 func reset_completion_report() -> void:
 	_completion_reported = false
+	_set_completed_visual(false)
+
+
+func is_completed() -> bool:
+	return _completion_reported
+
+
+func _set_completed_visual(completed: bool) -> void:
+	$Stain.visible = not completed
+	$Hint.visible = not completed
+	$WorkArea.set_deferred("monitoring", not completed)
 
 
 func _on_work_area_body_entered(body: Node2D) -> void:

@@ -41,12 +41,17 @@ func _ready() -> void:
 	_expect(GameManager.fail_reason == "STAFF_CAUGHT", "Front interaction used the wrong failure reason.")
 	_expect(not card_manager.has_card("SECURITY"), "Front interaction incorrectly granted a card.")
 	GameManager.start_game()
+	security.reset_caught_alert()
 
 	for index: int in range(staff_members.size()):
 		var staff: Node = staff_members[index]
 		player.global_position = staff.global_position + Vector2(-30.0, 0.0)
 		await get_tree().physics_frame
 		await get_tree().physics_frame
+		if staff.is_suspicious():
+			staff._on_suspicion_timer_timeout()
+			player.global_position = staff.global_position - Vector2(30.0 * staff.facing_direction, 0.0)
+			await get_tree().physics_frame
 		_expect(staff.is_player_in_range(), "%s employee did not detect Player." % expected_cards[index])
 		_expect(staff.is_player_behind(), "%s rear-side check is incorrect." % expected_cards[index])
 		_expect(staff.get_node("CardMarker").visible, "%s card marker should be visible before stealing." % expected_cards[index])
@@ -60,11 +65,17 @@ func _ready() -> void:
 
 	var original_facing: int = security.facing_direction
 	var original_eye_x: float = security.get_node("Eye").position.x
-	_expect(is_equal_approx(security.get_node("TurnTimer").wait_time, 3.0), "Staff turn interval should remain 3 seconds.")
-	_expect(is_equal_approx(security.get_node("TurnWarningTimer").wait_time, 2.6), "Turn warning should begin about 0.4 seconds early.")
+	for staff: Node in staff_members:
+		var interval_range: Vector2 = staff.get_turn_interval_range()
+		var interval: float = staff.get_current_turn_interval()
+		_expect(interval >= interval_range.x and interval <= interval_range.y, "%s turn interval is outside its role range." % staff.card_id)
+		_expect(is_equal_approx(interval - staff.get_node("TurnWarningTimer").wait_time, 0.4), "%s warning should begin about 0.4 seconds early." % staff.card_id)
+	_expect(security.get_turn_interval_range().y < staff_members[1].get_turn_interval_range().x, "Security should observe more frequently than Cleaner.")
+	_expect(staff_members[1].get_turn_interval_range().y < staff_members[2].get_turn_interval_range().x, "Manager should turn less frequently than Cleaner.")
 	_expect(not security.get_node("TurnWarning").visible, "Turn warning should begin hidden.")
 	security._on_turn_warning_timer_timeout()
-	_expect(security.get_node("TurnWarning").visible, "Turn warning was not shown before turning.")
+	_expect(not security.get_node("TurnWarning").visible, "Normal turn preparation must not display an icon.")
+	_expect(absf(security.get_node("Eye").position.x) == 4.0, "Normal turn preparation did not use the subtle look pose.")
 	security._on_turn_timer_timeout()
 	_expect(security.facing_direction == -original_facing, "Staff did not reverse logical facing.")
 	_expect(security.get_node("Eye").position.x == -original_eye_x, "Staff visual facing did not follow logic.")
