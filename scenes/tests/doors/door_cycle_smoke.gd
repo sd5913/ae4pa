@@ -50,16 +50,21 @@ func _run() -> void:
 	door.closed_time = 0.1
 	door.warning_time = 0.1
 	door.open_time = 0.1
+	# Resource loading can make the first engine delta span multiple tiny phases.
+	# Warm the real frame loop before measuring; overflow is tested above.
+	await create_timer(0.2).timeout
+	await process_frame
 	door.reset_cycle()
 	door.set_process(true)
 	var observed: Array[String] = ["CLOSED"]
-	for frame: int in range(100):
+	var deadline: int = Time.get_ticks_msec() + 3000
+	while Time.get_ticks_msec() < deadline:
 		await process_frame
 		if door.door_state != observed.back():
 			observed.append(door.door_state)
 		if observed.size() >= 7:
 			break
-	_expect(observed == ["CLOSED", "WARNING", "OPEN", "CLOSED", "WARNING", "OPEN", "CLOSED"], "Real frames repeat two full cycles")
+	_expect(observed == ["CLOSED", "WARNING", "OPEN", "CLOSED", "WARNING", "OPEN", "CLOSED"], "Real frames repeat two full cycles: " + str(observed))
 	for failure: String in failures:
 		printerr("FAIL: ", failure)
 	if failures.is_empty():
