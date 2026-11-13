@@ -1,5 +1,7 @@
 # C-V4-01～03 独立组件交接（2026-11-12）
 
+> 2026-11-13 更新：PR #12 已合并，main b4c57d0 已有 A 的真实201／普通202／唯一E／安全退回，B 快照与清理组件也已交付。下文“尚未实现”描述属于首次独立交付的历史状态。最新点位、本机复核、C-V4-04／05和待联调项见 [最新交接](v4_m2_handoff.md)。
+
 ## 基线、权限与接口状态
 
 分支 `work/member-C-yinshiqi`，HEAD `ce95720`，开工工作区干净。只 fetch 刷新引用；远端 main=`9f8cb9e` 已包含本分支，分支落后 7 个提交，无本分支独有提交。用户保留合并权，本轮没有合并 main，也没有提交、暂存或推送。按 `origin/main` 读取最新 AGENTS、PLANS、game-design、team-plan、interfaces、qa 及 A 的 `a_v4_m0_handoff.md`，没有把旧本地文档当作 V4 接口冻结证据。

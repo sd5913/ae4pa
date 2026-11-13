@@ -2,7 +2,7 @@
 extends Node2D
 ## Reusable door visuals and CLOSED -> WARNING -> OPEN cycle.
 
-# Candidate V4 contract from origin/main 9f8cb9e; A must connect/validate it.
+# V4 events wired by A; optional identity inspection still needs modal integration.
 signal rule_violated(reason: String, approach_side: int)
 signal story_intercept_requested(task_id: String, room_id: String)
 signal task_submit_requested(task_id: String)
@@ -20,6 +20,7 @@ var _violation_pending: bool = false
 var _outside_side: int = 0
 var _entry_side: int = 0
 var _inside: bool = false
+var _identity_inspection: Dictionary = {}
 
 @export var room_id: String = "201":
 	set(value):
@@ -42,6 +43,7 @@ var _player: HotelPlayer
 
 func setup(player: HotelPlayer) -> void:
 	if player != _player:
+		_identity_inspection.clear()
 		_outside_side = 0
 		_entry_side = 0
 		_inside = false
@@ -58,6 +60,7 @@ func _connect_identity_signal() -> void:
 
 
 func _exit_tree() -> void:
+	_identity_inspection.clear()
 	if not Engine.is_editor_hint() and CardManager.identity_changed.is_connected(_on_identity_changed):
 		CardManager.identity_changed.disconnect(_on_identity_changed)
 
@@ -65,22 +68,61 @@ func _exit_tree() -> void:
 func _can_check() -> bool:
 	return (door_mode == "NORMAL" and not _violation_pending
 		and not Engine.is_editor_hint() and can_process()
-		and GameManager.game_state == "PLAYING" and door_state == "OPEN"
+		and GameManager.is_world_input_allowed() and door_state == "OPEN"
 		and is_instance_valid(_player)
 		and absf(_player.global_position.x - global_position.x) <= maxf(radius, 0.0))
 
 
 func _on_identity_changed(action: String) -> void:
+	if not _identity_inspection.is_empty():
+		if action in ["SWITCH_ACTIVE", "EQUIP_CARD"]:
+			_identity_inspection.changed = true
+		return
 	_sample_entry()
 	if monster_type == "CHECKER" and action in ["SWITCH_ACTIVE", "EQUIP_CARD"] and _can_check():
 		_report_violation("SWITCHED_NEAR_CHECKER")
+
+
+## Opt-in M2 adapter. A captures BEFORE freezing/opening the bag; never automatic.
+func begin_identity_inspection() -> bool:
+	if not _identity_inspection.is_empty() or monster_type != "CHECKER":
+		return false
+	_sample_entry()
+	if not _can_check() or _entry_side == 0:
+		return false
+	_identity_inspection = {"player": _player, "position": _player.global_position,
+		"door_position": global_position, "side": _entry_side, "changed": false}
+	return true
+
+
+## Resolve after the LAST modal closes, before movement resumes. False cancels on
+## failure/travel/retry; restore_snapshot emits no identity_changed, hence no report.
+func end_identity_inspection(resolve: bool = true) -> bool:
+	if _identity_inspection.is_empty():
+		return false
+	if resolve and not GameManager.is_world_input_allowed():
+		return false # Nested modal: keep evidence until A resolves or cancels it.
+	var context: Dictionary = _identity_inspection
+	_identity_inspection = {}
+	if not resolve:
+		return true
+	if not is_instance_valid(_player) or context.player != _player:
+		return false
+	if _player.global_position != context.position or global_position != context.door_position:
+		return false # A must freeze positions; stale evidence cannot move a new actor.
+	if door_mode != "NORMAL" or monster_type != "CHECKER":
+		return false
+	if context.changed:
+		_entry_side = context.side
+		_report_violation("SWITCHED_NEAR_CHECKER")
+	return true
 
 
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint() or not can_process() or not is_instance_valid(_player):
 		return
 	_sample_entry()
-	if GameManager.game_state != "PLAYING":
+	if not GameManager.is_world_input_allowed():
 		return
 	if door_mode == "STORY":
 		_check_story()
@@ -151,7 +193,7 @@ func request_interaction() -> bool:
 	# A's unique E router calls this; the component does not listen to E itself.
 	if door_mode != "STORY" or _story_status != "READY_TO_SUBMIT" or _submit_pending:
 		return false
-	if not can_process() or GameManager.game_state != "PLAYING" or not is_instance_valid(_player):
+	if not can_process() or not GameManager.is_world_input_allowed() or not is_instance_valid(_player):
 		return false
 	if absf(_player.global_position.x - global_position.x) > story_radius:
 		return false
@@ -170,7 +212,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Engine.is_editor_hint() or GameManager.game_state != "PLAYING":
+	if Engine.is_editor_hint() or not GameManager.is_world_input_allowed():
 		return
 	# Retain overflow instead of discarding the last frame at each transition.
 	var closed: float = maxf(closed_time, 0.01)
