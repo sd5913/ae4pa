@@ -61,7 +61,7 @@ offset_left = -6.0
 offset_top = -94.0
 offset_right = 8.0
 offset_bottom = -70.0
-theme_override_colors/font_color = Color(1, 0.75, 0.1, 1)
+theme_override_colors/font_color = Color(1, 0.15, 0.12, 1)
 theme_override_font_sizes/font_size = 22
 text = "!"
 
@@ -84,12 +84,22 @@ theme_override_colors/font_color = Color(0.4, 1, 0.55, 1)
 theme_override_font_sizes/font_size = 14
 text = "GOT ID"
 
+[node name="BehaviorLabel" type="Label" parent="."]
+visible = false
+offset_left = -38.0
+offset_top = 8.0
+offset_right = 44.0
+offset_bottom = 28.0
+theme_override_colors/font_color = Color(0.55, 0.9, 0.65, 1)
+theme_override_font_sizes/font_size = 11
+text = "CLEANING"
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1861999390]
 libraries/ = SubResource("AnimationLibrary_x6oaq")
 
 [node name="TurnTimer" type="Timer" parent="."]
 wait_time = 3.0
-autostart = true
+one_shot = true
 
 [node name="TurnWarningTimer" type="Timer" parent="."]
 wait_time = 2.6
@@ -97,6 +107,13 @@ one_shot = true
 
 [node name="FeedbackTimer" type="Timer" parent="."]
 wait_time = 1.2
+one_shot = true
+
+[node name="BehaviorTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="SuspicionTimer" type="Timer" parent="."]
+wait_time = 0.8
 one_shot = true
 
 [node name="StealArea" type="Area2D" parent="." unique_id=996756406]
@@ -110,3 +127,5 @@ shape = SubResource("RectangleShape2D_b35xr")
 [connection signal="timeout" from="TurnTimer" to="." method="_on_turn_timer_timeout"]
 [connection signal="timeout" from="TurnWarningTimer" to="." method="_on_turn_warning_timer_timeout"]
 [connection signal="timeout" from="FeedbackTimer" to="." method="_on_feedback_timer_timeout"]
+[connection signal="timeout" from="BehaviorTimer" to="." method="_on_behavior_timer_timeout"]
+[connection signal="timeout" from="SuspicionTimer" to="." method="_on_suspicion_timer_timeout"]

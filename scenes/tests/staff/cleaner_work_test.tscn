@@ -11,10 +11,18 @@ script = ExtResource("4_test")
 [node name="Corridor" parent="." instance=ExtResource("1_corridor")]
 
 [node name="Cleaner" parent="." instance=ExtResource("2_staff")]
-position = Vector2(650, 560)
+position = Vector2(680, 560)
 card_id = "CLEANER"
 target_id = "LOBBY_CLEANER"
 requires_task_eligibility = true
+
+[node name="CleaningZone" type="Polygon2D" parent="."]
+color = Color(0.2, 0.42, 0.27, 1)
+polygon = PackedVector2Array(610, 560, 654, 554, 662, 568, 606, 571)
+
+[node name="ToolCart" type="Polygon2D" parent="."]
+color = Color(0.55, 0.38, 0.2, 1)
+polygon = PackedVector2Array(704, 522, 752, 522, 752, 560, 704, 560)
 
 [node name="CleaningSpot" parent="." instance=ExtResource("3_spot")]
 position = Vector2(1000, 560)
@@ -29,3 +37,22 @@ offset_right = 1240.0
 offset_bottom = 90.0
 theme_override_font_sizes/font_size = 17
 text = "CLEANER V4 TEST"
+
+[node name="FailureRecoveryTimer" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
+
+[node name="FailureFeedback" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="FailureFeedback"]
+visible = false
+offset_left = 490.0
+offset_top = 250.0
+offset_right = 790.0
+offset_bottom = 330.0
+theme_override_colors/font_color = Color(1, 0.12, 0.1, 1)
+theme_override_font_sizes/font_size = 42
+text = "CAUGHT!"
+horizontal_alignment = 1
+
+[connection signal="timeout" from="FailureRecoveryTimer" to="." method="_on_failure_recovery_timer_timeout"]
