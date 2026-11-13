@@ -68,9 +68,10 @@ autowrap_mode = 2
 unique_name_in_owner = true
 custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+disabled = true
 theme_type_variation = &"PrimaryButton"
 focus_neighbor_bottom = NodePath("../MenuButton")
-text = "重试本层"
+text = "重试功能待 A 接入"
 
 [node name="MenuButton" type="Button" parent="Center/Panel/Content"]
 unique_name_in_owner = true

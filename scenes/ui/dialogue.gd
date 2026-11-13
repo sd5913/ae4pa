@@ -10,6 +10,7 @@ const RESCUE_309_LINES: Array[String] = [
 	"你终于来了！",
 	"下面的路被封了，五楼有紧急出口！",
 ]
+const MODAL_ID := "dialogue"
 
 var _dialogue_id := ""
 var _lines: Array[String] = []
@@ -19,6 +20,16 @@ var _line_index := 0
 @onready var _line: Label = %Line
 @onready var _continue_button: Button = %ContinueButton
 @onready var _skip_button: Button = %SkipButton
+
+
+func _ready() -> void:
+	visibility_changed.connect(_sync_modal_state)
+	_sync_modal_state()
+
+
+func _sync_modal_state() -> void:
+	if GameManager.has_method("set_modal_open"):
+		GameManager.set_modal_open(MODAL_ID, visible)
 
 
 func _unhandled_input(event: InputEvent) -> void:

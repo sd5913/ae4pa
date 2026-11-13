@@ -1,6 +1,7 @@
 extends Control
 
 const CardDisplay = preload("res://scenes/ui/card_display.gd")
+const MODAL_ID := "bag"
 
 var _previous_focus: Control
 
@@ -14,11 +15,18 @@ var _previous_focus: Control
 
 
 func _ready() -> void:
+	visibility_changed.connect(_sync_modal_state)
 	CardManager.cards_changed.connect(_refresh_cards)
 	_owned_cards.item_selected.connect(_on_card_selected)
 	_equip_slot_a.pressed.connect(_equip_selected.bind(0))
 	_equip_slot_b.pressed.connect(_equip_selected.bind(1))
 	_refresh_cards()
+	_sync_modal_state()
+
+
+func _sync_modal_state() -> void:
+	if GameManager.has_method("set_modal_open"):
+		GameManager.set_modal_open(MODAL_ID, visible)
 
 
 func _unhandled_input(event: InputEvent) -> void:
