@@ -45,8 +45,7 @@ func _run() -> void:
 	player = floor_node.get_node("Player")
 	cleaner = floor_node.get_node("StaffRoot/CleanerSlot/Staff")
 	_stop_turns(floor_node)
-	player.global_position = cleaner.global_position + Vector2(-30, 0)
-	await _settle()
+	await _prepare_rear(player, cleaner)
 	# Put the stair in the same range: eligible employee has priority over stairs.
 	floor_node.get_node("Interactions/ExitPoint").global_position = cleaner.global_position
 	_expect(floor_node.call("get_interaction_target_id") == "STAFF_CLEANER_1F", "Eligible work wins over overlapping stairs")
@@ -74,13 +73,13 @@ func _run() -> void:
 	cards.call("switch_active")
 	_expect(not cleaner.call("is_stealing"), "Identity change immediately cancels the long press")
 	await _action("interact", false)
+	await _prepare_rear(player, cleaner)
 	await _action("interact", true)
-	player.global_position.x = cleaner.global_position.x - 100.0
+	player.global_position.x = cleaner.global_position.x - 100.0 * cleaner.facing_direction
 	await _settle()
 	_expect(not cleaner.call("is_stealing"), "Leaving the detection range cancels the locked target")
 	await _action("interact", false)
-	player.global_position = cleaner.global_position + Vector2(-30, 0)
-	await _settle()
+	await _prepare_rear(player, cleaner)
 	await _action("interact", true)
 	_expect(game.call("request_floor_travel", 2), "Overlapping stair fixture can load while a target is held")
 	_expect(not cleaner.call("is_stealing"), "Loading cancels the old employee before removing its floor")
@@ -94,8 +93,7 @@ func _run() -> void:
 	_stop_turns(floor_node)
 	# Moving the stair back avoids accidental travel after card collection.
 	floor_node.get_node("Interactions/ExitPoint").global_position.x = 3400.0
-	player.global_position = cleaner.global_position + Vector2(-30, 0)
-	await _settle()
+	await _prepare_rear(player, cleaner)
 	await _action("interact", true)
 	await create_timer(0.9).timeout
 	await _action("interact", false)
@@ -118,8 +116,23 @@ func _run() -> void:
 	game.call("set_modal_open", "BAG", true)
 	_expect(not game.call("record_work_result", "STAIN_201"), "Modal work cannot advance world state")
 	game.call("set_modal_open", "BAG", false)
-	_expect(game.call("record_work_result", "STAIN_201"), "Cleaner work reaches ready-to-submit")
+	var cleaning_spot: Node = floor_node.get_node("Interactions/Stain201Slot/CleaningSpot")
+	player.global_position = cleaning_spot.global_position
+	await _settle()
+	_expect(floor_node.call("get_interaction_target_id") == "STAIN_201", "Unique E selects the formal 201 cleaning spot")
+	await _action("interact", true)
+	await create_timer(1.6).timeout
+	await _action("interact", false)
+	_expect(cleaning_spot.is_completed() and game.get("task_status") == "READY_TO_SUBMIT", "Formal CleaningSpot signal reaches ready-to-submit")
 	_expect(not game.call("get_world_flags").get("passage_201_unlocked", false), "Cleaning alone leaves the passage locked")
+	player.global_position.x = 192.0
+	_expect(game.call("request_floor_travel", 1), "Cleaned task can return downstairs before delivery")
+	host.get_child(0).get_node("Player").global_position.x = 3400.0
+	_expect(game.call("request_floor_travel", 2), "Ready-to-submit task can revisit 2F")
+	floor_node = host.get_child(0)
+	player = floor_node.get_node("Player")
+	cleaning_spot = floor_node.get_node("Interactions/Stain201Slot/CleaningSpot")
+	_expect(cleaning_spot.is_completed() and not cleaning_spot.get_node("Stain").visible, "Reloaded 2F restores the completed stain visual")
 	game.call("set_modal_open", "DIALOGUE", true)
 	_expect(not game.call("submit_task", "TASK_01_CLEAN"), "Modal world delivery cannot settle")
 	game.call("set_modal_open", "DIALOGUE", false)
@@ -178,6 +191,18 @@ func _settle() -> void:
 	for frame: int in range(4):
 		await physics_frame
 	await process_frame
+
+
+func _prepare_rear(player: Node2D, staff: Node2D) -> void:
+	player.global_position = staff.global_position - Vector2(30.0 * staff.facing_direction, 0.0)
+	await _settle()
+	if staff.has_method("is_suspicious") and staff.call("is_suspicious"):
+		await create_timer(0.9).timeout
+		await _settle()
+	staff.get_node("TurnTimer").stop()
+	staff.get_node("TurnWarningTimer").stop()
+	player.global_position = staff.global_position - Vector2(30.0 * staff.facing_direction, 0.0)
+	await _settle()
 
 
 func _expect(condition: bool, message: String) -> void:
