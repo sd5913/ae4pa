@@ -7,6 +7,7 @@ const FailureScreen = preload("res://scenes/ui/failure.gd")
 const BagScreen = preload("res://scenes/ui/bag.gd")
 const DialogueScreen = preload("res://scenes/ui/dialogue.gd")
 const WinScreen = preload("res://scenes/ui/win.gd")
+const MissionBoardScreen = preload("res://scenes/ui/mission_board.gd")
 
 const EXPECTED_REASONS := {
 	"STAFF_CAUGHT": "偷窃被发现",
@@ -25,6 +26,7 @@ const EXPECTED_REASONS := {
 @onready var _status: Label = $UISlot/Status
 @onready var _failure_controls: HBoxContainer = $UISlot/FailureControls
 @onready var _reason_choice: OptionButton = $UISlot/FailureControls/ReasonChoice
+@onready var _mission_board: MissionBoardScreen = $UISlot/MissionBoard
 
 
 func _ready() -> void:
@@ -38,6 +40,9 @@ func _ready() -> void:
 	GameManager.state_changed.connect(_update_overlay_shortcuts.unbind(1))
 	_help.visibility_changed.connect(_update_overlay_shortcuts)
 	_bag.visibility_changed.connect(_update_overlay_shortcuts)
+	_mission_board.task_accepted.connect(_show_status.bind("GameManager 已接受任务"))
+	_mission_board.floor_selected.connect(_on_floor_travel_accepted)
+	_mission_board.retry_requested.connect(_show_status.bind("收到重新挑战本任务请求 · 待 A 接入"))
 	_update_overlay_shortcuts()
 
 	for reason: String in EXPECTED_REASONS:
@@ -68,6 +73,14 @@ func _on_show_intro_pressed() -> void:
 
 func _on_show_rescue_pressed() -> void:
 	_dialogue.show_dialogue("RESCUE_309")
+
+
+func _on_show_mission_pressed() -> void:
+	_mission_board.open_board()
+
+
+func _on_floor_travel_accepted(floor_number: int) -> void:
+	_show_status("GameManager 已接受前往 %dF" % floor_number)
 
 
 func _on_dialogue_finished(dialogue_id: String) -> void:
@@ -132,6 +145,7 @@ func _run_smoke() -> void:
 	get_viewport().push_input(help_key)
 	_check(not _help.visible, "Mapped H key closes help from the monster page", failures)
 	_check_dialogue(failures)
+	_check_mission_board(failures)
 	_check_win(failures)
 
 	var floor_value: Label = _hud.get_node("%FloorValue")
@@ -171,10 +185,16 @@ func _run_smoke() -> void:
 		_check(GameManager.game_state == "FAILED", "GameManager accepted " + reason, failures)
 		_check(_failure.visible and reason_label.text == EXPECTED_REASONS[reason],
 			"Failure message for " + reason, failures)
-		_check(not _help.visible and _failure.get_node("%RetryButton").has_focus(),
-			"Failure takes focus from help for " + reason, failures)
+		_check(not _help.visible and _failure.get_node("%MenuButton").has_focus(),
+			"Failure takes focus from help and keeps menu reachable for " + reason, failures)
+		_check(_failure.get_node("%RetryButton").disabled and _failure.get_node("%RetryButton").text.contains("待 A 接入"),
+			"Fatal failure cannot retry before a checkpoint restore API exists", failures)
 		_check(not _hud.visible and floor_value.text == "1F",
 			"GameManager state_changed refreshes the floor and failure hides the HUD", failures)
+
+	_failure.show_failure("STAFF_CAUGHT")
+	_check(_failure.get_node("%RetryButton").disabled,
+		"Caught employee failure keeps retry unavailable until A supplies checkpoint restore", failures)
 
 	_failure.show_failure("UNKNOWN_REASON")
 	_check(reason_label.text == "未能通过检查", "Unknown reason has a Chinese fallback", failures)
@@ -184,20 +204,48 @@ func _run_smoke() -> void:
 	menu_button.pressed.emit()
 	get_viewport().push_input(help_key)
 	_check(not _help.visible, "Help shortcut stays disabled over failure", failures)
-	_check(requests == ["help", "start", "retry", "menu"], "Each button emitted its request once", failures)
+	_check(requests == ["help", "start", "menu"], "Disabled retry emits no request; menu request remains available", failures)
 	_check(GameManager.game_state == "FAILED", "Retry/menu only emit requests in this test", failures)
 
 	if failures.is_empty():
 		print("PASS: menu and H open/close help, both encyclopedia pages, all three card IDs, five monster rules and confirmed failure IDs.")
-		print("PASS: four GameManager failure messages, fallback, retry/menu requests.")
+		print("PASS: fatal failure display, fallback, disabled retry and menu request.")
 		print("PASS: INTRO and RESCUE_309 dialogue text, progression, skip, interact key and completion signals.")
 		print("PASS: win screen display and restart/menu request signals without changing game state.")
 		print("PASS: HUD initial floor and empty cards, first show, new game, cards_changed and state_changed.")
+		print("PASS: mission board reads live task/floor data when available, distinguishes warning/task failure, and keeps retry disabled pending checkpoint API.")
 		print("PASS: bag open/close, three owned cards, equip and replace both slots, active identity and HUD refresh, invalid requests and pause state.")
 	else:
 		for failure: String in failures:
 			push_error(failure)
 	get_tree().quit(0 if failures.is_empty() else 1)
+
+
+func _check_mission_board(failures: Array[String]) -> void:
+	var board := preload("res://scenes/ui/mission_board.tscn").instantiate() as MissionBoardScreen
+	add_child(board)
+	var retried := [false]
+	board.retry_requested.connect(func() -> void: retried[0] = true)
+	board.refresh_from_game_manager()
+	if GameManager.has_method("get_task_view") and GameManager.has_method("get_available_floors"):
+		var task_view: Dictionary = GameManager.call("get_task_view")
+		var available_floors: Array = GameManager.call("get_available_floors")
+		_check(board._task_id == str(task_view.get("task_id", "")), "Board reads the task ID from GameManager", failures)
+		for index in board._floor_buttons.size():
+			_check(board._floor_buttons[index].disabled == not available_floors.has(index + 1),
+				"Floor choices mirror GameManager availability", failures)
+	else:
+		_check(board._status.text.contains("接口待 A 同步") and board._accept_button.disabled,
+			"Board stays unavailable without task and floor APIs", failures)
+	board.show_warning("普通违规：请退回等待")
+	_check(board._status.text.begins_with("普通警告 ·") and not board._retry_button.visible,
+		"Ordinary violation is an inline warning without task-failure controls", failures)
+	board.show_task_failure("TASK_TIMEOUT")
+	_check(board._status.text.begins_with("任务失败 ·") and board._retry_button.visible and board._retry_button.disabled,
+		"Task failure is distinct and retry stays disabled without checkpoint restore", failures)
+	board._retry_button.pressed.emit()
+	_check(not retried[0], "Disabled retry button sends no request", failures)
+	board.queue_free()
 
 
 func _check_help_content(failures: Array[String]) -> void:

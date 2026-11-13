@@ -1,6 +1,7 @@
 extends Control
 
 const PAGE_COUNT := 2
+const MODAL_ID := "help"
 
 var _previous_focus: Control
 var _page_index := 0
@@ -14,7 +15,14 @@ var _page_index := 0
 
 
 func _ready() -> void:
+	visibility_changed.connect(_sync_modal_state)
 	_show_page(0)
+	_sync_modal_state()
+
+
+func _sync_modal_state() -> void:
+	if GameManager.has_method("set_modal_open"):
+		GameManager.set_modal_open(MODAL_ID, visible)
 
 
 func _unhandled_input(event: InputEvent) -> void:

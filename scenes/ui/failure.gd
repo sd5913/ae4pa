@@ -13,11 +13,16 @@ const REASON_TEXT := {
 
 func show_failure(reason: String) -> void:
 	%Reason.text = REASON_TEXT.get(reason, "未能通过检查")
+	%RetryButton.text = "重试功能待 A 接入"
+	%RetryButton.disabled = true
+	%RetryButton.tooltip_text = "检查点恢复接口尚未提供"
 	show()
-	%RetryButton.grab_focus()
+	%MenuButton.grab_focus()
 
 
 func _on_retry_pressed() -> void:
+	if %RetryButton.disabled:
+		return
 	retry_requested.emit()
 
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/test_corridor.tscn" id="1_corridor"]
 [ext_resource type="Script" path="res://scenes/tests/ui/ui_test.gd" id="2_script"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" path="res://scenes/ui/bag.tscn" id="7_bag"]
 [ext_resource type="PackedScene" path="res://scenes/ui/dialogue.tscn" id="8_dialogue"]
 [ext_resource type="PackedScene" path="res://scenes/ui/win.tscn" id="9_win"]
+[ext_resource type="PackedScene" path="res://scenes/ui/mission_board.tscn" id="10_mission"]
 
 [node name="UITest" type="Node2D"]
 script = ExtResource("2_script")
@@ -32,6 +33,8 @@ visible = false
 [node name="Win" parent="UISlot" instance=ExtResource("9_win")]
 
 [node name="Failure" parent="UISlot" instance=ExtResource("5_failure")]
+
+[node name="MissionBoard" parent="UISlot" instance=ExtResource("10_mission")]
 
 [node name="Status" type="Label" parent="UISlot"]
 offset_left = 32.0
@@ -76,7 +79,13 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 16
 text = "测试救援对白"
 
+[node name="ShowMission" type="Button" parent="UISlot/FailureControls"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "201任务面板（模拟）"
+
 [connection signal="pressed" from="UISlot/FailureControls/SimulateFailure" to="." method="_on_simulate_failure_pressed"]
 [connection signal="pressed" from="UISlot/FailureControls/OpenBag" to="UISlot/Bag" method="open_bag"]
 [connection signal="pressed" from="UISlot/FailureControls/ShowIntro" to="." method="_on_show_intro_pressed"]
 [connection signal="pressed" from="UISlot/FailureControls/ShowRescue" to="." method="_on_show_rescue_pressed"]
+[connection signal="pressed" from="UISlot/FailureControls/ShowMission" to="." method="_on_show_mission_pressed"]

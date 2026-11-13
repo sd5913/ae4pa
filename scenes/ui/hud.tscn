@@ -36,6 +36,24 @@ theme_override_constants/h_separation = 18
 theme_override_constants/v_separation = 7
 columns = 4
 
+[node name="TaskReadout" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="Objective" type="Label" parent="TaskReadout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.72, 0.39, 1)
+theme_override_font_sizes/font_size = 17
+text = "当前目标：等待 A 任务数据"
+autowrap_mode = 2
+
+[node name="RemainingTime" type="Label" parent="TaskReadout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "剩余时间：待 A 接入"
+
 [node name="FloorLabel" type="Label" parent="Readout"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.69, 0.77, 0.76, 1)
