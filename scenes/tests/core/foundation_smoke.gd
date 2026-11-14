@@ -89,6 +89,7 @@ func _run() -> void:
 
 func _finish_prologue(main: Node) -> void:
 	# Movement is checked after the actual opening yields control, never through it.
+	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
 	var opening: Control = main.get_node("StoryLayer/Dialogue")
 	await create_timer(0.6).timeout
 	opening.set_skip_transitions_for_test(true)

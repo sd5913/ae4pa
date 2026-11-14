@@ -429,6 +429,19 @@
 - 上传范围为当前已验证的 A 框架、楼层、任务定义、core 检查、整合文档、独立背景预览及五张引用 PNG／导入描述、用户三份原始 CSV／keep 描述。本机 .vscode、原素材 hotel_floors_4k.zip 和仅显式默认伸缩配置差异的 project.godot 留本地；Godot 缓存不提交。按用户要求只集中 push 到个人分支，不自动创建 PR 或合并 main；最终发布成功以远端 SHA 为准。
 - 提交前审查共 64 个文件，B/C/D 模块字节保持不变；70 个本地链接／11 个锚点及所有本轮文本空白通过，git diff --cached --check 无诊断。使用 git checkout-index 导出精确暂存树到 `/private/tmp/ae4pa-release-verify-2cz05vi1`，无本机配置／ZIP／缓存依赖；首次 Godot 导入退出 0，foundation／intro_flow／safe_return／task_01_core 四项在该干净源码副本再验 PASS／退出 0。导入仍只有已记录的宿主设置／证书诊断。
 
+## 2026年11月12日 用户首轮试玩反馈排查与 A 本地修正（Asia/Hong_Kong）
+
+- 用户实际试玩报告：三名员工原地左右转头机械、经理感觉仅背身可交谈、对白后找不到接取任务的位置。按系统排查先核对分支与实际运行链；开工为 A 分支 4dd0890，与个人远端一致，仅既有 project.godot 默认伸缩差异／.vscode／素材 ZIP 留本地。相关文件备份在 `/private/tmp/ae4pa-feedback-baseline-hcgkme60`，这些既有本地内容保留。
+- 修改前真实探针 `/private/tmp/ae4pa_feedback_probe.gd`：经理朝左／右×玩家两侧、40px 四组均为 MANAGER_TALK，85px 四组全部无目标。没有复现仅背身才能交谈；确认谈话依赖 B 偷窃 Area 的近距离缓存，不读取方向。三员工 TurnTimer 都为 3.0 秒且同时自动启动，仅翻面对向／眼睛；这是同一占位行为与角色表现问题，不把它描述成已实现巡逻或建议擅自扩展寻路。
+- 任务断点定位：真实 C 201 触发后 GameManager 已为 TASK_01_CLEAN／AVAILABLE／0 秒，但 main 对 task_offered 的接收数为 0、画面仍通用提示。正式接受面板／B 污渍组件确实缺失；用户找不到领取入口是当前功能断点，不是完成了 M1 后又出现的用户操作错误。经理应只开放楼梯并指向 2F 201，不在 1F 发任务。
+- A 本地修正：floor 新增独立、对称、90px 经理谈话范围，不再依赖偷窃 Area 或朝向；首谈仍优先级 0，谈完后优先级 3 的同一目标 E 只提醒去右梯→2F 201，不再只给“先接任务”偷卡提示。若将来 A 真正开放经理偷窃资格，候选让位于真实偷卡，B 组件不改。头顶提示与谈话范围一致。
+- main 接 task_offered／task_updated，增加持续 Objective，并在经理完成后明确指出 2F 201；C 真实介绍后清楚显示接受界面尚未开放、试玩到此。未添加假接受按钮、未自动计时／授卡／完成任务，不把 D 待交付页面冒充可用。F5 完整任务闭环继续未通过。
+- TDD：新增 player_feedback_smoke 首次出现 8 条预期 FAIL（四方向谈话范围、请求数、路线提醒、持续目标、201 显示）。实现后全部通过。旧 world_interaction 在等距比较处因经理的新路线提示仍使用 MANAGER_TALK ID 而实际失败 1 条；只迁移该合法目标预期，保留等优先级／等距按固定 ID、不同距离取最近及原真实偷卡覆盖，之后通过。
+- 最终 Godot 4.7.2 当前工作区 7 项检查：player_feedback、foundation、intro_flow、world_interaction、safe_return、staff_floor、task_01_core 均 PASS／退出 0。新范围检查覆盖实际 B Area 外 85px 的双朝向×双来侧、130px 拒绝、无授卡、一次 E 一请求、初谈后去向；真实主入口／C 门确认 AVAILABLE／0 秒和两处明确提示。日志 `/private/tmp/ae4pa-feedback-final-*.log`；仍有已知 macOS 系统证书诊断。编辑器导入退出 0，生成新检查 UID，另有受限用户设置保存诊断，不称环境零错误。
+- 真实原生 Compatibility／OpenGL 4.1 Metal 截图脚本退出 0，`/private/tmp/ae4pa-feedback-manager.png`、`ae4pa-feedback-201.png` 已目视检查：经理头顶范围提示与持续目标、201 试玩终点说明可读，没有被新局按钮遮挡。截图脚本经真实序章／经理继续后到达 201；不代记真人任务成功／失败／重试验收。
+- QA 登记 BUG-001（谈话范围／可发现性）、BUG-002（201 静默反馈）为 A 本地已修、待用户复测，不擅自关闭；FB-01 员工角色行为交 B，FB-02 正式接受面板／HUD 交 D＋A 接线，FB-03 清理／快照／正面失败交 B→A 检查点→D 失败页。C 的真实 201 介绍此次正常，无新定位缺陷。README 和接口 §16.1 同步实际范围／试玩边界。没有改 B/C/D 内部源码或发送消息；本轮未提交、push 或合并。
+- 最终探针复测：85px 四种朝向／来侧现均为 MANAGER_TALK，而 B 的 steal_range 仍为 false，证明交谈已独立；main 的 task_offered 接收数为 1，201 明确反馈可见且任务仍 AVAILABLE／0 秒。最终 git diff --check、新增脚本／UID 空白、42 个相对链接／7 个锚点通过；B/C/D 组件无 diff，既有本机配置及未跟踪资源保持不动。
+
 ## 2026年11月12日 五层场景图占位接入与 main 发布
 
 - 用户要求将 hotel_floors_4k.zip 中的场景图按楼层摆放并推送 main。压缩包五张 PNG 与 assets/backgrounds/floor_1.png 至 floor_5.png 逐字节一致。最新共享基线为 25faec29eaa06a6ea802d74d97c0298d4f62c7ab，已包含 A PR #15 和 B PR #14。
@@ -438,3 +451,73 @@
 - Godot 4.7.2 的临时实际场景探针 `/private/tmp/ae4pa_floor_placement_probe.gd` 检查五层图片映射、Atlas 取景、等比／3600 宽、地面对齐、背景位于主角之前的绘制顺序及原出生点，headless 与原生图形均 PASS／退出 0。原生 Compatibility／OpenGL 4.1 Metal 截图 `/private/tmp/ae4pa-placed-floor-1.png` 至 -5.png 和 ae4pa-placed-main.png 已逐张目视检查。
 - 独立工作区改动前 foundation 回归 PASS，改动后 foundation_smoke、floor_flow_smoke、intro_flow_smoke、safe_return_smoke 四项均 PASS／退出 0。日志位于 `/private/tmp/ae4pa-placement-*.log`。headless 有既有 macOS 系统证书诊断，初次编辑器导入另有沙箱内用户设置保存受限诊断。
 - README 和 assets/backgrounds/README.md 已同步实际主场景接法与占位限制。用户已授权这批背景接入提交并推送 main，发布结果由 Git 提交及远端 SHA 核对。
+
+
+## 2026年11月13日 继续 A 侧：真实 B 接入与任务 01 检查点
+
+- 开工 A 分支 HEAD 4dd0890，保留首轮试玩修正、本机设置和未跟踪资源。因下一步依赖 B/D 交付，本轮 fetch 核对共享 main b4c57d0：B PR #14 已有快照／被抓／清理，D 仍只有对白。完整工作区备份在 `/private/tmp/ae4pa-a-m1-start-ztbud6_o/worktree`；保留命名 stash 后快进 main，再应用原修改，只处理 README／progress 同段冲突并保留两侧内容；全部改动仍未暂存。用户新增 AGENTS 的 A 侧接力规则亦保留。
+- A-V4-04：`scripts/game_manager.gd` 接真实 B export_snapshot／validate_snapshot／restore_snapshot；接受前深拷贝卡、世界／已完成／访问／经理／故事事实。新增 can_retry_current_task／retry_current_task，FAILED→RESTORING 取消旧长按，验证新 2F 实际安全点后恢复卡／世界并重建门、污渍、主角和相机；回 AVAILABLE／0 秒、重新发 task_offered，重新接受才 210 秒。无宿主的独立状态测试不创建虚假物理检查点。仅任务 01，不冒充后续任务／309 恢复已实现。
+- A-V4-05：`scenes/levels/floor.gd` 给正式 B 员工配置目标和任务资格、连接真实 task_failure_requested，只接当前树内楼层合法来源；`floor_2.tscn` 在污渍位直接实例化 B cleaning_spot。唯一 E 加 WORK，由 A 推进真实长按并接 cleaning_completed→record_work_result；世界事实控制污渍回访显示。移动／松 E／换卡／模态／卸载／失败取消，非游玩或模态消费世界 Q；B/C/D 内部代码未修改。
+- 201 接取前落点 x560／y560，捕获与恢复均对实际 C STORY 半径、其他门排除区和走廊边界校验；非法卡快照／危险落点不改原卡与失败世界。普通门仍走 request_safe_return，保留任务／卡／世界／时间，不误接任务重试。未把 x1120 标为已用安全点。
+- `task_01_core_test.gd` 更新 F6 开发入口：删除代记清理／交付按钮，开启真实失败后的检查点重试，恢复时清自己的暂停开关；经理／介绍／接受／模拟失败仍明确开发控制。main 的活动目标改为真实清理操作，F5 正式接受／失败 UI 仍缺，未添加假正式面板或自动接任务。README、PLANS、接口 §17、清单结果和 QA 同步现状／D 下一接头。
+- 测试先行：新增 `task_checkpoint_smoke.gd` 首次退出 1／缺真实 retry 接口。真实 B/C 输入闭环实现后通过；扩展移除楼层的迟到被抓事件测试，实际退出 1／旧源能误伤新世界，补当前楼层及树内校验后通过。恢复后门检测开关补测也曾实际 FAIL：RESTORING 清模态时停用新门 physics 后未重启；A 状态切换统一按 world_input_allowed 恢复检测，再验真实普通门违规退回。首次移动取消检查在 process_frame 信号前释放输入，修正为让真实楼层观察到一帧持续输入后通过，没有改 B 工作判定。
+- 实际 Godot `4.7.2.stable.official.ed1daf0bf`：当前全部 13 项 core（floor_flow、floor_return、foundation、interaction_allowed、intro_flow、player_feedback、safe_return、staff_floor、task_01_core、task_01、task_checkpoint、task_definitions、world_interaction）及 B cleaner_v4／staff_core、C v4_doors／door_cycle 共 17 项均 PASS／退出 0。补来源校验后重新跑 checkpoint 及 foundation／world_interaction／safe_return／staff_floor 均 PASS；开发提示调整后 core 再验；门检测恢复修正后 checkpoint／safe_return／task_01_core／intro_flow／foundation／world_interaction 再验。日志 `/private/tmp/ae4pa-m1-*.log`。覆盖真实成功交付、跨层超时、正面／转身被抓、连续回滚、接取前事实保留、卡通知次数、取消、输入／模态、非法恢复、新局；数据夹具和手动时钟／转身明确限于可重复测试，不算人试玩。
+- 原生 Compatibility／OpenGL 4.1 Metal 图形探针退出 0，实际清理位及恢复后接取位截图 `/private/tmp/ae4pa-m1-work.png`、`ae4pa-m1-retry.png` 已目视检查，开发文本可读，恢复后卡空／AVAILABLE／0 秒。渲染探针使用卡片夹具仅核对画面，实际偷卡在 checkpoint 回归中执行。headless 仍有已知 macOS 系统证书诊断，编辑器导入有沙箱内用户设置保存受限诊断，不称环境零错误。
+- 阻塞／下次入口：D-V4-02／03 正式任务接受面板、HUD 和失败／重试页；D 按接口 §17 读取 A 状态、监听 RESTORING 关闭旧页，A 接页后跑 F5 四路径，再由 D／用户人工复测。M1、全队冻结、Windows、后续任务、两人计时、导出均未代记通过，不提前做 A-V4-06。当前任务未提交／push／合并，也未发送消息；上轮背景发布不扩大为本轮代码发布授权。
+
+- 最终范围／文档核对：git diff --check 及新增源码／UID 空白检查通过，57 个本地文档链接／锚点有效；B/C/D 内部文件无 diff，本机 project.godot／ZIP／.vscode 与同步前备份逐字节一致，未留冲突或暂存项。
+
+
+## 2026年11月13日 A 继续：同步新版保洁与 201 链路复测（Asia/Shanghai）
+
+- 用户转发 B 的 main 检查报告并要求继续 A。先核对最近记录及真实代码：本地已有正式 CleaningSpot、完成／被抓接线和任务 01 检查点；B 报告描述共享 main 的未接线状态，不重复覆盖已有实现。开工 HEAD b4c57d0，原有全部 A 改动和本机文件备份至 `/private/tmp/ae4pa-curious-start-pbxrqtis`（180 个文件）。
+- 因依赖新版组件，fetch 后核对 main f559dc4，包含 B PR #19 和 C PR #18；变动与本地 A 文件无重叠，直接 ff-only 快进成功，不用 stash、不切分支、不改写既有未提交内容。D 仍只有 dialogue／TSV，正式任务接受／HUD／失败重试页尚未取得。本轮未提交、推送、合并远端或向成员发消息。
+- 先运行三份 A 检查：staff_floor／world_interaction／task_checkpoint 实际均退出 1。定位 CURIOUS 在 Area 进入及身份切换时让保洁转向玩家，旧“固定左侧即身后”前置不再成立；world 的固定左侧离开范围也会在检测刷新前穿到正面而失败。未据此改 B 行为或放宽被抓规则。
+- 修改 `scenes/tests/core/staff_floor_smoke.gd`、`world_interaction_smoke.gd`、`task_checkpoint_smoke.gd`：等待真实 SuspicionTimer 后依据当前 facing 绕后，在测试里暂停随机转身／走动时钟，保留真实输入、Area、偷卡、失败、清理和交付；身份切换后的好奇也重新等待。检查点新增断言：未识别接近确实 CURIOUS，其间任务 ACTIVE／无保洁卡。main／floor／GameManager 既有实现继续沿用，B/C/D 内部源码无本轮改写。
+- 验证环境为本机 Godot `4.7.2.stable.official.ed1daf0bf`。实际执行 `--headless --editor --path . --import --quit` 退出 0；core 使用 `--headless --path . --max-fps 120 --log-file /private/tmp/ae4pa-curious-<检查名>.log --script res://scenes/tests/core/<检查名>.gd`。13 项 core 全部 PASS／退出 0：foundation、floor_flow、floor_return、interaction_allowed、intro_flow、player_feedback、safe_return、staff_floor、task_01_core、task_01、task_checkpoint、task_definitions、world_interaction。B cleaner_v4／staff_core 场景及 C v4_doors／door_cycle／v4_catalog／v4_identity／v4_main_integration 脚本共七项同样 PASS／退出 0，共 20 项；独立组件通过不等于 A 已接入 C 后段目录／换装策略。
+- 当前 201 自动链路：真实偷保洁卡→Q 当前身份→长按清理→回 201 E 交付放行；正面／转身被抓、跨层超时后回 2F x560／AVAILABLE／0 秒，再接受才 210 秒；卡／污渍回滚与普通门保状态退回通过。接受 API、前序卡事实、手动任务时钟及确定转身仍是明确测试夹具，不算真人 F5 完整闭环。C 主入口检查的工作位子节点数仍为一，实际为 Work，其旧占位文案不作为清洁验证证据。
+- headless 保留既有 macOS 系统证书诊断；首轮并发默认日志写入受限，复测改用各自 `/private/tmp` 日志后未再出现日志文件写入错误；导入仍有用户编辑器设置保存受限诊断。不称环境零错误。本轮仅同步组件、适配测试和更新 README／PLANS／接口／QA／进度，没有新的画面布局改动，未重复截图或代记人工验收。
+- 阻塞／下次入口：D-V4-02／03 正式任务接受面板、HUD、失败／重试页。按接口 §17 交页后 A 接 UI 请求及 RESTORING 关闭旧页，运行 F5 成功／被抓／超时／普通退回四路径，再与 D／用户人工验收。M1、全队冻结、202、三楼、Windows、两人计时和导出仍未完成。
+
+- 最终静态核对：git diff --check 无诊断，五份更新文档的 56 个本地链接路径存在；本轮改写仅三份 A 测试和五份整合文档，其他变化来自上述 main 快进。B/C/D 所属文件相对当前 HEAD 无 diff；原 project.godot、ZIP、.vscode 与开工备份逐字节一致，无暂存／冲突项。
+
+
+## 2026年11月13日 A 继续：接入 D 评审组件并跑通 F5 201（Asia/Shanghai）
+
+- 开工 HEAD f559dc4，按接力规则核对进度与真实代码；fetch 发现 main `0145926`（B PR #20）及 D 评审分支 `work/member-D-v4-ui-review`／`eb5e019`。开工全部文件／摘要备份在 `/private/tmp/ae4pa-ui-start-34swmnn7`，短执行计划在 `/private/tmp/ae4pa-201-ui-plan.md`。
+- 保留命名 stash 后 ff-only 到 main；apply 在 floor.gd、floor_2.tscn、staff_floor_smoke、world_interaction_smoke 四处冲突。依据备份保留 A 经理范围、检查点安全点、失败来源校验、模态 Q／唯一 E 和 CURIOUS 测试，纳入 B 真实清理／回访检查。污渍统一为 `Interactions/Stain201Slot/CleaningSpot`，只在实际完成状态与世界事实不一致时调用 B set_completed，避免每帧取消工作。保留 stash，清除 apply 产生的暂存／冲突索引，未丢弃原改动。
+- D 分支基于旧历史且含旧对白，原样取得 mission_board.gd／uid／tscn、hud.gd／uid／tscn、failure.gd／uid／tscn、card_display.gd／uid、staff_ui_theme.tres 共 12 文件；未整体合分支，现有 dialogue、TSV 与素材保持原样。选定组件仍未合 main，不能写成 D 全部 UI 已发布。
+- 新 A `scenes/task_ui.gd`／`task_hud.gd` 及 UID；main.gd／tscn 装配 TaskLayer。task_offered 打开 D 面板并登记 TASK_OFFER，D 接受调用真实 accept_task，成功后只释放该面板；floor 新 task_offer_requested 支持关闭后门前唯一 E 重开。HUD 保留 D 卡／层订阅，由 A 继承显示中文任务 01 路线／状态；实例内用 VBox 排列 D 两块内容避免重叠。
+- D 失败页接真实 can_retry_current_task／retry_current_task，分别显示超时／被抓；RESTORING 关闭旧页，恢复后的 task_offered 展示 AVAILABLE／0 秒，再接受才 210 秒。普通退回不弹任务失败；原菜单按钮在本实例明确改名“重新开始（重播序章）”并接新局。接受页隐藏楼层按钮，仍由真实楼梯 E／距离／许可控制。
+- 新 `task_ui_smoke.gd`／UID 初跑实际退出 1／缺 D 组件，接线后通过独立 D 实例与真实 F5／对白／E／D 按钮／B 偷卡清理／C 交付／A 回滚。补叠加模态、E/Q／移动、关闭重开、持 E 接受、旧重试、失败新局和带真实接受模态卸载。位置、任务时钟及转向阶段明确为自动化夹具；没有直接授卡或代记工作来完成 F5 链路，独立 HUD 子测试另有 collect_card 夹具。
+- 一次只读独立评审定位 P2：D 旧禁用重试控件残留到恢复／新局后的接受页。两处补测实际 FAIL，A 每次显示时复位后通过。评审 P3 指出原卸载测试没有开着模态，已补真实打开接受页时卸载，并补失败新局按钮。原生 QA 的 HUD 内部状态码和超时页 CAUGHT 标题也经 FAIL→修正→PASS；D 原文件未改。player_feedback 原两条“尚未开放”断言实际失败后迁移为真实面板、待接受／停表及提示，原经理范围覆盖保留。
+- 最终 Godot `4.7.2.stable.official.ed1daf0bf`，执行 `python3 /private/tmp/ae4pa_run_ui_suite.py`。逐项 `--headless --path . --max-fps 120 --log-file <独立临时日志>`，14 份 core 以 `--script res://scenes/tests/core/<名称>.gd` 运行，加 B cleaner_v4／staff_core 场景、C v4_doors／door_cycle／v4_catalog／v4_identity／v4_main_integration 脚本，共 21 项 PASS／退出 0；结果 `/private/tmp/ae4pa-ui-final-results.json`。无新增 SCRIPT ERROR，headless 保留已知 macOS 证书诊断。最终 editor --import --quit 退出 0，生成三个新 A UID；另有用户编辑器设置保存受限诊断，不称环境零错误。
+- 原生探针 `/private/tmp/ae4pa_task_ui_visual.gd` 以 `--path . --resolution 1280x720 --script <探针>` 运行，Compatibility／OpenGL 4.1 Metal 退出 0；最终四张 `/private/tmp/ae4pa-task-ui-{offer,hud,failure,retry}.png` 已逐张目视核对，按钮、工作要求、中文时间状态、超时标题与恢复接受页可读。探针卡片是渲染夹具，真实偷卡证据来自测试；B 工作点、C 门及背景原有占位／偏移未做美术校准。
+- 当前：A-V4-05 的 201 F5 自动成功／被抓恢复／超时恢复／普通退回通过。README、PLANS、接口 §18、QA、清单头部已同步。A 本轮及 D 原样组件没有提交、push、远端合并或给成员发消息；没有导入 D 背包、手册、菜单或结局。
+- 下次入口／阻塞：D／用户在此 A 工作区人工走 F5 四路径，不能将自动输入／原生截图代记人工。D 正式楼梯列表／警告页、背包／暂停和 M2 核验待接；M1／全队冻结、202／三楼、两人计时、Windows、导出不标完成，不在 201 人工联合验收前扩展任务 02。
+- 评审取舍：复用 D 评审组件并由 A 适配现有字段，保留当前对白；D 后续改四个详情／重试字段时须同步 A，稳定配置入口留下一轮协作。同步 task_failed→game_failed 顺序已实测；隐藏菜单信号未见真实异步来源，保留当前同步新局连接。排版由本轮截图补验，Windows／人工验收明确留待执行。
+
+- 最终静态核对：git diff --check、新增源码／UID 空白通过，60 个本地链接与 11 个标题锚点有效；12 个 D 文件与 eb5e019 逐字节一致，B/C 内部文件相对 main 无 diff。原 AGENTS、project.godot、ZIP、.vscode、GameManager 与新版对白均与开工备份一致；21 项最终结果复核通过，无暂存或冲突项。
+
+
+## 2026年11月13日 A 收尾与 B/C/D 依赖交接（Asia/Shanghai）
+
+- 用户要求完成 A，并提供需要 B/C/D 完成的 prompt。开工 HEAD `0145926`，保留全部 A 已有改动，210 个文件及摘要备份至 `/private/tmp/ae4pa-a-finish-zu7123u9`。fetch 核对 main／B／C／D 没有后续新交付，B 目前仅 CLEAN 与 CARD 奖励，PICKUP／AUTHORIZE／巡房文件确实缺失。
+- 补 A-V4-01／04／05 当前可执行部分。GameManager 新增 return_to_menu、notebook_changed、get_notebook_view，笔记由已有经理／完成任务事实派生，使用同一检查点恢复。新增 A notebook.gd 适配原 D 帮助页，保持未知规则，经理仅两条线索，201 交付后才揭示长鼻。
+- 原样增加 D `eb5e019` 的 main_menu、help、bag 九个文件，累计 21 个 D 组件。main.gd／tscn 连接真实菜单开始、失败返回菜单、I 背包和 H 说明／笔记。D 独立输入停用，由主入口单独分发；装备依旧调用真实 B 接口。新局、失败、加载、恢复和卸载关闭所挂载页面并处理模态。
+- 新 notebook_smoke 首跑 FAIL／缺真实笔记查询，实现后通过；task_ui_smoke 对缺菜单先 FAIL，再经真实 D 开始、帮助／背包按钮及完整 201 通过。新增真实装备移槽、停表、经理线索／交付规则、笔记回滚和新局检查。foundation／intro_flow／player_feedback 及 C 的 v4_main_integration 仅迁移正常开始入口，C 检查只增加一行点击，C 组件未改。
+- 计时边界沿用既有有效提交即时结算。补测正余量提交先成功后时钟推进不反转，归零失败先生效则晚提交拒绝。没有另存第二个任务时钟。
+- 一次独立只读评审没有确认的严重缺陷，提出菜单／笔记焦点检查。补 Tab／Shift-Tab 往返六次，headless 与原生 Godot 均 PASS，焦点留在笔记。原生 QA 另发现 D 背包从空状态首次入卡后仍保留旧空提示，补测实际 FAIL，新增 A bag_adapter.gd 继承刷新修正，D 原文件不改。
+- 本轮 Godot `4.7.2.stable.official.ed1daf0bf`。原生主入口检查使用 `--path . --resolution 1280x720 --log-file /private/tmp/ae4pa-a-finish-native-flow.log --script res://scenes/tests/core/task_ui_smoke.gd`，PASS／退出 0。截图探针 `/private/tmp/ae4pa_a_finish_visual.gd` 退出 0，Compatibility／OpenGL 4.1 Metal，菜单／未知笔记／经理线索／背包等截图前缀 `/private/tmp/ae4pa-a-finish-` 已目视检查。渲染探针有位置／卡片夹具，实际偷卡来自自动链路。
+- 整理 `docs/a_bcd_handoff.md`，分别给 B 取件／批准／文件／进度接口、C 已有交付联合验证、D 稳定 UI 入口／后段剧情／人工 QA 的可转发 prompt。说明取得同一 A 候选版本后联调，A 继续负责主场景和真实任务流程。README、PLANS 与接口 §19 更新当前入口。
+- 仍需 B 的 B-V4-04／05、D 后段对白／正式暂停／楼梯等组件才能接 A-V4-06／07。C 当前组件已有交付，后段实际布局与核验要联测。已向用户询问 D-05 任务 03 批准结算及 D-07 救援后回访，回复前保持待确认。全队／人工／跨机器／后四任务通过记录由真实结果补齐。
+
+- 最终回归执行 python3 /private/tmp/ae4pa_run_ui_suite.py，15 项 core、B 两项、C 五项共 22 项 PASS／退出 0，结果 /private/tmp/ae4pa-ui-final-results.json。新增背包反馈断言已通过，原生焦点／完整链路此前通过。静态复核 61 个本地链接／10 个锚点与新增文本空白通过，21 个 D 文件与 eb5e019 完全一致，B/C 内部组件相对 main 无 diff，C 主入口测试仅加一次真实开始点击。原规则、本机设置、ZIP、.vscode、V4 对白与开工备份相同，无暂存／冲突。本轮尚未提交、推送、创建 PR 或发送成员消息。
+
+
+## 2026年11月14日 A 最新整合上传准备（Asia/Shanghai）
+
+- 用户明确要求上传 A 最新整合补丁，本次授权覆盖将已验证的整合文件提交并推送到个人分支 work/member-A-liuling。开工 HEAD 0145926、对个人远端 ahead 11，工作区 56 个候选文件与此前干净副本逐字节一致。
+- fetch 后个人远端仍为 4dd0890，本地包含其全部历史，可正常快进推送。main 新增 D PR #23／007437a，A 当前候选保持已验证基线 0145926，D 新版本的实际联合验证留后续接入。
+- 上传范围沿用整合补丁的 56 个源码／UID／场景／整合文档，覆盖菜单、201 任务与真实工作、检查点恢复、背包与渐进笔记。原本机 project.godot、.vscode、ZIP 与用户 AGENTS 修改按原状态保留。
+- 本轮发布前实际重跑 22 项回归，全部 PASS／退出 0，结果保存在 /private/tmp/ae4pa-ui-final-results.json。暂存树继续按候选清单核对空白和链接。远端上传成功以实际 push 及远端 SHA 核对结果为准。人工、Windows／导出、后四任务及待确认规则仍按前条记录。

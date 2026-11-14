@@ -3,6 +3,7 @@ extends Node2D
 
 signal notice_requested(text: String)
 signal manager_talk_requested()
+signal task_offer_requested(task_id: String)
 
 const CARD_NAMES: Dictionary = {"SECURITY": "保安", "CLEANER": "保洁", "MANAGER": "经理"}
 const STAFF_TARGET_IDS: Dictionary = {"CLEANER": "STAFF_CLEANER_1F", "SECURITY": "STAFF_SECURITY_1F", "MANAGER": "STAFF_MANAGER_1F"}
@@ -10,13 +11,14 @@ const STAFF_TARGET_IDS: Dictionary = {"CLEANER": "STAFF_CLEANER_1F", "SECURITY":
 @export_range(1, 5) var floor_number: int = 1
 @export var corridor_width: float = 3600.0
 @export var task_01_barrier_x: float = 0.0
+@export_range(1.0, 160.0) var manager_talk_radius: float = 90.0
 
 var _held_staff: Node
-var _held_work: Node
+var _held_work: CleaningSpot
+var _work: CleaningSpot
 var _needs_e_release: bool = false
 var _doors: Array[Node2D] = []
 var _safe_points: Dictionary = {}
-var _cleaning_spot: Node
 
 @onready var player: HotelPlayer = $Player
 @onready var exit_point: Marker2D = $Interactions/ExitPoint
@@ -35,15 +37,17 @@ func _ready() -> void:
 		_add_caption(slot, "", -165.0)
 		var staff: Node = slot.get_node("Staff")
 		staff.setup(player)
+		staff.target_id = STAFF_TARGET_IDS[staff.card_id]
+		staff.requires_task_eligibility = true
+		staff.task_failure_requested.connect(_on_staff_failure.bind(staff))
 		staff.card_stolen.connect(_on_card_stolen)
-		staff.task_failure_requested.connect(_on_staff_failure_requested)
 		# A dispatches formal-floor E; B's own F6 adapter remains unchanged.
 		staff.set_process_unhandled_input(false)
-	if has_node("Interactions/Stain201Slot/CleaningSpot"):
-		_cleaning_spot = get_node("Interactions/Stain201Slot/CleaningSpot")
-		_cleaning_spot.setup(player)
-		_cleaning_spot.cleaning_completed.connect(_on_cleaning_completed)
 	_setup_doors()
+	_work = get_node_or_null("Interactions/Stain201Slot/CleaningSpot")
+	if _work != null:
+		_work.setup(player)
+		_work.cleaning_completed.connect(_on_cleaning_completed)
 	if $Interactions.has_node("RescuePoint"):
 		_add_caption($Interactions/RescuePoint, "309 · 救援接入位\n对白与救援尚未实现", -165.0)
 	_refresh_exit_hint()
@@ -58,26 +62,29 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	_refresh_component_eligibility()
 	if is_instance_valid(_held_staff):
 		if not GameManager.is_world_input_allowed() or not _held_staff.is_player_in_range() or player.is_moving or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") or not GameManager.is_interaction_allowed(STAFF_TARGET_IDS[_held_staff.card_id]):
 			_cancel_held_interaction()
 		elif not _held_staff.is_stealing():
 			_held_staff = null
 	if is_instance_valid(_held_work):
-		if not GameManager.is_world_input_allowed() or not _held_work.is_player_in_range() or player.is_moving or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") or not GameManager.is_interaction_allowed(_held_work.target_id) or not _held_work.can_interact():
-			_cancel_held_work()
+		if not GameManager.is_world_input_allowed() or player.is_moving or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") or not _held_work.can_interact():
+			_cancel_held_interaction()
 		else:
 			_held_work.advance_interaction(delta)
-			if not _held_work.is_interacting():
+			if is_instance_valid(_held_work) and not _held_work.is_interacting():
 				_held_work = null
 	_refresh_exit_hint()
 	_refresh_staff_captions()
 
 
 func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("switch_id") and not GameManager.is_world_input_allowed():
+		get_viewport().set_input_as_handled()
 	# Observe release even when a UI consumes it before _unhandled_input.
 	if event.is_action_released("interact"):
-		_cancel_held_interactions()
+		_cancel_held_interaction()
 		_needs_e_release = false
 
 
@@ -93,16 +100,20 @@ func _unhandled_input(event: InputEvent) -> void:
 	_needs_e_release = true
 	if target["kind"] == "STAIR":
 		GameManager.request_floor_travel(target["floor"])
+	elif target["kind"] == "OFFER":
+		task_offer_requested.emit(target["node"].task_id)
 	elif target["kind"] == "STORY":
 		target["node"].request_interaction()
 	elif target["kind"] == "TALK":
-		manager_talk_requested.emit()
-	elif target["kind"] == "WORK":
-		var work: Node = target["node"]
-		if GameManager.is_interaction_allowed(target["id"]) and work.begin_interaction():
-			_held_work = work
+		if GameManager.has_completed_manager_intro():
+			notice_requested.emit("到右端楼梯按 E 上 2F，再向右找到 201 房门；任务在那里接取。")
 		else:
-			notice_requested.emit("需要当前装备 CLEANER 身份并按住 E 完成清洁")
+			manager_talk_requested.emit()
+	elif target["kind"] == "WORK":
+		if _work.begin_interaction():
+			_held_work = _work
+		else:
+			notice_requested.emit("接受清理任务并将保洁卡切到当前身份，再在污渍处按住 E 1.5 秒。")
 	elif GameManager.is_interaction_allowed(target["id"]):
 		var staff: Node = target["node"]
 		if staff.begin_steal():
@@ -123,19 +134,21 @@ func get_interaction_target_id() -> String:
 
 func _choose_interaction_target() -> Dictionary:
 	var candidates: Array[Dictionary] = []
+	if is_instance_valid(_work) and _work.visible and absf(player.global_position.x - _work.global_position.x) <= 70.0:
+		candidates.append({"id": _work.target_id, "kind": "WORK", "node": _work, "priority": 1 if _work.can_interact() else 3, "distance": absf(player.global_position.x - _work.global_position.x)})
 	for door: Node2D in _doors:
-		if door.door_mode == "STORY" and GameManager.current_task_id == door.task_id and GameManager.task_status == "READY_TO_SUBMIT":
+		if door.door_mode == "STORY" and GameManager.current_task_id == door.task_id and GameManager.task_status in ["AVAILABLE", "READY_TO_SUBMIT"]:
 			var distance: float = absf(player.global_position.x - door.global_position.x)
 			if distance <= door.story_radius:
-				candidates.append({"id": "ROOM_" + door.room_id, "kind": "STORY", "node": door, "priority": 0, "distance": distance})
+				candidates.append({"id": "ROOM_" + door.room_id, "kind": "OFFER" if GameManager.task_status == "AVAILABLE" else "STORY", "node": door, "priority": 0, "distance": distance})
 	for slot: Node in $StaffRoot.get_children():
 		var staff: Node2D = slot.get_node("Staff")
+		if _can_talk_to_manager(staff):
+			candidates.append({"id": "MANAGER_TALK", "kind": "TALK", "node": staff, "priority": 3 if GameManager.has_completed_manager_intro() else 0, "distance": absf(player.global_position.x - staff.global_position.x)})
+			continue
 		if staff.is_player_in_range():
 			var target_id: String = STAFF_TARGET_IDS[staff.card_id]
-			var is_manager_talk: bool = staff.card_id == "MANAGER" and not GameManager.has_completed_manager_intro()
-			candidates.append({"id": "MANAGER_TALK" if is_manager_talk else target_id, "kind": "TALK" if is_manager_talk else "STAFF", "node": staff, "priority": 0 if is_manager_talk else 1 if GameManager.is_interaction_allowed(target_id) else 3, "distance": absf(player.global_position.x - staff.global_position.x)})
-	if is_instance_valid(_cleaning_spot) and _cleaning_spot.is_player_in_range():
-		candidates.append({"id": _cleaning_spot.target_id, "kind": "WORK", "node": _cleaning_spot, "priority": 1 if GameManager.is_interaction_allowed(_cleaning_spot.target_id) else 3, "distance": absf(player.global_position.x - _cleaning_spot.global_position.x)})
+			candidates.append({"id": target_id, "kind": "STAFF", "node": staff, "priority": 1 if GameManager.is_interaction_allowed(target_id) else 3, "distance": absf(player.global_position.x - staff.global_position.x)})
 	for destination: int in [floor_number - 1, floor_number + 1]:
 		if destination < 1 or destination > 5:
 			continue
@@ -153,51 +166,74 @@ func _choose_interaction_target() -> Dictionary:
 	return candidates[0] if not candidates.is_empty() else {}
 
 
+func _can_talk_to_manager(staff: Node2D) -> bool:
+	# Conversation has its own symmetric range; theft keeps B's facing/Area rules.
+	return staff.card_id == "MANAGER" and not GameManager.is_interaction_allowed(STAFF_TARGET_IDS["MANAGER"]) and absf(player.global_position.x - staff.global_position.x) <= manager_talk_radius
+
+
 func _cancel_held_interaction() -> void:
 	if is_instance_valid(_held_staff):
 		var staff: Node = _held_staff
 		_held_staff = null
 		staff.cancel_steal()
-
-
-func _cancel_held_work() -> void:
 	if is_instance_valid(_held_work):
-		var work: Node = _held_work
+		var work: CleaningSpot = _held_work
 		_held_work = null
 		work.cancel_interaction()
 
 
-func _cancel_held_interactions() -> void:
-	_cancel_held_interaction()
-	_cancel_held_work()
+func _refresh_component_eligibility() -> void:
+	for slot: Node in $StaffRoot.get_children():
+		var staff: Node = slot.get_node("Staff")
+		staff.set_interaction_enabled(GameManager.is_world_input_allowed())
+		staff.set_task_eligible(GameManager.is_interaction_allowed(staff.target_id))
+	if is_instance_valid(_work):
+		var cleaned: bool = GameManager.get_world_flags().get("stain_201_cleaned", false)
+		if _work.is_completed() != cleaned:
+			_work.set_completed(cleaned)
+		_work.visible = not cleaned
+		_work.set_task_active(GameManager.is_interaction_allowed(_work.target_id))
+
+
+func _on_staff_failure(reason: String, target_id: String, staff: Node) -> void:
+	if is_inside_tree() and floor_number == GameManager.current_floor and reason == "STAFF_CAUGHT" and is_ancestor_of(staff) and target_id == staff.target_id and GameManager.is_interaction_allowed(target_id):
+		GameManager.request_task_failure(reason)
+
+
+func _on_cleaning_completed(target_id: String) -> void:
+	if not is_inside_tree() or floor_number != GameManager.current_floor or target_id != _work.target_id:
+		return
+	if not GameManager.record_work_result(target_id):
+		_work.reset_completion_report()
+	_refresh_component_eligibility()
 
 
 func _on_modal_changed() -> void:
-	_cancel_held_interactions()
+	_cancel_held_interaction()
+	_refresh_component_eligibility()
 	_needs_e_release = _needs_e_release or Input.is_action_pressed("interact")
-	for slot: Node in $StaffRoot.get_children():
-		slot.get_node("Staff").set_interaction_enabled(GameManager.is_world_input_allowed())
 	for door: Node2D in _doors:
 		door.set_physics_process(GameManager.is_world_input_allowed())
 
 
 func _on_state_changed(state: String) -> void:
 	if state != "PLAYING":
-		_cancel_held_interactions()
-	for slot: Node in $StaffRoot.get_children():
-		slot.get_node("Staff").set_interaction_enabled(GameManager.is_world_input_allowed())
-	_apply_task_route()
+		_cancel_held_interaction()
+	_refresh_component_eligibility()
+	for door: Node2D in _doors:
+		door.set_physics_process(GameManager.is_world_input_allowed())
 
 
 func _on_identity_changed(_action: String) -> void:
-	_cancel_held_interactions()
+	_cancel_held_interaction()
 
 
 func _exit_tree() -> void:
-	_cancel_held_interactions()
+	_cancel_held_interaction()
 
 
 func _apply_task_route() -> void:
+	_refresh_component_eligibility()
 	var right_bound: float = corridor_width - 64.0
 	if task_01_barrier_x > 0.0 and not GameManager.get_world_flags().get("passage_201_unlocked", false):
 		right_bound = task_01_barrier_x - 24.0
@@ -209,23 +245,20 @@ func _apply_task_route() -> void:
 	for door: Node2D in _doors:
 		if door.door_mode == "STORY":
 			door.set_story_state(GameManager.task_status if GameManager.current_task_id == door.task_id else "NONE")
-	for slot: Node in $StaffRoot.get_children():
-		var staff: Node = slot.get_node("Staff")
-		staff.set_task_eligible(GameManager.is_interaction_allowed(STAFF_TARGET_IDS[staff.card_id]))
-	if is_instance_valid(_cleaning_spot):
-		var cleaned: bool = GameManager.get_world_flags().get("stain_201_cleaned", false)
-		_cleaning_spot.set_completed(cleaned)
-		_cleaning_spot.set_task_active(GameManager.is_interaction_allowed(_cleaning_spot.target_id))
 	queue_redraw()
 
 
-func _on_staff_failure_requested(reason: String, _target_id: String) -> void:
-	GameManager.request_task_failure(reason)
-
-
-func _on_cleaning_completed(target_id: String) -> void:
-	if not GameManager.record_work_result(target_id):
-		_cleaning_spot.set_completed(GameManager.get_world_flags().get("stain_201_cleaned", false))
+func get_task_checkpoint_position(task_id: String) -> Dictionary:
+	if floor_number != 2 or task_id != GameManager.TASK_01_ID or _doors.is_empty():
+		return {}
+	var destination: Vector2 = $Interactions/Task01AcceptSafe.global_position
+	if destination.x < 64.0 or destination.x > $DoorRoot/Room201.global_position.x - 120.0 or not is_equal_approx(destination.y, player.global_position.y):
+		return {}
+	for door: Node2D in _doors:
+		var exclusion_radius: float = door.story_radius if door.door_mode == "STORY" else door.radius
+		if absf(destination.x - door.global_position.x) <= exclusion_radius:
+			return {}
+	return {"position": destination}
 
 
 func _setup_doors() -> void:
@@ -331,14 +364,14 @@ func _refresh_staff_captions() -> void:
 		var staff: Node = slot.get_node("Staff")
 		var label: Label = slot.get_node("Caption")
 		var role_name: String = CARD_NAMES[staff.card_id]
-		if CardManager.has_card(staff.card_id):
+		if _can_talk_to_manager(staff):
+			label.text = "经理 · 按 E 查看去向" if GameManager.has_completed_manager_intro() else "经理 · 按 E 交谈（任意一侧）"
+		elif CardManager.has_card(staff.card_id):
 			label.text = "%s · ID 已取得" % role_name
 		elif staff.is_stealing():
 			label.text = "%s · 偷取中\n请保持不动并按住 E" % role_name
 		elif staff.is_player_in_range():
-			if staff.card_id == "MANAGER" and not GameManager.has_completed_manager_intro():
-				label.text = "经理 · 按 E 交谈"
-			elif not GameManager.is_interaction_allowed(STAFF_TARGET_IDS[staff.card_id]):
+			if not GameManager.is_interaction_allowed(STAFF_TARGET_IDS[staff.card_id]):
 				label.text = "%s · 先接受对应任务" % role_name
 			else:
 				label.text = "%s · 身后按住 E 0.8 秒" % role_name if staff.is_player_behind() else "%s · 当前在正面\n请绕到背后" % role_name

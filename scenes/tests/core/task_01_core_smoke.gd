@@ -20,7 +20,8 @@ func _run() -> void:
 	var cards: Node = root.get_node("CardManager")
 	var panel: Node = core.get_node("DeveloperOverlay/Panel")
 	_expect(game.get("current_floor") == 1 and cards.call("get_owned_cards").is_empty(), "Core starts the shared 1F without cards")
-	_expect(panel.get_node("Row2/Retry").disabled, "Missing real snapshots keep retry disabled")
+	_expect(panel.get_node("Row2/Retry").disabled, "A fresh session has no failed checkpoint to retry")
+	_expect(not panel.has_node("Row1/Clean") and not panel.has_node("Row1/Deliver"), "Developer entry uses actual B work and C delivery rather than fake completion controls")
 	panel.get_node("Row1/Intro").emit_signal("pressed")
 	core.get_node("World").get_child(0).get_node("Player").global_position.x = 3400.0
 	_expect(game.call("request_floor_travel", 2), "Core reuses real manager-gated floor loading")
@@ -33,13 +34,14 @@ func _run() -> void:
 	game.call("_process", 20.0)
 	_expect(is_equal_approx(game.get("remaining_time"), stopped), "Core modal pauses the manager's timer")
 	panel.get_node("Row2/Pause").emit_signal("pressed")
-	panel.get_node("Row1/Clean").emit_signal("pressed")
-	_expect(game.get("task_status") == "ACTIVE", "Developer clean does not bypass the current-card permission")
-	cards.call("collect_card", "CLEANER") # Explicit fixture; this scene does not simulate a B work point.
-	panel.get_node("Row1/Clean").emit_signal("pressed")
-	_expect(game.get("task_status") == "READY_TO_SUBMIT", "Clean fixture still requires delivery")
-	panel.get_node("Row1/Deliver").emit_signal("pressed")
-	_expect(game.get("task_status") == "COMPLETED", "Delivery button uses real settlement")
+	panel.get_node("Row2/Timeout").emit_signal("pressed")
+	await process_frame
+	await process_frame
+	_expect(game.get("task_status") == "FAILED" and not panel.get_node("Row2/Retry").disabled, "A real failed checkpoint enables the developer retry control")
+	panel.get_node("Row2/Pause").emit_signal("pressed")
+	panel.get_node("Row2/Retry").emit_signal("pressed")
+	_expect(game.get("task_status") == "AVAILABLE" and game.get("remaining_time") == 0.0, "Retry returns to acceptance rather than restarting time")
+	_expect(not core.get("_paused") and game.call("is_world_input_allowed"), "Retry clears developer modal state as well as manager locks")
 	panel.get_node("Row2/Restart").emit_signal("pressed")
 	_expect(game.get("task_status") == "NONE" and cards.call("get_owned_cards").is_empty(), "Core new game clears task and cards")
 	core.queue_free()
@@ -56,5 +58,5 @@ func _finish() -> void:
 	for failure: String in failures:
 		printerr("FAIL: ", failure)
 	if failures.is_empty():
-		print("PASS: task 01 developer core entry, real managers, pause, work and delivery fixtures.")
+		print("PASS: task 01 developer entry, real acceptance, pause, timeout and checkpoint retry.")
 	quit(0 if failures.is_empty() else 1)

@@ -10,6 +10,7 @@ signal task_completed(task_id: String)
 signal task_failed(task_id: String, reason: String)
 signal modal_changed()
 signal safe_return_started(reason: String)
+signal notebook_changed()
 
 const TaskDefinitions = preload("res://scripts/task_definitions.gd")
 const TASK_01_ID: String = "TASK_01_CLEAN"
@@ -30,6 +31,7 @@ var _open_modals: Dictionary = {}
 var _visited_floors: Array[int] = []
 var _safe_return_in_progress: bool = false
 var _last_safe_return_frame: int = -1
+var _task_checkpoint: Dictionary = {}
 
 
 func _process(delta: float) -> void:
@@ -48,6 +50,7 @@ func set_floor_host(host: Node2D, enable_preview: bool = false) -> void:
 func start_game() -> void:
 	_safe_return_in_progress = false
 	_last_safe_return_frame = -1
+	_task_checkpoint.clear()
 	CardManager.reset_for_new_game()
 	current_floor = 1
 	has_friend = false
@@ -65,17 +68,40 @@ func start_game() -> void:
 	else:
 		_set_state("PLAYING")
 	task_updated.emit()
+	notebook_changed.emit()
+
+
+func return_to_menu() -> void:
+	_safe_return_in_progress = false
+	_open_modals.clear()
+	_set_state("MENU")
+	modal_changed.emit()
 
 
 func complete_manager_intro() -> bool:
 	if game_state != "PLAYING" or _manager_intro_finished:
 		return false
 	_manager_intro_finished = true
+	notebook_changed.emit()
 	return true
 
 
 func has_completed_manager_intro() -> bool:
 	return _manager_intro_finished
+
+
+func get_notebook_view() -> Dictionary:
+	var entries: Array[Dictionary] = []
+	for monster_id: String in ["EYE", "NOSE", "HAT", "EAR", "CHECKER"]:
+		entries.append({"id": monster_id, "name": "未知住客", "status": "UNKNOWN", "text": "尚未取得线索。"})
+	if _manager_intro_finished:
+		entries[0]["status"] = "HINT"
+		entries[0]["text"] = "有些住客不喜欢陌生人。"
+		entries[1]["status"] = "HINT"
+		entries[1]["text"] = "有些住客对气味敏感。"
+	if _completed_task_ids.has(TASK_01_ID):
+		entries[1] = {"id": "NOSE", "name": "长鼻客", "status": "KNOWN", "text": "长鼻客开门时会辨识气味。将保洁工作证切为当前身份后再经过。"}
+	return {"unlocked": _manager_intro_finished, "entries": entries}
 
 
 func get_task_view() -> Dictionary:
@@ -181,10 +207,84 @@ func offer_task(task_id: String) -> bool:
 func accept_task(task_id: String) -> bool:
 	if game_state != "PLAYING" or current_floor != 2 or task_status != "AVAILABLE" or current_task_id != task_id:
 		return false
-	# A-V4-04 will capture B's exported card snapshot before this transition.
+	var checkpoint: Dictionary = _capture_task_checkpoint()
+	if _has_floor_host() and checkpoint.is_empty():
+		return false
+	_task_checkpoint = checkpoint
 	task_status = "ACTIVE"
 	remaining_time = get_task_definition(task_id)["time_limit"]
 	task_updated.emit()
+	return true
+
+
+func _capture_task_checkpoint() -> Dictionary:
+	# Manager-only component tests have no physical world to restore.
+	if not _has_floor_host() or _floor_host.get_child_count() != 1:
+		return {}
+	var floor_node: Node = _floor_host.get_child(0)
+	var safe: Dictionary = floor_node.get_task_checkpoint_position(current_task_id)
+	if safe.is_empty():
+		return {}
+	return {
+		"task_id": current_task_id, "floor": current_floor, "position": safe["position"],
+		"cards": CardManager.export_snapshot(), "world_flags": _world_flags.duplicate(true),
+		"completed": _completed_task_ids.duplicate(), "visited": _visited_floors.duplicate(),
+		"manager_intro": _manager_intro_finished, "has_friend": has_friend,
+	}
+
+
+func can_retry_current_task() -> bool:
+	return game_state == "FAILED" and task_status == "FAILED" and _has_floor_host() \
+		and _task_checkpoint.get("task_id", "") == current_task_id \
+		and _task_checkpoint.get("floor", 0) == 2 \
+		and CardManager.validate_snapshot(_task_checkpoint.get("cards", {}))
+
+
+func retry_current_task() -> bool:
+	if not can_retry_current_task():
+		return false
+	var checkpoint: Dictionary = _task_checkpoint.duplicate(true)
+	var scene: PackedScene = load("res://scenes/levels/floor_2.tscn")
+	var floor_node: Node2D = scene.instantiate()
+	_set_state("RESTORING") # Cancel old holds before restoring cards or world facts.
+	_floor_host.add_child(floor_node)
+	var safe: Dictionary = floor_node.get_task_checkpoint_position(current_task_id)
+	if safe.is_empty() or safe["position"] != checkpoint["position"]:
+		_floor_host.remove_child(floor_node)
+		floor_node.queue_free()
+		_set_state("FAILED")
+		return false
+	if not CardManager.restore_snapshot(checkpoint["cards"]):
+		_floor_host.remove_child(floor_node)
+		floor_node.queue_free()
+		_set_state("FAILED")
+		return false
+	for previous: Node in _floor_host.get_children():
+		if previous != floor_node:
+			_floor_host.remove_child(previous)
+			previous.queue_free()
+	current_floor = checkpoint["floor"]
+	_world_flags = checkpoint["world_flags"].duplicate(true)
+	_completed_task_ids.assign(checkpoint["completed"])
+	_visited_floors.assign(checkpoint["visited"])
+	_manager_intro_finished = checkpoint["manager_intro"]
+	has_friend = checkpoint["has_friend"]
+	task_status = "AVAILABLE"
+	remaining_time = 0.0
+	fail_reason = ""
+	_safe_return_in_progress = false
+	_open_modals.clear()
+	modal_changed.emit()
+	task_updated.emit() # Rebuild work, route and C's mirror from restored A truth.
+	notebook_changed.emit()
+	var player: HotelPlayer = floor_node.get_node("Player")
+	player.set_movement_locked(true)
+	player.global_position = safe["position"]
+	player.get_node("Camera2D").reset_smoothing()
+	player.set_movement_locked(false)
+	_set_state("PLAYING")
+	floor_changed.emit(current_floor)
+	task_offered.emit(current_task_id)
 	return true
 
 
@@ -211,6 +311,7 @@ func submit_task(task_id: String) -> bool:
 	task_status = "COMPLETED"
 	_completed_task_ids.append(task_id)
 	_world_flags["passage_201_unlocked"] = true
+	notebook_changed.emit()
 	task_completed.emit(task_id)
 	task_updated.emit()
 	return true

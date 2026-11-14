@@ -45,7 +45,7 @@ func _run() -> void:
 	player = floor_node.get_node("Player")
 	cleaner = floor_node.get_node("StaffRoot/CleanerSlot/Staff")
 	_stop_turns(floor_node)
-	await _prepare_rear(player, cleaner)
+	await _approach_cleaner_rear(cleaner, player)
 	# Put the stair in the same range: eligible employee has priority over stairs.
 	floor_node.get_node("Interactions/ExitPoint").global_position = cleaner.global_position
 	_expect(floor_node.call("get_interaction_target_id") == "STAFF_CLEANER_1F", "Eligible work wins over overlapping stairs")
@@ -73,13 +73,13 @@ func _run() -> void:
 	cards.call("switch_active")
 	_expect(not cleaner.call("is_stealing"), "Identity change immediately cancels the long press")
 	await _action("interact", false)
-	await _prepare_rear(player, cleaner)
+	await _approach_cleaner_rear(cleaner, player)
 	await _action("interact", true)
 	player.global_position.x = cleaner.global_position.x - 100.0 * cleaner.facing_direction
 	await _settle()
 	_expect(not cleaner.call("is_stealing"), "Leaving the detection range cancels the locked target")
 	await _action("interact", false)
-	await _prepare_rear(player, cleaner)
+	await _approach_cleaner_rear(cleaner, player)
 	await _action("interact", true)
 	_expect(game.call("request_floor_travel", 2), "Overlapping stair fixture can load while a target is held")
 	_expect(not cleaner.call("is_stealing"), "Loading cancels the old employee before removing its floor")
@@ -93,7 +93,7 @@ func _run() -> void:
 	_stop_turns(floor_node)
 	# Moving the stair back avoids accidental travel after card collection.
 	floor_node.get_node("Interactions/ExitPoint").global_position.x = 3400.0
-	await _prepare_rear(player, cleaner)
+	await _approach_cleaner_rear(cleaner, player)
 	await _action("interact", true)
 	await create_timer(0.9).timeout
 	await _action("interact", false)
@@ -165,7 +165,7 @@ func _run() -> void:
 	security.global_position.x = 1990.0
 	manager.global_position.x = 2010.0
 	await _settle()
-	_expect(floor_node.call("get_interaction_target_id") == "STAFF_MANAGER_1F", "Equal-priority equal-distance targets use fixed ID order")
+	_expect(floor_node.call("get_interaction_target_id") == "MANAGER_TALK", "Equal-priority equal-distance targets use fixed ID order, including manager guidance")
 	security.global_position.x = 1995.0
 	await _settle()
 	_expect(floor_node.call("get_interaction_target_id") == "STAFF_SECURITY_1F", "Equal-priority targets prefer the nearest distance")
@@ -176,7 +176,22 @@ func _run() -> void:
 
 func _stop_turns(floor_node: Node) -> void:
 	for slot: Node in floor_node.get_node("StaffRoot").get_children():
-		slot.get_node("Staff/TurnTimer").stop()
+		for timer_name: String in ["TurnTimer", "TurnWarningTimer", "BehaviorTimer"]:
+			slot.get_node("Staff/" + timer_name).stop()
+
+
+func _approach_cleaner_rear(cleaner: Node2D, player: Node2D) -> void:
+	player.global_position = cleaner.global_position + Vector2(30 * cleaner.facing_direction, 0)
+	await _settle()
+	if cleaner.is_suspicious():
+		_expect(game.get("game_state") == "PLAYING", "Curiosity alone never fails the accepted task")
+		await cleaner.get_node("SuspicionTimer").timeout
+	# Isolate A's routing/cancellation checks from B's random walk/turn schedule.
+	for timer_name: String in ["TurnTimer", "TurnWarningTimer", "BehaviorTimer"]:
+		cleaner.get_node(timer_name).stop()
+	player.global_position = cleaner.global_position - Vector2(30 * cleaner.facing_direction, 0)
+	await _settle()
+	_expect(cleaner.is_player_behind() and not cleaner.is_suspicious(), "Theft setup waits for curiosity and moves behind the actual facing")
 
 
 func _action(action: String, pressed: bool) -> void:
@@ -191,18 +206,6 @@ func _settle() -> void:
 	for frame: int in range(4):
 		await physics_frame
 	await process_frame
-
-
-func _prepare_rear(player: Node2D, staff: Node2D) -> void:
-	player.global_position = staff.global_position - Vector2(30.0 * staff.facing_direction, 0.0)
-	await _settle()
-	if staff.has_method("is_suspicious") and staff.call("is_suspicious"):
-		await create_timer(0.9).timeout
-		await _settle()
-	staff.get_node("TurnTimer").stop()
-	staff.get_node("TurnWarningTimer").stop()
-	player.global_position = staff.global_position - Vector2(30.0 * staff.facing_direction, 0.0)
-	await _settle()
 
 
 func _expect(condition: bool, message: String) -> void:

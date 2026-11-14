@@ -45,7 +45,11 @@ func _run() -> void:
 	var card_ids: Array[String] = ["CLEANER", "SECURITY", "MANAGER"]
 	for index: int in range(3):
 		var staff: Node2D = floor_node.get_node(paths[index])
-		await _prepare_rear(player, staff)
+		if index == 0:
+			await _approach_cleaner_rear(staff, player)
+		else:
+			player.global_position = staff.global_position - Vector2(30 * staff.facing_direction, 0)
+			await _physics_frames(3)
 		_expect(staff.call("is_player_in_range"), "A binds the shared player to " + card_ids[index])
 		if index == 0:
 			await _action("interact", true)
@@ -81,7 +85,7 @@ func _run() -> void:
 	await _physics_frames(4)
 	for path: String in paths:
 		_expect(not floor_node.get_node(path).call("is_player_in_range"), "Stairs fixture has left every employee detection area")
-	game.call("complete_manager_intro") # D's formal dialogue is not yet connected.
+	game.call("complete_manager_intro") # This F6 preview uses the manager-completion API.
 	await _action("interact", true)
 	await _action("interact", false)
 	_expect(game.get("current_floor") == 2, "Manager introduction allows E to enter 2F")
@@ -97,7 +101,7 @@ func _run() -> void:
 	var security: Node2D = floor_node.get_node(paths[0])
 	security.get_node("TurnTimer").stop()
 	player = floor_node.get_node("Player")
-	await _prepare_rear(player, security)
+	await _approach_cleaner_rear(security, player)
 	await _action("interact", true)
 	await create_timer(0.1).timeout
 	security.call("_on_turn_timer_timeout")
@@ -122,13 +126,25 @@ func _run() -> void:
 
 
 func _accept_task_fixture(preview: Node, game: Node) -> void:
-	# Formal D dialogue/C interception are not delivered; travel and task APIs are real.
+	# Explicit acceptance fixture; the F5 UI route is checked separately.
 	game.call("complete_manager_intro")
 	preview.get_node("World").get_child(0).get_node("Player").global_position.x = 3400.0
 	_expect(game.call("request_floor_travel", 2), "Task fixture uses the real 1F stair")
 	_expect(game.call("offer_task", "TASK_01_CLEAN"), "Task fixture offers 201")
 	_expect(game.call("accept_task", "TASK_01_CLEAN"), "Task fixture accepts 201")
 	_expect(game.call("request_floor_travel", 1), "Task fixture returns to 1F")
+
+
+func _approach_cleaner_rear(cleaner: Node2D, player: Node2D) -> void:
+	player.global_position = cleaner.global_position + Vector2(30 * cleaner.facing_direction, 0)
+	await _physics_frames(4)
+	if cleaner.is_suspicious():
+		await cleaner.get_node("SuspicionTimer").timeout
+	for timer_name: String in ["TurnTimer", "TurnWarningTimer", "BehaviorTimer"]:
+		cleaner.get_node(timer_name).stop()
+	player.global_position = cleaner.global_position - Vector2(30 * cleaner.facing_direction, 0)
+	await _physics_frames(4)
+	_expect(cleaner.is_player_behind() and not cleaner.is_suspicious(), "Rear theft uses actual facing after curiosity ends")
 
 
 func _action(action: String, pressed: bool) -> void:
@@ -144,18 +160,6 @@ func _physics_frames(count: int) -> void:
 		await physics_frame
 	# Body enter/exit notifications arrive after the physics_frame signal.
 	await process_frame
-
-
-func _prepare_rear(player: Node2D, staff: Node2D) -> void:
-	player.global_position = staff.global_position - Vector2(30.0 * staff.facing_direction, 0.0)
-	await _physics_frames(3)
-	if staff.has_method("is_suspicious") and staff.call("is_suspicious"):
-		await create_timer(0.9).timeout
-		await _physics_frames(2)
-	staff.get_node("TurnTimer").stop()
-	staff.get_node("TurnWarningTimer").stop()
-	player.global_position = staff.global_position - Vector2(30.0 * staff.facing_direction, 0.0)
-	await _physics_frames(3)
 
 
 func _expect(condition: bool, message: String) -> void:

@@ -1,20 +1,20 @@
 # 怪物员工通道公共接口与 V4 迁移提案
 
-后续同步（2026-11-12）：用户已授权并完成 main 快进拉取至 09bbda9，C PR #12／D 开场 PR #13 的源码已取得。本文中“当前工作区旧 C／待同步”均是拉取前状态；真实 C 的 safe_return_smoke 现已在工作区 PASS／退出 0。B 快照／清理及 D 完整任务 UI 仍缺。
+最新整合候选（2026-11-14）在 A 个人分支 work/member-A-liuling 维护，基线为 main 0145926。已接正常菜单、任务 01 真实接受／清理／交付／检查点恢复、I 背包和 H 渐进笔记。当前入口及签名见第 17—19 节，发布核对见最新进度。远端 main 新增的 D PR #23（007437a）与此候选的联调另行核对。
 
 本文件按《Monster Staff Access Godot三周逐步分工 共享美术版 V2》第 01—03 部分的职责起草，供 A/B/C/D 在同一 Godot 项目中接入模块。它对应手册中建议的“接口约定.txt”，统一使用本 Markdown 文件维护，不再创建第二份接口清单。
 
-**阅读顺序：先读第 16 节对白接线，再读第 15／14 节任务接线；第 1—12 节保留 V3 兼容基线，第 13 节以 V4 提案为主。冲突以第 16 节为准。新增接口经审阅并实际实现后才能接正式按钮。** 本轮用户已授权集中提交／push 到 A 分支；下文“本地未提交”“待同步 C”“D 对白未接”均为此前开发阶段记录，共享 main 的可用性仍以合并状态为准。
+**阅读顺序：先读第 19 节菜单／笔记、第 18 节 UI 和第 17 节检查点，再读第 16 节对白与第 15／14 节任务接线；第 1—12 节保留 V3 兼容基线，第 13 节以 V4 提案为主。当前接入以第 17—19 节及最新进度为准；第 13—16 节的“缺快照／清理／重试”保留为历史记录。新增接口经审阅并实际实现后才能接正式按钮。** 本轮用户已授权集中提交／push 到 A 分支；下文“本地未提交”“待同步 C”“D 对白未接”均为此前开发阶段记录，共享 main 的可用性仍以合并状态为准。
 
 现行产品规则见 [项目主策划](game-design.md)，人员任务及交付顺序见 [ABCD 分工 2.0](team-plan.md)。本文专门维护接口及其实现状态，本次文档整合不改变已有函数或信号。
 
 函数表示“调用另一个模块做事”，信号表示“通知其他模块某事已经发生”。调用者按本文约定使用接口，模块内部实现由对应负责人决定。
 
-**当前状态（A 本地未提交版本，不等于共享 main）：已有任务 01 状态／计时／资格查询、1F↔2F 回访；A 楼层现统一分发员工／楼梯 E，交付记录后段许可并解除 2F 路障。** 正式经理对白、201 任务门／污渍、卡片快照、检查点重试、完整世界模态冻结与正式 UI 尚未接入；不能把独立任务测试当作 201 通关。B 正面偷卡仍只拒绝，C 五怪组件尚未组装进主流程。实现边界见 [201 接线表](#14-201-首闭环接线清单)。
+**当前状态：任务 01 的真实组件循环已在 A 本地自动验证，F5 因缺 D 接受／失败 UI 仍停在任务介绍；完整 M1 未验收。** 员工、工作和卡片内部实现仍由 B 维护；当前只运行任务 01，未提前开放后续任务、救援和结局。
 
 | 模块 | 当前真实可用 | 尚待实现 |
 |---|---|---|
-| GameManager／A 楼层 | 任务 01 核心、五任务定义、1F↔2F、员工／楼梯唯一 E；新增 201 E／普通安全退回适配，真实 C 新版副本通过 | 工作区仍需同步 C 新版；B 快照／清理、检查点、D 正式页面、后四任务运行、救援及结局 |
+| GameManager／A 楼层 | 任务 01、五任务定义、1F↔2F、唯一 E、真实 201／普通退回、B 清理／被抓、接受前检查点与重试；A 本地已验 | D 正式页面、后四任务运行、救援及结局 |
 | CardManager | 查询／重置、`collect_card`、`switch_active`、`equip_card`、Q 输入、`cards_changed`／`identity_changed` 实际通知 | UI 接入；空槽／无效操作等规则确认及非游玩输入边界验收 |
 | HotelPlayer | 移动、`is_moving`、朝向、`set_walk_bounds`、`set_movement_locked`、相机 | 偷卡／怪物／剧情组件的实际接入 |
 | 员工 | `staff.tscn`、`setup(player)`、转身、长按偷取、取消和回头失败，已接 1F；成功通知接临时反馈 | 正面偷取当前仅拒绝，待 B 迭代；转身预告／正式 UI 反馈仍待交付 |
@@ -588,3 +588,74 @@ main 仅登记／释放自己的 `STORY_DIALOGUE` 模态，D 组件不改任务�
 `intro_flow_smoke.gd` 使用真实场景、TSV、输入事件、员工范围、两 Autoload 和楼梯；已读测试文件仅写 /private/tmp。覆盖序章／经理独立完成、移动／Q、E／鼠标单次推进、模态叠加、关闭 E、防重复、无卡上楼、新局和卸载。foundation 先通过真实继续按钮完成序章再测移动，不把对白锁移动当回归故障。D 独立 intro_preview 使用其专用 user:// 测试文件，沙箱禁止保存时须在可访问该测试目录的环境运行，不能把保存失败算通过。
 
 尚缺：B 快照／清理／正面失败及 D 任务面板／HUD／失败重试等；F5 不具备完整 201 任务闭环。经理对白已接入也不代表首次跳过及完整模态冻结决策已由全员确认。
+
+### 16.1 首轮 F5 反馈后的谈话与引导修正
+
+本地未提交修正：floor 新增 `manager_talk_radius=90` 的对称水平交谈范围，经理谈话不再读 B 的偷窃 Area／背后判定。实际探针未复现“仅背身能谈”：旧版在 40px 的四种朝向／来侧都能谈，85px 全不响应；本次修正解决范围耦合与可发现性，不把用户感受直接写成已证实的方向代码错误。
+
+初次 MANAGER_TALK 仍优先级 0，首次完成后同 ID 为优先级 3 的路线提示，E 只提醒右梯→2F 201，不重复整段对白。将来 GameManager 对经理偷窃目标确实返回允许时，谈话候选让位给 B 真实偷卡；该后续任务尚未启用。经理头顶提示与可交谈范围一致，B 偷窃组件／转向仍未修改。
+
+main 现在连接 task_offered／task_updated 并显示持续 Objective；201 的真实介绍会明确显示“接受任务界面尚未开放，本次试玩到此”，任务保持 AVAILABLE／0 秒。该临时反馈不是 D 的任务面板，也不添加接受／完成按钮；D-V4-02 仍须交付完整面板，A 再接真实接受调用。经理初谈完成仅开放楼梯，不在 1F 自动发任务。
+
+本次验证和后续责任见 [QA 首轮记录](qa.md#2026-11-12-首轮-f5-试玩反馈)。B 负责不同角色的待机／转向预告与节奏，A 负责主场景交互与接线，D 负责任务展示及接受／失败页面；不为了让当前预览看似能继续而重写其他成员组件或伪造任务成功。
+
+
+## 17 任务 01 检查点与真实 B 组件接入（2026-11-13）
+
+本节描述 A 整合候选的实际接口，候选在 work/member-A-liuling 维护。仅任务 01；D 评审分支的选定组件现已接入 F5，接线和组件来源见 §18。自动化脚本不能代替人工联合验收。
+
+| 入口／事件 | 当前行为及接入方式 |
+|---|---|
+| `accept_task(task_id: String) -> bool` | 保留 PLAYING／2F／AVAILABLE／同 ID 校验；有真实楼层宿主时先验证 201 安全点，再深拷贝 B `export_snapshot()` 和 A 世界／故事／已完成／已到达层事实，成功才 ACTIVE／210 秒。TASK_OFFER 模态可保持打开直至接受成功，之后 D 只释放自己的模态。无宿主的独立状态测试可接受，但不创建物理恢复点，也不能重试 |
+| `can_retry_current_task() -> bool` | FAILED 状态、FAILED 任务、有宿主及同任务真实检查点，并通过 B `validate_snapshot()` 才允许；供 D 决定按钮可用性。落点还会在恢复时对新楼层再次校验 |
+| `retry_current_task() -> bool` | 校验快照→RESTORING 取消长按→实例化接取层并核验保存落点→B `restore_snapshot()`→替换旧层、恢复 A 事实并清模态→重建工作／门镜像、主角与相机→PLAYING／AVAILABLE／0 秒；发 `floor_changed(2)` 和 `task_offered(task_id)` 等待重新接受。失败返回 false；无效卡快照或危险／变更落点不修改原卡片与失败世界；重复点击不重复加载 |
+| D 的关闭／刷新责任 | 监听 `state_changed("RESTORING")` 关闭旧任务／失败／暂停等页面并清本地开关；GameManager 清登记不会替 D 隐藏 UI 节点。收到 task_offered 后读 get_task_view 并重新展示接受页；不要自动接受。当前 core 已同步清自己的暂停开关；F5 由 A task_ui.gd 关闭选定的 D 页面，其他后续模态仍须各自接入 |
+| B 员工 | A 为正式实例设稳定 target_id、requires_task_eligibility=true，按真实查询刷新 set_task_eligible；连接 `task_failure_requested(reason, target_id)`，只接当前楼层合法来源的 STAFF_CAUGHT。正面和偷窃中转身都走同一任务失败链；移除楼层的迟到事件拒绝 |
+| B 工作点 | 2F 的 `Interactions/Stain201Slot/CleaningSpot` 直接实例化 B cleaning_spot，A setup(player)、set_task_active 并选择唯一 E；当前 CLEANER 且真实 Area 范围内长按 1.5 秒，A 推进 advance_interaction，收到 cleaning_completed 后调用 record_work_result。移动／松 E／换卡／开模态／换层／失败取消长按；清理只 READY_TO_SUBMIT，回真实 201 按 E 才 COMPLETED 并放行 |
+| 世界持久化与恢复 | 污渍显示读取 A stain_201_cleaned；回访重建后仍隐藏。失败恢复撤销任务期取得的卡／污渍，保留接取前事实；B 恢复仅一次 cards_changed，无 identity_changed。后续任务、309 跟随与笔记正式 UI 尚未接入，不宣称已实测 |
+| 安全点与普通退回 | 任务 01 采用 2F x560／y560，捕获和新层恢复均校验实际 201 STORY 半径及其他门排除区、走廊边界；x1120 仍不是重试点。普通门继续 request_safe_return，不调用任务重试、不回滚卡片／任务／时间 |
+| 输入与开发入口 | A 楼层在非 world_input_allowed 时消费世界 Q，B 独立场景不改；唯一 E 增 WORK。F6 task_01_core_test 使用真实工作和交付，已删代记 Clean／Deliver；只保留明确标注的经理／介绍／接受／失败开发控制。F5 已接 D 接受／失败按钮，来源与范围见 §18 |
+
+2026-11-13 已同步 main `f559dc4` 的 B 保洁行为：未被当前身份识别的玩家进入范围会触发短暂 CURIOUS 并改变朝向；好奇本身不发送任务失败，正面按 E 仍发送 STAFF_CAUGHT。A 维持原资格查询、唯一 E 和失败来源校验；测试等待真实 SuspicionTimer 结束再按实际朝向绕后，不在生产实例关闭好奇。F5 本地现接 D 评审组件；F6 开发接受仍不能算正式接取。
+
+验证命令及限制见最新 [进度](progress.md)；新增 `scenes/tests/core/task_checkpoint_smoke.gd` 驱动真实 B/C 与 E/Q，数据夹具仅用于接取前成果及可重复计时／转身条件，不代记人工验收。
+
+
+## 18 201 主入口任务 UI 接线（2026-11-13）
+
+当前为 A 个人分支整合候选，基于 main `0145926`。从 D 评审分支 `work/member-D-v4-ui-review` 的固定提交 `eb5e019` 原样复制 `mission_board.gd/.uid/.tscn`、`hud.gd/.uid/.tscn`、`failure.gd/.uid/.tscn`、`card_display.gd/.uid` 和 `staff_ui_theme.tres` 共 12 个文件。没有合并 D 整条旧分支，也没有覆盖 `dialogue.gd/.tscn`、TSV 和素材。评审分支存在不代表已合入 main；发布授权另行处理。
+
+| 接头 | 实际行为 |
+|---|---|
+| A `scenes/task_ui.gd` | 挂在 main 的 TaskLayer；装配原 D MissionBoard／HUD／Failure，只管理显示、焦点、模态和请求适配，不另存任务／计时／卡真值 |
+| 任务介绍 | `GameManager.task_offered(task_id)` → `TaskUI.open_offer(task_id)`；校验当前任务／AVAILABLE／PLAYING／2F。D 面板读 get_task_view，A 补所需身份、210 秒及工作路线 |
+| 接受与关闭 | D 接受按钮调用真实 `accept_task(task_id)`，成功后由 A 关闭面板；面板可见登记 TASK_OFFER，隐藏只释放该项，不清其他模态。关闭不会自动接受或开始计时 |
+| 重新打开 | floor 在真实 201 STORY 范围内把 AVAILABLE 的 ROOM_201 纳入唯一 E；发 `task_offer_requested(task_id)` → main → TaskUI.open_offer。没有重复调用 offer_task 或改 C 的任务镜像 |
+| HUD | 原 D HUD 继续订阅卡片／楼层；A `scenes/task_hud.gd` 继承原脚本，将任务 01 状态与路线显示为中文，仍读取 GameManager 时钟。A 只在实例内把 D 两个 PanelContainer 子节点移入 VBox，避免重叠 |
+| 失败和重试 | game_failed → D show_failure → A 适配超时／被抓标题及重试可用性。按钮发 retry_requested，A 再校验失败页可见且 can_retry_current_task，才调用 retry_current_task；RESTORING 关闭旧面板，恢复后的 task_offered 打开 AVAILABLE／0 秒接受页 |
+| 旧控件复位 | D 原任务面板在 task_failed 会显示自己的禁用重试控件；A 每次呈现接受页都隐藏该控件并复位文字颜色，防止恢复／新局出现“待 A 接入”残留。失败页的原菜单按钮在本实例明确改名“重新开始（重播序章）”，连接 main 新局，不伪造主菜单 |
+| 输入与卸载 | TASK_OFFER／TASK_FAILURE 取消长按并锁 Player；可见页面消费世界 E/Q，释放 E 仍由楼层观察。关闭／接受后须松 E 再操作世界；TaskUI 卸载释放自己的两个模态。序章／经理对白期间隐藏 TaskLayer，继续沿用 STORY_DIALOGUE |
+| 普通门与楼梯 | 普通退回继续显示主入口警告，不弹任务失败／重试页；D 面板内楼层按钮在接受页隐藏，楼层选择不绕过真实楼梯 E／距离／许可。正式楼梯列表、普通警告页、背包／手册／暂停与 M2 核验另行接入 |
+
+D 组件目前没有公开的接受详情／重试配置方法；A 适配层临时读取 `_hint`、`_status`、`_retry_button`、`_floor_buttons` 四个现有字段及现有节点。D 后续修改这些字段时须同步 A，建议增加稳定的配置入口；本轮不擅改 D 内部接口。任务 02 以后仍未启用，适配层的路线文字仅面向任务 01。
+
+验证入口为 `res://scenes/tests/core/task_ui_smoke.gd`：先独立实例验证 D 组件，再运行真实 F5、对白、E 路由、D 按钮、B 卡／清理、C 交付和 A 恢复。任务时钟、楼层内位置和转身阶段使用明确自动化夹具；没有直接授卡或代记清理完成来完成 F5 链路。窗口截图仅是画面检查，人工验收和跨机器结果见 [QA](qa.md)。
+
+
+## 19 菜单、背包和渐进调查笔记（2026-11-13）
+
+A 当前工作区在 §18 基础上接入 D `eb5e019` 的 main_menu、help、bag 三组场景／脚本／UID，累计 21 个 D 原样组件文件。F5 首先进入正常菜单，开始按钮播放真实序章。失败页返回菜单，新一局由开始按钮清空会话后启动。
+
+| 接口或归属 | 当前实现 |
+|---|---|
+| `GameManager.return_to_menu() -> void` | 取消安全退回中的延迟恢复，清模态登记并进入 MENU。主入口关闭自己挂载的页面／对白并显示菜单，开始游戏才重置任务／卡片 |
+| `get_notebook_view() -> Dictionary` | 返回 unlocked 与 entries。entries 按 EYE／NOSE／HAT／EAR／CHECKER 排列，每项含 id、name、status、text，status 为 UNKNOWN／HINT／KNOWN。嵌套数据为新构建副本 |
+| 笔记真值 | 从 _manager_intro_finished 和 _completed_task_ids 派生。经理交谈前全 UNKNOWN，之后 EYE／NOSE 为两条模糊 HINT，201 有效交付后 NOSE 为 KNOWN。卡片获得或清理未交付不揭示规则 |
+| `notebook_changed()` | 新局、经理完成、任务 01 交付和任务恢复后通知 UI 重读。恢复使用既有经理／已完成任务快照，D 不维护独立解锁数组 |
+| H 和菜单说明 | main 统一输入，原 D help 自收 H 停用。A `scenes/notebook.gd` 继承 D 帮助页，工作证页读当前所有权，调查页读真实笔记，当前未知规则保持未知 |
+| I | main 统一打开／关闭原 D bag，原独立 I 输入停用。装备仍调用 CardManager.equip_card，卡变化仍由 B 发通知。A bag_adapter.gd 仅修正从空背包首次获得卡后残留的空状态文字 |
+| 模态 | D 原页面继续登记大小写敏感的 `help`／`bag`，与 TASK_OFFER／TASK_FAILURE／STORY_DIALOGUE 共存。主入口在失败、恢复、加载或菜单时关闭自己挂载的页面，卸载释放对应模态 |
+| 输入 | 主菜单／笔记／背包可见时消费世界 E/Q，模态锁移动并停任务计时，释放 E 仍由楼层观察。游戏中按 H/I 需世界可操作，已打开页面用同键关闭；菜单操作说明始终可访问 |
+| 计时边界 | 有效提交时余量大于零立即结算，后续时钟回调不逆转 COMPLETED。归零失败已生效则拒绝工作／提交。notebook_smoke 覆盖两种同步调用顺序，沿用现有单一计时器 |
+
+任务 02 以后的笔记、D-02 完整世界冻结与核验上下文、正式暂停和楼梯 UI 仍按对应阶段接入。当前笔记入口仅实现已可玩任务 01 的事实。D 后续可用公开组件入口替换 A 的继承适配，需保持上述读取与生命周期约定。B/C/D 后续 prompt 见 [协作交接](a_bcd_handoff.md)。

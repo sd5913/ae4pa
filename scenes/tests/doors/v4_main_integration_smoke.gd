@@ -13,6 +13,7 @@ func _run() -> void:
 	dialogue.set_progress_file_path_for_test("res://.godot/c_v4_main_read.cfg")
 	dialogue.set_skip_transitions_for_test(true)
 	root.add_child(main)
+	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
 	await create_timer(0.7).timeout
 	dialogue.set_skip_transitions_for_test(true)
 	var game: Node = root.get_node("GameManager")

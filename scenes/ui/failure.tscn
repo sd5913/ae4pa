@@ -1,0 +1,84 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/failure.gd" id="1_script"]
+[ext_resource type="Theme" path="res://scenes/ui/staff_ui_theme.tres" id="2_theme"]
+
+[node name="Failure" type="Control"]
+visible = false
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
+
+[node name="Shade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.07, 0.035, 0.04, 0.92)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(520, 0)
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="Center/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Eyebrow" type="Label" parent="Center/Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.69, 0.77, 0.76, 1)
+theme_override_font_sizes/font_size = 18
+text = "员工通行检查"
+horizontal_alignment = 1
+
+[node name="Title" type="Label" parent="Center/Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.66, 0.56, 1)
+theme_override_font_sizes/font_size = 37
+text = "CAUGHT!  行动失败"
+horizontal_alignment = 1
+
+[node name="Reason" type="Label" parent="Center/Panel/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "未能通过检查"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="RetryButton" type="Button" parent="Center/Panel/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+disabled = true
+theme_type_variation = &"PrimaryButton"
+focus_neighbor_bottom = NodePath("../MenuButton")
+text = "重试功能待 A 接入"
+
+[node name="MenuButton" type="Button" parent="Center/Panel/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+focus_neighbor_top = NodePath("../RetryButton")
+text = "返回菜单"
+
+[connection signal="pressed" from="Center/Panel/Content/RetryButton" to="." method="_on_retry_pressed"]
+[connection signal="pressed" from="Center/Panel/Content/MenuButton" to="." method="_on_return_to_menu_pressed"]
