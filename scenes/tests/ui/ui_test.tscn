@@ -1,18 +1,58 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/test_corridor.tscn" id="1_corridor"]
+[ext_resource type="Script" path="res://scenes/tests/ui/ui_test.gd" id="2_script"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="3_hud"]
+[ext_resource type="PackedScene" path="res://scenes/ui/mission_board.tscn" id="4_mission_board"]
+[ext_resource type="PackedScene" path="res://scenes/ui/failure.tscn" id="5_failure"]
 
 [node name="UITest" type="Node2D"]
+script = ExtResource("2_script")
 
 [node name="Corridor" parent="." instance=ExtResource("1_corridor")]
 
 [node name="UISlot" type="CanvasLayer" parent="."]
 layer = 10
 
-[node name="TestLabel" type="Label" parent="UISlot"]
-offset_left = 32.0
-offset_top = 28.0
-offset_right = 1200.0
-offset_bottom = 90.0
-theme_override_font_sizes/font_size = 24
-text = "D · 界面测试骨架 | A / D 移动 | 请在 UISlot 接入界面"
+[node name="HUD" parent="UISlot" instance=ExtResource("3_hud")]
+
+[node name="MissionBoard" parent="UISlot" instance=ExtResource("4_mission_board")]
+
+[node name="Failure" parent="UISlot" instance=ExtResource("5_failure")]
+
+[node name="Status" type="Label" parent="UISlot"]
+unique_name_in_owner = true
+offset_left = 24.0
+offset_top = 100.0
+offset_right = 1240.0
+offset_bottom = 150.0
+theme_override_colors/font_color = Color(0.92, 0.82, 0.58, 1)
+theme_override_font_sizes/font_size = 22
+text = "M1 UI 独立预览：任务面板、楼层选择、普通警告与失败页"
+
+[node name="Controls" type="HBoxContainer" parent="UISlot"]
+offset_left = 24.0
+offset_top = 160.0
+offset_right = 800.0
+offset_bottom = 208.0
+theme_override_constants/separation = 12
+
+[node name="ShowMission" type="Button" parent="UISlot/Controls"]
+custom_minimum_size = Vector2(160, 44)
+layout_mode = 2
+text = "任务 / 楼层"
+
+[node name="ShowWarning" type="Button" parent="UISlot/Controls"]
+custom_minimum_size = Vector2(160, 44)
+layout_mode = 2
+text = "普通警告预览"
+
+[node name="ShowTaskFailure" type="Button" parent="UISlot/Controls"]
+custom_minimum_size = Vector2(160, 44)
+layout_mode = 2
+text = "任务失败预览"
+
+[node name="ShowFailure" type="Button" parent="UISlot/Controls"]
+custom_minimum_size = Vector2(160, 44)
+layout_mode = 2
+text = "行动失败预览"
