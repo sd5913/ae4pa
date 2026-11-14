@@ -588,3 +588,41 @@ main 仅登记／释放自己的 `STORY_DIALOGUE` 模态，D 组件不改任务�
 `intro_flow_smoke.gd` 使用真实场景、TSV、输入事件、员工范围、两 Autoload 和楼梯；已读测试文件仅写 /private/tmp。覆盖序章／经理独立完成、移动／Q、E／鼠标单次推进、模态叠加、关闭 E、防重复、无卡上楼、新局和卸载。foundation 先通过真实继续按钮完成序章再测移动，不把对白锁移动当回归故障。D 独立 intro_preview 使用其专用 user:// 测试文件，沙箱禁止保存时须在可访问该测试目录的环境运行，不能把保存失败算通过。
 
 尚缺：B 快照／清理／正面失败及 D 任务面板／HUD／失败重试等；F5 不具备完整 201 任务闭环。经理对白已接入也不代表首次跳过及完整模态冻结决策已由全员确认。
+
+## 17 B-V4-04／05 工作交互、巡房文件与进度接口（2026-11-15）
+
+本节记录 B 分支 `work/member-B-zhujingyu` 的本轮交付接口。它基于已合并 main 开发，不包含 A `ef8a2f7` 的未合并整合补丁、正式楼层组装、临时中文字体、经理位置或比例预览。A 继续保存任务和世界事实；B 组件只执行交互并报告结果，不新增通用物品系统。
+
+### 17.1 通用工作点
+
+`scenes/work/work_point.tscn` 复用 `scenes/work/cleaning_spot.gd`，保留 201 既有 CLEAN 行为并增加两种一次按键交互。
+
+| 配置／接口 | 类型 | 实际行为 |
+|---|---|---|
+| `target_id` | `String` | A 任务定义中的固定目标 ID |
+| `interaction_type` | `CLEAN`／`PICKUP`／`AUTHORIZE` | CLEAN 按 `hold_duration` 长按；PICKUP／AUTHORIZE 合法按下一次即报告 |
+| `required_card` | 三卡 ID | 只认 CardManager 当前生效卡，备用槽不满足 |
+| `hold_duration` | `float` | CLEAN 当前为 1.5 秒；一次按键类型配置为 0 |
+| `work_requested(target_id: String)` | signal | 合法完成时一次报告给 A；B 不写任务事实 |
+| `cleaning_completed(target_id: String)` | signal | CLEAN 的 201 兼容通知，原接线继续可用 |
+| `get_interaction_progress() -> float` | 只读 | 当前长按的 0—1 比例；未交互为 0 |
+| `get_interaction_elapsed() -> float` | 只读 | 当前长按秒数；未交互为 0 |
+| `set_task_active(active)`／`set_completed(completed)` | A 调用 | 刷新资格、一次性完成显示和检查点恢复 |
+
+固定配置示例：`PARCEL_CABINET_2F = PICKUP + SECURITY`；`REGISTER_309 = AUTHORIZE + MANAGER`；`EXIT_REGISTER_5F = AUTHORIZE + MANAGER`。A 在 `work_requested` 后调用自己的 `record_work_result(target_id)`，拒绝时用真实世界状态刷新组件；楼层重建／重试同样从 A 的事实调用 `set_completed`。
+
+### 17.2 员工任务文件奖励
+
+Staff 新增 `reward_type = CARD | TASK_ITEM` 和 `reward_id`。卡奖励保持原 CardManager 路径；任务文件成功时发 `task_item_stolen(item_id: String, target_id: String)`，不会把 PATROL_RECORD 加入三卡数组。`STAFF_PATROL_4F` 的配置为 `reward_type=TASK_ITEM`、`reward_id=PATROL_RECORD`、`requires_task_eligibility=true`，继续使用背后、静止、长按 0.8 秒、松键／离开／移动取消及正面／回头 `STAFF_CAUGHT`。
+
+`set_reward_available(available: bool)`／`is_reward_available()` 供 A 按 `patrol_collected` 刷新一次性状态和失败恢复。B 的本地布尔值不是任务真值，换层后必须由 A 重设。员工还提供 `get_interaction_progress()`、`get_interaction_elapsed()` 和 `get_interaction_block_reason()`；后者返回 READY、STEALING、FRONT、PLAYER_MOVING、STAFF_MOVING、CURIOUS、ALERTED、INELIGIBLE、DISABLED 或 OUT_OF_RANGE，供 D/A 显示唯一目标提示。
+
+本轮将“保持静止”改为记录偷取开始时玩家世界位置，并同时读取移动输入。位置变化或仍按 A/D 均取消；松开移动键后的陈旧 `is_moving` 一帧不再误拒绝。核心潜行难度、朝向、范围、0.8 秒时长和被抓后果均未降低。
+
+### 17.3 验证与剩余接线
+
+- 自动化：`work_items_smoke.tscn`、`staff_core_smoke.tscn`、`cleaner_v4_smoke.tscn` 均在 Godot 4.7.2 输出 PASS；覆盖错卡、一次性结果、取消、重复、恢复、PATROL_RECORD 事件、快照、三卡双槽和 STAIN_201。
+- 人工：用户在 A 隔离候选中完成正式 201 的偷保洁卡、Q 切身份、清洁、交付，HUD 正确显示完成；该结果不代表后续任务 02—05 已整合。
+- A 待接：扩展 `is_interaction_allowed`／`record_work_result` 到三个工作点和 STAFF_PATROL_4F，保存对应 world flag，并在加载／重试时刷新 completed／reward available。
+- D 待接：使用只读进度和阻塞原因显示提示；D-05 仍需确认任务 03 是否批准即结算。
+- A/C/D 体验项：201 交付后缺怪物回应、明确任务完成提示和通路解锁表现；HUD 状态真值正确。整体场景中玩家／员工约 64—66px、房门约 192px，与背景家具和静态人物比例不一致，须由 A 协调 B/C/D 统一基准后另行调整，本 PR 不含比例改动。
