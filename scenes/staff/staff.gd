@@ -1,12 +1,14 @@
 extends Node2D
 
 signal card_stolen(card_id: String)
+signal task_item_stolen(item_id: String, target_id: String)
 signal steal_attempted(card_id: String, succeeded: bool)
 signal task_failure_requested(reason: String, target_id: String)
 
 @export_enum("SECURITY", "CLEANER", "MANAGER") var card_id: String = "SECURITY"
 @export var target_id: String = ""
-@export_enum("CARD") var reward_type: String = "CARD"
+@export_enum("CARD", "TASK_ITEM") var reward_type: String = "CARD"
+@export var reward_id: String = ""
 @export var requires_task_eligibility: bool = false
 @export var steal_radius: float = 55.0
 @export var steal_hold_time: float = 0.8
@@ -21,8 +23,10 @@ var _player: HotelPlayer
 var _player_in_range: bool = false
 var _is_stealing: bool = false
 var _steal_elapsed: float = 0.0
+var _steal_player_position: Vector2
 var _task_eligible: bool = false
 var _interaction_enabled: bool = true
+var _task_item_available: bool = true
 var _is_alerted: bool = false
 var _is_suspicious: bool = false
 var _suspicion_previous_state: String = "IDLE"
@@ -164,11 +168,12 @@ func begin_steal() -> bool:
 		steal_attempted.emit(card_id, false)
 		_request_task_failure("STAFF_CAUGHT")
 		return false
-	if _player.is_moving or _is_cleaner_walking():
+	if _is_player_movement_input_active() or _is_cleaner_walking():
 		steal_attempted.emit(card_id, false)
 		return false
 	_is_stealing = true
 	_steal_elapsed = 0.0
+	_steal_player_position = _player.global_position
 	return true
 
 
@@ -184,19 +189,69 @@ func is_stealing() -> bool:
 	return _is_stealing
 
 
+func get_interaction_progress() -> float:
+	if not _is_stealing or steal_hold_time <= 0.0:
+		return 0.0
+	return clampf(_steal_elapsed / steal_hold_time, 0.0, 1.0)
+
+
+func get_interaction_elapsed() -> float:
+	return _steal_elapsed if _is_stealing else 0.0
+
+
+func get_interaction_block_reason() -> String:
+	if _is_alerted:
+		return "ALERTED"
+	if _is_suspicious:
+		return "CURIOUS"
+	if not _player_in_range:
+		return "OUT_OF_RANGE"
+	if not _interaction_enabled:
+		return "DISABLED"
+	if not is_task_eligible() or not _is_reward_available():
+		return "INELIGIBLE"
+	if _is_cleaner_walking():
+		return "STAFF_MOVING"
+	if _player != null and (_is_player_movement_input_active() or (_is_stealing and not _player.global_position.is_equal_approx(_steal_player_position))):
+		return "PLAYER_MOVING"
+	if not is_player_behind():
+		return "FRONT"
+	return "STEALING" if _is_stealing else "READY"
+
+
+func set_reward_available(available: bool) -> void:
+	_task_item_available = available
+	if not _is_reward_available():
+		cancel_steal()
+	_update_card_marker()
+
+
+func is_reward_available() -> bool:
+	return _is_reward_available()
+
+
 func _complete_steal() -> bool:
 	_is_stealing = false
 	_steal_elapsed = 0.0
-	var succeeded: bool = reward_type == "CARD" and CardManager.collect_card(card_id)
+	var succeeded: bool = false
+	var completed_reward_id: String = card_id if reward_type == "CARD" else reward_id
+	if reward_type == "CARD":
+		succeeded = CardManager.collect_card(card_id)
+	elif reward_type == "TASK_ITEM" and _task_item_available and not reward_id.is_empty():
+		_task_item_available = false
+		succeeded = true
 	steal_attempted.emit(card_id, succeeded)
 	if succeeded:
 		_end_suspicion(true)
 		turn_warning.visible = false
-		feedback_label.text = "GOT %s ID" % card_id
+		feedback_label.text = "GOT %s" % completed_reward_id
 		feedback_label.visible = true
 		feedback_timer.start()
 		_update_card_marker()
-		card_stolen.emit(card_id)
+		if reward_type == "CARD":
+			card_stolen.emit(card_id)
+		else:
+			task_item_stolen.emit(reward_id, target_id)
 	return succeeded
 
 
@@ -209,6 +264,10 @@ func is_player_behind() -> bool:
 		return false
 	var player_side: float = _player.global_position.x - global_position.x
 	return player_side * facing_direction < 0.0
+
+
+func _is_player_movement_input_active() -> bool:
+	return Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -227,7 +286,7 @@ func _process(delta: float) -> void:
 	if not _interaction_enabled or GameManager.game_state != "PLAYING" or not _player_in_range or _player == null:
 		cancel_steal()
 		return
-	if _player.is_moving:
+	if _is_player_movement_input_active() or not _player.global_position.is_equal_approx(_steal_player_position):
 		cancel_steal()
 		return
 	if not is_player_behind():
@@ -297,7 +356,11 @@ func _update_card_marker() -> void:
 
 
 func _is_reward_available() -> bool:
-	return reward_type == "CARD" and not CardManager.has_card(card_id)
+	if reward_type == "CARD":
+		return not CardManager.has_card(card_id)
+	if reward_type == "TASK_ITEM":
+		return _task_item_available and not reward_id.is_empty()
+	return false
 
 
 func _request_task_failure(reason: String) -> void:

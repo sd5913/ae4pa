@@ -2,9 +2,11 @@ class_name CleaningSpot
 extends Node2D
 
 signal cleaning_completed(target_id: String)
+signal work_requested(target_id: String)
 signal interaction_cancelled(target_id: String)
 
 @export var target_id: String = "STAIN_201"
+@export_enum("CLEAN", "PICKUP", "AUTHORIZE") var interaction_type: String = "CLEAN"
 @export var required_card: String = "CLEANER"
 @export var hold_duration: float = 1.5
 
@@ -36,6 +38,8 @@ func begin_interaction() -> bool:
 		return false
 	_is_interacting = true
 	_elapsed = 0.0
+	if interaction_type in ["PICKUP", "AUTHORIZE"]:
+		_complete_interaction()
 	return true
 
 
@@ -56,15 +60,28 @@ func advance_interaction(delta: float) -> void:
 	_elapsed += delta
 	if _elapsed < hold_duration:
 		return
+	_complete_interaction()
+
+
+func _complete_interaction() -> void:
 	_is_interacting = false
 	_elapsed = 0.0
 	_completion_reported = true
 	_set_completed_visual(true)
-	cleaning_completed.emit(target_id)
+	work_requested.emit(target_id)
+	if interaction_type == "CLEAN":
+		cleaning_completed.emit(target_id)
 
 
 func can_interact() -> bool:
-	return _task_active and _player_in_range and CardManager.active_card == required_card
+	return (
+		_task_active
+		and _player_in_range
+		and _player != null
+		and not _player.is_moving
+		and GameManager.is_world_input_allowed()
+		and CardManager.active_card == required_card
+	)
 
 
 func is_interacting() -> bool:
@@ -73,6 +90,18 @@ func is_interacting() -> bool:
 
 func is_player_in_range() -> bool:
 	return _player_in_range
+
+
+func get_interaction_progress() -> float:
+	if not _is_interacting:
+		return 0.0
+	if interaction_type in ["PICKUP", "AUTHORIZE"] or hold_duration <= 0.0:
+		return 1.0
+	return clampf(_elapsed / hold_duration, 0.0, 1.0)
+
+
+func get_interaction_elapsed() -> float:
+	return _elapsed if _is_interacting else 0.0
 
 
 func set_completed(completed: bool) -> void:
@@ -90,7 +119,11 @@ func is_completed() -> bool:
 
 
 func _set_completed_visual(completed: bool) -> void:
-	$Stain.visible = not completed
+	var visual: CanvasItem = get_node_or_null("WorkVisual")
+	if visual == null:
+		visual = get_node_or_null("Stain")
+	if visual != null:
+		visual.visible = not completed
 	$Hint.visible = not completed
 	$WorkArea.set_deferred("monitoring", not completed)
 

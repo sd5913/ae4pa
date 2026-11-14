@@ -438,3 +438,12 @@
 - Godot 4.7.2 的临时实际场景探针 `/private/tmp/ae4pa_floor_placement_probe.gd` 检查五层图片映射、Atlas 取景、等比／3600 宽、地面对齐、背景位于主角之前的绘制顺序及原出生点，headless 与原生图形均 PASS／退出 0。原生 Compatibility／OpenGL 4.1 Metal 截图 `/private/tmp/ae4pa-placed-floor-1.png` 至 -5.png 和 ae4pa-placed-main.png 已逐张目视检查。
 - 独立工作区改动前 foundation 回归 PASS，改动后 foundation_smoke、floor_flow_smoke、intro_flow_smoke、safe_return_smoke 四项均 PASS／退出 0。日志位于 `/private/tmp/ae4pa-placement-*.log`。headless 有既有 macOS 系统证书诊断，初次编辑器导入另有沙箱内用户设置保存受限诊断。
 - README 和 assets/backgrounds/README.md 已同步实际主场景接法与占位限制。用户已授权这批背景接入提交并推送 main，发布结果由 Git 提交及远端 SHA 核对。
+
+## 2026年11月15日 B-V4-04／05 工作交互与巡房文件交付（Asia/Hong_Kong）
+
+- 开发隔离在 B 功能 worktree／分支，基线为已合并 main `007437a`；A 候选 `ef8a2f7` 仅用于接口核对和人工 201 验收，没有把其主场景、楼层、GameManager、UI、临时字体、经理位置或比例预览带入 B 交付。本机 `.vscode` 未进入 worktree 或提交范围。
+- 工作点在保留 `STAIN_201` CLEAN／1.5 秒／`cleaning_completed` 的基础上，新增 PICKUP、AUTHORIZE、`work_requested(target_id)`、一次性完成／恢复和只读进度。固定配置为 `PARCEL_CABINET_2F + SECURITY`、`REGISTER_309 + MANAGER`、`EXIT_REGISTER_5F + MANAGER`；任务资格、结果接受和世界事实仍由 A 保存。
+- Staff 新增 TASK_ITEM／reward_id、`task_item_stolen(item_id, target_id)`、PATROL_RECORD 一次性可用／恢复接口及只读进度／阻塞原因。`STAFF_PATROL_4F` 沿用背后站定、长按 0.8 秒、正面／回头被抓和全部取消条件；PATROL_RECORD 不进入 CardManager。静止判断使用开始位置和真实移动输入，修复正式 201 中松键后 `is_moving` 残留一帧导致的误取消，不改变范围、朝向、长按时长或失败后果。
+- 自动化实跑：`work_items_smoke.tscn` PASS（PICKUP／AUTHORIZE 身份门控、一次性、恢复、PATROL_RECORD、失败和只读进度）；`staff_core_smoke.tscn` PASS（员工、CardManager、移动／松键／离区／回头边界）；`cleaner_v4_smoke.tscn` PASS（资格、偷卡、快照、201 清洁和失败恢复）。`git diff --check` 在提交前执行并记录最终结果。
+- 人工验收：用户在 A 隔离正式 F5 中完成经理入口、201 接受、背后偷保洁卡、Q 切身份、STAIN_201 清洁和 201 交付，HUD 显示任务完成，暂未发现其他明显玩法阻塞。自动化与人工证据分开记录，后续任务 02—05 尚未正式楼层联调。
+- 后续依赖：A 扩展后续资格／结果／world flag／检查点恢复并组装楼层；D 消费进度和阻塞原因，D-05 确认任务 03 结算。201 交付仍缺怪物回应、任务完成提示和通路解锁反馈，列为 A/C/D 体验优化。玩家／员工约 64—66px、房门约 192px，与背景家具／静态人物比例不一致，列为 A 牵头、B/C/D 协同的统一比例问题，本轮不提交临时比例预览。
