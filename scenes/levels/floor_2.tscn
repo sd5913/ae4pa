@@ -17,6 +17,9 @@ position = Vector2(0, 190.625)
 scale = Vector2(0.9375, 0.9375)
 texture = SubResource("AtlasTexture_background")
 
+[node name="Player" parent="." index="2"]
+z_index = 1
+
 [node name="Room201" type="Marker2D" parent="DoorRoot" index="0"]
 position = Vector2(700, 560)
 metadata/room_number = 201

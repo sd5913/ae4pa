@@ -447,3 +447,11 @@
 - 新增 `scenes/tests/doors/room_201_art_preview.tscn` 和 `room_201_art_smoke.gd`。本机 Godot 4.7.2 editor import 完成；room_201_art_smoke 输出 PASS，验证真实继承门状态驱动贴图、完整画布、相同矩形／锚点／变换和无占位重叠；原 door_cycle_smoke 输出 PASS，覆盖 20 循环等原有时序。
 - 原生 Compatibility／NVIDIA 渲染预览截图已目视检查：三状态共用基线和比例，预警延伸完整可见。沙箱环境存在 user:// 日志／shader 缓存与编辑器设置目录写入诊断；未发现脚本解析或贴图导入错误，不称环境零错误。
 - 本轮未替换楼层与主线中的现有门实例；可复用场景已在引擎导入。接入者可在 201 门位选用新场景，并沿用已有 NORMAL／STORY、task_id、monster_type 和 setup(player) 配置；原 PNG 的怪物造型不改变游戏规则。
+
+## 2026-11-15 C：按用户授权替换主线 201 门并准备合入
+
+- 用户明确要求直接合入并替换主线 201 门实例。fetch 后 main 仍为 007437a，原有资产 PR #26 分支继续增加主线接入，未操作原 C 工作区。
+- floor.gd 仅对 Room201 选用 room_201_door.tscn；原 STORY／TASK_01_CLEAN／NOSE、检测位置、半径、信号、setup(player) 保留。202 仍使用原通用门。
+- 原生截图发现默认 0.18 倍资产叠在背景静态大门前；主线 Art 统一调整为 0.32 倍和局部位置 (-40,10)，覆盖背景 201，三状态仍共用完整画布和同一变换。floor_2.tscn 将 Player z_index 设为 1，避免主角走到新门前被贴图遮挡。未编辑背景 PNG。
+- Godot 4.7.2 safe_return_smoke（新增真实主线场景、完整画布、202 不变和前景主角检查）、foundation_smoke、room_201_art_smoke 均 PASS；main --headless --quit-after 3 退出 0。原生渲染主线 2F 的关门／预警／开门截图已目视检查，门框与基线稳定，主角可见。
+- 存在既有沙箱 user:// 日志和 shader 缓存写入诊断，未发现脚本解析或运行错误。没有代记完整真人任务通关或其他平台验证。

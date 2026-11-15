@@ -234,7 +234,8 @@ func _setup_doors() -> void:
 		if floor_number != 2 or slot.name not in ["Room201", "Room202"]:
 			_add_caption(slot, "%s · %s\n房门接入位" % [slot.get_meta("room_number"), slot.get_meta("monster_type")], -230.0)
 			continue
-		var door: Node2D = preload("res://scenes/doors/monster_door.tscn").instantiate()
+		var door_scene: PackedScene = preload("res://scenes/doors/room_201_door.tscn") if slot.name == "Room201" else preload("res://scenes/doors/monster_door.tscn")
+		var door: Node2D = door_scene.instantiate()
 		if not door.has_method("finish_safe_return") or not door.has_method("set_story_state"):
 			door.free()
 			_add_caption(slot, "%s · 门组件待同步 C PR #12" % slot.get_meta("room_number"), -230.0)
@@ -243,6 +244,9 @@ func _setup_doors() -> void:
 		door.room_id = str(slot.get_meta("room_number"))
 		door.monster_type = slot.get_meta("monster_type")
 		if slot.name == "Room201":
+			# Match the baked background doorway; gameplay origin stays at its marker.
+			door.get_node("Art").position = Vector2(-40, 10)
+			door.get_node("Art").scale = Vector2(0.32, 0.32)
 			door.door_mode = "STORY"
 			door.task_id = GameManager.TASK_01_ID
 			door.story_radius = 120.0

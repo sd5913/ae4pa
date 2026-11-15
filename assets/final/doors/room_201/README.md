@@ -16,4 +16,4 @@
 F6 预览入口：`res://scenes/tests/doors/room_201_art_preview.tscn`，三状态并列、同一水平基线。
 自动检查：`godot --headless --path . --script res://scenes/tests/doors/room_201_art_smoke.gd`。
 
-本次交付为可复用资产和可实例化门场景；现有楼层、主入口及通用门实例保持当前接线，整合者可在目标 201 门位选用新场景。门牌 201 和开门怪物已画入 PNG，不适合直接改作其他房号。
+主线 2F 的 `DoorRoot/Room201/Door` 现由 `floor.gd` 实例化为 `room_201_door.tscn`，保留原有 STORY／TASK_01_CLEAN／NOSE 配置、位置和信号接线；202 继续使用通用门。门牌 201 和开门怪物已画入 PNG，不适合直接改作其他房号。背景图内原有静态绘制内容仍属于背景素材。
