@@ -44,8 +44,11 @@ func _run() -> void:
 	_expect(normal.scene_file_path == "res://scenes/doors/monster_door.tscn", "202 retains its generic door")
 	_expect(story.get_node("Art/Sprite2D").texture.get_size() == Vector2(1280, 1280), "Main 201 retains the complete PNG canvas")
 	_expect(player.z_index > story.z_index + story.get_node("Art").z_index, "Corridor player remains in front of the door art")
+	var normal_x: float = normal.global_position.x
+	var left_safe_x: float = floor_node.get_node("Interactions/Room202LeftSafe").global_position.x
+	var right_safe_x: float = floor_node.get_node("Interactions/Room202RightSafe").global_position.x
 	game.set_process(false) # Advance the real task timer explicitly for deterministic checks.
-	player.global_position.x = 700.0
+	player.global_position.x = story.global_position.x
 	await physics_frame
 	await physics_frame
 	_expect(game.get("task_status") == "AVAILABLE" and game.get("remaining_time") == 0.0, "Real story interception offers without starting time")
@@ -69,18 +72,18 @@ func _run() -> void:
 	foreign.queue_free()
 	# Real C records entry from outside, then reports wrong identity inside OPEN.
 	for side: int in [-1, 1]:
-		player.global_position.x = 1550.0 + side * 180.0
+		player.global_position.x = normal_x + side * 180.0
 		normal.set("door_state", "CLOSED")
 		await physics_frame
 		await physics_frame
 		normal.set_process(false)
 		normal.set("door_state", "OPEN")
 		# Cross the door centre in one frame; entry evidence, not facing/current side, wins.
-		player.global_position.x = 1550.0 - side * 20.0
+		player.global_position.x = normal_x - side * 20.0
 		await physics_frame
 		await process_frame
 		await process_frame
-		_expect(player.global_position.x == (1400.0 if side == -1 else 1700.0), "Real ordinary violation returns to its approach side")
+		_expect(player.global_position.x == (left_safe_x if side == -1 else right_safe_x), "Real ordinary violation returns to its approach side")
 		_expect(game.get("game_state") == "PLAYING", "Safe return resumes play without task failure")
 		_expect(not player.is_moving, "Teleport does not count as EAR movement")
 	_expect(game.call("get_world_flags") == flags and cards.call("get_owned_cards") == inventory, "Safe return preserves world and card truth")
@@ -90,7 +93,7 @@ func _run() -> void:
 	game.set("remaining_time", 37.5)
 	normal.set("door_state", "CLOSED")
 	await physics_frame
-	player.global_position.x = 1530.0
+	player.global_position.x = (normal_x - 20.0)
 	game.call("request_safe_return", normal, "WRONG_CARD", -1)
 	game.call("_process", 5.0)
 	_expect(game.get("remaining_time") == 37.5 and game.get("task_status") == "ACTIVE", "Return locks preserve a running task and stop only the return interval")
@@ -101,27 +104,30 @@ func _run() -> void:
 	await physics_frame
 	# Registered points are revalidated after layout/radius changes.
 	var left_point: Node2D = floor_node.get_node("Interactions/Room202LeftSafe")
-	left_point.position.x = 700.0
-	player.global_position.x = 1530.0
+	left_point.global_position.x = story.global_position.x
+	player.global_position.x = (normal_x - 20.0)
 	game.call("request_safe_return", normal, "WRONG_CARD", -1)
-	_expect(player.global_position.x == 1530.0, "A rejects a safe point inside the story region")
-	left_point.position.x = 1400.0
-	game.set("_world_flags", {}) # Locked-route fixture: returning across x1250 is forbidden.
+	_expect(player.global_position.x == (normal_x - 20.0), "A rejects a safe point inside the story region")
+	left_point.global_position.x = left_safe_x
+	var original_barrier: float = floor_node.task_01_barrier_x
+	floor_node.task_01_barrier_x = normal_x - 50.0
+	game.set("_world_flags", {}) # A route lock between actor and destination forbids return.
 	floor_node.call("_apply_task_route")
-	left_point.position.x = 1120.0
-	player.global_position.x = 1530.0
+	left_point.global_position.x = normal_x - 150.0
+	player.global_position.x = (normal_x - 20.0)
 	game.call("request_safe_return", normal, "WRONG_CARD", -1)
-	_expect(player.global_position.x == 1530.0, "Safe return cannot cross the undelivered route lock")
+	_expect(player.global_position.x == (normal_x - 20.0), "Safe return cannot cross the undelivered route lock")
+	floor_node.task_01_barrier_x = original_barrier
 	game.set("_world_flags", flags)
 	floor_node.call("_apply_task_route")
-	left_point.position.x = 1400.0
+	left_point.global_position.x = left_safe_x
 	# One synchronous batch cannot cause two returns, and new-floor sources stay isolated.
 	await physics_frame
 	normal.set("door_state", "CLOSED")
-	player.global_position.x = 1530.0
+	player.global_position.x = (normal_x - 20.0)
 	game.call("request_safe_return", normal, "WRONG_CARD", -1)
 	game.call("request_safe_return", normal, "WRONG_CARD", 1)
-	_expect(player.global_position.x == 1400.0, "Same-frame requests cannot return twice")
+	_expect(player.global_position.x == left_safe_x, "Same-frame requests cannot return twice")
 	await process_frame
 	await process_frame
 	player.global_position.x = 192.0

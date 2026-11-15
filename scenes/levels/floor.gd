@@ -232,7 +232,8 @@ func _setup_doors() -> void:
 	for slot: Node2D in $DoorRoot.get_children():
 		# M1 assembles 201 plus one ordinary door, without enabling task 02.
 		if floor_number != 2 or slot.name not in ["Room201", "Room202"]:
-			_add_caption(slot, "%s · %s\n房门接入位" % [slot.get_meta("room_number"), slot.get_meta("monster_type")], -230.0)
+			if not has_node("Floor2Art"):
+				_add_caption(slot, "%s · %s\n房门接入位" % [slot.get_meta("room_number"), slot.get_meta("monster_type")], -230.0)
 			continue
 		var door_scene: PackedScene = preload("res://scenes/doors/room_201_door.tscn") if slot.name == "Room201" else preload("res://scenes/doors/monster_door.tscn")
 		var door: Node2D = door_scene.instantiate()
@@ -257,6 +258,8 @@ func _setup_doors() -> void:
 			_safe_points[door] = [$Interactions/Room202LeftSafe, $Interactions/Room202RightSafe]
 			door.rule_violated.connect(_on_door_violation.bind(door))
 		slot.add_child(door)
+		if has_node("Floor2Art"):
+			$Floor2Art.bind_door(door.room_id, door)
 		door.setup(player)
 		_doors.append(door)
 

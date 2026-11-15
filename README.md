@@ -1,5 +1,7 @@
 # 怪物员工通道 Monster Staff Access
 
+二楼采用独立资产分层组装：可编辑场景 `scenes/levels/floor_2_art.tscn`，F6 入口 `scenes/tests/doors/floor_2_layout_preview.tscn`。A/D 行走，F1 参考图状态，F2—F4 查看门三态，F5 循环。主线 201／202 已绑定新美术与校准检测位置；203—205 仍为参考状态展示。摆放与限制见 [二楼布景说明](scenes/levels/floor_2_art_layout.md)。
+
 五层占位背景已接入实际楼层场景。按 F5 运行，序章结束后可看到 1F 背景。F6 运行 `scenes/tests/core/floors_test.tscn` 可用开发换层按钮查看 1F—5F。图片按现有 3600 宽走廊等比摆放，地面与主角脚底对齐。原图含静态人物，部分门位需要后续校准。素材接法见 [背景说明](assets/backgrounds/README.md)。
 
 2026-11-12 A 分支当前版本：已同步 main 的 C PR #12／D 开场 PR #13，并把真实序章、前台经理 E 谈话、201 任务门与普通门退回接入主场景。F5 播序章，结束后进入 1F，靠近经理按 E 谈话，完成后可无卡上 2F。五任务定义已建立，当前只运行任务 01。B 快照／清理组件已合入 main，A 主线接线与 D 完整任务页面继续待完成，M1 尚未完成。A 的上一批接线已通过 PR #15 合入 main，B 新组件通过 PR #14 合入 main。逐项结果见 [A 清单处理结果](docs/a_checklist_results.md)。

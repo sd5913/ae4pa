@@ -1,0 +1,851 @@
+{
+  "schema": 1,
+  "floor": 2,
+  "branch": "work/member-C-yinshiqi",
+  "source": {
+    "name": "floor_2_4k.png",
+    "size": [
+      3840,
+      2160
+    ],
+    "visible_rect_xywh": [
+      0,
+      866,
+      3840,
+      428
+    ],
+    "sha256": "c6fc9e2d75052c324adcef4d4deeba6ce9d0360942c1ff6cff453b527857dd9d"
+  },
+  "method": "Built-in imagegen reference-based layer extraction/reconstruction; deterministic lossless PNG sheet division, no sprite resampling.",
+  "limitations": [
+    "Not original PSD layers or pixel-identical object extraction. Generated designs can differ in ornament and proportion.",
+    "Occluded wall/stair/cabinet edges and skyline/floor modules are reconstructed.",
+    "Existing room_201 three-state asset is unchanged; these floor-derived doors are separate static sprites, not new state animations.",
+    "No characters, dirt stain, registration desk or new exit sign generated. Stairs are the visible travel portals.",
+    "Illumination and shading inside the painted object are baked; external FX are separately controllable."
+  ],
+  "assets": [
+    {
+      "path": "04_back_furniture/portrait_top_hat.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "82a0236a027bf4e0d366805dc1b40e382ee974a8d01d9a1f9fe1f4d210c20fc8",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "furniture",
+      "sheet_rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "04_back_furniture/painting_moon_city.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "cb3724e119c25b74fda0c6af146170122de2416adc5280a88c780a9633d0da56",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "furniture",
+      "sheet_rect": [
+        512,
+        0,
+        1024,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "04_back_furniture/painting_landscape.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "ee67d9a12f162c020811272507e3bf87f02887e8c6c29f408c7451f1022b99e2",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "furniture",
+      "sheet_rect": [
+        1024,
+        0,
+        1536,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "04_back_furniture/plant_large.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "d8ca8aa419821c233f35b2c7bfec5089b092e5fc06b337592af6c4c789e4f0c9",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "furniture",
+      "sheet_rect": [
+        0,
+        512,
+        512,
+        1024
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "04_back_furniture/sofa.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "210bfaea38651f535b598b70dfe646d28d14d1ff2c6136398c81297cf4cb31b2",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "furniture",
+      "sheet_rect": [
+        512,
+        512,
+        1024,
+        1024
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "04_back_furniture/flowers_pedestal.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "bca233048682856fdeac5414c13ec248e637bb30a244a33907f9ef62ecd9c62d",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "furniture",
+      "sheet_rect": [
+        1024,
+        512,
+        1536,
+        1024
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "05_interactive/door_201_closed.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "a729d08c9cd65a3fd2edaf0874a114a657424f77b4b9c37935d4c95ff996cd27",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "doors",
+      "sheet_rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "05_interactive/door_202_closed.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "f857fb8395918e6f446180574473af5918188439c9adae70687d25d4a4b59228",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "doors",
+      "sheet_rect": [
+        512,
+        0,
+        1024,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "05_interactive/door_203_closed.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "5c4a863768814e1c03e9804664dd5510e0ce6e3202d8b08e96d716dafc9a33eb",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "doors",
+      "sheet_rect": [
+        1024,
+        0,
+        1536,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "05_interactive/door_204_warning_base.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "1a9dc920df0d2430258a8b4e8e4f12c6b45493948ca35ba7e6d43a0529e43368",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "doors",
+      "sheet_rect": [
+        0,
+        512,
+        512,
+        1024
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "05_interactive/door_205_open.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "86b3067517a582118441e012b02992416fdcf4e82731f9fe8225c0be3c0bc71f",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "doors",
+      "sheet_rect": [
+        512,
+        512,
+        1024,
+        1024
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "05_interactive/stairs_left_portal.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "22f7d3db070fb9110351b6a71a398dac8cf44de5c36de0c1841411e279c1c06f",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "interaction",
+      "sheet_rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "05_interactive/stairs_right_portal.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "d622389a6ad965443bf2075c98330d7e4f70eeb2b7a982d3e1aae44d85c42bd2",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "interaction",
+      "sheet_rect": [
+        512,
+        0,
+        1024,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "05_interactive/floor_sign_2f.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "1d2a87aed9ee7357fce5343e7cf9abcdd7e68746136f779f1147f9ea1768d98c",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "interaction",
+      "sheet_rect": [
+        1024,
+        0,
+        1536,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "05_interactive/mail_package_cabinet.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "534f744f40fbb90c89c740922afbd53bb012575011d5bc3f0669c28cc32c5c18",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "interaction",
+      "sheet_rect": [
+        0,
+        512,
+        512,
+        1024
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "05_interactive/mop_bucket.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "fb4905a9c9343b49a1bf7223d01566c6f84877e14131f9bd8f5324b132e7a1e7",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "interaction",
+      "sheet_rect": [
+        512,
+        512,
+        1024,
+        1024
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "05_interactive/sealed_envelope.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "f0a91982eb3e8d50e3778a4c30cb4bfef802cf8dfbf0d92daad20227651d6b8f",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "interaction",
+      "sheet_rect": [
+        1024,
+        512,
+        1536,
+        1024
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "06_foreground/column_left.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "6561d9a3d1ad799633eea27094b15862b305703c830cf3ae1e80f12e5c37255c",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "foreground",
+      "sheet_rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "06_foreground/column_right.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "1a7a3f5e6596afa0a02312b695aace940bba3ed091d9e816b7ad84e674a83781",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "foreground",
+      "sheet_rect": [
+        512,
+        0,
+        1024,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "06_foreground/rope_barrier.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "2fb695dac6940f29f1daba470dcd030b6a37afdbe6ce9be20ce99abce13575bc",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "foreground",
+      "sheet_rect": [
+        1024,
+        0,
+        1536,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "06_foreground/stair_handrail_left.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "576cc99e5aa862ec42f0a9da7b7bab120cd8029167f797bc11bc66dbd9c7a0bd",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "foreground",
+      "sheet_rect": [
+        0,
+        512,
+        512,
+        1024
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "06_foreground/stair_handrail_right.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "3c881b5d40030b215390c533721f61b858dca6c6403e4b730bbff89cebb0c888",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "foreground",
+      "sheet_rect": [
+        512,
+        512,
+        1024,
+        1024
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "02_architecture/wall_lantern.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "df279ecbbc10bb8eb3866be9dde14500cea5bc1ed700d712adfeb9f031d0457e",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "foreground",
+      "sheet_rect": [
+        1024,
+        512,
+        1536,
+        1024
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_bottom_center",
+      "effect_center_px": null
+    },
+    {
+      "path": "07_fx/lamp_glow_gold.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "f42d389dd752ee5f4faf49c0fcfb4a573c5e63f116fe6872e9a9b39faa8a3b30",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "fx",
+      "sheet_rect": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_center_recommended",
+      "effect_center_px": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "07_fx/lamp_glow_red.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "0aa0dcde13a946f07f52544004bdb361659444ab7ac4fe9ad7aeaef211851287",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "fx",
+      "sheet_rect": [
+        512,
+        0,
+        1024,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_center_recommended",
+      "effect_center_px": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "07_fx/alarm_sirens_pair.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "d76488cc80bb94c7000eedc96a5b7876c40b104d433f49c237e36e84ba0695fc",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "fx",
+      "sheet_rect": [
+        1024,
+        0,
+        1536,
+        512
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_center_recommended",
+      "effect_center_px": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "07_fx/alarm_rays_pair.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "6a18e393e23c1a54a04fdc97d0139f505f3b9d8c680516ef6f2c4d44470d2e37",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "fx",
+      "sheet_rect": [
+        0,
+        512,
+        512,
+        1024
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_center_recommended",
+      "effect_center_px": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "07_fx/door_light_spill.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "1d17e6e6ae8acbfac7d91db3873545d32cd5566b459bb29cc170f89134cf7338",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "fx",
+      "sheet_rect": [
+        512,
+        512,
+        1024,
+        1024
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_center_recommended",
+      "effect_center_px": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "07_fx/contact_shadow.png",
+      "size": [
+        512,
+        512
+      ],
+      "alpha": true,
+      "anchor_px": [
+        256.0,
+        512
+      ],
+      "sha256": "5f1d8cb65abec19e3359fc0653cccaacb1e048d04e6480b3fef063536b4d800b",
+      "provenance": "ai_reference_reconstructed_cutout",
+      "sheet": "fx",
+      "sheet_rect": [
+        1024,
+        512,
+        1536,
+        1024
+      ],
+      "keep_canvas": true,
+      "anchor_kind": "cell_center_recommended",
+      "effect_center_px": [
+        256,
+        256
+      ]
+    },
+    {
+      "path": "01_far/night_city_module.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha": false,
+      "anchor_px": [
+        768.0,
+        1024
+      ],
+      "sha256": "72cd71e0bb505bb2f39d1a4f9baa4317f1f21d9cb6a2c4cd63184f9fd2d2e07f",
+      "provenance": "ai_reconstructed_from_visible_city_slivers",
+      "tile_mode": "alternate_mirror_x"
+    },
+    {
+      "path": "02_architecture/wall_module.png",
+      "size": [
+        1774,
+        887
+      ],
+      "alpha": false,
+      "anchor_px": [
+        887.0,
+        887
+      ],
+      "sha256": "9ce44da3f3c50f263861cf2bfd07c38c34f86ee6a5bd9f1f6af673904347de87",
+      "provenance": "ai_reconstructed_wall_behind_objects",
+      "tile_mode": "alternate_mirror_x"
+    },
+    {
+      "path": "03_floor/carpet_floor_module.png",
+      "size": [
+        2172,
+        425
+      ],
+      "alpha": false,
+      "anchor_px": [
+        1086.0,
+        425
+      ],
+      "sha256": "9f4303e6ca474f7cdbe09a0e1b5ba09043477d554d3da311464ed6d700eca27d",
+      "provenance": "ai_reconstructed_floor_native_crop",
+      "tile_mode": "alternate_mirror_x"
+    },
+    {
+      "path": "reference_only/original_zone_01.png",
+      "size": [
+        1280,
+        428
+      ],
+      "alpha": true,
+      "anchor_px": [
+        640.0,
+        428
+      ],
+      "sha256": "57a6b2c685003fdf682719c1db5f0475a42b77c0a84dfbe2a8ecf26700903ef4",
+      "provenance": "source_pixels_unchanged",
+      "source_rect": [
+        0,
+        866,
+        1280,
+        428
+      ],
+      "not_a_clean_layer": true
+    },
+    {
+      "path": "reference_only/original_zone_02.png",
+      "size": [
+        1280,
+        428
+      ],
+      "alpha": true,
+      "anchor_px": [
+        640.0,
+        428
+      ],
+      "sha256": "4e550da593b3c4df7024764c5d3057d6a92662f379fb8bce22f9a67c072fe2fd",
+      "provenance": "source_pixels_unchanged",
+      "source_rect": [
+        1280,
+        866,
+        1280,
+        428
+      ],
+      "not_a_clean_layer": true
+    },
+    {
+      "path": "reference_only/original_zone_03.png",
+      "size": [
+        1280,
+        428
+      ],
+      "alpha": true,
+      "anchor_px": [
+        640.0,
+        428
+      ],
+      "sha256": "ea359c938e5f974f975822ddff167b3e3a18d00aac3b7a07055ba0b1e6a0db31",
+      "provenance": "source_pixels_unchanged",
+      "source_rect": [
+        2560,
+        866,
+        1280,
+        428
+      ],
+      "not_a_clean_layer": true
+    }
+  ]
+}
