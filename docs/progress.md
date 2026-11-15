@@ -491,3 +491,19 @@
 - 发布范围包含此前 C 分支的二楼环境资产 a78d89b、五门三态／201 长鼻 7c82c38，以及本轮已验证的分层场景、门状态绑定、检测与安全点位置校准、独立预览、布局数据／说明和检查。README 移除待发布措辞。
 - 实际验证沿用上一段同一源码的 Godot layout／foundation／safe_return／world_interaction PASS、main 启动和原生截图结果；本轮仅更新发布说明，另执行精确暂存范围与 git diff --cached --check，不虚构新一次运行记录。
 - 原有本地审阅记录、floor_2_observe 入口和 project.godot 自动行尾／默认值状态不纳入发布；不强制推送，不重置工作区。远端发布与合并以最终 PR／SHA 核对结果为准。
+
+## 2026-11-15 C：修复主入口 201 接任务与扫帚清理交互
+
+- 用户实玩反馈 201 被挡住、接不到任务且扫帚交互消失。核对发现：主入口 main 未装配已有 D MissionBoard，任务仅 offer 为 AVAILABLE 没有接取入口；布景时把整个 CleaningSpot 设为 invisible 且点位留在旧 x980，造成提示消失／与扫帚脱离。这是布景交互保留不完整，本轮恢复。
+- main.tscn 挂载已有 mission_board.tscn 并默认隐藏。主入口监听 task_offered 打开页面，真实接受按钮成功后隐藏并释放模态，增加“查看201任务”按钮方便关闭后重开；没有自动接受任务或伪造清理结果。
+- floor_2 的清理点移动到扫帚旁 x852，恢复节点可见并设前景 z1；201 未接任务边界留 8 像素触发余量，避免贴着半径边界无法进入。
+- 新主入口流程检查实际发现接受时模态仍打开，task_updated 令工作资格为 false，关页原先没有刷新。floor._on_modal_changed 现重新应用资格与路线，使保洁偷卡／清理在关页后正常启用。
+- 新 task_01_main_flow_smoke：从真实 main 入口走到201自动弹已有任务页面，点击真实接取按钮，关页／重开页后仍可交互，扫帚点可见且对齐，调用 CardManager 业务接口取得 CLEANER 作为卡片夹具，真实 E 长按通过 B 清理组件发信号，返回真实门 E 交付并验证通过 x1250 路障；PASS。序章／经理用显式前置夹具，本检查不代记真人全流程或真实偷卡通过；后者已有 world_interaction 覆盖。
+- Godot 4.7.2 world_interaction_smoke、foundation_smoke、safe_return_smoke 与新主入口检查全部 PASS。环境仅有既有 user:// 日志写入诊断。新检查最初验证失败并据此补上关页资格刷新，最终通过。本轮仅本地修复，未提交／推送／合并；保留现有未跟踪文件和 project.godot 状态。
+
+## 2026-11-16 C：201 交互修复发布授权
+
+- 用户明确要求推送本轮修复并入 main。fetch 确认 main、C 远端和本地均为 31d34ba，无远端新增，不需要合并其他源码变更。
+- 发布范围为主入口 MissionBoard 接线／接取后关页、任务按钮与指引，201 触发边界余量，扫帚 x852 可见交互点，关页资格刷新，新主入口接取—清理—交付检查及说明。
+- 沿用上一轮同一源码的 TASK_01_MAIN_FLOW、world_interaction、foundation、safe_return PASS；本轮只更新发布说明并检查暂存内容，不重复声称新一次运行。
+- project.godot、独立 core 测试入口的无内容行尾状态，以及原有未跟踪观察／审阅文件不纳入提交。远端结果由 PR 和提交 SHA 核对。

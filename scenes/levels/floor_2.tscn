@@ -40,10 +40,10 @@ metadata/room_number = 205
 metadata/monster_type = "HAT"
 
 [node name="Stain201Slot" type="Marker2D" parent="Interactions" index="2"]
-position = Vector2(980, 560)
+position = Vector2(852, 560)
 
 [node name="CleaningSpot" parent="Interactions/Stain201Slot" instance=ExtResource("3_cleaning_spot")]
-visible = false
+z_index = 1
 target_id = "STAIN_201"
 
 [node name="Task01AcceptSafe" type="Marker2D" parent="Interactions" index="3"]
