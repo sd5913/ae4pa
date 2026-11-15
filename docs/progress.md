@@ -473,3 +473,21 @@
 - 新增 rooms_201_205.md、manifest、实际 prompts 说明来源、精确对齐结果及锚点；更新 201 README 和旧分层包说明，避免把旧单态门当作三态素材。原用户 G 盘文件不改。
 - 实际验证：全部 15 PNG 解码／尺寸／SHA-256、15 个无损 size_limit=0 无 mipmaps 导入描述检查 PASS；Godot 4.7.2 editor import 完成，room_201_art_smoke PASS，12 纹理实际加载探针 ROOMS_202_205_IMPORT PASS。棋盘底三态总览及切换预览已检查。环境仍有既有 user:// 日志／编辑器设置保存诊断，未发现资源导入或脚本解析错误。
 - 仅个人分支提交美术及说明，不新建分支、不合入 main、不修改 202—205 正式场景／规则接线。本地未跟踪的审阅记录和二楼观察入口保留，不提交。
+
+## 2026-11-15 C：按参考图组装二楼分层场景（本地）
+
+- 用户要求使用已确认的 G 盘 2F_assets 包，在引擎按原图摆放二楼。开工 C 分支 7c82c38，与远端个人分支一致，main 无新提交。保留本地四个未跟踪审阅／观察文件，没有新建分支。
+- 对照 3840×2160 原图可见区 (0,866,3840,428) 测量布局。新增 floor_2_art.tscn：Far／Architecture／Floor／LightFX／BackFurniture／Travel／InteractiveProps／Lamps／Doors／Foreground 可编辑分组，采用现有模块与独立 PNG，不重新生成或修改资产，不继续把旧整图铺作背景。源图坐标、尺寸和实际纹理路径见 floor_2_art_layout.json。
+- 以整体 0.9375 和原点 (0,190.625) 映射到 3600 宽走廊，地面 y560；按原图位置／占用范围拟合五门和家具。由于确认的独立门比例与扁平图不同，门节点固定 X/Y 尺寸拟合，同一门三态共享完整 1280 画布和同一变换，不逐态裁边或缩放。保留原图 201—203关／204预警／205开初始美术状态。
+- floor_2.tscn 接入分层布景并隐藏旧背景／占位视觉；201／202 原业务组件继续运行，隐藏旧视觉并同步到新贴图。门检测中心与新位置同步为 x665.625／1226.25；202 安全点 x1076.25／1376.25。其余门仍只作参考状态美术展示，不代记其任务／检测已接入。任务锁仍 x1250，清洁交互不改内部实现。
+- 新增 floor_door_art.gd、floor_2_art.gd 和 F6 floor_2_layout_preview：A/D 移动，F1 参考姿态，F2—F4 三态，F5 美术循环。预览不创建假完成记录、不执行怪物判定。新增 floor_2_layout_smoke 验证状态变换／1280画布、地面、前景遮挡、真实门与美术中心、主线状态同步及预览移动。
+- 实际 Godot 4.7.2 editor import 完成；floor_2_layout_smoke、foundation_smoke、safe_return_smoke、world_interaction_smoke 均 PASS，main --headless --quit-after 3 退出 0。safe_return 检查改为读取实际门位／安全点，并保留跨锁拒绝等原覆盖。无脚本解析／导入错误；仍有既有 user:// 日志、shader 缓存、编辑器设置保存诊断。
+- 原生 Compatibility 渲染总览已目视检查；初轮修复 2F 门牌被前景柱挡住、警报射线顶部边界。输出任务 outputs/floor_2_assembled_overview.png 和 floor_2_reference_comparison.png。素材自身含重建，布局与层级按原图还原，但纹样／雕花／造型不可能逐像素相同；完整限制见 floor_2_art_layout.md。
+- Godot 编辑器已打开 floor_2_art.tscn；电脑操作切前台／2D 超时，未声称 UI 自动切换成功。引擎启动自动去掉显式默认 keep 配置，已仅恢复该行，project.godot 不产生本轮差异。未提交、推送或合并 main。
+
+## 2026-11-15 C：二楼场景与确认素材发布授权
+
+- 用户明确要求将当前成果推送并合入 main。fetch 确认 main 仍为 45cba59，C 远端与本地 HEAD 同为 7c82c38；main 无新变更，无需重复合并或重跑未改变的回归。
+- 发布范围包含此前 C 分支的二楼环境资产 a78d89b、五门三态／201 长鼻 7c82c38，以及本轮已验证的分层场景、门状态绑定、检测与安全点位置校准、独立预览、布局数据／说明和检查。README 移除待发布措辞。
+- 实际验证沿用上一段同一源码的 Godot layout／foundation／safe_return／world_interaction PASS、main 启动和原生截图结果；本轮仅更新发布说明，另执行精确暂存范围与 git diff --cached --check，不虚构新一次运行记录。
+- 原有本地审阅记录、floor_2_observe 入口和 project.godot 自动行尾／默认值状态不纳入发布；不强制推送，不重置工作区。远端发布与合并以最终 PR／SHA 核对结果为准。
