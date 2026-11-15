@@ -1,6 +1,8 @@
 extends Node2D
 ## A assembles D's opening and manager dialogue; task UI/work/checkpoint remain pending.
 
+@export var automatic_task_board: bool = true
+
 const STORY_MODAL: String = "STORY_DIALOGUE"
 var _active_dialogue_id: String = ""
 
@@ -10,6 +12,9 @@ var _active_dialogue_id: String = ""
 
 
 func _ready() -> void:
+	GameManager.task_offered.connect(_on_task_offered)
+	$TaskLayer/MissionBoard.task_accepted.connect(_on_task_accepted)
+	$DeveloperOverlay/Margin/Info/TaskButton.pressed.connect($TaskLayer/MissionBoard.open_board)
 	GameManager.state_changed.connect(_on_state_changed)
 	CardManager.cards_changed.connect(_on_cards_changed)
 	GameManager.floor_changed.connect(_on_floor_changed)
@@ -29,6 +34,7 @@ func _input(event: InputEvent) -> void:
 
 func _start_session() -> void:
 	_active_dialogue_id = ""
+	$TaskLayer/MissionBoard.hide()
 	dialogue.hide()
 	GameManager.start_game()
 	_show_story_dialogue("V4_INTRO")
@@ -78,7 +84,7 @@ func _on_floor_changed(_number: int) -> void:
 	var floor_node: Node = $World.get_child(0)
 	floor_node.notice_requested.connect(_show_notice)
 	floor_node.manager_talk_requested.connect(_on_manager_talk_requested)
-	notice_label.text = "前台经理可按 E 交谈；201 已接真实门，任务页面／清理／重试待交付"
+	notice_label.text = "靠近201接受清洁任务；取得保洁卡后，在扫帚旁按住E清理，返回201按E交付"
 	_on_state_changed(GameManager.game_state)
 
 
@@ -97,3 +103,13 @@ func _on_game_failed(reason: String) -> void:
 
 func _on_safe_return_started(reason: String) -> void:
 	_show_notice("普通门警告：%s · 已退回来侧，请观察后重试" % reason)
+
+
+func _on_task_offered(_task_id: String) -> void:
+	if automatic_task_board:
+		$TaskLayer/MissionBoard.call_deferred("open_board")
+
+
+func _on_task_accepted(_task_id: String) -> void:
+	$TaskLayer/MissionBoard.hide()
+	_show_notice("任务已接受：回1F取得保洁卡，装备后到2F扫帚旁按住E清理，再回201按E交付")

@@ -179,6 +179,7 @@ func _on_modal_changed() -> void:
 		slot.get_node("Staff").set_interaction_enabled(GameManager.is_world_input_allowed())
 	for door: Node2D in _doors:
 		door.set_physics_process(GameManager.is_world_input_allowed())
+	_apply_task_route() # Refresh work/staff eligibility after the task modal closes.
 
 
 func _on_state_changed(state: String) -> void:
@@ -202,7 +203,7 @@ func _apply_task_route() -> void:
 	if task_01_barrier_x > 0.0 and not GameManager.get_world_flags().get("passage_201_unlocked", false):
 		right_bound = task_01_barrier_x - 24.0
 		if not _doors.is_empty() and GameManager.task_status in ["NONE", "AVAILABLE"]:
-			right_bound = minf(right_bound, $DoorRoot/Room201.global_position.x - 120.0)
+			right_bound = minf(right_bound, $DoorRoot/Room201.global_position.x - 112.0)
 	player.set_walk_bounds(64.0, right_bound)
 	if has_node("Interactions/Task01Barrier"):
 		$Interactions/Task01Barrier.visible = right_bound < corridor_width - 64.0
