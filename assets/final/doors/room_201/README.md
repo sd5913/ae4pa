@@ -1,7 +1,7 @@
 # 201 房间门美术资产
 
 用户提供的三张最终 PNG：`door_closed.png`、`door_warning.png`、`door_open.png`。
-原始文件逐字节保留，均为 1280×1280 RGBA；透明边距也是资产的一部分。
+关闭、预警原始文件逐字节保留；开启态按用户后续要求仅将独眼怪物改为长鼻（NOSE）。三态均为 1280×1280 RGBA，原始门框、画布与 alpha 保留。
 预警图警报向外延伸，不能按各张透明内容边界分别裁剪、重设原点或缩放。
 
 ## Godot 接入
@@ -17,3 +17,5 @@ F6 预览入口：`res://scenes/tests/doors/room_201_art_preview.tscn`，三状�
 自动检查：`godot --headless --path . --script res://scenes/tests/doors/room_201_art_smoke.gd`。
 
 主线 2F 的 `DoorRoot/Room201/Door` 现由 `floor.gd` 实例化为 `room_201_door.tscn`，保留原有 STORY／TASK_01_CLEAN／NOSE 配置、位置和信号接线；202 继续使用通用门。门牌 201 和开门怪物已画入 PNG，不适合直接改作其他房号。背景图内原有静态绘制内容仍属于背景素材。
+
+五门三态复用与像素对齐检查见 [完整说明](../rooms_201_205.md)。
