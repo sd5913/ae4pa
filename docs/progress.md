@@ -438,3 +438,12 @@
 - Godot 4.7.2 的临时实际场景探针 `/private/tmp/ae4pa_floor_placement_probe.gd` 检查五层图片映射、Atlas 取景、等比／3600 宽、地面对齐、背景位于主角之前的绘制顺序及原出生点，headless 与原生图形均 PASS／退出 0。原生 Compatibility／OpenGL 4.1 Metal 截图 `/private/tmp/ae4pa-placed-floor-1.png` 至 -5.png 和 ae4pa-placed-main.png 已逐张目视检查。
 - 独立工作区改动前 foundation 回归 PASS，改动后 foundation_smoke、floor_flow_smoke、intro_flow_smoke、safe_return_smoke 四项均 PASS／退出 0。日志位于 `/private/tmp/ae4pa-placement-*.log`。headless 有既有 macOS 系统证书诊断，初次编辑器导入另有沙箱内用户设置保存受限诊断。
 - README 和 assets/backgrounds/README.md 已同步实际主场景接法与占位限制。用户已授权这批背景接入提交并推送 main，发布结果由 Git 提交及远端 SHA 核对。
+
+## 2026-11-15 C：201 房间门 PNG 可复用资产
+
+- 用户明确授权把三种门状态 PNG 推送 GitHub 并导入引擎，要求保留完整画布和相同锚点／缩放。在独立分支 `work/member-C-door-201-art` 基于最新 main `007437a` 实施，原 C 工作区未提交文件保留。
+- 新增 `assets/final/doors/room_201/` 三张原始 PNG、Godot 导入描述和接入 README。三张均为 1280×1280 RGBA，SHA-256 与用户源文件一致；无裁剪或重采样。无损导入、size_limit=0、无 mipmaps。
+- 新增 `scenes/doors/room_201_art.*`：一个 Sprite2D 切换 CLOSED／WARNING／OPEN，画布底部中心 (640,1280) 为共同锚点、统一 0.18 倍。新增 `room_201_door.*` 继承现有通用门，只替换视觉并隐藏占位图，原有状态循环与接口复用。纯美术可单独拖入使用。
+- 新增 `scenes/tests/doors/room_201_art_preview.tscn` 和 `room_201_art_smoke.gd`。本机 Godot 4.7.2 editor import 完成；room_201_art_smoke 输出 PASS，验证真实继承门状态驱动贴图、完整画布、相同矩形／锚点／变换和无占位重叠；原 door_cycle_smoke 输出 PASS，覆盖 20 循环等原有时序。
+- 原生 Compatibility／NVIDIA 渲染预览截图已目视检查：三状态共用基线和比例，预警延伸完整可见。沙箱环境存在 user:// 日志／shader 缓存与编辑器设置目录写入诊断；未发现脚本解析或贴图导入错误，不称环境零错误。
+- 本轮未替换楼层与主线中的现有门实例；可复用场景已在引擎导入。接入者可在 201 门位选用新场景，并沿用已有 NORMAL／STORY、task_id、monster_type 和 setup(player) 配置；原 PNG 的怪物造型不改变游戏规则。

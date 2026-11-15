@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/doors/room_201_art.tscn" id="1"]
+
+[node name="Room201ArtPreview" type="Node2D"]
+
+[node name="Background" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(0, 0, 1280, 0, 1280, 720, 0, 720)
+color = Color(0.12, 0.14, 0.18, 1)
+
+[node name="Baseline" type="Line2D" parent="."]
+points = PackedVector2Array(100, 620, 1180, 620)
+default_color = Color(0.4, 0.65, 0.7, 1)
+width = 2.0
+
+[node name="Closed" parent="." instance=ExtResource("1")]
+position = Vector2(300, 620)
+scale = Vector2(0.3, 0.3)
+
+[node name="Warning" parent="." instance=ExtResource("1")]
+position = Vector2(640, 620)
+scale = Vector2(0.3, 0.3)
+state = "WARNING"
+
+[node name="Open" parent="." instance=ExtResource("1")]
+position = Vector2(980, 620)
+scale = Vector2(0.3, 0.3)
+state = "OPEN"
+
+[node name="Title" type="Label" parent="."]
+offset_left = 100.0
+offset_top = 65.0
+theme_override_font_sizes/font_size = 28
+text = "201  |  CLOSED / WARNING / OPEN  |  1280 x 1280"
