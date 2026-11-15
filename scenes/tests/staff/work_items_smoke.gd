@@ -2,6 +2,8 @@ extends Node
 
 var _failed := false
 var _patrol_events: Array[Array] = []
+var _work_state_events: Array[Dictionary] = []
+var _staff_state_events: Array[Dictionary] = []
 
 
 func _ready() -> void:
@@ -51,6 +53,7 @@ func _ready() -> void:
 	progress_point.hold_duration = 1.5
 	progress_point.setup(player)
 	progress_point.set_task_active(true)
+	progress_point.interaction_state_changed.connect(_on_work_state_changed)
 	player.global_position = progress_point.global_position
 	player.velocity = Vector2.ZERO
 	player.is_moving = false
@@ -59,12 +62,23 @@ func _ready() -> void:
 	_expect(progress_point.begin_interaction(), "long-hold progress fixture did not start")
 	progress_point.advance_interaction(0.75)
 	_expect(is_equal_approx(progress_point.get_interaction_progress(), 0.5), "work progress is not a read-only 0..1 ratio")
+	var work_state: Dictionary = progress_point.get_interaction_state()
+	_expect(work_state.target_id == progress_point.target_id and work_state.interaction_type == "CLEAN", "work state identity fields are wrong")
+	_expect(work_state.status == "ACTIVE" and is_equal_approx(work_state.progress, 0.5), "work active state or progress is wrong")
+	_expect(is_equal_approx(work_state.elapsed, 0.75) and is_equal_approx(work_state.required_time, 1.5), "work elapsed/required time is wrong")
 	GameManager.set_modal_open("WORK_ITEMS_SMOKE", true)
 	progress_point.advance_interaction(0.01)
 	_expect(not progress_point.is_interacting() and progress_point.get_interaction_progress() == 0.0, "modal did not cancel work progress")
+	_expect(_work_state_events.any(func(state: Dictionary) -> bool: return state.status == "CANCELLED"), "work cancellation did not notify UI")
 	GameManager.set_modal_open("WORK_ITEMS_SMOKE", false)
+	_expect(progress_point.begin_interaction(), "work progress did not restart after cancellation")
+	progress_point.advance_interaction(1.5)
+	_expect(_work_state_events.any(func(state: Dictionary) -> bool: return state.status == "COMPLETED" and is_equal_approx(state.progress, 1.0)), "work completion did not notify UI")
+	progress_point.set_completed(false)
+	_expect(_work_state_events.any(func(state: Dictionary) -> bool: return state.status == "RESET"), "work reset did not notify UI")
 
 	patrol.task_item_stolen.connect(_on_task_item_stolen)
+	patrol.interaction_state_changed.connect(_on_staff_state_changed)
 	patrol.set_process(false)
 	patrol.get_node("TurnTimer").stop()
 	patrol.get_node("TurnWarningTimer").stop()
@@ -76,7 +90,9 @@ func _ready() -> void:
 	_expect(patrol.get_interaction_block_reason() == "FRONT", "front block reason is not readable")
 	_expect(not patrol.begin_steal(), "front PATROL_RECORD steal should fail")
 	_expect(GameManager.game_state == "FAILED", "front PATROL_RECORD steal did not report failure")
+	_expect(_staff_state_events.any(func(state: Dictionary) -> bool: return state.status == "CAUGHT"), "staff caught state did not notify UI")
 	test._on_recovery_timer_timeout()
+	_expect(_staff_state_events.any(func(state: Dictionary) -> bool: return state.status == "RESET"), "staff reset did not notify UI")
 	patrol.set_process(false)
 	patrol.get_node("TurnTimer").stop()
 	patrol.get_node("TurnWarningTimer").stop()
@@ -90,13 +106,19 @@ func _ready() -> void:
 	_expect(patrol.get_interaction_block_reason() == "STEALING", "active steal state is not readable")
 	patrol._process(0.4)
 	_expect(is_equal_approx(patrol.get_interaction_progress(), 0.5), "staff progress is not a read-only 0..1 ratio")
+	var staff_state: Dictionary = patrol.get_interaction_state()
+	_expect(staff_state.target_id == "STAFF_PATROL_4F" and staff_state.interaction_type == "STEAL", "staff state identity fields are wrong")
+	_expect(staff_state.status == "ACTIVE" and is_equal_approx(staff_state.progress, 0.5), "staff active state or progress is wrong")
+	_expect(is_equal_approx(staff_state.elapsed, 0.4) and is_equal_approx(staff_state.required_time, 0.8), "staff elapsed/required time is wrong")
 	patrol.cancel_steal()
 	_expect(patrol.get_interaction_progress() == 0.0, "cancelled staff progress did not reset")
+	_expect(_staff_state_events.any(func(state: Dictionary) -> bool: return state.status == "CANCELLED"), "staff cancellation did not notify UI")
 	_expect(patrol.begin_steal(), "PATROL_RECORD steal did not restart")
 	patrol._process(0.8)
 	_expect(_patrol_events == [["PATROL_RECORD", "STAFF_PATROL_4F"]], "PATROL_RECORD event payload or count is wrong")
 	_expect(not patrol.is_reward_available() and not CardManager.VALID_CARDS.has("PATROL_RECORD"), "task item leaked into card ownership")
 	_expect(patrol.get_interaction_block_reason() == "INELIGIBLE", "collected task item block reason is not readable")
+	_expect(_staff_state_events.any(func(state: Dictionary) -> bool: return state.status == "COMPLETED" and is_equal_approx(state.progress, 1.0)), "staff completion did not notify UI")
 	_expect(not patrol.begin_steal(), "PATROL_RECORD repeated before restore")
 	patrol.set_reward_available(true)
 	_expect(patrol.is_reward_available(), "A restore hook did not make PATROL_RECORD available")
@@ -110,6 +132,14 @@ func _ready() -> void:
 
 func _on_task_item_stolen(item_id: String, target_id: String) -> void:
 	_patrol_events.append([item_id, target_id])
+
+
+func _on_work_state_changed(_target_id: String, state: Dictionary) -> void:
+	_work_state_events.append(state.duplicate(true))
+
+
+func _on_staff_state_changed(_target_id: String, state: Dictionary) -> void:
+	_staff_state_events.append(state.duplicate(true))
 
 
 func _expect(condition: bool, message: String) -> void:

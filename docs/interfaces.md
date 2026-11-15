@@ -626,3 +626,30 @@ Staff 新增 `reward_type = CARD | TASK_ITEM` 和 `reward_id`。卡奖励保持�
 - A 待接：扩展 `is_interaction_allowed`／`record_work_result` 到三个工作点和 STAFF_PATROL_4F，保存对应 world flag，并在加载／重试时刷新 completed／reward available。
 - D 待接：使用只读进度和阻塞原因显示提示；D-05 仍需确认任务 03 是否批准即结算。
 - A/C/D 体验项：201 交付后缺怪物回应、明确任务完成提示和通路解锁表现；HUD 状态真值正确。整体场景中玩家／员工约 64—66px、房门约 192px，与背景家具和静态人物比例不一致，须由 A 协调 B/C/D 统一基准后另行调整，本 PR 不含比例改动。
+
+### 17.4 D 正式只读交互进度（2026-11-15）
+
+Staff 与 CleaningSpot 统一提供 `get_interaction_state() -> Dictionary`，并保留原 `get_interaction_progress()`／`get_interaction_elapsed()`。D 只读快照或监听信号，不自行计时、不缓存另一份业务进度。
+
+| 字段 | 类型 | 含义 |
+|---|---|---|
+| `target_id` | `String` | 员工／工作点稳定目标 ID |
+| `interaction_type` | `String` | 员工为 `STEAL`；工作点为 `CLEAN`／`PICKUP`／`AUTHORIZE` |
+| `status` | `String` | 当前值为 `READY`／`ACTIVE`／`BLOCKED`／`CAUGHT`／`COMPLETED`；变化事件还可报告 `CANCELLED`／`RESET` |
+| `progress` | `float` | 0—1；完成事件为 1，取消／重置为 0 |
+| `elapsed` | `float` | 已由 B 玩法逻辑累计的秒数 |
+| `required_time` | `float` | 偷窃为 `steal_hold_time`；CLEAN 为 `hold_duration`；一次按键工作为 0 |
+| `block_reason` | `String` | Staff 沿用 §17.2；工作点为 `READY`、`COMPLETED`、`TASK_INACTIVE`、`OUT_OF_RANGE`、`NO_PLAYER`、`PLAYER_MOVING`、`WORLD_LOCKED` 或 `WRONG_IDENTITY` |
+
+同名信号为 `interaction_state_changed(target_id: String, state: Dictionary)`。开始发 `ACTIVE`；有效累计每次进度变化发 `ACTIVE`；松键、移动、离区、换卡或世界锁取消发 `CANCELLED`；员工发现发 `CAUGHT`；成功发 `COMPLETED`；失败恢复、工作点恢复或奖励恢复发 `RESET`。资格、范围、身份等非计时条件变化也会发当前 `READY`／`BLOCKED`／`COMPLETED` 快照，UI 应以信号传入的快照刷新，并可在首次绑定时主动调用 getter。
+
+```gdscript
+func bind_interaction(component: Node) -> void:
+	component.interaction_state_changed.connect(_on_interaction_state_changed)
+	_on_interaction_state_changed(component.target_id, component.get_interaction_state())
+
+func _on_interaction_state_changed(_target_id: String, state: Dictionary) -> void:
+	$ProgressBar.value = float(state.progress) * 100.0
+	$ProgressBar.visible = state.status == "ACTIVE"
+	$TimeLabel.text = "%.1f / %.1f s" % [state.elapsed, state.required_time]
+```

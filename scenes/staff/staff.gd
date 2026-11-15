@@ -4,6 +4,7 @@ signal card_stolen(card_id: String)
 signal task_item_stolen(item_id: String, target_id: String)
 signal steal_attempted(card_id: String, succeeded: bool)
 signal task_failure_requested(reason: String, target_id: String)
+signal interaction_state_changed(target_id: String, state: Dictionary)
 
 @export_enum("SECURITY", "CLEANER", "MANAGER") var card_id: String = "SECURITY"
 @export var target_id: String = ""
@@ -69,6 +70,7 @@ func _ready() -> void:
 func setup(player: HotelPlayer) -> void:
 	_player = player
 	_player_in_range = steal_area.get_overlapping_bodies().has(player)
+	_emit_interaction_state()
 
 
 func set_task_eligible(eligible: bool) -> void:
@@ -76,6 +78,7 @@ func set_task_eligible(eligible: bool) -> void:
 	if not is_task_eligible():
 		cancel_steal()
 	_update_card_marker()
+	_emit_interaction_state()
 
 
 func is_task_eligible() -> bool:
@@ -86,6 +89,7 @@ func set_interaction_enabled(enabled: bool) -> void:
 	_interaction_enabled = enabled
 	if not enabled:
 		cancel_steal()
+	_emit_interaction_state()
 
 
 func is_alerted() -> bool:
@@ -112,6 +116,7 @@ func show_caught_alert() -> void:
 	behavior_label.visible = true
 	behavior_label.text = "CAUGHT"
 	behavior_label.add_theme_color_override("font_color", Color(1.0, 0.25, 0.2, 1.0))
+	_emit_interaction_state("CAUGHT")
 
 
 func reset_caught_alert() -> void:
@@ -125,6 +130,7 @@ func reset_caught_alert() -> void:
 	else:
 		behavior_label.visible = false
 		_schedule_next_turn()
+	_emit_interaction_state("RESET")
 
 
 func set_cleaner_behavior_enabled(enabled: bool) -> void:
@@ -174,6 +180,7 @@ func begin_steal() -> bool:
 	_is_stealing = true
 	_steal_elapsed = 0.0
 	_steal_player_position = _player.global_position
+	_emit_interaction_state("ACTIVE")
 	return true
 
 
@@ -183,6 +190,7 @@ func cancel_steal() -> void:
 	_is_stealing = false
 	_steal_elapsed = 0.0
 	steal_attempted.emit(card_id, false)
+	_emit_interaction_state("CANCELLED")
 
 
 func is_stealing() -> bool:
@@ -197,6 +205,10 @@ func get_interaction_progress() -> float:
 
 func get_interaction_elapsed() -> float:
 	return _steal_elapsed if _is_stealing else 0.0
+
+
+func get_interaction_state() -> Dictionary:
+	return _make_interaction_state()
 
 
 func get_interaction_block_reason() -> String:
@@ -224,6 +236,7 @@ func set_reward_available(available: bool) -> void:
 	if not _is_reward_available():
 		cancel_steal()
 	_update_card_marker()
+	_emit_interaction_state("RESET" if available else "COMPLETED")
 
 
 func is_reward_available() -> bool:
@@ -252,6 +265,7 @@ func _complete_steal() -> bool:
 			card_stolen.emit(card_id)
 		else:
 			task_item_stolen.emit(reward_id, target_id)
+		_emit_interaction_state("COMPLETED", 1.0, steal_hold_time)
 	return succeeded
 
 
@@ -294,6 +308,7 @@ func _process(delta: float) -> void:
 		_request_task_failure("STAFF_CAUGHT")
 		return
 	_steal_elapsed += delta
+	_emit_interaction_state("ACTIVE")
 	if _steal_elapsed >= steal_hold_time:
 		_complete_steal()
 
@@ -302,12 +317,14 @@ func _on_steal_area_body_entered(body: Node2D) -> void:
 	if body == _player:
 		_player_in_range = true
 		_consider_suspicion()
+		_emit_interaction_state()
 
 
 func _on_steal_area_body_exited(body: Node2D) -> void:
 	if body == _player:
 		_player_in_range = false
 		cancel_steal()
+		_emit_interaction_state()
 
 
 func _on_turn_timer_timeout() -> void:
@@ -340,6 +357,7 @@ func _on_cards_changed() -> void:
 	_update_card_marker()
 	if _is_player_recognized():
 		_end_suspicion(true)
+	_emit_interaction_state()
 
 
 func _on_identity_changed(_action: String) -> void:
@@ -347,6 +365,36 @@ func _on_identity_changed(_action: String) -> void:
 		_end_suspicion(true)
 	elif _player_in_range:
 		_consider_suspicion()
+	_emit_interaction_state()
+
+
+func _make_interaction_state(status_override: String = "", progress_override: float = -1.0, elapsed_override: float = -1.0) -> Dictionary:
+	var block_reason: String = get_interaction_block_reason()
+	var status: String = status_override
+	if status.is_empty():
+		if _is_alerted:
+			status = "CAUGHT"
+		elif _is_stealing:
+			status = "ACTIVE"
+		elif not _is_reward_available():
+			status = "COMPLETED"
+		elif block_reason == "READY":
+			status = "READY"
+		else:
+			status = "BLOCKED"
+	return {
+		"target_id": target_id,
+		"interaction_type": "STEAL",
+		"status": status,
+		"progress": get_interaction_progress() if progress_override < 0.0 else progress_override,
+		"elapsed": get_interaction_elapsed() if elapsed_override < 0.0 else elapsed_override,
+		"required_time": steal_hold_time,
+		"block_reason": block_reason,
+	}
+
+
+func _emit_interaction_state(status_override: String = "", progress_override: float = -1.0, elapsed_override: float = -1.0) -> void:
+	interaction_state_changed.emit(target_id, _make_interaction_state(status_override, progress_override, elapsed_override))
 
 
 func _update_card_marker() -> void:

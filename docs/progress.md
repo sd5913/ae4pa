@@ -447,3 +447,9 @@
 - 自动化实跑：`work_items_smoke.tscn` PASS（PICKUP／AUTHORIZE 身份门控、一次性、恢复、PATROL_RECORD、失败和只读进度）；`staff_core_smoke.tscn` PASS（员工、CardManager、移动／松键／离区／回头边界）；`cleaner_v4_smoke.tscn` PASS（资格、偷卡、快照、201 清洁和失败恢复）。`git diff --check` 在提交前执行并记录最终结果。
 - 人工验收：用户在 A 隔离正式 F5 中完成经理入口、201 接受、背后偷保洁卡、Q 切身份、STAIN_201 清洁和 201 交付，HUD 显示任务完成，暂未发现其他明显玩法阻塞。自动化与人工证据分开记录，后续任务 02—05 尚未正式楼层联调。
 - 后续依赖：A 扩展后续资格／结果／world flag／检查点恢复并组装楼层；D 消费进度和阻塞原因，D-05 确认任务 03 结算。201 交付仍缺怪物回应、任务完成提示和通路解锁反馈，列为 A/C/D 体验优化。玩家／员工约 64—66px、房门约 192px，与背景家具／静态人物比例不一致，列为 A 牵头、B/C/D 协同的统一比例问题，本轮不提交临时比例预览。
+
+## 2026年11月15日 B→D 统一交互进度接口（Asia/Hong_Kong）
+
+- 基于 PR #24 的 Staff／CleaningSpot 既有 `get_interaction_progress()` 与 `get_interaction_elapsed()`，新增统一只读 `get_interaction_state()` 和 `interaction_state_changed(target_id, state)`；快照同时给出目标、交互类型、状态、0—1 进度、已持续秒数、所需秒数和阻塞原因。计时继续只由 B 的偷窃／工作逻辑推进，D 不建计时器或进度副本。
+- 通知覆盖开始、有效累计、松键／移动／离区／换卡／世界锁取消、员工被抓、完成、失败／检查点恢复，以及资格／范围／身份变化。原偷窃 0.8 秒、清洁 1.5 秒、身份／任务门控和一次性结果不变。
+- Godot 4.7.2 实跑 `work_items_smoke.tscn`、`staff_core_smoke.tscn`、`cleaner_v4_smoke.tscn` 均 PASS；宿主环境仍报告既有 user:// 日志不可写诊断，不影响脚本退出结果。A 候选 `work/member-A-liuling` 只核对接口和接线差异，本轮不覆盖其楼层、主场景、任务或 D UI。
