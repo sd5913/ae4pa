@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/work/cleaning_spot.gd" id="1_script"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape_work"]
+size = Vector2(120, 100)
+
+[node name="WorkPoint" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="WorkVisual" type="Polygon2D" parent="."]
+polygon = PackedVector2Array(-34, -44, 34, -44, 34, 0, -34, 0)
+color = Color(0.55, 0.4, 0.22, 1)
+
+[node name="Hint" type="Label" parent="."]
+offset_left = -120.0
+offset_top = -82.0
+offset_right = 120.0
+offset_bottom = -48.0
+theme_override_font_sizes/font_size = 18
+text = "WORK · E"
+horizontal_alignment = 1
+
+[node name="WorkArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorkArea"]
+position = Vector2(0, -28)
+shape = SubResource("RectangleShape_work")
+
+[connection signal="body_entered" from="WorkArea" to="." method="_on_work_area_body_entered"]
+[connection signal="body_exited" from="WorkArea" to="." method="_on_work_area_body_exited"]
