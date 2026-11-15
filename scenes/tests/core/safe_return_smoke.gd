@@ -40,6 +40,10 @@ func _run() -> void:
 		_expect(false, "A instantiates real 201 and one ordinary door")
 		await _finish()
 		return
+	_expect(story.scene_file_path == "res://scenes/doors/room_201_door.tscn", "Main floor instantiates the PNG-backed 201 scene")
+	_expect(normal.scene_file_path == "res://scenes/doors/monster_door.tscn", "202 retains its generic door")
+	_expect(story.get_node("Art/Sprite2D").texture.get_size() == Vector2(1280, 1280), "Main 201 retains the complete PNG canvas")
+	_expect(player.z_index > story.z_index + story.get_node("Art").z_index, "Corridor player remains in front of the door art")
 	game.set_process(false) # Advance the real task timer explicitly for deterministic checks.
 	player.global_position.x = 700.0
 	await physics_frame
