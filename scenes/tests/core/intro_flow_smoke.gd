@@ -23,6 +23,7 @@ func _run() -> void:
 	dialogue.set_progress_file_path_for_test("/private/tmp/ae4pa-intro-flow-%d.cfg" % OS.get_process_id())
 	dialogue.set_skip_transitions_for_test(true)
 	root.add_child(main)
+	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
 	# D owns fades; use its existing test setting after _ready initializes it.
 	await create_timer(0.6).timeout
 	dialogue.set_skip_transitions_for_test(true)

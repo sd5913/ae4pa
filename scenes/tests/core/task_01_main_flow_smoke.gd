@@ -30,6 +30,7 @@ func _run() -> void:
 	var main = load("res://scenes/main.tscn").instantiate()
 	root.add_child(main)
 	await process_frame
+	main.get_node("MenuLayer/MainMenu").get_node("%StartButton").pressed.emit()
 	# Opening / manager dialogue already has its own real-input regression.
 	main.dialogue.hide()
 	main._on_dialogue_finished("V4_INTRO")

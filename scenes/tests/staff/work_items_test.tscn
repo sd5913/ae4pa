@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/staff/work_items_test.gd" id="1_script"]
+[ext_resource type="PackedScene" path="res://scenes/levels/test_corridor.tscn" id="2_corridor"]
+[ext_resource type="PackedScene" path="res://scenes/work/work_point.tscn" id="3_work"]
+[ext_resource type="PackedScene" path="res://scenes/staff/staff.tscn" id="4_staff"]
+
+[node name="WorkItemsTest" type="Node2D"]
+script = ExtResource("1_script")
+
+[node name="Corridor" parent="." instance=ExtResource("2_corridor")]
+
+[node name="Pickup" parent="." instance=ExtResource("3_work")]
+position = Vector2(410, 560)
+target_id = "PARCEL_CABINET_2F"
+interaction_type = "PICKUP"
+required_card = "SECURITY"
+hold_duration = 0.0
+
+[node name="Hint" parent="Pickup" index="1"]
+text = "PARCEL · SECURITY · E"
+
+[node name="Authorize309" parent="." instance=ExtResource("3_work")]
+position = Vector2(650, 560)
+target_id = "REGISTER_309"
+interaction_type = "AUTHORIZE"
+required_card = "MANAGER"
+hold_duration = 0.0
+
+[node name="Hint" parent="Authorize309" index="1"]
+text = "REGISTER 309 · MANAGER · E"
+
+[node name="AuthorizeExit" parent="." instance=ExtResource("3_work")]
+position = Vector2(890, 560)
+target_id = "EXIT_REGISTER_5F"
+interaction_type = "AUTHORIZE"
+required_card = "MANAGER"
+hold_duration = 0.0
+
+[node name="Hint" parent="AuthorizeExit" index="1"]
+text = "EXIT REGISTER · MANAGER · E"
+
+[node name="PatrolStaff" parent="." instance=ExtResource("4_staff")]
+position = Vector2(1130, 560)
+target_id = "STAFF_PATROL_4F"
+reward_type = "TASK_ITEM"
+reward_id = "PATROL_RECORD"
+requires_task_eligibility = true
+cleaner_behavior_enabled = false
+
+[node name="Status" type="CanvasLayer" parent="."]
+
+[node name="Backdrop" type="ColorRect" parent="Status"]
+offset_right = 1280.0
+offset_bottom = 168.0
+mouse_filter = 2
+color = Color(0.02, 0.045, 0.055, 0.94)
+
+[node name="Label" type="Label" parent="Status"]
+offset_left = 22.0
+offset_top = 12.0
+offset_right = 1250.0
+offset_bottom = 160.0
+theme_override_font_sizes/font_size = 17
+text = "B-V4-04/05 人工体验"
+
+[node name="Caught" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="Label" type="Label" parent="Caught"]
+visible = false
+offset_left = 340.0
+offset_top = 245.0
+offset_right = 940.0
+offset_bottom = 320.0
+theme_override_colors/font_color = Color(1, 0.15, 0.12, 1)
+theme_override_font_sizes/font_size = 38
+text = "CAUGHT!"
+horizontal_alignment = 1
+
+[node name="RecoveryTimer" type="Timer" parent="."]
+wait_time = 1.2
+one_shot = true
+
+[connection signal="timeout" from="RecoveryTimer" to="." method="_on_recovery_timer_timeout"]
+
+[editable path="Pickup"]
+[editable path="Authorize309"]
+[editable path="AuthorizeExit"]

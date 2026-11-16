@@ -102,9 +102,8 @@ func _ready() -> void:
 	_expect(not card_manager.has_card("SECURITY"), "Leaving StealArea should cancel the steal.")
 	security._on_steal_area_body_entered(player)
 	_expect(security.begin_steal(), "Movement cancellation test could not start.")
-	player.is_moving = true
+	player.global_position.x += 1.0
 	security._process(0.1)
-	player.is_moving = false
 	_expect(not security.is_stealing(), "Player movement should cancel the steal.")
 	_expect(not card_manager.has_card("SECURITY"), "Movement cancellation granted a card.")
 	_expect(security.begin_steal(), "Turn detection test could not start.")

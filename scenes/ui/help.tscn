@@ -1,0 +1,222 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/ui/help.gd" id="1_script"]
+[ext_resource type="Theme" path="res://scenes/ui/staff_ui_theme.tres" id="2_theme"]
+
+[node name="Help" type="Control"]
+visible = false
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_theme")
+script = ExtResource("1_script")
+
+[node name="Shade" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.025, 0.045, 0.054, 0.93)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="PanelContainer" parent="Center"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="Center/Panel"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Eyebrow" type="Label" parent="Center/Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.72, 0.39, 1)
+theme_override_font_sizes/font_size = 17
+text = "夜班旅馆  /  员工手册"
+
+[node name="Title" type="Label" parent="Center/Panel/Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "操作说明与怪物图鉴"
+
+[node name="PageTitle" type="Label" parent="Center/Panel/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.72, 0.39, 1)
+theme_override_font_sizes/font_size = 22
+text = "工作证规则"
+
+[node name="WorkCardPage" type="GridContainer" parent="Center/Panel/Content"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/h_separation = 24
+theme_override_constants/v_separation = 8
+columns = 2
+
+[node name="SecurityId" type="Label" parent="Center/Panel/Content/WorkCardPage"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.72, 0.39, 1)
+theme_override_font_sizes/font_size = 19
+text = "SECURITY  /  保安工作证"
+
+[node name="SecurityRule" type="Label" parent="Center/Panel/Content/WorkCardPage"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "独眼客 EYE 检查时安全；只保护独眼客。"
+
+[node name="CleanerId" type="Label" parent="Center/Panel/Content/WorkCardPage"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.72, 0.39, 1)
+theme_override_font_sizes/font_size = 19
+text = "CLEANER  /  保洁工作证"
+
+[node name="CleanerRule" type="Label" parent="Center/Panel/Content/WorkCardPage"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "长鼻客 NOSE 检查时安全；只保护长鼻客。"
+
+[node name="ManagerId" type="Label" parent="Center/Panel/Content/WorkCardPage"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.72, 0.39, 1)
+theme_override_font_sizes/font_size = 19
+text = "MANAGER  /  经理工作证"
+
+[node name="ManagerRule" type="Label" parent="Center/Panel/Content/WorkCardPage"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 19
+text = "礼帽客 HAT 检查时安全；只保护礼帽客。"
+
+[node name="CardNote" type="Label" parent="Center/Panel/Content/WorkCardPage"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.69, 0.77, 0.76, 1)
+theme_override_font_sizes/font_size = 17
+text = "最多佩戴两张，当前只生效一张；Q 切换，I 调整佩戴槽。卡片不提供技能、速度或开房权限。"
+autowrap_mode = 2
+size_flags_horizontal = 3
+
+[node name="MonsterPage" type="VBoxContainer" parent="Center/Panel/Content"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 3
+
+[node name="EyeId" type="Label" parent="Center/Panel/Content/MonsterPage"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.72, 0.39, 1)
+theme_override_font_sizes/font_size = 18
+text = "EYE  /  独眼客"
+
+[node name="EyeRule" type="Label" parent="Center/Panel/Content/MonsterPage"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "游玩中，门 OPEN 且在范围内：当前卡非 SECURITY → WRONG_CARD；用保安卡或等关门。"
+autowrap_mode = 2
+
+[node name="NoseId" type="Label" parent="Center/Panel/Content/MonsterPage"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.72, 0.39, 1)
+theme_override_font_sizes/font_size = 18
+text = "NOSE  /  长鼻客"
+
+[node name="NoseRule" type="Label" parent="Center/Panel/Content/MonsterPage"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "游玩中，门 OPEN 且在范围内：当前卡非 CLEANER → WRONG_CARD；用保洁卡或等关门。"
+autowrap_mode = 2
+
+[node name="HatId" type="Label" parent="Center/Panel/Content/MonsterPage"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.72, 0.39, 1)
+theme_override_font_sizes/font_size = 18
+text = "HAT  /  礼帽客"
+
+[node name="HatRule" type="Label" parent="Center/Panel/Content/MonsterPage"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "游玩中，门 OPEN 且在范围内：当前卡非 MANAGER → WRONG_CARD；用经理卡或等关门。"
+autowrap_mode = 2
+
+[node name="EarId" type="Label" parent="Center/Panel/Content/MonsterPage"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.72, 0.39, 1)
+theme_override_font_sizes/font_size = 18
+text = "EAR  /  大耳客"
+
+[node name="EarRule" type="Label" parent="Center/Panel/Content/MonsterPage"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "游玩中，门 OPEN 且在范围内仍移动 → MOVED_NEAR_EAR；停步，等门关再走。"
+autowrap_mode = 2
+
+[node name="CheckerId" type="Label" parent="Center/Panel/Content/MonsterPage"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.97, 0.72, 0.39, 1)
+theme_override_font_sizes/font_size = 18
+text = "CHECKER  /  核验客"
+
+[node name="CheckerRule" type="Label" parent="Center/Panel/Content/MonsterPage"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "游玩中，门 OPEN 且在范围内主动切卡或更换佩戴槽 → SWITCHED_NEAR_CHECKER；提前选卡，门前不换证。"
+autowrap_mode = 2
+
+[node name="Unconfirmed" type="Label" parent="Center/Panel/Content/MonsterPage"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.69, 0.77, 0.76, 1)
+theme_override_font_sizes/font_size = 16
+text = "门的准确检测半径、输入边界行为及空槽／无效切换规则：待确认。"
+autowrap_mode = 2
+size_flags_horizontal = 3
+
+[node name="InputSummary" type="Label" parent="Center/Panel/Content"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.69, 0.77, 0.76, 1)
+theme_override_font_sizes/font_size = 15
+text = "操作键：A/←、D/→移动；E偷取／救援／楼梯／出口；Q切换；I背包；H本手册；Esc暂停菜单。"
+autowrap_mode = 2
+
+[node name="PageActions" type="HBoxContainer" parent="Center/Panel/Content"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="PreviousButton" type="Button" parent="Center/Panel/Content/PageActions"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "上一页"
+
+[node name="PageIndicator" type="Label" parent="Center/Panel/Content/PageActions"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+horizontal_alignment = 1
+text = "1 / 2"
+
+[node name="NextButton" type="Button" parent="Center/Panel/Content/PageActions"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "下一页"
+
+[node name="CloseButton" type="Button" parent="Center/Panel/Content"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_type_variation = &"PrimaryButton"
+text = "关闭说明"
+
+[connection signal="pressed" from="Center/Panel/Content/PageActions/PreviousButton" to="." method="previous_page"]
+[connection signal="pressed" from="Center/Panel/Content/PageActions/NextButton" to="." method="next_page"]
+[connection signal="pressed" from="Center/Panel/Content/CloseButton" to="." method="close_help"]
