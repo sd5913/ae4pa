@@ -1,0 +1,11 @@
+{
+  "rgba_pngs": 43,
+  "ora_layers": 61,
+  "ora_reexport_pixel_match": true,
+  "ora_composite_pixel_match": true,
+  "native_carpet_stitch_match": true,
+  "alpha_cutouts": "true alpha confirmed",
+  "characters": "visually absent from reviewed assembled overview / asset sheet",
+  "engine_import": "Godot 4.7.2: all 43 textures loaded at exported dimensions, lossless, size_limit=0, no mipmaps",
+  "limitations": "Existing user:// log and editor-settings write diagnostics; no resource import failures. ORA structure, re-export and compositing verified with Pillow; Krita/GIMP GUI not tested."
+}
