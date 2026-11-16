@@ -1,0 +1,1593 @@
+{
+  "version": 1,
+  "source_image": "floor_1_4k.png",
+  "original_canvas": [
+    3840,
+    2160
+  ],
+  "source_visible_rect": [
+    0,
+    806,
+    3840,
+    548
+  ],
+  "working_canvas": [
+    3840,
+    548
+  ],
+  "units": "original source pixels",
+  "anchor": "top-left of each PNG canvas; use manifest origin, scale 1; no automatic crop",
+  "engine_integration": "asset delivery only; no scenes or gameplay changed",
+  "source_file": "art_sources/floor_1/floor_1_layers.ora",
+  "source_groups": 7,
+  "source_layers": 61,
+  "assets": [
+    {
+      "id": "background_entry",
+      "file": "01_far_background/background_entry.png",
+      "size": [
+        640,
+        482
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 65426,
+      "semitransparent_pixels": 242702,
+      "sha256": "c49de1b7e80c5640eb185cbd4382b769ed86db8dbda022b492cfcc62a9a6ac6a",
+      "method": "regional AI clean plate registered to original corridor coordinates",
+      "origin_in_corridor": [
+        0,
+        0
+      ],
+      "origin_in_original": [
+        0,
+        806
+      ]
+    },
+    {
+      "id": "background_reception",
+      "file": "01_far_background/background_reception.png",
+      "size": [
+        1120,
+        466
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 13440,
+      "semitransparent_pixels": 508480,
+      "sha256": "011dd991ad9a6a0f22d5f8f39f35dd49431bcbb84a60291aae7fd1f6bf0b3300",
+      "method": "regional AI clean plate registered to original corridor coordinates",
+      "origin_in_corridor": [
+        640,
+        0
+      ],
+      "origin_in_original": [
+        640,
+        806
+      ]
+    },
+    {
+      "id": "background_lounge",
+      "file": "01_far_background/background_lounge.png",
+      "size": [
+        1000,
+        466
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 40806,
+      "semitransparent_pixels": 424847,
+      "sha256": "f3b3473b2778f39d82c4ba2cdb9d0da139793f5d89654f8c26dc85a4ca9eaca0",
+      "method": "regional AI clean plate registered to original corridor coordinates",
+      "origin_in_corridor": [
+        1760,
+        0
+      ],
+      "origin_in_original": [
+        1760,
+        806
+      ]
+    },
+    {
+      "id": "background_utility",
+      "file": "01_far_background/background_utility.png",
+      "size": [
+        630,
+        466
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 7560,
+      "semitransparent_pixels": 286020,
+      "sha256": "d97fdf3ca5c20da9c660aac768cfb26281e4a2fe0e120f8a1f850d94fa788476",
+      "method": "regional AI clean plate registered to original corridor coordinates",
+      "origin_in_corridor": [
+        2760,
+        0
+      ],
+      "origin_in_original": [
+        2760,
+        806
+      ]
+    },
+    {
+      "id": "background_stairs",
+      "file": "01_far_background/background_stairs.png",
+      "size": [
+        450,
+        482
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 2163,
+      "semitransparent_pixels": 214270,
+      "sha256": "520b6a8661d7cde33355792fdf10628141f8d99f2252c308dc8e01e69caa7347",
+      "method": "regional AI clean plate registered to original corridor coordinates",
+      "origin_in_corridor": [
+        3390,
+        0
+      ],
+      "origin_in_original": [
+        3390,
+        806
+      ]
+    },
+    {
+      "id": "carpet_strip_1",
+      "file": "02_floor/carpet_strip_1.png",
+      "size": [
+        960,
+        42
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0,
+      "semitransparent_pixels": 0,
+      "sha256": "9a4749de2cd30cd69064b889f7a139bee97d1973834cd166e6ec9ed022cd1cd8",
+      "method": "native source crop, no resampling",
+      "origin_in_corridor": [
+        430,
+        466
+      ],
+      "origin_in_original": [
+        430,
+        1272
+      ]
+    },
+    {
+      "id": "carpet_strip_2",
+      "file": "02_floor/carpet_strip_2.png",
+      "size": [
+        960,
+        42
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0,
+      "semitransparent_pixels": 0,
+      "sha256": "c865103a6b2d8e0e9fefcb01e1127fd677f9a717e0414b717eb487968d183741",
+      "method": "native source crop, no resampling",
+      "origin_in_corridor": [
+        1390,
+        466
+      ],
+      "origin_in_original": [
+        1390,
+        1272
+      ]
+    },
+    {
+      "id": "carpet_strip_3",
+      "file": "02_floor/carpet_strip_3.png",
+      "size": [
+        960,
+        42
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0,
+      "semitransparent_pixels": 0,
+      "sha256": "dd7757eaa6492658acb96db8884c46a61e2b303528241482d939b86da2cb6eb8",
+      "method": "native source crop, no resampling",
+      "origin_in_corridor": [
+        2350,
+        466
+      ],
+      "origin_in_original": [
+        2350,
+        1272
+      ]
+    },
+    {
+      "id": "lower_platform_fascia",
+      "file": "02_floor/lower_platform_fascia.png",
+      "size": [
+        3840,
+        40
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0,
+      "semitransparent_pixels": 0,
+      "sha256": "844b8aee0ae70b8ebaba6a27e04f1814e5694240a25c8888b747dc281fc39188",
+      "method": "native source crop, no resampling",
+      "origin_in_corridor": [
+        0,
+        508
+      ],
+      "origin_in_original": [
+        0,
+        1314
+      ]
+    },
+    {
+      "id": "platform_entry",
+      "file": "02_floor/platform_entry.png",
+      "size": [
+        430,
+        26
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0,
+      "semitransparent_pixels": 0,
+      "sha256": "73905fdc85139338a4fd4e5033720fb8bef5e6593b07e79702731f74a831c3ba",
+      "method": "native source crop, no resampling",
+      "origin_in_corridor": [
+        0,
+        482
+      ],
+      "origin_in_original": [
+        0,
+        1288
+      ]
+    },
+    {
+      "id": "platform_stairs",
+      "file": "02_floor/platform_stairs.png",
+      "size": [
+        530,
+        42
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0,
+      "semitransparent_pixels": 0,
+      "sha256": "2d75a08567618aec558e93574d25e4a4f8294e235405d33b92e14fd0bce73e9a",
+      "method": "native source crop, no resampling",
+      "origin_in_corridor": [
+        3310,
+        466
+      ],
+      "origin_in_original": [
+        3310,
+        1272
+      ]
+    },
+    {
+      "id": "baseboard_reception",
+      "file": "02_floor/baseboard_reception.png",
+      "size": [
+        1120,
+        12
+      ],
+      "alpha_min": 150,
+      "alpha_max": 255,
+      "transparent_pixels": 0,
+      "semitransparent_pixels": 13319,
+      "sha256": "baa023ccacc5b7379cc809a3ba42609cbadbc0426a4559b237ee38454bc04c72",
+      "method": "split from registered regional clean plate",
+      "origin_in_corridor": [
+        640,
+        454
+      ],
+      "origin_in_original": [
+        640,
+        1260
+      ]
+    },
+    {
+      "id": "baseboard_lounge",
+      "file": "02_floor/baseboard_lounge.png",
+      "size": [
+        1000,
+        12
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 192,
+      "semitransparent_pixels": 11798,
+      "sha256": "c05ec9e73a08b340ad2958bf5dd0d9b40433d7e9e77699441a4a344eb4067c41",
+      "method": "split from registered regional clean plate",
+      "origin_in_corridor": [
+        1760,
+        454
+      ],
+      "origin_in_original": [
+        1760,
+        1260
+      ]
+    },
+    {
+      "id": "baseboard_utility",
+      "file": "02_floor/baseboard_utility.png",
+      "size": [
+        630,
+        12
+      ],
+      "alpha_min": 214,
+      "alpha_max": 255,
+      "transparent_pixels": 0,
+      "semitransparent_pixels": 7538,
+      "sha256": "23bb6c665d85287edf82fcba429b381e26f34f1a00e552603593e3c211d9023e",
+      "method": "split from registered regional clean plate",
+      "origin_in_corridor": [
+        2760,
+        454
+      ],
+      "origin_in_original": [
+        2760,
+        1260
+      ]
+    },
+    {
+      "id": "reception_counter",
+      "file": "03_back_furniture/reception_counter.png",
+      "size": [
+        911,
+        126
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 13364,
+      "semitransparent_pixels": 100114,
+      "sha256": "baeadd0c57105dbcc6e9c31db7bcca8329ce9a43b7322cbd91a0d45072f4d717",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        752,
+        344
+      ],
+      "origin_in_original": [
+        752,
+        1150
+      ]
+    },
+    {
+      "id": "key_cabinet",
+      "file": "03_back_furniture/key_cabinet.png",
+      "size": [
+        405,
+        319
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 38065,
+      "semitransparent_pixels": 90110,
+      "sha256": "fc6903366f189dea33b1851aea84f72684ff4a79f0be243a24cc767caa39c3ff",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        994,
+        36
+      ],
+      "origin_in_original": [
+        994,
+        842
+      ]
+    },
+    {
+      "id": "emblem_banner",
+      "file": "03_back_furniture/emblem_banner.png",
+      "size": [
+        166,
+        238
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 11253,
+      "semitransparent_pixels": 27614,
+      "sha256": "f164dc75c0f9f36b40f65364bdd0296c850f5c6e215d43d6018ec210bc8ff4ff",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        1380,
+        42
+      ],
+      "origin_in_original": [
+        1380,
+        848
+      ]
+    },
+    {
+      "id": "wall_clock",
+      "file": "03_back_furniture/wall_clock.png",
+      "size": [
+        161,
+        320
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 18923,
+      "semitransparent_pixels": 31909,
+      "sha256": "28e6701a0390db5c87917fdcc158dfed23abf0300ae537f47b78ec8f5ffe9b75",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        2504,
+        43
+      ],
+      "origin_in_original": [
+        2504,
+        849
+      ]
+    },
+    {
+      "id": "armchair_left",
+      "file": "03_back_furniture/armchair_left.png",
+      "size": [
+        189,
+        175
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 10145,
+      "semitransparent_pixels": 22301,
+      "sha256": "61fcb021136cfbd7784b57ebda31a314c9d72871c6d653e064d2635935ffacd3",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        1904,
+        297
+      ],
+      "origin_in_original": [
+        1904,
+        1103
+      ]
+    },
+    {
+      "id": "armchair_right",
+      "file": "03_back_furniture/armchair_right.png",
+      "size": [
+        189,
+        176
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 10309,
+      "semitransparent_pixels": 22340,
+      "sha256": "4f761ddceead5553303ff3071b58bebe22e8e81297783ecdaf04059d300b4745",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        2183,
+        296
+      ],
+      "origin_in_original": [
+        2183,
+        1102
+      ]
+    },
+    {
+      "id": "lounge_table",
+      "file": "03_back_furniture/lounge_table.png",
+      "size": [
+        116,
+        106
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 5542,
+      "semitransparent_pixels": 6225,
+      "sha256": "ddb710d552918b46395ebfb2aeb9962a5bc29dee34c3cbc9360ea189573119ba",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        2080,
+        367
+      ],
+      "origin_in_original": [
+        2080,
+        1173
+      ]
+    },
+    {
+      "id": "plant_reception",
+      "file": "03_back_furniture/plant_reception.png",
+      "size": [
+        176,
+        184
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 19518,
+      "semitransparent_pixels": 12071,
+      "sha256": "8165c6ec436af60764f8f2f41ddea6653d106a6b1ad3f5c6ff64d92ebedc0c43",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        728,
+        170
+      ],
+      "origin_in_original": [
+        728,
+        976
+      ]
+    },
+    {
+      "id": "plant_lounge_left",
+      "file": "03_back_furniture/plant_lounge_left.png",
+      "size": [
+        193,
+        299
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 35291,
+      "semitransparent_pixels": 21169,
+      "sha256": "28684722d1253233830b1a89f77c317fd8ae6114792b2aed1bdea079276c7f1d",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        1713,
+        172
+      ],
+      "origin_in_original": [
+        1713,
+        978
+      ]
+    },
+    {
+      "id": "plant_lounge_right",
+      "file": "03_back_furniture/plant_lounge_right.png",
+      "size": [
+        168,
+        277
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 28212,
+      "semitransparent_pixels": 17150,
+      "sha256": "0f9695b6b8d60dca061bbed0032aca1f85ae5033e09e3a096c9087be5d2bef7d",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        2360,
+        194
+      ],
+      "origin_in_original": [
+        2360,
+        1000
+      ]
+    },
+    {
+      "id": "supply_shelf",
+      "file": "03_back_furniture/supply_shelf.png",
+      "size": [
+        251,
+        330
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 12619,
+      "semitransparent_pixels": 69247,
+      "sha256": "c041e72c5e9ae7fb62fc5371082a95de2a885759836b79f294bdc6156225f441",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        2796,
+        137
+      ],
+      "origin_in_original": [
+        2796,
+        943
+      ]
+    },
+    {
+      "id": "utility_cupboard",
+      "file": "03_back_furniture/utility_cupboard.png",
+      "size": [
+        140,
+        304
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 5618,
+      "semitransparent_pixels": 36300,
+      "sha256": "e3667d9ca2428fb7d4bdc9f4336e4eb07d8351d9d4e93204062bbefa3849fb46",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        3235,
+        168
+      ],
+      "origin_in_original": [
+        3235,
+        974
+      ]
+    },
+    {
+      "id": "cleaning_cart",
+      "file": "03_back_furniture/cleaning_cart.png",
+      "size": [
+        152,
+        188
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 13910,
+      "semitransparent_pixels": 14034,
+      "sha256": "59c4b2610981bab4b15286676a3e901b5d0610647767f96434f44031836e5bd7",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        2932,
+        281
+      ],
+      "origin_in_original": [
+        2932,
+        1087
+      ]
+    },
+    {
+      "id": "window_flowers",
+      "file": "03_back_furniture/window_flowers.png",
+      "size": [
+        99,
+        81
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 3352,
+      "semitransparent_pixels": 4361,
+      "sha256": "77a6e99795612cf634c51bf005fccc76ab01f0de55298ab5ad9437f8172bcd15",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        1540,
+        275
+      ],
+      "origin_in_original": [
+        1540,
+        1081
+      ]
+    },
+    {
+      "id": "entry_shrub",
+      "file": "03_back_furniture/entry_shrub.png",
+      "size": [
+        74,
+        202
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 4186,
+      "semitransparent_pixels": 10314,
+      "sha256": "7af579caff697a73b317c2be23559b899b6b4db65d23a21033a9fafdbfe53ba9",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        212,
+        281
+      ],
+      "origin_in_original": [
+        212,
+        1087
+      ]
+    },
+    {
+      "id": "street_lamp",
+      "file": "03_back_furniture/street_lamp.png",
+      "size": [
+        65,
+        308
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 11807,
+      "semitransparent_pixels": 7714,
+      "sha256": "5ecfb614ca0ac3325451f399837f831c4ad8bfdea61bb27fb73c0722ff437165",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        268,
+        176
+      ],
+      "origin_in_original": [
+        268,
+        982
+      ]
+    },
+    {
+      "id": "chandelier",
+      "file": "03_back_furniture/chandelier.png",
+      "size": [
+        201,
+        140
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 15948,
+      "semitransparent_pixels": 11433,
+      "sha256": "61611bc5c8773fb558b98eb0440f31d8b4d96ec90a9e479b4fe39e906cb6558f",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        781,
+        22
+      ],
+      "origin_in_original": [
+        781,
+        828
+      ]
+    },
+    {
+      "id": "lounge_lamp",
+      "file": "03_back_furniture/lounge_lamp.png",
+      "size": [
+        110,
+        100
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 6706,
+      "semitransparent_pixels": 4038,
+      "sha256": "b758142e4311275c1b0eb276ab567146f9704559089507dea835995428e8a918",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        2080,
+        274
+      ],
+      "origin_in_original": [
+        2080,
+        1080
+      ]
+    },
+    {
+      "id": "utility_lamp",
+      "file": "03_back_furniture/utility_lamp.png",
+      "size": [
+        129,
+        105
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 10305,
+      "semitransparent_pixels": 3029,
+      "sha256": "0ab221587999e0b0121dd5255d5a2dabd327cb9c40b4124907e86889a3a42edd",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        3026,
+        27
+      ],
+      "origin_in_original": [
+        3026,
+        833
+      ]
+    },
+    {
+      "id": "stair_lamp",
+      "file": "03_back_furniture/stair_lamp.png",
+      "size": [
+        77,
+        127
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 6130,
+      "semitransparent_pixels": 3418,
+      "sha256": "b872e3423f058f61771eb0a67e57603ce7d997195abb6eb8797ebe676bfc1682",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        3510,
+        36
+      ],
+      "origin_in_original": [
+        3510,
+        842
+      ]
+    },
+    {
+      "id": "foreground_left",
+      "file": "04_foreground/foreground_left.png",
+      "size": [
+        202,
+        512
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 41695,
+      "semitransparent_pixels": 60622,
+      "sha256": "a4f8079a9cc5b4bb99dbbd1ee201a095ddc90d78e27e2aaec249039df19f2ff4",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        17,
+        0
+      ],
+      "origin_in_original": [
+        17,
+        806
+      ]
+    },
+    {
+      "id": "foreground_middle",
+      "file": "04_foreground/foreground_middle.png",
+      "size": [
+        74,
+        468
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 22188,
+      "semitransparent_pixels": 11949,
+      "sha256": "a06d4f99a5606ac4f2f3cbcc622ecf30d8509ed6dd635cff86ec550a5e61d0fb",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        1718,
+        1
+      ],
+      "origin_in_original": [
+        1718,
+        807
+      ]
+    },
+    {
+      "id": "foreground_right",
+      "file": "04_foreground/foreground_right.png",
+      "size": [
+        161,
+        511
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 22874,
+      "semitransparent_pixels": 58152,
+      "sha256": "4a1df9cb1a2cbe24a222ef28835c2ed814c4460c1280d02586247d32b8f501e5",
+      "method": "imagegen extraction / occlusion reconstruction",
+      "origin_in_corridor": [
+        3661,
+        1
+      ],
+      "origin_in_original": [
+        3661,
+        807
+      ]
+    },
+    {
+      "id": "open_guest_book",
+      "file": "03_back_furniture/open_guest_book.png",
+      "size": [
+        112,
+        42
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 879,
+      "semitransparent_pixels": 3619,
+      "sha256": "1a493c00148487025bb7fe2642a8074934cc68b884548832bc572d99cf5d4962",
+      "method": "individual alpha-separated component of extracted counter accessories",
+      "origin_in_corridor": [
+        1115,
+        312
+      ],
+      "origin_in_original": [
+        1115,
+        1118
+      ]
+    },
+    {
+      "id": "service_bell",
+      "file": "03_back_furniture/service_bell.png",
+      "size": [
+        92,
+        81
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 2507,
+      "semitransparent_pixels": 4707,
+      "sha256": "d1e2028b03f82699bfbce2e3a4b1a46646fa712ee1c79e3878bb54adb08b2a8f",
+      "method": "individual alpha-separated component of extracted counter accessories",
+      "origin_in_corridor": [
+        1225,
+        273
+      ],
+      "origin_in_original": [
+        1225,
+        1079
+      ]
+    },
+    {
+      "id": "reception_lamp",
+      "file": "03_back_furniture/reception_lamp.png",
+      "size": [
+        120,
+        112
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 7013,
+      "semitransparent_pixels": 6090,
+      "sha256": "450b49ffeb37dc76cbf1dd702b6dc874caab0643528c44d02c7c41a4ca55dadf",
+      "method": "individual alpha-separated component of extracted counter accessories",
+      "origin_in_corridor": [
+        1360,
+        242
+      ],
+      "origin_in_original": [
+        1360,
+        1048
+      ]
+    },
+    {
+      "id": "fx_warm_glow",
+      "file": "05_light_fx/fx_warm_glow.png",
+      "size": [
+        256,
+        192
+      ],
+      "alpha_min": 0,
+      "alpha_max": 252,
+      "transparent_pixels": 24384,
+      "semitransparent_pixels": 24768,
+      "sha256": "fc3d58e679cc9956dcb3d3f8ab8a35fe3d0cb4b385daedb4f829c69496405b4b",
+      "method": "imagegen true-alpha reusable lighting/contact-shadow sprite"
+    },
+    {
+      "id": "fx_contact_shadow",
+      "file": "05_light_fx/fx_contact_shadow.png",
+      "size": [
+        256,
+        64
+      ],
+      "alpha_min": 0,
+      "alpha_max": 253,
+      "transparent_pixels": 9448,
+      "semitransparent_pixels": 6936,
+      "sha256": "530737c5cfc6d1258543c1ebc8675e88917d0ad0a2c3bdb639c212f5d0933371",
+      "method": "imagegen true-alpha reusable lighting/contact-shadow sprite"
+    },
+    {
+      "id": "fx_light_cone",
+      "file": "05_light_fx/fx_light_cone.png",
+      "size": [
+        320,
+        300
+      ],
+      "alpha_min": 0,
+      "alpha_max": 251,
+      "transparent_pixels": 44843,
+      "semitransparent_pixels": 51157,
+      "sha256": "499106124fe80ee032d7be8b041aed4a242c15120b3f7cad14853a43cddf25b8",
+      "method": "imagegen true-alpha reusable lighting/contact-shadow sprite"
+    }
+  ],
+  "placements": [
+    {
+      "name": "background_entry",
+      "x": 0,
+      "y": 0,
+      "opacity": 1,
+      "group": "01_far_background",
+      "size": [
+        640,
+        482
+      ]
+    },
+    {
+      "name": "background_reception",
+      "x": 640,
+      "y": 0,
+      "opacity": 1,
+      "group": "01_far_background",
+      "size": [
+        1120,
+        466
+      ]
+    },
+    {
+      "name": "background_lounge",
+      "x": 1760,
+      "y": 0,
+      "opacity": 1,
+      "group": "01_far_background",
+      "size": [
+        1000,
+        466
+      ]
+    },
+    {
+      "name": "background_utility",
+      "x": 2760,
+      "y": 0,
+      "opacity": 1,
+      "group": "01_far_background",
+      "size": [
+        630,
+        466
+      ]
+    },
+    {
+      "name": "background_stairs",
+      "x": 3390,
+      "y": 0,
+      "opacity": 1,
+      "group": "01_far_background",
+      "size": [
+        450,
+        482
+      ]
+    },
+    {
+      "name": "carpet_strip_1",
+      "x": 430,
+      "y": 466,
+      "opacity": 1,
+      "group": "02_floor",
+      "size": [
+        960,
+        42
+      ]
+    },
+    {
+      "name": "carpet_strip_2",
+      "x": 1390,
+      "y": 466,
+      "opacity": 1,
+      "group": "02_floor",
+      "size": [
+        960,
+        42
+      ]
+    },
+    {
+      "name": "carpet_strip_3",
+      "x": 2350,
+      "y": 466,
+      "opacity": 1,
+      "group": "02_floor",
+      "size": [
+        960,
+        42
+      ]
+    },
+    {
+      "name": "lower_platform_fascia",
+      "x": 0,
+      "y": 508,
+      "opacity": 1,
+      "group": "02_floor",
+      "size": [
+        3840,
+        40
+      ]
+    },
+    {
+      "name": "platform_entry",
+      "x": 0,
+      "y": 482,
+      "opacity": 1,
+      "group": "02_floor",
+      "size": [
+        430,
+        26
+      ]
+    },
+    {
+      "name": "platform_stairs",
+      "x": 3310,
+      "y": 466,
+      "opacity": 1,
+      "group": "02_floor",
+      "size": [
+        530,
+        42
+      ]
+    },
+    {
+      "name": "baseboard_reception",
+      "x": 640,
+      "y": 454,
+      "opacity": 1,
+      "group": "02_floor",
+      "size": [
+        1120,
+        12
+      ]
+    },
+    {
+      "name": "baseboard_lounge",
+      "x": 1760,
+      "y": 454,
+      "opacity": 1,
+      "group": "02_floor",
+      "size": [
+        1000,
+        12
+      ]
+    },
+    {
+      "name": "baseboard_utility",
+      "x": 2760,
+      "y": 454,
+      "opacity": 1,
+      "group": "02_floor",
+      "size": [
+        630,
+        12
+      ]
+    },
+    {
+      "name": "reception_counter",
+      "x": 752,
+      "y": 344,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        911,
+        126
+      ]
+    },
+    {
+      "name": "key_cabinet",
+      "x": 994,
+      "y": 36,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        405,
+        319
+      ]
+    },
+    {
+      "name": "emblem_banner",
+      "x": 1380,
+      "y": 42,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        166,
+        238
+      ]
+    },
+    {
+      "name": "wall_clock",
+      "x": 2504,
+      "y": 43,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        161,
+        320
+      ]
+    },
+    {
+      "name": "armchair_left",
+      "x": 1904,
+      "y": 297,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        189,
+        175
+      ]
+    },
+    {
+      "name": "armchair_right",
+      "x": 2183,
+      "y": 296,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        189,
+        176
+      ]
+    },
+    {
+      "name": "lounge_table",
+      "x": 2080,
+      "y": 367,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        116,
+        106
+      ]
+    },
+    {
+      "name": "plant_reception",
+      "x": 728,
+      "y": 170,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        176,
+        184
+      ]
+    },
+    {
+      "name": "plant_lounge_left",
+      "x": 1713,
+      "y": 172,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        193,
+        299
+      ]
+    },
+    {
+      "name": "plant_lounge_right",
+      "x": 2360,
+      "y": 194,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        168,
+        277
+      ]
+    },
+    {
+      "name": "supply_shelf",
+      "x": 2796,
+      "y": 137,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        251,
+        330
+      ]
+    },
+    {
+      "name": "utility_cupboard",
+      "x": 3235,
+      "y": 168,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        140,
+        304
+      ]
+    },
+    {
+      "name": "cleaning_cart",
+      "x": 2932,
+      "y": 281,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        152,
+        188
+      ]
+    },
+    {
+      "name": "window_flowers",
+      "x": 1540,
+      "y": 275,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        99,
+        81
+      ]
+    },
+    {
+      "name": "entry_shrub",
+      "x": 212,
+      "y": 281,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        74,
+        202
+      ]
+    },
+    {
+      "name": "street_lamp",
+      "x": 268,
+      "y": 176,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        65,
+        308
+      ]
+    },
+    {
+      "name": "chandelier",
+      "x": 781,
+      "y": 22,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        201,
+        140
+      ]
+    },
+    {
+      "name": "lounge_lamp",
+      "x": 2080,
+      "y": 274,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        110,
+        100
+      ]
+    },
+    {
+      "name": "utility_lamp",
+      "x": 3026,
+      "y": 27,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        129,
+        105
+      ]
+    },
+    {
+      "name": "stair_lamp",
+      "x": 3510,
+      "y": 36,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        77,
+        127
+      ]
+    },
+    {
+      "name": "open_guest_book",
+      "x": 1115,
+      "y": 312,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        112,
+        42
+      ]
+    },
+    {
+      "name": "service_bell",
+      "x": 1225,
+      "y": 273,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        92,
+        81
+      ]
+    },
+    {
+      "name": "reception_lamp",
+      "x": 1360,
+      "y": 242,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        120,
+        112
+      ]
+    },
+    {
+      "name": "entry_shrub_second_instance",
+      "x": 326,
+      "y": 265,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        70,
+        218
+      ]
+    },
+    {
+      "name": "entry_shrub_counter_side",
+      "x": 665,
+      "y": 300,
+      "opacity": 1,
+      "group": "03_back_furniture",
+      "size": [
+        77,
+        162
+      ]
+    },
+    {
+      "name": "foreground_left",
+      "x": 17,
+      "y": 0,
+      "opacity": 1,
+      "group": "04_foreground",
+      "size": [
+        202,
+        512
+      ]
+    },
+    {
+      "name": "foreground_middle",
+      "x": 1718,
+      "y": 1,
+      "opacity": 1,
+      "group": "04_foreground",
+      "size": [
+        74,
+        468
+      ]
+    },
+    {
+      "name": "foreground_right",
+      "x": 3661,
+      "y": 1,
+      "opacity": 1,
+      "group": "04_foreground",
+      "size": [
+        161,
+        511
+      ]
+    },
+    {
+      "name": "lamp_glow_1",
+      "x": 244,
+      "y": 180,
+      "opacity": 0.3,
+      "group": "05_light_fx",
+      "size": [
+        115,
+        145
+      ]
+    },
+    {
+      "name": "lamp_glow_2",
+      "x": 775,
+      "y": 68,
+      "opacity": 0.3,
+      "group": "05_light_fx",
+      "size": [
+        220,
+        150
+      ]
+    },
+    {
+      "name": "lamp_glow_3",
+      "x": 1340,
+      "y": 238,
+      "opacity": 0.3,
+      "group": "05_light_fx",
+      "size": [
+        160,
+        138
+      ]
+    },
+    {
+      "name": "lamp_glow_4",
+      "x": 2060,
+      "y": 269,
+      "opacity": 0.3,
+      "group": "05_light_fx",
+      "size": [
+        160,
+        130
+      ]
+    },
+    {
+      "name": "lamp_glow_5",
+      "x": 3000,
+      "y": 57,
+      "opacity": 0.3,
+      "group": "05_light_fx",
+      "size": [
+        190,
+        148
+      ]
+    },
+    {
+      "name": "lamp_glow_6",
+      "x": 3490,
+      "y": 57,
+      "opacity": 0.3,
+      "group": "05_light_fx",
+      "size": [
+        136,
+        160
+      ]
+    },
+    {
+      "name": "utility_light_cone",
+      "x": 2929,
+      "y": 94,
+      "opacity": 0.25,
+      "group": "05_light_fx",
+      "size": [
+        330,
+        345
+      ]
+    },
+    {
+      "name": "contact_shadow_1",
+      "x": 755,
+      "y": 457,
+      "opacity": 0.45,
+      "group": "05_light_fx",
+      "size": [
+        908,
+        21
+      ]
+    },
+    {
+      "name": "contact_shadow_2",
+      "x": 1898,
+      "y": 458,
+      "opacity": 0.45,
+      "group": "05_light_fx",
+      "size": [
+        198,
+        20
+      ]
+    },
+    {
+      "name": "contact_shadow_3",
+      "x": 2180,
+      "y": 458,
+      "opacity": 0.45,
+      "group": "05_light_fx",
+      "size": [
+        198,
+        20
+      ]
+    },
+    {
+      "name": "contact_shadow_4",
+      "x": 2076,
+      "y": 457,
+      "opacity": 0.45,
+      "group": "05_light_fx",
+      "size": [
+        120,
+        17
+      ]
+    },
+    {
+      "name": "contact_shadow_5",
+      "x": 1730,
+      "y": 458,
+      "opacity": 0.45,
+      "group": "05_light_fx",
+      "size": [
+        140,
+        18
+      ]
+    },
+    {
+      "name": "contact_shadow_6",
+      "x": 2390,
+      "y": 459,
+      "opacity": 0.45,
+      "group": "05_light_fx",
+      "size": [
+        110,
+        17
+      ]
+    },
+    {
+      "name": "contact_shadow_7",
+      "x": 2788,
+      "y": 455,
+      "opacity": 0.45,
+      "group": "05_light_fx",
+      "size": [
+        267,
+        22
+      ]
+    },
+    {
+      "name": "contact_shadow_8",
+      "x": 2928,
+      "y": 457,
+      "opacity": 0.45,
+      "group": "05_light_fx",
+      "size": [
+        164,
+        20
+      ]
+    },
+    {
+      "name": "contact_shadow_9",
+      "x": 3235,
+      "y": 456,
+      "opacity": 0.45,
+      "group": "05_light_fx",
+      "size": [
+        140,
+        21
+      ]
+    }
+  ],
+  "limitations": [
+    "AI clean plates and extracted objects reconstruct occluded art; this is not an exact recovered original layered painting.",
+    "Warm ambient shading and luminous glass remain in painted surfaces; editable additional glows and contact shadows are separate.",
+    "Entry shrubs reuse one extracted sprite. Original static characters are excluded from all visible layers."
+  ]
+}

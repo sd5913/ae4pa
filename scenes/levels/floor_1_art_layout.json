@@ -1,0 +1,2305 @@
+{
+  "version": "generated_hd_v3",
+  "canvas_layout": [
+    3840,
+    548
+  ],
+  "world_origin": [
+    0,
+    106.25
+  ],
+  "world_scale": 0.9375,
+  "walking_y": 560,
+  "foreground_z": 2,
+  "characters_z": 1,
+  "layout_reference_only": "floor_1_4k.png; coordinates and proportions only, zero original-image pixels used in active scene",
+  "assets": [
+    {
+      "id": "bg_entry",
+      "resource_id": 1,
+      "file": "bg_entry.png",
+      "canvas": [
+        1356,
+        1159
+      ],
+      "sha256": "aa4a42d4a0fd6ba5dd9fda3d8e5cfc439d6afb98b9a9ecaa8a6b8c9b62133e05",
+      "generation": "exec-4e92aa97-caf1-494d-bd70-13ca7f91c71a.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "bg_reception",
+      "resource_id": 2,
+      "file": "bg_reception.png",
+      "canvas": [
+        1793,
+        877
+      ],
+      "sha256": "368b8916a61d66a0c789c15134de8fc82dcfa78b7ee634d8445b9724981935fb",
+      "generation": "exec-c0a1ae0d-547e-491e-b972-fd038850b1d8.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "bg_lounge",
+      "resource_id": 3,
+      "file": "bg_lounge.png",
+      "canvas": [
+        1694,
+        928
+      ],
+      "sha256": "e7cbfc0a7738fec80ad19e252c0a33188ea686c02fbca475cb7014649630c949",
+      "generation": "exec-15b6655f-041a-49e5-8fcd-0654dda2388f.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "bg_utility",
+      "resource_id": 4,
+      "file": "bg_utility.png",
+      "canvas": [
+        1345,
+        1169
+      ],
+      "sha256": "3fa349d2747cb30c59f345e8408bdb6bed5d2966cf61d30f874921a39f561c5f",
+      "generation": "exec-d90bd842-c4ee-4f93-882b-936f46e38c4f.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "bg_stairs",
+      "resource_id": 5,
+      "file": "bg_stairs.png",
+      "canvas": [
+        1136,
+        1385
+      ],
+      "sha256": "3a77d80909ae15abee2ba53a747824597e01345b392eb93ec446b7d3bc49ef74",
+      "generation": "exec-4f3f10bb-9b9d-4a70-909c-31431650d47a.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        254
+      ]
+    },
+    {
+      "id": "reception_counter",
+      "resource_id": 6,
+      "file": "reception_counter.png",
+      "canvas": [
+        2170,
+        725
+      ],
+      "sha256": "6ca187263341cc4922884dbe57a88719997c5e9200dd2100ffb42f28354de979",
+      "generation": "exec-ca7c49f9-1e10-43ce-aceb-aea15bcfea32.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "key_cabinet",
+      "resource_id": 7,
+      "file": "key_cabinet.png",
+      "canvas": [
+        1413,
+        1113
+      ],
+      "sha256": "e8c74cb130f6313b55044b9546b4edf5b0a9c92cf2c5fc3d31d9a4c98e62be77",
+      "generation": "exec-c1b1a924-7eb4-404a-8d3f-06d0f7686f42.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "emblem_banner",
+      "resource_id": 8,
+      "file": "emblem_banner.png",
+      "canvas": [
+        1047,
+        1501
+      ],
+      "sha256": "1acc2956f5622a2f60113d570379fd2ce59068fbfb57efd0150afcb6cb679b6f",
+      "generation": "exec-8328de13-0b4e-49b5-a3f8-e2f4ad8965d1.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "wall_clock",
+      "resource_id": 9,
+      "file": "wall_clock.png",
+      "canvas": [
+        889,
+        1770
+      ],
+      "sha256": "f5d5109f07d6f5dbcffac9785331b72cd2be7eb45af7b37d7307507aed37cf56",
+      "generation": "exec-7168c976-15a2-418a-bf96-aecf398ac1e5.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "armchair_left",
+      "resource_id": 10,
+      "file": "armchair_left.png",
+      "canvas": [
+        1303,
+        1207
+      ],
+      "sha256": "c9c9d030750da93f24810dbca9b27f2f0b50b2b2a90a58a3fd4cd6e893a3b08d",
+      "generation": "exec-30b0525d-0c6f-4d18-b901-4525e35bb6e4.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "armchair_right",
+      "resource_id": 11,
+      "file": "armchair_right.png",
+      "canvas": [
+        1300,
+        1210
+      ],
+      "sha256": "afeb17c2f551e52b9a7d567ee541716ed82c87f7eff78655b2d8aa6e45fcdc85",
+      "generation": "exec-9555cd3b-97de-47f8-8f47-4680a28eec09.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "lounge_table",
+      "resource_id": 12,
+      "file": "lounge_table.png",
+      "canvas": [
+        1312,
+        1199
+      ],
+      "sha256": "fd92f33aa922a930b355fc534141ed58ca103a42ed682f82638462bfddf71844",
+      "generation": "exec-04cc9fc9-e2ed-421d-8745-b8eddaf8c7fa.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "plant_reception",
+      "resource_id": 13,
+      "file": "plant_reception.png",
+      "canvas": [
+        1226,
+        1283
+      ],
+      "sha256": "b8962b6d8f52ab3b7cd652486f3f073879fbdd9776145e14a5cfc317e03ad4e3",
+      "generation": "exec-bda9b106-f83e-4219-aca5-5d3f936436fa.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "plant_lounge_left",
+      "resource_id": 14,
+      "file": "plant_lounge_left.png",
+      "canvas": [
+        1019,
+        1543
+      ],
+      "sha256": "d7a24bf3a9673ca341c1015c0e87f683c1eb3cce78b89e6529b0cc55b06f9f3b",
+      "generation": "exec-2993fc35-1d5d-46c8-88de-f29d95f0a805.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "plant_lounge_right",
+      "resource_id": 15,
+      "file": "plant_lounge_right.png",
+      "canvas": [
+        979,
+        1607
+      ],
+      "sha256": "cf157efcc3d1f495bf33a511ba1362a71be6e88604dfa0055a05808c632e6b6b",
+      "generation": "exec-6bd639df-78d9-4c08-8914-597d74717cde.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "supply_shelf",
+      "resource_id": 16,
+      "file": "supply_shelf.png",
+      "canvas": [
+        1094,
+        1438
+      ],
+      "sha256": "29eaa41793830fbd8e49362b38a2e5cedcb816e3b96d36a8324c64f33219369d",
+      "generation": "exec-31ba22f6-a2b4-40ee-88a1-3a3d4137060c.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "utility_cupboard",
+      "resource_id": 17,
+      "file": "utility_cupboard.png",
+      "canvas": [
+        872,
+        1804
+      ],
+      "sha256": "c388f3d58726a5197cd19e355438a64e6717c2d50b7c38ac90dd54bb01c48334",
+      "generation": "exec-e7e92f66-1e37-473f-a3b9-22c3f543650a.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "cleaning_cart",
+      "resource_id": 18,
+      "file": "cleaning_cart.png",
+      "canvas": [
+        1127,
+        1395
+      ],
+      "sha256": "4d9ed393c033eb6c36b75eae9b62d44557142213c67a49c46513153c395768fb",
+      "generation": "exec-7b18d709-e710-4152-830f-08571213df9e.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "counter_accessories",
+      "resource_id": 19,
+      "file": "counter_accessories.png",
+      "canvas": [
+        2170,
+        725
+      ],
+      "sha256": "6167a7f27e075672b8159e83386d89dce21aae8db2cbd259b87bd16c6e79bbb3",
+      "generation": "exec-2bd6f194-259b-466d-9d71-2353a9a9f206.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "window_flowers",
+      "resource_id": 20,
+      "file": "window_flowers.png",
+      "canvas": [
+        1377,
+        1142
+      ],
+      "sha256": "af43099739d1851c092b8e5172f695ae81f3d18e03bf6bf2ab9d2a84f1ff41bf",
+      "generation": "exec-cf50975b-09b5-4722-b52e-e9b6ca4c049b.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "entry_shrub",
+      "resource_id": 21,
+      "file": "entry_shrub.png",
+      "canvas": [
+        768,
+        2048
+      ],
+      "sha256": "f184dd522fb676c4421b90ae5a8c47ee0dbebbfb5c3585ef2c197965f6840197",
+      "generation": "exec-0e854882-c725-4b53-8e71-fee84b40e4e9.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        254
+      ]
+    },
+    {
+      "id": "street_lamp",
+      "resource_id": 22,
+      "file": "street_lamp.png",
+      "canvas": [
+        725,
+        2168
+      ],
+      "sha256": "1d117f58a5ab34b9278ea7358d45b2af5b25f612fa070e3b026af2f1309f574e",
+      "generation": "exec-9be224da-e808-40ce-b392-de31169c7ee3.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "chandelier",
+      "resource_id": 23,
+      "file": "chandelier.png",
+      "canvas": [
+        1503,
+        1046
+      ],
+      "sha256": "eb55420386196b6dec7ecee697baab0286c38bffab75013ae6c7a570dfb072aa",
+      "generation": "exec-1cc6600a-5d51-400a-b014-3aed1e7b7e92.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "lounge_lamp",
+      "resource_id": 24,
+      "file": "lounge_lamp.png",
+      "canvas": [
+        1315,
+        1196
+      ],
+      "sha256": "18e975940f1c64b13e027c5a5e891755f0c60966eb2570edf0cb2bc84c30ff82",
+      "generation": "exec-14bd2614-c562-41a4-b467-df58e3ddbccf.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "utility_lamp",
+      "resource_id": 25,
+      "file": "utility_lamp.png",
+      "canvas": [
+        1297,
+        1212
+      ],
+      "sha256": "a737e41fa239461bbebd86d720f3e152bed88c216bd8064acba2a71288ee4d6f",
+      "generation": "exec-31fd82d1-3256-420e-a16f-e05bb98c1e0c.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        254
+      ]
+    },
+    {
+      "id": "stair_lamp",
+      "resource_id": 26,
+      "file": "stair_lamp.png",
+      "canvas": [
+        1024,
+        1536
+      ],
+      "sha256": "d14980ee09098c4a9d1e5bec9b77494d5c3c77fed5b786b5168f9194ec6c5e7c",
+      "generation": "exec-15cf1cb9-e6ec-4f54-a345-8496743a8765.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        254
+      ]
+    },
+    {
+      "id": "foreground_left",
+      "resource_id": 27,
+      "file": "foreground_left.png",
+      "canvas": [
+        788,
+        1997
+      ],
+      "sha256": "601b5243757bd9754601453e5e663b7a4a7230984cf4946844e49d23c1301fce",
+      "generation": "exec-5751bde8-83c4-436f-b392-210cc3618001.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "foreground_middle",
+      "resource_id": 28,
+      "file": "foreground_middle.png",
+      "canvas": [
+        724,
+        2172
+      ],
+      "sha256": "884a545896dcd08403b1f93b63d880ba1e9b9d8d5009f453cda8c2fe2ea4be5d",
+      "generation": "exec-edace915-9675-4f55-9cdd-afa19c548696.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "foreground_right",
+      "resource_id": 29,
+      "file": "foreground_right.png",
+      "canvas": [
+        725,
+        2170
+      ],
+      "sha256": "17b43827aff54b5a4ddd86e5bb423498280c5f94738e31d5203b430851ee1d12",
+      "generation": "exec-c2b831a7-6ebd-4c79-ba8e-b9c75b108e96.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "fx_warm_glow",
+      "resource_id": 30,
+      "file": "fx_warm_glow.png",
+      "canvas": [
+        1536,
+        1024
+      ],
+      "sha256": "f8dbfcd0cbc93c006d0d50609b06f8a49cb156bcfb17c63e34a80669a99e3341",
+      "generation": "exec-3a83a78c-39b2-4ad4-a099-e49e125d72b4.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        253
+      ]
+    },
+    {
+      "id": "fx_contact_shadow",
+      "resource_id": 31,
+      "file": "fx_contact_shadow.png",
+      "canvas": [
+        2172,
+        724
+      ],
+      "sha256": "91bd318b30c2316275d604d0505db828760681cd3f7ce83ab60a89acd7314b31",
+      "generation": "exec-1f8121fa-4af6-4371-8210-7b6f031507ba.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        253
+      ]
+    },
+    {
+      "id": "fx_light_cone",
+      "resource_id": 32,
+      "file": "fx_light_cone.png",
+      "canvas": [
+        1536,
+        1024
+      ],
+      "sha256": "14baf56ed113c4ab286eabbf6c724367a1f5647964cadd7d26774d0e9faf032f",
+      "generation": "exec-496ebc4f-6f33-4342-b4ae-0d52f857b18c.png",
+      "provenance": "approved independent imagegen output",
+      "alpha_range": [
+        0,
+        251
+      ]
+    },
+    {
+      "id": "roof_beam_hd",
+      "resource_id": 33,
+      "file": "roof_beam_hd.png",
+      "canvas": [
+        1374,
+        1145
+      ],
+      "sha256": "3b59da1edfbb9cb832135e1a3ca2bc77f72e311e17de580db56f56ffd2793580",
+      "generation": "exec-f4374ba0-766b-491b-b0ce-e31fff838eaf.png",
+      "provenance": "new independent imagegen supplement",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "utility_column_hd",
+      "resource_id": 34,
+      "file": "utility_column_hd.png",
+      "canvas": [
+        724,
+        2172
+      ],
+      "sha256": "3f3dae4ab228d2a21f2ff82e29602e9aa431aa1fb044ca3f00c450900062141f",
+      "generation": "exec-8055e00b-f51b-47c0-aa29-7d2a73d21c69.png",
+      "provenance": "new independent imagegen supplement",
+      "alpha_range": [
+        0,
+        255
+      ]
+    },
+    {
+      "id": "far_city_hd",
+      "resource_id": 35,
+      "file": "far_city_hd.png",
+      "canvas": [
+        1024,
+        1536
+      ],
+      "sha256": "fea24901193ee6d268778036c39d5ba1608ec6767eeb3fdb1565d845160776e3",
+      "generation": "exec-ef4fd875-2ddc-49f1-b9fe-cfd4676c21bc.png",
+      "provenance": "new independent imagegen supplement",
+      "alpha_range": [
+        255,
+        255
+      ]
+    },
+    {
+      "id": "carpet_tile_hd",
+      "resource_id": 36,
+      "file": "carpet_tile_hd.png",
+      "canvas": [
+        1586,
+        992
+      ],
+      "sha256": "5d6412a62898775246a18824560dd2ea8b42d90fa4c5ab74f39a0e77569cf24a",
+      "generation": "exec-840bb078-bbe3-4145-ba4a-f09e098ec4d2.png",
+      "provenance": "new independent imagegen supplement",
+      "alpha_range": [
+        0,
+        254
+      ]
+    },
+    {
+      "id": "stairs_completed_hd",
+      "resource_id": 37,
+      "file": "stairs_completed_hd.png",
+      "canvas": [
+        1136,
+        1385
+      ],
+      "sha256": "50386294a2d02df79ce739785889c183b35b0c83ca662ea0c6bd880c88a47a43",
+      "generation": "exec-cac64981-877f-4cb1-820f-3f6fc0999a9a.png",
+      "provenance": "new independent imagegen supplement",
+      "alpha_range": [
+        0,
+        254
+      ]
+    }
+  ],
+  "placements": [
+    {
+      "name": "left_sky",
+      "asset": "far_city_hd",
+      "group": "FarSky",
+      "region": [
+        0,
+        0,
+        1024,
+        1536
+      ],
+      "position": [
+        0,
+        0
+      ],
+      "size": [
+        240,
+        548
+      ],
+      "scale": [
+        0.234375,
+        0.3567708333333333
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "right_sky",
+      "asset": "far_city_hd",
+      "group": "FarSky",
+      "region": [
+        0,
+        0,
+        1024,
+        1536
+      ],
+      "position": [
+        3650,
+        0
+      ],
+      "size": [
+        190,
+        548
+      ],
+      "scale": [
+        0.185546875,
+        0.3567708333333333
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "background_entry",
+      "asset": "bg_entry",
+      "group": "Architecture",
+      "region": [
+        0,
+        0,
+        1356,
+        1049
+      ],
+      "position": [
+        -2,
+        0
+      ],
+      "size": [
+        644,
+        482
+      ],
+      "scale": [
+        0.4749262536873156,
+        0.45948522402287895
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "background_reception",
+      "asset": "bg_reception",
+      "group": "Architecture",
+      "region": [
+        0,
+        0,
+        1793,
+        767
+      ],
+      "position": [
+        638,
+        0
+      ],
+      "size": [
+        1124,
+        466
+      ],
+      "scale": [
+        0.6268823201338539,
+        0.6075619295958279
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "background_lounge",
+      "asset": "bg_lounge",
+      "group": "Architecture",
+      "region": [
+        0,
+        0,
+        1694,
+        791
+      ],
+      "position": [
+        1758,
+        0
+      ],
+      "size": [
+        1004,
+        466
+      ],
+      "scale": [
+        0.5926800472255017,
+        0.5891276864728192
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "background_utility",
+      "asset": "bg_utility",
+      "group": "Architecture",
+      "region": [
+        0,
+        0,
+        1345,
+        979
+      ],
+      "position": [
+        2758,
+        0
+      ],
+      "size": [
+        634,
+        466
+      ],
+      "scale": [
+        0.47137546468401487,
+        0.4759959141981614
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "background_stairs",
+      "asset": "stairs_completed_hd",
+      "group": "Architecture",
+      "region": [
+        0,
+        0,
+        1136,
+        1213
+      ],
+      "position": [
+        3388,
+        0
+      ],
+      "size": [
+        454,
+        482
+      ],
+      "scale": [
+        0.3996478873239437,
+        0.3973619126133553
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "carpet_strip_1",
+      "asset": "carpet_tile_hd",
+      "group": "Floor",
+      "region": [
+        81,
+        368,
+        1425,
+        256
+      ],
+      "position": [
+        430,
+        466
+      ],
+      "size": [
+        960,
+        42
+      ],
+      "scale": [
+        0.6736842105263158,
+        0.1640625
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "carpet_strip_2",
+      "asset": "carpet_tile_hd",
+      "group": "Floor",
+      "region": [
+        81,
+        368,
+        1425,
+        256
+      ],
+      "position": [
+        1390,
+        466
+      ],
+      "size": [
+        960,
+        42
+      ],
+      "scale": [
+        0.6736842105263158,
+        0.1640625
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "carpet_strip_3",
+      "asset": "carpet_tile_hd",
+      "group": "Floor",
+      "region": [
+        81,
+        368,
+        1425,
+        256
+      ],
+      "position": [
+        2350,
+        466
+      ],
+      "size": [
+        960,
+        42
+      ],
+      "scale": [
+        0.6736842105263158,
+        0.1640625
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "platform_fascia_1",
+      "asset": "roof_beam_hd",
+      "group": "Floor",
+      "region": [
+        95,
+        511,
+        1185,
+        122
+      ],
+      "position": [
+        0,
+        508
+      ],
+      "size": [
+        960,
+        40
+      ],
+      "scale": [
+        0.810126582278481,
+        0.32786885245901637
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "platform_fascia_2",
+      "asset": "roof_beam_hd",
+      "group": "Floor",
+      "region": [
+        95,
+        511,
+        1185,
+        122
+      ],
+      "position": [
+        960,
+        508
+      ],
+      "size": [
+        960,
+        40
+      ],
+      "scale": [
+        0.810126582278481,
+        0.32786885245901637
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "platform_fascia_3",
+      "asset": "roof_beam_hd",
+      "group": "Floor",
+      "region": [
+        95,
+        511,
+        1185,
+        122
+      ],
+      "position": [
+        1920,
+        508
+      ],
+      "size": [
+        960,
+        40
+      ],
+      "scale": [
+        0.810126582278481,
+        0.32786885245901637
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "platform_fascia_4",
+      "asset": "roof_beam_hd",
+      "group": "Floor",
+      "region": [
+        95,
+        511,
+        1185,
+        122
+      ],
+      "position": [
+        2880,
+        508
+      ],
+      "size": [
+        960,
+        40
+      ],
+      "scale": [
+        0.810126582278481,
+        0.32786885245901637
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "entry_platform",
+      "asset": "roof_beam_hd",
+      "group": "Floor",
+      "region": [
+        95,
+        511,
+        1185,
+        122
+      ],
+      "position": [
+        0,
+        482
+      ],
+      "size": [
+        430,
+        26
+      ],
+      "scale": [
+        0.3628691983122363,
+        0.21311475409836064
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "stairs_platform",
+      "asset": "roof_beam_hd",
+      "group": "Floor",
+      "region": [
+        95,
+        511,
+        1185,
+        122
+      ],
+      "position": [
+        3310,
+        482
+      ],
+      "size": [
+        530,
+        26
+      ],
+      "scale": [
+        0.4472573839662447,
+        0.21311475409836064
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "contact_shadow_1",
+      "asset": "fx_contact_shadow",
+      "group": "ContactShadows",
+      "region": [
+        126,
+        85,
+        1893,
+        567
+      ],
+      "position": [
+        755,
+        457
+      ],
+      "size": [
+        908,
+        21
+      ],
+      "scale": [
+        0.479661912308505,
+        0.037037037037037035
+      ],
+      "opacity": 0.38,
+      "visible": true
+    },
+    {
+      "name": "contact_shadow_2",
+      "asset": "fx_contact_shadow",
+      "group": "ContactShadows",
+      "region": [
+        126,
+        85,
+        1893,
+        567
+      ],
+      "position": [
+        1898,
+        458
+      ],
+      "size": [
+        198,
+        20
+      ],
+      "scale": [
+        0.1045958795562599,
+        0.03527336860670194
+      ],
+      "opacity": 0.38,
+      "visible": true
+    },
+    {
+      "name": "contact_shadow_3",
+      "asset": "fx_contact_shadow",
+      "group": "ContactShadows",
+      "region": [
+        126,
+        85,
+        1893,
+        567
+      ],
+      "position": [
+        2180,
+        458
+      ],
+      "size": [
+        198,
+        20
+      ],
+      "scale": [
+        0.1045958795562599,
+        0.03527336860670194
+      ],
+      "opacity": 0.38,
+      "visible": true
+    },
+    {
+      "name": "contact_shadow_4",
+      "asset": "fx_contact_shadow",
+      "group": "ContactShadows",
+      "region": [
+        126,
+        85,
+        1893,
+        567
+      ],
+      "position": [
+        2076,
+        457
+      ],
+      "size": [
+        120,
+        17
+      ],
+      "scale": [
+        0.06339144215530904,
+        0.029982363315696647
+      ],
+      "opacity": 0.38,
+      "visible": true
+    },
+    {
+      "name": "contact_shadow_5",
+      "asset": "fx_contact_shadow",
+      "group": "ContactShadows",
+      "region": [
+        126,
+        85,
+        1893,
+        567
+      ],
+      "position": [
+        1730,
+        458
+      ],
+      "size": [
+        140,
+        18
+      ],
+      "scale": [
+        0.07395668251452721,
+        0.031746031746031744
+      ],
+      "opacity": 0.38,
+      "visible": true
+    },
+    {
+      "name": "contact_shadow_6",
+      "asset": "fx_contact_shadow",
+      "group": "ContactShadows",
+      "region": [
+        126,
+        85,
+        1893,
+        567
+      ],
+      "position": [
+        2390,
+        459
+      ],
+      "size": [
+        110,
+        17
+      ],
+      "scale": [
+        0.05810882197569995,
+        0.029982363315696647
+      ],
+      "opacity": 0.38,
+      "visible": true
+    },
+    {
+      "name": "contact_shadow_7",
+      "asset": "fx_contact_shadow",
+      "group": "ContactShadows",
+      "region": [
+        126,
+        85,
+        1893,
+        567
+      ],
+      "position": [
+        2788,
+        455
+      ],
+      "size": [
+        267,
+        22
+      ],
+      "scale": [
+        0.1410459587955626,
+        0.03880070546737213
+      ],
+      "opacity": 0.38,
+      "visible": true
+    },
+    {
+      "name": "contact_shadow_8",
+      "asset": "fx_contact_shadow",
+      "group": "ContactShadows",
+      "region": [
+        126,
+        85,
+        1893,
+        567
+      ],
+      "position": [
+        2928,
+        457
+      ],
+      "size": [
+        164,
+        20
+      ],
+      "scale": [
+        0.08663497094558902,
+        0.03527336860670194
+      ],
+      "opacity": 0.38,
+      "visible": true
+    },
+    {
+      "name": "contact_shadow_9",
+      "asset": "fx_contact_shadow",
+      "group": "ContactShadows",
+      "region": [
+        126,
+        85,
+        1893,
+        567
+      ],
+      "position": [
+        3235,
+        456
+      ],
+      "size": [
+        140,
+        21
+      ],
+      "scale": [
+        0.07395668251452721,
+        0.037037037037037035
+      ],
+      "opacity": 0.38,
+      "visible": true
+    },
+    {
+      "name": "reception_counter",
+      "asset": "reception_counter",
+      "group": "BackFurniture",
+      "region": [
+        14,
+        229,
+        2142,
+        270
+      ],
+      "position": [
+        752,
+        350
+      ],
+      "size": [
+        911,
+        116
+      ],
+      "scale": [
+        0.4253034547152194,
+        0.42962962962962964
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "key_cabinet",
+      "asset": "key_cabinet",
+      "group": "BackFurniture",
+      "region": [
+        86,
+        14,
+        1243,
+        1083
+      ],
+      "position": [
+        994,
+        36
+      ],
+      "size": [
+        405,
+        314
+      ],
+      "scale": [
+        0.3258246178600161,
+        0.2899353647276085
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "emblem_banner",
+      "asset": "emblem_banner",
+      "group": "BackFurniture",
+      "region": [
+        65,
+        84,
+        914,
+        1341
+      ],
+      "position": [
+        1380,
+        42
+      ],
+      "size": [
+        166,
+        238
+      ],
+      "scale": [
+        0.18161925601750548,
+        0.17747949291573453
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "wall_clock",
+      "asset": "wall_clock",
+      "group": "BackFurniture",
+      "region": [
+        44,
+        42,
+        799,
+        1706
+      ],
+      "position": [
+        2504,
+        43
+      ],
+      "size": [
+        161,
+        320
+      ],
+      "scale": [
+        0.20150187734668334,
+        0.18757327080890973
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "armchair_left",
+      "asset": "armchair_left",
+      "group": "BackFurniture",
+      "region": [
+        79,
+        39,
+        1130,
+        1115
+      ],
+      "position": [
+        1909,
+        301
+      ],
+      "size": [
+        176,
+        165
+      ],
+      "scale": [
+        0.15575221238938053,
+        0.14798206278026907
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "armchair_right",
+      "asset": "armchair_right",
+      "group": "BackFurniture",
+      "region": [
+        80,
+        44,
+        1091,
+        1095
+      ],
+      "position": [
+        2190,
+        301
+      ],
+      "size": [
+        170,
+        165
+      ],
+      "scale": [
+        0.15582034830430797,
+        0.1506849315068493
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "lounge_table",
+      "asset": "lounge_table",
+      "group": "BackFurniture",
+      "region": [
+        94,
+        121,
+        1115,
+        947
+      ],
+      "position": [
+        2081,
+        370
+      ],
+      "size": [
+        112,
+        96
+      ],
+      "scale": [
+        0.10044843049327354,
+        0.10137275607180571
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "plant_reception",
+      "asset": "plant_reception",
+      "group": "BackFurniture",
+      "region": [
+        73,
+        40,
+        1043,
+        1200
+      ],
+      "position": [
+        728,
+        170
+      ],
+      "size": [
+        176,
+        180
+      ],
+      "scale": [
+        0.16874400767018216,
+        0.15
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "plant_lounge_left",
+      "asset": "plant_lounge_left",
+      "group": "BackFurniture",
+      "region": [
+        43,
+        32,
+        909,
+        1464
+      ],
+      "position": [
+        1723,
+        172
+      ],
+      "size": [
+        183,
+        294
+      ],
+      "scale": [
+        0.20132013201320131,
+        0.20081967213114754
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "plant_lounge_right",
+      "asset": "plant_lounge_right",
+      "group": "BackFurniture",
+      "region": [
+        85,
+        84,
+        795,
+        1440
+      ],
+      "position": [
+        2360,
+        194
+      ],
+      "size": [
+        168,
+        272
+      ],
+      "scale": [
+        0.21132075471698114,
+        0.18888888888888888
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "supply_shelf",
+      "asset": "supply_shelf",
+      "group": "BackFurniture",
+      "region": [
+        62,
+        35,
+        972,
+        1365
+      ],
+      "position": [
+        2796,
+        137
+      ],
+      "size": [
+        251,
+        329
+      ],
+      "scale": [
+        0.25823045267489714,
+        0.24102564102564103
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "utility_cupboard",
+      "asset": "utility_cupboard",
+      "group": "BackFurniture",
+      "region": [
+        90,
+        84,
+        694,
+        1612
+      ],
+      "position": [
+        3235,
+        168
+      ],
+      "size": [
+        140,
+        298
+      ],
+      "scale": [
+        0.2017291066282421,
+        0.184863523573201
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "cleaning_cart",
+      "asset": "cleaning_cart",
+      "group": "BackFurniture",
+      "region": [
+        109,
+        59,
+        947,
+        1246
+      ],
+      "position": [
+        2932,
+        281
+      ],
+      "size": [
+        152,
+        185
+      ],
+      "scale": [
+        0.16050686378035903,
+        0.14847512038523275
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "window_flowers",
+      "asset": "window_flowers",
+      "group": "BackFurniture",
+      "region": [
+        238,
+        113,
+        899,
+        892
+      ],
+      "position": [
+        1540,
+        275
+      ],
+      "size": [
+        99,
+        75
+      ],
+      "scale": [
+        0.11012235817575083,
+        0.08408071748878924
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "entry_shrub",
+      "asset": "entry_shrub",
+      "group": "BackFurniture",
+      "region": [
+        55,
+        130,
+        655,
+        1762
+      ],
+      "position": [
+        212,
+        281
+      ],
+      "size": [
+        74,
+        201
+      ],
+      "scale": [
+        0.11297709923664122,
+        0.11407491486946651
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "street_lamp",
+      "asset": "street_lamp",
+      "group": "BackFurniture",
+      "region": [
+        176,
+        25,
+        372,
+        2118
+      ],
+      "position": [
+        268,
+        176
+      ],
+      "size": [
+        65,
+        306
+      ],
+      "scale": [
+        0.17473118279569894,
+        0.14447592067988668
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "chandelier",
+      "asset": "chandelier",
+      "group": "BackFurniture",
+      "region": [
+        67,
+        12,
+        1360,
+        986
+      ],
+      "position": [
+        781,
+        22
+      ],
+      "size": [
+        201,
+        140
+      ],
+      "scale": [
+        0.14779411764705883,
+        0.14198782961460446
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "lounge_lamp",
+      "asset": "lounge_lamp",
+      "group": "BackFurniture",
+      "region": [
+        190,
+        54,
+        928,
+        1107
+      ],
+      "position": [
+        2087,
+        277
+      ],
+      "size": [
+        101,
+        93
+      ],
+      "scale": [
+        0.10883620689655173,
+        0.08401084010840108
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "utility_lamp",
+      "asset": "utility_lamp",
+      "group": "BackFurniture",
+      "region": [
+        320,
+        85,
+        652,
+        997
+      ],
+      "position": [
+        3026,
+        27
+      ],
+      "size": [
+        129,
+        105
+      ],
+      "scale": [
+        0.19785276073619631,
+        0.10531594784353059
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "stair_lamp",
+      "asset": "stair_lamp",
+      "group": "BackFurniture",
+      "region": [
+        283,
+        235,
+        443,
+        1078
+      ],
+      "position": [
+        3510,
+        36
+      ],
+      "size": [
+        77,
+        127
+      ],
+      "scale": [
+        0.17381489841986456,
+        0.11781076066790352
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "entry_shrub_second",
+      "asset": "entry_shrub",
+      "group": "BackFurniture",
+      "region": [
+        55,
+        130,
+        655,
+        1762
+      ],
+      "position": [
+        326,
+        265
+      ],
+      "size": [
+        70,
+        217
+      ],
+      "scale": [
+        0.10687022900763359,
+        0.123155505107832
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "entry_shrub_counter_side",
+      "asset": "entry_shrub",
+      "group": "BackFurniture",
+      "region": [
+        55,
+        130,
+        655,
+        1762
+      ],
+      "position": [
+        665,
+        300
+      ],
+      "size": [
+        77,
+        166
+      ],
+      "scale": [
+        0.11755725190839694,
+        0.094211123723042
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "open_guest_book",
+      "asset": "counter_accessories",
+      "group": "BackFurniture",
+      "region": [
+        123,
+        446,
+        620,
+        241
+      ],
+      "position": [
+        1115,
+        312
+      ],
+      "size": [
+        112,
+        38
+      ],
+      "scale": [
+        0.18064516129032257,
+        0.15767634854771784
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "service_bell",
+      "asset": "counter_accessories",
+      "group": "BackFurniture",
+      "region": [
+        869,
+        314,
+        407,
+        368
+      ],
+      "position": [
+        1225,
+        273
+      ],
+      "size": [
+        92,
+        77
+      ],
+      "scale": [
+        0.22604422604422605,
+        0.20923913043478262
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "reception_lamp",
+      "asset": "counter_accessories",
+      "group": "BackFurniture",
+      "region": [
+        1425,
+        14,
+        655,
+        668
+      ],
+      "position": [
+        1360,
+        242
+      ],
+      "size": [
+        120,
+        108
+      ],
+      "scale": [
+        0.183206106870229,
+        0.16167664670658682
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "lamp_glow_1",
+      "asset": "fx_warm_glow",
+      "group": "Lighting",
+      "region": [
+        31,
+        109,
+        1327,
+        915
+      ],
+      "position": [
+        244,
+        180
+      ],
+      "size": [
+        115,
+        145
+      ],
+      "scale": [
+        0.08666164280331574,
+        0.15846994535519127
+      ],
+      "opacity": 0.24,
+      "visible": true
+    },
+    {
+      "name": "lamp_glow_2",
+      "asset": "fx_warm_glow",
+      "group": "Lighting",
+      "region": [
+        31,
+        109,
+        1327,
+        915
+      ],
+      "position": [
+        775,
+        68
+      ],
+      "size": [
+        220,
+        150
+      ],
+      "scale": [
+        0.1657874905802562,
+        0.16393442622950818
+      ],
+      "opacity": 0.24,
+      "visible": true
+    },
+    {
+      "name": "lamp_glow_3",
+      "asset": "fx_warm_glow",
+      "group": "Lighting",
+      "region": [
+        31,
+        109,
+        1327,
+        915
+      ],
+      "position": [
+        1340,
+        238
+      ],
+      "size": [
+        160,
+        138
+      ],
+      "scale": [
+        0.12057272042200452,
+        0.15081967213114755
+      ],
+      "opacity": 0.24,
+      "visible": true
+    },
+    {
+      "name": "lamp_glow_4",
+      "asset": "fx_warm_glow",
+      "group": "Lighting",
+      "region": [
+        31,
+        109,
+        1327,
+        915
+      ],
+      "position": [
+        2060,
+        269
+      ],
+      "size": [
+        160,
+        130
+      ],
+      "scale": [
+        0.12057272042200452,
+        0.14207650273224043
+      ],
+      "opacity": 0.24,
+      "visible": true
+    },
+    {
+      "name": "lamp_glow_5",
+      "asset": "fx_warm_glow",
+      "group": "Lighting",
+      "region": [
+        31,
+        109,
+        1327,
+        915
+      ],
+      "position": [
+        3000,
+        57
+      ],
+      "size": [
+        190,
+        148
+      ],
+      "scale": [
+        0.14318010550113036,
+        0.16174863387978142
+      ],
+      "opacity": 0.24,
+      "visible": true
+    },
+    {
+      "name": "lamp_glow_6",
+      "asset": "fx_warm_glow",
+      "group": "Lighting",
+      "region": [
+        31,
+        109,
+        1327,
+        915
+      ],
+      "position": [
+        3490,
+        57
+      ],
+      "size": [
+        136,
+        160
+      ],
+      "scale": [
+        0.10248681235870384,
+        0.17486338797814208
+      ],
+      "opacity": 0.24,
+      "visible": true
+    },
+    {
+      "name": "utility_light_cone",
+      "asset": "fx_light_cone",
+      "group": "Lighting",
+      "region": [
+        179,
+        53,
+        1155,
+        971
+      ],
+      "position": [
+        2929,
+        94
+      ],
+      "size": [
+        330,
+        345
+      ],
+      "scale": [
+        0.2857142857142857,
+        0.3553038105046344
+      ],
+      "opacity": 0.2,
+      "visible": true
+    },
+    {
+      "name": "entry_column",
+      "asset": "foreground_left",
+      "group": "Foreground",
+      "region": [
+        60,
+        18,
+        667,
+        1949
+      ],
+      "position": [
+        17,
+        0
+      ],
+      "size": [
+        202,
+        514
+      ],
+      "scale": [
+        0.3028485757121439,
+        0.2637249871729092
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "entrance_reception_column",
+      "asset": "utility_column_hd",
+      "group": "Foreground",
+      "region": [
+        136,
+        18,
+        453,
+        2138
+      ],
+      "position": [
+        613,
+        0
+      ],
+      "size": [
+        61,
+        482
+      ],
+      "scale": [
+        0.1346578366445916,
+        0.225444340505145
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "reception_lounge_column",
+      "asset": "foreground_middle",
+      "group": "Foreground",
+      "region": [
+        137,
+        40,
+        449,
+        2090
+      ],
+      "position": [
+        1716,
+        0
+      ],
+      "size": [
+        80,
+        478
+      ],
+      "scale": [
+        0.17817371937639198,
+        0.22870813397129186
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "lounge_utility_column",
+      "asset": "utility_column_hd",
+      "group": "Foreground",
+      "region": [
+        136,
+        18,
+        453,
+        2138
+      ],
+      "position": [
+        2734,
+        0
+      ],
+      "size": [
+        68,
+        484
+      ],
+      "scale": [
+        0.15011037527593818,
+        0.22637979420018708
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "utility_stairs_column",
+      "asset": "utility_column_hd",
+      "group": "Foreground",
+      "region": [
+        136,
+        18,
+        453,
+        2138
+      ],
+      "position": [
+        3340,
+        0
+      ],
+      "size": [
+        68,
+        484
+      ],
+      "scale": [
+        0.15011037527593818,
+        0.22637979420018708
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "right_exterior_column",
+      "asset": "foreground_right",
+      "group": "Foreground",
+      "region": [
+        17,
+        32,
+        690,
+        2117
+      ],
+      "position": [
+        3655,
+        0
+      ],
+      "size": [
+        174,
+        514
+      ],
+      "scale": [
+        0.25217391304347825,
+        0.242796410014171
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "roof_beam_1",
+      "asset": "roof_beam_hd",
+      "group": "Foreground",
+      "region": [
+        95,
+        511,
+        1185,
+        122
+      ],
+      "position": [
+        -1,
+        0
+      ],
+      "size": [
+        962,
+        30
+      ],
+      "scale": [
+        0.8118143459915612,
+        0.2459016393442623
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "roof_beam_2",
+      "asset": "roof_beam_hd",
+      "group": "Foreground",
+      "region": [
+        95,
+        511,
+        1185,
+        122
+      ],
+      "position": [
+        959,
+        0
+      ],
+      "size": [
+        962,
+        30
+      ],
+      "scale": [
+        0.8118143459915612,
+        0.2459016393442623
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "roof_beam_3",
+      "asset": "roof_beam_hd",
+      "group": "Foreground",
+      "region": [
+        95,
+        511,
+        1185,
+        122
+      ],
+      "position": [
+        1919,
+        0
+      ],
+      "size": [
+        962,
+        30
+      ],
+      "scale": [
+        0.8118143459915612,
+        0.2459016393442623
+      ],
+      "opacity": 1,
+      "visible": true
+    },
+    {
+      "name": "roof_beam_4",
+      "asset": "roof_beam_hd",
+      "group": "Foreground",
+      "region": [
+        95,
+        511,
+        1185,
+        122
+      ],
+      "position": [
+        2879,
+        0
+      ],
+      "size": [
+        962,
+        30
+      ],
+      "scale": [
+        0.8118143459915612,
+        0.2459016393442623
+      ],
+      "opacity": 1,
+      "visible": true
+    }
+  ],
+  "source_file": "art_sources/floor_1/floor_1_generated_hd.ora",
+  "source_canvas": [
+    7680,
+    1096
+  ],
+  "raw_png_policy": "Exact original generated PNG bytes and full canvases; no asset downsampling. Region/scale live in editable scene nodes.",
+  "foreground_crossings": [
+    {
+      "node": "lounge_utility_column",
+      "source_x": 2768,
+      "world_x": 2595
+    },
+    {
+      "node": "utility_stairs_column",
+      "source_x": 3374,
+      "world_x": 3163.125
+    }
+  ]
+}
