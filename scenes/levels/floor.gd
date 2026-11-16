@@ -1,6 +1,7 @@
 extends Node2D
 ## A owns floor assembly and E routing; B/C retain their component implementations.
 
+signal floor_selection_requested()
 signal notice_requested(text: String)
 signal manager_talk_requested()
 signal task_offer_requested(task_id: String)
@@ -99,7 +100,10 @@ func _unhandled_input(event: InputEvent) -> void:
 	get_viewport().set_input_as_handled()
 	_needs_e_release = true
 	if target["kind"] == "STAIR":
-		GameManager.request_floor_travel(target["floor"])
+		if floor_selection_requested.has_connections():
+			floor_selection_requested.emit()
+		else:
+			GameManager.request_floor_travel(target["floor"])
 	elif target["kind"] == "OFFER":
 		task_offer_requested.emit(target["node"].task_id)
 	elif target["kind"] == "STORY":

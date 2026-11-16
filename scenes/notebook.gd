@@ -1,6 +1,7 @@
 extends "res://scenes/ui/help.gd"
 ## A binds the current D help view to authoritative story/settlement facts.
 
+const STATUS_LABELS := {"UNKNOWN": "未知", "HINT": "线索", "KNOWN": "已确认"}
 const ENTRY_NODES: Array[String] = ["Eye", "Nose", "Hat", "Ear", "Checker"]
 const CARD_ROWS: Dictionary = {"Security": "SECURITY", "Cleaner": "CLEANER", "Manager": "MANAGER"}
 
@@ -23,7 +24,7 @@ func _refresh_notebook() -> void:
 		_work_card_page.get_node(row + "Rule").text = "已获得，可在背包选择佩戴槽。" if CardManager.has_card(CARD_ROWS[row]) else "尚未获得。"
 	for index: int in range(ENTRY_NODES.size()):
 		var entry: Dictionary = view["entries"][index]
-		_monster_page.get_node(ENTRY_NODES[index] + "Id").text = entry["name"]
+		_monster_page.get_node(ENTRY_NODES[index] + "Id").text = "%s · %s" % [STATUS_LABELS[entry["status"]], entry["name"]]
 		_monster_page.get_node(ENTRY_NODES[index] + "Rule").text = entry["text"]
 	var hint: Label = _monster_page.get_node("Unconfirmed")
 	hint.visible = not view["unlocked"]

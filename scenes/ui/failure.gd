@@ -20,6 +20,14 @@ func show_failure(reason: String) -> void:
 	%MenuButton.grab_focus()
 
 
+func configure_retry(available: bool, message: String) -> void:
+	%RetryButton.text = "重新挑战本任务"
+	%RetryButton.disabled = not available
+	%RetryButton.tooltip_text = message
+	if visible and available:
+		%RetryButton.grab_focus()
+
+
 func _on_retry_pressed() -> void:
 	if %RetryButton.disabled:
 		return
