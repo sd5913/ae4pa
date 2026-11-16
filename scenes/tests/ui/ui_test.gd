@@ -2,10 +2,12 @@ extends Node2D
 
 const MissionBoardScreen = preload("res://scenes/ui/mission_board.gd")
 const FailureScreen = preload("res://scenes/ui/failure.gd")
+const WinScreen = preload("res://scenes/ui/win.gd")
 
 @onready var _hud: Control = $UISlot/HUD
 @onready var _mission_board: MissionBoardScreen = $UISlot/MissionBoard
 @onready var _failure: FailureScreen = $UISlot/Failure
+@onready var _win: WinScreen = $UISlot/Win
 @onready var _status: Label = $UISlot/Status
 
 
@@ -19,10 +21,18 @@ func _ready() -> void:
 	$UISlot/Controls/ShowWarning.pressed.connect(_show_warning_preview)
 	$UISlot/Controls/ShowTaskFailure.pressed.connect(_show_task_failure_preview)
 	$UISlot/Controls/ShowFailure.pressed.connect(_show_failure_preview)
+	$UISlot/Controls/ShowWin.pressed.connect(_win.show_win)
+	_win.restart_requested.connect(_close_win_preview.bind("收到重开请求"))
+	_win.return_to_menu_requested.connect(_close_win_preview.bind("收到通关页返回菜单请求"))
 	if "--ui-smoke" in OS.get_cmdline_user_args():
 		GameManager.start_game()
 		GameManager.complete_manager_intro()
 		_run_smoke.call_deferred()
+
+
+func _close_win_preview(message: String) -> void:
+	_win.hide()
+	_show_status(message)
 
 
 func _show_warning_preview() -> void:
@@ -111,6 +121,7 @@ func _run_smoke() -> void:
 		"Failure page shows the real reason text", failures)
 	_check(_failure.get_node("%RetryButton").disabled,
 		"Failure page retry remains disabled without checkpoint restoration", failures)
+	_check_win(failures)
 	if failures.is_empty():
 		print("PASS: mission board reads the live task view and floor list; guarded accept uses GameManager's real API.")
 		print("PASS: HUD reads the live floor, task and remaining time without a private timer.")
@@ -120,6 +131,30 @@ func _run_smoke() -> void:
 		for failure: String in failures:
 			push_error(failure)
 	get_tree().quit(0 if failures.is_empty() else 1)
+
+
+func _check_win(failures: Array[String]) -> void:
+	var requests: Array[String] = []
+	_win.restart_requested.connect(func() -> void: requests.append("restart"))
+	_win.return_to_menu_requested.connect(func() -> void: requests.append("menu"))
+	_failure.hide()
+	_mission_board.hide()
+	var state_before: String = GameManager.game_state
+	_check(not _win.visible, "Win screen starts hidden", failures)
+	$UISlot/Controls/ShowWin.pressed.emit()
+	_check(_win.visible and _win.get_node("%Title").text == "ESCAPED"
+		and _win.get_node("%Ending").text.contains("同伴"), "Win screen displays the ending", failures)
+	_check(_win.get_node("%StatisticsNote").text.contains("待 A 接入"),
+		"Win screen does not fabricate statistics", failures)
+	var restart_button: Button = _win.get_node("%RestartButton")
+	_check(restart_button.has_focus(), "Win screen focuses the restart button", failures)
+	restart_button.pressed.emit()
+	_check(requests == ["restart"] and GameManager.game_state == state_before,
+		"Win restart emits only its request", failures)
+	_win.show_win()
+	_win.get_node("%ReturnButton").pressed.emit()
+	_check(requests == ["restart", "menu"] and GameManager.game_state == state_before,
+		"Win return emits only its request", failures)
 
 
 func _check(condition: bool, description: String, failures: Array[String]) -> void:

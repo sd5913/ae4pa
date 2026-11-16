@@ -222,3 +222,13 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 - 菜单、未知笔记、经理笔记、实际卡片背包及 201 页面使用 Compatibility／OpenGL 4.1 Metal 运行并截图，路径前缀 `/private/tmp/ae4pa-a-finish-`。画面位置和卡片为渲染夹具，真实输入链路另由 task_ui_smoke 执行。
 
 人工验收、任务 02—05、Windows／导出仍待对应成员与实际系统执行。D-02 完整冻结／核验策略和后段玩法决定以决策表及用户回复为准。
+
+## 历史：D 模块独立 UI 回归记录
+
+| 日期／环境 | 分支与范围 | 负责人／执行者 | 检查入口与步骤 | 预期结果 | 实际结果与证据 | 状态／复测 |
+|---|---|---|---|---|---|---|
+| 2026-11-08（Asia/Shanghai）；Windows；Godot `4.7.2.stable.official.ed1daf0bf` | `work/member-D-caizhichun`；运行时包含当时工作区已有的 UI 测试、手册、对白和通关界面改动，均未提交 | 负责人：D（蔡至纯）；本次命令行执行 | `scenes/tests/ui/ui_test.tscn`；从仓库根目录用 Godot 控制台以 `--headless --scene res://scenes/tests/ui/ui_test.tscn -- --ui-smoke` 运行现有自动检查 | 菜单和 H 手册入口、两页图鉴、五怪／三卡 ID、失败文案与请求信号、HUD 首次读取及更新、背包装备和刷新、INTRO／RESCUE_309 推进／跳过／完成信号、通关显示与请求信号均符合断言；UI 请求不擅自改变 GameManager 流程 | 退出码 0；6 组 PASS 输出，未观察到该 UI 回归覆盖范围内的失败。完整日志：`%TEMP%\ae4pa_d11_ui_20261108.log`（本机临时目录）。初次运行的默认日志位置不可写，改用显式临时日志路径重跑后无该诊断 | 通过；显式日志路径重跑通过。仅为命令行无头回归，不代表编辑器画面／人工试玩或完整主线通过 |
+
+本次 D UI 回归没有发现需登记的阻塞 BUG；这不表示 T01—T14 或其他成员模块已验收。尚未实测的场景继续保持“未执行”，不以独立 UI 断言替代主线、门怪、员工、重试、救援、跟随或 EXIT 验收。
+
+| 2026-11-13（Asia/Shanghai）；Windows；Godot `4.7.2.stable.official.ed1daf0bf` | `work/member-D-v4-qa-fix`，基于已包含 PR #17 的 `origin/work/member-D-caizhichun` 提交 `a594bd0`；只新增 RESCUE_309 闺蜜立绘及断言、所需素材和本条 QA 记录 | 负责人：D；隔离 worktree 无窗口执行 | `scenes/tests/ui/ui_test.tscn`；Godot 控制台 `--headless --scene res://scenes/tests/ui/ui_test.tscn -- --ui-smoke` | RESCUE_309 立绘、推进和完成信号断言通过，现有菜单、说明、失败页、任务面板、通关页、HUD、背包回归通过 | 退出码 0；7 组 PASS。日志：`C:\Users\lenovo\AppData\Local\Temp\ae4pa_v4_qa_fix_worktree.log`。Windows 根证书存储读取错误未阻断测试 | 通过；仅为无窗口 UI 回归。当前 D 基线不含 V4 序章已读状态保存流程，因此本次未覆盖该状态的保存／重播测试；正式主线仍待 A 接入 |
