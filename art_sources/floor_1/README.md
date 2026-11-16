@@ -1,5 +1,8 @@
 # 一楼分层源文件
 
+当前一楼游戏场景使用 hd_generated 中的独立生成高清原文件，源文件为 floor_1_generated_hd.ora；原图只参考布局，reference_aligned 原图裁片方案已停用。说明见 scenes/levels/floor_1_art_layout.md。以下历史版本仅保留备选。
+
+
 floor_1_layers.ora：OpenRaster，3840×548，含有名称的独立图层，可用 Krita / GIMP 编辑。
 
 导出包及坐标见 ../../assets/final/floor_1_layers/README.md。prompts.json 保存本次实际使用的内置 imagegen 提示词。

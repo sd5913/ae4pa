@@ -1,0 +1,31 @@
+{
+  "version": "generated_hd_v3",
+  "raw_generated_pngs": 37,
+  "active_sprite_textures": 36,
+  "independent_scene_sprites": 67,
+  "original_reference_image_pixels_used": 0,
+  "raw_png_byte_identity_to_generation_outputs": true,
+  "full_original_texture_dimensions_in_godot": true,
+  "lossless_no_import_downscale": true,
+  "ora_layers": 67,
+  "ora_canvas": [
+    7680,
+    1096
+  ],
+  "ora_recomposition_exact": true,
+  "protected_gameplay_files_unchanged": true,
+  "checks": {
+    "floor_1_art_smoke": "FLOOR_1_ART: PASS",
+    "world_interaction_smoke": "PASS: unique E",
+    "foundation_smoke": "PASS: startup",
+    "task_01_main_flow_smoke": "TASK_01_MAIN_FLOW: PASS",
+    "texture_sizes": "FLOOR_1_HD_FULL_SIZE: PASS count=37",
+    "capture": "FLOOR_1_RENDER: PASS"
+  },
+  "rendered_occlusion_pixels": [
+    1204,
+    1204
+  ],
+  "published": false,
+  "limitation": "Layout uses original reference coordinates and proportions; generated shapes and textures differ from the reference. Existing user:// log, shader-cache and editor-settings write diagnostics remain."
+}

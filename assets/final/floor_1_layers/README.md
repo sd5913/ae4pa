@@ -1,5 +1,8 @@
 # 一楼分区分层美术包
 
+当前一楼游戏场景使用 hd_generated 中的独立生成高清原文件，源文件为 floor_1_generated_hd.ora；原图只参考布局，reference_aligned 原图裁片方案已停用。说明见 scenes/levels/floor_1_art_layout.md。以下历史版本仅保留备选。
+
+
 只交付一楼美术，存放于 C 个人分支；未替换游戏场景，未合并 main。
 
 - 原图画布 3840×2160，可见区域 `(0,806,3840,548)`；工作画布为 3840×548。
