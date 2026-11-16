@@ -23,7 +23,6 @@ const BACKGROUNDS := {
 const PROTAGONIST_SHEET := preload("res://assets/final/ui/visual_novel/protagonist_expressions.png")
 const FRIEND_SHEET := preload("res://assets/final/ui/visual_novel/friend_expressions.png")
 const MANAGER_PORTRAIT := preload("res://assets/final/ui/visual_novel/manager_portrait.png")
-const DIALOGUE_FRAME := preload("res://assets/final/ui/visual_novel/dialogue_frame.png")
 const FACE_INDEX := {
 	"pensive": 0,
 	"worried": 1,
@@ -53,7 +52,7 @@ var _skip_transitions := false
 @onready var _background: TextureRect = %Background
 @onready var _fade: ColorRect = %Fade
 @onready var _portrait: TextureRect = %Portrait
-@onready var _frame: TextureRect = %DialogueFrame
+@onready var _frame: Panel = %DialogueFrame
 @onready var _speaker: Label = %Speaker
 @onready var _line: Label = %Line
 @onready var _cue: Label = %StageCue
@@ -198,7 +197,10 @@ func _show_line() -> void:
 	_sms_panel.hide()
 	_frame.show()
 	_cue.hide()
-	_portrait.hide()
+	if _dialogue_id == "RESCUE_309":
+		_display_portrait("闺蜜", "relieved")
+	else:
+		_portrait.hide()
 	_title_label.hide()
 
 
@@ -209,7 +211,7 @@ func _show_story_beat() -> void:
 	var mode: String = beat.mode
 	_speaker.visible = mode == "dialogue"
 	_line.visible = mode == "dialogue"
-	_speaker.text = beat.speaker
+	_speaker.text = "安" if beat.speaker == "女主" else beat.speaker
 	_line.text = beat.text
 	_cue.hide()
 	_title_label.hide()
@@ -281,23 +283,11 @@ func _display_portrait(speaker: String, expression: String) -> void:
 	if speaker == "女主":
 		var index := int(FACE_INDEX.get(expression, 0))
 		_portrait.texture = _atlas_cell(PROTAGONIST_SHEET, index)
-		_portrait.position = Vector2(42, 80)
-		_portrait.size = Vector2(430, 465)
-		_portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		_portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	elif speaker == "闺蜜":
 		var index := int(FACE_INDEX.get(expression, 0))
 		_portrait.texture = _atlas_cell(FRIEND_SHEET, index)
-		_portrait.position = Vector2(42, 80)
-		_portrait.size = Vector2(430, 465)
-		_portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		_portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	elif speaker == "经理":
 		_portrait.texture = MANAGER_PORTRAIT
-		_portrait.position = Vector2(65, 28)
-		_portrait.size = Vector2(410, 540)
-		_portrait.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		_portrait.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	else:
 		_portrait.hide()
 
