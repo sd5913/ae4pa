@@ -41,6 +41,9 @@ func _run() -> void:
 	main.get_node("StoryLayer/Dialogue").set_progress_file_path_for_test(progress_path)
 	root.add_child(main)
 	await process_frame
+	if main.has_node("MenuLayer/MainMenu"):
+		main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
+		await process_frame
 	# Explicit opening fixture; manager dialogue below runs through production E/UI.
 	main.dialogue.hide()
 	main._on_dialogue_finished("V4_INTRO")
