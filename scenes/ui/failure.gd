@@ -40,3 +40,8 @@ func _on_retry_pressed() -> void:
 
 func _on_return_to_menu_pressed() -> void:
 	return_to_menu_requested.emit()
+
+
+func _exit_tree() -> void:
+	if GameManager.has_method("set_modal_open"):
+		GameManager.call("set_modal_open", MODAL_ID, false)

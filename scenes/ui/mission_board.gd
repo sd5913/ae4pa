@@ -26,6 +26,7 @@ func _ready() -> void:
 	add_child(center)
 	var panel := PanelContainer.new()
 	panel.custom_minimum_size = Vector2(760, 0)
+	panel.theme = load("res://scenes/ui/staff_ui_theme.tres")
 	center.add_child(panel)
 	var content := VBoxContainer.new()
 	content.add_theme_constant_override("separation", 12)
@@ -195,3 +196,8 @@ func _format_task_view(task_status: String, task_name: String, location: String)
 func _format_time(seconds: float) -> String:
 	var total_seconds := maxi(0, ceili(seconds))
 	return "%d:%02d" % [total_seconds / 60, total_seconds % 60]
+
+
+func _exit_tree() -> void:
+	if GameManager.has_method("set_modal_open"):
+		GameManager.call("set_modal_open", MODAL_ID, false)

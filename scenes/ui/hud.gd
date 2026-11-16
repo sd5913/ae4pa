@@ -1,12 +1,7 @@
 extends PanelContainer
 
+const CardDisplay = preload("res://scenes/ui/card_display.gd")
 const ACTIVE_COLOR := Color(0.97, 0.72, 0.39)
-const CARD_NAMES := {
-	"NONE": "未装备",
-	"SECURITY": "保安工作证",
-	"CLEANER": "保洁工作证",
-	"MANAGER": "经理工作证",
-}
 
 @onready var _floor_value: Label = %FloorValue
 @onready var _active_card_value: Label = %ActiveCardValue
@@ -88,16 +83,12 @@ func _refresh_cards() -> void:
 	var active_card: String = CardManager.active_card
 	var active_slot: int = CardManager.active_slot
 	var equipped: Array[String] = CardManager.get_equipped_cards()
-	_active_card_value.text = _card_name(active_card)
+	_active_card_value.text = CardDisplay.name_for(active_card)
 	_set_slot(_slot_a_value, equipped[0], active_card != "NONE" and active_slot == 0)
 	_set_slot(_slot_b_value, equipped[1], active_card != "NONE" and active_slot == 1)
 
 
 func _set_slot(label: Label, card_id: String, is_active: bool) -> void:
-	var card_name: String = _card_name(card_id)
+	var card_name: String = CardDisplay.name_for(card_id)
 	label.text = card_name + " · 生效" if is_active else card_name
 	label.self_modulate = ACTIVE_COLOR if is_active else Color.WHITE
-
-
-func _card_name(card_id: String) -> String:
-	return str(CARD_NAMES.get(card_id, "未知工作证"))

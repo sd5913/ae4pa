@@ -47,7 +47,7 @@ z_index = 1
 target_id = "STAIN_201"
 
 [node name="Task01AcceptSafe" type="Marker2D" parent="Interactions" index="3"]
-position = Vector2(560, 560)
+position = Vector2(520, 560)
 
 [node name="Room201RightSafe" type="Marker2D" parent="Interactions" index="4"]
 position = Vector2(1120, 560)
