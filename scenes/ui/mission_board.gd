@@ -1,5 +1,7 @@
 extends Control
 
+const MODAL_ID := "mission_board"
+
 signal task_accepted(task_id: String)
 signal floor_selected(floor_number: int)
 signal retry_requested()
@@ -13,6 +15,7 @@ var _hint: Label
 
 
 func _ready() -> void:
+	visibility_changed.connect(_sync_modal_state)
 	var shade := ColorRect.new()
 	shade.color = Color(0.025, 0.035, 0.055, 0.84)
 	shade.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -74,7 +77,15 @@ func _ready() -> void:
 		GameManager.connect("task_completed", refresh_from_game_manager.unbind(1))
 	if GameManager.has_signal("task_failed"):
 		GameManager.connect("task_failed", _on_task_failed)
+	if GameManager.has_signal("floor_changed"):
+		GameManager.connect("floor_changed", refresh_from_game_manager.unbind(1))
 	refresh_from_game_manager()
+	_sync_modal_state()
+
+
+func _sync_modal_state() -> void:
+	if GameManager.has_method("set_modal_open"):
+		GameManager.call("set_modal_open", MODAL_ID, visible)
 
 
 func open_board() -> void:
@@ -130,7 +141,7 @@ func show_task_failure(reason: String) -> void:
 
 
 func _accept_task() -> void:
-	if _task_id.is_empty() or not GameManager.has_method("accept_task"):
+	if _accept_button.disabled or _task_id.is_empty() or not GameManager.has_method("accept_task"):
 		return
 	if bool(GameManager.call("accept_task", _task_id)):
 		task_accepted.emit(_task_id)
@@ -140,13 +151,20 @@ func _accept_task() -> void:
 
 
 func _select_floor(floor_number: int) -> void:
-	if not GameManager.has_method("request_floor_travel"):
+	if floor_number < 1 or floor_number > _floor_buttons.size():
 		return
-	if bool(GameManager.call("request_floor_travel", floor_number)):
-		floor_selected.emit(floor_number)
+	if not _floor_buttons[floor_number - 1].disabled and GameManager.has_method("request_floor_travel"):
+		# Floor travel rejects world input while this modal is registered. Close it
+		# synchronously around A's request, then restore it if the request is denied.
 		hide()
-	else:
+		if bool(GameManager.call("request_floor_travel", floor_number)):
+			floor_selected.emit(floor_number)
+			return
+		show()
 		_status.text = "无法前往该楼层，请到对应楼梯旁操作"
+		return
+	if not GameManager.has_method("request_floor_travel"):
+		_status.text = "楼层请求接口待 A 接入"
 
 
 func _on_task_failed(task_id: String, reason: String) -> void:
@@ -178,3 +196,8 @@ func _format_task_view(task_status: String, task_name: String, location: String)
 func _format_time(seconds: float) -> String:
 	var total_seconds := maxi(0, ceili(seconds))
 	return "%d:%02d" % [total_seconds / 60, total_seconds % 60]
+
+
+func _exit_tree() -> void:
+	if GameManager.has_method("set_modal_open"):
+		GameManager.call("set_modal_open", MODAL_ID, false)

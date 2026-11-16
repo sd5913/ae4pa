@@ -1,0 +1,912 @@
+{
+  "reference_source_size": [
+    3840,
+    2160
+  ],
+  "reference_visible_rect": [
+    0,
+    866,
+    3840,
+    428
+  ],
+  "world_origin": [
+    0,
+    190.625
+  ],
+  "world_scale": 0.9375,
+  "floor_line_source_y": 394,
+  "floor_line_world_y": 560,
+  "placements": [
+    {
+      "name": "City1",
+      "texture": "res://assets/final/floor_2_layers/01_far/night_city_module.png",
+      "source_canvas": [
+        1536,
+        1024
+      ],
+      "target_source_rect": [
+        0,
+        0,
+        640,
+        428
+      ],
+      "layer": "Far"
+    },
+    {
+      "name": "City2",
+      "texture": "res://assets/final/floor_2_layers/01_far/night_city_module.png",
+      "source_canvas": [
+        1536,
+        1024
+      ],
+      "target_source_rect": [
+        640,
+        0,
+        640,
+        428
+      ],
+      "layer": "Far"
+    },
+    {
+      "name": "City3",
+      "texture": "res://assets/final/floor_2_layers/01_far/night_city_module.png",
+      "source_canvas": [
+        1536,
+        1024
+      ],
+      "target_source_rect": [
+        1280,
+        0,
+        640,
+        428
+      ],
+      "layer": "Far"
+    },
+    {
+      "name": "City4",
+      "texture": "res://assets/final/floor_2_layers/01_far/night_city_module.png",
+      "source_canvas": [
+        1536,
+        1024
+      ],
+      "target_source_rect": [
+        1920,
+        0,
+        640,
+        428
+      ],
+      "layer": "Far"
+    },
+    {
+      "name": "City5",
+      "texture": "res://assets/final/floor_2_layers/01_far/night_city_module.png",
+      "source_canvas": [
+        1536,
+        1024
+      ],
+      "target_source_rect": [
+        2560,
+        0,
+        640,
+        428
+      ],
+      "layer": "Far"
+    },
+    {
+      "name": "City6",
+      "texture": "res://assets/final/floor_2_layers/01_far/night_city_module.png",
+      "source_canvas": [
+        1536,
+        1024
+      ],
+      "target_source_rect": [
+        3200,
+        0,
+        640,
+        428
+      ],
+      "layer": "Far"
+    },
+    {
+      "name": "Wall1",
+      "texture": "res://assets/final/floor_2_layers/02_architecture/wall_module.png",
+      "source_canvas": [
+        1774,
+        887
+      ],
+      "target_source_rect": [
+        410.0,
+        18,
+        777.5,
+        376
+      ],
+      "layer": "Architecture"
+    },
+    {
+      "name": "Wall2",
+      "texture": "res://assets/final/floor_2_layers/02_architecture/wall_module.png",
+      "source_canvas": [
+        1774,
+        887
+      ],
+      "target_source_rect": [
+        1187.5,
+        18,
+        777.5,
+        376
+      ],
+      "layer": "Architecture"
+    },
+    {
+      "name": "Wall3",
+      "texture": "res://assets/final/floor_2_layers/02_architecture/wall_module.png",
+      "source_canvas": [
+        1774,
+        887
+      ],
+      "target_source_rect": [
+        1965.0,
+        18,
+        777.5,
+        376
+      ],
+      "layer": "Architecture"
+    },
+    {
+      "name": "Wall4",
+      "texture": "res://assets/final/floor_2_layers/02_architecture/wall_module.png",
+      "source_canvas": [
+        1774,
+        887
+      ],
+      "target_source_rect": [
+        2742.5,
+        18,
+        777.5,
+        376
+      ],
+      "layer": "Architecture"
+    },
+    {
+      "name": "Carpet1",
+      "texture": "res://assets/final/floor_2_layers/03_floor/carpet_floor_module.png",
+      "source_canvas": [
+        2172,
+        425
+      ],
+      "target_source_rect": [
+        0,
+        394,
+        480,
+        34
+      ],
+      "layer": "Floor"
+    },
+    {
+      "name": "Carpet2",
+      "texture": "res://assets/final/floor_2_layers/03_floor/carpet_floor_module.png",
+      "source_canvas": [
+        2172,
+        425
+      ],
+      "target_source_rect": [
+        480,
+        394,
+        480,
+        34
+      ],
+      "layer": "Floor"
+    },
+    {
+      "name": "Carpet3",
+      "texture": "res://assets/final/floor_2_layers/03_floor/carpet_floor_module.png",
+      "source_canvas": [
+        2172,
+        425
+      ],
+      "target_source_rect": [
+        960,
+        394,
+        480,
+        34
+      ],
+      "layer": "Floor"
+    },
+    {
+      "name": "Carpet4",
+      "texture": "res://assets/final/floor_2_layers/03_floor/carpet_floor_module.png",
+      "source_canvas": [
+        2172,
+        425
+      ],
+      "target_source_rect": [
+        1440,
+        394,
+        480,
+        34
+      ],
+      "layer": "Floor"
+    },
+    {
+      "name": "Carpet5",
+      "texture": "res://assets/final/floor_2_layers/03_floor/carpet_floor_module.png",
+      "source_canvas": [
+        2172,
+        425
+      ],
+      "target_source_rect": [
+        1920,
+        394,
+        480,
+        34
+      ],
+      "layer": "Floor"
+    },
+    {
+      "name": "Carpet6",
+      "texture": "res://assets/final/floor_2_layers/03_floor/carpet_floor_module.png",
+      "source_canvas": [
+        2172,
+        425
+      ],
+      "target_source_rect": [
+        2400,
+        394,
+        480,
+        34
+      ],
+      "layer": "Floor"
+    },
+    {
+      "name": "Carpet7",
+      "texture": "res://assets/final/floor_2_layers/03_floor/carpet_floor_module.png",
+      "source_canvas": [
+        2172,
+        425
+      ],
+      "target_source_rect": [
+        2880,
+        394,
+        480,
+        34
+      ],
+      "layer": "Floor"
+    },
+    {
+      "name": "Carpet8",
+      "texture": "res://assets/final/floor_2_layers/03_floor/carpet_floor_module.png",
+      "source_canvas": [
+        2172,
+        425
+      ],
+      "target_source_rect": [
+        3360,
+        394,
+        480,
+        34
+      ],
+      "layer": "Floor"
+    },
+    {
+      "name": "WarmGlow1",
+      "texture": "res://assets/final/floor_2_layers/07_fx/lamp_glow_gold.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        531,
+        105,
+        130,
+        180
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "WarmGlow2",
+      "texture": "res://assets/final/floor_2_layers/07_fx/lamp_glow_gold.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        759,
+        105,
+        130,
+        180
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "WarmGlow3",
+      "texture": "res://assets/final/floor_2_layers/07_fx/lamp_glow_gold.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        1129,
+        105,
+        130,
+        180
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "WarmGlow4",
+      "texture": "res://assets/final/floor_2_layers/07_fx/lamp_glow_gold.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        1357,
+        105,
+        130,
+        180
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "WarmGlow5",
+      "texture": "res://assets/final/floor_2_layers/07_fx/lamp_glow_gold.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        1852,
+        105,
+        130,
+        180
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "WarmGlow6",
+      "texture": "res://assets/final/floor_2_layers/07_fx/lamp_glow_gold.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        2080,
+        105,
+        130,
+        180
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "WarmGlow7",
+      "texture": "res://assets/final/floor_2_layers/07_fx/lamp_glow_gold.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        3073,
+        105,
+        130,
+        180
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "WarmGlow8",
+      "texture": "res://assets/final/floor_2_layers/07_fx/lamp_glow_gold.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        3301,
+        105,
+        130,
+        180
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "WarmGlow9",
+      "texture": "res://assets/final/floor_2_layers/07_fx/lamp_glow_gold.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        840,
+        105,
+        130,
+        180
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "WarmGlow10",
+      "texture": "res://assets/final/floor_2_layers/07_fx/lamp_glow_gold.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        1468,
+        105,
+        130,
+        180
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "WarmGlow11",
+      "texture": "res://assets/final/floor_2_layers/07_fx/lamp_glow_gold.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        3385,
+        105,
+        130,
+        180
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "RedGlow1",
+      "texture": "res://assets/final/floor_2_layers/07_fx/lamp_glow_red.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        2437,
+        105,
+        130,
+        180
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "RedGlow2",
+      "texture": "res://assets/final/floor_2_layers/07_fx/lamp_glow_red.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        2665,
+        105,
+        130,
+        180
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "ContactShadow1",
+      "texture": "res://assets/final/floor_2_layers/07_fx/contact_shadow.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        990,
+        387,
+        185,
+        10
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "ContactShadow2",
+      "texture": "res://assets/final/floor_2_layers/07_fx/contact_shadow.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        2180,
+        387,
+        210,
+        10
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "ContactShadow3",
+      "texture": "res://assets/final/floor_2_layers/07_fx/contact_shadow.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        2820,
+        387,
+        270,
+        10
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "ContactShadow4",
+      "texture": "res://assets/final/floor_2_layers/07_fx/contact_shadow.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        3400,
+        387,
+        90,
+        10
+      ],
+      "layer": "LightFX"
+    },
+    {
+      "name": "Portrait",
+      "texture": "res://assets/final/floor_2_layers/04_back_furniture/portrait_top_hat.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        442,
+        102,
+        122,
+        193
+      ],
+      "layer": "BackFurniture"
+    },
+    {
+      "name": "MoonPainting",
+      "texture": "res://assets/final/floor_2_layers/04_back_furniture/painting_moon_city.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        1622,
+        28,
+        198,
+        245
+      ],
+      "layer": "BackFurniture"
+    },
+    {
+      "name": "Landscape",
+      "texture": "res://assets/final/floor_2_layers/04_back_furniture/painting_landscape.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        2854,
+        103,
+        208,
+        129
+      ],
+      "layer": "BackFurniture"
+    },
+    {
+      "name": "Plant",
+      "texture": "res://assets/final/floor_2_layers/04_back_furniture/plant_large.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        2165,
+        79,
+        247,
+        315
+      ],
+      "layer": "BackFurniture"
+    },
+    {
+      "name": "Sofa",
+      "texture": "res://assets/final/floor_2_layers/04_back_furniture/sofa.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        2800,
+        244,
+        310,
+        150
+      ],
+      "layer": "BackFurniture"
+    },
+    {
+      "name": "Flowers",
+      "texture": "res://assets/final/floor_2_layers/04_back_furniture/flowers_pedestal.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        3395,
+        218,
+        109,
+        176
+      ],
+      "layer": "BackFurniture"
+    },
+    {
+      "name": "LeftStairs",
+      "texture": "res://assets/final/floor_2_layers/05_interactive/stairs_left_portal.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        190,
+        18,
+        218,
+        385
+      ],
+      "layer": "Travel"
+    },
+    {
+      "name": "RightStairs",
+      "texture": "res://assets/final/floor_2_layers/05_interactive/stairs_right_portal.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        3520,
+        18,
+        220,
+        385
+      ],
+      "layer": "Travel"
+    },
+    {
+      "name": "FloorSign",
+      "texture": "res://assets/final/floor_2_layers/05_interactive/floor_sign_2f.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        85,
+        135,
+        126,
+        86
+      ],
+      "layer": "Travel"
+    },
+    {
+      "name": "PackageCabinet",
+      "texture": "res://assets/final/floor_2_layers/05_interactive/mail_package_cabinet.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        976,
+        109,
+        209,
+        285
+      ],
+      "layer": "InteractiveProps"
+    },
+    {
+      "name": "MopBucket",
+      "texture": "res://assets/final/floor_2_layers/05_interactive/mop_bucket.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        825,
+        224,
+        168,
+        170
+      ],
+      "layer": "InteractiveProps"
+    },
+    {
+      "name": "WallLamp1",
+      "texture": "res://assets/final/floor_2_layers/02_architecture/wall_lantern.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        880,
+        110,
+        50,
+        100
+      ],
+      "layer": "Lamps"
+    },
+    {
+      "name": "WallLamp2",
+      "texture": "res://assets/final/floor_2_layers/02_architecture/wall_lantern.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        1508,
+        110,
+        50,
+        100
+      ],
+      "layer": "Lamps"
+    },
+    {
+      "name": "WallLamp3",
+      "texture": "res://assets/final/floor_2_layers/02_architecture/wall_lantern.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        3425,
+        110,
+        50,
+        100
+      ],
+      "layer": "Lamps"
+    },
+    {
+      "name": "Room201",
+      "target_source_rect": [
+        574,
+        30,
+        272,
+        364
+      ],
+      "canvas": [
+        1280,
+        1280
+      ],
+      "same_transform_for_all_states": true,
+      "reference_state": "CLOSED",
+      "gameplay_marker_x": 665.625
+    },
+    {
+      "name": "Room202",
+      "target_source_rect": [
+        1172,
+        30,
+        272,
+        364
+      ],
+      "canvas": [
+        1280,
+        1280
+      ],
+      "same_transform_for_all_states": true,
+      "reference_state": "CLOSED",
+      "gameplay_marker_x": 1226.25
+    },
+    {
+      "name": "Room203",
+      "target_source_rect": [
+        1895,
+        30,
+        272,
+        364
+      ],
+      "canvas": [
+        1280,
+        1280
+      ],
+      "same_transform_for_all_states": true,
+      "reference_state": "CLOSED",
+      "gameplay_marker_x": 1904.0625
+    },
+    {
+      "name": "Room204",
+      "target_source_rect": [
+        2480,
+        30,
+        272,
+        364
+      ],
+      "canvas": [
+        1280,
+        1280
+      ],
+      "same_transform_for_all_states": true,
+      "reference_state": "WARNING",
+      "gameplay_marker_x": 2452.5
+    },
+    {
+      "name": "Room205",
+      "target_source_rect": [
+        3116,
+        30,
+        272,
+        364
+      ],
+      "canvas": [
+        1280,
+        1280
+      ],
+      "same_transform_for_all_states": true,
+      "reference_state": "OPEN",
+      "gameplay_marker_x": 3048.75
+    },
+    {
+      "name": "LeftColumn",
+      "texture": "res://assets/final/floor_2_layers/06_foreground/column_left.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        65,
+        0,
+        154,
+        428
+      ],
+      "layer": "Foreground"
+    },
+    {
+      "name": "RightColumn",
+      "texture": "res://assets/final/floor_2_layers/06_foreground/column_right.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        3710,
+        0,
+        118,
+        428
+      ],
+      "layer": "Foreground"
+    },
+    {
+      "name": "RopeBarrier",
+      "texture": "res://assets/final/floor_2_layers/06_foreground/rope_barrier.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        1510,
+        249,
+        365,
+        145
+      ],
+      "layer": "Foreground"
+    },
+    {
+      "name": "LeftRail",
+      "texture": "res://assets/final/floor_2_layers/06_foreground/stair_handrail_left.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        215,
+        235,
+        161,
+        164
+      ],
+      "layer": "Foreground"
+    },
+    {
+      "name": "RightRail",
+      "texture": "res://assets/final/floor_2_layers/06_foreground/stair_handrail_right.png",
+      "source_canvas": [
+        512,
+        512
+      ],
+      "target_source_rect": [
+        3575,
+        235,
+        132,
+        163
+      ],
+      "layer": "Foreground"
+    }
+  ],
+  "limits": "Asset contours differ from flattened source; positions/footprints measured to reference, not pixel-identical repaint. Door transforms are identical across states."
+}

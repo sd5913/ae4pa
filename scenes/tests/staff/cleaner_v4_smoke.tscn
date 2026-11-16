@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/tests/staff/cleaner_v4_smoke.gd" id="1_test"]
+
+[node name="CleanerV4Smoke" type="Node"]
+script = ExtResource("1_test")

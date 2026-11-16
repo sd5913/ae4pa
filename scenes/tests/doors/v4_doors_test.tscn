@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="PackedScene" path="res://scenes/levels/test_corridor.tscn" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/doors/monster_door.tscn" id="2"]
+[ext_resource type="Script" path="res://scenes/tests/doors/v4_test_receiver.gd" id="3"]
+
+[node name="V4DoorsTest" type="Node2D"]
+script = ExtResource("3")
+
+[node name="Corridor" parent="." instance=ExtResource("1")]
+
+[node name="Door201" parent="." instance=ExtResource("2")]
+position = Vector2(700, 560)
+door_mode = "STORY"
+room_id = "201"
+monster_type = "NOSE"
+task_id = "TASK_01_CLEAN"
+story_radius = 120.0
+
+[node name="NormalDoor" parent="." instance=ExtResource("2")]
+position = Vector2(1100, 560)
+room_id = "TEST_NORMAL"
+monster_type = "EYE"
+
+[node name="NeighborDoor" parent="." instance=ExtResource("2")]
+position = Vector2(2000, 560)
+room_id = "TEST_NEIGHBOR"
+
+[node name="SafeLeft" type="Marker2D" parent="."]
+position = Vector2(950, 560)
+[node name="SafeRight" type="Marker2D" parent="."]
+position = Vector2(1250, 560)
+
+[node name="Label" type="Label" parent="SafeLeft"]
+position = Vector2(-50, 40)
+text = "TEST左安全点"
+[node name="Label" type="Label" parent="SafeRight"]
+position = Vector2(-50, 40)
+text = "TEST右安全点"
+
+[node name="WorkPointLabel" type="Label" parent="."]
+position = Vector2(850, 620)
+text = "TEST工作点 x=900（仅标记）"
+
+[node name="Barrier" type="Polygon2D" parent="."]
+position = Vector2(1450, 560)
+polygon = PackedVector2Array(-10, -170, 10, -170, 10, 0, -10, 0)
+color = Color(0.9, 0.4, 0.15, 1)
+
+[node name="BarrierLabel" type="Label" parent="."]
+position = Vector2(1320, 350)
+text = "TEST后段任务锁\n交付完成才开放"
+
+[node name="TestLabel" type="CanvasLayer" parent="."]
+layer = 10
+[node name="Label" type="Label" parent="TestLabel"]
+offset_left = 24.0
+offset_top = 18.0
+theme_override_font_sizes/font_size = 22
+text = "TEST DOUBLE：未接 A 正式任务/安全退回接口\nA/D 移动 | T 模拟接受 | Y 模拟工作完成 | 回201按E请求交付\n1 配保安卡 | Q 真实换卡 | R 重置测试 | 普通门1100，安全点950/1250"
+[node name="Status" type="Label" parent="TestLabel"]
+offset_left = 24.0
+offset_top = 120.0
+offset_right = 1240.0
+offset_bottom = 210.0
+autowrap_mode = 2
+theme_override_font_sizes/font_size = 17

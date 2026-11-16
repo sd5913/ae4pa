@@ -1,5 +1,7 @@
 extends Control
 
+const MODAL_ID := "failure"
+
 signal retry_requested()
 signal return_to_menu_requested()
 
@@ -9,6 +11,16 @@ const REASON_TEXT := {
 	"MOVED_NEAR_EAR": "大耳客开门时仍在移动",
 	"SWITCHED_NEAR_CHECKER": "核验客面前更换了工作证",
 }
+
+
+func _ready() -> void:
+	visibility_changed.connect(_sync_modal_state)
+	_sync_modal_state()
+
+
+func _sync_modal_state() -> void:
+	if GameManager.has_method("set_modal_open"):
+		GameManager.call("set_modal_open", MODAL_ID, visible)
 
 
 func show_failure(reason: String) -> void:
@@ -28,3 +40,8 @@ func _on_retry_pressed() -> void:
 
 func _on_return_to_menu_pressed() -> void:
 	return_to_menu_requested.emit()
+
+
+func _exit_tree() -> void:
+	if GameManager.has_method("set_modal_open"):
+		GameManager.call("set_modal_open", MODAL_ID, false)

@@ -22,35 +22,68 @@ func _ready() -> void:
 		test_scene.get_node("StaffMembers/Manager"),
 	]
 	var expected_cards: Array[String] = ["SECURITY", "CLEANER", "MANAGER"]
+	var security: Node = staff_members[0]
+
+	player.global_position = security.global_position + Vector2(100.0, 0.0)
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	_expect(not security.is_player_in_range(), "Front failure precondition should begin outside StealArea.")
+	_expect(not security.begin_steal(), "Out-of-range front interaction should be rejected.")
+	_expect(GameManager.game_state == "PLAYING", "Out-of-range interaction should not fail the game.")
+	player.global_position = security.global_position + Vector2(30.0, 0.0)
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	_expect(security.is_player_in_range(), "Front failure test requires Player inside StealArea.")
+	_expect(not security.is_player_behind(), "Front failure test is on the wrong side.")
+	_expect(GameManager.game_state == "PLAYING", "Standing in front should not fail before interaction.")
+	_expect(not security.begin_steal(), "Front interaction should not start stealing.")
+	_expect(GameManager.game_state == "FAILED", "Front interaction should fail the game.")
+	_expect(GameManager.fail_reason == "STAFF_CAUGHT", "Front interaction used the wrong failure reason.")
+	_expect(not card_manager.has_card("SECURITY"), "Front interaction incorrectly granted a card.")
+	GameManager.start_game()
+	security.reset_caught_alert()
 
 	for index: int in range(staff_members.size()):
 		var staff: Node = staff_members[index]
-		player.global_position = staff.global_position + Vector2(30.0, 0.0)
-		await get_tree().physics_frame
-		await get_tree().physics_frame
-		_expect(staff.is_player_in_range(), "%s employee did not detect Player." % expected_cards[index])
-		_expect(not staff.is_player_behind(), "%s front-side check is incorrect." % expected_cards[index])
-		_expect(not staff.begin_steal(), "%s steal should not start from the front." % expected_cards[index])
-		_expect(GameManager.game_state == "PLAYING", "%s front attempt should not fail the game." % expected_cards[index])
-		_expect(not card_manager.has_card(expected_cards[index]), "%s front attempt incorrectly added a card." % expected_cards[index])
 		player.global_position = staff.global_position + Vector2(-30.0, 0.0)
 		await get_tree().physics_frame
+		await get_tree().physics_frame
+		if staff.is_suspicious():
+			staff._on_suspicion_timer_timeout()
+			player.global_position = staff.global_position - Vector2(30.0 * staff.facing_direction, 0.0)
+			await get_tree().physics_frame
+		_expect(staff.is_player_in_range(), "%s employee did not detect Player." % expected_cards[index])
 		_expect(staff.is_player_behind(), "%s rear-side check is incorrect." % expected_cards[index])
+		_expect(staff.get_node("CardMarker").visible, "%s card marker should be visible before stealing." % expected_cards[index])
 		_expect(staff.begin_steal(), "%s rear hold did not start." % expected_cards[index])
 		staff._process(0.4)
 		_expect(not card_manager.has_card(expected_cards[index]), "%s card was granted before hold completed." % expected_cards[index])
 		staff._process(0.4)
 		_expect(card_manager.has_card(expected_cards[index]), "%s card missing from collection." % expected_cards[index])
+		_expect(not staff.get_node("CardMarker").visible, "%s card marker remained after stealing." % expected_cards[index])
+		_expect(staff.get_node("FeedbackLabel").visible, "%s success feedback was not shown." % expected_cards[index])
 
-	var security: Node = staff_members[0]
 	var original_facing: int = security.facing_direction
 	var original_eye_x: float = security.get_node("Eye").position.x
+	for staff: Node in staff_members:
+		var interval_range: Vector2 = staff.get_turn_interval_range()
+		var interval: float = staff.get_current_turn_interval()
+		_expect(interval >= interval_range.x and interval <= interval_range.y, "%s turn interval is outside its role range." % staff.card_id)
+		_expect(is_equal_approx(interval - staff.get_node("TurnWarningTimer").wait_time, 0.4), "%s warning should begin about 0.4 seconds early." % staff.card_id)
+	_expect(security.get_turn_interval_range().y < staff_members[1].get_turn_interval_range().x, "Security should observe more frequently than Cleaner.")
+	_expect(staff_members[1].get_turn_interval_range().y < staff_members[2].get_turn_interval_range().x, "Manager should turn less frequently than Cleaner.")
+	_expect(not security.get_node("TurnWarning").visible, "Turn warning should begin hidden.")
+	security._on_turn_warning_timer_timeout()
+	_expect(not security.get_node("TurnWarning").visible, "Normal turn preparation must not display an icon.")
+	_expect(absf(security.get_node("Eye").position.x) == 4.0, "Normal turn preparation did not use the subtle look pose.")
 	security._on_turn_timer_timeout()
 	_expect(security.facing_direction == -original_facing, "Staff did not reverse logical facing.")
 	_expect(security.get_node("Eye").position.x == -original_eye_x, "Staff visual facing did not follow logic.")
+	_expect(not security.get_node("TurnWarning").visible, "Turn warning did not clear after turning.")
 
 	_expect(not staff_members[0].begin_steal(), "Duplicate SECURITY steal should fail.")
 	_expect(card_manager.get_owned_cards().size() == 3, "Duplicate steal changed owned-card count.")
+	_expect(not security.get_node("CardMarker").visible, "Duplicate attempt restored the card marker.")
 
 	card_manager.reset_for_new_game()
 	GameManager.start_game()
@@ -69,9 +102,8 @@ func _ready() -> void:
 	_expect(not card_manager.has_card("SECURITY"), "Leaving StealArea should cancel the steal.")
 	security._on_steal_area_body_entered(player)
 	_expect(security.begin_steal(), "Movement cancellation test could not start.")
-	player.is_moving = true
+	player.global_position.x += 1.0
 	security._process(0.1)
-	player.is_moving = false
 	_expect(not security.is_stealing(), "Player movement should cancel the steal.")
 	_expect(not card_manager.has_card("SECURITY"), "Movement cancellation granted a card.")
 	_expect(security.begin_steal(), "Turn detection test could not start.")

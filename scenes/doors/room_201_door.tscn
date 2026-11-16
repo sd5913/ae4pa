@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/doors/monster_door.tscn" id="1"]
+[ext_resource type="Script" path="res://scenes/doors/room_201_door.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/doors/room_201_art.tscn" id="3"]
+
+[node name="Room201Door" instance=ExtResource("1")]
+script = ExtResource("2")
+
+[node name="Art" parent="." instance=ExtResource("3")]

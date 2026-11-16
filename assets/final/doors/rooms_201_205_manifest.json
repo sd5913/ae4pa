@@ -1,0 +1,342 @@
+{
+  "canvas": [
+    1280,
+    1280
+  ],
+  "anchor_px": [
+    640,
+    1280
+  ],
+  "recommended_sprite_position": [
+    -640,
+    -1280
+  ],
+  "centered": false,
+  "region_enabled": false,
+  "auto_trim": false,
+  "room_201_modified": true,
+  "source_template_sha256": {
+    "closed": "4dbc8f4a72bb00a600be0bbcb881af97d74c645f80a2f7d8bb45370d1ecb7a3c",
+    "warning": "0a94db7cbab8823d896ee00cc0d483870ae65b6fedf535e630171651164c6ee4",
+    "open": "38a85d6bb4e39db2e681706994e9ac9350201faa5612cf372e39d20181f8f87c"
+  },
+  "method": "Built-in imagegen localized room-number / monster edits; source-template region locking. Original frame, canvas and alpha kept exactly.",
+  "protected_common_frame_pixels": 472976,
+  "rooms": {
+    "202": {
+      "monster": "EYE",
+      "states": {
+        "closed": {
+          "path": "room_202/door_closed.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [
+            [
+              568,
+              614,
+              714,
+              687
+            ]
+          ],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "3b256c558aebea22f57820c7940b9b7af19015d0149799e88105e22ca491bfb5"
+        },
+        "warning": {
+          "path": "room_202/door_warning.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [
+            [
+              568,
+              614,
+              714,
+              687
+            ]
+          ],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "ccf9c100c072fa2231966b44253e2fa820ca97afc36250cfba943676d3ecba05"
+        },
+        "open": {
+          "path": "room_202/door_open.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [
+            [
+              470,
+              595,
+              581,
+              706
+            ]
+          ],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "4af9b4c40a330da806ce2689f7496d7f23a971c9f9cee0f19a5d99cec6f9b45b"
+        }
+      }
+    },
+    "203": {
+      "monster": "EAR",
+      "states": {
+        "closed": {
+          "path": "room_203/door_closed.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [
+            [
+              568,
+              614,
+              714,
+              687
+            ]
+          ],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "4d1864e3e4b827cab093ff9ec26a7a22904f697ff287e707fda6df59b2ef677f"
+        },
+        "warning": {
+          "path": "room_203/door_warning.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [
+            [
+              568,
+              614,
+              714,
+              687
+            ]
+          ],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "7b099dddd61c9d53171ffd5f50bc2a55aeeba6cfbe19b155e98489d64aace93c"
+        },
+        "open": {
+          "path": "room_203/door_open.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [
+            [
+              470,
+              595,
+              581,
+              706
+            ],
+            [
+              604,
+              640,
+              861,
+              1108
+            ]
+          ],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "ca8811c678f69c46f0a587f126b84ce82474f0623cb64ac9d739ed43643094fa"
+        }
+      }
+    },
+    "204": {
+      "monster": "CHECKER",
+      "states": {
+        "closed": {
+          "path": "room_204/door_closed.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [
+            [
+              568,
+              614,
+              714,
+              687
+            ]
+          ],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "1f517283b505907ce1c19b02dbd88a5facb3dbb20cdf8f48b57f6682fdd595e0"
+        },
+        "warning": {
+          "path": "room_204/door_warning.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [
+            [
+              568,
+              614,
+              714,
+              687
+            ]
+          ],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "89b8e0c5cfacffee028871bbc0a7117a6b1aaa3f37ec6cf52cc9a02d1bc7d262"
+        },
+        "open": {
+          "path": "room_204/door_open.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [
+            [
+              470,
+              595,
+              581,
+              706
+            ],
+            [
+              604,
+              640,
+              861,
+              1108
+            ]
+          ],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "d3759c8a620a705111ae3ef7e443948e6074099236d0d1d60658f81c6a9ad6a7"
+        }
+      }
+    },
+    "205": {
+      "monster": "HAT",
+      "states": {
+        "closed": {
+          "path": "room_205/door_closed.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [
+            [
+              568,
+              614,
+              714,
+              687
+            ]
+          ],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "a3a78bf916dae3948103d1a5b967abb788d944045f64f335aa9f88c547769405"
+        },
+        "warning": {
+          "path": "room_205/door_warning.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [
+            [
+              568,
+              614,
+              714,
+              687
+            ]
+          ],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "c0403d93c2f090dada74fc25644579a0ffe227e81a8032379413004c0f0b7910"
+        },
+        "open": {
+          "path": "room_205/door_open.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [
+            [
+              470,
+              595,
+              581,
+              706
+            ],
+            [
+              604,
+              640,
+              861,
+              1108
+            ]
+          ],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "b8108b846c1d598493ac8b40362cbf866354d74936edfd2d6d7d857f5c5c35c4"
+        }
+      }
+    },
+    "201": {
+      "monster": "NOSE",
+      "states": {
+        "closed": {
+          "path": "room_201/door_closed.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "4dbc8f4a72bb00a600be0bbcb881af97d74c645f80a2f7d8bb45370d1ecb7a3c"
+        },
+        "warning": {
+          "path": "room_201/door_warning.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "0a94db7cbab8823d896ee00cc0d483870ae65b6fedf535e630171651164c6ee4"
+        },
+        "open": {
+          "path": "room_201/door_open.png",
+          "size": [
+            1280,
+            1280
+          ],
+          "edit_rects_xyxy": [
+            [
+              604,
+              640,
+              861,
+              1108
+            ]
+          ],
+          "outside_edit_changed_pixels": 0,
+          "source_alpha_changed_pixels": 0,
+          "common_frame_changed_pixels": 0,
+          "sha256": "664d28d6bfe8f44042a6ba9af3ddcf2f39f357948826e17b882aee45d5436ea3"
+        }
+      }
+    }
+  },
+  "room_201_modified_state": "open_monster_only"
+}

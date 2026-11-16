@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://scenes/work/cleaning_spot.gd" id="1_work"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_work"]
+size = Vector2(110, 70)
+
+[node name="CleaningSpot" type="Node2D"]
+script = ExtResource("1_work")
+
+[node name="Stain" type="Polygon2D" parent="."]
+color = Color(0.25, 0.42, 0.28, 1)
+polygon = PackedVector2Array(-34, 0, 30, -5, 42, 7, -28, 12)
+
+[node name="Hint" type="Label" parent="."]
+offset_left = -82.0
+offset_top = -42.0
+offset_right = 84.0
+offset_bottom = -18.0
+text = "201 STAIN · HOLD E"
+
+[node name="WorkArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorkArea"]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_work")
+
+[connection signal="body_entered" from="WorkArea" to="." method="_on_work_area_body_entered"]
+[connection signal="body_exited" from="WorkArea" to="." method="_on_work_area_body_exited"]

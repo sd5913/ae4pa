@@ -24,7 +24,7 @@ theme_override_constants/separation = 8
 layout_mode = 2
 theme_override_colors/font_color = Color(0.96, 0.85, 0.61, 1)
 theme_override_font_sizes/font_size = 26
-text = "DEV · A-07 五层预览（员工、怪物、剧情尚未接入）"
+text = "DEV · A-05 员工接入 / 五层预览（房门与剧情尚未接入）"
 
 [node name="Status" type="Label" parent="DeveloperOverlay/Margin/Info"]
 layout_mode = 2
@@ -34,7 +34,13 @@ text = "正在加载楼层"
 [node name="Help" type="Label" parent="DeveloperOverlay/Margin/Info"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 18
-text = "A / D 移动 · 右端按 E 按真实条件上楼 · 开发按钮跳过条件，不授予卡片或救援状态"
+text = "A / D 移动 · 身后站定长按 E 偷卡 · Q 切卡 · 三卡齐全到右端按 E 上楼"
+
+[node name="Notice" type="Label" parent="DeveloperOverlay/Margin/Info"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.92, 0.78, 0.48, 1)
+theme_override_font_sizes/font_size = 18
+text = "临时开发提示"
 
 [node name="Buttons" type="HBoxContainer" parent="DeveloperOverlay/Margin/Info"]
 layout_mode = 2
@@ -48,4 +54,4 @@ text = "开发：下一层（跳过条件）"
 [node name="Restart" type="Button" parent="DeveloperOverlay/Margin/Info/Buttons"]
 layout_mode = 2
 focus_mode = 0
-text = "开发：重开预览"
+text = "开发：新局（重新偷卡）"
