@@ -613,7 +613,7 @@ main 现在连接 task_offered／task_updated 并显示持续 Objective；201 �
 | B 员工 | A 为正式实例设稳定 target_id、requires_task_eligibility=true，按真实查询刷新 set_task_eligible；连接 `task_failure_requested(reason, target_id)`，只接当前楼层合法来源的 STAFF_CAUGHT。正面和偷窃中转身都走同一任务失败链；移除楼层的迟到事件拒绝 |
 | B 工作点 | 2F 的 `Interactions/Stain201Slot/CleaningSpot` 直接实例化 B cleaning_spot，A setup(player)、set_task_active 并选择唯一 E；当前 CLEANER 且真实 Area 范围内长按 1.5 秒，A 推进 advance_interaction，收到 cleaning_completed 后调用 record_work_result。移动／松 E／换卡／开模态／换层／失败取消长按；清理只 READY_TO_SUBMIT，回真实 201 按 E 才 COMPLETED 并放行 |
 | 世界持久化与恢复 | 污渍显示读取 A stain_201_cleaned；回访重建后仍隐藏。失败恢复撤销任务期取得的卡／污渍，保留接取前事实；B 恢复仅一次 cards_changed，无 identity_changed。后续任务、309 跟随与笔记正式 UI 尚未接入，不宣称已实测 |
-| 安全点与普通退回 | 任务 01 采用 2F x560／y560，捕获和新层恢复均校验实际 201 STORY 半径及其他门排除区、走廊边界；x1120 仍不是重试点。普通门继续 request_safe_return，不调用任务重试、不回滚卡片／任务／时间 |
+| 安全点与普通退回 | 任务 01 采用 2F x520／y560（2026-11-16 随 C 新门位调整），捕获和新层恢复均校验实际 201 STORY 半径及其他门排除区、走廊边界；x1120 仍不是重试点。普通门继续 request_safe_return，不调用任务重试、不回滚卡片／任务／时间 |
 | 输入与开发入口 | A 楼层在非 world_input_allowed 时消费世界 Q，B 独立场景不改；唯一 E 增 WORK。F6 task_01_core_test 使用真实工作和交付，已删代记 Clean／Deliver；只保留明确标注的经理／介绍／接受／失败开发控制。F5 已接 D 接受／失败按钮，来源与范围见 §18 |
 
 2026-11-13 已同步 main `f559dc4` 的 B 保洁行为：未被当前身份识别的玩家进入范围会触发短暂 CURIOUS 并改变朝向；好奇本身不发送任务失败，正面按 E 仍发送 STAFF_CAUGHT。A 维持原资格查询、唯一 E 和失败来源校验；测试等待真实 SuspicionTimer 结束再按实际朝向绕后，不在生产实例关闭好奇。F5 本地现接 D 评审组件；F6 开发接受仍不能算正式接取。
@@ -659,3 +659,15 @@ A 当前工作区在 §18 基础上接入 D `eb5e019` 的 main_menu、help、bag
 | 计时边界 | 有效提交时余量大于零立即结算，后续时钟回调不逆转 COMPLETED。归零失败已生效则拒绝工作／提交。notebook_smoke 覆盖两种同步调用顺序，沿用现有单一计时器 |
 
 任务 02 以后的笔记、D-02 完整世界冻结与核验上下文、正式暂停和楼梯 UI 仍按对应阶段接入。当前笔记入口仅实现已可玩任务 01 的事实。D 后续可用公开组件入口替换 A 的继承适配，需保持上述读取与生命周期约定。B/C/D 后续 prompt 见 [协作交接](a_bcd_handoff.md)。
+
+
+## 21 A 合入 main 后的二楼布局（2026-11-16）
+
+本节为 A 本地合入 main 158818c 后的当前坐标，取代前文历史接线记录中的旧二楼位置。保留 A 菜单、任务、检查点和唯一 E 分发；C 场景／资源及 D #29 对白从 main 引入。
+
+- 二楼实例化 `floor_2_art.tscn` 分层布景，旧整图隐藏；201／202 的真实门状态驱动对应三态美术。203—205 有三态美术展示，后续检测／任务不因贴图存在而视为全部完成。
+- 门中心 x：201=665.625、202=1226.25、203=1904.0625、204=2452.5、205=3048.75；地面 y560。扫帚清理点 x852，任务路障 x1250。
+- 201 接取前检查点为 `Interactions/Task01AcceptSafe` x520／y560，距剧情门145.625，严格超出其120半径。旧 x560 在新门位下不安全，已停止使用。每次接取和恢复仍运行现有安全校验。
+- 未接受任务时主角右界为201中心减112，即553.625，可进入剧情触发区；接受后可到扫帚工作，交付才解除1250路障。任务02未开放。
+- 202 普通违规退回使用本层左右安全点 x1076.25／1376.25，继续检查来向、危险区及通路锁，不回滚任务。
+- MissionBoard／Failure 保留 main 的自登记模态，在卸载时释放自身登记；A TaskLayer 继续管理 TASK_OFFER／TASK_FAILURE。接受、恢复、新局与卸载的真实回归均已通过。

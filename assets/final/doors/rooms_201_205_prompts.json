@@ -1,0 +1,93 @@
+[
+  {
+    "room": "202",
+    "state": "closed",
+    "prompt": "Use case precise-object-edit. EDIT TARGET: the USER'S ORIGINAL room 201 CLOSED door PNG attached. NOT a redesign. Output ONE single room 202 CLOSED state, 1280x1280 TRUE alpha transparent PNG with EXACT SAME FULL CANVAS, framing, positions, dimensions, scale and silhouette. Never crop transparent margins or recenter! Preserve original wider squat ornate crimson/gold hotel door, black frame, curved crest, gold skull, lantern hooks, columns, bases and bottom threshold exactly, every decorative shape identical. Change ONLY gold doorplate text from \"201\" to exactly \"202\", same original dark burgundy serif type and perspective, same plate shape and position. Preserve exact original closed panel and normal yellow lanterns. No red sirens or alarm rays. No additional letters, no background rectangle, no checkerboard, no outer drop shadow. The alpha silhouettes and original 1280x1280 layout are critical for engine state switching. Do not use the narrower new door design from any other image.",
+    "transparent_background": true,
+    "edit_target": "door_closed.png"
+  },
+  {
+    "room": "202",
+    "state": "warning",
+    "prompt": "Use case precise-object-edit. EDIT TARGET: the USER'S ORIGINAL room 201 WARNING door PNG attached. NOT a redesign. Output ONE single room 202 WARNING state, 1280x1280 TRUE alpha transparent PNG with EXACT SAME FULL CANVAS, framing, positions, dimensions, scale and silhouette. Never crop transparent margins or recenter! Preserve original wider squat ornate crimson/gold hotel door, black frame, curved crest, gold skull, lantern hooks, columns, bases and bottom threshold exactly, every decorative shape identical. Change ONLY gold doorplate text from \"201\" to exactly \"202\", same original dark burgundy serif type and perspective, same plate shape and position. Preserve the EXACT original two TOP red sirens, orange alarm rays and RED GRID side lanterns; keep panel fully closed. No new warning design. No additional letters, no background rectangle, no checkerboard, no outer drop shadow. The alpha silhouettes and original 1280x1280 layout are critical for engine state switching. Do not use the narrower new door design from any other image.",
+    "transparent_background": true,
+    "edit_target": "door_warning.png"
+  },
+  {
+    "room": "202",
+    "state": "open",
+    "prompt": "Use case precise-object-edit. EDIT TARGET: the USER'S ORIGINAL room 201 OPEN door PNG attached. NOT a redesign. Output ONE single room 202 OPEN state, 1280x1280 TRUE alpha transparent PNG with EXACT SAME FULL CANVAS, framing, positions, dimensions, scale and silhouette. Never crop transparent margins or recenter! Preserve original wider squat ornate crimson/gold hotel door, black frame, curved crest, gold skull, lantern hooks, columns, bases and bottom threshold exactly, every decorative shape identical. Change ONLY gold doorplate text from \"201\" to exactly \"202\", same original dark burgundy serif type and perspective, same plate shape and position. Preserve original LEFT-hinged open leaf, original angle, original gold room, curtains, chandelier and golden floor. KEEP the original friendly horned SINGLE-EYE monster unchanged. No monster or light changes outside the inner doorway. No additional letters, no background rectangle, no checkerboard, no outer drop shadow. The alpha silhouettes and original 1280x1280 layout are critical for engine state switching. Do not use the narrower new door design from any other image.",
+    "transparent_background": true,
+    "edit_target": "door_open.png"
+  },
+  {
+    "room": "203",
+    "state": "closed",
+    "prompt": "Use case precise-object-edit. EDIT TARGET: the USER'S ORIGINAL room 201 CLOSED door PNG attached. NOT a redesign. Output ONE single room 203 CLOSED state, 1280x1280 TRUE alpha transparent PNG with EXACT SAME FULL CANVAS, framing, positions, dimensions, scale and silhouette. Never crop transparent margins or recenter! Preserve original wider squat ornate crimson/gold hotel door, black frame, curved crest, gold skull, lantern hooks, columns, bases and bottom threshold exactly, every decorative shape identical. Change ONLY gold doorplate text from \"201\" to exactly \"203\", same original dark burgundy serif type and perspective, same plate shape and position. Preserve exact original closed panel and normal yellow lanterns. No red sirens or alarm rays. No additional letters, no background rectangle, no checkerboard, no outer drop shadow. The alpha silhouettes and original 1280x1280 layout are critical for engine state switching. Do not use the narrower new door design from any other image.",
+    "transparent_background": true,
+    "edit_target": "door_closed.png"
+  },
+  {
+    "room": "203",
+    "state": "warning",
+    "prompt": "Use case precise-object-edit. EDIT TARGET: the USER'S ORIGINAL room 201 WARNING door PNG attached. NOT a redesign. Output ONE single room 203 WARNING state, 1280x1280 TRUE alpha transparent PNG with EXACT SAME FULL CANVAS, framing, positions, dimensions, scale and silhouette. Never crop transparent margins or recenter! Preserve original wider squat ornate crimson/gold hotel door, black frame, curved crest, gold skull, lantern hooks, columns, bases and bottom threshold exactly, every decorative shape identical. Change ONLY gold doorplate text from \"201\" to exactly \"203\", same original dark burgundy serif type and perspective, same plate shape and position. Preserve the EXACT original two TOP red sirens, orange alarm rays and RED GRID side lanterns; keep panel fully closed. No new warning design. No additional letters, no background rectangle, no checkerboard, no outer drop shadow. The alpha silhouettes and original 1280x1280 layout are critical for engine state switching. Do not use the narrower new door design from any other image.",
+    "transparent_background": true,
+    "edit_target": "door_warning.png"
+  },
+  {
+    "room": "203",
+    "state": "open",
+    "prompt": "Use case precise-object-edit. EDIT TARGET: the USER'S ORIGINAL room 201 OPEN door PNG attached. NOT a redesign. Output ONE single room 203 OPEN state, 1280x1280 TRUE alpha transparent PNG with EXACT SAME FULL CANVAS, framing, positions, dimensions, scale and silhouette. Never crop transparent margins or recenter! Preserve original wider squat ornate crimson/gold hotel door, black frame, curved crest, gold skull, lantern hooks, columns, bases and bottom threshold exactly, every decorative shape identical. Change ONLY gold doorplate text from \"201\" to exactly \"203\", same original dark burgundy serif type and perspective, same plate shape and position. Preserve original LEFT-hinged open leaf, original angle, original gold room, curtains, chandelier and golden floor. Replace ONLY the monster inside the doorway with a friendly BIG-EARED monster, two extremely large rounded ears, small eyes, same dark brown backlit silhouette and small paws, no long nose and no hat. The oversized ears must fit entirely between the open leaf and right inner jamb. No monster or light changes outside the inner doorway. No additional letters, no background rectangle, no checkerboard, no outer drop shadow. The alpha silhouettes and original 1280x1280 layout are critical for engine state switching. Do not use the narrower new door design from any other image.",
+    "transparent_background": true,
+    "edit_target": "door_open.png"
+  },
+  {
+    "room": "204",
+    "state": "closed",
+    "prompt": "Use case precise-object-edit. EDIT TARGET: the USER'S ORIGINAL room 201 CLOSED door PNG attached. NOT a redesign. Output ONE single room 204 CLOSED state, 1280x1280 TRUE alpha transparent PNG with EXACT SAME FULL CANVAS, framing, positions, dimensions, scale and silhouette. Never crop transparent margins or recenter! Preserve original wider squat ornate crimson/gold hotel door, black frame, curved crest, gold skull, lantern hooks, columns, bases and bottom threshold exactly, every decorative shape identical. Change ONLY gold doorplate text from \"201\" to exactly \"204\", same original dark burgundy serif type and perspective, same plate shape and position. Preserve exact original closed panel and normal yellow lanterns. No red sirens or alarm rays. No additional letters, no background rectangle, no checkerboard, no outer drop shadow. The alpha silhouettes and original 1280x1280 layout are critical for engine state switching. Do not use the narrower new door design from any other image.",
+    "transparent_background": true,
+    "edit_target": "door_closed.png"
+  },
+  {
+    "room": "204",
+    "state": "warning",
+    "prompt": "Use case precise-object-edit. EDIT TARGET: the USER'S ORIGINAL room 201 WARNING door PNG attached. NOT a redesign. Output ONE single room 204 WARNING state, 1280x1280 TRUE alpha transparent PNG with EXACT SAME FULL CANVAS, framing, positions, dimensions, scale and silhouette. Never crop transparent margins or recenter! Preserve original wider squat ornate crimson/gold hotel door, black frame, curved crest, gold skull, lantern hooks, columns, bases and bottom threshold exactly, every decorative shape identical. Change ONLY gold doorplate text from \"201\" to exactly \"204\", same original dark burgundy serif type and perspective, same plate shape and position. Preserve the EXACT original two TOP red sirens, orange alarm rays and RED GRID side lanterns; keep panel fully closed. No new warning design. No additional letters, no background rectangle, no checkerboard, no outer drop shadow. The alpha silhouettes and original 1280x1280 layout are critical for engine state switching. Do not use the narrower new door design from any other image.",
+    "transparent_background": true,
+    "edit_target": "door_warning.png"
+  },
+  {
+    "room": "204",
+    "state": "open",
+    "prompt": "Use case precise-object-edit. EDIT TARGET: the USER'S ORIGINAL room 201 OPEN door PNG attached. NOT a redesign. Output ONE single room 204 OPEN state, 1280x1280 TRUE alpha transparent PNG with EXACT SAME FULL CANVAS, framing, positions, dimensions, scale and silhouette. Never crop transparent margins or recenter! Preserve original wider squat ornate crimson/gold hotel door, black frame, curved crest, gold skull, lantern hooks, columns, bases and bottom threshold exactly, every decorative shape identical. Change ONLY gold doorplate text from \"201\" to exactly \"204\", same original dark burgundy serif type and perspective, same plate shape and position. Preserve original LEFT-hinged open leaf, original angle, original gold room, curtains, chandelier and golden floor. Replace ONLY the monster inside the doorway with a friendly INSPECTOR/CHECKER monster: dark brown backlit silhouette, small horns, two eyes with round spectacles, holding a small identification card / inspection clipboard at chest level, no readable words. Keep the silhouette fully inside doorway. No monster or light changes outside the inner doorway. No additional letters, no background rectangle, no checkerboard, no outer drop shadow. The alpha silhouettes and original 1280x1280 layout are critical for engine state switching. Do not use the narrower new door design from any other image.",
+    "transparent_background": true,
+    "edit_target": "door_open.png"
+  },
+  {
+    "room": "205",
+    "state": "closed",
+    "prompt": "Use case precise-object-edit. EDIT TARGET: the USER'S ORIGINAL room 201 CLOSED door PNG attached. NOT a redesign. Output ONE single room 205 CLOSED state, 1280x1280 TRUE alpha transparent PNG with EXACT SAME FULL CANVAS, framing, positions, dimensions, scale and silhouette. Never crop transparent margins or recenter! Preserve original wider squat ornate crimson/gold hotel door, black frame, curved crest, gold skull, lantern hooks, columns, bases and bottom threshold exactly, every decorative shape identical. Change ONLY gold doorplate text from \"201\" to exactly \"205\", same original dark burgundy serif type and perspective, same plate shape and position. Preserve exact original closed panel and normal yellow lanterns. No red sirens or alarm rays. No additional letters, no background rectangle, no checkerboard, no outer drop shadow. The alpha silhouettes and original 1280x1280 layout are critical for engine state switching. Do not use the narrower new door design from any other image.",
+    "transparent_background": true,
+    "edit_target": "door_closed.png"
+  },
+  {
+    "room": "205",
+    "state": "warning",
+    "prompt": "Use case precise-object-edit. EDIT TARGET: the USER'S ORIGINAL room 201 WARNING door PNG attached. NOT a redesign. Output ONE single room 205 WARNING state, 1280x1280 TRUE alpha transparent PNG with EXACT SAME FULL CANVAS, framing, positions, dimensions, scale and silhouette. Never crop transparent margins or recenter! Preserve original wider squat ornate crimson/gold hotel door, black frame, curved crest, gold skull, lantern hooks, columns, bases and bottom threshold exactly, every decorative shape identical. Change ONLY gold doorplate text from \"201\" to exactly \"205\", same original dark burgundy serif type and perspective, same plate shape and position. Preserve the EXACT original two TOP red sirens, orange alarm rays and RED GRID side lanterns; keep panel fully closed. No new warning design. No additional letters, no background rectangle, no checkerboard, no outer drop shadow. The alpha silhouettes and original 1280x1280 layout are critical for engine state switching. Do not use the narrower new door design from any other image.",
+    "transparent_background": true,
+    "edit_target": "door_warning.png"
+  },
+  {
+    "room": "205",
+    "state": "open",
+    "prompt": "Use case precise-object-edit. EDIT TARGET: the USER'S ORIGINAL room 201 OPEN door PNG attached. NOT a redesign. Output ONE single room 205 OPEN state, 1280x1280 TRUE alpha transparent PNG with EXACT SAME FULL CANVAS, framing, positions, dimensions, scale and silhouette. Never crop transparent margins or recenter! Preserve original wider squat ornate crimson/gold hotel door, black frame, curved crest, gold skull, lantern hooks, columns, bases and bottom threshold exactly, every decorative shape identical. Change ONLY gold doorplate text from \"201\" to exactly \"205\", same original dark burgundy serif type and perspective, same plate shape and position. Preserve original LEFT-hinged open leaf, original angle, original gold room, curtains, chandelier and golden floor. Replace ONLY the monster inside the doorway with a friendly TOP-HAT monster: dark brown backlit silhouette wearing a clearly tall elegant black top hat, two small eyes, small paws. Fit full hat between chandelier and doorway, no large ears or long nose. No monster or light changes outside the inner doorway. No additional letters, no background rectangle, no checkerboard, no outer drop shadow. The alpha silhouettes and original 1280x1280 layout are critical for engine state switching. Do not use the narrower new door design from any other image.",
+    "transparent_background": true,
+    "edit_target": "door_open.png"
+  },
+  {
+    "room": "201",
+    "state": "open",
+    "prompt": "Use case precise-object-edit. EDIT TARGET: user's ORIGINAL 201 OPEN door PNG. Keep EXACT original wide ornate maroon/gold door design, full 1280x1280 canvas, transparent alpha background, original placement and scale, left-hinged door angle, gold plate reading 201, outer frame, horns crest, lanterns, curtains/chandelier, golden interior/floor unchanged. ONLY replace the creature INSIDE the doorway: friendly LONG-NOSED / NOSE monster, dark brown backlit painted silhouette in the same style. A clearly oversized long curved nose/trunk protruding across chest, two small eyes, small horns and two paws. The long nose is the defining recognisable feature, not a big single eye, large ears or top hat. Fit it entirely in the original monster's area between the open door leaf and the right inner jamb, below chandelier, above golden floor. Do not change anything else or add text, objects, background, borders, shadows outside canvas. No redesign, no narrower door, no zoom, no cropping. Single transparent PNG, not sprite sheet.",
+    "transparent_background": true,
+    "edit_target": "door_open.png"
+  }
+]

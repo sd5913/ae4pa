@@ -1,54 +1,53 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_base.tscn" id="1_base"]
-[ext_resource type="Texture2D" path="res://assets/backgrounds/floor_2.png" id="art_background"]
-[ext_resource type="PackedScene" path="res://scenes/work/cleaning_spot.tscn" id="work_cleaning"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_background"]
-atlas = ExtResource("art_background")
-region = Rect2(0, 866, 3840, 428)
+[ext_resource type="PackedScene" path="res://scenes/levels/floor_2_art.tscn" id="2_modular_art"]
+[ext_resource type="PackedScene" path="res://scenes/work/cleaning_spot.tscn" id="3_cleaning_spot"]
 
 [node name="Floor2" instance=ExtResource("1_base")]
 floor_number = 2
 task_01_barrier_x = 1250.0
 
 [node name="FloorBackground" parent="." index="0"]
-position = Vector2(0, 190.625)
-scale = Vector2(0.9375, 0.9375)
-texture = SubResource("AtlasTexture_background")
+visible = false
+
+[node name="Player" parent="." index="2"]
+z_index = 1
 
 [node name="Room201" type="Marker2D" parent="DoorRoot" index="0"]
-position = Vector2(700, 560)
+position = Vector2(665.625, 560)
 metadata/room_number = 201
 metadata/monster_type = "NOSE"
 
 [node name="Room202" type="Marker2D" parent="DoorRoot" index="1"]
-position = Vector2(1550, 560)
+position = Vector2(1226.25, 560)
 metadata/room_number = 202
 metadata/monster_type = "EYE"
 
 [node name="Room203" type="Marker2D" parent="DoorRoot" index="2"]
-position = Vector2(2000, 560)
+position = Vector2(1904.0625, 560)
 metadata/room_number = 203
 metadata/monster_type = "EAR"
 
 [node name="Room204" type="Marker2D" parent="DoorRoot" index="3"]
-position = Vector2(2450, 560)
+position = Vector2(2452.5, 560)
 metadata/room_number = 204
 metadata/monster_type = "CHECKER"
 
 [node name="Room205" type="Marker2D" parent="DoorRoot" index="4"]
-position = Vector2(2900, 560)
+position = Vector2(3048.75, 560)
 metadata/room_number = 205
 metadata/monster_type = "HAT"
 
 [node name="Stain201Slot" type="Marker2D" parent="Interactions" index="2"]
-position = Vector2(980, 560)
+position = Vector2(852, 560)
 
-[node name="CleaningSpot" parent="Interactions/Stain201Slot" instance=ExtResource("work_cleaning")]
+[node name="CleaningSpot" parent="Interactions/Stain201Slot" instance=ExtResource("3_cleaning_spot")]
+z_index = 1
+target_id = "STAIN_201"
 
 [node name="Task01AcceptSafe" type="Marker2D" parent="Interactions" index="3"]
-position = Vector2(560, 560)
+position = Vector2(520, 560)
 
 [node name="Room201RightSafe" type="Marker2D" parent="Interactions" index="4"]
 position = Vector2(1120, 560)
@@ -57,19 +56,34 @@ position = Vector2(1120, 560)
 position = Vector2(1250, 560)
 
 [node name="Visual" type="Polygon2D" parent="Interactions/Task01Barrier"]
+visible = false
 polygon = PackedVector2Array(-8, -160, 8, -160, 8, 0, -8, 0)
 color = Color(0.8, 0.4, 0.3, 1)
 
 [node name="Room202LeftSafe" type="Marker2D" parent="Interactions" index="6"]
-position = Vector2(1400, 560)
+position = Vector2(1076.25, 560)
 
 [node name="Room202RightSafe" type="Marker2D" parent="Interactions" index="7"]
-position = Vector2(1700, 560)
+position = Vector2(1376.25, 560)
 
 [node name="Hint" type="Label" parent="Interactions/Task01Barrier"]
+visible = false
 offset_left = -150.0
 offset_top = 30.0
 offset_right = 150.0
 offset_bottom = 80.0
 horizontal_alignment = 1
 text = "201 交付后开放后段"
+
+[node name="Floor2Art" parent="." instance=ExtResource("2_modular_art")]
+position = Vector2(0, 190.625)
+scale = Vector2(0.9375, 0.9375)
+
+[node name="EntranceLabel" parent="." index="6"]
+visible = false
+
+[node name="Hint" parent="Interactions/ReturnPoint"]
+visible = false
+
+[node name="Hint" parent="Interactions/ExitPoint"]
+visible = false

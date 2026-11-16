@@ -214,6 +214,7 @@ func _on_modal_changed() -> void:
 	_needs_e_release = _needs_e_release or Input.is_action_pressed("interact")
 	for door: Node2D in _doors:
 		door.set_physics_process(GameManager.is_world_input_allowed())
+	_apply_task_route() # Refresh work/staff eligibility after the task modal closes.
 
 
 func _on_state_changed(state: String) -> void:
@@ -238,7 +239,7 @@ func _apply_task_route() -> void:
 	if task_01_barrier_x > 0.0 and not GameManager.get_world_flags().get("passage_201_unlocked", false):
 		right_bound = task_01_barrier_x - 24.0
 		if not _doors.is_empty() and GameManager.task_status in ["NONE", "AVAILABLE"]:
-			right_bound = minf(right_bound, $DoorRoot/Room201.global_position.x - 120.0)
+			right_bound = minf(right_bound, $DoorRoot/Room201.global_position.x - 112.0)
 	player.set_walk_bounds(64.0, right_bound)
 	if has_node("Interactions/Task01Barrier"):
 		$Interactions/Task01Barrier.visible = right_bound < corridor_width - 64.0
@@ -265,9 +266,11 @@ func _setup_doors() -> void:
 	for slot: Node2D in $DoorRoot.get_children():
 		# M1 assembles 201 plus one ordinary door, without enabling task 02.
 		if floor_number != 2 or slot.name not in ["Room201", "Room202"]:
-			_add_caption(slot, "%s · %s\n房门接入位" % [slot.get_meta("room_number"), slot.get_meta("monster_type")], -230.0)
+			if not has_node("Floor2Art"):
+				_add_caption(slot, "%s · %s\n房门接入位" % [slot.get_meta("room_number"), slot.get_meta("monster_type")], -230.0)
 			continue
-		var door: Node2D = preload("res://scenes/doors/monster_door.tscn").instantiate()
+		var door_scene: PackedScene = preload("res://scenes/doors/room_201_door.tscn") if slot.name == "Room201" else preload("res://scenes/doors/monster_door.tscn")
+		var door: Node2D = door_scene.instantiate()
 		if not door.has_method("finish_safe_return") or not door.has_method("set_story_state"):
 			door.free()
 			_add_caption(slot, "%s · 门组件待同步 C PR #12" % slot.get_meta("room_number"), -230.0)
@@ -276,6 +279,9 @@ func _setup_doors() -> void:
 		door.room_id = str(slot.get_meta("room_number"))
 		door.monster_type = slot.get_meta("monster_type")
 		if slot.name == "Room201":
+			# Match the baked background doorway; gameplay origin stays at its marker.
+			door.get_node("Art").position = Vector2(-40, 10)
+			door.get_node("Art").scale = Vector2(0.32, 0.32)
 			door.door_mode = "STORY"
 			door.task_id = GameManager.TASK_01_ID
 			door.story_radius = 120.0
@@ -286,6 +292,8 @@ func _setup_doors() -> void:
 			_safe_points[door] = [$Interactions/Room202LeftSafe, $Interactions/Room202RightSafe]
 			door.rule_violated.connect(_on_door_violation.bind(door))
 		slot.add_child(door)
+		if has_node("Floor2Art"):
+			$Floor2Art.bind_door(door.room_id, door)
 		door.setup(player)
 		_doors.append(door)
 

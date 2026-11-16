@@ -30,6 +30,7 @@ func _run() -> void:
 	var before_cards: Dictionary = cards.call("export_snapshot")
 	var before_notes: Dictionary = game.call("get_notebook_view")
 	await _travel(2)
+	var story_position: Vector2 = _floor().get_node("DoorRoot/Room201").global_position
 	_player().global_position.x = 580.0
 	await _settle()
 	_expect(game.get("task_status") == "AVAILABLE", "Real 201 offers before acceptance")
@@ -55,7 +56,7 @@ func _run() -> void:
 	if spot == null:
 		await _finish()
 		return
-	_player().global_position.x = 980.0
+	_player().global_position.x = _floor().get_node("Interactions/Stain201Slot").global_position.x
 	await _settle()
 	await _action("interact", true)
 	await _action("interact", false)
@@ -120,7 +121,7 @@ func _run() -> void:
 	_expect(_floor() == failed_floor and cards.call("export_snapshot") == failed_cards, "Rejected restore preserves the failed world and inventory")
 	game.set("_task_checkpoint", checkpoint)
 	var unsafe: Dictionary = checkpoint.duplicate(true)
-	unsafe["position"] = Vector2(700, 560)
+	unsafe["position"] = story_position
 	game.set("_task_checkpoint", unsafe)
 	_expect(not game.call("retry_current_task"), "Recovery rejects a checkpoint inside the story door")
 	_expect(_floor() == failed_floor and cards.call("export_snapshot") == failed_cards, "Unsafe restore keeps the original failed world")
@@ -134,7 +135,7 @@ func _run() -> void:
 	game.call("set_modal_open", "PAUSE", true)
 	_expect(game.call("retry_current_task"), "Real retry restores the task's original floor")
 	await _settle()
-	_expect(game.get("current_floor") == 2 and _player().global_position == Vector2(560, 560), "Retry returns to the validated 201 acceptance point")
+	_expect(game.get("current_floor") == 2 and _player().global_position == _floor().get_node("Interactions/Task01AcceptSafe").global_position, "Retry returns to the validated 201 acceptance point")
 	_expect(game.get("task_status") == "AVAILABLE" and game.get("remaining_time") == 0.0, "Retry waits for another acceptance")
 	_expect(cards.call("export_snapshot") == before_cards, "Retry revokes the task card and restores prior slots/active identity")
 	_expect(restored_events == [1, 0], "Restore refreshes cards once without an active identity event")
@@ -172,10 +173,10 @@ func _run() -> void:
 	await _travel(2)
 	await _action("switch_id", true)
 	await _action("switch_id", false)
-	_player().global_position.x = 980.0
+	_player().global_position.x = _floor().get_node("Interactions/Stain201Slot").global_position.x
 	await _settle()
 	await _clean()
-	_player().global_position.x = 700.0
+	_player().global_position.x = _floor().get_node("DoorRoot/Room201").global_position.x
 	await _settle()
 	await _action("interact", true)
 	await _action("interact", false)
@@ -186,12 +187,12 @@ func _run() -> void:
 	var ordinary: Node = _floor().get_node("DoorRoot/Room202/Door")
 	ordinary.set_process(false)
 	ordinary.set("door_state", "CLOSED")
-	_player().global_position.x = 1370.0
+	_player().global_position.x = ordinary.global_position.x - 180.0
 	await _settle()
 	ordinary.set("door_state", "OPEN")
-	_player().global_position.x = 1530.0
+	_player().global_position.x = ordinary.global_position.x - 20.0
 	await _settle()
-	_expect(_player().global_position.x == 1400.0 and game.get("task_status") == "COMPLETED", "After retries, actual wrong-card door detection still returns safely without rolling back delivery")
+	_expect(_player().global_position.x == _floor().get_node("Interactions/Room202LeftSafe").global_position.x and game.get("task_status") == "COMPLETED", "After retries, actual wrong-card door detection still returns safely without rolling back delivery")
 	game.call("start_game")
 	_expect(not game.call("can_retry_current_task") and cards.call("get_owned_cards").is_empty(), "New game clears task checkpoint and cards")
 	await _finish()

@@ -521,3 +521,80 @@
 - fetch 后个人远端仍为 4dd0890，本地包含其全部历史，可正常快进推送。main 新增 D PR #23／007437a，A 当前候选保持已验证基线 0145926，D 新版本的实际联合验证留后续接入。
 - 上传范围沿用整合补丁的 56 个源码／UID／场景／整合文档，覆盖菜单、201 任务与真实工作、检查点恢复、背包与渐进笔记。原本机 project.godot、.vscode、ZIP 与用户 AGENTS 修改按原状态保留。
 - 本轮发布前实际重跑 22 项回归，全部 PASS／退出 0，结果保存在 /private/tmp/ae4pa-ui-final-results.json。暂存树继续按候选清单核对空白和链接。远端上传成功以实际 push 及远端 SHA 核对结果为准。人工、Windows／导出、后四任务及待确认规则仍按前条记录。
+
+## 2026-11-15 C：201 房间门 PNG 可复用资产
+
+- 用户明确授权把三种门状态 PNG 推送 GitHub 并导入引擎，要求保留完整画布和相同锚点／缩放。在独立分支 `work/member-C-door-201-art` 基于最新 main `007437a` 实施，原 C 工作区未提交文件保留。
+- 新增 `assets/final/doors/room_201/` 三张原始 PNG、Godot 导入描述和接入 README。三张均为 1280×1280 RGBA，SHA-256 与用户源文件一致；无裁剪或重采样。无损导入、size_limit=0、无 mipmaps。
+- 新增 `scenes/doors/room_201_art.*`：一个 Sprite2D 切换 CLOSED／WARNING／OPEN，画布底部中心 (640,1280) 为共同锚点、统一 0.18 倍。新增 `room_201_door.*` 继承现有通用门，只替换视觉并隐藏占位图，原有状态循环与接口复用。纯美术可单独拖入使用。
+- 新增 `scenes/tests/doors/room_201_art_preview.tscn` 和 `room_201_art_smoke.gd`。本机 Godot 4.7.2 editor import 完成；room_201_art_smoke 输出 PASS，验证真实继承门状态驱动贴图、完整画布、相同矩形／锚点／变换和无占位重叠；原 door_cycle_smoke 输出 PASS，覆盖 20 循环等原有时序。
+- 原生 Compatibility／NVIDIA 渲染预览截图已目视检查：三状态共用基线和比例，预警延伸完整可见。沙箱环境存在 user:// 日志／shader 缓存与编辑器设置目录写入诊断；未发现脚本解析或贴图导入错误，不称环境零错误。
+- 本轮未替换楼层与主线中的现有门实例；可复用场景已在引擎导入。接入者可在 201 门位选用新场景，并沿用已有 NORMAL／STORY、task_id、monster_type 和 setup(player) 配置；原 PNG 的怪物造型不改变游戏规则。
+
+## 2026-11-15 C：按用户授权替换主线 201 门并准备合入
+
+- 用户明确要求直接合入并替换主线 201 门实例。fetch 后 main 仍为 007437a，原有资产 PR #26 分支继续增加主线接入，未操作原 C 工作区。
+- floor.gd 仅对 Room201 选用 room_201_door.tscn；原 STORY／TASK_01_CLEAN／NOSE、检测位置、半径、信号、setup(player) 保留。202 仍使用原通用门。
+- 原生截图发现默认 0.18 倍资产叠在背景静态大门前；主线 Art 统一调整为 0.32 倍和局部位置 (-40,10)，覆盖背景 201，三状态仍共用完整画布和同一变换。floor_2.tscn 将 Player z_index 设为 1，避免主角走到新门前被贴图遮挡。未编辑背景 PNG。
+- Godot 4.7.2 safe_return_smoke（新增真实主线场景、完整画布、202 不变和前景主角检查）、foundation_smoke、room_201_art_smoke 均 PASS；main --headless --quit-after 3 退出 0。原生渲染主线 2F 的关门／预警／开门截图已目视检查，门框与基线稳定，主角可见。
+- 存在既有沙箱 user:// 日志和 shader 缓存写入诊断，未发现脚本解析或运行错误。没有代记完整真人任务通关或其他平台验证。
+
+## 2026-11-15 C：二楼环境分层 PNG，仅个人分支
+
+- 用户要求按远景／建筑／地面／后景家具／交互／前景／光效拆二楼，随后明确角色先不处理，并要求直接放入现有个人分支。fetch 核对开工 HEAD、origin/main、origin/work/member-C-yinshiqi 均为 45cba59。
+- 新增 assets/final/floor_2_layers：32 张可组合 PNG（3 个背景／地面模块、29 张 512×512 透明物件／效果）和 3 张 1280×428 原像素分区参考。来源为用户 floor_2_4k.png，3840×2160，可见区 (0,866,3840,428)。保留各物件格子透明边距；大背景用小模块组合，未把整楼缩图后放大。
+- 使用内置 imagegen 参考提取与重建，再无损分格输出；不是原 PSD 逐像素图层恢复，雕花／比例等存在 AI 差异，墙面和遮挡边缘为补绘，说明与 manifest 明确区分来源。原像素参考三区逐像素核对。没有原图不存在的角色、污渍、登记台或正式出口牌；原 201 三状态素材不变。
+- 新增 README、manifest.json、prompts.md，说明 7 层目录、建议锚点、背景交替镜像拼接、静态门与三状态门的区别、局部烘焙光照及源图限制。
+- 验证：35 PNG 全部解码、尺寸／SHA-256／29 个透明格子 alpha 和 3 个源图分区逐像素检查 PASS。Godot 4.7.2 editor import 完成，35 个无损／size_limit=0／无 mipmaps 导入描述均核对，未发现脚本解析或资源导入错误；存在既有沙箱编辑器设置目录写入诊断。
+- 棋盘底资产总览已目视检查房号／透明背景／物件分隔／光效。仅提交本包素材及进度记录；本地未跟踪的观察入口与审阅记录不提交。未修改正式场景接线、未创建分支、未向 main 合并；未代记游戏集成验收。
+
+## 2026-11-15 C：按原始 201 模板补齐五门三态，201 改为长鼻
+
+- 用户先要求五门三态，随后叫停新门型，明确采用最初提供的 201 closed／warning／open 原图，只新增 202—205 的 12 张透明 PNG，并确认开启态为 202 独眼／203 大耳／204 核验／205 礼帽；最后追加 201 开启态改为 NOSE。被取消的窄门候选留在任务中间目录，未入库。
+- 在现有 work/member-C-yinshiqi 分支新增 assets/final/doors/room_202 至 room_205，每扇 3 PNG；201 仅改 door_open.png 中怪物窗口，closed／warning 与用户源文件逐字节一致。合计五门 15 张可复用三态，全部 1280×1280 RGBA、共用底部中心锚点 (640,1280)、不自动裁边。
+- 内置 imagegen 分别编辑房号与对应怪物，最终锁定用户原图母版，仅局部编辑窗口允许变化；生成稿局部配准，原始门框和画布不重采样。三态公共门框 472976 个可见像素差异 0；12 新图及 201 新开启态在编辑窗口外 RGBA 差异 0，全部 alpha 与对应用户模板完全一致。预警沿用原顶部双警报灯／射线／红网格侧灯。
+- 新增 rooms_201_205.md、manifest、实际 prompts 说明来源、精确对齐结果及锚点；更新 201 README 和旧分层包说明，避免把旧单态门当作三态素材。原用户 G 盘文件不改。
+- 实际验证：全部 15 PNG 解码／尺寸／SHA-256、15 个无损 size_limit=0 无 mipmaps 导入描述检查 PASS；Godot 4.7.2 editor import 完成，room_201_art_smoke PASS，12 纹理实际加载探针 ROOMS_202_205_IMPORT PASS。棋盘底三态总览及切换预览已检查。环境仍有既有 user:// 日志／编辑器设置保存诊断，未发现资源导入或脚本解析错误。
+- 仅个人分支提交美术及说明，不新建分支、不合入 main、不修改 202—205 正式场景／规则接线。本地未跟踪的审阅记录和二楼观察入口保留，不提交。
+
+## 2026-11-15 C：按参考图组装二楼分层场景（本地）
+
+- 用户要求使用已确认的 G 盘 2F_assets 包，在引擎按原图摆放二楼。开工 C 分支 7c82c38，与远端个人分支一致，main 无新提交。保留本地四个未跟踪审阅／观察文件，没有新建分支。
+- 对照 3840×2160 原图可见区 (0,866,3840,428) 测量布局。新增 floor_2_art.tscn：Far／Architecture／Floor／LightFX／BackFurniture／Travel／InteractiveProps／Lamps／Doors／Foreground 可编辑分组，采用现有模块与独立 PNG，不重新生成或修改资产，不继续把旧整图铺作背景。源图坐标、尺寸和实际纹理路径见 floor_2_art_layout.json。
+- 以整体 0.9375 和原点 (0,190.625) 映射到 3600 宽走廊，地面 y560；按原图位置／占用范围拟合五门和家具。由于确认的独立门比例与扁平图不同，门节点固定 X/Y 尺寸拟合，同一门三态共享完整 1280 画布和同一变换，不逐态裁边或缩放。保留原图 201—203关／204预警／205开初始美术状态。
+- floor_2.tscn 接入分层布景并隐藏旧背景／占位视觉；201／202 原业务组件继续运行，隐藏旧视觉并同步到新贴图。门检测中心与新位置同步为 x665.625／1226.25；202 安全点 x1076.25／1376.25。其余门仍只作参考状态美术展示，不代记其任务／检测已接入。任务锁仍 x1250，清洁交互不改内部实现。
+- 新增 floor_door_art.gd、floor_2_art.gd 和 F6 floor_2_layout_preview：A/D 移动，F1 参考姿态，F2—F4 三态，F5 美术循环。预览不创建假完成记录、不执行怪物判定。新增 floor_2_layout_smoke 验证状态变换／1280画布、地面、前景遮挡、真实门与美术中心、主线状态同步及预览移动。
+- 实际 Godot 4.7.2 editor import 完成；floor_2_layout_smoke、foundation_smoke、safe_return_smoke、world_interaction_smoke 均 PASS，main --headless --quit-after 3 退出 0。safe_return 检查改为读取实际门位／安全点，并保留跨锁拒绝等原覆盖。无脚本解析／导入错误；仍有既有 user:// 日志、shader 缓存、编辑器设置保存诊断。
+- 原生 Compatibility 渲染总览已目视检查；初轮修复 2F 门牌被前景柱挡住、警报射线顶部边界。输出任务 outputs/floor_2_assembled_overview.png 和 floor_2_reference_comparison.png。素材自身含重建，布局与层级按原图还原，但纹样／雕花／造型不可能逐像素相同；完整限制见 floor_2_art_layout.md。
+- Godot 编辑器已打开 floor_2_art.tscn；电脑操作切前台／2D 超时，未声称 UI 自动切换成功。引擎启动自动去掉显式默认 keep 配置，已仅恢复该行，project.godot 不产生本轮差异。未提交、推送或合并 main。
+
+## 2026-11-15 C：二楼场景与确认素材发布授权
+
+- 用户明确要求将当前成果推送并合入 main。fetch 确认 main 仍为 45cba59，C 远端与本地 HEAD 同为 7c82c38；main 无新变更，无需重复合并或重跑未改变的回归。
+- 发布范围包含此前 C 分支的二楼环境资产 a78d89b、五门三态／201 长鼻 7c82c38，以及本轮已验证的分层场景、门状态绑定、检测与安全点位置校准、独立预览、布局数据／说明和检查。README 移除待发布措辞。
+- 实际验证沿用上一段同一源码的 Godot layout／foundation／safe_return／world_interaction PASS、main 启动和原生截图结果；本轮仅更新发布说明，另执行精确暂存范围与 git diff --cached --check，不虚构新一次运行记录。
+- 原有本地审阅记录、floor_2_observe 入口和 project.godot 自动行尾／默认值状态不纳入发布；不强制推送，不重置工作区。远端发布与合并以最终 PR／SHA 核对结果为准。
+
+## 2026-11-15 C：修复主入口 201 接任务与扫帚清理交互
+
+- 用户实玩反馈 201 被挡住、接不到任务且扫帚交互消失。核对发现：主入口 main 未装配已有 D MissionBoard，任务仅 offer 为 AVAILABLE 没有接取入口；布景时把整个 CleaningSpot 设为 invisible 且点位留在旧 x980，造成提示消失／与扫帚脱离。这是布景交互保留不完整，本轮恢复。
+- main.tscn 挂载已有 mission_board.tscn 并默认隐藏。主入口监听 task_offered 打开页面，真实接受按钮成功后隐藏并释放模态，增加“查看201任务”按钮方便关闭后重开；没有自动接受任务或伪造清理结果。
+- floor_2 的清理点移动到扫帚旁 x852，恢复节点可见并设前景 z1；201 未接任务边界留 8 像素触发余量，避免贴着半径边界无法进入。
+- 新主入口流程检查实际发现接受时模态仍打开，task_updated 令工作资格为 false，关页原先没有刷新。floor._on_modal_changed 现重新应用资格与路线，使保洁偷卡／清理在关页后正常启用。
+- 新 task_01_main_flow_smoke：从真实 main 入口走到201自动弹已有任务页面，点击真实接取按钮，关页／重开页后仍可交互，扫帚点可见且对齐，调用 CardManager 业务接口取得 CLEANER 作为卡片夹具，真实 E 长按通过 B 清理组件发信号，返回真实门 E 交付并验证通过 x1250 路障；PASS。序章／经理用显式前置夹具，本检查不代记真人全流程或真实偷卡通过；后者已有 world_interaction 覆盖。
+- Godot 4.7.2 world_interaction_smoke、foundation_smoke、safe_return_smoke 与新主入口检查全部 PASS。环境仅有既有 user:// 日志写入诊断。新检查最初验证失败并据此补上关页资格刷新，最终通过。本轮仅本地修复，未提交／推送／合并；保留现有未跟踪文件和 project.godot 状态。
+
+## 2026-11-16 C：201 交互修复发布授权
+
+- 用户明确要求推送本轮修复并入 main。fetch 确认 main、C 远端和本地均为 31d34ba，无远端新增，不需要合并其他源码变更。
+- 发布范围为主入口 MissionBoard 接线／接取后关页、任务按钮与指引，201 触发边界余量，扫帚 x852 可见交互点，关页资格刷新，新主入口接取—清理—交付检查及说明。
+- 沿用上一轮同一源码的 TASK_01_MAIN_FLOW、world_interaction、foundation、safe_return PASS；本轮只更新发布说明并检查暂存内容，不重复声称新一次运行。
+- project.godot、独立 core 测试入口的无内容行尾状态，以及原有未跟踪观察／审阅文件不纳入提交。远端结果由 PR 和提交 SHA 核对。
+
+## 2026年11月16日 A：合入 main 的二楼布景与主入口修复（Asia/Hong_Kong）
+
+- 用户明确要求将最新 main 合入 A 并运行。本轮基线 A 02be618、main 158818c；在临时克隆重放合并并处理 10 个冲突文件。保留 A 菜单、任务 UI 适配、背包／笔记和检查点，接入 C 分层二楼、201—205 三态门、扫帚 x852 与关页资格刷新，以及 D #29 新对白布局／救援立绘；没有引入未合并 D publish 分支。
+- 发现真实接入问题：201 中心移至 x665.625 后，旧检查点 x560 落入半径120，接受任务被安全校验拒绝。现有 task_01_main_flow 与 checkpoint 回归实际 FAIL；将接取前安全点移至 x520 后主入口接受／清理／交付通过。没有放宽安全校验或修改 C 门规则。
+- main 的 UI 自登记模态与 A 适配整合后，task_ui 卸载断言实际 FAIL；MissionBoard／Failure 在各自 _exit_tree 释放自己的模态后通过。保留 main 的停表、输入保护、换层拒绝恢复及 A 主题。现有 UI／检查点测试采用真实工作点、门和安全点坐标，保留成功、取消、失败、非法恢复及普通退回断言；新 main 流程测试通过真实开始按钮进入 A 菜单链路。
+- 实际 Godot 4.7.2：候选首次 editor import 退出0；包含用户原有 project.godot 与三个 core 文件修改的最终候选，全部16项 core、B三项、C七项及独立UI共27项 PASS／退出0，无新增脚本错误。日志索引 /private/tmp/ae4pa-main-a-suite-results.json。headless 保留既有 macOS 证书诊断，导入有用户设置保存受限诊断。
+- 原有未提交文件备份索引 /private/tmp/ae4pa-main-into-a-backup-path；运行相关原修改继续保持未提交，未将本机设置、ZIP、审查文档或启动器混入本次合并提交。双方进度保留。此次仅本地 A 合并及启动，不推送、不修改 GitHub PR，不代记用户真人／Windows／后四任务验收。

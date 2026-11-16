@@ -127,7 +127,7 @@ func _run() -> void:
 	await _action("switch_id", false)
 	_expect(not bag.visible and cards.get("active_card") == "CLEANER", "Closing bag resumes world Q into the selected cleaner slot")
 	await _travel(2)
-	_player().global_position.x = 980.0
+	_player().global_position.x = _floor().get_node("Interactions/Stain201Slot").global_position.x
 	await _settle()
 	await _action("interact", true)
 	await create_timer(1.6).timeout
@@ -142,7 +142,7 @@ func _run() -> void:
 	_expect(board.visible and not failure.visible, "Retry closes old failure page and opens acceptance again")
 	_expect(not board.get("_retry_button").visible, "Acceptance after retry hides the board legacy failure controls")
 	_expect(game.get("task_status") == "AVAILABLE" and game.get("remaining_time") == 0.0, "Retry waits at 201 before a full new limit")
-	_expect(_player().global_position == Vector2(560, 560) and not cards.call("has_card", "CLEANER"), "Retry restores the real acceptance point and revokes task card")
+	_expect(_player().global_position == _floor().get_node("Interactions/Task01AcceptSafe").global_position and not cards.call("has_card", "CLEANER"), "Retry restores the real acceptance point and revokes task card")
 	_expect(not game.call("get_world_flags").get("stain_201_cleaned", false), "Retry revokes task cleaning")
 	var recovered_floor: Node = _floor()
 	failure.get_node("%RetryButton").pressed.emit()
@@ -161,12 +161,12 @@ func _run() -> void:
 	await _travel(1)
 	await _steal()
 	await _travel(2)
-	_player().global_position.x = 980.0
+	_player().global_position.x = _floor().get_node("Interactions/Stain201Slot").global_position.x
 	await _settle()
 	await _action("interact", true)
 	await create_timer(1.6).timeout
 	await _action("interact", false)
-	_player().global_position.x = 700.0
+	_player().global_position.x = _floor().get_node("DoorRoot/Room201").global_position.x
 	await _settle()
 	await _action("interact", true)
 	await _action("interact", false)
@@ -181,12 +181,12 @@ func _run() -> void:
 	var ordinary: Node = _floor().get_node("DoorRoot/Room202/Door")
 	ordinary.set_process(false)
 	ordinary.set("door_state", "CLOSED")
-	_player().global_position.x = 1370.0
+	_player().global_position.x = ordinary.global_position.x - 180.0
 	await _settle()
 	ordinary.set("door_state", "OPEN")
-	_player().global_position.x = 1530.0
+	_player().global_position.x = ordinary.global_position.x - 20.0
 	await _settle()
-	_expect(_player().global_position.x == 1400.0 and game.get("task_status") == "COMPLETED" and not failure.visible and not board.visible, "Ordinary warning returns safely without opening task failure UI")
+	_expect(_player().global_position.x == _floor().get_node("Interactions/Room202LeftSafe").global_position.x and game.get("task_status") == "COMPLETED" and not failure.visible and not board.visible, "Ordinary warning returns safely without opening task failure UI")
 	main.get_node("DeveloperOverlay/Margin/Info/NewGame").pressed.emit()
 	await _drain(dialogue)
 	await _reach_offer(dialogue)
