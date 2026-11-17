@@ -634,33 +634,55 @@
     },
     {
       "name": "LeftStairs",
-      "texture": "res://assets/final/floor_2_layers/05_interactive/stairs_left_portal.png",
+      "texture": "res://assets/final/floor_2_layers/05_interactive/stairs_left_integrated.png",
       "source_canvas": [
-        512,
-        512
+        887,
+        1774
       ],
       "target_source_rect": [
         190,
         18,
         218,
-        385
+        390.25142135186354
       ],
-      "layer": "Travel"
+      "layer": "Travel",
+      "region": [
+        39,
+        60,
+        809,
+        1643
+      ],
+      "scale": [
+        0.2694684796044499,
+        0.23752368919772585
+      ],
+      "integrated_railing": true
     },
     {
       "name": "RightStairs",
-      "texture": "res://assets/final/floor_2_layers/05_interactive/stairs_right_portal.png",
+      "texture": "res://assets/final/floor_2_layers/05_interactive/stairs_right_integrated.png",
       "source_canvas": [
-        512,
-        512
+        887,
+        1774
       ],
       "target_source_rect": [
         3520,
         18,
         220,
-        385
+        388.71261378413527
       ],
-      "layer": "Travel"
+      "layer": "Travel",
+      "region": [
+        65,
+        96,
+        756,
+        1590
+      ],
+      "scale": [
+        0.291005291005291,
+        0.2444733420026008
+      ],
+      "integrated_railing": true
     },
     {
       "name": "FloorSign",
@@ -876,37 +898,8 @@
         145
       ],
       "layer": "Foreground"
-    },
-    {
-      "name": "LeftRail",
-      "texture": "res://assets/final/floor_2_layers/06_foreground/stair_handrail_left.png",
-      "source_canvas": [
-        512,
-        512
-      ],
-      "target_source_rect": [
-        215,
-        235,
-        161,
-        164
-      ],
-      "layer": "Foreground"
-    },
-    {
-      "name": "RightRail",
-      "texture": "res://assets/final/floor_2_layers/06_foreground/stair_handrail_right.png",
-      "source_canvas": [
-        512,
-        512
-      ],
-      "target_source_rect": [
-        3575,
-        235,
-        132,
-        163
-      ],
-      "layer": "Foreground"
     }
   ],
-  "limits": "Asset contours differ from flattened source; positions/footprints measured to reference, not pixel-identical repaint. Door transforms are identical across states."
+  "limits": "Asset contours differ from flattened source; positions/footprints measured to reference, not pixel-identical repaint. Door transforms are identical across states.",
+  "stairs_update": "Integrated PNGs with railings, Travel z=0 under player z=1; old separate foreground railings removed. No gameplay coordinates changed."
 }

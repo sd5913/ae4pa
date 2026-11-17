@@ -1,0 +1,64 @@
+{
+  "version": "integrated_stairwells_v2",
+  "railings": "painted into the same PNG as the steps; background sprites below player",
+  "assets": [
+    {
+      "side": "left",
+      "file": "assets/final/floor_2_layers/05_interactive/stairs_left_integrated.png",
+      "canvas": [
+        887,
+        1774
+      ],
+      "region": [
+        39,
+        60,
+        809,
+        1643
+      ],
+      "source_position": [
+        190,
+        18
+      ],
+      "scale": [
+        0.2694684796044499,
+        0.23752368919772585
+      ],
+      "gold_threshold_source_y": 394,
+      "gold_threshold_world_y": 560,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "63477c0c15d1dc1a2cfb33ba2c5a34cd13092dea6e3eb510865346423fab6f58"
+    },
+    {
+      "side": "right",
+      "file": "assets/final/floor_2_layers/05_interactive/stairs_right_integrated.png",
+      "canvas": [
+        887,
+        1774
+      ],
+      "region": [
+        65,
+        96,
+        756,
+        1590
+      ],
+      "source_position": [
+        3520,
+        18
+      ],
+      "scale": [
+        0.291005291005291,
+        0.2444733420026008
+      ],
+      "gold_threshold_source_y": 394,
+      "gold_threshold_world_y": 560,
+      "alpha_range": [
+        0,
+        255
+      ],
+      "sha256": "65508892152606b56adc322aa309e466bb27aff2d34dbe1dc37267a9ed045424"
+    }
+  ]
+}
