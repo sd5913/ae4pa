@@ -36,6 +36,9 @@ var _identity_inspection: Dictionary = {}
 @export_range(-600.0, 600.0, 0.1) var offset: float = 0.0
 @export_enum("EYE", "NOSE", "HAT", "EAR", "CHECKER") var monster_type: String = "EYE"
 
+var managed_cycle: bool = false
+var _last_managed_x: float = 0.0
+
 var door_state: String = "CLOSED"
 var _cycle_time: float = 0.0
 var _player: HotelPlayer
@@ -79,6 +82,10 @@ func _on_identity_changed(action: String) -> void:
 			_identity_inspection.changed = true
 		return
 	_sample_entry()
+	if managed_cycle:
+		if monster_type == "CHECKER" and action in ["SWITCH_ACTIVE", "EQUIP_CARD"] and door_state == "OPEN" and is_instance_valid(_player) and absf(_player.global_position.x-global_position.x) <= radius:
+			GameManager.request_monster_encounter(room_id, monster_type, "SWITCHED_NEAR_CHECKER")
+		return
 	if monster_type == "CHECKER" and action in ["SWITCH_ACTIVE", "EQUIP_CARD"] and _can_check():
 		_report_violation("SWITCHED_NEAR_CHECKER")
 
@@ -121,6 +128,9 @@ func end_identity_inspection(resolve: bool = true) -> bool:
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint() or not can_process() or not is_instance_valid(_player):
 		return
+	if managed_cycle:
+		_check_managed_encounter()
+		return
 	_sample_entry()
 	if not GameManager.is_world_input_allowed():
 		return
@@ -149,6 +159,9 @@ func _sample_entry() -> void:
 
 
 func _report_violation(reason: String) -> void:
+	if managed_cycle:
+		GameManager.request_monster_encounter(room_id, monster_type, reason)
+		return
 	# Unknown spawn/teleport inside is not evidence of a safe approach direction.
 	if _violation_pending or _entry_side == 0:
 		return
@@ -209,10 +222,16 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		_connect_identity_signal()
 	reset_cycle()
+	if managed_cycle:
+		var idle := preload("res://scenes/doors/monster_idle_visual.gd").new()
+		idle.name = "MonsterIdle"
+		add_child(idle)
+		idle.configure(monster_type,0.25)
+		_refresh_visuals()
 
 
 func _process(delta: float) -> void:
-	if Engine.is_editor_hint() or not GameManager.is_world_input_allowed():
+	if managed_cycle or Engine.is_editor_hint() or not GameManager.is_world_input_allowed():
 		return
 	# Retain overflow instead of discarding the last frame at each transition.
 	var closed: float = maxf(closed_time, 0.01)
@@ -247,9 +266,41 @@ func reset_cycle() -> void:
 
 
 func _refresh_visuals() -> void:
-	$MonsterPlaceholder.visible = door_state == "OPEN"
+	$MonsterPlaceholder.visible = door_state == "OPEN" and not managed_cycle
+	if has_node("MonsterIdle"):
+		$MonsterIdle.visible = door_state == "OPEN"
 	$DoorPanel.visible = door_state != "OPEN"
 	$Handle.visible = door_state != "OPEN"
 	$StateLabel.text = monster_type + " · " + door_state
 	$Frame.modulate = Color.WHITE
 	$WarningLabel.visible = door_state == "WARNING"
+
+
+func set_managed_state(value: String) -> void:
+	if value != door_state:
+		door_state = value
+		_refresh_visuals()
+
+func _check_managed_encounter() -> void:
+	if not GameManager.is_world_input_allowed():
+		return
+	var x := _player.global_position.x
+	var distance := absf(x-global_position.x)
+	var pending: Dictionary = GameManager.get_pending_monster_encounter()
+	var first := not GameManager.has_met_monster(monster_type)
+	if door_state == "OPEN" and distance <= story_radius:
+		var required: Dictionary = {"NOSE":"CLEANER", "EYE":"SECURITY", "HAT":"MANAGER"}
+		var wrong: bool = required.has(monster_type) and CardManager.active_card != required[monster_type]
+		wrong = wrong or (monster_type == "EAR" and _player.is_moving)
+		# Story work in progress is handled by A, never re-offer every frame.
+		var existing_story: bool = door_mode == "STORY" and _story_status in ["ACTIVE","READY_TO_SUBMIT","COMPLETED"]
+		if not existing_story and (first or (wrong and distance <= radius)):
+			GameManager.request_monster_encounter(room_id,monster_type,"FIRST_ENCOUNTER" if first else "WRONG_RULE")
+			pending = GameManager.get_pending_monster_encounter()
+		if pending.get("room_id", "") == room_id:
+			var side := -1.0 if _last_managed_x <= global_position.x else 1.0
+			if (x-global_position.x)*side < 16.0:
+				_player.global_position.x = global_position.x + side*16.0
+		if door_mode == "STORY":
+			_check_story()
+	_last_managed_x = _player.global_position.x

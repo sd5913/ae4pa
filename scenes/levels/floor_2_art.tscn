@@ -422,7 +422,7 @@ position = Vector2(2616.000000, 404.457831)
 scale = Vector2(0.274193548, 0.337349398)
 script = ExtResource("2")
 room_id = "204"
-state = "WARNING"
+state = "CLOSED"
 
 [node name="Sprite2D" type="Sprite2D" parent="Doors/Room204"]
 position = Vector2(-640, -1280)
@@ -434,7 +434,7 @@ position = Vector2(3252.000000, 404.457831)
 scale = Vector2(0.274193548, 0.337349398)
 script = ExtResource("2")
 room_id = "205"
-state = "OPEN"
+state = "CLOSED"
 
 [node name="Sprite2D" type="Sprite2D" parent="Doors/Room205"]
 position = Vector2(-640, -1280)
