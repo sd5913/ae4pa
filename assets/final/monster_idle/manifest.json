@@ -1,0 +1,92 @@
+[
+  {
+    "id": "eye",
+    "file": "eye_idle_sheet.png",
+    "size": [
+      1448,
+      1086
+    ],
+    "grid": [
+      4,
+      2
+    ],
+    "frames": 8,
+    "cell_size": [
+      362,
+      543
+    ],
+    "sha256": "792b3127c0e2e51635d74041422d45c10d59b820391a0d9e52c079c472e3fd1e"
+  },
+  {
+    "id": "nose",
+    "file": "nose_idle_sheet.png",
+    "size": [
+      1448,
+      1086
+    ],
+    "grid": [
+      4,
+      2
+    ],
+    "frames": 8,
+    "cell_size": [
+      362,
+      543
+    ],
+    "sha256": "bfccdc3521a6f2c02f48839816449befd85b6d99b8efff44298141ef9a0f0b10"
+  },
+  {
+    "id": "hat",
+    "file": "hat_idle_sheet.png",
+    "size": [
+      1448,
+      1086
+    ],
+    "grid": [
+      4,
+      2
+    ],
+    "frames": 8,
+    "cell_size": [
+      362,
+      543
+    ],
+    "sha256": "89e56d8dfa77ebcd96d98611bd1701ab610e897b3fde26d95b9e8dd39adfc73a"
+  },
+  {
+    "id": "ear",
+    "file": "ear_idle_sheet.png",
+    "size": [
+      1448,
+      1086
+    ],
+    "grid": [
+      4,
+      2
+    ],
+    "frames": 8,
+    "cell_size": [
+      362,
+      543
+    ],
+    "sha256": "5ae4d1b6b6966eb7255107d29942a79fb385eb90ffd0692aa507bab4716d8693"
+  },
+  {
+    "id": "checker",
+    "file": "checker_idle_sheet.png",
+    "size": [
+      1448,
+      1086
+    ],
+    "grid": [
+      4,
+      2
+    ],
+    "frames": 8,
+    "cell_size": [
+      362,
+      543
+    ],
+    "sha256": "563dd1f23203b7179fd65e24fabe0fe176969f92fb7080740346a75fdd5fc1ce"
+  }
+]
