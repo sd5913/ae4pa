@@ -54,9 +54,9 @@ func _run() -> void:
 	_expect(not floor_node.get_node("FloorBackground").visible and floor_node.get_node("FloorBackground").texture == null, "Old flattened background is unloaded")
 	_expect(art.position == Vector2(0,106.25) and art.scale == Vector2(.9375,.9375), "Original corridor scale and walking baseline are retained")
 	_expect(player.global_position == Vector2(192,560), "Spawn is unchanged")
-	for pair in [["SecuritySlot",800,"SECURITY"],["CleanerSlot",1600,"CLEANER"],["ManagerSlot",2400,"MANAGER"]]:
+	for pair in [["SecuritySlot",400,"SECURITY"],["CleanerSlot",2670,"CLEANER"],["ManagerSlot",1260,"MANAGER"]]:
 		var slot: Node2D = floor_node.get_node("StaffRoot/" + pair[0])
-		_expect(slot.global_position == Vector2(pair[1],560) and slot.get_node("Staff").card_id == pair[2], "Existing staff positions and roles are unchanged")
+		_expect(slot.global_position == Vector2(pair[1],560) and slot.get_node("Staff").card_id == pair[2], "Staff work zones match the HD lobby layout")
 	_expect(floor_node.get_node("Interactions/ExitPoint").global_position == Vector2(3400,560), "Stair interaction position is unchanged")
 	_check_art(art)
 	_expect(player.z_index == 1 and floor_node.get_node("StaffRoot").z_index == 1 and art.get_node("Foreground").z_index == 2, "Foreground is above player and all staff")
@@ -76,7 +76,7 @@ func _run() -> void:
 					break
 			Input.action_release(action)
 			_expect((player.global_position.x-center_x)*direction > 65 and is_equal_approx(player.global_position.y,560), "Real player crosses foreground column in both directions without blocking")
-	player.global_position = Vector2(2400,560)
+	player.global_position = Vector2(1260,560)
 	await _settle()
 	_expect(floor_node.get_interaction_target_id() == "MANAGER_TALK", "Manager remains selectable through the art")
 	await _key(true)

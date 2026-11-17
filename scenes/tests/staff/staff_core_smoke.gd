@@ -66,6 +66,10 @@ func _ready() -> void:
 	var original_facing: int = security.facing_direction
 	var original_eye_x: float = security.get_node("Eye").position.x
 	for staff: Node in staff_members:
+		if staff.card_id == "CLEANER":
+			_expect(staff.get_node("TurnTimer").is_stopped(), "Cleaner must not run an independent surprise-turn timer during work.")
+			_expect(staff.get_node("BehaviorTimer").wait_time >= 5.0 and staff.get_node("BehaviorTimer").wait_time <= 6.0, "Cleaner work pause must provide a stable 5-6 second steal window.")
+			continue
 		var interval_range: Vector2 = staff.get_turn_interval_range()
 		var interval: float = staff.get_current_turn_interval()
 		_expect(interval >= interval_range.x and interval <= interval_range.y, "%s turn interval is outside its role range." % staff.card_id)

@@ -19,6 +19,7 @@ signal interaction_state_changed(target_id: String, state: Dictionary)
 @export var cleaner_behavior_enabled: bool = true
 @export var cleaner_walk_distance: float = 36.0
 @export var cleaner_walk_speed: float = 28.0
+@export var patrol_enabled: bool = false
 
 var _player: HotelPlayer
 var _player_in_range: bool = false
@@ -31,6 +32,7 @@ var _task_item_available: bool = true
 var _is_alerted: bool = false
 var _is_suspicious: bool = false
 var _suspicion_previous_state: String = "IDLE"
+var _suspicion_previous_facing: int = 1
 var _turn_rng := RandomNumberGenerator.new()
 var _cleaner_state: String = "IDLE"
 var _cleaner_home_position: Vector2
@@ -59,11 +61,12 @@ func _ready() -> void:
 	_artwork.set_character(card_id.to_lower())
 	_update_facing_visual()
 	_turn_rng.randomize()
-	_schedule_next_turn()
 	_cleaner_home_position = position
 	if _uses_cleaner_behavior():
 		_set_cleaner_state("CLEANING")
-		behavior_timer.start(_turn_rng.randf_range(2.2, 3.2))
+		_start_behavior_pause()
+	else:
+		_schedule_next_turn()
 	CardManager.cards_changed.connect(_on_cards_changed)
 	CardManager.identity_changed.connect(_on_identity_changed)
 	_update_card_marker()
@@ -138,14 +141,13 @@ func reset_caught_alert() -> void:
 func set_cleaner_behavior_enabled(enabled: bool) -> void:
 	cleaner_behavior_enabled = enabled
 	behavior_timer.stop()
-	if enabled and card_id == "CLEANER":
+	if enabled and _uses_cleaner_behavior():
 		position = _cleaner_home_position
 		turn_timer.stop()
 		turn_warning_timer.stop()
 		turn_warning.visible = false
 		_set_cleaner_state("CLEANING")
-		behavior_timer.start(_turn_rng.randf_range(2.2, 3.2))
-		_schedule_next_turn()
+		_start_behavior_pause()
 	else:
 		position = _cleaner_home_position
 		_set_cleaner_state("IDLE")
@@ -456,7 +458,7 @@ func _schedule_next_turn() -> void:
 
 
 func _uses_cleaner_behavior() -> bool:
-	return cleaner_behavior_enabled and card_id == "CLEANER"
+	return cleaner_behavior_enabled and (card_id == "CLEANER" or patrol_enabled)
 
 
 func _is_cleaner_walking() -> bool:
@@ -466,6 +468,9 @@ func _is_cleaner_walking() -> bool:
 func _set_cleaner_state(next_state: String) -> void:
 	_cleaner_state = next_state
 	behavior_label.visible = _uses_cleaner_behavior()
+	if patrol_enabled and card_id != "CLEANER":
+		behavior_label.text = "PATROL" if next_state in ["WALK_TO_CART", "WALK_TO_CLEAN"] else "WATCH"
+		return
 	match next_state:
 		"CLEANING":
 			behavior_label.text = "CLEANING"
@@ -504,11 +509,22 @@ func _update_cleaner_behavior(delta: float) -> void:
 		return
 	if _cleaner_state == "WALK_TO_CART":
 		_set_cleaner_state("ORGANIZING")
-		behavior_timer.start(_turn_rng.randf_range(1.5, 2.4))
 	else:
 		_set_cleaner_state("CLEANING")
-		behavior_timer.start(_turn_rng.randf_range(2.2, 3.2))
-	_schedule_next_turn()
+	_start_behavior_pause()
+
+
+func _get_behavior_pause_range() -> Vector2:
+	if card_id == "CLEANER":
+		return Vector2(4.0, 5.0) if _cleaner_state == "ORGANIZING" else Vector2(5.0, 6.0)
+	if card_id == "MANAGER":
+		return Vector2(6.0, 8.0)
+	return Vector2(4.5, 6.0)
+
+
+func _start_behavior_pause() -> void:
+	var pause_range := _get_behavior_pause_range()
+	behavior_timer.start(_turn_rng.randf_range(pause_range.x, pause_range.y))
 
 
 func _on_behavior_timer_timeout() -> void:
@@ -542,6 +558,7 @@ func _consider_suspicion() -> void:
 		return
 	_is_suspicious = true
 	_suspicion_previous_state = _cleaner_state
+	_suspicion_previous_facing = facing_direction
 	turn_timer.stop()
 	turn_warning_timer.stop()
 	behavior_timer.stop()
@@ -565,6 +582,8 @@ func _end_suspicion(resume_behavior: bool) -> void:
 	turn_warning.text = "!"
 	turn_warning.add_theme_color_override("font_color", Color(1.0, 0.15, 0.12, 1.0))
 	behavior_label.add_theme_color_override("font_color", Color(0.55, 0.9, 0.65, 1.0))
+	facing_direction = _suspicion_previous_facing
+	_update_facing_visual()
 	if not resume_behavior:
 		return
 	if _uses_cleaner_behavior():
@@ -573,11 +592,12 @@ func _end_suspicion(resume_behavior: bool) -> void:
 				_set_cleaner_state(_suspicion_previous_state)
 			"ORGANIZING":
 				_set_cleaner_state("ORGANIZING")
-				behavior_timer.start(_turn_rng.randf_range(1.0, 1.8))
+				_start_behavior_pause()
 			_:
 				_set_cleaner_state("CLEANING")
-				behavior_timer.start(_turn_rng.randf_range(1.5, 2.4))
-	_schedule_next_turn()
+				_start_behavior_pause()
+	else:
+		_schedule_next_turn()
 
 
 func _on_suspicion_timer_timeout() -> void:
