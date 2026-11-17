@@ -232,3 +232,20 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 本次 D UI 回归没有发现需登记的阻塞 BUG；这不表示 T01—T14 或其他成员模块已验收。尚未实测的场景继续保持“未执行”，不以独立 UI 断言替代主线、门怪、员工、重试、救援、跟随或 EXIT 验收。
 
 | 2026-11-13（Asia/Shanghai）；Windows；Godot `4.7.2.stable.official.ed1daf0bf` | `work/member-D-v4-qa-fix`，基于已包含 PR #17 的 `origin/work/member-D-caizhichun` 提交 `a594bd0`；只新增 RESCUE_309 闺蜜立绘及断言、所需素材和本条 QA 记录 | 负责人：D；隔离 worktree 无窗口执行 | `scenes/tests/ui/ui_test.tscn`；Godot 控制台 `--headless --scene res://scenes/tests/ui/ui_test.tscn -- --ui-smoke` | RESCUE_309 立绘、推进和完成信号断言通过，现有菜单、说明、失败页、任务面板、通关页、HUD、背包回归通过 | 退出码 0；7 组 PASS。日志：`C:\Users\lenovo\AppData\Local\Temp\ae4pa_v4_qa_fix_worktree.log`。Windows 根证书存储读取错误未阻断测试 | 通过；仅为无窗口 UI 回归。当前 D 基线不含 V4 序章已读状态保存流程，因此本次未覆盖该状态的保存／重播测试；正式主线仍待 A 接入 |
+
+## 2026-11-15 BUG-003：core 开发入口按 E 无法交谈
+
+- 用户截图：F6 `task_01_core_test.tscn` 已显示 `MANAGER_TALK`，按 E 没有对白。原因是楼层已发出 `manager_talk_requested`，开发入口只监听 notice，没有连接经理请求或实例化对白；F5 主入口已有接线。
+- A 修复：开发入口复用 D 的 `dialogue.tscn`／`V4_MANAGER_TALK`，只有对白完成才登记经理介绍；对白期间锁移动／Q，新局与卸载释放自己的模态。原代记按钮保留为开发夹具，说明改为实际 E 流程。
+- 回归先 FAIL（缺真实对白节点），修复后 `task_01_core_smoke.gd` PASS；覆盖实际 E 打开／推进、不偷卡、移动锁定、嵌套模态、新局取消旧对白和卸载。全套 22 项 PASS／退出 0；测试含位置／转场夹具，不代记真人验收。
+- 本机 Godot `4.7.2.stable.official.ed1daf0bf`，原生 Compatibility／OpenGL 4.1 Metal 探针退出 0，实际 E 打开的对白截图 `/private/tmp/ae4pa-core-manager-dialogue.png` 已目视核对。headless 保留已知系统证书诊断。Windows／用户重测未执行，修复尚未提交／上传。
+
+## 2026-11-17 A 同步最新 main 后的发布检查
+
+本轮基线 main c736553，发布范围、环境和逐项日志见 [接入验收摘要](acceptance_status_20261117.md)。历史记录中的“未接入／未发布”保留为当时状态，不作为当前结论。
+
+- BUG-003 开发入口经理 E 对白修复纳入本轮发布，真实经理／模态／新局／卸载回归通过。
+- 接受任务后仍提示“确认接受”：既有 task_ui 检查新增断言先实际失败，再修 A 的成功接受通知后通过。
+- 两份 C 检查对旧直接换层的断言不适用新版选择页；改为真实 E 打开、点击2F、验证到达和模态释放，保留原有路线／门／美术断言。
+- 17 core + 3 B + 7 C + 1 UI 共28项通过。无缓存启动器由实际脚本／资源错误转为自动导入后退出0；本机证书／编辑器设置诊断单独记录。
+- 真人201四路径、玩家复述、Windows／导出及后四任务仍未代记通过。本轮不修改B/C/D业务组件，不新增玩法。

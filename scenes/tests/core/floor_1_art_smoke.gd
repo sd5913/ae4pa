@@ -92,7 +92,18 @@ func _run() -> void:
 	await _settle()
 	await _key(true)
 	await _key(false)
-	_expect(game.current_floor == 2, "Real stair E still reaches 2F")
+	var overlay: Control = main.get_node("TaskLayer/PlayOverlay")
+	_expect(overlay.visible and not game.is_world_input_allowed(), "Real stair E opens the floor selector and its modal")
+	var destination: Button
+	for choice: Button in overlay.get("_choices").get_children():
+		if choice.text == "2F":
+			destination = choice
+			break
+	_expect(destination != null, "The actual floor selector offers unlocked 2F")
+	if destination != null:
+		destination.pressed.emit()
+		await _settle()
+	_expect(game.current_floor == 2 and not overlay.visible and game.is_world_input_allowed(), "Selecting 2F in the real stair UI reaches the destination and releases its modal")
 	main.queue_free()
 	await process_frame
 	DirAccess.remove_absolute(progress_path)

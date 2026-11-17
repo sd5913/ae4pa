@@ -21,6 +21,7 @@ func _ready() -> void:
 	GameManager.safe_return_started.connect(_on_safe_return_started)
 	GameManager.modal_changed.connect(_sync_story_controls)
 	GameManager.task_offered.connect(_on_task_offered)
+	$TaskLayer/MissionBoard.task_accepted.connect(_on_task_accepted)
 	GameManager.task_updated.connect(_refresh_objective)
 	dialogue.dialogue_finished.connect(_on_dialogue_finished)
 	$DeveloperOverlay/Margin/Info/NewGame.pressed.connect(_start_session)
@@ -145,6 +146,11 @@ func _on_task_offered(task_id: String) -> void:
 	if task_id == GameManager.TASK_01_ID:
 		_show_notice("201 的客人提出清洁任务；请在面板中确认接受，接受后开始 210 秒计时。")
 	_refresh_objective()
+
+
+func _on_task_accepted(task_id: String) -> void:
+	if task_id == GameManager.current_task_id and GameManager.task_status == "ACTIVE":
+		_show_notice("任务已接受：回 1F 取得保洁工作证，再到 2F 扫帚旁清理，最后回 201 交付。")
 
 
 func _refresh_objective() -> void:

@@ -1,0 +1,184 @@
+{
+  "date": "2026-11-17 Asia/Hong_Kong",
+  "base_main": "c7365533be026bcea41f9178d139151579de71bb",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "platform": "macOS arm64",
+  "mode": "headless",
+  "timeout_seconds_per_test": 60,
+  "passed": 28,
+  "total": 28,
+  "fixture_limits": [
+    "Position, dialogue-transition, turn-phase and manual-clock fixtures are used by existing checks.",
+    "These results do not establish human playthrough, Windows behavior, an export or tasks 02-05."
+  ],
+  "tests": [
+    {
+      "test": "core-floor_1_art_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-floor_1_art_smoke.log"
+    },
+    {
+      "test": "core-floor_flow_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-floor_flow_smoke.log"
+    },
+    {
+      "test": "core-floor_return_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-floor_return_smoke.log"
+    },
+    {
+      "test": "core-foundation_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-foundation_smoke.log"
+    },
+    {
+      "test": "core-interaction_allowed_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-interaction_allowed_smoke.log"
+    },
+    {
+      "test": "core-intro_flow_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-intro_flow_smoke.log"
+    },
+    {
+      "test": "core-notebook_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-notebook_smoke.log"
+    },
+    {
+      "test": "core-player_feedback_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-player_feedback_smoke.log"
+    },
+    {
+      "test": "core-safe_return_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-safe_return_smoke.log"
+    },
+    {
+      "test": "core-staff_floor_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-staff_floor_smoke.log"
+    },
+    {
+      "test": "core-task_01_core_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-task_01_core_smoke.log"
+    },
+    {
+      "test": "core-task_01_main_flow_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-task_01_main_flow_smoke.log"
+    },
+    {
+      "test": "core-task_01_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-task_01_smoke.log"
+    },
+    {
+      "test": "core-task_checkpoint_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-task_checkpoint_smoke.log"
+    },
+    {
+      "test": "core-task_definitions_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-task_definitions_smoke.log"
+    },
+    {
+      "test": "core-task_ui_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-task_ui_smoke.log"
+    },
+    {
+      "test": "core-world_interaction_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "core-world_interaction_smoke.log"
+    },
+    {
+      "test": "staff-cleaner_v4_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "staff-cleaner_v4_smoke.log"
+    },
+    {
+      "test": "staff-staff_core_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "staff-staff_core_smoke.log"
+    },
+    {
+      "test": "staff-work_items_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "staff-work_items_smoke.log"
+    },
+    {
+      "test": "doors-v4_doors_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "doors-v4_doors_smoke.log"
+    },
+    {
+      "test": "doors-door_cycle_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "doors-door_cycle_smoke.log"
+    },
+    {
+      "test": "doors-v4_catalog_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "doors-v4_catalog_smoke.log"
+    },
+    {
+      "test": "doors-v4_identity_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "doors-v4_identity_smoke.log"
+    },
+    {
+      "test": "doors-v4_main_integration_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "doors-v4_main_integration_smoke.log"
+    },
+    {
+      "test": "doors-floor_2_layout_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "doors-floor_2_layout_smoke.log"
+    },
+    {
+      "test": "doors-room_201_art_smoke",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "doors-room_201_art_smoke.log"
+    },
+    {
+      "test": "ui",
+      "exit": 0,
+      "unexpected_errors": [],
+      "log": "ui.log"
+    }
+  ]
+}

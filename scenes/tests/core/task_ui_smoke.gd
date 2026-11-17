@@ -290,6 +290,7 @@ func _accept() -> void:
 	var button: Button = board.get("_accept_button")
 	button.pressed.emit()
 	_expect(game.get("task_status") == "ACTIVE" and not board.visible, "D accept button starts the real task and closes its own page")
+	_expect("确认接受" not in main.notice_label.text and "任务已接受" in main.notice_label.text, "Accepted task replaces stale offer instructions with its active route")
 
 
 func _steal() -> void:

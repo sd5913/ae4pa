@@ -652,3 +652,58 @@
 
 - 用户授权推送并合入main；同步main新增菜单／UI，保留双方README与进度记录。新增美术检查适配真实开始按钮，合并后 FLOOR_1_ART、world_interaction、foundation、task_01_main_flow 全部PASS。仅更新测试入口，未修改菜单或角色业务。发布范围排除旧原图裁片候选、观察入口及本机配置。
 
+
+## 2026年11月15日 未上传依赖检查与 PR #22 审查（Asia/Shanghai）
+
+- 用户要求检查 B/C/D 推进必需内容是否漏传，并审查有冲突的当前 PR。开工为 work/member-A-liuling／ef8a2f7，与个人远端一致。56 个整合文件逐字节等于 origin/work/member-A-liuling，剩余原修改为 A 接力规则、project.godot 默认伸缩行、.vscode 本机路径、原背景 ZIP；ZIP 五图与已跟踪 PNG 哈希一致，未发现漏传的必需游戏源码。
+- fetch 与 GitHub 查询确认 main 为 007437a，唯一开放 PR 为 D 的 #22，head eb39714，CONFLICTING／DIRTY，46 个改动文件，statusCheckRollup 为空。A 集成 ef8a2f7 仍在个人分支，当前 main 不含该提交，开放列表中没有 A→main PR。协作需明确使用 A 候选，进入 main 的整合审查仍待处理。
+- 使用临时共享克隆 /private/tmp/ae4pa-pr22-review-owj3l15w，检出 main 后执行不提交的 PR22 合并，实际复现 14 个冲突。主工作区未切换分支或执行该合并。14 文件包含新版／旧版对白三件套、任务面板、失败页、HUD、UI 检查及三份整合文档。
+- 一次只读独立审查与本轮核对定位 P1：旧 dialogue 仅接 INTRO／RESCUE_309，覆盖 main 会丢 V4_INTRO／V4_MANAGER_TALK；旧 mission_board 缺 main 的模态登记与换层事务保护。P2 为房号表和玩家说明仍用 V3、旧独立 UI 检查遗漏当前保护性断言。可复用的菜单／背包／帮助／共享卡名／主题等不少内容已在 A 候选。
+- 实际 Godot 4.7.2 比较 main 对照 /private/tmp/ae4pa-pr22-main-yli0ofyj 与“14 个冲突全选 PR 版本”示例 /private/tmp/ae4pa-pr22-theirs-xew3qejp。两边 editor import 均退出 0，D 独立 ui_test -- --ui-smoke 均退出 0。另用 /private/tmp/ae4pa_pr22_probe.gd：main 面板锁世界、210 秒保持、F5 V4 序章可见，退出 0；错误合并示例面板不锁世界、推进一秒成 209、F5 对白不显示而故事锁仍在，预期退出 1。日志 /private/tmp/ae4pa-pr22-{good,bad}-{probe,ui}.log，保留已有 macOS 证书诊断。
+- 新增 docs/pr_22_review.md，写出逐文件冲突处理建议、实际验证、旧文档问题、给 D 的可转发审查意见及 GitHub 审查入口。本轮仅保存本地审查记录，GitHub PR 状态和用户原有配置／资源改动保持开工状态。后续先协调 A 与当前 main，再按新版保留保护逻辑并移植 D 的有效增量，修正候选须重新验 F5。
+
+
+## 2026年11月15日 A 调试：开发入口 E 经理交谈（Asia/Shanghai）
+
+- 用户提供 task_01_core_test 开发入口截图，目标已为 MANAGER_TALK 但 E 无响应。核对 floor 和 main：楼层正确发经理请求，F5 已监听；core 只接 notice，缺对白实例和请求监听。保留开工原 AGENTS、project.godot、本机文件及 PR 审查记录，未切分支或同步远端。
+- 在既有 task_01_core_smoke 补真实 E 回归，初跑退出 1／缺经理对白节点。task_01_core_test.tscn 挂现有 D dialogue，脚本接 manager_talk_requested／dialogue_finished、自己的模态和移动锁；经理仅在对白完成后解锁，新局忽略旧完成信号，卸载清自己的模态。未改 B/C/D 内部源码，开发代记按钮保留。README 操作及 QA BUG-003 同步。
+- Godot 4.7.2：focused RED 日志 `/private/tmp/ae4pa-core-talk-red.log`，修复后 GREEN `/private/tmp/ae4pa-core-talk-green.log`。执行 `python3 /private/tmp/ae4pa_run_ui_suite.py`，15 core＋B 两项＋C 五项共 22 项 PASS／退出 0；检查 E 打开和单次推进、无偷卡／切卡、移动锁、结束后上楼条件、另一页模态保留、重开／卸载与原任务恢复。结果 `/private/tmp/ae4pa-ui-final-results.json`；测试以位置、略过动画和按钮等夹具执行，不算真人全程验收。
+- 原生 `--path . --resolution 1280x720 --script /private/tmp/ae4pa_core_manager_visual.gd` 退出 0／CORE_MANAGER_NATIVE_OPEN=true，OpenGL 4.1 Metal，截图 `/private/tmp/ae4pa-core-manager-dialogue.png` 已目视检查实际对白显示。headless 仍有既有 macOS 证书诊断，Windows／用户重新试玩未执行。
+- 当前修复可本机重启 core 场景后验证，无 B/C/D 交付阻塞。本轮未提交／上传；下次入口是用户复测该 E 交谈，完整正式任务继续使用 F5。原 201 人工联合验收、后四任务和 PR 整合待办继续保留。
+
+## 2026年11月16日 A：PR #22／#24 冲突专项检查（Asia/Hong_Kong）
+
+- 用户要求检查两个冲突 PR 并说明修改方法。本轮 fetch 核对 main `158818c`、D #22 `eb39714`、B #24 `7af4af1`，保留当前 A 工作区已有修改；使用临时共享克隆重放合并，没有切换用户分支、修改游戏源码或操作远端 PR。
+- 实际冲突：#24 仅 docs/progress.md，保留 B 两段交付记录与 main 的 C 记录即可；临时候选已处理且无未解决文件。#22 为 14 个文件；保留 main 的 V4 对白三件套和任务面板模态／换层保护，再合样式与新增组件。main #29 已有救援立绘，素材与旧 PR 相同；bag／help／main_menu／win 等仍是剩余增量，不把整 PR 视为已取代。旧玩家说明和门表需要改为 V4。
+- 新增检查报告 docs/pr_conflicts_20261116.md，包含逐组文件策略、可转发 D 的说明、版本和证据。原 docs/pr_22_review.md 是已有未跟踪文件，本轮未覆盖。独立同宿主子代理只读复核策略，测试按摘要读取，不冒充运行证据。
+- 实际 Godot 4.7.2 在 #24 + 最新 main 的临时冲突处理候选上完成首次导入，work_items、staff_core、cleaner_v4、foundation、world_interaction、task_01_main_flow 六项均 PASS／退出 0；结果 /private/tmp/ae4pa-pr24-merge-results.json。存在既有证书与用户编辑器设置保存受限诊断。git diff --check 与新报告空白检查通过。
+- 限制／下次入口：#22 尚未生成修复候选，需 D 按报告合并并验证 F5 序章、经理、任务面板停表及新增 UI。#24 的临时通过不代表 GitHub 冲突已消除；需要在其来源分支保存处理后再审核合入。本轮未提交、推送、合并或发消息，不代记人工／跨平台验收；此次为冲突专项，不是完整代码审计。
+
+## 2026年11月16日 A：本机双击游玩入口（Asia/Hong_Kong）
+
+- 用户要求可直接玩的程序入口。当前 A 分支已 pull 至 02be618；保留本地已有修改，新增根目录 play.command 并赋执行权限，README 补启动说明。脚本从自身位置定位项目，调用本机 Godot 运行 project.godot 的 scenes/main.tscn，不进入编辑器；引擎路径按应用程序／下载／PATH 查找，无组长用户名硬编码。
+- 实际验证 bash -n 通过；./play.command --headless --quit-after 5 --log-file /private/tmp/ae4pa-play-launcher-check.log 退出 0，Godot 为 4.7.2，主菜单入口无新增脚本错误；保留既有 macOS 系统证书诊断。此为启动检查，不代记完整人工通关或独立导出包验收。
+- 当前入口运行当前 A 工作区，可玩范围仍为 201 任务循环；不是已导出的独立 app。未改 B/C/D 组件、未提交／推送／合并。
+- 原生启动：普通沙箱启动退出 134；使用原生窗口权限重试后游戏进程持续运行，日志确认 Compatibility／OpenGL 4.1 Metal（Apple M5），没有新增脚本错误。游戏窗口已为用户启动，未结束该进程。
+
+## 2026年11月16日 A：main 合并落地与原生运行结果（Asia/Hong_Kong）
+
+- 本地 A 已落到合并提交 35d6d01，父提交为 A 02be618 与 main 158818c；已确认 origin/main 是当前 HEAD 的祖先。没有推送，远端分支／PR 保持原状态。
+- 原有13个修改／未跟踪文件已保留：代码与配置逐字节恢复，README／QA／进度保留原有本地增量并合入新记录；命名恢复 stash 为721dc6087a1163d61130d04f3f722e194e724bc1，完整备份索引 /private/tmp/ae4pa-main-into-a-backup-path。未把原有本机设置、启动器、ZIP或审查文件纳入合并提交。
+- 337个游戏文件与27项PASS的候选逐字节一致。本地完成资源导入退出0，再验foundation、task_ui完整链路和floor_2_layout三项全部PASS／退出0，结果 /private/tmp/ae4pa-main-a-root-results.json。独立只读接入评审无阻塞发现；画面润色、未来任务、跨机器验收不在此次结论内。
+- 已关闭本会话之前启动的旧游戏，使用play.command启动合并后版本；原生Compatibility／OpenGL 4.1 Metal（Apple M5），日志 /private/tmp/ae4pa-main-a-native.log。CUA已实际看到游戏主菜单、开始游戏和操作说明按钮。没有代替用户通关；点击开始并完成经理对白后可上2F看C的分层布景。
+- 下次入口：直接使用当前A工作区／play.command继续用户试玩。任务01检查点已为x520，扫帚清理点x852；D publish新交付仍未引入，后续任务和远端发布需分别按授权处理。
+
+## 2026年11月16日 A：按用户授权推送合并提交（Asia/Hong_Kong）
+
+- 用户要求push。fetch确认远端A仍为02be618、本地35d6d01可正常快进；两侧差异与工作区git diff --check均通过。
+- 实际执行git push origin HEAD:refs/heads/work/member-A-liuling成功，远端从02be618更新至35d6d018b3ad053050575cdbf90bdbaba1a7ded1；git ls-remote再次核对与本地HEAD一致。
+- 此次只推送现有提交，没有创建新提交、PR或合入远端main；原有未提交源码／文档、本机设置、ZIP与play.command继续保留在本地。验证沿用上一轮同一合并候选27项及落地后三项结果，本轮没有虚构重新运行。此条推送记录本身尚未提交。
+
+## 2026年11月17日 A：同步最新 main 并准备合入 A 增量（Asia/Hong_Kong）
+
+- 用户明确授权更新到最新main，并将A的新工作合入main。起点A35d6d01，已被PR#30合入；最新main为c736553。备份所有14个原修改／未跟踪文件至路径索引 /private/tmp/ae4pa-a-release-backup-path，在临时干净克隆整理增量，保留本机project.godot、.vscode、ZIP和历史审查草稿。
+- 发布A既有core开发入口经理E修复及回归、A接力规则和macOS play.command；README／QA同步真实输入及接入状态。详细验收见docs/acceptance_status_20261117.md与docs/qa_evidence/a_sync_20261117/results.json，证据使用仓库相对路径供团队复核。
+- 发布前补最小必要修正：真实接受成功后更新旧offer通知；新增到既有task_ui断言先FAIL再PASS。两份C集成检查通过实际楼层选择按钮后验证到达，保留原有检测；未改C门或B员工业务逻辑。
+- 实际Godot4.7.2，最终17core／3B／7C／1UI共28项PASS，另launcher语法与无缓存首次导入启动通过。冷启动原先退出0但有57条脚本／资源加载错误，不能算通过；补自动导入后无上述错误。原有证书／用户设置诊断单列，不代记环境零错误、人工／Windows／完整五层通过。
+- 只沿用既有个人A分支发PR，不创建平行玩法实现；最终推送和main合并状态由GitHub PR／SHA核对后追加。没有将所有本地未提交文件一并打包。
