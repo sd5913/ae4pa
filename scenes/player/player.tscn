@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_player"]
+[ext_resource type="Script" path="res://scenes/character_visual.gd" id="2_visual"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_player"]
 size = Vector2(36, 66)
@@ -15,21 +16,8 @@ shape = SubResource("RectangleShape2D_player")
 
 [node name="Visual" type="Node2D" parent="."]
 
-[node name="Body" type="Polygon2D" parent="Visual"]
-polygon = PackedVector2Array(-16, -43, 16, -43, 16, -5, -16, -5)
-color = Color(0.4, 0.68, 0.75, 1)
-
-[node name="Head" type="Polygon2D" parent="Visual"]
-polygon = PackedVector2Array(-13, -66, 13, -66, 13, -43, -13, -43)
-color = Color(0.96, 0.81, 0.62, 1)
-
-[node name="Eye" type="Polygon2D" parent="Visual"]
-polygon = PackedVector2Array(5, -58, 9, -58, 9, -54, 5, -54)
-color = Color(0.12, 0.16, 0.19, 1)
-
-[node name="Feet" type="Polygon2D" parent="Visual"]
-polygon = PackedVector2Array(-18, -5, 20, -5, 20, 0, -18, 0)
-color = Color(0.12, 0.16, 0.19, 1)
+[node name="Artwork" type="Node2D" parent="Visual"]
+script = ExtResource("2_visual")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -200)
