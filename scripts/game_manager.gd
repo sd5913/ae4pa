@@ -11,6 +11,42 @@ signal task_failed(task_id: String, reason: String)
 signal modal_changed()
 signal safe_return_started(reason: String)
 signal notebook_changed()
+## D/A consume this request; the pending encounter is not a completed task.
+signal monster_encounter_requested(context: Dictionary)
+var _room_monsters: Dictionary = {}
+var _seen_monsters: Dictionary = {}
+var _pending_monster_encounter: Dictionary = {}
+
+func get_room_monster(room: String) -> String:
+	if not _room_monsters.has(room):
+		var choices: Array = preload("res://scenes/doors/v4_door_catalog.gd").pool(room)
+		if choices.is_empty():
+			return ""
+		_room_monsters[room] = choices.pick_random()
+	return _room_monsters[room]
+
+func has_met_monster(kind: String) -> bool:
+	return _seen_monsters.has(kind)
+
+func get_pending_monster_encounter() -> Dictionary:
+	return _pending_monster_encounter.duplicate(true)
+
+func request_monster_encounter(room: String, kind: String, reason: String) -> bool:
+	if not is_world_input_allowed() or not _pending_monster_encounter.is_empty():
+		return false
+	var first := not has_met_monster(kind)
+	_pending_monster_encounter = {"room_id":room,"monster_type":kind,"first_encounter":first,"reason":reason,"task_id":preload("res://scenes/doors/v4_door_catalog.gd").TASKS[kind]}
+	_seen_monsters[kind] = true
+	monster_encounter_requested.emit(get_pending_monster_encounter())
+	return true
+
+## Called by the task/chat adapter only after the forced encounter is handled.
+func resolve_monster_encounter(room: String) -> bool:
+	if _pending_monster_encounter.get("room_id", "") != room:
+		return false
+	_pending_monster_encounter.clear()
+	return true
+
 
 const TaskDefinitions = preload("res://scripts/task_definitions.gd")
 const TASK_01_ID: String = "TASK_01_CLEAN"
@@ -51,6 +87,9 @@ func start_game() -> void:
 	_safe_return_in_progress = false
 	_last_safe_return_frame = -1
 	_task_checkpoint.clear()
+	_room_monsters.clear()
+	_seen_monsters.clear()
+	_pending_monster_encounter.clear()
 	CardManager.reset_for_new_game()
 	current_floor = 1
 	has_friend = false
@@ -211,6 +250,7 @@ func accept_task(task_id: String) -> bool:
 	if _has_floor_host() and checkpoint.is_empty():
 		return false
 	_task_checkpoint = checkpoint
+	resolve_monster_encounter("201")
 	task_status = "ACTIVE"
 	remaining_time = get_task_definition(task_id)["time_limit"]
 	task_updated.emit()
@@ -230,6 +270,7 @@ func _capture_task_checkpoint() -> Dictionary:
 		"cards": CardManager.export_snapshot(), "world_flags": _world_flags.duplicate(true),
 		"completed": _completed_task_ids.duplicate(), "visited": _visited_floors.duplicate(),
 		"manager_intro": _manager_intro_finished, "has_friend": has_friend,
+		"room_monsters": _room_monsters.duplicate(true), "seen_monsters": _seen_monsters.duplicate(true), "pending_encounter": _pending_monster_encounter.duplicate(true),
 	}
 
 
@@ -244,6 +285,9 @@ func retry_current_task() -> bool:
 	if not can_retry_current_task():
 		return false
 	var checkpoint: Dictionary = _task_checkpoint.duplicate(true)
+	_room_monsters = checkpoint.get("room_monsters", {}).duplicate(true)
+	_seen_monsters = checkpoint.get("seen_monsters", {}).duplicate(true)
+	_pending_monster_encounter = checkpoint.get("pending_encounter", {}).duplicate(true)
 	var scene: PackedScene = load("res://scenes/levels/floor_2.tscn")
 	var floor_node: Node2D = scene.instantiate()
 	_set_state("RESTORING") # Cancel old holds before restoring cards or world facts.

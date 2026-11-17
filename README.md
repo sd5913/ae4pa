@@ -4,7 +4,7 @@
 
 一楼已使用独立生成高清资产组装的可编辑分层场景 `scenes/levels/floor_1_art.tscn` 替换旧背景，原图仅参考布局，补齐屋顶、完整黑柱、两端天空；静态人物不入布景，实际角色交互沿用原流程。两根保洁间边界黑柱位于角色上方，无碰撞，不阻挡移动。素材、坐标和验证见 [一楼布景说明](scenes/levels/floor_1_art_layout.md)。
 
-二楼采用独立资产分层组装：可编辑场景 `scenes/levels/floor_2_art.tscn`，F6 入口 `scenes/tests/doors/floor_2_layout_preview.tscn`。A/D 行走，F1 参考图状态，F2—F4 查看门三态，F5 循环。主线 201／202 已绑定新美术与校准检测位置；203—205 仍为参考状态展示。摆放与限制见 [二楼布景说明](scenes/levels/floor_2_art_layout.md)。
+二楼采用独立资产分层组装：可编辑场景 `scenes/levels/floor_2_art.tscn`，F6 入口 `scenes/tests/doors/floor_2_layout_preview.tscn`。A/D 行走，F1 参考图状态，F2—F4 查看门三态，F5 循环。二楼201—205均已绑定统一单门调度、会话半随机怪物和站立动画；后续强制任务聊天接线仍待A/D。摆放与限制见 [二楼布景说明](scenes/levels/floor_2_art_layout.md)。
 
 二楼已接入 main 的 C 分层布景、201—205 三态门美术和扫帚旁清理点；其余楼层仍使用占位背景。A 的菜单、任务 01、背包、笔记和检查点流程继续保留。F5 运行主入口，F6 可运行 `scenes/tests/doors/floor_2_layout_preview.tscn` 预览二楼美术。
 
