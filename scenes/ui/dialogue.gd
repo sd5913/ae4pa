@@ -20,9 +20,48 @@ const BACKGROUNDS := {
 	"exterior": preload("res://assets/final/ui/visual_novel/hotel_exterior_rain.png"),
 	"lobby": preload("res://assets/final/ui/visual_novel/hotel_lobby.png"),
 }
-const PROTAGONIST_SHEET := preload("res://assets/final/ui/visual_novel/protagonist_expressions.png")
 const FRIEND_SHEET := preload("res://assets/final/ui/visual_novel/friend_expressions.png")
-const MANAGER_PORTRAIT := preload("res://assets/final/ui/visual_novel/manager_portrait.png")
+const PORTRAIT_ROLES := {"女主": "an", "安": "an", "保洁": "cleaner", "保安": "security", "经理": "manager"}
+const EXPRESSION_ALIASES := {
+	"calm": "neutral", "pensive": "neutral", "curious": "neutral",
+	"happy": "smile", "teasing": "smile", "relieved": "smile",
+	"concerned": "worried", "anxious": "worried", "afraid": "worried",
+	"determined": "stern",
+}
+const ROLE_PORTRAITS := {
+	"an": {
+		"neutral": preload("res://assets/final/ui/dialogue_portraits/an/an_neutral.png"),
+		"smile": preload("res://assets/final/ui/dialogue_portraits/an/an_smile.png"),
+		"surprised": preload("res://assets/final/ui/dialogue_portraits/an/an_surprised.png"),
+		"worried": preload("res://assets/final/ui/dialogue_portraits/an/an_worried.png"),
+		"suspicious": preload("res://assets/final/ui/dialogue_portraits/an/an_suspicious.png"),
+		"stern": preload("res://assets/final/ui/dialogue_portraits/an/an_stern.png"),
+	},
+	"cleaner": {
+		"neutral": preload("res://assets/final/ui/dialogue_portraits/cleaner/cleaner_neutral.png"),
+		"smile": preload("res://assets/final/ui/dialogue_portraits/cleaner/cleaner_smile.png"),
+		"surprised": preload("res://assets/final/ui/dialogue_portraits/cleaner/cleaner_surprised.png"),
+		"worried": preload("res://assets/final/ui/dialogue_portraits/cleaner/cleaner_worried.png"),
+		"suspicious": preload("res://assets/final/ui/dialogue_portraits/cleaner/cleaner_suspicious.png"),
+		"stern": preload("res://assets/final/ui/dialogue_portraits/cleaner/cleaner_stern.png"),
+	},
+	"security": {
+		"neutral": preload("res://assets/final/ui/dialogue_portraits/security/security_neutral.png"),
+		"smile": preload("res://assets/final/ui/dialogue_portraits/security/security_smile.png"),
+		"surprised": preload("res://assets/final/ui/dialogue_portraits/security/security_surprised.png"),
+		"worried": preload("res://assets/final/ui/dialogue_portraits/security/security_worried.png"),
+		"suspicious": preload("res://assets/final/ui/dialogue_portraits/security/security_suspicious.png"),
+		"stern": preload("res://assets/final/ui/dialogue_portraits/security/security_stern.png"),
+	},
+	"manager": {
+		"neutral": preload("res://assets/final/ui/dialogue_portraits/manager/manager_neutral.png"),
+		"smile": preload("res://assets/final/ui/dialogue_portraits/manager/manager_smile.png"),
+		"surprised": preload("res://assets/final/ui/dialogue_portraits/manager/manager_surprised.png"),
+		"worried": preload("res://assets/final/ui/dialogue_portraits/manager/manager_worried.png"),
+		"suspicious": preload("res://assets/final/ui/dialogue_portraits/manager/manager_suspicious.png"),
+		"stern": preload("res://assets/final/ui/dialogue_portraits/manager/manager_stern.png"),
+	},
+}
 const FACE_INDEX := {
 	"pensive": 0,
 	"worried": 1,
@@ -279,17 +318,18 @@ func _scroll_sms_to_bottom() -> void:
 
 
 func _display_portrait(speaker: String, expression: String) -> void:
-	_portrait.show()
-	if speaker == "女主":
-		var index := int(FACE_INDEX.get(expression, 0))
-		_portrait.texture = _atlas_cell(PROTAGONIST_SHEET, index)
-	elif speaker == "闺蜜":
+	if speaker == "闺蜜":
 		var index := int(FACE_INDEX.get(expression, 0))
 		_portrait.texture = _atlas_cell(FRIEND_SHEET, index)
-	elif speaker == "经理":
-		_portrait.texture = MANAGER_PORTRAIT
 	else:
-		_portrait.hide()
+		var role: String = PORTRAIT_ROLES.get(speaker, "")
+		if role.is_empty():
+			_portrait.hide()
+			return
+		var portraits: Dictionary = ROLE_PORTRAITS[role]
+		var key: String = EXPRESSION_ALIASES.get(expression, expression)
+		_portrait.texture = portraits.get(key, portraits["neutral"])
+	_portrait.show()
 
 
 func _atlas_cell(sheet: Texture2D, face_index: int) -> AtlasTexture:

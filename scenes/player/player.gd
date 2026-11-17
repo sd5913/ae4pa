@@ -10,6 +10,7 @@ var _right_bound: float = 2736.0
 var _movement_locked: bool = false
 
 @onready var visual: Node2D = $Visual
+@onready var _artwork = $Visual/Artwork
 
 
 func _physics_process(delta: float) -> void:
@@ -20,6 +21,7 @@ func _physics_process(delta: float) -> void:
 	var previous_x: float = global_position.x
 	global_position.x = clampf(previous_x + direction * walk_speed * delta, _left_bound, _right_bound)
 	is_moving = not is_equal_approx(global_position.x, previous_x)
+	_artwork.set_walking(is_moving)
 	if not is_zero_approx(direction):
 		facing_direction = 1 if direction > 0.0 else -1
 		visual.scale.x = float(facing_direction)
@@ -36,3 +38,4 @@ func set_movement_locked(locked: bool) -> void:
 	_movement_locked = locked
 	if locked:
 		is_moving = false
+		_artwork.set_walking(false)

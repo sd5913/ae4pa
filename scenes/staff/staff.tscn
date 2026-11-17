@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dk28c5ga3ah6c"]
 
 [ext_resource type="Script" uid="uid://cl4ot6avnt8hm" path="res://scenes/staff/staff.gd" id="1_x6oaq"]
+[ext_resource type="Script" path="res://scenes/character_visual.gd" id="2_visual"]
 
 [sub_resource type="Animation" id="Animation_x6oaq"]
 length = 0.001
@@ -46,14 +47,14 @@ size = Vector2(100, 100)
 [node name="Staff" type="Node2D" unique_id=1529652639]
 script = ExtResource("1_x6oaq")
 
-[node name="Polygon2D" type="Polygon2D" parent="." unique_id=1927931577]
-color = Color(0.32156864, 0.47843137, 0.6117647, 1)
-polygon = PackedVector2Array(-16, -64, 16, -64, 16, 0, -16, 0)
-uv = PackedVector2Array(176, -36)
+[node name="Artwork" type="Node2D" parent="."]
+script = ExtResource("2_visual")
+character_id = "security"
 
 [node name="Eye" type="Polygon2D" parent="." unique_id=514006219]
 position = Vector2(10, -48)
-polygon = PackedVector2Array(-4, -4, 4, -4, 4, 4, -4, 4)
+color = Color(1, 0.89, 0.56, 1)
+polygon = PackedVector2Array(15, -4, 20, 0, 15, 4)
 
 [node name="TurnWarning" type="Label" parent="."]
 visible = false
@@ -62,6 +63,8 @@ offset_top = -94.0
 offset_right = 8.0
 offset_bottom = -70.0
 theme_override_colors/font_color = Color(1, 0.15, 0.12, 1)
+theme_override_colors/font_outline_color = Color(0.09, 0.05, 0.04, 1)
+theme_override_constants/outline_size = 5
 theme_override_font_sizes/font_size = 22
 text = "!"
 

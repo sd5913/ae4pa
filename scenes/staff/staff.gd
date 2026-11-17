@@ -40,6 +40,7 @@ var facing_direction: int = 1
 @onready var steal_area: Area2D = $StealArea
 @onready var steal_shape: CollisionShape2D = $StealArea/CollisionShape2D
 @onready var eye: Polygon2D = $Eye
+@onready var _artwork = $Artwork
 @onready var turn_timer: Timer = $TurnTimer
 @onready var turn_warning_timer: Timer = $TurnWarningTimer
 @onready var turn_warning: Label = $TurnWarning
@@ -55,6 +56,7 @@ func _ready() -> void:
 	var rectangle: RectangleShape2D = steal_shape.shape.duplicate() as RectangleShape2D
 	rectangle.size.x = steal_radius * 2.0
 	steal_shape.shape = rectangle
+	_artwork.set_character(card_id.to_lower())
 	_update_facing_visual()
 	_turn_rng.randomize()
 	_schedule_next_turn()
@@ -294,7 +296,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
+	var position_before_walk := position
 	_update_cleaner_behavior(delta)
+	_artwork.set_walking(not position.is_equal_approx(position_before_walk))
 	if not _is_stealing:
 		return
 	if not _interaction_enabled or GameManager.game_state != "PLAYING" or not _player_in_range or _player == null:
@@ -340,13 +344,21 @@ func _on_turn_timer_timeout() -> void:
 
 func _update_facing_visual() -> void:
 	eye.position.x = 10.0 * facing_direction
+	eye.scale.x = float(facing_direction)
+	eye.color = Color(1.0, 0.89, 0.56)
+	_artwork.scale.x = float(facing_direction)
 
 
 func _on_turn_warning_timer_timeout() -> void:
 	if _is_alerted or _is_suspicious:
 		return
+	_show_turn_preview()
+
+
+func _show_turn_preview() -> void:
 	turn_warning.visible = false
 	eye.position.x = 4.0 * facing_direction
+	eye.color = Color(1.0, 0.53, 0.24)
 
 
 func _on_feedback_timer_timeout() -> void:
@@ -433,6 +445,7 @@ func get_turn_interval_range() -> Vector2:
 
 
 func _schedule_next_turn() -> void:
+	eye.color = Color(1.0, 0.89, 0.56)
 	if _is_alerted or _is_suspicious:
 		return
 	var interval_range: Vector2 = get_turn_interval_range()
@@ -470,8 +483,7 @@ func _prepare_cleaner_walk(to_cart: bool) -> void:
 	cancel_steal()
 	turn_timer.stop()
 	turn_warning_timer.stop()
-	turn_warning.visible = false
-	eye.position.x = 4.0 * facing_direction
+	_show_turn_preview()
 	_set_cleaner_state("TURN_TO_CART" if to_cart else "TURN_TO_CLEAN")
 	behavior_timer.start(turn_warning_time)
 
