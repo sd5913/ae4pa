@@ -7,6 +7,7 @@ const ACTIVE_COLOR := Color(0.97, 0.72, 0.39)
 @onready var _active_card_value: Label = %ActiveCardValue
 @onready var _slot_a_value: Label = %SlotAValue
 @onready var _slot_b_value: Label = %SlotBValue
+@onready var _slot_art: Array[TextureRect] = [%SlotAArt, %SlotBArt]
 @onready var _objective: Label = %Objective
 @onready var _remaining_time: Label = %RemainingTime
 
@@ -84,6 +85,10 @@ func _refresh_cards() -> void:
 	var active_slot: int = CardManager.active_slot
 	var equipped: Array[String] = CardManager.get_equipped_cards()
 	_active_card_value.text = CardDisplay.name_for(active_card)
+	for index: int in range(_slot_art.size()):
+		var icon := _slot_art[index]
+		icon.texture = CardDisplay.art_for(equipped[index])
+		icon.visible = icon.texture != null
 	_set_slot(_slot_a_value, equipped[0], active_card != "NONE" and active_slot == 0)
 	_set_slot(_slot_b_value, equipped[1], active_card != "NONE" and active_slot == 1)
 

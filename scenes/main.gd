@@ -134,6 +134,8 @@ func _on_floor_changed(_number: int) -> void:
 	floor_node.notice_requested.connect(_show_notice)
 	floor_node.manager_talk_requested.connect(_on_manager_talk_requested)
 	floor_node.task_offer_requested.connect($TaskLayer.open_offer)
+	floor_node.floor_selection_requested.connect($TaskLayer.open_floor_selection)
+	$TaskLayer.bind_interaction_floor(floor_node)
 	notice_label.text = "E 交谈／楼梯／交付；工作处长按 E，Q 切换当前身份。"
 	_on_state_changed(GameManager.game_state)
 	_refresh_objective()
