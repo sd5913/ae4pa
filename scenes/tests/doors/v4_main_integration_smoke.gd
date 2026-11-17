@@ -38,7 +38,18 @@ func _run() -> void:
 	await _e(false) # Explicit release after closing manager UI, as a player must do.
 	await _e(true)
 	await _e(false)
-	_expect(game.current_floor == 2 and cards.get_owned_cards().is_empty(), "Real E enters 2F without cards")
+	var overlay: Control = main.get_node("TaskLayer/PlayOverlay")
+	_expect(overlay.visible and not game.is_world_input_allowed(), "Real stair E opens the floor selector")
+	var destination: Button
+	for choice: Button in overlay.get("_choices").get_children():
+		if choice.text == "2F":
+			destination = choice
+			break
+	_expect(destination != null, "The actual selector offers 2F after the manager dialogue")
+	if destination != null:
+		destination.pressed.emit()
+		await process_frame
+	_expect(game.current_floor == 2 and cards.get_owned_cards().is_empty() and not overlay.visible, "Real E plus floor selection enters 2F without cards")
 	if game.current_floor != 2:
 		for failure: String in failures:
 			printerr("FAIL: ", failure)
@@ -59,9 +70,9 @@ func _run() -> void:
 	var initial: float = game.remaining_time
 	story._physics_process(0.0)
 	_expect(game.task_status == "AVAILABLE" and game.remaining_time == initial, "Reapproach does not accept or start timer")
-	# No task acceptance UI exists in this main; explicit API verifies A/C route contract only.
+	# This check isolates the A/C route with an explicit API fixture; task_ui_smoke covers the real acceptance page.
 	_expect(game.accept_task("TASK_01_CLEAN"), "Explicit A API accepts; not a claim of real task UI")
-	for target: float in [192.0, 980.0]:
+	for target: float in [192.0, floor_node.get_node("Interactions/Stain201Slot").position.x]:
 		player.position.x = target
 		await physics_frame
 		_expect(player.position.x == target, "Accepted route reaches stairs/work marker")
@@ -73,13 +84,13 @@ func _run() -> void:
 		await physics_frame
 	Input.action_release("move_right")
 	_expect(player.position.x <= 1226.0 and not game.get_world_flags().get("passage_201_unlocked", false), "Closed story door cannot bypass task barrier")
-	_expect(floor_node.get_node("Interactions/Stain201Slot").get_child_count() == 1, "Work slot still only has placeholder label; full loop not claimed")
+	_expect(floor_node.get_node("Interactions/Stain201Slot").get_child_count() == 1, "One work component is mounted; this route check does not complete cleaning")
 	main.queue_free()
 	await process_frame
 	for failure: String in failures:
 		printerr("FAIL: ", failure)
 	if failures.is_empty():
-		print("PASS: real F5 intro/manager/E/201 approach and route locks; accept API fixture only. Work/task UI/retry and human walkthrough pending.")
+		print("PASS: real F5 intro/manager/E/floor selection/201 approach and route locks; acceptance API fixture only. Full UI/work/retry coverage is in core checks; human walkthrough remains separate.")
 	quit(0 if failures.is_empty() else 1)
 
 

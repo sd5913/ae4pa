@@ -1,9 +1,13 @@
 extends Node2D
 ## A-only F6 developer entry; acceptance UI remains D's responsibility.
 
+const MANAGER_MODAL: String = "CORE_MANAGER_DIALOGUE"
 var _status: Label
 var _notice: Label
 var _paused: bool = false
+var _manager_dialogue_active: bool = false
+
+@onready var _dialogue: Control = $StoryLayer/Dialogue
 
 
 func _ready() -> void:
@@ -19,8 +23,8 @@ func _ready() -> void:
 	overlay.add_child(panel)
 	_add_label(panel, "CORE · 任务 01 接线测试（开发入口）", 25)
 	_status = _add_label(panel, "", 18)
-	_add_label(panel, "A/D 移动 · E 楼梯／身后偷卡／清理／201 交付 · Q 切卡。", 18)
-	_add_label(panel, "仅介绍／接受／失败使用开发按钮；偷卡、清理、交付、重试走真实组件。D 正式页面待交付。", 18)
+	_add_label(panel, "A/D 移动 · E 经理交谈／楼梯／身后偷卡／清理／201 交付 · Q 切卡。", 18)
+	_add_label(panel, "经理按 E 交谈；任务介绍／接受／模拟失败保留开发按钮，正式任务页面请用 F5。", 18)
 	var row1 := HBoxContainer.new()
 	row1.name = "Row1"
 	panel.add_child(row1)
@@ -38,7 +42,9 @@ func _ready() -> void:
 		_notice.text = "已恢复 201 接取前状态；请重新接受，才开始 210 秒计时。" if GameManager.retry_current_task() else "当前没有可恢复的失败任务。"
 	)
 	retry.disabled = true
-	_notice = _add_label(panel, "先代记经理对白，再走到 1F 右端按 E。", 18)
+	_notice = _add_label(panel, "", 18)
+	_dialogue.dialogue_finished.connect(_on_dialogue_finished)
+	GameManager.modal_changed.connect(_sync_player_controls)
 	GameManager.floor_changed.connect(_on_floor_changed)
 	GameManager.game_failed.connect(func(reason: String) -> void: _notice.text = "失败：%s；可点检查点重试，回 201 重新接受。" % reason)
 	GameManager.state_changed.connect(func(state: String) -> void:
@@ -57,7 +63,47 @@ func _process(_delta: float) -> void:
 
 func _restart() -> void:
 	_paused = false
+	_manager_dialogue_active = false
+	_dialogue.hide()
+	GameManager.set_modal_open(MANAGER_MODAL, false)
+	$DeveloperOverlay.show()
 	GameManager.start_game()
+	_notice.text = "靠近经理按 E 交谈；对白结束后，走到 1F 右端按 E 上楼。"
+
+
+func _input(event: InputEvent) -> void:
+	if _manager_dialogue_active and event.is_action("switch_id"):
+		get_viewport().set_input_as_handled()
+
+
+func _on_manager_talk_requested() -> void:
+	if _manager_dialogue_active or GameManager.has_completed_manager_intro() or not GameManager.is_world_input_allowed():
+		return
+	_manager_dialogue_active = true
+	$DeveloperOverlay.hide()
+	GameManager.set_modal_open(MANAGER_MODAL, true)
+	_dialogue.show_dialogue("V4_MANAGER_TALK")
+
+
+func _on_dialogue_finished(dialogue_id: String) -> void:
+	if not _manager_dialogue_active or dialogue_id != "V4_MANAGER_TALK":
+		return
+	_manager_dialogue_active = false
+	GameManager.complete_manager_intro()
+	GameManager.set_modal_open(MANAGER_MODAL, false)
+	$DeveloperOverlay.show()
+	_notice.text = "经理交谈完成；走到 1F 右端按 E 上 2F，到 201 接任务。"
+
+
+func _sync_player_controls() -> void:
+	if $World.get_child_count() > 0:
+		$World.get_child(0).get_node("Player").set_movement_locked(not GameManager.is_world_input_allowed())
+
+
+func _exit_tree() -> void:
+	_manager_dialogue_active = false
+	GameManager.set_modal_open(MANAGER_MODAL, false)
+	GameManager.set_modal_open("CORE_PAUSE", false)
 
 
 func _toggle_pause() -> void:
@@ -72,6 +118,8 @@ func _report(accepted: bool, action: String) -> void:
 
 func _on_floor_changed(_floor_number: int) -> void:
 	$World.get_child(0).notice_requested.connect(func(message: String) -> void: _notice.text = message)
+	$World.get_child(0).manager_talk_requested.connect(_on_manager_talk_requested)
+	_sync_player_controls()
 
 
 func _add_label(parent: Node, text: String, font_size: int) -> Label:

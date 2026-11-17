@@ -1,0 +1,361 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCRIPT ERROR: Parse Error: Could not find type "HotelPlayer" in the current scope.
+          at: GDScript::reload (res://scripts/game_manager.gd:375)
+SCRIPT ERROR: Parse Error: Could not find type "HotelPlayer" in the current scope.
+          at: GDScript::reload (res://scripts/game_manager.gd:280)
+SCRIPT ERROR: Parse Error: Could not find type "HotelPlayer" in the current scope.
+          at: GDScript::reload (res://scripts/game_manager.gd:360)
+ERROR: Failed to load script "res://scripts/game_manager.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+ERROR: Failed to instantiate an autoload, script 'res://scripts/game_manager.gd' does not inherit from 'Node'.
+   at: start (main/main.cpp:4539)
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+ERROR: Unable to open file: res://.godot/imported/bedroom_rain.png-83ce306d6133ab2da98c6c8dd95df3ed.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/bedroom_rain.png-83ce306d6133ab2da98c6c8dd95df3ed.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/visual_novel/bedroom_rain.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/cafe_sunset.png-a9849269ed28daec3c7e804c96c6f00c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/cafe_sunset.png-a9849269ed28daec3c7e804c96c6f00c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/visual_novel/cafe_sunset.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/hotel_exterior_rain.png-dc334202d69460122b0c7bc5bce6d0e6.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/hotel_exterior_rain.png-dc334202d69460122b0c7bc5bce6d0e6.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/visual_novel/hotel_exterior_rain.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/hotel_lobby.png-8fda87eee5636acc8ff6236061b0550f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/hotel_lobby.png-8fda87eee5636acc8ff6236061b0550f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/visual_novel/hotel_lobby.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/friend_expressions.png-d2c2ceecdb5e3605f2bc6fc695d7f2a1.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/friend_expressions.png-d2c2ceecdb5e3605f2bc6fc695d7f2a1.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/visual_novel/friend_expressions.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/an_neutral.png-604ac5f9456330d1aae7716dbfcec51f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/an_neutral.png-604ac5f9456330d1aae7716dbfcec51f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/an/an_neutral.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/an_smile.png-e68efd5a4499b3b3a451c2bb0745fe6f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/an_smile.png-e68efd5a4499b3b3a451c2bb0745fe6f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/an/an_smile.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/an_surprised.png-2db962f5892aa32b6b4cc61497077334.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/an_surprised.png-2db962f5892aa32b6b4cc61497077334.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/an/an_surprised.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/an_worried.png-966ea6bd301a1741b2bbc62b846e154f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/an_worried.png-966ea6bd301a1741b2bbc62b846e154f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/an/an_worried.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/an_suspicious.png-20f2e0509e0f672b3e1b9336e944e07b.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/an_suspicious.png-20f2e0509e0f672b3e1b9336e944e07b.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/an/an_suspicious.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/an_stern.png-99ac98d064dcc2766d7d211fb41e420f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/an_stern.png-99ac98d064dcc2766d7d211fb41e420f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/an/an_stern.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/cleaner_neutral.png-bfce2ec07c5c86de87edda88a2d97b3a.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/cleaner_neutral.png-bfce2ec07c5c86de87edda88a2d97b3a.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/cleaner/cleaner_neutral.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/cleaner_smile.png-6721332c6d49b4587e8608386811da1a.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/cleaner_smile.png-6721332c6d49b4587e8608386811da1a.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/cleaner/cleaner_smile.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/cleaner_surprised.png-618e7af70ed026703f7e538f70bd412a.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/cleaner_surprised.png-618e7af70ed026703f7e538f70bd412a.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/cleaner/cleaner_surprised.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/cleaner_worried.png-2656883faf78cb0cfd12f3d57423da25.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/cleaner_worried.png-2656883faf78cb0cfd12f3d57423da25.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/cleaner/cleaner_worried.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/cleaner_suspicious.png-d1de95b594d615169159a32f56c1194e.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/cleaner_suspicious.png-d1de95b594d615169159a32f56c1194e.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/cleaner/cleaner_suspicious.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/cleaner_stern.png-5afa328eb71471f0d876cf3c7aac0932.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/cleaner_stern.png-5afa328eb71471f0d876cf3c7aac0932.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/cleaner/cleaner_stern.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/security_neutral.png-707cfecab6bbd8b3255f4cf3225c3710.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/security_neutral.png-707cfecab6bbd8b3255f4cf3225c3710.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/security/security_neutral.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/security_smile.png-163a43505b8b4cb61504e092e2f1c206.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/security_smile.png-163a43505b8b4cb61504e092e2f1c206.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/security/security_smile.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/security_surprised.png-e4fae5e31c1f9a5d942fdc5ad1fd450c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/security_surprised.png-e4fae5e31c1f9a5d942fdc5ad1fd450c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/security/security_surprised.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/security_worried.png-d867c79058e3f229848ec17b1ac5eb47.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/security_worried.png-d867c79058e3f229848ec17b1ac5eb47.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/security/security_worried.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/security_suspicious.png-6ba4840e3d8452cbc0660182c2f50571.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/security_suspicious.png-6ba4840e3d8452cbc0660182c2f50571.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/security/security_suspicious.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/security_stern.png-97a263def95196dcef0d296417da9fbb.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/security_stern.png-97a263def95196dcef0d296417da9fbb.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/security/security_stern.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/manager_neutral.png-a50a3f7c8784098b4437e484ce3adba8.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/manager_neutral.png-a50a3f7c8784098b4437e484ce3adba8.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/manager/manager_neutral.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/manager_smile.png-1a3f35cd9e03c24f17b056540c6b0ea5.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/manager_smile.png-1a3f35cd9e03c24f17b056540c6b0ea5.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/manager/manager_smile.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/manager_surprised.png-744c5e0fc104b77932810a6b5ea62d9c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/manager_surprised.png-744c5e0fc104b77932810a6b5ea62d9c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/manager/manager_surprised.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/manager_worried.png-439b0bb62365c3585b993b58c1ba2eaf.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/manager_worried.png-439b0bb62365c3585b993b58c1ba2eaf.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/manager/manager_worried.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/manager_suspicious.png-d4761f5edb8319bfe39b960caf7ceec4.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/manager_suspicious.png-d4761f5edb8319bfe39b960caf7ceec4.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/manager/manager_suspicious.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/manager_stern.png-8b5bd251f9bd7934e3274ac8b38e34b1.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/manager_stern.png-8b5bd251f9bd7934e3274ac8b38e34b1.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/manager/manager_stern.png.
+   at: _load (core/io/resource_loader.cpp:317)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/visual_novel/bedroom_rain.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:18)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/visual_novel/cafe_sunset.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:19)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/visual_novel/hotel_exterior_rain.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:20)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/visual_novel/hotel_lobby.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:21)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/visual_novel/friend_expressions.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:23)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "FRIEND_SHEET" constant because the value doesn't have a set type.
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:23)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/an/an_neutral.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:33)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/an/an_smile.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:34)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/an/an_surprised.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:35)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/an/an_worried.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:36)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/an/an_suspicious.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:37)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/an/an_stern.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:38)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/cleaner/cleaner_neutral.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:41)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/cleaner/cleaner_smile.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:42)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/cleaner/cleaner_surprised.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:43)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/cleaner/cleaner_worried.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:44)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/cleaner/cleaner_suspicious.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:45)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/cleaner/cleaner_stern.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:46)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/security/security_neutral.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:49)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/security/security_smile.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:50)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/security/security_surprised.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:51)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/security/security_worried.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:52)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/security/security_suspicious.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:53)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/security/security_stern.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:54)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/manager/manager_neutral.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:57)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/manager/manager_smile.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:58)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/manager/manager_surprised.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:59)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/manager/manager_worried.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:60)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/manager/manager_suspicious.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:61)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/manager/manager_stern.png".
+          at: GDScript::reload (res://scenes/ui/dialogue.gd:62)
+ERROR: Failed to load script "res://scenes/ui/dialogue.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+ERROR: Unable to open file: res://.godot/imported/security_card.png-3dbddf941058d0da43b77250cf3e5045.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/security_card.png-3dbddf941058d0da43b77250cf3e5045.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/security_card.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/cleaner_card.png-0684955648fdef487f1f32eb76d77b5f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/cleaner_card.png-0684955648fdef487f1f32eb76d77b5f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/cleaner_card.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/manager_card.png-8ad5c35745e4196d4155670fd18de515.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/manager_card.png-8ad5c35745e4196d4155670fd18de515.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/manager_card.png.
+   at: _load (core/io/resource_loader.cpp:317)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/security_card.png".
+          at: GDScript::reload (res://scenes/ui/card_display.gd:12)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/cleaner_card.png".
+          at: GDScript::reload (res://scenes/ui/card_display.gd:13)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/manager_card.png".
+          at: GDScript::reload (res://scenes/ui/card_display.gd:14)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scenes/ui/hud.gd:0)
+ERROR: Failed to load script "res://scenes/ui/hud.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+ERROR: Unable to open file: res://.godot/imported/handbook_spread.png-c7cea4189efbc53f95327968c52fa97a.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/handbook_spread.png-c7cea4189efbc53f95327968c52fa97a.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/ui/handbook_spread.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: res://scenes/ui/help.tscn:39 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/handbook_spread.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+SCRIPT ERROR: Invalid access to property or key 'state_changed' on a base object of type 'Nil'.
+          at: _ready (res://scenes/ui/hud.gd:18)
+          GDScript backtrace (most recent call first):
+              [0] _ready (res://scenes/ui/hud.gd:18)
+SCRIPT ERROR: Cannot call method 'has_signal' on a null value.
+          at: _ready (res://scenes/ui/mission_board.gd:72)
+          GDScript backtrace (most recent call first):
+              [0] _ready (res://scenes/ui/mission_board.gd:72)
+SCRIPT ERROR: Cannot call method 'has_method' on a null value.
+          at: _sync_modal_state (res://scenes/ui/failure.gd:22)
+          GDScript backtrace (most recent call first):
+              [0] _sync_modal_state (res://scenes/ui/failure.gd:22)
+              [1] _ready (res://scenes/ui/failure.gd:18)
+SCRIPT ERROR: Invalid access to property or key 'task_offered' on a base object of type 'Nil'.
+          at: _ready (res://scenes/task_ui.gd:27)
+          GDScript backtrace (most recent call first):
+              [0] _ready (res://scenes/task_ui.gd:27)
+SCRIPT ERROR: Invalid call. Nonexistent function 'name_for' in base 'GDScript'.
+          at: _slot_text (res://scenes/ui/bag.gd:107)
+          GDScript backtrace (most recent call first):
+              [0] _slot_text (res://scenes/ui/bag.gd:107)
+              [1] _refresh_cards (res://scenes/ui/bag.gd:70)
+              [2] _refresh_cards (res://scenes/bag_adapter.gd:6)
+              [3] _ready (res://scenes/ui/bag.gd:24)
+SCRIPT ERROR: Invalid call. Nonexistent function 'name_for' in base 'GDScript'.
+          at: _slot_text (res://scenes/ui/bag.gd:107)
+          GDScript backtrace (most recent call first):
+              [0] _slot_text (res://scenes/ui/bag.gd:107)
+              [1] _refresh_cards (res://scenes/ui/bag.gd:71)
+              [2] _refresh_cards (res://scenes/bag_adapter.gd:6)
+              [3] _ready (res://scenes/ui/bag.gd:24)
+SCRIPT ERROR: Cannot call method 'has_method' on a null value.
+          at: _sync_modal_state (res://scenes/ui/bag.gd:29)
+          GDScript backtrace (most recent call first):
+              [0] _sync_modal_state (res://scenes/ui/bag.gd:29)
+              [1] _ready (res://scenes/ui/bag.gd:25)
+SCRIPT ERROR: Invalid access to property or key 'notebook_changed' on a base object of type 'Nil'.
+          at: _ready (res://scenes/notebook.gd:10)
+          GDScript backtrace (most recent call first):
+              [0] _ready (res://scenes/notebook.gd:10)
+SCRIPT ERROR: Invalid access to property or key 'state_changed' on a base object of type 'Nil'.
+          at: _ready (res://scenes/main.gd:17)
+          GDScript backtrace (most recent call first):
+              [0] _ready (res://scenes/main.gd:17)
+SCRIPT ERROR: Invalid call. Nonexistent function 'get_task_view' in base 'Nil'.
+          at: _refresh_task_display (res://scenes/task_hud.gd:11)
+          GDScript backtrace (most recent call first):
+              [0] _refresh_task_display (res://scenes/task_hud.gd:11)
+              [1] _process (res://scenes/ui/hud.gd:37)
+SCRIPT ERROR: Invalid call. Nonexistent function 'get_task_view' in base 'Nil'.
+          at: _refresh_task_display (res://scenes/task_hud.gd:11)
+          GDScript backtrace (most recent call first):
+              [0] _refresh_task_display (res://scenes/task_hud.gd:11)
+              [1] _process (res://scenes/ui/hud.gd:37)
+SCRIPT ERROR: Invalid call. Nonexistent function 'get_task_view' in base 'Nil'.
+          at: _refresh_task_display (res://scenes/task_hud.gd:11)
+          GDScript backtrace (most recent call first):
+              [0] _refresh_task_display (res://scenes/task_hud.gd:11)
+              [1] _process (res://scenes/ui/hud.gd:37)
+SCRIPT ERROR: Cannot call method 'has_method' on a null value.
+          at: _exit_tree (res://scenes/ui/failure.gd:54)
+          GDScript backtrace (most recent call first):
+              [0] _exit_tree (res://scenes/ui/failure.gd:54)
+SCRIPT ERROR: Cannot call method 'has_method' on a null value.
+          at: _exit_tree (res://scenes/ui/mission_board.gd:219)
+          GDScript backtrace (most recent call first):
+              [0] _exit_tree (res://scenes/ui/mission_board.gd:219)
+SCRIPT ERROR: Invalid call. Nonexistent function 'set_modal_open' in base 'Nil'.
+          at: _exit_tree (res://scenes/task_ui.gd:136)
+          GDScript backtrace (most recent call first):
+              [0] _exit_tree (res://scenes/task_ui.gd:136)
+SCRIPT ERROR: Invalid call. Nonexistent function 'set_modal_open' in base 'Nil'.
+          at: _exit_tree (res://scenes/main.gd:115)
+          GDScript backtrace (most recent call first):
+              [0] _exit_tree (res://scenes/main.gd:115)

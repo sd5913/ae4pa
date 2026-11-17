@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+PASS C-V4-01~03: phase-independent 201, progress/submit/permit separation, 600 event-only rules, 30 real identity events, bidirectional entry history, safe return validation.
