@@ -15,6 +15,7 @@ var _previous_focus: Control
 
 
 func _ready() -> void:
+	_owned_cards.fixed_icon_size = Vector2i(64, 64)
 	visibility_changed.connect(_sync_modal_state)
 	CardManager.cards_changed.connect(_refresh_cards)
 	_owned_cards.item_selected.connect(_on_card_selected)
@@ -60,7 +61,7 @@ func _refresh_cards() -> void:
 	_owned_cards.clear()
 	var card_ids := CardManager.get_owned_cards()
 	for card_id: String in card_ids:
-		_owned_cards.add_item(CardDisplay.name_for(card_id))
+		_owned_cards.add_item(CardDisplay.name_for(card_id), CardDisplay.art_for(card_id))
 		_owned_cards.set_item_metadata(_owned_cards.item_count - 1, card_id)
 		if card_id == previously_selected:
 			_owned_cards.select(_owned_cards.item_count - 1)

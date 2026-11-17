@@ -1,10 +1,12 @@
 extends Control
 
+const CardDisplay = preload("res://scenes/ui/card_display.gd")
 const PAGE_COUNT := 2
 const MODAL_ID := "help"
 
 var _previous_focus: Control
 var _page_index := 0
+var _card_art_row: HBoxContainer
 
 @onready var _page_title: Label = %PageTitle
 @onready var _work_card_page: Control = %WorkCardPage
@@ -15,6 +17,19 @@ var _page_index := 0
 
 
 func _ready() -> void:
+	var art_row := HBoxContainer.new()
+	art_row.alignment = BoxContainer.ALIGNMENT_CENTER
+	_work_card_page.get_parent().add_child(art_row)
+	_work_card_page.get_parent().move_child(art_row, _work_card_page.get_index())
+	_card_art_row = art_row
+	for id: String in ["SECURITY", "CLEANER", "MANAGER"]:
+		var icon := TextureRect.new()
+		icon.texture = CardDisplay.art_for(id)
+		icon.custom_minimum_size = Vector2(60, 60)
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		icon.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		art_row.add_child(icon)
 	visibility_changed.connect(_sync_modal_state)
 	_show_page(0)
 	_sync_modal_state()
@@ -62,6 +77,7 @@ func previous_page() -> void:
 func _show_page(page_index: int) -> void:
 	_page_index = clampi(page_index, 0, PAGE_COUNT - 1)
 	_work_card_page.visible = _page_index == 0
+	_card_art_row.visible = _work_card_page.visible
 	_monster_page.visible = _page_index == 1
 	_page_title.text = "工作证规则" if _page_index == 0 else "怪物判定"
 	_page_indicator.text = "%d / %d" % [_page_index + 1, PAGE_COUNT]

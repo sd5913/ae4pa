@@ -69,6 +69,7 @@ func _run() -> void:
 	_expect(notebook.get_node("%MonsterPage/NoseRule").text == "有些住客对气味敏感。", "Actual manager completion exposes only the vague nose clue")
 	await _action("open_help", true)
 	await _action("open_help", false)
+	await _check_denied_stair()
 	await _travel(2)
 	_player().global_position.x = 580.0
 	await _settle()
@@ -107,6 +108,7 @@ func _run() -> void:
 	await process_frame
 	_expect("3:30" in hud.get_node("%RemainingTime").text, "D HUD reads the actual task time")
 	_expect("STAIN_201" not in hud.get_node("%Objective").text and "ACTIVE" not in hud.get_node("%RemainingTime").text, "F5 HUD uses player-facing objectives and status names")
+	await _check_pause()
 	await _travel(1)
 	await _steal()
 	_expect(cards.call("has_card", "CLEANER"), "Real rear E theft grants the task card")
@@ -114,6 +116,7 @@ func _run() -> void:
 	await _action("open_bag", true)
 	await _action("open_bag", false)
 	_expect(bag.visible and bag.get_node("%OwnedCards").item_count == 1, "Real I opens D bag with the actually stolen card")
+	_expect(bag.get_node("%OwnedCards").get_item_icon(0) != null, "The real cleaner card has a bag icon")
 	_expect("尚未获得" not in bag.get_node("%Status").text, "A populated bag clears stale empty-inventory feedback")
 	game.call("_process", 5.0)
 	_expect(game.get("remaining_time") == before_bag, "Bag reads and equipment keep the task clock stopped")
@@ -126,12 +129,31 @@ func _run() -> void:
 	await _action("switch_id", true)
 	await _action("switch_id", false)
 	_expect(not bag.visible and cards.get("active_card") == "CLEANER", "Closing bag resumes world Q into the selected cleaner slot")
+	_expect(hud.get_node("%SlotBArt").texture != null and hud.get_node("%SlotAArt").texture == null, "HUD shows only the equipped card artwork")
 	await _travel(2)
+	var progress_ui: Control = hud.find_child("InteractionProgress", true, false)
+	var work: Node = _floor().get_node("Interactions/Stain201Slot/CleaningSpot")
+	var bar: ProgressBar = progress_ui.get("_progress")
+	var details: Label = progress_ui.get("_details")
 	_player().global_position.x = _floor().get_node("Interactions/Stain201Slot").global_position.x
 	await _settle()
+	_expect(progress_ui.visible and "可交互" in details.text and bar.value == 0.0,
+		"The real cleaning point initially displays READY at zero progress")
+	await _action("interact", true)
+	await create_timer(0.25).timeout
+	var state: Dictionary = work.get_interaction_state()
+	_expect(progress_ui.visible and "进行中" in details.text and bar.value > 0.0
+		and is_equal_approx(bar.value, state["progress"]), "HUD follows the real cleaning progress signal")
+	_expect("%.2f / %.2f" % [state["elapsed"], state["required_time"]] in details.text,
+		"HUD displays elapsed and required time from the component")
+	await _action("interact", false)
+	await _settle()
+	_expect(bar.value == 0.0 and (not progress_ui.visible or "进行中" not in details.text),
+		"Cancelling clears active progress")
 	await _action("interact", true)
 	await create_timer(1.6).timeout
 	await _action("interact", false)
+	_expect(not progress_ui.visible, "Completion hides the interaction hint")
 	_expect(game.get("task_status") == "READY_TO_SUBMIT", "Real cleaning reaches delivery, not settlement")
 	game.call("_process", 210.0)
 	_expect(failure.visible and not board.visible, "Timeout opens one failure page, not overlapping task/failure panels")
@@ -158,6 +180,7 @@ func _run() -> void:
 	failure.get_node("%RetryButton").pressed.emit()
 	await _settle()
 	_accept()
+	await _check_pause()
 	await _travel(1)
 	await _steal()
 	await _travel(2)
@@ -175,7 +198,7 @@ func _run() -> void:
 	await _action("open_help", true)
 	await _action("open_help", false)
 	notebook.get_node("%NextButton").pressed.emit()
-	_expect("保洁" in notebook.get_node("%MonsterPage/NoseRule").text and notebook.get_node("%MonsterPage/HatId").text == "未知住客", "Delivered 201 reveals only its earned rule in H")
+	_expect("保洁" in notebook.get_node("%MonsterPage/NoseRule").text and notebook.get_node("%MonsterPage/HatId").text == "未知 · 未知住客", "Delivered 201 reveals only its earned rule in H")
 	await _action("open_help", true)
 	await _action("open_help", false)
 	var ordinary: Node = _floor().get_node("DoorRoot/Room202/Door")
@@ -249,6 +272,7 @@ func _reach_offer(dialogue: Control) -> void:
 	await _action("interact", true)
 	await _action("interact", false)
 	await _drain(dialogue)
+	await _check_denied_stair()
 	await _travel(2)
 	_player().global_position.x = 580.0
 	await _settle()
@@ -283,12 +307,58 @@ func _steal() -> void:
 	await _action("interact", false)
 
 
+func _check_denied_stair() -> void:
+	# Open through the official E route, then move the fixture out of range.
+	_player().global_position.x = 3400.0
+	await _settle()
+	await _action("interact", true)
+	await _action("interact", false)
+	var overlay: Control = main.get_node("TaskLayer/PlayOverlay")
+	var choices: VBoxContainer = overlay.get("_choices")
+	_expect(overlay.visible and choices.get_child_count() == 1, "1F stair uses the available floor list")
+	if not overlay.visible or choices.get_child_count() != 1:
+		return
+	_player().global_position.x = 3000.0
+	choices.get_child(0).pressed.emit()
+	_expect(overlay.visible and not game.call("is_world_input_allowed") and game.get("current_floor") == 1,
+		"A rejected floor request restores the selector and its modal")
+	await _action("pause", true)
+	await _action("pause", false)
+	_expect(not overlay.visible and game.call("is_world_input_allowed"), "Closing the restored selector releases its modal")
+
+
+func _check_pause() -> void:
+	var overlay: Control = main.get_node("TaskLayer/PlayOverlay")
+	var before: float = game.get("remaining_time")
+	await _action("pause", true)
+	await _action("pause", false)
+	_expect(overlay.visible and not game.call("is_world_input_allowed"), "Esc opens pause and locks world input")
+	game.call("_process", 1.0)
+	_expect(game.get("remaining_time") == before, "Pause stops the live task clock")
+	overlay.get("_close").pressed.emit()
+	_expect(not overlay.visible and game.call("is_world_input_allowed"), "Continue closes pause and restores world input")
+	game.call("_process", 1.0)
+	_expect(game.get("remaining_time") < before, "Task clock resumes after continuing")
+
+
 func _travel(destination: int) -> void:
 	_player().global_position.x = 3400.0 if destination > game.get("current_floor") else 192.0
 	await _settle()
 	await _action("interact", true)
 	await _action("interact", false)
-	_expect(game.get("current_floor") == destination, "Real E stairs reach %dF" % destination)
+	var overlay: Control = main.get_node("TaskLayer/PlayOverlay")
+	_expect(overlay.visible and not game.call("is_world_input_allowed"), "Real stair E opens the modal selector")
+	var choices: VBoxContainer = overlay.get("_choices")
+	var destination_button: Button
+	for choice: Button in choices.get_children():
+		if choice.text == "%dF" % destination:
+			destination_button = choice
+			break
+	if destination_button == null:
+		_expect(false, "The real floor list contains %dF" % destination)
+		return
+	destination_button.pressed.emit()
+	_expect(not overlay.visible and game.get("current_floor") == destination, "Selecting the real stair destination reaches %dF" % destination)
 	await _settle()
 
 

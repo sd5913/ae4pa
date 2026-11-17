@@ -94,6 +94,23 @@ func open_board() -> void:
 	_accept_button.grab_focus()
 
 
+func open_task_details() -> void:
+	refresh_from_game_manager()
+	configure_task_details("")
+	show()
+	if not _accept_button.disabled:
+		_accept_button.grab_focus()
+
+
+func configure_task_details(details: String) -> void:
+	_status.self_modulate = Color.WHITE
+	_retry_button.hide()
+	for button: Button in _floor_buttons:
+		button.hide()
+	if not details.is_empty():
+		_hint.text = details
+
+
 func refresh_from_game_manager(_unused: Variant = null) -> void:
 	if not GameManager.has_method("get_task_view") or not GameManager.has_method("get_available_floors"):
 		_task_id = ""

@@ -3,6 +3,11 @@ extends CanvasLayer
 
 signal menu_requested()
 
+const PlayOverlay = preload("res://scenes/ui/play_overlay.gd")
+const InteractionProgress = preload("res://scenes/ui/interaction_progress.gd")
+var play_overlay: Control
+var interaction_progress: Control
+
 const OFFER_MODAL: String = "TASK_OFFER"
 const FAILURE_MODAL: String = "TASK_FAILURE"
 
@@ -12,6 +17,9 @@ const FAILURE_MODAL: String = "TASK_FAILURE"
 
 
 func _ready() -> void:
+	play_overlay = PlayOverlay.new()
+	play_overlay.name = "PlayOverlay"
+	add_child(play_overlay)
 	board.task_accepted.connect(_on_task_accepted)
 	board.visibility_changed.connect(_on_offer_visibility_changed)
 	failure.retry_requested.connect(_on_retry_requested)
@@ -27,10 +35,25 @@ func _ready() -> void:
 	hud.add_child(stack)
 	hud.get_node("Readout").reparent(stack)
 	hud.get_node("TaskReadout").reparent(stack)
+	interaction_progress = InteractionProgress.new()
+	interaction_progress.name = "InteractionProgress"
+	stack.add_child(interaction_progress)
 	_refresh_hud()
 
 
+func bind_interaction_floor(floor_node: Node) -> void:
+	interaction_progress.bind_floor(floor_node)
+
+
+func open_floor_selection() -> void:
+	play_overlay.open_floor_selection()
+
+
 func _input(event: InputEvent) -> void:
+	if not event.is_echo() and event.is_action_pressed("pause") and GameManager.is_world_input_allowed():
+		play_overlay.toggle_pause()
+		get_viewport().set_input_as_handled()
+		return
 	if (board.visible or failure.visible) and (event.is_action_pressed("interact") or event.is_action_pressed("switch_id")):
 		get_viewport().set_input_as_handled()
 
@@ -40,7 +63,7 @@ func open_offer(task_id: String) -> void:
 		return
 	failure.hide()
 	GameManager.set_modal_open(FAILURE_MODAL, false)
-	board.open_board()
+	board.open_task_details()
 	_refresh_offer()
 
 
@@ -50,14 +73,8 @@ func _refresh_offer() -> void:
 	if GameManager.task_status != "AVAILABLE" or GameManager.game_state != "PLAYING":
 		board.hide()
 		return
-	board.get("_retry_button").hide()
-	board.get("_status").self_modulate = Color.WHITE
 	var view: Dictionary = GameManager.get_task_view()
-	var hint: Label = board.get("_hint")
-	hint.text = "所需身份：%s · 接受后限时 %d 秒\n回 1F 取得保洁工作证，再到 2F 清理污渍，最后回 201 交付。" % [view["required_card"], int(view["time_limit"])]
-	# This is the acceptance page. Travel remains the floor's real E stair action.
-	for button: Button in board.get("_floor_buttons"):
-		button.hide()
+	board.configure_task_details("所需身份：%s · 接受后限时 %d 秒\n回 1F 取得保洁工作证，再到 2F 清理污渍，最后回 201 交付。" % [view["required_card"], int(view["time_limit"])])
 	_refresh_hud()
 
 
@@ -80,14 +97,10 @@ func _show_failure(reason: String) -> void:
 	failure.get_node("Center/Panel/Content/Eyebrow").text = "本次任务"
 	if reason == "TASK_TIMEOUT":
 		failure.get_node("%Reason").text = "任务超时，请回到接取前重新挑战。"
-	var retry: Button = failure.get_node("%RetryButton")
-	retry.text = "重新挑战本任务"
-	retry.disabled = not GameManager.can_retry_current_task()
-	retry.tooltip_text = "回到 201 接受前，撤销本任务获得的卡片与清理结果。" if not retry.disabled else "当前没有可恢复的任务检查点。"
-	failure.get_node("%MenuButton").text = "返回菜单"
+	var can_retry := GameManager.can_retry_current_task()
+	failure.configure_retry(can_retry,
+		"回到 201 接受前，撤销本任务获得的卡片与清理结果。" if can_retry else "当前没有可恢复的任务检查点。")
 	GameManager.set_modal_open(FAILURE_MODAL, true)
-	if not retry.disabled:
-		retry.grab_focus()
 	_refresh_hud()
 
 
@@ -99,12 +112,15 @@ func _on_retry_requested() -> void:
 
 
 func _on_state_changed(state: String) -> void:
+	if state != "PLAYING":
+		play_overlay.close_page()
 	if state in ["RESTORING", "MENU"] or (state == "PLAYING" and GameManager.task_status == "NONE"):
 		close_views()
 	_refresh_hud()
 
 
 func close_views() -> void:
+	play_overlay.close_page()
 	board.hide()
 	failure.hide()
 	GameManager.set_modal_open(OFFER_MODAL, false)
