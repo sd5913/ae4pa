@@ -2,7 +2,7 @@
 extends Node2D
 ## One full-canvas sprite and one transform for every state of each room.
 
-@export_enum("201", "202", "203", "204", "205") var room_id: String = "201":
+@export var room_id: String = "201":
 	set(value):
 		room_id = value
 		if is_node_ready():
