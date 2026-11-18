@@ -1,0 +1,362 @@
+[
+  {
+    "room": "301",
+    "state": "closed",
+    "file": "assets/final/doors/room_301/door_closed.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "3fd7094f52101f658a506a4fdb08364c1d5868b14d52c3f91deb6dc3f73c840a"
+  },
+  {
+    "room": "301",
+    "state": "warning",
+    "file": "assets/final/doors/room_301/door_warning.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "f6a384a72d270ef688748c876a375456503c112de882a9ec2306ce8931147571"
+  },
+  {
+    "room": "301",
+    "state": "open",
+    "file": "assets/final/doors/room_301/door_open.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "6d127c1e1709586048d0342197464a6eb5230b393b0594f6685c966ad44c8961"
+  },
+  {
+    "room": "302",
+    "state": "closed",
+    "file": "assets/final/doors/room_302/door_closed.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "3319dbafa1307b01c78685f62e81caa421ca9b3e5e9c7cc4afa8cf8fde0d26b6"
+  },
+  {
+    "room": "302",
+    "state": "warning",
+    "file": "assets/final/doors/room_302/door_warning.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "7523e8b95dcd962b3652ad080bf8e4411bfba979a6596554d3533587a55c0f00"
+  },
+  {
+    "room": "302",
+    "state": "open",
+    "file": "assets/final/doors/room_302/door_open.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "3253fd0ddefaace4fd2c668de9663ef86f0a7b73db0591a381a326461a179b4e"
+  },
+  {
+    "room": "303",
+    "state": "closed",
+    "file": "assets/final/doors/room_303/door_closed.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "eae27708d66ec1d8b13d2e3afbcb00ceed732f416baae4f17af8ec399f2a428a"
+  },
+  {
+    "room": "303",
+    "state": "warning",
+    "file": "assets/final/doors/room_303/door_warning.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "c7e6442cb9a6717c5df18cb380222115389654d8dabd66862a96cb3e2ebf25b4"
+  },
+  {
+    "room": "303",
+    "state": "open",
+    "file": "assets/final/doors/room_303/door_open.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "a502b56462bdbd81b6d17faa73043db0802f1718908b906da754775f1563d6c1"
+  },
+  {
+    "room": "304",
+    "state": "closed",
+    "file": "assets/final/doors/room_304/door_closed.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "eb91eff1931fd040702bb10b93fefd5bc881d7cf3a1ba893b329cf4242c3fae0"
+  },
+  {
+    "room": "304",
+    "state": "warning",
+    "file": "assets/final/doors/room_304/door_warning.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "6bd299187b80c338705f307d25f40764f5241c5b96d6b9a604b0adc0089cfaee"
+  },
+  {
+    "room": "304",
+    "state": "open",
+    "file": "assets/final/doors/room_304/door_open.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "1675b40971db51d0ed541a67d35005fd37f8bc4513ac7a128267d10f45bca4e7"
+  },
+  {
+    "room": "401",
+    "state": "closed",
+    "file": "assets/final/doors/room_401/door_closed.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "bd626ad2dc14802e4d154b8f5fdfce22a50460d9a6a16b608e381338797b421a"
+  },
+  {
+    "room": "401",
+    "state": "warning",
+    "file": "assets/final/doors/room_401/door_warning.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "cd12d0e3f49b6a759b0f2322d8e476247249666aa34f1b33cd13e7613ad9fefe"
+  },
+  {
+    "room": "401",
+    "state": "open",
+    "file": "assets/final/doors/room_401/door_open.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "05a2bd45bef303d54aa6ad9c3f5b54918866d9d272ec47312c97c8d84a59b747"
+  },
+  {
+    "room": "402",
+    "state": "closed",
+    "file": "assets/final/doors/room_402/door_closed.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "e02976488953e888348a7a511f65132dec3c65a89f9b66b09b1ceebcc5a4621d"
+  },
+  {
+    "room": "402",
+    "state": "warning",
+    "file": "assets/final/doors/room_402/door_warning.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "2803881969d421d5f49e9e192db21200cb25a09b5f69957610d1afb0ba63b005"
+  },
+  {
+    "room": "402",
+    "state": "open",
+    "file": "assets/final/doors/room_402/door_open.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "bd4d7e06521675407660586b030a17e42298dce5fa62b817fe69a448db700aed"
+  },
+  {
+    "room": "403",
+    "state": "closed",
+    "file": "assets/final/doors/room_403/door_closed.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "dcfcf49723bc15a536a9472cd574814bcf3af14ad75011c7dcd6a1dfdadf9ce6"
+  },
+  {
+    "room": "403",
+    "state": "warning",
+    "file": "assets/final/doors/room_403/door_warning.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "f232dd1f1556d0cf94bd34454cda7703f769e65798879959a18632f2e2f85a50"
+  },
+  {
+    "room": "403",
+    "state": "open",
+    "file": "assets/final/doors/room_403/door_open.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "5050ff8744d6b2af063ec63c76c248cf64307012332b639ccc60180c93c00758"
+  },
+  {
+    "room": "404",
+    "state": "closed",
+    "file": "assets/final/doors/room_404/door_closed.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "4b5e96f7c5712e6d0467df4930df98e76fbfd92895d486d81e0b68b2867cf062"
+  },
+  {
+    "room": "404",
+    "state": "warning",
+    "file": "assets/final/doors/room_404/door_warning.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "c9051dd1594068bc242045c0e37fbf0cc756bb9cb4c9a297c467b6c39deadf13"
+  },
+  {
+    "room": "404",
+    "state": "open",
+    "file": "assets/final/doors/room_404/door_open.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "e09b0bab9142d220c2d87fa8a775d3a8d61eb7ee96a17347d7c45c74fdba3f15"
+  },
+  {
+    "room": "405",
+    "state": "closed",
+    "file": "assets/final/doors/room_405/door_closed.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "cb2df9ad21c847579935b8a484122f33908827d0b189eb77afba06cada06829b"
+  },
+  {
+    "room": "405",
+    "state": "warning",
+    "file": "assets/final/doors/room_405/door_warning.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "5ecd880e7d25107121f4b14add5ae8b80566c55ebacd37bdadc534d2b80630e5"
+  },
+  {
+    "room": "405",
+    "state": "open",
+    "file": "assets/final/doors/room_405/door_open.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "1fbef79545b2ddf732cb36f1eecf207d076c8b6559b3e4aa3cad527208e74187"
+  },
+  {
+    "room": "501",
+    "state": "closed",
+    "file": "assets/final/doors/room_501/door_closed.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "f7bee5f26a2552dd39f76b34b9c6f068309da0a2470528bc65537c197987f46d"
+  },
+  {
+    "room": "501",
+    "state": "warning",
+    "file": "assets/final/doors/room_501/door_warning.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "a07eec71dd12809174d7cad5100045251f5e72106aaa9bd5d47ee2154c3296a4"
+  },
+  {
+    "room": "501",
+    "state": "open",
+    "file": "assets/final/doors/room_501/door_open.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "4cf2cc049e63c3c91fa5011496687a787baf23c73d642f0dd0111bdcdf99061a"
+  },
+  {
+    "room": "502",
+    "state": "closed",
+    "file": "assets/final/doors/room_502/door_closed.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "a156774325b1006410008690eb9bb1c3e918ba9fbc06f544b5cccd92fa895637"
+  },
+  {
+    "room": "502",
+    "state": "warning",
+    "file": "assets/final/doors/room_502/door_warning.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "fdcb9afead2eb064b3d23e649fc33768a8fc7cbbc54c7137155a327dd6db587f"
+  },
+  {
+    "room": "502",
+    "state": "open",
+    "file": "assets/final/doors/room_502/door_open.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "599ef732430c733eb91a97e33ef9bb4107a24858040773ad9acbd64f0e13d2ed"
+  },
+  {
+    "room": "503",
+    "state": "closed",
+    "file": "assets/final/doors/room_503/door_closed.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "ccf658c2794698c385e0890fffdc4a309f3ec3c8fa345bf1cbbe71d720106b6a"
+  },
+  {
+    "room": "503",
+    "state": "warning",
+    "file": "assets/final/doors/room_503/door_warning.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "a0d9a2bbcb69dbc40cbdf4791f842574ccd74f1c0610c31ffc2428533316b081"
+  },
+  {
+    "room": "503",
+    "state": "open",
+    "file": "assets/final/doors/room_503/door_open.png",
+    "size": [
+      1254,
+      1254
+    ],
+    "sha256": "764b5166f6ce31ea03a8dc61c1754691616111ea7e8e19e9e4561d0e0e39a27d"
+  }
+]

@@ -1,0 +1,167 @@
+[
+  {
+    "room": "302",
+    "state": "closed",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '302'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep warm yellow side lanterns and no alarm beacons exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '302', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "302",
+    "state": "warning",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '302'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep the alarm beacons, alarm rays and red cage lanterns exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '302', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "302",
+    "state": "open",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '302'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Plaque is on the swung-open left door leaf: preserve its original foreshortened perspective; the gold room, open door leaf, chandelier, and smooth anonymous two-eyed rounded shadow with no accessories MUST remain identical. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '302', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "303",
+    "state": "closed",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '303'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep warm yellow side lanterns and no alarm beacons exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '303', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "303",
+    "state": "warning",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '303'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep the alarm beacons, alarm rays and red cage lanterns exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '303', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "303",
+    "state": "open",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '303'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Plaque is on the swung-open left door leaf: preserve its original foreshortened perspective; the gold room, open door leaf, chandelier, and smooth anonymous two-eyed rounded shadow with no accessories MUST remain identical. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '303', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "304",
+    "state": "closed",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '304'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep warm yellow side lanterns and no alarm beacons exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '304', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "304",
+    "state": "warning",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '304'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep the alarm beacons, alarm rays and red cage lanterns exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '304', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "304",
+    "state": "open",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '304'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Plaque is on the swung-open left door leaf: preserve its original foreshortened perspective; the gold room, open door leaf, chandelier, and smooth anonymous two-eyed rounded shadow with no accessories MUST remain identical. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '304', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "401",
+    "state": "closed",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '401'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep warm yellow side lanterns and no alarm beacons exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '401', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "401",
+    "state": "warning",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '401'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep the alarm beacons, alarm rays and red cage lanterns exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '401', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "401",
+    "state": "open",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '401'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Plaque is on the swung-open left door leaf: preserve its original foreshortened perspective; the gold room, open door leaf, chandelier, and smooth anonymous two-eyed rounded shadow with no accessories MUST remain identical. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '401', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "402",
+    "state": "closed",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '402'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep warm yellow side lanterns and no alarm beacons exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '402', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "402",
+    "state": "warning",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '402'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep the alarm beacons, alarm rays and red cage lanterns exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '402', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "402",
+    "state": "open",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '402'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Plaque is on the swung-open left door leaf: preserve its original foreshortened perspective; the gold room, open door leaf, chandelier, and smooth anonymous two-eyed rounded shadow with no accessories MUST remain identical. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '402', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "403",
+    "state": "closed",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '403'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep warm yellow side lanterns and no alarm beacons exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '403', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "403",
+    "state": "warning",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '403'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep the alarm beacons, alarm rays and red cage lanterns exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '403', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "403",
+    "state": "open",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '403'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Plaque is on the swung-open left door leaf: preserve its original foreshortened perspective; the gold room, open door leaf, chandelier, and smooth anonymous two-eyed rounded shadow with no accessories MUST remain identical. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '403', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "404",
+    "state": "closed",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '404'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep warm yellow side lanterns and no alarm beacons exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '404', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "404",
+    "state": "warning",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '404'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep the alarm beacons, alarm rays and red cage lanterns exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '404', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "404",
+    "state": "open",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '404'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Plaque is on the swung-open left door leaf: preserve its original foreshortened perspective; the gold room, open door leaf, chandelier, and smooth anonymous two-eyed rounded shadow with no accessories MUST remain identical. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '404', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "405",
+    "state": "closed",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '405'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep warm yellow side lanterns and no alarm beacons exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '405', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "405",
+    "state": "warning",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '405'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep the alarm beacons, alarm rays and red cage lanterns exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '405', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "405",
+    "state": "open",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '405'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Plaque is on the swung-open left door leaf: preserve its original foreshortened perspective; the gold room, open door leaf, chandelier, and smooth anonymous two-eyed rounded shadow with no accessories MUST remain identical. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '405', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "501",
+    "state": "closed",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '501'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep warm yellow side lanterns and no alarm beacons exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '501', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "501",
+    "state": "warning",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '501'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep the alarm beacons, alarm rays and red cage lanterns exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '501', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "501",
+    "state": "open",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '501'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Plaque is on the swung-open left door leaf: preserve its original foreshortened perspective; the gold room, open door leaf, chandelier, and smooth anonymous two-eyed rounded shadow with no accessories MUST remain identical. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '501', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "502",
+    "state": "closed",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '502'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep warm yellow side lanterns and no alarm beacons exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '502', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "502",
+    "state": "warning",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '502'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep the alarm beacons, alarm rays and red cage lanterns exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '502', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "502",
+    "state": "open",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '502'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Plaque is on the swung-open left door leaf: preserve its original foreshortened perspective; the gold room, open door leaf, chandelier, and smooth anonymous two-eyed rounded shadow with no accessories MUST remain identical. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '502', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "503",
+    "state": "closed",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '503'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep warm yellow side lanterns and no alarm beacons exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '503', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "503",
+    "state": "warning",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '503'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Door remains fully closed. Keep the alarm beacons, alarm rays and red cage lanterns exactly unchanged. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '503', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  },
+  {
+    "room": "503",
+    "state": "open",
+    "prompt": "Use case: text-localization, strict localized game sprite edit. The attached PNG is the APPROVED FINAL MASTER. Replace ONLY the existing three room-number glyphs '301' with exactly '503'. All other pixels, objects, geometry, lighting, colors and alpha must remain visually identical. SAME serif numerals, size, dark burgundy ink, baseline and spacing centered on SAME gold plaque. Plaque is on the swung-open left door leaf: preserve its original foreshortened perspective; the gold room, open door leaf, chandelier, and smooth anonymous two-eyed rounded shadow with no accessories MUST remain identical. Preserve the complete 1254 x 1254 square canvas and transparent exterior. Do not crop, trim transparent margins, scale, reframe, recenter, redraw the crest, add or remove any detail, move the door base, change silhouette, redesign the plaque or change font. No new text except '503', no background/checker, no contact sheet. Output one single true-alpha PNG identical to reference except those three printed digits."
+  }
+]
