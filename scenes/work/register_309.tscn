@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/work/work_point.tscn" id="1_work"]
+
+[node name="Register309" instance=ExtResource("1_work")]
+target_id = "REGISTER_309"
+interaction_type = "AUTHORIZE"
+required_card = "MANAGER"
+hold_duration = 0.0
+
+[node name="WorkVisual" parent="." index="0"]
+color = Color(0.22, 0.48, 0.46, 1)
+
+[node name="Hint" parent="." index="1"]
+text = "REGISTER 309 · MANAGER · E"

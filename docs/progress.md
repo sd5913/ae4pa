@@ -753,3 +753,10 @@
 - 用户明确授权推送本轮门逻辑、原开门素材恢复、站立动画及最终1.35比例，并入main后再同步个人分支。先fetch并快进同步main bef62ba，已有候选与观察入口保留且不发布。
 - 发布前重新运行 ENCOUNTER_FLOW、foundation_smoke、task_01_main_flow_smoke，均PASS；其余既有回归沿用同源码上一轮实际记录。附图集无损导入描述及新脚本UID，保留完整原开门图。
 - 发布范围包括半随机20房配置、单门调度、首次/违规请求与D/A接口；202以后实际聊天与任务执行仍待接入，不当作完整主线已完成。最终远端PR及同步SHA由发布结果确认。
+
+
+## 2026-11-18 B：任务 02—05 组件封装交付
+
+- 从最新 main `6a26974` 建立独立 B 分支，复用既有 `CleaningSpot`／`Staff`，新增 `parcel_cabinet_2f.tscn`、`register_309.tscn`、`exit_register_5f.tscn`、`patrol_staff_4f.tscn` 四个薄封装。目标 ID、身份、工作类型、一次性奖励和恢复入口固化在根节点；没有修改 A 主线、C 楼层、D UI 或定义任务 03 尚未确认的结算／回访规则。
+- `work_items_test.tscn` 改为直接实例化四个正式封装；`work_items_smoke` 覆盖固定参数、错误身份、一次性结果、完成视觉隐藏、PATROL_RECORD 不进入卡片、被抓／恢复及只读进度。Godot 4.7.2 在最新 main 上重新导入后，自动检查 PASS，综合人工场景启动退出 0；保留既有 macOS 证书与编辑器设置保存诊断。
+- 偷卡难度调整继续留在 PR #35 工作区，未混入本组件分支。临时中文字体、主题、`assets/temp_review/`、`temp_*review*` 与本机 `project.godot` 均未复制到交付分支。

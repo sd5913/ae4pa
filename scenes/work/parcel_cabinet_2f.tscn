@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/work/work_point.tscn" id="1_work"]
+
+[node name="ParcelCabinet2F" instance=ExtResource("1_work")]
+target_id = "PARCEL_CABINET_2F"
+interaction_type = "PICKUP"
+required_card = "SECURITY"
+hold_duration = 0.0
+
+[node name="WorkVisual" parent="." index="0"]
+color = Color(0.45, 0.34, 0.2, 1)
+
+[node name="Hint" parent="." index="1"]
+text = "PARCEL · SECURITY · E"

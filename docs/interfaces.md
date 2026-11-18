@@ -673,6 +673,22 @@ A 当前工作区在 §18 基础上接入 D `eb5e019` 的 main_menu、help、bag
 - MissionBoard／Failure 保留 main 的自登记模态，在卸载时释放自身登记；A TaskLayer 继续管理 TASK_OFFER／TASK_FAILURE。接受、恢复、新局与卸载的真实回归均已通过。
 
 
+## 21.1 B 后续任务可实例化组件（2026-11-18）
+
+| PackedScene | 固定配置 | A 的实例化与恢复 |
+|---|---|---|
+| `res://scenes/work/parcel_cabinet_2f.tscn` | `target_id="PARCEL_CABINET_2F"`、`interaction_type="PICKUP"`、`required_card="SECURITY"`、`hold_duration=0.0` | 放入 2F 后调用 `setup(player: HotelPlayer)`、按 TASK_02 资格调用 `set_task_active(active: bool)`；检查点恢复调用 `set_completed(completed: bool)` |
+| `res://scenes/work/register_309.tscn` | `target_id="REGISTER_309"`、`interaction_type="AUTHORIZE"`、`required_card="MANAGER"`、`hold_duration=0.0` | 放入 3F，调用同一工作点接口；A 保存批准事实。批准后的任务结算与救援后回访仍待团队确认，B 不定义 |
+| `res://scenes/work/exit_register_5f.tscn` | `target_id="EXIT_REGISTER_5F"`、`interaction_type="AUTHORIZE"`、`required_card="MANAGER"`、`hold_duration=0.0` | 放入 5F，调用同一工作点接口；批准只提交候选结果，交付与通关由 A 处理 |
+| `res://scenes/staff/patrol_staff_4f.tscn` | `target_id="STAFF_PATROL_4F"`、`reward_type="TASK_ITEM"`、`reward_id="PATROL_RECORD"`、`requires_task_eligibility=true` | 放入 4F 后调用 `setup(player: HotelPlayer)`、按 TASK_04 资格调用 `set_task_eligible(eligible: bool)`；恢复调用 `set_reward_available(available: bool)` |
+
+工作点成功信号为 `work_requested(target_id: String)`，取消信号为 `interaction_cancelled(target_id: String)`；没有单独失败信号，拒绝原因由 `get_interaction_state()`／`interaction_state_changed(target_id: String, state: Dictionary)` 的 `block_reason` 读取。A 接受 `work_requested` 后再调用自己的 `record_work_result(target_id)` 保存事实。完成态由 `is_completed()` 查询，`set_completed(true)` 隐藏物件与提示并阻止重复，`set_completed(false)` 恢复可用状态。
+
+巡逻文件成功信号为 `task_item_stolen(item_id: String, target_id: String)`，被抓信号为 `task_failure_requested(reason: String, target_id: String)`，进度信号同为 `interaction_state_changed(target_id: String, state: Dictionary)`。PATROL_RECORD 是一次性任务奖励，不进入 CardManager；`is_reward_available()` 查询，`set_reward_available(false)` 表示已取。被抓后的检查点恢复由 A 回到任务接取前快照并保留前序任务成果，再依据快照刷新 `set_reward_available`／`set_completed`；B 不创建第二套恢复规则。
+
+正式场景不得启用组件自收 E：A 的唯一目标路由在按下时调用 `begin_interaction()`／`begin_steal()`，松开、移动、失去资格、开模态、换层或失败时调用 `cancel_interaction()`／`cancel_steal()`。巡逻员工正式实例调用 `set_process_unhandled_input(false)`。综合人工入口为 `res://scenes/tests/staff/work_items_test.tscn`，自动检查为 `res://scenes/tests/staff/work_items_smoke.tscn`。
+
+
 ## 22 单门调度与半随机遇怪（2026-11-18 本地）
 
 生产楼层改用 door_scheduler.gd，独立旧组件测试保留原相位 API。新门逻辑与 D/A 接头见 [房间分配及接入限制](room-monster-table.md)。普通违规改为持有强制任务请求，未接 A/D 的后续任务不可当作已可玩。

@@ -16,6 +16,10 @@ func _ready() -> void:
 	var register_309: CleaningSpot = test.get_node("Authorize309")
 	var exit_register: CleaningSpot = test.get_node("AuthorizeExit")
 	var patrol: Node = test.get_node("PatrolStaff")
+	_expect(pickup.target_id == "PARCEL_CABINET_2F" and pickup.interaction_type == "PICKUP" and pickup.required_card == "SECURITY" and pickup.hold_duration == 0.0, "PARCEL_CABINET_2F scene configuration is incomplete")
+	_expect(register_309.target_id == "REGISTER_309" and register_309.interaction_type == "AUTHORIZE" and register_309.required_card == "MANAGER" and register_309.hold_duration == 0.0, "REGISTER_309 scene configuration is incomplete")
+	_expect(exit_register.target_id == "EXIT_REGISTER_5F" and exit_register.interaction_type == "AUTHORIZE" and exit_register.required_card == "MANAGER" and exit_register.hold_duration == 0.0, "EXIT_REGISTER_5F scene configuration is incomplete")
+	_expect(patrol.target_id == "STAFF_PATROL_4F" and patrol.reward_type == "TASK_ITEM" and patrol.reward_id == "PATROL_RECORD" and patrol.requires_task_eligibility, "STAFF_PATROL_4F scene configuration is incomplete")
 
 	_expect(CardManager.active_card == "SECURITY", "SECURITY test fixture should start active")
 	player.global_position = pickup.global_position
@@ -23,8 +27,10 @@ func _ready() -> void:
 	player.is_moving = false
 	pickup._on_work_area_body_entered(player)
 	await get_tree().physics_frame
+	_expect(pickup.get_node("WorkVisual").visible and pickup.get_node("Hint").visible, "available parcel scene should expose its interaction visual")
 	_expect(pickup.begin_interaction(), "SECURITY could not PICKUP PARCEL_CABINET_2F")
 	_expect(pickup.is_completed(), "PICKUP should complete on one E press")
+	_expect(not pickup.get_node("WorkVisual").visible and not pickup.get_node("Hint").visible, "completed parcel scene did not hide its visual and hint")
 	_expect(not pickup.begin_interaction(), "completed PICKUP repeated")
 
 	player.global_position = register_309.global_position
@@ -117,6 +123,7 @@ func _ready() -> void:
 	patrol._process(0.8)
 	_expect(_patrol_events == [["PATROL_RECORD", "STAFF_PATROL_4F"]], "PATROL_RECORD event payload or count is wrong")
 	_expect(not patrol.is_reward_available() and not CardManager.VALID_CARDS.has("PATROL_RECORD"), "task item leaked into card ownership")
+	_expect(not patrol.get_node("CardMarker").visible, "collected PATROL_RECORD marker remained visible")
 	_expect(patrol.get_interaction_block_reason() == "INELIGIBLE", "collected task item block reason is not readable")
 	_expect(_staff_state_events.any(func(state: Dictionary) -> bool: return state.status == "COMPLETED" and is_equal_approx(state.progress, 1.0)), "staff completion did not notify UI")
 	_expect(not patrol.begin_steal(), "PATROL_RECORD repeated before restore")
