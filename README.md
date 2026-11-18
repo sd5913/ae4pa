@@ -6,7 +6,7 @@
 
 二楼采用独立资产分层组装：可编辑场景 `scenes/levels/floor_2_art.tscn`，F6 入口 `scenes/tests/doors/floor_2_layout_preview.tscn`。A/D 行走，F1 参考图状态，F2—F4 查看门三态，F5 循环。二楼201—205均已绑定统一单门调度、会话半随机怪物和站立动画；后续强制任务聊天接线仍待A/D。摆放与限制见 [二楼布景说明](scenes/levels/floor_2_art_layout.md)。
 
-二楼已接入 main 的 C 分层布景、201—205 三态门美术和扫帚旁清理点；其余楼层仍使用占位背景。A 的菜单、任务 01、背包、笔记和检查点流程继续保留。F5 运行主入口，F6 可运行 `scenes/tests/doors/floor_2_layout_preview.tscn` 预览二楼美术。
+二楼已接入 main 的 C 分层布景、201—205 三态门美术和扫帚旁清理点；三楼已以独立生成组件组装替换旧背景（301—304及309，305已删除）；四、五楼仍使用原背景。A 的菜单、任务 01、背包、笔记和检查点流程继续保留。F5 运行主入口，F6 可运行 `scenes/tests/doors/floor_2_layout_preview.tscn` 预览二楼美术。
 
 2026-11-13 A 当前工作区已接入 D 的任务面板、HUD 和失败页：**F5 从正常菜单开始，可走任务 01 的接受→回 1F 偷保洁卡→回 2F 清理→回 201 交付，以及失败后点击重试重新接取。** 经理使用独立双向谈话范围，201 面板关闭后可在门前按 E 重开。任务 02／三楼及完整五层主线仍未开放。
 
@@ -134,3 +134,5 @@ README 由 A 初始建立、D 后续维护；运行环境和公共接口变动�
 - [V4 玩家操作说明](docs/player-guide.md)和[楼层房号表](docs/room-monster-table.md)。
 - [演示录制清单](docs/demo-recording-checklist.md)：完整演示待录制，旧版独立 UI 截图仅作历史资料。
 - D：蔡至纯（UI、对白、测试与说明）。
+
+三楼美术独立预览可运行 `scenes/tests/doors/floor_3_layout_preview.tscn`（F6，A/D移动）。它只用于查看组件摆放，不绕过正式主线的楼层解锁；普通门检测在此预览夹具停用，主游戏继续沿用既有调度。

@@ -49,7 +49,7 @@ func _ready() -> void:
 	if _work != null:
 		_work.setup(player)
 		_work.cleaning_completed.connect(_on_cleaning_completed)
-	if $Interactions.has_node("RescuePoint"):
+	if $Interactions.has_node("RescuePoint") and not has_node("Floor3Art"):
 		_add_caption($Interactions/RescuePoint, "309 · 救援接入位\n对白与救援尚未实现", -165.0)
 	_refresh_exit_hint()
 	_refresh_staff_captions()
@@ -293,6 +293,8 @@ func _setup_doors() -> void:
 		scheduler.doors.append(door)
 		if has_node("Floor2Art"):
 			$Floor2Art.bind_door(room,door)
+		elif has_node("Floor3Art"):
+			$Floor3Art.bind_door(room,door)
 	add_child(scheduler)
 	GameManager.monster_encounter_requested.connect(_on_monster_encounter)
 
