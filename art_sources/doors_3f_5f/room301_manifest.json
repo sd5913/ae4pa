@@ -1,0 +1,35 @@
+{
+  "status": "local review only",
+  "tool": "built-in image_gen",
+  "auto_trim": false,
+  "anchor": "full-canvas bottom center",
+  "states": [
+    {
+      "state": "closed",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255
+    },
+    {
+      "state": "warning",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255
+    },
+    {
+      "state": "open",
+      "size": [
+        1254,
+        1254
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255
+    }
+  ]
+}
