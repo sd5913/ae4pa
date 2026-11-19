@@ -1,0 +1,67 @@
+[
+  {
+    "key": "carpet_tile",
+    "alpha": false,
+    "prompt": "Production asset for approved fourth floor Monster Hotel 2D side-view illustration. Reference is APPROVED STYLE AND OBJECT DESIGN. Repaint the specified component at native high detail, crisp ornate hand-painted 2D game illustration, deep teal/jade, antique gold, walnut. Straight-on elevation, no perspective camera, no characters. ONE isolated component only, not a contact sheet. No room doors, no door lanterns, no pipes or cleaning equipment, no checkerboard painted in the image, no watermark or annotation. Create one opaque HORIZONTALLY TILEABLE long carpet runner texture strip, width1536 height512, straight-on 2D elevation of narrow visible floor band (no perspective). Deep teal woven carpet with restrained gold botanical pattern, fine gold line near top and bottom, dark plinth lower edge. Matching approved teal carpet. No wall, no stairs, no furniture, no room doors. Full bleed opaque rectangle, seamless left/right."
+  },
+  {
+    "key": "wall_tile",
+    "alpha": false,
+    "prompt": "Production asset for approved fourth floor Monster Hotel 2D side-view illustration. Reference is APPROVED STYLE AND OBJECT DESIGN. Repaint the specified component at native high detail, crisp ornate hand-painted 2D game illustration, deep teal/jade, antique gold, walnut. Straight-on elevation, no perspective camera, no characters. ONE isolated component only, not a contact sheet. No room doors, no door lanterns, no pipes or cleaning equipment, no checkerboard painted in the image, no watermark or annotation. Create an opaque seamless HORIZONTALLY TILEABLE wall panel texture, 1536x1024. Upper 72% deep blue-green teal damask wallpaper with small-scale antique gold botanical scrolls matching reference, lower 28% dark teal carved rectangular wood wainscoting with restrained thin gold borders, horizontal dado rail. NO ceiling cornice, NO baseboard, NO floor, NO furniture, NO doors or pictures. Tile seamlessly left/right; motif and wainscot rhythm consistent at both edges. Fill entire rectangular image, no transparent margin."
+  },
+  {
+    "key": "armchair",
+    "alpha": true,
+    "prompt": "Production asset for approved fourth floor Monster Hotel 2D side-view illustration. Reference is APPROVED STYLE AND OBJECT DESIGN. Repaint the specified component at native high detail, crisp ornate hand-painted 2D game illustration, deep teal/jade, antique gold, walnut. Straight-on elevation, no perspective camera, no characters. ONE isolated component only, not a contact sheet. No room doors, no door lanterns, no pipes or cleaning equipment, no checkerboard painted in the image, no watermark or annotation. Isolate and redraw the single small elegant teal tufted velvet ARMCHAIR between401 and402. Antique gold carved wood rim, rounded cushion, diamond button tufting, curved arms, four visible short gold feet, straight-on front view. Full silhouette and feet included, no table/lamp/wall/carpet/shadow. Truly transparent RGBA outside chair, object fills most canvas."
+  },
+  {
+    "key": "lamp_table",
+    "alpha": true,
+    "prompt": "Production asset for approved fourth floor Monster Hotel 2D side-view illustration. Reference is APPROVED STYLE AND OBJECT DESIGN. Repaint the specified component at native high detail, crisp ornate hand-painted 2D game illustration, deep teal/jade, antique gold, walnut. Straight-on elevation, no perspective camera, no characters. ONE isolated component only, not a contact sheet. No room doors, no door lanterns, no pipes or cleaning equipment, no checkerboard painted in the image, no watermark or annotation. Isolate the small round dark walnut SIDE TABLE WITH GOLD LAMP next to teal chair. One furniture assembly: front view round wooden table with carved legs and antique brass table lamp with pleated golden lampshade on top. No external glow plate, floor or cast shadow. Entire legs and shade, native high detail, transparent exterior. Output one tightly framed native large PNG with genuine transparent alpha."
+  },
+  {
+    "key": "patrol_console",
+    "alpha": true,
+    "prompt": "Production asset for approved fourth floor Monster Hotel 2D side-view illustration. Reference is APPROVED STYLE AND OBJECT DESIGN. Repaint the specified component at native high detail, crisp ornate hand-painted 2D game illustration, deep teal/jade, antique gold, walnut. Straight-on elevation, no perspective camera, no characters. ONE isolated component only, not a contact sheet. No room doors, no door lanterns, no pipes or cleaning equipment, no checkerboard painted in the image, no watermark or annotation. Isolate the PATROL RECORD WRITING CONSOLE between403 and404: dark walnut elegant slim writing table, three brass-handled drawers, four curved carved legs, brass green-gold dome desk lamp, open patrol ledger and feather in small brass inkwell on tabletop. No human, no wall banner, no wall, no floor, no key rack. Full feet intact. Straight-on elevation. One transparent furniture assembly; no text required in book. Output one tightly framed native large PNG with genuine transparent alpha."
+  },
+  {
+    "key": "flower_pedestal",
+    "alpha": true,
+    "prompt": "Production asset for approved fourth floor Monster Hotel 2D side-view illustration. Reference is APPROVED STYLE AND OBJECT DESIGN. Repaint the specified component at native high detail, crisp ornate hand-painted 2D game illustration, deep teal/jade, antique gold, walnut. Straight-on elevation, no perspective camera, no characters. ONE isolated component only, not a contact sheet. No room doors, no door lanterns, no pipes or cleaning equipment, no checkerboard painted in the image, no watermark or annotation. Isolate the GOLD FLOWER VASE ON TALL SLENDER PEDESTAL between402 and403. Purple and pink hydrangea bouquet, golden urn, round gold carved pedestal with slim column and broad round foot, front elevation. One full-height assembly, no background or cast shadow, transparent exterior. Output one tightly framed native large PNG with genuine transparent alpha."
+  },
+  {
+    "key": "bench",
+    "alpha": true,
+    "prompt": "Production asset for approved fourth floor Monster Hotel 2D side-view illustration. Reference is APPROVED STYLE AND OBJECT DESIGN. Repaint the specified component at native high detail, crisp ornate hand-painted 2D game illustration, deep teal/jade, antique gold, walnut. Straight-on elevation, no perspective camera, no characters. ONE isolated component only, not a contact sheet. No room doors, no door lanterns, no pipes or cleaning equipment, no checkerboard painted in the image, no watermark or annotation. Isolate the small backless TEAL VELVET BENCH between404 and405. Teal upholstered seat with shallow diamond tufting, gold nailheads, antique gold carved apron and four curved short legs, front elevation. Only the bench, no palm or painting or wall or carpet/shadow. Full feet intact, transparent exterior. Output one tightly framed native large PNG with genuine transparent alpha."
+  },
+  {
+    "key": "floor_sign",
+    "alpha": true,
+    "prompt": "Production asset for approved fourth floor Monster Hotel 2D side-view illustration. Reference is APPROVED STYLE AND OBJECT DESIGN. Repaint the specified component at native high detail, crisp ornate hand-painted 2D game illustration, deep teal/jade, antique gold, walnut. Straight-on elevation, no perspective camera, no characters. ONE isolated component only, not a contact sheet. No room doors, no door lanterns, no pipes or cleaning equipment, no checkerboard painted in the image, no watermark or annotation. Create the 4F plaque from approved image far left. ONLY the golden small horizontal brass floor sign, softly scalloped rectangular outline, bevel and thin dark outline, exact black serif text '4F'. No column, staircase, wall, extra text or glow. True transparent exterior. Native large PNG, object centered and tightly framed with safe transparent margins. Visible solid painted object opaque; outside fully transparent."
+  },
+  {
+    "key": "portrait",
+    "alpha": true,
+    "prompt": "Production asset for approved fourth floor Monster Hotel 2D side-view illustration. Reference is APPROVED STYLE AND OBJECT DESIGN. Repaint the specified component at native high detail, crisp ornate hand-painted 2D game illustration, deep teal/jade, antique gold, walnut. Straight-on elevation, no perspective camera, no characters. ONE isolated component only, not a contact sheet. No room doors, no door lanterns, no pipes or cleaning equipment, no checkerboard painted in the image, no watermark or annotation. Isolate the upright oval gold framed cameo portrait centered above flower pedestal between402 and403. Burgundy inner painting with simple pale-gold woman's profile silhouette (static wall artwork), ornate gold oval frame and leaf finial. Only framed artwork, no wall, no flowers. True clear alpha exterior, no glow/shadow outside frame. Native large PNG, object centered and tightly framed with safe transparent margins. Visible solid painted object opaque; outside fully transparent."
+  },
+  {
+    "key": "landscape",
+    "alpha": true,
+    "prompt": "Production asset for approved fourth floor Monster Hotel 2D side-view illustration. Reference is APPROVED STYLE AND OBJECT DESIGN. Repaint the specified component at native high detail, crisp ornate hand-painted 2D game illustration, deep teal/jade, antique gold, walnut. Straight-on elevation, no perspective camera, no characters. ONE isolated component only, not a contact sheet. No room doors, no door lanterns, no pipes or cleaning equipment, no checkerboard painted in the image, no watermark or annotation. Isolate a gilded rectangular landscape painting from right side of approved corridor: amber-purple dusk mountains and gothic castle, richly carved antique gold frame, landscape orientation. Complete frame, no wall, no plant, true transparent exterior with no glow or cast shadow. Native large PNG, object centered and tightly framed with safe transparent margins. Visible solid painted object opaque; outside fully transparent."
+  },
+  {
+    "key": "banner",
+    "alpha": true,
+    "prompt": "Production asset for approved fourth floor Monster Hotel 2D side-view illustration. Reference is APPROVED STYLE AND OBJECT DESIGN. Repaint the specified component at native high detail, crisp ornate hand-painted 2D game illustration, deep teal/jade, antique gold, walnut. Straight-on elevation, no perspective camera, no characters. ONE isolated component only, not a contact sheet. No room doors, no door lanterns, no pipes or cleaning equipment, no checkerboard painted in the image, no watermark or annotation. Isolate burgundy wall pennant above patrol console: narrow vertical wine-red velvet banner, gold piping and fringe, gold stylized horned hotel crest surrounded by small laurel, golden horizontal rod and tiny finials. Only pennant and rod, front elevation, transparent outside, no glow. Native large PNG, object centered and tightly framed with safe transparent margins. Visible solid painted object opaque; outside fully transparent."
+  },
+  {
+    "key": "palm",
+    "alpha": true,
+    "prompt": "Production asset for approved fourth floor Monster Hotel 2D side-view illustration. Reference is APPROVED STYLE AND OBJECT DESIGN. Repaint the specified component at native high detail, crisp ornate hand-painted 2D game illustration, deep teal/jade, antique gold, walnut. Straight-on elevation, no perspective camera, no characters. ONE isolated component only, not a contact sheet. No room doors, no door lanterns, no pipes or cleaning equipment, no checkerboard painted in the image, no watermark or annotation. Isolate tall lush green indoor PALM in fluted golden urn with round gold pedestal foot near405. Entire leaf tips and urn base visible. Front elevation, no bench, no painting, no wall/floor, NO glow or cast shadow. Genuine transparent alpha outside detailed silhouette. Native large PNG, object centered and tightly framed with safe transparent margins. Visible solid painted object opaque; outside fully transparent."
+  },
+  {
+    "key": "landscape_vertical",
+    "alpha": true,
+    "prompt": "Production asset for approved fourth floor Monster Hotel 2D side-view illustration. Reference is APPROVED STYLE AND OBJECT DESIGN. Repaint the specified component at native high detail, crisp ornate hand-painted 2D game illustration, deep teal/jade, antique gold, walnut. Straight-on elevation, no perspective camera, no characters. ONE isolated component only, not a contact sheet. No room doors, no door lanterns, no pipes or cleaning equipment, no checkerboard painted in the image, no watermark or annotation. Create ONLY the small VERTICAL RECTANGULAR GOLD-FRAMED CASTLE LANDSCAPE hanging between left stair and room401 in approved reference. Portrait orientation, height roughly1.7 times width including frame. Ornate narrow antique gold rectangular frame with small top flourish; inner painted scene distant purple gothic castle on crag above amber mist, sunset sky, refined hand-painted game artwork. Whole vertical frame visible. No wall, no floor, no other components. Genuine transparent alpha exterior. Large native1024x1536 portrait PNG."
+  }
+]
