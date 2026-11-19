@@ -823,3 +823,10 @@
 - 本轮待真人确认参数：保洁 CLEANING 3.5—4.5 秒、ORGANIZING 3—4 秒，保安 3—4 秒，经理 2.4—3.2 秒；转身准备 0.4 秒、背后静止长按 0.8 秒、正面／回头被抓与唯一 E 不变。
 - Godot 4.7.2 资源重新导入；`staff_core_smoke`、`cleaner_v4_smoke`、`world_interaction_smoke`、`task_checkpoint_smoke`、`task_01_main_flow_smoke`、`encounter_flow_smoke` 均 PASS。首次导入前的怪物纹理缓存缺失诊断已通过完整重新导入处理；最终人工难度仍以 F5 试玩反馈为准。
 - 临时中文字体／主题、`assets/temp_review/`、美术预览、组件 PR #41 文件和调试文件不进入本难度提交。
+
+## 2026-11-17 D 序章与游玩界面美术接入
+
+- 补丁制作基线为远端 main 的 `98e8130`；本机应用于 `work/member-D-hotel-ui-preview`。F5 菜单读取独立雨夜封面和中英字标，序章标题也使用独立字标。
+- 序章首条短信先显示倾斜手机与新消息，约 0.67 秒后摆正。沿用现有 TSV 和按键推进，闺蜜左侧、安右侧，聊天随最新消息滚动。首条短信和通知只在该轮序章开头显示一次；回访短信画面沿用聊天历史。
+- 背包用三收藏格、两佩戴格显示 CardManager 当前数据。HUD 用新状态底板、卡槽和进度轨道，任务时间和工作进度继续读取现有状态。主 UI 仅将工作进度挂到新 HUD 的布局容器。
+- Debian／Godot 4.6.3 无窗口导入与独立 UI、开场预览、`intro_flow_smoke`、`task_ui_smoke` 均退出 0。另在正式入口检查手机摆正、头像左右、最新短信可见、序章字标、三卡单行、真实装备和 HUD 生效状态，退出 0。本环境未打开图形窗口，Windows／Godot 4.7.2 目视待验。

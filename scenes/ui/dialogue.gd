@@ -20,6 +20,8 @@ const BACKGROUNDS := {
 	"exterior": preload("res://assets/final/ui/visual_novel/hotel_exterior_rain.png"),
 	"lobby": preload("res://assets/final/ui/visual_novel/hotel_lobby.png"),
 }
+const AN_AVATAR := preload("res://assets/final/ui/hotel_interface/avatar_an.png")
+const FRIEND_AVATAR := preload("res://assets/final/ui/hotel_interface/avatar_friend.png")
 const FRIEND_SHEET := preload("res://assets/final/ui/visual_novel/friend_expressions.png")
 const PORTRAIT_ROLES := {"女主": "an", "安": "an", "保洁": "cleaner", "保安": "security", "经理": "manager"}
 const EXPRESSION_ALIASES := {
@@ -87,6 +89,7 @@ var _progress_path := DEFAULT_PROGRESS_PATH
 var _current_scene := ""
 var _transition_in_progress := false
 var _skip_transitions := false
+var _phone_tween: Tween
 
 @onready var _background: TextureRect = %Background
 @onready var _fade: ColorRect = %Fade
@@ -97,10 +100,13 @@ var _skip_transitions := false
 @onready var _cue: Label = %StageCue
 @onready var _continue_button: Button = %ContinueButton
 @onready var _skip_button: Button = %SkipButton
-@onready var _sms_panel: PanelContainer = %SMSPanel
+@onready var _sms_panel: Control = %SMSPanel
+@onready var _phone_chat: VBoxContainer = %PhoneChat
+@onready var _phone_notification: PanelContainer = %PhoneNotification
+@onready var _vibration_marks: TextureRect = %VibrationMarks
 @onready var _sms_history: VBoxContainer = %SMSHistory
 @onready var _sms_scroll: ScrollContainer = %SMSScroll
-@onready var _title_label: Label = %TitleLabel
+@onready var _story_title: TextureRect = %StoryTitle
 
 
 func _ready() -> void:
@@ -122,14 +128,16 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func show_dialogue(dialogue_id: String) -> void:
+	_finish_phone_animation()
 	var old_scene := _current_scene
 	_dialogue_id = dialogue_id
 	_line_index = 0
 	_lines.clear()
 	_beats.clear()
 	for child: Node in _sms_history.get_children():
+		_sms_history.remove_child(child)
 		child.queue_free()
-	_title_label.hide()
+	_story_title.hide()
 	_cue.hide()
 	match dialogue_id:
 		"INTRO":
@@ -147,7 +155,7 @@ func show_dialogue(dialogue_id: String) -> void:
 			if _beats.is_empty():
 				_dialogue_id = ""
 				return
-			_set_scene(_beats[0].scene, old_scene != _beats[0].scene)
+			_set_scene(_beats[0].scene, false)
 			_show_story_beat()
 		V4_MANAGER_ID:
 			_load_story_beats("lobby", "lobby")
@@ -184,6 +192,8 @@ func set_progress_file_path_for_test(path: String) -> void:
 
 func set_skip_transitions_for_test(skip: bool) -> void:
 	_skip_transitions = skip
+	if skip and is_node_ready():
+		_finish_phone_animation()
 
 
 func reset_progress_file_for_test() -> void:
@@ -240,7 +250,7 @@ func _show_line() -> void:
 		_display_portrait("闺蜜", "relieved")
 	else:
 		_portrait.hide()
-	_title_label.hide()
+	_story_title.hide()
 
 
 func _show_story_beat() -> void:
@@ -253,12 +263,14 @@ func _show_story_beat() -> void:
 	_speaker.text = "安" if beat.speaker == "女主" else beat.speaker
 	_line.text = beat.text
 	_cue.hide()
-	_title_label.hide()
+	_story_title.hide()
 	if mode == "sms":
 		_sms_panel.show()
 		_frame.hide()
 		_portrait.hide()
 		_add_sms_message(str(beat.speaker), str(beat.text))
+		if _line_index == 0 and not _skip_transitions:
+			_animate_phone_notification()
 	elif mode == "cue":
 		_sms_panel.hide()
 		_frame.hide()
@@ -267,54 +279,94 @@ func _show_story_beat() -> void:
 		_cue.show()
 	elif mode == "title":
 		_sms_panel.hide()
-		_frame.show()
+		_frame.hide()
 		_portrait.hide()
-		_title_label.text = str(beat.text)
-		_title_label.show()
+		_story_title.show()
 	else:
 		_sms_panel.hide()
 		_frame.show()
 		_display_portrait(str(beat.speaker), str(beat.expression))
 
 
+func _animate_phone_notification() -> void:
+	_phone_chat.hide()
+	_phone_notification.show()
+	_vibration_marks.show()
+	_sms_panel.rotation_degrees = 9
+	_phone_tween = create_tween()
+	for angle: float in [13.0, 7.0, 12.0, 6.0, 10.0, 5.0]:
+		_phone_tween.tween_property(_sms_panel, "rotation_degrees", angle, 0.075)
+	_phone_tween.tween_callback(_vibration_marks.hide)
+	_phone_tween.tween_property(_sms_panel, "rotation_degrees", 0.0, 0.22).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	_phone_tween.finished.connect(func() -> void:
+		_phone_tween = null
+		_finish_phone_animation()
+	, CONNECT_ONE_SHOT)
+
+
+func _finish_phone_animation() -> void:
+	if _phone_tween != null:
+		_phone_tween.kill()
+		_phone_tween = null
+	_vibration_marks.hide()
+	_sms_panel.rotation_degrees = 0.0
+	_phone_notification.hide()
+	_phone_chat.show()
+
+
 func _add_sms_message(speaker: String, text: String) -> void:
+	var is_friend := speaker == "闺蜜"
 	var row := HBoxContainer.new()
 	row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	row.add_theme_constant_override("separation", 7)
+	var avatar := TextureRect.new()
+	avatar.custom_minimum_size = Vector2(36, 36)
+	avatar.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	avatar.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	avatar.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
+	avatar.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	avatar.texture = FRIEND_AVATAR if is_friend else AN_AVATAR
 	var bubble := PanelContainer.new()
-	bubble.custom_minimum_size = Vector2(220, 0)
-	bubble.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN if speaker == "闺蜜" else Control.SIZE_SHRINK_END
+	bubble.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var style := StyleBoxFlat.new()
-	style.bg_color = Color("e9e2d3") if speaker == "闺蜜" else Color("638f8e")
-	style.set_corner_radius_all(14)
-	style.content_margin_left = 16
-	style.content_margin_right = 16
-	style.content_margin_top = 10
-	style.content_margin_bottom = 10
+	style.bg_color = Color("414a34") if is_friend else Color("dfbd78")
+	style.set_corner_radius_all(8)
+	style.content_margin_left = 10
+	style.content_margin_right = 10
+	style.content_margin_top = 7
+	style.content_margin_bottom = 7
 	bubble.add_theme_stylebox_override("panel", style)
 	var body := Label.new()
 	body.text = text
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	body.add_theme_color_override("font_color", Color("142326") if speaker == "闺蜜" else Color("ffffff"))
-	body.add_theme_font_size_override("font_size", 22)
+	body.add_theme_color_override("font_color", Color("fff4dc") if is_friend else Color("3c2920"))
+	body.add_theme_font_size_override("font_size", 17)
+	var font := body.get_theme_font("font")
+	body.custom_minimum_size.x = minf(146.0, ceilf(font.get_string_size(
+		text, HORIZONTAL_ALIGNMENT_LEFT, -1, body.get_theme_font_size("font_size")
+	).x))
 	bubble.add_child(body)
-	if speaker == "闺蜜":
-		row.add_child(bubble)
-		_add_sms_spacer(row)
-	else:
-		_add_sms_spacer(row)
-		row.add_child(bubble)
-	_sms_history.add_child(row)
-	call_deferred("_scroll_sms_to_bottom")
-
-
-func _add_sms_spacer(row: HBoxContainer) -> void:
 	var spacer := Control.new()
+	spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	spacer.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	row.add_child(spacer)
+	if is_friend:
+		row.add_child(avatar)
+		row.add_child(bubble)
+		row.add_child(spacer)
+	else:
+		row.add_child(spacer)
+		row.add_child(bubble)
+		row.add_child(avatar)
+	_sms_history.add_child(row)
+	_scroll_sms_to_message(row)
 
 
-func _scroll_sms_to_bottom() -> void:
-	_sms_scroll.scroll_vertical = int(_sms_scroll.get_v_scroll_bar().max_value)
+func _scroll_sms_to_message(row: Control) -> void:
+	# Wait for container layout to update the scroll range for the new bubble.
+	await get_tree().process_frame
+	if is_instance_valid(row) and row.is_inside_tree():
+		_sms_scroll.ensure_control_visible(row)
 
 
 func _display_portrait(speaker: String, expression: String) -> void:
@@ -363,6 +415,9 @@ func _set_scene(scene_id: String, fade: bool) -> void:
 func _advance() -> void:
 	if _dialogue_id.is_empty() or _transition_in_progress:
 		return
+	if _phone_tween != null:
+		_finish_phone_animation()
+		return
 	if not _beats.is_empty():
 		if _line_index + 1 < _beats.size():
 			_line_index += 1
@@ -384,6 +439,7 @@ func _advance() -> void:
 func _finish() -> void:
 	if _dialogue_id.is_empty():
 		return
+	_finish_phone_animation()
 	var finished_id := _dialogue_id
 	_dialogue_id = ""
 	if finished_id == V4_MANAGER_ID:

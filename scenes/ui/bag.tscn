@@ -1,7 +1,25 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=7 format=3]
 
 [ext_resource type="Script" path="res://scenes/ui/bag.gd" id="1_script"]
 [ext_resource type="Theme" path="res://scenes/ui/staff_ui_theme.tres" id="2_theme"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/inventory_case_3_plus_2.png" id="3_case"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_list"]
+content_margin_top = 23.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_selection"]
+bg_color = Color(0.83, 0.66, 0.38, 0.26)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.97, 0.77, 0.46, 0.95)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
 
 [node name="Bag" type="Control"]
 visible = false
@@ -17,136 +35,212 @@ script = ExtResource("1_script")
 
 [node name="Shade" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
-color = Color(0.025, 0.045, 0.054, 0.93)
+color = Color(0.07, 0.084, 0.071, 0.89)
 
-[node name="Center" type="CenterContainer" parent="."]
+[node name="Case" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -564.0
+offset_top = -310.0
+offset_right = 564.0
+offset_bottom = 268.0
 mouse_filter = 2
+texture = ExtResource("3_case")
+expand_mode = 1
 
-[node name="Panel" type="PanelContainer" parent="Center"]
-custom_minimum_size = Vector2(680, 0)
-layout_mode = 2
-
-[node name="Content" type="VBoxContainer" parent="Center/Panel"]
-layout_mode = 2
-theme_override_constants/separation = 14
-
-[node name="Eyebrow" type="Label" parent="Center/Panel/Content"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-theme_override_colors/font_color = Color(0.97, 0.72, 0.39, 1)
-text = "夜班旅馆  /  员工随身物品"
-
-[node name="Title" type="Label" parent="Center/Panel/Content"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "工作证背包"
-
-[node name="Divider" type="HSeparator" parent="Center/Panel/Content"]
-layout_mode = 2
-
-[node name="CardsAndSlots" type="HBoxContainer" parent="Center/Panel/Content"]
-layout_mode = 2
-theme_override_constants/separation = 28
-
-[node name="Owned" type="VBoxContainer" parent="Center/Panel/Content/CardsAndSlots"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 8
-
-[node name="Heading" type="Label" parent="Center/Panel/Content/CardsAndSlots/Owned"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 19
-theme_override_colors/font_color = Color(0.97, 0.72, 0.39, 1)
-text = "已获得的工作证"
-
-[node name="OwnedCards" type="ItemList" parent="Center/Panel/Content/CardsAndSlots/Owned"]
+[node name="OwnedCards" type="ItemList" parent="Case"]
 unique_name_in_owner = true
-layout_mode = 2
-custom_minimum_size = Vector2(260, 150)
-theme_override_font_sizes/font_size = 20
-select_mode = 0
+layout_mode = 0
+offset_left = 100.0
+offset_top = 211.0
+offset_right = 637.0
+offset_bottom = 429.0
+theme_override_colors/font_color = Color(0.97, 0.88, 0.68, 1)
+theme_override_colors/font_selected_color = Color(1, 0.94, 0.75, 1)
+theme_override_font_sizes/font_size = 16
+theme_override_constants/h_separation = 26
+theme_override_constants/icon_margin = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_list")
+theme_override_styles/selected = SubResource("StyleBoxFlat_selection")
+theme_override_styles/selected_focus = SubResource("StyleBoxFlat_selection")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
 allow_reselect = true
+max_columns = 3
+same_column_width = true
+fixed_column_width = 152
+icon_mode = 0
+fixed_icon_size = Vector2i(112, 112)
+focus_neighbor_bottom = NodePath("../CloseButton")
+focus_next = NodePath("../EquipSlotA")
+focus_previous = NodePath("../CloseButton")
 
-[node name="Divider" type="VSeparator" parent="Center/Panel/Content/CardsAndSlots"]
-layout_mode = 2
-
-[node name="Slots" type="GridContainer" parent="Center/Panel/Content/CardsAndSlots"]
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/h_separation = 16
-theme_override_constants/v_separation = 8
-columns = 2
-
-[node name="SlotALabel" type="Label" parent="Center/Panel/Content/CardsAndSlots/Slots"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 19
-theme_override_colors/font_color = Color(0.69, 0.77, 0.76, 1)
-text = "槽 A"
-
-[node name="SlotAValue" type="Label" parent="Center/Panel/Content/CardsAndSlots/Slots"]
+[node name="OwnedHeading" type="Label" parent="Case"]
+layout_mode = 0
+offset_left = 80.0
+offset_top = 105.0
+offset_right = 615.0
+offset_bottom = 173.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.24, 0.15, 0.08, 1)
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
 unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
 
-[node name="SlotBLabel" type="Label" parent="Center/Panel/Content/CardsAndSlots/Slots"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 19
-theme_override_colors/font_color = Color(0.69, 0.77, 0.76, 1)
-text = "槽 B"
-
-[node name="SlotBValue" type="Label" parent="Center/Panel/Content/CardsAndSlots/Slots"]
+[node name="EquippedHeading" type="Label" parent="Case"]
+layout_mode = 0
+offset_left = 695.0
+offset_top = 105.0
+offset_right = 1045.0
+offset_bottom = 173.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.24, 0.15, 0.08, 1)
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+vertical_alignment = 1
 unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 22
 
-[node name="EquipActions" type="HBoxContainer" parent="Center/Panel/Content"]
-layout_mode = 2
-theme_override_constants/separation = 12
+[node name="EmptyOwned1" type="Label" parent="Case"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 269.0
+offset_right = 248.0
+offset_bottom = 371.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.98, 0.9, 0.71, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "空位"
 
-[node name="EquipSlotA" type="Button" parent="Center/Panel/Content/EquipActions"]
-layout_mode = 2
+[node name="EmptyOwned2" type="Label" parent="Case"]
+layout_mode = 0
+offset_left = 282.0
+offset_top = 269.0
+offset_right = 426.0
+offset_bottom = 371.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.98, 0.9, 0.71, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "空位"
+
+[node name="EmptyOwned3" type="Label" parent="Case"]
+layout_mode = 0
+offset_left = 458.0
+offset_top = 269.0
+offset_right = 602.0
+offset_bottom = 371.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.98, 0.9, 0.71, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "空位"
+
+[node name="SlotAArt" type="TextureRect" parent="Case"]
+layout_mode = 0
+offset_left = 732.0
+offset_top = 223.0
+offset_right = 840.0
+offset_bottom = 331.0
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
-size_flags_horizontal = 3
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SlotAValue" type="Label" parent="Case"]
+layout_mode = 0
+offset_left = 711.0
+offset_top = 335.0
+offset_right = 861.0
+offset_bottom = 369.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.98, 0.9, 0.71, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+unique_name_in_owner = true
+
+[node name="EquipSlotA" type="Button" parent="Case"]
+layout_mode = 0
+offset_left = 721.0
+offset_top = 381.0
+offset_right = 851.0
+offset_bottom = 420.0
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 16
+focus_next = NodePath("../EquipSlotB")
+focus_previous = NodePath("../OwnedCards")
 text = "装备到槽 A"
 
-[node name="EquipSlotB" type="Button" parent="Center/Panel/Content/EquipActions"]
-layout_mode = 2
+[node name="SlotBArt" type="TextureRect" parent="Case"]
+layout_mode = 0
+offset_left = 903.0
+offset_top = 223.0
+offset_right = 1011.0
+offset_bottom = 331.0
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
-size_flags_horizontal = 3
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SlotBValue" type="Label" parent="Case"]
+layout_mode = 0
+offset_left = 882.0
+offset_top = 335.0
+offset_right = 1032.0
+offset_bottom = 369.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.98, 0.9, 0.71, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
+unique_name_in_owner = true
+
+[node name="EquipSlotB" type="Button" parent="Case"]
+layout_mode = 0
+offset_left = 892.0
+offset_top = 381.0
+offset_right = 1022.0
+offset_bottom = 420.0
+unique_name_in_owner = true
+theme_override_font_sizes/font_size = 16
+focus_next = NodePath("../CloseButton")
+focus_previous = NodePath("../EquipSlotA")
 text = "装备到槽 B"
 
-[node name="Status" type="Label" parent="Center/Panel/Content"]
+[node name="Status" type="Label" parent="Case"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 467.0
+offset_right = 611.0
+offset_bottom = 510.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.24, 0.15, 0.08, 1)
+theme_override_font_sizes/font_size = 16
+horizontal_alignment = 1
+vertical_alignment = 1
 unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 18
-theme_override_colors/font_color = Color(0.97, 0.72, 0.39, 1)
-text = ""
 
-[node name="CloseButton" type="Button" parent="Center/Panel/Content"]
-layout_mode = 2
+[node name="CloseButton" type="Button" parent="Case"]
+layout_mode = 0
+offset_left = 782.0
+offset_top = 470.0
+offset_right = 960.0
+offset_bottom = 510.0
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 44)
 theme_type_variation = &"PrimaryButton"
-focus_neighbor_left = NodePath(".")
-focus_neighbor_top = NodePath(".")
-focus_neighbor_right = NodePath(".")
-focus_neighbor_bottom = NodePath(".")
-focus_next = NodePath(".")
-focus_previous = NodePath(".")
+theme_override_font_sizes/font_size = 17
+focus_next = NodePath("../OwnedCards")
+focus_previous = NodePath("../EquipSlotB")
 text = "关闭背包（I）"
 
-[connection signal="pressed" from="Center/Panel/Content/CloseButton" to="." method="close_bag"]
+[connection signal="pressed" from="Case/CloseButton" to="." method="close_bag"]
