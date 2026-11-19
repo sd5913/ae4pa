@@ -18,3 +18,7 @@
 - `protagonist_expressions.png`、`friend_expressions.png`：女主与闺蜜六表情。
 - `manager_portrait.png`：经理透明立绘衍生图。
 - `dialogue_frame.png`：透明奶油金对白框。
+
+## 黄铜旅馆界面
+
+`hotel_interface/` 中的雨夜封面、中英字标、五格行李箱、状态栏、进度轨道、双状态卡槽和手机外框来自本项目的 AI 生成 UI 素材包。手机圆形头像从既有的安和闺蜜立绘裁切，震动线为序章提示素材。仅导入场景实际使用的 PNG。

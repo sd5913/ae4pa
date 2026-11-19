@@ -28,16 +28,9 @@ func _ready() -> void:
 	GameManager.task_updated.connect(_refresh_offer)
 	GameManager.game_failed.connect(_show_failure)
 	GameManager.state_changed.connect(_on_state_changed)
-	# D's HUD currently has two direct PanelContainer children; stack these instance
-	# children without changing D's shared scene or script.
-	var stack := VBoxContainer.new()
-	stack.add_theme_constant_override("separation", 8)
-	hud.add_child(stack)
-	hud.get_node("Readout").reparent(stack)
-	hud.get_node("TaskReadout").reparent(stack)
 	interaction_progress = InteractionProgress.new()
 	interaction_progress.name = "InteractionProgress"
-	stack.add_child(interaction_progress)
+	hud.get_node("Stack").add_child(interaction_progress)
 	_refresh_hud()
 
 

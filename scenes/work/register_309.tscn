@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/work/work_point.tscn" id="1_work"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_3_layers/03_furniture/registration_desk.png" id="2_desk"]
+
+[node name="Register309" instance=ExtResource("1_work")]
+target_id = "REGISTER_309"
+interaction_type = "AUTHORIZE"
+required_card = "MANAGER"
+hold_duration = 0.0
+
+[node name="WorkVisual" parent="." index="0"]
+visible = false
+
+[node name="PersistentVisual" type="Sprite2D" parent="." index="1"]
+position = Vector2(0, -59)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_desk")
+
+[node name="Hint" parent="." index="2"]
+text = "REGISTER 309 · MANAGER · E"

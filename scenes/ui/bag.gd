@@ -12,10 +12,13 @@ var _previous_focus: Control
 @onready var _equip_slot_a: Button = %EquipSlotA
 @onready var _equip_slot_b: Button = %EquipSlotB
 @onready var _status: Label = %Status
+@onready var _owned_heading: Label = %OwnedHeading
+@onready var _equipped_heading: Label = %EquippedHeading
+@onready var _empty_owned: Array[Label] = [$Case/EmptyOwned1, $Case/EmptyOwned2, $Case/EmptyOwned3]
+@onready var _slot_art: Array[TextureRect] = [%SlotAArt, %SlotBArt]
 
 
 func _ready() -> void:
-	_owned_cards.fixed_icon_size = Vector2i(64, 64)
 	visibility_changed.connect(_sync_modal_state)
 	CardManager.cards_changed.connect(_refresh_cards)
 	_owned_cards.item_selected.connect(_on_card_selected)
@@ -67,10 +70,21 @@ func _refresh_cards() -> void:
 			_owned_cards.select(_owned_cards.item_count - 1)
 
 	var equipped: Array[String] = CardManager.get_equipped_cards()
+	_owned_heading.text = "收藏  %d / %d" % [card_ids.size(), _empty_owned.size()]
+	for index: int in range(_empty_owned.size()):
+		_empty_owned[index].visible = index >= card_ids.size()
+	var equipped_count := 0
+	for index: int in range(_slot_art.size()):
+		_slot_art[index].texture = CardDisplay.art_for(equipped[index])
+		if equipped[index] != "NONE":
+			equipped_count += 1
+	_equipped_heading.text = "装备  %d / %d" % [equipped_count, _slot_art.size()]
 	_slot_a.text = _slot_text(equipped[0], 0)
 	_slot_b.text = _slot_text(equipped[1], 1)
 	if card_ids.is_empty():
 		_status.text = "尚未获得工作证"
+	elif previously_selected.is_empty():
+		_status.text = "选择一张工作证，再选择佩戴槽。"
 	_equip_slot_a.disabled = _selected_card_id().is_empty()
 	_equip_slot_b.disabled = _selected_card_id().is_empty()
 

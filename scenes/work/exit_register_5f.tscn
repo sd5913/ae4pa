@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/work/work_point.tscn" id="1_work"]
+
+[node name="ExitRegister5F" instance=ExtResource("1_work")]
+target_id = "EXIT_REGISTER_5F"
+interaction_type = "AUTHORIZE"
+required_card = "MANAGER"
+hold_duration = 0.0
+
+[node name="WorkVisual" parent="." index="0"]
+color = Color(0.36, 0.31, 0.5, 1)
+
+[node name="Hint" parent="." index="1"]
+text = "EXIT REGISTER · MANAGER · E"

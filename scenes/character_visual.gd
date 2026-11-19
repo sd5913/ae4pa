@@ -2,6 +2,16 @@ extends Node2D
 
 const CELL_SIZE := 512
 const WALK_FPS := 9.0
+const DISPLAY_HEIGHTS := {
+	"an": 190.0,
+	"manager": 198.0,
+	"security": 204.0,
+	"cleaner": 184.0,
+}
+const V2_STAND_PATHS := {
+	"security": "res://assets/final/staff/q_idle_v2/security_idle_side.png",
+	"cleaner": "res://assets/final/staff/q_idle_v2/cleaner_idle_side.png",
+}
 const ART := {
 	"an": {
 		"stand": preload("res://assets/final/player/q_front/an_q_front.png"),
@@ -15,7 +25,7 @@ const ART := {
 		"stand": preload("res://assets/final/staff/q_front/cleaner_q_front.png"),
 		"walk": preload("res://assets/final/staff/q_walk/cleaner_walk.png"),
 		## Visible bounds measured within the standing image, then each of the six cells.
-		"bounds": [Rect2(168, 90, 420, 918),
+		"bounds": [Rect2(160, 110, 448, 850),
 			Rect2(151, 35, 266, 455), Rect2(122, 44, 263, 444), Rect2(97, 37, 261, 453),
 			Rect2(152, 36, 270, 453), Rect2(124, 42, 262, 446), Rect2(96, 39, 262, 449)],
 	},
@@ -31,7 +41,7 @@ const ART := {
 		"stand": preload("res://assets/final/staff/q_front/security_q_front.png"),
 		"walk": preload("res://assets/final/staff/q_walk/security_walk.png"),
 		## Visible bounds measured within the standing image, then each of the six cells.
-		"bounds": [Rect2(185, 116, 377, 875),
+		"bounds": [Rect2(149, 110, 470, 850),
 			Rect2(138, 23, 278, 458), Rect2(124, 24, 272, 457), Rect2(107, 23, 272, 458),
 			Rect2(138, 26, 278, 455), Rect2(121, 27, 276, 454), Rect2(106, 26, 275, 455)],
 	},
@@ -52,7 +62,11 @@ func _ready() -> void:
 
 
 func set_character(id: String) -> void:
-	_art = ART[id]
+	_art = ART[id].duplicate()
+	visible_height = DISPLAY_HEIGHTS[id]
+	if V2_STAND_PATHS.has(id):
+		var image := Image.load_from_file(ProjectSettings.globalize_path(V2_STAND_PATHS[id]))
+		_art["stand"] = ImageTexture.create_from_image(image)
 	queue_redraw()
 
 

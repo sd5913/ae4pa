@@ -1,6 +1,20 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scenes/ui/dialogue.gd" id="1_script"]
+
+
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/phone_frame.png" id="2_phone"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/vibration_marks.png" id="3_marks"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/avatar_friend.png" id="4_friend"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/title_bilingual.png" id="5_title"]
+[ext_resource type="Theme" path="res://scenes/ui/staff_ui_theme.tres" id="6_theme"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_notification"]
+bg_color = Color(0.098, 0.145, 0.18, 1)
+corner_radius_top_left = 17
+corner_radius_top_right = 17
+corner_radius_bottom_right = 17
+corner_radius_bottom_left = 17
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dialogue"]
 bg_color = Color(0.99, 0.95, 0.86, 1)
@@ -36,6 +50,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+theme = ExtResource("6_theme")
 script = ExtResource("1_script")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -60,46 +75,124 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0.03, 0.035, 0.07, 0.22)
 
-[node name="SMSPanel" type="PanelContainer" parent="."]
+[node name="SMSPanel" type="Control" parent="."]
 unique_name_in_owner = true
 visible = false
-anchors_preset = 7
+layout_mode = 1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 170.0
-offset_top = -295.0
-offset_right = 620.0
-offset_bottom = 300.0
-grow_horizontal = 0
-grow_vertical = 0
+offset_left = -13.0
+offset_top = -337.0
+offset_right = 403.0
+offset_bottom = 287.0
+pivot_offset = Vector2(199, 317)
 mouse_filter = 2
 
-[node name="Phone" type="VBoxContainer" parent="SMSPanel"]
-layout_mode = 2
-theme_override_constants/separation = 10
+[node name="VibrationMarks" type="TextureRect" parent="SMSPanel"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 0
+offset_left = -31.0
+offset_top = 192.0
+offset_right = 430.0
+offset_bottom = 420.0
+mouse_filter = 2
+texture = ExtResource("3_marks")
+expand_mode = 1
 
-[node name="PhoneHeader" type="Label" parent="SMSPanel/Phone"]
+[node name="PhoneFrame" type="TextureRect" parent="SMSPanel"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+texture = ExtResource("2_phone")
+expand_mode = 1
+
+[node name="PhoneScreen" type="Control" parent="SMSPanel"]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 96.0
+offset_right = 321.0
+offset_bottom = 537.0
+mouse_filter = 2
+
+[node name="PhoneChat" type="VBoxContainer" parent="SMSPanel/PhoneScreen"]
+unique_name_in_owner = true
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 9.0
+offset_right = -9.0
+offset_bottom = -10.0
+mouse_filter = 2
+theme_override_constants/separation = 7
+
+[node name="PhoneHeader" type="Label" parent="SMSPanel/PhoneScreen/PhoneChat"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.93, 0.72, 0.42, 1)
-theme_override_font_sizes/font_size = 18
-text = "深夜  ·  与闺蜜的聊天"
+theme_override_colors/font_color = Color(0.23, 0.18, 0.13, 1)
+theme_override_font_sizes/font_size = 19
+text = "闺蜜"
 horizontal_alignment = 1
 
-[node name="SMSScroll" type="ScrollContainer" parent="SMSPanel/Phone"]
+[node name="PhoneDivider" type="ColorRect" parent="SMSPanel/PhoneScreen/PhoneChat"]
+custom_minimum_size = Vector2(0, 1)
+layout_mode = 2
+mouse_filter = 2
+color = Color(0.63, 0.49, 0.29, 0.42)
+
+[node name="SMSScroll" type="ScrollContainer" parent="SMSPanel/PhoneScreen/PhoneChat"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(420, 520)
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
-vertical_scroll_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
 
-[node name="SMSHistory" type="VBoxContainer" parent="SMSPanel/Phone/SMSScroll"]
+[node name="SMSHistory" type="VBoxContainer" parent="SMSPanel/PhoneScreen/PhoneChat/SMSScroll"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 8
+theme_override_constants/separation = 10
+
+[node name="PhoneNotification" type="PanelContainer" parent="SMSPanel/PhoneScreen"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_notification")
+
+[node name="Notice" type="VBoxContainer" parent="SMSPanel/PhoneScreen/PhoneNotification"]
+layout_mode = 2
+alignment = 1
+mouse_filter = 2
+
+[node name="Avatar" type="TextureRect" parent="SMSPanel/PhoneScreen/PhoneNotification/Notice"]
+custom_minimum_size = Vector2(59, 59)
+layout_mode = 2
+size_flags_horizontal = 4
+mouse_filter = 2
+texture = ExtResource("4_friend")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Sender" type="Label" parent="SMSPanel/PhoneScreen/PhoneNotification/Notice"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.86, 0.6, 1)
+theme_override_font_sizes/font_size = 21
+text = "闺蜜"
+horizontal_alignment = 1
+
+[node name="NotificationText" type="Label" parent="SMSPanel/PhoneScreen/PhoneNotification/Notice"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.86, 0.79, 0.67, 1)
+theme_override_font_sizes/font_size = 16
+text = "1 条新消息"
+horizontal_alignment = 1
 
 [node name="DialogueFrame" type="Panel" parent="."]
 unique_name_in_owner = true
@@ -167,19 +260,18 @@ horizontal_alignment = 1
 vertical_alignment = 1
 mouse_filter = 2
 
-[node name="TitleLabel" type="Label" parent="."]
+[node name="StoryTitle" type="TextureRect" parent="."]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchor_left = 0.185
-anchor_top = 0.72
-anchor_right = 0.91
-anchor_bottom = 0.95
-theme_override_colors/font_color = Color(0.36, 0.19, 0.07, 1)
-theme_override_font_sizes/font_size = 46
-horizontal_alignment = 1
-vertical_alignment = 1
+anchor_left = 0.2
+anchor_top = 0.08
+anchor_right = 0.8
+anchor_bottom = 0.38
 mouse_filter = 2
+texture = ExtResource("5_title")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="ContinueButton" type="Button" parent="."]
 unique_name_in_owner = true
