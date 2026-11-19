@@ -1,6 +1,8 @@
 extends VBoxContainer
 ## Displays the selected world component's snapshot. B owns all progress and time.
 
+const PROGRESS_TRACK := preload("res://assets/final/ui/hotel_interface/progress_track.png")
+
 const STATUS_TEXT := {
 	"READY": "可交互", "BLOCKED": "暂不可用", "ACTIVE": "进行中",
 }
@@ -23,11 +25,29 @@ var _progress := ProgressBar.new()
 func _ready() -> void:
 	_details.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_details.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_details.add_theme_color_override("font_outline_color", Color("292117"))
+	_details.add_theme_constant_override("outline_size", 5)
 	add_child(_details)
 	_progress.max_value = 1.0
 	_progress.step = 0.0
 	_progress.custom_minimum_size.y = 18.0
 	_progress.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var track := StyleBoxTexture.new()
+	track.texture = PROGRESS_TRACK
+	track.texture_margin_left = 22
+	track.texture_margin_right = 22
+	track.texture_margin_top = 5
+	track.texture_margin_bottom = 5
+	_progress.add_theme_stylebox_override("background", track)
+	var fill := StyleBoxFlat.new()
+	fill.bg_color = Color("d9ad62")
+	fill.set_corner_radius_all(4)
+	fill.expand_margin_top = -4.0
+	fill.expand_margin_bottom = -4.0
+	_progress.add_theme_stylebox_override("fill", fill)
+	_progress.add_theme_color_override("font_color", Color("fff0ca"))
+	_progress.add_theme_color_override("font_outline_color", Color("292117"))
+	_progress.add_theme_constant_override("outline_size", 4)
 	add_child(_progress)
 	hide()
 	GameManager.modal_changed.connect(_refresh_target)

@@ -823,3 +823,20 @@
 - 本轮待真人确认参数：保洁 CLEANING 3.5—4.5 秒、ORGANIZING 3—4 秒，保安 3—4 秒，经理 2.4—3.2 秒；转身准备 0.4 秒、背后静止长按 0.8 秒、正面／回头被抓与唯一 E 不变。
 - Godot 4.7.2 资源重新导入；`staff_core_smoke`、`cleaner_v4_smoke`、`world_interaction_smoke`、`task_checkpoint_smoke`、`task_01_main_flow_smoke`、`encounter_flow_smoke` 均 PASS。首次导入前的怪物纹理缓存缺失诊断已通过完整重新导入处理；最终人工难度仍以 F5 试玩反馈为准。
 - 临时中文字体／主题、`assets/temp_review/`、美术预览、组件 PR #41 文件和调试文件不进入本难度提交。
+
+## 2026-11-17 D 序章与游玩界面美术接入
+
+- 补丁制作基线为远端 main 的 `98e8130`；本机应用于 `work/member-D-hotel-ui-preview`。F5 菜单读取独立雨夜封面和中英字标，序章标题也使用独立字标。
+- 序章首条短信先显示倾斜手机与新消息，约 0.67 秒后摆正。沿用现有 TSV 和按键推进，闺蜜左侧、安右侧，聊天随最新消息滚动。首条短信和通知只在该轮序章开头显示一次；回访短信画面沿用聊天历史。
+- 背包用三收藏格、两佩戴格显示 CardManager 当前数据。HUD 用新状态底板、卡槽和进度轨道，任务时间和工作进度继续读取现有状态。主 UI 仅将工作进度挂到新 HUD 的布局容器。
+- Debian／Godot 4.6.3 无窗口导入与独立 UI、开场预览、`intro_flow_smoke`、`task_ui_smoke` 均退出 0。另在正式入口检查手机摆正、头像左右、最新短信可见、序章字标、三卡单行、真实装备和 HUD 生效状态，退出 0。本环境未打开图形窗口，Windows／Godot 4.7.2 目视待验。
+
+## 2026-11-19 D 黄铜旅馆 UI 审查准备（Windows）
+
+- 当前分支为 work/member-D-hotel-ui-preview，补丁基线 98e8130；Fetch 后接入 main 2538f11，只解决进度文档追加冲突，保留双方历史。原 D 等其他工作区未操作。
+- 本机 Godot 4.7.2 导入、intro_flow、foundation、独立 UI 和带画面验证退出 0；菜单双语标题、手机震动摆正、头像、短信滚动、三收藏／两装备和 HUD 高亮截图已保存到 docs/qa_evidence/d_hotel_ui_20261119。
+- task_ui 退出 1：202 普通门安全退回断言失败。干净 main 2538f11 同样失败；最新 encounter_flow 退出 0。未改管理器／门行为或删除断言，交 A 复核强制相遇与旧测试的对接。
+- 背包与 HUD 截图的卡片来自仓库外脚本调用真实 CardManager API 的测试夹具，非剧情取得；夹具、缓存、临时存档和无关导入描述均不纳入。
+- git diff --check 通过。保留 PR 开启等待审查；本条不宣称正式五任务主线已验收。
+
+- 提交审查前 main 又更新到 f18e4ce（PR #35／#41）。已再次接入，保留 B 组件、员工参数及所有 main 记录；最终 intro_flow、foundation、ui、staff_core、encounter_flow 和带画面验证退出 0，task_ui 与干净 f18e4ce 均在同一普通门退回断言退出 1。最新证据已替换为最终分支生成的截图与日志。

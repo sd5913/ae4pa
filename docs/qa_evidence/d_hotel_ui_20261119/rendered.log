@@ -1,0 +1,21 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 546.92 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3070 Laptop GPU
+
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+PASS capture menu
+PASS phone notification starts tilted
+PHONE ANGLES [9.0, 9.0, 7.33691024780273, 9.55928802490234, 11.7815093994141, 9.59552001953125, 6.92885303497314, 7.15854167938232]
+PASS phone visibly changes orientation before chat
+PASS capture phone-vibration
+PASS phone settles upright and opens messages
+PASS intro generated multiple real SMS rows
+PASS two different speaker portraits
+PASS SMS scroll moves to new messages (offset 513)
+PASS capture phone-chat
+PASS formal HUD layer available after completing prologue
+PASS three collection slots and two equipment slots populated
+PASS capture bag
+PASS formal HUD is visible after closing inventory
+PASS HUD only highlights active equipment slot
+PASS capture hud

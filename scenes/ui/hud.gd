@@ -1,6 +1,8 @@
 extends PanelContainer
 
 const CardDisplay = preload("res://scenes/ui/card_display.gd")
+const ACTIVE_SLOT_FRAME := preload("res://assets/final/ui/hotel_interface/card_slot_active.png")
+const INACTIVE_SLOT_FRAME := preload("res://assets/final/ui/hotel_interface/card_slot_inactive.png")
 const ACTIVE_COLOR := Color(0.97, 0.72, 0.39)
 
 @onready var _floor_value: Label = %FloorValue
@@ -8,6 +10,7 @@ const ACTIVE_COLOR := Color(0.97, 0.72, 0.39)
 @onready var _slot_a_value: Label = %SlotAValue
 @onready var _slot_b_value: Label = %SlotBValue
 @onready var _slot_art: Array[TextureRect] = [%SlotAArt, %SlotBArt]
+@onready var _slot_frames: Array[TextureRect] = [%SlotAFrame, %SlotBFrame]
 @onready var _objective: Label = %Objective
 @onready var _remaining_time: Label = %RemainingTime
 
@@ -89,6 +92,9 @@ func _refresh_cards() -> void:
 		var icon := _slot_art[index]
 		icon.texture = CardDisplay.art_for(equipped[index])
 		icon.visible = icon.texture != null
+		_slot_frames[index].texture = (
+			ACTIVE_SLOT_FRAME if active_card != "NONE" and active_slot == index else INACTIVE_SLOT_FRAME
+		)
 	_set_slot(_slot_a_value, equipped[0], active_card != "NONE" and active_slot == 0)
 	_set_slot(_slot_b_value, equipped[1], active_card != "NONE" and active_slot == 1)
 
