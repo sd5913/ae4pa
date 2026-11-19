@@ -1,0 +1,613 @@
+{
+  "date": "2026-11-19 Asia/Hong_Kong",
+  "head": "caf862d30d36f41a88efb5dde95dbe0ecc61feeb",
+  "scope": "Task03 playable approval flow plus confirmed post-rescue access policy; formal rescue remains gated",
+  "total_headless_invocations": 30,
+  "passed_headless": 30,
+  "tests": [
+    {
+      "test": "core/localization_smoke.gd",
+      "name": "initial_chinese",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/localization_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-initial_chinese.log",
+        "--",
+        "--expect-chinese"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.17
+    },
+    {
+      "test": "core/localization_smoke.gd",
+      "name": "localization_full",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/localization_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-localization_full.log",
+        "--",
+        "--write-english"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 1.6
+    },
+    {
+      "test": "core/localization_smoke.gd",
+      "name": "saved_english",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/localization_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-saved_english.log",
+        "--",
+        "--expect-english"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.14
+    },
+    {
+      "test": "core/localization_smoke.gd",
+      "name": "set_chinese",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/localization_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-set_chinese.log",
+        "--",
+        "--set-chinese"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.13
+    },
+    {
+      "test": "core/localization_smoke.gd",
+      "name": "saved_chinese",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/localization_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-saved_chinese.log",
+        "--",
+        "--expect-chinese"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.13
+    },
+    {
+      "test": "core/task_02_localization_smoke.gd",
+      "name": "task_02_localization",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/task_02_localization_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-task_02_localization.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 1.61
+    },
+    {
+      "test": "core/task_03_main_flow_smoke.gd",
+      "name": "task_03_main_flow_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/task_03_main_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-task_03_main_flow_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 9.53
+    },
+    {
+      "test": "ui/english_layout_smoke.gd",
+      "name": "english_layout_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/ui/english_layout_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-english_layout_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.43
+    },
+    {
+      "test": "core/foundation_smoke.gd",
+      "name": "foundation_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/foundation_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-foundation_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 3.71
+    },
+    {
+      "test": "core/task_01_smoke.gd",
+      "name": "task_01_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/task_01_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-task_01_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.24
+    },
+    {
+      "test": "core/task_01_main_flow_smoke.gd",
+      "name": "task_01_main_flow_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/task_01_main_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-task_01_main_flow_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 6.61
+    },
+    {
+      "test": "core/task_checkpoint_smoke.gd",
+      "name": "task_checkpoint_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/task_checkpoint_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-task_checkpoint_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 16.14
+    },
+    {
+      "test": "core/task_ui_smoke.gd",
+      "name": "task_ui_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/task_ui_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-task_ui_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 17.7
+    },
+    {
+      "test": "core/world_interaction_smoke.gd",
+      "name": "world_interaction_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/world_interaction_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-world_interaction_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 10.98
+    },
+    {
+      "test": "core/floor_return_smoke.gd",
+      "name": "floor_return_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/floor_return_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-floor_return_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 1.69
+    },
+    {
+      "test": "core/task_definitions_smoke.gd",
+      "name": "task_definitions_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/task_definitions_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-task_definitions_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.14
+    },
+    {
+      "test": "core/interaction_allowed_smoke.gd",
+      "name": "interaction_allowed_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/interaction_allowed_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-interaction_allowed_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.14
+    },
+    {
+      "test": "core/notebook_smoke.gd",
+      "name": "notebook_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/notebook_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-notebook_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.24
+    },
+    {
+      "test": "core/task_02_core_smoke.gd",
+      "name": "task_02_core_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/task_02_core_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-task_02_core_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.13
+    },
+    {
+      "test": "core/task_02_main_flow_smoke.gd",
+      "name": "task_02_main_flow_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/task_02_main_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-task_02_main_flow_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 17.69
+    },
+    {
+      "test": "core/task_03_core_smoke.gd",
+      "name": "task_03_core_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/task_03_core_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-task_03_core_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.14
+    },
+    {
+      "test": "core/intro_flow_smoke.gd",
+      "name": "intro_flow_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/intro_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-intro_flow_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 2.16
+    },
+    {
+      "test": "doors/encounter_flow_smoke.gd",
+      "name": "encounter_flow_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/doors/encounter_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-encounter_flow_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 1.79
+    },
+    {
+      "test": "core/safe_return_smoke.gd",
+      "name": "safe_return_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/core/safe_return_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-safe_return_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 2.0
+    },
+    {
+      "test": "doors/floor_3_layout_smoke.gd",
+      "name": "floor_3_layout_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/doors/floor_3_layout_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-floor_3_layout_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 1.01
+    },
+    {
+      "test": "doors/floor_4_layout_smoke.gd",
+      "name": "floor_4_layout_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "--script",
+        "res://scenes/tests/doors/floor_4_layout_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-floor_4_layout_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.91
+    },
+    {
+      "test": "staff/staff_core_smoke.tscn",
+      "name": "staff_core_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "res://scenes/tests/staff/staff_core_smoke.tscn",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-staff_core_smoke.log",
+        "--",
+        "--ui-smoke"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.62
+    },
+    {
+      "test": "staff/work_items_smoke.tscn",
+      "name": "work_items_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "res://scenes/tests/staff/work_items_smoke.tscn",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-work_items_smoke.log",
+        "--",
+        "--ui-smoke"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.53
+    },
+    {
+      "test": "staff/cleaner_v4_smoke.tscn",
+      "name": "cleaner_v4_smoke",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "res://scenes/tests/staff/cleaner_v4_smoke.tscn",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-cleaner_v4_smoke.log",
+        "--",
+        "--ui-smoke"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.52
+    },
+    {
+      "test": "ui/ui_test.tscn",
+      "name": "ui_test",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-ui-final-vekvmwge",
+        "res://scenes/tests/ui/ui_test.tscn",
+        "--log-file",
+        "/private/tmp/ae4pa-task03-suite-ui_test.log",
+        "--",
+        "--ui-smoke"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.33
+    }
+  ],
+  "native_main_flow": {
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--path",
+      "/private/tmp/ae4pa-task03-native-project-fky92lsd",
+      "--script",
+      "res://scenes/tests/core/task_03_main_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-task03-native.log",
+      "--",
+      "--capture"
+    ],
+    "exit_code": 0,
+    "errors": []
+  },
+  "source_sha256": {
+    "assets/final/fonts/hotel_staff_cjk.otf": "f670df5a5c1b0ecbd039e28f5becb23e2c3d4e77307be9a90a9dce60cbe92818",
+    "localization/en.po": "08b0bbd25056203d09bb0af4d30392c7adcdd82fd98b4791000c17d43af4d3d0",
+    "project.godot": "2a19d87d0ed9baa5fc01df25b9c8fdcea3445375956608500dcab388e459ac1e",
+    "scenes/levels/floor.gd": "30856c914d0f2b3c7c09e58e39ded290a91098b626dc63e45f6b2861b16ba39e",
+    "scenes/levels/floor_3.tscn": "b43bf3ae7f61bfeb5c6fc26e47cc1e3e8f2f03dc42e6c8fd668537739a935019",
+    "scenes/levels/floor_3_art.gd": "727e6bfb32c67212cd85f980292937da4e64a582b5bdd00af05dc632753af1dc",
+    "scenes/main.gd": "de6a6f0d6d8c3a49894557cfc22f7b1c51806ff48d0ad225fa4a306d787a2f13",
+    "scenes/main.tscn": "ed8fbdce86c2d89d4d0b8150637dd00f18aa4b402893d52c64c70af5825dd4a4",
+    "scenes/task_hud.gd": "da29acffcf5a70b1ff74338faf6f3350b9cc9242322da67e4bd4dce061e6c6f7",
+    "scenes/task_ui.gd": "1fc2308d645d68a4d8ce0d865f8577268d14ce4e92839a48d1663aeb184e7130",
+    "scenes/tests/core/floor_return_smoke.gd": "516e2096349d3033baa8c9493a03f7b69b26c23d9159c6fa4e78896ada5edc8e",
+    "scenes/tests/core/foundation_smoke.gd": "b42b26958fe9454f85da943552d99ac8e3ca36bf9c3b5ee9289cc9e4bf6b3b44",
+    "scenes/tests/core/interaction_allowed_smoke.gd": "52fb956755b5a8317d8938a98279cb813be9743829f4392c8cc880a25b065e60",
+    "scenes/tests/core/intro_flow_smoke.gd": "97c933c5b59c257f3482955100f627cdbe801663671b3d1a38807ee46bc490e4",
+    "scenes/tests/core/localization_smoke.gd": "88e7968789eeb139714e201eedcffcea16bfda1b80f0df36456bd4e331b30b15",
+    "scenes/tests/core/notebook_smoke.gd": "c35f6083f25aec68bd2ee9a368d83dd6dffa1ea16aa6a4b8fc83ae22ea121bb5",
+    "scenes/tests/core/safe_return_smoke.gd": "0e364064b34c07cca3753d0f476ccf71110b993287014888e8dd887a9a225b94",
+    "scenes/tests/core/task_01_main_flow_smoke.gd": "331c7ece9c3dc9a9ea40dbc061b6bb03d1730dc3face3ea3e11b10fe858e18c5",
+    "scenes/tests/core/task_01_smoke.gd": "8e4217f49142574ffc189dc17c9884754c58314b54718bd2181abe1f3024fccf",
+    "scenes/tests/core/task_02_core_smoke.gd": "905ff3fffebd9a166e35d9220f32304679d399ae16bfffc021fbd27f8510c3c3",
+    "scenes/tests/core/task_02_localization_smoke.gd": "0b264bcec375b7de4af215b1269dcdc4ffccbf022820f3babea392528fe283a3",
+    "scenes/tests/core/task_02_main_flow_smoke.gd": "cf4f5f9ab2b80e5c0c2050dc5cdb0cb8274a27ce80e80cd36d29e13b49978948",
+    "scenes/tests/core/task_03_core_smoke.gd": "d5164ff44b129158de6dddeb9a650e73ac45fdd25ccb891ac486f921207f6ee9",
+    "scenes/tests/core/task_03_main_flow_smoke.gd": "d1c3a4bd9a7ab02a8b40f1fc7868e38bd351c3c0c9936672c09bbee513297939",
+    "scenes/tests/core/task_checkpoint_smoke.gd": "1b6dceaaaa20ad118a8c32aaf1e5cac49395d82ed13c9c9b77f41e8bebcfc605",
+    "scenes/tests/core/task_definitions_smoke.gd": "b5554e0da425d51ddbdd67fd57b87a8261ac9af4f69c99fb80eb31806e0179fc",
+    "scenes/tests/core/task_ui_smoke.gd": "538bc846419037430efc2fbb9157b7f7bd0e8e1321ca91f794d2a99414d8664c",
+    "scenes/tests/core/world_interaction_smoke.gd": "67a1d27ce616207ee9196d7f7fa5f5ee1776fa2fc0100b741da13e0bb27a2433",
+    "scenes/tests/doors/encounter_flow_smoke.gd": "96eaf61b908fd836d8138942a01f02046e479ab3b41050c0baea8942b4a36d28",
+    "scenes/tests/doors/floor_3_layout_smoke.gd": "b449d3b37a99da1a0de76ca4fb3aa20ea6e9f616e746602c0027d0d3209060cb",
+    "scenes/tests/doors/floor_4_layout_smoke.gd": "d310065d3bcad19504d4187f0feee950ca3460581c28ac0872ddd4dff353e16a",
+    "scenes/tests/staff/cleaner_v4_smoke.tscn": "13c4bd35860b8d7a6d21f3240e9cdc8114f6c10986a05bedfc1d91b099796968",
+    "scenes/tests/staff/staff_core_smoke.tscn": "72c905eebcc92e096fccf7116942f346c0ae42537f4f5f477e9f571cabb77a7a",
+    "scenes/tests/staff/work_items_smoke.tscn": "c90695e973c80d0b7974d9dd8fb071d9e693d211fa830acd7c789aa68007554e",
+    "scenes/tests/ui/english_layout_smoke.gd": "b2ef381eac76637f585bfee16677948b7784015d785f2dd87431e0e1e7ff9def",
+    "scenes/tests/ui/ui_test.tscn": "247fe3e16c6c7c6de02a3a73199253c73b1a3f7893c0eaf6516636fc28a30814",
+    "scenes/ui/dialogue.gd": "c8943cd608e1489b6501a324064c578f5d27d976d837840a7055ba3f0230abe1",
+    "scenes/ui/mission_board.gd": "02fa84254ac039be4e169ace101d01f1cbdfbae1923db937b8891def831f9056",
+    "scripts/game_manager.gd": "44cda4ab03067a2e56112ab17bfdf4748921b7a14476b0b3b233dc28375c12fe",
+    "scripts/task_definitions.gd": "4fc8a5af25040a33d8111490dc36eb02cf4992b4c024a50617230fb92ef10e5a"
+  },
+  "confirmed_rules": {
+    "D-05": "Current manager at3F register immediately completes03 and stops clock, unlocks309, no return delivery",
+    "D-07": "After real rescue-dialogue completion, prohibit1F/2F; visited3F—5F and normal next-floor unlock"
+  },
+  "review": {
+    "agent": "task03_review",
+    "result": "No important defects reported",
+    "independent_execution": "Full temporary copy with unique profile;03core and03main both exit0/PASS",
+    "final_delta": "Reviewer rechecked optional capture helper and three calls; no assertion or flow changes, no important risk; no re-execution of that optional delta"
+  },
+  "limitations": [
+    "Full309 story and following not delivered; F5 does not play the two-line placeholder or call rescue_friend",
+    "Core/main tests call rescue_friend as an explicitly labelled domain-callback fixture only; no human rescue approval",
+    "Positions, prior01/02 completion, staff-facing, door phases and clocks include explicit fixtures",
+    "No human03 completion, real240-second wait, Windows, export or full five-floor acceptance",
+    "Existing default-sandbox certificate/editor-settings diagnostics recorded separately; final tests use a dedicated profile",
+    "No commit or push"
+  ],
+  "screenshots_sha256": {
+    "screenshots/approved309.png": "f788b6c9e2f0f4ff93f1f76377c8273b79be3154356f542ead15e9976afd555f",
+    "screenshots/dialogue03.png": "d66364f64d63838675d9c9ebd3f3916bfde5b26c35b69691c2ed7581bff51288",
+    "screenshots/offer03.png": "5d132d0c564eab25571fce5277314127debaec37c50d6291ce01db4808cc39ef"
+  }
+}

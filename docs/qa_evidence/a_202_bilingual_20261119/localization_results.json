@@ -1,0 +1,90 @@
+[
+  {
+    "test": "localization_full",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-a-locale-er375u0h",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-a-localization_full.log",
+      "--",
+      "--write-english"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.8
+  },
+  {
+    "test": "saved_english",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-a-locale-er375u0h",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-a-saved_english.log",
+      "--",
+      "--expect-english"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "test": "set_chinese",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-a-locale-er375u0h",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-a-set_chinese.log",
+      "--",
+      "--set-chinese"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "test": "saved_chinese",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-a-locale-er375u0h",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-a-saved_chinese.log",
+      "--",
+      "--expect-chinese"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "test": "task_02_localization",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-a-locale-er375u0h",
+      "--script",
+      "res://scenes/tests/core/task_02_localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-a-task_02_localization.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.69
+  }
+]

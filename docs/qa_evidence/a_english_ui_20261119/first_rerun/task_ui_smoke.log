@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+FAIL: Offer explains required identity and the full limit
+FAIL: Accepted task replaces stale offer instructions with its active route
+FAIL: The real cleaning point initially displays READY at zero progress
+FAIL: HUD follows the real cleaning progress signal
+FAIL: Accepted task replaces stale offer instructions with its active route
+FAIL: Accepted task replaces stale offer instructions with its active route
+FAIL: Delivered 201 reveals only its earned rule in H
+FAIL: Accepted task replaces stale offer instructions with its active route

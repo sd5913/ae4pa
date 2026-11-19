@@ -192,7 +192,8 @@ func _run() -> void:
 	ordinary.set("door_state", "OPEN")
 	_player().global_position.x = ordinary.global_position.x - 20.0
 	await _settle()
-	_expect(game.call("get_pending_monster_encounter").get("room_id", "") == "202" and game.get("task_status") == "COMPLETED", "After retries, forced encounter is registered without rolling back delivery")
+	_expect(game.call("get_pending_monster_encounter").get("room_id", "") == "202" and game.get("current_task_id") == "TASK_02_PARCEL" and game.get("task_status") == "AVAILABLE", "After retries and201 delivery, independent core adapter offers202 without starting its clock")
+	_expect(game.get("remaining_time") == 0.0 and game.call("get_completed_task_ids").has("TASK_01_CLEAN") and cards.call("has_card", "CLEANER") and game.call("get_world_flags").get("passage_201_unlocked", false), "202 offer preserves201 achievements and its card rather than rolling them back")
 	game.call("start_game")
 	_expect(not game.call("can_retry_current_task") and cards.call("get_owned_cards").is_empty(), "New game clears task checkpoint and cards")
 	await _finish()

@@ -206,11 +206,20 @@ func _run() -> void:
 	ordinary.set("door_state", "CLOSED")
 	_player().global_position.x = ordinary.global_position.x - 180.0
 	await _settle()
+	var delivered_flags: Dictionary = game.call("get_world_flags")
+	var delivered_cards: Dictionary = cards.call("export_snapshot")
 	ordinary.set("door_state", "OPEN")
-	_player().global_position.x = ordinary.global_position.x - 20.0
+	# Cross the centre so this fails if the pending encounter stops blocking passage.
+	_player().global_position.x = ordinary.global_position.x + 20.0
 	await _settle()
-	_expect(_player().global_position.x == _floor().get_node("Interactions/Room202LeftSafe").global_position.x and game.get("task_status") == "COMPLETED" and not failure.visible and not board.visible, "Ordinary warning returns safely without opening task failure UI")
+	var encounter: Dictionary = game.call("get_pending_monster_encounter")
+	_expect(encounter.get("room_id", "") == "202" and encounter.get("task_id", "") == "TASK_02_PARCEL" and encounter.get("first_encounter", false), "Real 202 first contact retains the forced task request for the future adapter")
+	_expect(game.get("task_status") == "COMPLETED" and not failure.visible and not board.visible, "An unavailable later task neither replaces 201 nor opens stale task/failure UI")
+	_expect(game.call("get_world_flags") == delivered_flags and cards.call("export_snapshot") == delivered_cards, "Forced contact preserves delivered work and the real card snapshot")
+	_expect(_player().global_position.x < ordinary.global_position.x, "Pending contact keeps the player on the approach side of 202")
+	_expect(not game.call("resolve_monster_encounter", "201") and game.call("get_pending_monster_encounter") == encounter, "An unrelated room cannot discard the pending contact")
 	main.get_node("DeveloperOverlay/Margin/Info/NewGame").pressed.emit()
+	_expect(game.call("get_pending_monster_encounter").is_empty(), "A new game clears the previous session's forced contact")
 	await _drain(dialogue)
 	await _reach_offer(dialogue)
 	_accept()
@@ -232,7 +241,7 @@ func _run() -> void:
 	for message: String in failures:
 		printerr("FAIL: ", message)
 	if failures.is_empty():
-		print("PASS: F5 D acceptance/HUD/failure/retry, real B/C task loop, timeout/caught rollback, modal ownership and ordinary return.")
+		print("PASS: F5 D acceptance/HUD/failure/retry, real B/C task loop, timeout/caught rollback, modal ownership and forced-contact preservation.")
 	quit(0 if failures.is_empty() else 1)
 
 

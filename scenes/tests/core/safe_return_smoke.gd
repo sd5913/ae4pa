@@ -1,5 +1,6 @@
 extends SceneTree
-## Requires C's real V4 component (1379a16 or later); never substitutes a fake door.
+## Compatibility coverage for A's retained explicit safe-return API with real doors.
+## Production managed doors request forced encounters; encounter_flow/task_ui cover that path.
 
 var failures: Array[String] = []
 var game: Node
@@ -40,10 +41,18 @@ func _run() -> void:
 		_expect(false, "A instantiates real 201 and one ordinary door")
 		await _finish()
 		return
-	_expect(story.scene_file_path == "res://scenes/doors/room_201_door.tscn", "Main floor instantiates the PNG-backed 201 scene")
+	_expect(story.scene_file_path == "res://scenes/doors/monster_door.tscn" and story.managed_cycle, "Main 201 uses the real managed story component")
 	_expect(normal.scene_file_path == "res://scenes/doors/monster_door.tscn", "202 retains its generic door")
-	_expect(story.get_node("Art/Sprite2D").texture.get_size() == Vector2(1280, 1280), "Main 201 retains the complete PNG canvas")
-	_expect(player.z_index > story.z_index + story.get_node("Art").z_index, "Corridor player remains in front of the door art")
+	var art: Node2D = floor_node.get_node("Floor2Art/Doors")
+	_expect(art.get_node("Room201/Sprite2D").texture.get_size() == Vector2(1280, 1280), "Separate production art retains the complete 201 PNG canvas")
+	_expect(player.z_index > art.z_index, "Corridor player remains in front of the separate door art")
+	# Freeze production scheduling/detection only in this compatibility fixture.
+	# No automatic return is expected from current managed-door encounters.
+	for child: Node in floor_node.get_children():
+		if child.get_script() == load("res://scenes/doors/door_scheduler.gd"):
+			child.set_process(false)
+	normal.set_physics_process(false)
+	story.set_managed_state("OPEN")
 	var normal_x: float = normal.global_position.x
 	var left_safe_x: float = floor_node.get_node("Interactions/Room202LeftSafe").global_position.x
 	var right_safe_x: float = floor_node.get_node("Interactions/Room202RightSafe").global_position.x
@@ -70,7 +79,7 @@ func _run() -> void:
 	game.call("request_safe_return", normal, "WRONG_CARD", 0)
 	_expect(player.global_position.x == 1300.0, "Invalid sources and unknown approach sides cannot teleport")
 	foreign.queue_free()
-	# Real C records entry from outside, then reports wrong identity inside OPEN.
+	# Exercise A's explicit API from both recorded approach directions.
 	for side: int in [-1, 1]:
 		player.global_position.x = normal_x + side * 180.0
 		normal.set("door_state", "CLOSED")
@@ -80,10 +89,11 @@ func _run() -> void:
 		normal.set("door_state", "OPEN")
 		# Cross the door centre in one frame; entry evidence, not facing/current side, wins.
 		player.global_position.x = normal_x - side * 20.0
+		game.call("request_safe_return", normal, "WRONG_CARD", side)
 		await physics_frame
 		await process_frame
 		await process_frame
-		_expect(player.global_position.x == (left_safe_x if side == -1 else right_safe_x), "Real ordinary violation returns to its approach side")
+		_expect(player.global_position.x == (left_safe_x if side == -1 else right_safe_x), "Explicit compatibility request returns to its supplied approach side")
 		_expect(game.get("game_state") == "PLAYING", "Safe return resumes play without task failure")
 		_expect(not player.is_moving, "Teleport does not count as EAR movement")
 	_expect(game.call("get_world_flags") == flags and cards.call("get_owned_cards") == inventory, "Safe return preserves world and card truth")
@@ -159,5 +169,5 @@ func _finish() -> void:
 	for failure: String in failures:
 		printerr("FAIL: ", failure)
 	if failures.is_empty():
-		print("PASS: real C story/E integration, dual-side safe returns, guards and persistence.")
+		print("PASS: retained explicit safe-return API, real door/art binding, dual-side guards and persistence; not production encounter behavior.")
 	quit(0 if failures.is_empty() else 1)

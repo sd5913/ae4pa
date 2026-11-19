@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+ERROR: Node not found: "Art/Sprite2D" (relative to "/root/@Node2D@2/Floor2/DoorRoot/Room201/Door").
+   at: get_node (scene/main/node.cpp:1976)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/safe_return_smoke.gd:45)
+SCRIPT ERROR: Invalid access to property or key 'texture' on a base object of type 'null instance'.
+          at: _run (res://scenes/tests/core/safe_return_smoke.gd:45)
+          GDScript backtrace (most recent call first):
+              [0] _run (res://scenes/tests/core/safe_return_smoke.gd:45)

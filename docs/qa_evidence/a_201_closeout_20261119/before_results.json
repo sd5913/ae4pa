@@ -1,0 +1,158 @@
+{
+  "date": "2026-11-19",
+  "head": "f18e4ceef9775dc89fd72fc2ccd420b54d422d1f",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "scope": "201 integration after main sync; legacy safe-return compatibility audited separately",
+  "human_acceptance": "not_performed",
+  "tests": [
+    {
+      "test": "res://scenes/tests/core/foundation_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/foundation_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-foundation_smoke.log"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.87,
+      "result": "PASS",
+      "log": "foundation_smoke.log",
+      "diagnostics": []
+    },
+    {
+      "test": "res://scenes/tests/core/task_01_main_flow_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_01_main_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-task_01_main_flow_smoke.log"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 6.44,
+      "result": "PASS",
+      "log": "task_01_main_flow_smoke.log",
+      "diagnostics": []
+    },
+    {
+      "test": "res://scenes/tests/core/task_checkpoint_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_checkpoint_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-task_checkpoint_smoke.log"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 15.71,
+      "result": "PASS",
+      "log": "task_checkpoint_smoke.log",
+      "diagnostics": []
+    },
+    {
+      "test": "res://scenes/tests/core/task_ui_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_ui_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-task_ui_smoke.log"
+      ],
+      "exit_code": 1,
+      "elapsed_seconds": 17.54,
+      "result": "FAIL",
+      "log": "task_ui_smoke.log",
+      "diagnostics": [
+        "FAIL: Ordinary warning returns safely without opening task failure UI"
+      ]
+    },
+    {
+      "test": "res://scenes/tests/core/world_interaction_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/world_interaction_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-world_interaction_smoke.log"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 11.06,
+      "result": "PASS",
+      "log": "world_interaction_smoke.log",
+      "diagnostics": []
+    },
+    {
+      "test": "res://scenes/tests/core/floor_return_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/floor_return_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-floor_return_smoke.log"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.7,
+      "result": "PASS",
+      "log": "floor_return_smoke.log",
+      "diagnostics": []
+    },
+    {
+      "test": "res://scenes/tests/doors/encounter_flow_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/doors/encounter_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-encounter_flow_smoke.log"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.21,
+      "result": "PASS",
+      "log": "encounter_flow_smoke.log",
+      "diagnostics": []
+    },
+    {
+      "test": "res://scenes/tests/core/safe_return_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/safe_return_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-safe_return_smoke.log"
+      ],
+      "exit_code": 124,
+      "elapsed_seconds": 60.03,
+      "result": "FAIL",
+      "log": "safe_return_smoke.log",
+      "diagnostics": [
+        "ERROR: Node not found: \"Art/Sprite2D\" (relative to \"/root/@Node2D@2/Floor2/DoorRoot/Room201/Door\").",
+        "SCRIPT ERROR: Invalid access to property or key 'texture' on a base object of type 'null instance'."
+      ]
+    }
+  ]
+}

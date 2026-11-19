@@ -1,0 +1,32 @@
+[
+  {
+    "test": "task_03_core_smoke",
+    "exit_code": 0,
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-ui-final-vekvmwge",
+      "--script",
+      "res://scenes/tests/core/task_03_core_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-task_03_core_smoke-final.log"
+    ],
+    "errors": []
+  },
+  {
+    "test": "task_03_main_flow_smoke",
+    "exit_code": 0,
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-ui-final-vekvmwge",
+      "--script",
+      "res://scenes/tests/core/task_03_main_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-task_03_main_flow_smoke-final.log"
+    ],
+    "errors": []
+  }
+]

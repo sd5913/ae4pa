@@ -1,0 +1,196 @@
+{
+  "date": "2026-11-19 Asia/Hong_Kong",
+  "source_commit": "f18e4ceef9775dc89fd72fc2ccd420b54d422d1f",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "platform": "macOS arm64",
+  "mode": "headless",
+  "scope": "Current 201 integration after main sync; explicit safe_return compatibility separated from production forced encounters",
+  "human_acceptance": "not_performed",
+  "local_config_difference": "project.godot retains pre-existing omission of window/stretch/aspect=keep",
+  "file_sha256": {
+    "project.godot": "dc5a1a7af9ffba8fb708ddd71c8a9be8be7763f75433d2c9ff09a8b837529797",
+    "scripts/game_manager.gd": "fe7a74fd73640cbbd1449e796483ed3907bcbd6e0d14041b633851f0a7fa8089",
+    "scenes/levels/floor.gd": "99f911dd8746be97c973dda3ff8f6c526392899af28833a02e0a192db546a503",
+    "scenes/tests/core/foundation_smoke.gd": "b42b26958fe9454f85da943552d99ac8e3ca36bf9c3b5ee9289cc9e4bf6b3b44",
+    "scenes/tests/core/task_01_main_flow_smoke.gd": "331c7ece9c3dc9a9ea40dbc061b6bb03d1730dc3face3ea3e11b10fe858e18c5",
+    "scenes/tests/core/task_checkpoint_smoke.gd": "69ba695e17fb813d0a7f27e0cda7a6ee5ea0b7c53eed821a0e782b8aca69656a",
+    "scenes/tests/core/task_ui_smoke.gd": "358799f0b86fb9c4546783e72ff10153386c03607a123de7295bba9444ea9056",
+    "scenes/tests/core/world_interaction_smoke.gd": "67a1d27ce616207ee9196d7f7fa5f5ee1776fa2fc0100b741da13e0bb27a2433",
+    "scenes/tests/core/floor_return_smoke.gd": "516e2096349d3033baa8c9493a03f7b69b26c23d9159c6fa4e78896ada5edc8e",
+    "scenes/tests/doors/encounter_flow_smoke.gd": "96eaf61b908fd836d8138942a01f02046e479ab3b41050c0baea8942b4a36d28",
+    "scenes/tests/core/safe_return_smoke.gd": "0e364064b34c07cca3753d0f476ccf71110b993287014888e8dd887a9a225b94"
+  },
+  "passed": 8,
+  "total": 8,
+  "tests": [
+    {
+      "test": "res://scenes/tests/core/foundation_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/foundation_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-foundation_smoke-final.log"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 3.95,
+      "result": "PASS",
+      "log": "foundation_smoke.log",
+      "diagnostics": [],
+      "pass_lines": [
+        "PASS: startup, managers, card isolation, failure lifecycle, movement, bounds, and camera."
+      ]
+    },
+    {
+      "test": "res://scenes/tests/core/task_01_main_flow_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_01_main_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-task_01_main_flow_smoke-final.log"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 6.71,
+      "result": "PASS",
+      "log": "task_01_main_flow_smoke.log",
+      "diagnostics": [],
+      "pass_lines": [
+        "TASK_01_MAIN_FLOW: PASS"
+      ]
+    },
+    {
+      "test": "res://scenes/tests/core/task_checkpoint_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_checkpoint_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-task_checkpoint_smoke-final.log"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 16.15,
+      "result": "PASS",
+      "log": "task_checkpoint_smoke.log",
+      "diagnostics": [],
+      "pass_lines": [
+        "PASS: real theft/work/delivery, checkpoint rollback, caught/timeout recovery and modal boundaries."
+      ]
+    },
+    {
+      "test": "res://scenes/tests/core/task_ui_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_ui_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-task_ui_smoke-final.log"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 17.99,
+      "result": "PASS",
+      "log": "task_ui_smoke.log",
+      "diagnostics": [],
+      "pass_lines": [
+        "PASS: F5 D acceptance/HUD/failure/retry, real B/C task loop, timeout/caught rollback, modal ownership and forced-contact preservation."
+      ]
+    },
+    {
+      "test": "res://scenes/tests/core/world_interaction_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/world_interaction_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-world_interaction_smoke-final.log"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 10.92,
+      "result": "PASS",
+      "log": "world_interaction_smoke.log",
+      "diagnostics": [],
+      "pass_lines": [
+        "PASS: unique E dispatch, task gate, cancellation, modal guards, passage and revisit."
+      ]
+    },
+    {
+      "test": "res://scenes/tests/core/floor_return_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/floor_return_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-floor_return_smoke-final.log"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.61,
+      "result": "PASS",
+      "log": "floor_return_smoke.log",
+      "diagnostics": [],
+      "pass_lines": [
+        "PASS: manager gate, real stairs, 1F/2F return, and task persistence."
+      ]
+    },
+    {
+      "test": "res://scenes/tests/doors/encounter_flow_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/doors/encounter_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-encounter_flow_smoke-final.log"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.21,
+      "result": "PASS",
+      "log": "encounter_flow_smoke.log",
+      "diagnostics": [],
+      "pass_lines": [
+        "ENCOUNTER_FLOW: PASS"
+      ]
+    },
+    {
+      "test": "res://scenes/tests/core/safe_return_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/safe_return_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-closeout-safe_return_smoke-final.log"
+      ],
+      "exit_code": 0,
+      "elapsed_seconds": 1.7,
+      "result": "PASS",
+      "log": "safe_return_smoke.log",
+      "diagnostics": [],
+      "pass_lines": [
+        "PASS: retained explicit safe-return API, real door/art binding, dual-side guards and persistence; not production encounter behavior."
+      ]
+    }
+  ],
+  "sources_unchanged_during_run": true
+}

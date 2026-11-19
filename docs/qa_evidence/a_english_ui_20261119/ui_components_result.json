@@ -1,0 +1,16 @@
+{
+  "test": "ui_components",
+  "command": [
+    "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+    "--headless",
+    "--path",
+    "/private/tmp/ae4pa-ui-final-vekvmwge",
+    "res://scenes/tests/ui/ui_test.tscn",
+    "--log-file",
+    "/private/tmp/ae4pa-ui-components-final.log",
+    "--",
+    "--ui-smoke"
+  ],
+  "exit_code": 0,
+  "errors": []
+}

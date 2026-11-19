@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-18 Asia/Hong_Kong",
+  "source_commit": "98e8130e4fddf7bef25cec9f722e1775ac747b8a",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "platform": "macOS arm64",
+  "mode": "headless",
+  "scope": "201 targeted closeout, existing tests; documentation changes only this turn",
+  "local_config_difference": "project.godot omits window/stretch/aspect=keep; preserved existing local change",
+  "config_sha256": "dc5a1a7af9ffba8fb708ddd71c8a9be8be7763f75433d2c9ff09a8b837529797",
+  "passed": 4,
+  "total": 4,
+  "fixture_limits": [
+    "Existing tests control positions, employee phases and task clock.",
+    "These results do not establish human playthrough, real 210-second waiting, Windows, exports or later tasks."
+  ],
+  "tests": [
+    {
+      "test": "foundation_smoke",
+      "exit": 0,
+      "passed": true,
+      "unexpected_errors": [],
+      "log": "foundation_smoke.log",
+      "pass_lines": [
+        "PASS: startup, managers, card isolation, failure lifecycle, movement, bounds, and camera."
+      ]
+    },
+    {
+      "test": "task_01_main_flow_smoke",
+      "exit": 0,
+      "passed": true,
+      "unexpected_errors": [],
+      "log": "task_01_main_flow_smoke.log",
+      "pass_lines": [
+        "TASK_01_MAIN_FLOW: PASS"
+      ]
+    },
+    {
+      "test": "task_checkpoint_smoke",
+      "exit": 0,
+      "passed": true,
+      "unexpected_errors": [],
+      "log": "task_checkpoint_smoke.log",
+      "pass_lines": [
+        "PASS: real theft/work/delivery, checkpoint rollback, caught/timeout recovery and modal boundaries."
+      ]
+    },
+    {
+      "test": "task_ui_smoke",
+      "exit": 0,
+      "passed": true,
+      "unexpected_errors": [],
+      "log": "task_ui_smoke.log",
+      "pass_lines": [
+        "PASS: F5 D acceptance/HUD/failure/retry, real B/C task loop, timeout/caught rollback, modal ownership and ordinary return."
+      ]
+    }
+  ]
+}
