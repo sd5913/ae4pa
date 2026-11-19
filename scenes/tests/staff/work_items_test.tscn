@@ -1,52 +1,32 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scenes/tests/staff/work_items_test.gd" id="1_script"]
 [ext_resource type="PackedScene" path="res://scenes/levels/test_corridor.tscn" id="2_corridor"]
-[ext_resource type="PackedScene" path="res://scenes/work/work_point.tscn" id="3_work"]
-[ext_resource type="PackedScene" path="res://scenes/staff/staff.tscn" id="4_staff"]
+[ext_resource type="PackedScene" path="res://scenes/work/parcel_cabinet_2f.tscn" id="3_pickup"]
+[ext_resource type="PackedScene" path="res://scenes/work/register_309.tscn" id="4_register"]
+[ext_resource type="PackedScene" path="res://scenes/work/exit_register_5f.tscn" id="5_exit"]
+[ext_resource type="PackedScene" path="res://scenes/staff/patrol_staff_4f.tscn" id="6_patrol"]
+[ext_resource type="PackedScene" path="res://scenes/work/cleaning_spot.tscn" id="7_stain"]
 
 [node name="WorkItemsTest" type="Node2D"]
 script = ExtResource("1_script")
 
 [node name="Corridor" parent="." instance=ExtResource("2_corridor")]
 
-[node name="Pickup" parent="." instance=ExtResource("3_work")]
+[node name="Pickup" parent="." instance=ExtResource("3_pickup")]
 position = Vector2(410, 560)
-target_id = "PARCEL_CABINET_2F"
-interaction_type = "PICKUP"
-required_card = "SECURITY"
-hold_duration = 0.0
 
-[node name="Hint" parent="Pickup" index="1"]
-text = "PARCEL · SECURITY · E"
-
-[node name="Authorize309" parent="." instance=ExtResource("3_work")]
+[node name="Authorize309" parent="." instance=ExtResource("4_register")]
 position = Vector2(650, 560)
-target_id = "REGISTER_309"
-interaction_type = "AUTHORIZE"
-required_card = "MANAGER"
-hold_duration = 0.0
 
-[node name="Hint" parent="Authorize309" index="1"]
-text = "REGISTER 309 · MANAGER · E"
-
-[node name="AuthorizeExit" parent="." instance=ExtResource("3_work")]
+[node name="AuthorizeExit" parent="." instance=ExtResource("5_exit")]
 position = Vector2(890, 560)
-target_id = "EXIT_REGISTER_5F"
-interaction_type = "AUTHORIZE"
-required_card = "MANAGER"
-hold_duration = 0.0
 
-[node name="Hint" parent="AuthorizeExit" index="1"]
-text = "EXIT REGISTER · MANAGER · E"
-
-[node name="PatrolStaff" parent="." instance=ExtResource("4_staff")]
+[node name="PatrolStaff" parent="." instance=ExtResource("6_patrol")]
 position = Vector2(1130, 560)
-target_id = "STAFF_PATROL_4F"
-reward_type = "TASK_ITEM"
-reward_id = "PATROL_RECORD"
-requires_task_eligibility = true
-cleaner_behavior_enabled = false
+
+[node name="Stain201" parent="." instance=ExtResource("7_stain")]
+position = Vector2(1370, 560)
 
 [node name="Status" type="CanvasLayer" parent="."]
 
@@ -83,7 +63,3 @@ wait_time = 1.2
 one_shot = true
 
 [connection signal="timeout" from="RecoveryTimer" to="." method="_on_recovery_timer_timeout"]
-
-[editable path="Pickup"]
-[editable path="Authorize309"]
-[editable path="AuthorizeExit"]
