@@ -29,7 +29,7 @@ func _ready() -> void:
 	player.is_moving = false
 	pickup._on_work_area_body_entered(player)
 	await get_tree().physics_frame
-	_expect(pickup.get_node("PersistentVisual").visible and pickup.get_node("ItemVisual").visible and pickup.get_node("Hint").visible, "available parcel scene should expose cabinet, item and hint")
+	_expect(pickup.get_node("PersistentVisual").visible and not pickup.get_node("ItemVisual").visible and pickup.get_node("Hint").visible, "available parcel uses one envelope baked into the cabinet, without a duplicate small envelope")
 	_expect(pickup.begin_interaction(), "SECURITY could not PICKUP PARCEL_CABINET_2F")
 	_expect(pickup.is_completed(), "PICKUP should complete on one E press")
 	_expect(pickup.get_node("PersistentVisual").visible and not pickup.get_node("ItemVisual").visible and not pickup.get_node("Hint").visible, "completed parcel scene did not preserve furniture or hide item/hint")

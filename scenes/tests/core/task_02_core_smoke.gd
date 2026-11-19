@@ -28,10 +28,10 @@ func _run() -> void:
 		_finish()
 		return
 	_expect(game.remaining_time == 0.0 and game.task_status == "AVAILABLE", "Reading202 does not start clock")
-	_expect(not game.is_interaction_allowed("STAFF_SECURITY_2F"), "No theft before acceptance")
+	_expect(not game.is_interaction_allowed("STAFF_SECURITY_1F"), "No theft before acceptance")
 	_expect(game.accept_task("TASK_02_PARCEL"), "Task02 accepts")
 	_expect(game.remaining_time == 180.0, "Task02 gets its own180 second limit")
-	_expect(game.is_interaction_allowed("STAFF_SECURITY_2F") and not game.is_interaction_allowed("STAFF_SECURITY_1F"), "Only real2F security source is eligible")
+	_expect(game.is_interaction_allowed("STAFF_SECURITY_1F") and not game.is_interaction_allowed("STAFF_SECURITY_2F"), "Only fixed1F security source is eligible")
 	_expect(not game.record_work_result("STAIN_201"), "Old work cannot advance new task")
 	_expect(not game.submit_task("TASK_02_PARCEL"), "Cannot deliver without parcel")
 	cards.collect_card("SECURITY")

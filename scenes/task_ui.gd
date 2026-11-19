@@ -82,7 +82,7 @@ func _refresh_offer_details() -> void:
 	if view["task_id"] == GameManager.TASK_03_ID:
 		details = tr("所需身份：%s · 接受后限时 %d 秒\n回1F经理身后取证 → I装备／Q切当前经理\n回3F登记台按E批准即完成，不需回302交付。") % [tr("经理工作证"), int(view["time_limit"])]
 	elif view["task_id"] == GameManager.TASK_02_ID:
-		details = tr("所需身份：%s · 接受后限时 %d 秒\n二楼保安身后取证 → Q切为当前保安\n保管柜按E领取 → 回202交付。") % [tr("保安工作证"), int(view["time_limit"])]
+		details = tr("所需身份：%s · 接受后限时 %d 秒\n返回一楼在保安身后取证 → Q切为当前保安\n返回二楼保管柜按E领取 → 回202交付。") % [tr("保安工作证"), int(view["time_limit"])]
 	else:
 		details = tr("所需身份：%s · 接受后限时 %d 秒\n回 1F 取得保洁工作证，再到 2F 清理污渍，最后回 201 交付。") % [requirement, int(view["time_limit"])]
 	board.configure_task_details(details, tr("%s / 本次任务") % GameManager.get_task_definition(view["task_id"])["room_id"])

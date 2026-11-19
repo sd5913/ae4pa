@@ -46,7 +46,7 @@ func _run() -> void:
 	game.set_process(false)
 	_player().position.x = 3400
 	_expect(game.request_floor_travel(2), "Fixture reaches2F through validated stair")
-	_freeze_guard(_floor().get_node("StaffRoot/SecuritySlot/Staff"))
+	_expect(_floor().get_node("StaffRoot").get_child_count() == 0, "No card staff on2F")
 	_player().position.x = 580
 	await _settle()
 	var board = main.get_node("TaskLayer/MissionBoard")
@@ -98,7 +98,8 @@ func _run() -> void:
 	await _tap()
 	_expect(not parcel.is_completed() and not game.get_world_flags().get("parcel_collected",false), "Current cleaner cannot pick parcel")
 	await _steal_security()
-	_expect(cards.has_card("SECURITY") and cards.active_card == "CLEANER", "Real2F rear theft gives standby security without switching identity")
+	_expect(cards.has_card("SECURITY") and cards.active_card == "CLEANER", "Real1F rear theft gives standby security without switching identity")
+	parcel = _floor().get_node("Interactions/ParcelCabinet2F")
 	await _tap("switch_id")
 	_expect("Q" not in main.objective_label.text and "Q" not in main.get_node("TaskLayer/HUD/%Objective").text, "An already active security card is not told to switch back")
 	_player().global_position.x = parcel.global_position.x
@@ -123,6 +124,7 @@ func _run() -> void:
 	_expect(not game.get_world_flags().get("parcel_collected",false) and not _floor().get_node("Interactions/ParcelCabinet2F").is_completed(), "Retry restores parcel")
 	board._accept_button.pressed.emit()
 	await _settle()
+	await _travel(1)
 	var guard = _floor().get_node("StaffRoot/SecuritySlot/Staff")
 	_freeze_guard(guard)
 	_player().global_position.x = guard.global_position.x + 50
@@ -208,6 +210,7 @@ func _freeze_guard(guard: Node) -> void:
 		guard.get_node(name).stop()
 
 func _steal_security() -> void:
+	await _travel(1)
 	var guard = _floor().get_node("StaffRoot/SecuritySlot/Staff")
 	if guard.is_suspicious():
 		await guard.get_node("SuspicionTimer").timeout
@@ -217,6 +220,7 @@ func _steal_security() -> void:
 	await _key("interact",true)
 	await create_timer(0.9).timeout
 	await _key("interact",false)
+	await _travel(2)
 
 func _finish() -> void:
 	main.queue_free()

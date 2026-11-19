@@ -18,6 +18,20 @@ var _elapsed: float = 0.0
 var _completion_reported: bool = false
 var _player: HotelPlayer
 
+func _ready() -> void:
+	if target_id in ["STAIN_201","PARCEL_CABINET_2F","EXIT_REGISTER_5F"]:
+		add_child(preload("res://scenes/work/task_item_visual.gd").new())
+
+func _exit_tree() -> void:
+	_set_player_cleaning_visual(false)
+
+func _set_player_cleaning_visual(active: bool) -> void:
+	if interaction_type != "CLEAN" or not is_instance_valid(_player):
+		return
+	var visual := _player.get_node_or_null("Visual/Artwork")
+	if visual != null and visual.has_method("set_cleaning_visual"):
+		visual.set_cleaning_visual(active)
+
 
 func setup(player: HotelPlayer) -> void:
 	_player = player
@@ -208,4 +222,5 @@ func _make_interaction_state(status_override: String = "", progress_override: fl
 
 
 func _emit_interaction_state(status_override: String = "", progress_override: float = -1.0, elapsed_override: float = -1.0) -> void:
+	_set_player_cleaning_visual(_is_interacting)
 	interaction_state_changed.emit(target_id, _make_interaction_state(status_override, progress_override, elapsed_override))

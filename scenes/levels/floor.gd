@@ -481,6 +481,8 @@ func _refresh_exit_hint() -> void:
 func _on_card_stolen(card_id: String) -> void:
 	_refresh_staff_captions()
 	_emit_notice("获得%s ID", [CARD_NAMES[card_id]])
+	if not CardManager.get_equipped_cards().has(card_id):
+		_emit_notice("已收藏%s工作证：两个装备槽已满。按I打开证件管理，选择此卡并替换槽A或B，再按Q切换。", [CARD_NAMES[card_id]])
 
 
 func _emit_notice(template: String, arguments: Array[String] = []) -> void:

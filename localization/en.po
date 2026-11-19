@@ -1203,8 +1203,8 @@ msgstr "But I can't pick a fight with these people until I've found her."
 msgid "我是202的住客。清洁工作完成了？我还有一件遗失的包裹。"
 msgstr "I'm the guest in Room 202. Finished cleaning? I have a missing parcel for you to find."
 
-msgid "接受任务后，你有180秒。先在二楼保安身后长按E取得工作证。"
-msgstr "You have 180 seconds after accepting. First, hold E behind the guard on 2F to take the Security ID."
+msgid "接受任务后，你有180秒。先返回一楼，在保安身后长按E取得工作证。"
+msgstr "You have 180 seconds after accepting. Return to 1F and hold E behind the guard to take the Security ID."
 
 msgid "按Q把保安证切为当前身份，再到我门前的保管柜按E领取包裹。只放在备用槽不行。"
 msgstr "Press Q to make the Security ID active. Then press E at the cabinet outside my room to collect the parcel. Keeping the ID in the standby slot will not work."
@@ -1215,8 +1215,8 @@ msgstr "Bring it back to Room 202 and press E to turn it in. Then I will open th
 msgid "独眼客 · 202"
 msgstr "One-Eyed Guest · 202"
 
-msgid "所需身份：%s · 接受后限时 %d 秒\n二楼保安身后取证 → Q切为当前保安\n保管柜按E领取 → 回202交付。"
-msgstr "Required: %s · %d seconds after accepting\nTake the guard's ID on 2F → Q to make it active\nE at the cabinet to collect the parcel → Return to Room 202."
+msgid "所需身份：%s · 接受后限时 %d 秒\n返回一楼在保安身后取证 → Q切为当前保安\n返回二楼保管柜按E领取 → 回202交付。"
+msgstr "Required: %s · %d seconds after accepting\nReturn to 1F for the guard's ID → Q to make it active\nReturn to the 2F cabinet → E to collect → Room 202."
 
 msgid "%s / 本次任务"
 msgstr "%s / Current Task"
@@ -1224,8 +1224,8 @@ msgstr "%s / Current Task"
 msgid "在202接受180秒包裹任务"
 msgstr "Accept the 180-second parcel task at Room 202"
 
-msgid "二楼保安身后长按E取证"
-msgstr "Hold E behind the guard on 2F to take the ID"
+msgid "返回一楼，在保安身后长按E取证"
+msgstr "Return to 1F; hold E behind the guard for the ID"
 
 msgid "到保管柜按E领取包裹"
 msgstr "Press E at the cabinet to collect the parcel"
@@ -1248,10 +1248,10 @@ msgstr "Room 201 complete; head right to Room 202 for the parcel task"
 msgid "回到202接受前，保留201成果，撤销本任务保安卡与包裹。"
 msgstr "Return to before accepting at Room 202. Keep Room 201 progress; undo the Security ID and parcel gained during this task."
 
-msgid "202包裹任务待接受：二楼保安取证 → Q切保安 → 保管柜领取 → 回202交付。"
+msgid "202包裹任务待接受：一楼保安取证 → Q切保安 → 二楼保管柜领取 → 回202交付。"
 msgstr "Room 202 · Parcel task available. Read the details to accept."
 
-msgid "任务已接受：在二楼保安身后取证，Q切保安身份，到门前保管柜领取，再回202交付。"
+msgid "任务已接受：回一楼在保安身后取证，Q切保安身份，返回二楼保管柜领取，再回202交付。"
 msgstr "Task accepted · Guard's ID → Q: Security → Cabinet → Room 202"
 
 msgid "当前目标：%s"
@@ -1260,8 +1260,8 @@ msgstr "Current objective: %s"
 msgid "在202面板接受包裹任务，接受后开始180秒计时。"
 msgstr "Accept the parcel task at Room 202. The 180-second clock starts when you accept."
 
-msgid "在二楼保安身后长按E取得工作证。"
-msgstr "Hold E behind the guard on 2F to take the Security ID."
+msgid "返回一楼，在保安身后长按E取得工作证。"
+msgstr "Return to 1F and hold E behind the guard for the Security ID."
 
 msgid "到保管柜按E领取包裹。"
 msgstr "Press E at the cabinet to collect the parcel."

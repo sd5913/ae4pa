@@ -286,7 +286,7 @@ B/C/D 提交给 A 的交接内容为：场景及脚本、公开配置说明、�
 | 任务 ID | 触发／结算 | 工作对象 ID 与事实 |
 |---|---|---|
 | TASK_01_CLEAN | 201 接取／交付 | STAFF_CLEANER_1F → CLEANER；STAIN_201 → `stain_201_cleaned` |
-| TASK_02_PARCEL | 202 接取／交付 | STAFF_SECURITY_2F → SECURITY；PARCEL_CABINET_2F → `parcel_collected`／`parcel_delivered` |
+| TASK_02_PARCEL | 202 接取／交付 | STAFF_SECURITY_1F → SECURITY；PARCEL_CABINET_2F → `parcel_collected`／`parcel_delivered` |
 | TASK_03_AUTHORIZE | 303 接取；按 D-05 建议在登记台结算 | STAFF_MANAGER_1F → MANAGER；REGISTER_309 → `registration_309_approved` |
 | TASK_04_PATROL | 402 接取／交付 | STAFF_PATROL_4F → PATROL_RECORD；`patrol_collected`／`patrol_delivered` |
 | TASK_05_EXIT | 503 接取／交付 | EXIT_REGISTER_5F → EXIT_FORM；`exit_form_approved`／`exit_form_delivered` |
@@ -731,7 +731,7 @@ A 当前工作区在 §18 基础上接入 D `eb5e019` 的 main_menu、help、bag
 
 - 用户本轮明确指定先接202，不等待剩余美术或完整五怪教学。启用ID仅 `TASK_01_CLEAN`／`TASK_02_PARCEL`；201交付后才允许offer02，不能替换活动任务。202的真实怪物对白结束才offer，接受后180秒；03—05数据存在但入口仍拒绝。
 - A新增楼层信号 `task_dialogue_requested(task_id: String)` 供main显示202介绍；独立core无UI监听时可直接offer作为明确开发适配。正式F5不走假对白或假奖励。
-- 二楼员工实例 `StaffRoot/SecuritySlot/Staff` 的 `target_id="STAFF_SECURITY_2F"`，x420／y560；1F保安仍为环境角色，无02发卡权限。A沿用B的begin/cancel与范围／朝向／长按复核，不改B内部。
+- 2026-11-20 用户统一员工楼层归属：二楼不再实例化取证保安；任务02使用 `STAFF_SECURITY_1F`，返回一楼获取SECURITY，再回二楼领取／交付。沿用B的begin/cancel与范围／朝向／长按复核，不改怪物或房门。
 - `Interactions/ParcelCabinet2F` 实例B封装，x990／y560，当前SECURITY方可PICKUP；只隐藏领取物，保留正式柜体，隐藏重复PersistentVisual。A监听 `work_requested(target_id)` 并绑定实际source，拒绝旧楼层／非登记／目标不符来源；回访由 `parcel_collected` 恢复。
 - 202实例由A设STORY并绑定C原拦截／进度／交付；目录与C组件未改。当前任务镜像之外，已交付201继续COMPLETED；202接受清除自身待处理请求，交付写 `parcel_delivered`／`passage_202_unlocked`。
 - 02检查点 `Interactions/Task02AcceptSafe=(1070,560)`，位于202左侧半径之外；重试回AVAILABLE／0秒，恢复卡片快照及接取前世界，保留201／保洁／污渍与前序笔记，撤销本任务新保安卡和包裹。02未交付右界1476（路障1500），取证／领取／交付均可达；交付才开放后段和合法3F楼梯。
@@ -749,3 +749,12 @@ A 当前工作区在 §18 基础上接入 D `eb5e019` 的 main_menu、help、bag
 - 新增 `friend_rescued()` 与 `rescue_friend()->bool`，仅PLAYING可操作、3F、03已完成／登记已批准且尚无friend时成功一次。未来真实救援对白结束后调用，设置has_friend／rescue_309_completed。救援后get_available_floors过滤1F／2F，request_floor_travel也通过同一许可校验拒绝旧低层请求。
 - 完整D救援对白仍未交付，当前正式F5不调用rescue_friend、不用两句占位对白冒充正式救援；方法本轮只在明确核心／主流程夹具中验证。没有生成闺蜜跟随或启用04／05。
 - 当前事实、验证和后续入口见[03交接](task_03_handoff_20261119.md)。D-05／D-07已获用户明确确认，不再作为规则未定重复询问。
+
+## 2026-11-20 B 正式美术、楼层归属与证件管理接入
+
+- 正式母版：`assets/final/characters/approved_static/{an,manager,security,cleaner}.png`；动作：`approved_actions/`同名PNG。均为本轮已确认候选的原文件复制，不改设计。三名女性190px，保安200px。
+- `scenes/character_visual.gd` 保留 `set_character(id)`、`set_walking(bool)`，新增仅视觉的 `set_cleaning_visual(active: bool)`。每套动作采用固定缩放，六帧行走按实际位移推进（AN每96px一轮，160px/s约10fps；员工60px一轮），不改移动速度。图集3列4行：0—5行走，6—8职业动作，9转身准备，10疑惑，11被抓。角色状态只读现有Staff逻辑，不新增判定或计时器。
+- `CleaningSpot` 在长按开始／取消／完成／卸载时驱动主角拖把姿态；现有任务资格、身份、长按及结果信号不变。`scenes/work/task_item_visual.gd` 只读取组件完成／奖励状态；201污渍、402巡逻文件、503授权单使用 `assets/final/work/`。202只保留柜体PNG中的一封包裹，领取后交换柜内格子的视觉，柜体其余像素不变；202／309正式家具不重画。
+- 三名取证员工只属于1F；2F取证保安实例已移除，TASK_02定义改为 `STAFF_SECURITY_1F`，任务时限／领取／交付／失败规则不变。楼层重载按CardManager所有权抑制重复取卡；4F `STAFF_PATROL_4F`仍为独立TASK_ITEM角色。
+- I键使用现有Bag/equip_card接口；收藏显示三卡，装备仍为两槽，Q仍只切两槽。第三张未装备卡的获取反馈提示I；Bag优先选中未装备卡，明确A/B替换不丢卡。没有修改CardManager、怪物核验或房门规则。
+- 正式接入不依赖临时Autoload、`assets/review/`、本机字体或F6预览。自动化覆盖及视觉验收限制见进度记录。
