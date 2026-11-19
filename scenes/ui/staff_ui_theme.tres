@@ -1,71 +1,125 @@
-[gd_resource type="Theme" format=3 uid="uid://c00rd8ymqn65q"]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://c00rd8ymqn65q"]
 
-[sub_resource type="StyleBoxFlat" id="ButtonFocus"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/button_normal.png" id="1_button_normal"]
+
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/button_hover.png" id="2_button_hover"]
+
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/button_pressed.png" id="3_button_pressed"]
+
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/button_disabled.png" id="4_button_disabled"]
+
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/button_primary.png" id="5_button_primary"]
+
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/button_primary_hover.png" id="6_button_primary_hover"]
+
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/toolbar_plate.png" id="7_toolbar_plate"]
+
+[sub_resource type="StyleBoxTexture" id="button_normal"]
+texture = ExtResource("1_button_normal")
+texture_margin_left = 60.0
+texture_margin_top = 22.0
+texture_margin_right = 60.0
+texture_margin_bottom = 22.0
+content_margin_left = 28.0
+content_margin_top = 12.0
+content_margin_right = 28.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="button_hover"]
+texture = ExtResource("2_button_hover")
+texture_margin_left = 60.0
+texture_margin_top = 22.0
+texture_margin_right = 60.0
+texture_margin_bottom = 22.0
+content_margin_left = 28.0
+content_margin_top = 12.0
+content_margin_right = 28.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="button_pressed"]
+texture = ExtResource("3_button_pressed")
+texture_margin_left = 60.0
+texture_margin_top = 22.0
+texture_margin_right = 60.0
+texture_margin_bottom = 22.0
+content_margin_left = 28.0
+content_margin_top = 12.0
+content_margin_right = 28.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="button_disabled"]
+texture = ExtResource("4_button_disabled")
+texture_margin_left = 60.0
+texture_margin_top = 22.0
+texture_margin_right = 60.0
+texture_margin_bottom = 22.0
+content_margin_left = 28.0
+content_margin_top = 12.0
+content_margin_right = 28.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="button_primary"]
+texture = ExtResource("5_button_primary")
+texture_margin_left = 60.0
+texture_margin_top = 22.0
+texture_margin_right = 60.0
+texture_margin_bottom = 22.0
+content_margin_left = 28.0
+content_margin_top = 12.0
+content_margin_right = 28.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="button_primary_hover"]
+texture = ExtResource("6_button_primary_hover")
+texture_margin_left = 60.0
+texture_margin_top = 22.0
+texture_margin_right = 60.0
+texture_margin_bottom = 22.0
+content_margin_left = 28.0
+content_margin_top = 12.0
+content_margin_right = 28.0
+content_margin_bottom = 12.0
+
+[sub_resource type="StyleBoxTexture" id="Focus"]
+texture = ExtResource("2_button_hover")
+texture_margin_left = 60.0
+texture_margin_top = 22.0
+texture_margin_right = 60.0
+texture_margin_bottom = 22.0
 draw_center = false
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.97, 0.72, 0.39, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
 
-[sub_resource type="StyleBoxFlat" id="ButtonHover"]
-bg_color = Color(0.22, 0.32, 0.32, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="StyleBoxFlat" id="ButtonNormal"]
-bg_color = Color(0.15, 0.22, 0.23, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="StyleBoxFlat" id="ButtonPressed"]
-bg_color = Color(0.1, 0.16, 0.17, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
-
-[sub_resource type="StyleBoxFlat" id="Panel"]
-content_margin_left = 36.0
+[sub_resource type="StyleBoxTexture" id="Panel"]
+texture = ExtResource("7_toolbar_plate")
+texture_margin_left = 80.0
+texture_margin_top = 72.0
+texture_margin_right = 80.0
+texture_margin_bottom = 72.0
+content_margin_left = 32.0
 content_margin_top = 28.0
-content_margin_right = 36.0
+content_margin_right = 32.0
 content_margin_bottom = 28.0
-bg_color = Color(0.076, 0.115, 0.127, 1)
-border_width_left = 1
-border_width_top = 3
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color(0.66, 0.48, 0.24, 1)
-corner_radius_top_left = 12
-corner_radius_top_right = 12
-corner_radius_bottom_right = 12
-corner_radius_bottom_left = 12
-
-[sub_resource type="StyleBoxFlat" id="Primary"]
-bg_color = Color(0.86, 0.63, 0.34, 1)
-corner_radius_top_left = 6
-corner_radius_top_right = 6
-corner_radius_bottom_right = 6
-corner_radius_bottom_left = 6
 
 [resource]
-default_font_size = 22
-Button/colors/font_color = Color(0.94, 0.95, 0.9, 1)
-Button/styles/focus = SubResource("ButtonFocus")
-Button/styles/hover = SubResource("ButtonHover")
-Button/styles/normal = SubResource("ButtonNormal")
-Button/styles/pressed = SubResource("ButtonPressed")
-Label/colors/font_color = Color(0.92, 0.93, 0.88, 1)
+default_font_size = 20
+Button/colors/font_color = Color(0.98, 0.91, 0.73, 1)
+Button/colors/font_hover_color = Color(1, 0.97, 0.85, 1)
+Button/colors/font_focus_color = Color(1, 0.97, 0.85, 1)
+Button/colors/font_pressed_color = Color(1, 0.93, 0.69, 1)
+Button/colors/font_disabled_color = Color(0.65, 0.64, 0.53, 1)
+Button/styles/normal = SubResource("button_normal")
+Button/styles/hover = SubResource("button_hover")
+Button/styles/pressed = SubResource("button_pressed")
+Button/styles/hover_pressed = SubResource("button_pressed")
+Button/styles/disabled = SubResource("button_disabled")
+Button/styles/focus = SubResource("Focus")
+Label/colors/font_color = Color(0.97, 0.91, 0.77, 1)
 PanelContainer/styles/panel = SubResource("Panel")
 PrimaryButton/base_type = &"Button"
-PrimaryButton/colors/font_color = Color(0.12, 0.1, 0.07, 1)
-PrimaryButton/colors/font_focus_color = Color(0.12, 0.1, 0.07, 1)
-PrimaryButton/styles/normal = SubResource("Primary")
+PrimaryButton/colors/font_color = Color(0.2, 0.14, 0.07, 1)
+PrimaryButton/colors/font_hover_color = Color(0.14, 0.09, 0.04, 1)
+PrimaryButton/colors/font_focus_color = Color(0.14, 0.09, 0.04, 1)
+PrimaryButton/colors/font_pressed_color = Color(0.17, 0.12, 0.06, 1)
+PrimaryButton/styles/normal = SubResource("button_primary")
+PrimaryButton/styles/hover = SubResource("button_primary_hover")
+PrimaryButton/styles/pressed = SubResource("button_primary")
+PrimaryButton/styles/disabled = SubResource("button_disabled")

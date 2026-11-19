@@ -20,6 +20,7 @@ func _ready() -> void:
 	play_overlay = PlayOverlay.new()
 	play_overlay.name = "PlayOverlay"
 	add_child(play_overlay)
+	play_overlay.return_to_menu_requested.connect(func() -> void: menu_requested.emit())
 	board.task_accepted.connect(_on_task_accepted)
 	board.visibility_changed.connect(_on_offer_visibility_changed)
 	failure.retry_requested.connect(_on_retry_requested)
@@ -30,7 +31,7 @@ func _ready() -> void:
 	GameManager.state_changed.connect(_on_state_changed)
 	interaction_progress = InteractionProgress.new()
 	interaction_progress.name = "InteractionProgress"
-	hud.get_node("Stack").add_child(interaction_progress)
+	hud.get_node("%ProgressHost").add_child(interaction_progress)
 	_refresh_hud()
 
 

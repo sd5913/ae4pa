@@ -1,5 +1,10 @@
 extends PanelContainer
 
+signal bag_requested()
+signal notebook_requested()
+signal pause_requested()
+signal task_details_requested()
+
 const CardDisplay = preload("res://scenes/ui/card_display.gd")
 const ACTIVE_SLOT_FRAME := preload("res://assets/final/ui/hotel_interface/card_slot_active.png")
 const INACTIVE_SLOT_FRAME := preload("res://assets/final/ui/hotel_interface/card_slot_inactive.png")
@@ -15,9 +20,14 @@ const ACTIVE_COLOR := Color(0.97, 0.72, 0.39)
 @onready var _remaining_time: Label = %RemainingTime
 
 var _last_task_display := ""
+var _notice_tween: Tween
 
 
 func _ready() -> void:
+	%BagButton.pressed.connect(func() -> void: bag_requested.emit())
+	%NotebookButton.pressed.connect(func() -> void: notebook_requested.emit())
+	%PauseButton.pressed.connect(func() -> void: pause_requested.emit())
+	%TaskButton.pressed.connect(func() -> void: task_details_requested.emit())
 	GameManager.state_changed.connect(_refresh_floor.unbind(1))
 	# The foundation exposes the floor value before the floor transition signal.
 	if GameManager.has_signal(&"floor_changed"):
@@ -38,6 +48,10 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	# Read A's authoritative clock for display; this UI does not advance a timer.
 	_refresh_task_display()
+	var can_open := GameManager.is_world_input_allowed()
+	for button: Button in [%BagButton, %NotebookButton, %PauseButton, %TaskButton]:
+		button.disabled = not can_open
+	%TaskButton.disabled = not can_open or GameManager.current_task_id.is_empty()
 
 
 func _on_visibility_changed() -> void:
@@ -80,7 +94,15 @@ func _apply_task_display(objective: String, remaining_time: String) -> void:
 		return
 	_last_task_display = display
 	_objective.text = objective
-	_remaining_time.text = remaining_time
+	_remaining_time.text = remaining_time.trim_prefix("剩余时间：")
+	if GameManager.has_method("get_task_view"):
+		var view: Dictionary = GameManager.get_task_view()
+		if view.get("status", "NONE") == "NONE":
+			_remaining_time.text = "0:00 · 自由探索"
+		_remaining_time.self_modulate = (
+			Color("f4a48a") if view.get("status") == "ACTIVE"
+			and float(view.get("remaining_time", 0)) < 30.0 else Color.WHITE
+		)
 
 
 func _refresh_cards() -> void:
@@ -101,5 +123,17 @@ func _refresh_cards() -> void:
 
 func _set_slot(label: Label, card_id: String, is_active: bool) -> void:
 	var card_name: String = CardDisplay.name_for(card_id)
-	label.text = card_name + " · 生效" if is_active else card_name
+	label.text = card_name.trim_suffix("工作证") + (" · 生效" if is_active else "")
 	label.self_modulate = ACTIVE_COLOR if is_active else Color.WHITE
+
+
+func show_notice(message: String) -> void:
+	if _notice_tween != null and _notice_tween.is_valid():
+		_notice_tween.kill()
+	%NoticeText.text = message
+	%Notice.modulate.a = 1.0
+	%Notice.show()
+	_notice_tween = create_tween()
+	_notice_tween.tween_interval(4.0)
+	_notice_tween.tween_property(%Notice, "modulate:a", 0.0, 0.3)
+	_notice_tween.tween_callback(%Notice.hide)

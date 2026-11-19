@@ -1,5 +1,7 @@
 extends Control
 
+signal return_to_menu_requested()
+
 const FLOOR_MODAL := "FLOOR_SELECT"
 const PAUSE_MODAL := "PAUSE"
 
@@ -8,6 +10,7 @@ var _title: Label
 var _message: Label
 var _choices: VBoxContainer
 var _close: Button
+var _menu: Button
 
 
 func _ready() -> void:
@@ -34,7 +37,19 @@ func _ready() -> void:
 	content.add_child(_message)
 	_choices = VBoxContainer.new()
 	content.add_child(_choices)
+	_menu = Button.new()
+	_menu.text = "返回菜单"
+	_menu.icon = preload("res://assets/final/ui/hotel_interface/icon_exit.png")
+	_menu.expand_icon = true
+	_menu.add_theme_constant_override("icon_max_width", 24)
+	_menu.hide()
+	content.add_child(_menu)
+	_menu.pressed.connect(func() -> void:
+		close_page()
+		return_to_menu_requested.emit()
+	)
 	_close = Button.new()
+	_close.theme_type_variation = &"PrimaryButton"
 	content.add_child(_close)
 	_close.pressed.connect(close_page)
 	hide()
@@ -57,6 +72,7 @@ func _show_floors(message: String) -> void:
 		button.pressed.connect(_request_floor.bind(floor_number))
 		_choices.add_child(button)
 	_choices.show()
+	_menu.hide()
 	if message.is_empty():
 		message = "请选择楼层。" if _choices.get_child_count() else "目前没有可前往的楼层。"
 	_message.text = message
@@ -78,6 +94,7 @@ func toggle_pause() -> void:
 	elif GameManager.is_world_input_allowed():
 		_open_page(PAUSE_MODAL, "游戏暂停", "继续游戏")
 		_choices.hide()
+		_menu.show()
 		_message.text = "倒计时已暂停。"
 
 
