@@ -28,6 +28,11 @@ func _ready() -> void:
 	_sync_modal_state()
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		_refresh_cards()
+
+
 func _sync_modal_state() -> void:
 	if GameManager.has_method("set_modal_open"):
 		GameManager.set_modal_open(MODAL_ID, visible)
@@ -64,13 +69,13 @@ func _refresh_cards() -> void:
 	_owned_cards.clear()
 	var card_ids := CardManager.get_owned_cards()
 	for card_id: String in card_ids:
-		_owned_cards.add_item(CardDisplay.name_for(card_id), CardDisplay.art_for(card_id))
+		_owned_cards.add_item(tr(CardDisplay.name_for(card_id)), CardDisplay.art_for(card_id))
 		_owned_cards.set_item_metadata(_owned_cards.item_count - 1, card_id)
 		if card_id == previously_selected:
 			_owned_cards.select(_owned_cards.item_count - 1)
 
 	var equipped: Array[String] = CardManager.get_equipped_cards()
-	_owned_heading.text = "收藏  %d / %d" % [card_ids.size(), _empty_owned.size()]
+	_owned_heading.text = tr("收藏  %d / %d") % [card_ids.size(), _empty_owned.size()]
 	for index: int in range(_empty_owned.size()):
 		_empty_owned[index].visible = index >= card_ids.size()
 	var equipped_count := 0
@@ -78,7 +83,7 @@ func _refresh_cards() -> void:
 		_slot_art[index].texture = CardDisplay.art_for(equipped[index])
 		if equipped[index] != "NONE":
 			equipped_count += 1
-	_equipped_heading.text = "装备  %d / %d" % [equipped_count, _slot_art.size()]
+	_equipped_heading.text = tr("装备  %d / %d") % [equipped_count, _slot_art.size()]
 	_slot_a.text = _slot_text(equipped[0], 0)
 	_slot_b.text = _slot_text(equipped[1], 1)
 	if card_ids.is_empty():
@@ -106,7 +111,7 @@ func _equip_selected(slot_index: int) -> void:
 	if not CardManager.equip_card(card_id, slot_index):
 		_status.text = "装备失败：该工作证可能已在目标槽或请求无效"
 		return
-	_status.text = "已装备到槽 %s" % ("A" if slot_index == 0 else "B")
+	_status.text = "已装备到槽 A" if slot_index == 0 else "已装备到槽 B"
 	_refresh_cards()
 
 
@@ -122,5 +127,5 @@ func _slot_text(card_id: String, slot_index: int) -> String:
 	if card_id == "NONE":
 		return card_name
 	if CardManager.active_card == card_id and CardManager.active_slot == slot_index:
-		return card_name + " · 生效"
+		return tr("%s · 生效", "bag slot") % tr(card_name)
 	return card_name

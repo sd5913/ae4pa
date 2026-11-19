@@ -35,6 +35,11 @@ func _ready() -> void:
 	_refresh()
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		_refresh()
+
+
 func _process(_delta: float) -> void:
 	# Read A's authoritative clock for display; this UI does not advance a timer.
 	_refresh_task_display()
@@ -65,12 +70,12 @@ func _refresh_task_display() -> void:
 	var status: String = str(task_view.get("status", ""))
 	var target_id: String = str(task_view.get("target_id", ""))
 	var step: String = str(task_view.get("step", ""))
-	var objective := "当前无任务" if task_name.is_empty() else "%s · %s" % [task_name, location]
+	var objective := "当前无任务" if task_name.is_empty() else "%s · %s" % [tr(task_name), tr(location)]
 	if not target_id.is_empty():
-		objective += "\n目标：%s · %s" % [target_id, step]
+		objective += tr("\n目标：%s · %s") % [tr(target_id), tr(step)]
 	var remaining_time: float = float(task_view.get("remaining_time", 0.0))
 	var total_seconds := maxi(0, ceili(remaining_time))
-	var formatted_time := "剩余时间：%d:%02d · %s" % [total_seconds / 60, total_seconds % 60, status]
+	var formatted_time := tr("剩余时间：%d:%02d · %s") % [total_seconds / 60, total_seconds % 60, tr(status, "task state")]
 	_apply_task_display(objective, formatted_time)
 
 
@@ -101,5 +106,5 @@ func _refresh_cards() -> void:
 
 func _set_slot(label: Label, card_id: String, is_active: bool) -> void:
 	var card_name: String = CardDisplay.name_for(card_id)
-	label.text = card_name + " · 生效" if is_active else card_name
+	label.text = tr("%s · 生效") % tr(card_name) if is_active else card_name
 	label.self_modulate = ACTIVE_COLOR if is_active else Color.WHITE

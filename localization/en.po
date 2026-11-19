@@ -1,0 +1,1199 @@
+# English localization for Monster Staff Access.
+# Simplified Chinese source strings are the message IDs.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "打扫走廊"
+msgstr "Clean the Hallway"
+
+msgid "遗失的包裹"
+msgstr "The Missing Parcel"
+
+msgid "取得管理授权"
+msgstr "Get Manager Approval"
+
+msgid "3F · 302／309 登记台"
+msgstr "3F · Room 302 / Room 309 Register"
+
+msgid "夜班巡房记录"
+msgstr "Night Shift Patrol Log"
+
+msgid "最后的离店许可"
+msgstr "Final Exit Clearance"
+
+msgid "未知"
+msgstr "Unknown"
+
+msgid "线索"
+msgstr "Clue"
+
+msgid "已确认"
+msgstr "Confirmed"
+
+msgid "操作与工作证"
+msgstr "Controls and Staff IDs"
+
+msgid "调查笔记"
+msgstr "Investigation Notes"
+
+msgid "已获得，可在背包选择佩戴槽。"
+msgstr "Collected. Choose a slot in your bag to equip it."
+
+msgid "尚未获得。"
+msgstr "Not collected yet."
+
+msgid "先与前台经理交谈，收集住客的线索。"
+msgstr "Talk to the front desk manager to learn about the guests."
+
+msgid "A/D 或方向键移动；E 交谈、楼梯或交付；偷卡／清理按住 E；Q 切当前身份；I 背包；H 说明与笔记。"
+msgstr "A/D or arrows: Move. E: Talk, use stairs, or turn in tasks. Hold E: Steal or clean. Q: Switch active ID. I: Bag. H: Controls and notes."
+
+msgid "未知住客"
+msgstr "Unknown Guest"
+
+msgid "尚未取得线索。"
+msgstr "No clues yet."
+
+msgid "有些住客不喜欢陌生人。"
+msgstr "Some guests don't like strangers."
+
+msgid "有些住客对气味敏感。"
+msgstr "Some guests are sensitive to smells."
+
+msgid "长鼻客"
+msgstr "Long-Nosed Guest"
+
+msgid "长鼻客开门时会辨识气味。将保洁工作证切为当前身份后再经过。"
+msgstr "The Long-Nosed Guest checks your scent when their door opens. Make the Housekeeping ID active before passing."
+
+msgid "所需身份：%s · 接受后限时 %d 秒\n回 1F 取得保洁工作证，再到 2F 清理污渍，最后回 201 交付。"
+msgstr "Required: %s · %d seconds after accepting\nGet the Housekeeping ID on 1F. Clean the stain on 2F, then turn in the task at Room 201."
+
+msgid "任务超时"
+msgstr "Time's Up"
+
+msgid "偷窃被发现"
+msgstr "Caught Stealing"
+
+msgid "任务失败"
+msgstr "Task Failed"
+
+msgid "本次任务"
+msgstr "Current Task"
+
+msgid "任务超时，请回到接取前重新挑战。"
+msgstr "Time ran out. Retry from before you accepted the task."
+
+msgid "回到 201 接受前，撤销本任务获得的卡片与清理结果。"
+msgstr "Return to before you accepted the task at Room 201. Any IDs or cleaning progress gained during the task will be undone."
+
+msgid "当前没有可恢复的任务检查点。"
+msgstr "No task checkpoint is available."
+
+msgid "! 即将开门 !"
+msgstr "! Door Opening Soon !"
+
+msgid "怪物员工通道 Monster Staff Access"
+msgstr "Monster Staff Access"
+
+msgid "怪物员工通道 · 201 接入"
+msgstr "Monster Staff Access · Room 201"
+
+msgid "正在加载公共管理器"
+msgstr "Loading game systems"
+
+msgid "A / D 移动 · E 交互／长按工作 · Q 切当前身份"
+msgstr "A / D: Move · E: Interact (hold to work) · Q: Switch active ID"
+
+msgid "临时开发提示"
+msgstr "Development hint"
+
+msgid "当前目标：找前台经理交谈"
+msgstr "Objective: Talk to the front desk manager"
+
+msgid "重新开始（重播序章）"
+msgstr "Restart (replay prologue)"
+
+msgid "暂无任务"
+msgstr "No task"
+
+msgid "待接受"
+msgstr "Awaiting acceptance"
+
+msgid "进行中"
+msgstr "In progress"
+
+msgid "待交付"
+msgstr "Ready to turn in"
+
+msgid "已完成"
+msgstr "Complete"
+
+msgid "前往前台与经理交谈"
+msgstr "Talk to the front desk manager"
+
+msgid "前往 2F 的 201 房门接任务"
+msgstr "Go to Room 201 on 2F for a task"
+
+msgid "在 201 接受清洁任务"
+msgstr "Accept the cleaning task at Room 201"
+
+msgid "回 1F 取得保洁工作证"
+msgstr "Get the Housekeeping ID on 1F"
+
+msgid "使用保洁身份清理 2F 污渍"
+msgstr "Clean the stain on 2F with the Housekeeping ID active"
+
+msgid "回 201 房门按 E 交付"
+msgstr "Press E at Room 201 to turn in the task"
+
+msgid "201 已完成；任务 02 尚未开放"
+msgstr "Room 201 complete. Task 02 isn't available yet."
+
+msgid "重新挑战后回 201 接受任务"
+msgstr "Retry, then go back to Room 201 to accept the task"
+
+msgid "剩余时间：%d:%02d · %s"
+msgstr "Time left: %d:%02d · %s"
+
+msgid "可交互"
+msgstr "Ready"
+
+msgid "暂不可用"
+msgstr "Unavailable"
+
+msgid "偷取"
+msgstr "Steal"
+
+msgid "清理"
+msgstr "Clean"
+
+msgid "领取"
+msgstr "Pick up"
+
+msgid "批准"
+msgstr "Authorize"
+
+msgid "员工已警觉"
+msgstr "Staff alerted"
+
+msgid "员工正在观察"
+msgstr "Staff watching"
+
+msgid "超出交互范围"
+msgstr "Out of range"
+
+msgid "交互暂不可用"
+msgstr "Interaction unavailable"
+
+msgid "任务条件未满足"
+msgstr "Task requirements unmet"
+
+msgid "等员工停下"
+msgstr "Wait for the staff member to stop"
+
+msgid "先停下"
+msgstr "Stop moving first"
+
+msgid "请到员工背后"
+msgstr "Get behind the staff member"
+
+msgid "任务未开始"
+msgstr "Task hasn't started"
+
+msgid "玩家尚未就绪"
+msgstr "Player not ready"
+
+msgid "当前无法操作"
+msgstr "Controls locked"
+
+msgid "当前工作证不符合要求"
+msgstr "Wrong active ID"
+
+msgid "%s · %s · %s\n%.2f / %.2f 秒"
+msgstr "%s · %s · %s\n%.2f / %.2f s"
+
+msgid "闺蜜"
+msgstr "Best Friend"
+
+msgid "1 条新消息"
+msgstr "1 new message"
+
+msgid "继续"
+msgstr "Continue"
+
+msgid "跳过已读序章"
+msgstr "Skip Read Prologue"
+
+msgid "员工通行检查"
+msgstr "Staff Access Check"
+
+msgid "CAUGHT!  行动失败"
+msgstr "CAUGHT! Access Denied"
+
+msgid "未能通过检查"
+msgstr "You didn't pass the check."
+
+msgid "重试功能待 A 接入"
+msgstr "Retry unavailable"
+
+msgid "返回菜单"
+msgstr "Return to Menu"
+
+msgid "夜班旅馆  /  员工手册"
+msgstr "Night Shift Hotel / Staff Handbook"
+
+msgid "操作说明与怪物图鉴"
+msgstr "Controls and Monster Guide"
+
+msgid "工作证规则"
+msgstr "Staff ID Rules"
+
+msgid "SECURITY  /  保安工作证"
+msgstr "SECURITY / Security ID"
+
+msgid "独眼客 EYE 检查时安全；只保护独眼客。"
+msgstr "Protects you during checks by the One-Eyed Guest only."
+
+msgid "CLEANER  /  保洁工作证"
+msgstr "CLEANER / Housekeeping ID"
+
+msgid "长鼻客 NOSE 检查时安全；只保护长鼻客。"
+msgstr "Protects you during checks by the Long-Nosed Guest only."
+
+msgid "MANAGER  /  经理工作证"
+msgstr "MANAGER / Manager ID"
+
+msgid "礼帽客 HAT 检查时安全；只保护礼帽客。"
+msgstr "Protects you during checks by the Top-Hatted Guest only."
+
+msgid "最多佩戴两张，当前只生效一张；Q 切换，I 调整佩戴槽。卡片不提供技能、速度或开房权限。"
+msgstr "Equip up to two IDs. Only one is active. Press Q to switch or I to change slots. IDs grant no abilities, speed boosts, or room access."
+
+msgid "EYE  /  独眼客"
+msgstr "EYE / One-Eyed Guest"
+
+msgid "游玩中，门 OPEN 且在范围内：当前卡非 SECURITY → WRONG_CARD；用保安卡或等关门。"
+msgstr "Within range of their open door, use the Security ID or wait for the door to close."
+
+msgid "NOSE  /  长鼻客"
+msgstr "NOSE / Long-Nosed Guest"
+
+msgid "游玩中，门 OPEN 且在范围内：当前卡非 CLEANER → WRONG_CARD；用保洁卡或等关门。"
+msgstr "Within range of their open door, use the Housekeeping ID or wait for the door to close."
+
+msgid "HAT  /  礼帽客"
+msgstr "HAT / Top-Hatted Guest"
+
+msgid "游玩中，门 OPEN 且在范围内：当前卡非 MANAGER → WRONG_CARD；用经理卡或等关门。"
+msgstr "Within range of their open door, use the Manager ID or wait for the door to close."
+
+msgid "EAR  /  大耳客"
+msgstr "EAR / Big-Eared Guest"
+
+msgid "游玩中，门 OPEN 且在范围内仍移动 → MOVED_NEAR_EAR；停步，等门关再走。"
+msgstr "Within range of their open door, stand still until the door closes."
+
+msgid "CHECKER  /  核验客"
+msgstr "CHECKER / Inspector Guest"
+
+msgid "游玩中，门 OPEN 且在范围内主动切卡或更换佩戴槽 → SWITCHED_NEAR_CHECKER；提前选卡，门前不换证。"
+msgstr "Set your IDs in advance. Within range of their open door, don't switch IDs or change equipped slots."
+
+msgid "门的准确检测半径、输入边界行为及空槽／无效切换规则：待确认。"
+msgstr "Exact detection ranges, input edge cases, and rules for empty slots or invalid switches are still being finalized."
+
+msgid "操作键：A/←、D/→移动；E偷取／救援／楼梯／出口；Q切换；I背包；H本手册；Esc暂停菜单。"
+msgstr "A/← and D/→: Move. E: Steal, rescue, use stairs or exit. Q: Switch ID. I: Bag. H: Handbook. Esc: Pause."
+
+msgid "上一页"
+msgstr "Previous"
+
+msgid "下一页"
+msgstr "Next"
+
+msgid "关闭说明"
+msgstr "Close Guide"
+
+msgid "开始游戏"
+msgstr "Start Game"
+
+msgid "操作说明"
+msgstr "How to Play"
+
+msgid "未装备"
+msgstr "Unequipped"
+
+msgid "保安工作证"
+msgstr "Security ID"
+
+msgid "保洁工作证"
+msgstr "Housekeeping ID"
+
+msgid "经理工作证"
+msgstr "Manager ID"
+
+msgid "未知工作证"
+msgstr "Unknown ID"
+
+msgid "大耳客开门时仍在移动"
+msgstr "You moved while the Big-Eared Guest's door was open."
+
+msgid "核验客面前更换了工作证"
+msgstr "You changed IDs in front of the Inspector Guest."
+
+msgid "检查点恢复接口尚未提供"
+msgstr "Checkpoint recovery is unavailable."
+
+msgid "重新挑战本任务"
+msgstr "Retry Task"
+
+msgid "楼层选择"
+msgstr "Choose a Floor"
+
+msgid "关闭"
+msgstr "Close"
+
+msgid "请选择楼层。"
+msgstr "Choose a floor."
+
+msgid "目前没有可前往的楼层。"
+msgstr "No floors are available right now."
+
+msgid "无法前往该楼层，请使用对应方向的楼梯。"
+msgstr "Use the stairs that lead to that floor."
+
+msgid "游戏暂停"
+msgstr "Game Paused"
+
+msgid "继续游戏"
+msgstr "Resume Game"
+
+msgid "倒计时已暂停。"
+msgstr "The task timer is paused."
+
+msgid "怪物判定"
+msgstr "Monster Rules"
+
+msgid "夜班旅馆  /  逃脱成功"
+msgstr "Night Shift Hotel / Escape Successful"
+
+msgid "你和同伴成功逃出了旅馆。"
+msgstr "You and your friend escaped the hotel."
+
+msgid "通关统计待 A 接入"
+msgstr "Escape statistics are unavailable."
+
+msgid "重新开始"
+msgstr "Restart"
+
+msgid "尚未获得工作证"
+msgstr "No staff IDs collected"
+
+msgid "选择工作证后可以装备到两个佩戴槽。"
+msgstr "Select a staff ID, then equip it in either slot."
+
+msgid "空位"
+msgstr "Empty"
+
+msgid "装备到槽 A"
+msgstr "Equip in Slot A"
+
+msgid "装备到槽 B"
+msgstr "Equip in Slot B"
+
+msgid "关闭背包（I）"
+msgstr "Close Bag (I)"
+
+msgid "收藏  %d / %d"
+msgstr "Collected  %d / %d"
+
+msgid "装备  %d / %d"
+msgstr "Equipped  %d / %d"
+
+msgid "选择一张工作证，再选择佩戴槽。"
+msgstr "Select a staff ID, then choose an equipment slot."
+
+msgid "选择佩戴槽后装备工作证"
+msgstr "Choose a slot to equip this ID."
+
+msgid "请先选择已获得的工作证"
+msgstr "Select a staff ID you've collected first."
+
+msgid "无效的佩戴槽"
+msgstr "Invalid equipment slot."
+
+msgid "装备失败：该工作证可能已在目标槽或请求无效"
+msgstr "Couldn't equip this ID. It may already be in that slot."
+
+msgid "已装备到槽 A"
+msgstr "Equipped in Slot A"
+
+msgid "已装备到槽 B"
+msgstr "Equipped in Slot B"
+
+msgid "%s · 生效"
+msgstr "%s · Active"
+
+msgctxt "bag slot"
+msgid "%s · 生效"
+msgstr "%s\nActive"
+
+msgid "201  /  本次任务"
+msgstr "Room 201 / Current Task"
+
+msgid "任务状态与可选楼层由 GameManager 提供。"
+msgstr "Task status and available floors appear here."
+
+msgid "接受任务"
+msgstr "Accept Task"
+
+msgid "任务／楼层接口待 A 同步"
+msgstr "Task and floor details are unavailable."
+
+msgid " · 可前往"
+msgstr " · Available"
+
+msgid "目标：%s · 步骤：%s · 剩余：%s"
+msgstr "Target: %s · Step: %s · Time left: %s"
+
+msgid "任务目标与剩余时间由 GameManager 提供。"
+msgstr "The task objective and time remaining appear here."
+
+msgid "普通警告 · %s"
+msgstr "Warning · %s"
+
+msgid "任务失败 · %s"
+msgstr "Task failed · %s"
+
+msgid "GameManager 尚未提供检查点恢复接口"
+msgstr "Checkpoint recovery is unavailable."
+
+msgid "GameManager 未接受此任务"
+msgstr "You can't accept this task right now."
+
+msgid "无法前往该楼层，请到对应楼梯旁操作"
+msgstr "Go to the stairs that lead to that floor."
+
+msgid "楼层请求接口待 A 接入"
+msgstr "Floor travel is unavailable."
+
+msgid "可接受"
+msgstr "Available"
+
+msgid "失败"
+msgstr "Failed"
+
+msgid "他们不让我离开……我在309号房。"
+msgstr "They won't let me leave... I'm in Room 309."
+
+msgid "前往 309 房间，营救被困的同伴。"
+msgstr "Go to Room 309 and rescue your friend."
+
+msgid "你终于来了！"
+msgstr "You finally made it!"
+
+msgid "下面的路被封了，五楼有紧急出口！"
+msgstr "The way downstairs is blocked. There's an emergency exit on the fifth floor!"
+
+msgid "女主"
+msgstr "An"
+
+msgid "安"
+msgstr "An"
+
+msgid "保洁"
+msgstr "Housekeeper"
+
+msgid "保安"
+msgstr "Security Guard"
+
+msgid "经理"
+msgstr "Manager"
+
+msgid "系统"
+msgstr "Narrator"
+
+msgid "标题"
+msgstr "Title"
+
+msgid "手机消息"
+msgstr "Phone Message"
+
+msgid "跳过已读对白"
+msgstr "Skip Read Dialogue"
+
+msgid "跳过"
+msgstr "Skip"
+
+msgid "（%s）"
+msgstr "(%s)"
+
+msgid "本层入口 · A / D 或方向键移动"
+msgstr "Floor Entrance · Move with A / D or the arrow keys"
+
+msgid "任务数据待 A 接口同步"
+msgstr "Task details are unavailable."
+
+msgid "剩余时间：待 A 接口同步"
+msgstr "Time left: Unavailable"
+
+msgid "当前无任务"
+msgstr "No active task"
+
+msgid "\n目标：%s · %s"
+msgstr "\nTarget: %s · %s"
+
+msgid "201 交付后开放后段"
+msgstr "Turn in the Room 201 task to go farther."
+
+msgid "309 · 救援接入位\n对白与救援尚未实现"
+msgstr "Room 309 · Rescue point\nRescue and dialogue are unavailable."
+
+msgid "到右端楼梯按 E 上 2F，再向右找到 201 房门；任务在那里接取。"
+msgstr "Press E at the stairs on the right to go to 2F. Keep right to find the task at Room 201."
+
+msgid "接受清理任务并将保洁卡切到当前身份，再在污渍处按住 E 1.5 秒。"
+msgstr "Accept the cleaning task and make the Housekeeping ID active. Hold E at the stain for 1.5 seconds."
+
+msgid "先接受对应任务；此处不会开始偷窃"
+msgstr "Accept the relevant task before trying to steal an ID here."
+
+msgid "%s：首次遇见 %s。已登记强制任务请求，等待聊天／任务接入。"
+msgstr "Room %s: First encounter with the %s. The follow-up task and dialogue are pending."
+
+msgid "%s：未满足 %s 的通行规则。已登记强制任务请求，等待聊天／任务接入。"
+msgstr "Room %s: You broke the %s's rules. The follow-up task and dialogue are pending."
+
+msgid "工作完成后回 201 按 E 交付"
+msgstr "When the work is done, press E at Room 201 to turn it in."
+
+msgid "当前任务进行中，请完成清理后返回"
+msgstr "Finish cleaning before coming back to turn in the task."
+
+msgid "靠近后按 E → %dF"
+msgstr "Approach and press E → %dF"
+
+msgid "EXIT · 终点接入位\n通关功能待 A-10"
+msgstr "Exit · Final checkpoint\nThe ending is unavailable."
+
+msgid "先完成经理初次对白，再上 2F"
+msgstr "Talk to the manager before going to 2F."
+
+msgid "完成 201 和 202 任务后开放 3F"
+msgstr "Complete the Room 201 and 202 tasks to unlock 3F."
+
+msgid "先完成 309 救援才能上楼\n救援功能待 A-08"
+msgstr "Rescue your friend from Room 309 to go up.\nThe rescue is unavailable."
+
+msgid "下一层尚未开放"
+msgstr "The next floor is locked."
+
+msgid "获得%s ID"
+msgstr "Collected the %s's ID"
+
+msgid "经理 · 按 E 查看去向"
+msgstr "Manager · Press E for directions"
+
+msgid "经理 · 按 E 交谈（任意一侧）"
+msgstr "Manager · Press E to talk (either side)"
+
+msgid "%s · ID 已取得"
+msgstr "%s · ID already collected"
+
+msgid "%s · 偷取中\n请保持不动并按住 E"
+msgstr "%s · Stealing\nStand still and hold E"
+
+msgid "%s · 先接受对应任务"
+msgstr "%s · Accept the relevant task first"
+
+msgid "%s · 身后按住 E 0.8 秒"
+msgstr "%s · Hold E for 0.8 s from behind"
+
+msgid "%s · 当前在正面\n请绕到背后"
+msgstr "%s · You're in front\nGo around behind them"
+
+msgid "%s · 朝%s"
+msgstr "%s · Facing %s"
+
+msgid "右 →"
+msgstr "Right →"
+
+msgid "左 ←"
+msgstr "Left ←"
+
+msgid "经理交谈完成 · 从右端楼梯上 2F，向右找到 201 房门接任务"
+msgstr "Go up the stairs on the far right to 2F, then go right to Room 201 to get a task."
+
+msgid "到前台找经理，靠近后按 E 交谈"
+msgstr "Go to the front desk and press E near the manager to talk."
+
+msgid "状态：%s · %dF · 已获：%d/3 · 双槽：%s · 当前：%s"
+msgstr "State: %s · %dF · Collected: %d/3 · Equipped: %s · Active: %s"
+
+msgid "E 交谈／楼梯／交付；工作处长按 E，Q 切换当前身份。"
+msgstr "Press E to talk, use stairs, or turn in tasks. Hold E at work points. Q switches your active ID."
+
+msgid "201 的客人提出清洁任务；请在面板中确认接受，接受后开始 210 秒计时。"
+msgstr "The guest in Room 201 has a cleaning task. The 210-second timer starts when you accept."
+
+msgid "任务已接受：回 1F 取得保洁工作证，再到 2F 扫帚旁清理，最后回 201 交付。"
+msgstr "Task accepted. Get the Housekeeping ID on 1F, clean by the broom on 2F, then turn in the task at Room 201."
+
+msgid "当前目标：到 1F 前台找经理，靠近后按 E 交谈。"
+msgstr "Objective: Press E near the front desk manager on 1F to talk."
+
+msgid "当前目标：向右找到本层的 201 房门。"
+msgstr "Objective: Head right to find Room 201."
+
+msgid "当前目标：从右端楼梯上 2F，向右找到 201 房门。"
+msgstr "Objective: Take the stairs on the right to 2F, then go right to Room 201."
+
+msgid "当前目标：在面板中接受 201 清洁任务；关闭后可在门前按 E 重开。"
+msgstr "Objective: Accept the Room 201 cleaning task. Press E at the door to reopen the offer."
+
+msgid "当前目标：回 1F，在保洁身后长按 E 取得工作证。"
+msgstr "Objective: Return to 1F. Hold E behind the housekeeper to get their ID."
+
+msgid "当前目标：Q 切到保洁身份，回 2F 污渍处按住 E 1.5 秒清理。"
+msgstr "Objective: Use Q to make the Housekeeping ID active. On 2F, hold E at the stain for 1.5 seconds."
+
+msgid "当前目标：回 201 房门按 E 交付。"
+msgstr "Objective: Press E at Room 201 to turn in the task."
+
+msgid "任务 01 已交付；任务 02 尚未开放。"
+msgstr "Task 01 turned in. Task 02 isn't available yet."
+
+msgid "任务失败；点击“重新挑战本任务”，回 201 重新接受。"
+msgstr "Task failed. Choose Retry Task, then accept the task at Room 201 again."
+
+msgid "偷窃被发现 · 可重新挑战本任务"
+msgstr "Caught stealing · You can retry this task"
+
+msgid "失败：%s"
+msgstr "Failed: %s"
+
+msgid "普通门警告：%s · 已退回来侧，请观察后重试"
+msgstr "Door warning: %s · You were moved back. Watch the door before trying again."
+
+msgid "B · 员工接入位"
+msgstr "B · Staff position"
+
+msgid "C · 房门接入位"
+msgstr "C · Door position"
+
+msgid "测试入口 · A / D 或方向键移动"
+msgstr "Test entrance · Move with A / D or the arrow keys"
+
+msgid "测试终点 · 出口功能待接入"
+msgstr "Test endpoint · Exit unavailable"
+
+msgid "EYE"
+msgstr "One-Eyed Guest"
+
+msgid "NOSE"
+msgstr "Long-Nosed Guest"
+
+msgid "HAT"
+msgstr "Top-Hatted Guest"
+
+msgid "EAR"
+msgstr "Big-Eared Guest"
+
+msgid "CHECKER"
+msgstr "Inspector Guest"
+
+msgid "WRONG_CARD"
+msgstr "Wrong active ID"
+
+msgid "MOVED_NEAR_EAR"
+msgstr "Moved near the Big-Eared Guest"
+
+msgid "SWITCHED_NEAR_CHECKER"
+msgstr "Changed IDs near the Inspector Guest"
+
+msgid "STAFF_CAUGHT"
+msgstr "Caught stealing"
+
+msgid "TASK_TIMEOUT"
+msgstr "Task timed out"
+
+msgid "STAIN_201"
+msgstr "Room 201 stain"
+
+msgid "CLEAN_STAIN"
+msgstr "Clean the stain"
+
+msgid "RETURN_TO_201"
+msgstr "Return to Room 201"
+
+msgid "PARCEL_CABINET_2F"
+msgstr "2F parcel cabinet"
+
+msgid "REGISTER_309"
+msgstr "Room 309 register"
+
+msgid "STAFF_PATROL_4F"
+msgstr "4F patrol guard"
+
+msgid "EXIT_REGISTER_5F"
+msgstr "5F exit register"
+
+msgid "PATROL_RECORD"
+msgstr "Patrol Log"
+
+msgid "EXIT_FORM"
+msgstr "Exit Form"
+
+msgid "GET_CLEANER"
+msgstr "Get the Housekeeping ID"
+
+msgid "GET_SECURITY"
+msgstr "Get the Security ID"
+
+msgid "PICKUP_PARCEL"
+msgstr "Pick up the parcel"
+
+msgid "RETURN_TO_202"
+msgstr "Return to Room 202"
+
+msgid "GET_MANAGER"
+msgstr "Get the Manager ID"
+
+msgid "EQUIP_MANAGER"
+msgstr "Equip the Manager ID"
+
+msgid "AUTHORIZE_309"
+msgstr "Approve the Room 309 register"
+
+msgid "STEAL_PATROL_RECORD"
+msgstr "Steal the patrol log"
+
+msgid "RETURN_TO_403"
+msgstr "Return to Room 403"
+
+msgid "AUTHORIZE_EXIT_FORM"
+msgstr "Approve the exit form"
+
+msgid "RETURN_TO_501"
+msgstr "Return to Room 501"
+
+# Card IDs retained in the Chinese task panel.
+msgctxt "card requirement"
+msgid "CLEANER"
+msgstr "Housekeeping ID"
+
+msgctxt "card requirement"
+msgid "SECURITY"
+msgstr "Security ID"
+
+msgctxt "card requirement"
+msgid "MANAGER"
+msgstr "Manager ID"
+
+# Legacy HUD retains the state code in Chinese.
+msgctxt "task state"
+msgid "NONE"
+msgstr "No task"
+
+msgctxt "task state"
+msgid "AVAILABLE"
+msgstr "Available"
+
+msgctxt "task state"
+msgid "ACTIVE"
+msgstr "In progress"
+
+msgctxt "task state"
+msgid "READY_TO_SUBMIT"
+msgstr "Ready to turn in"
+
+msgctxt "task state"
+msgid "COMPLETED"
+msgstr "Complete"
+
+msgctxt "task state"
+msgid "FAILED"
+msgstr "Task failed"
+
+# Story lines follow intro_script.tsv order.
+msgid "你睡了吗？"
+msgstr "Are you awake?"
+
+msgid "能来接我吗"
+msgstr "Can you come get me?"
+
+msgid "现在？"
+msgstr "Now?"
+
+msgid "你终于舍得回消息了。你这几天去哪了？"
+msgstr "You finally texted back. Where have you been?"
+
+msgid "我还在之前说过的那家旅馆"
+msgstr "I'm still at that hotel I told you about"
+
+msgid "他们不让我离开"
+msgstr "They won't let me leave"
+
+msgid "“他们”是谁？"
+msgstr "Who are “they”?"
+
+msgid "你先把地址发给我。"
+msgstr "Send me the address first."
+
+msgid "三楼"
+msgstr "Third floor"
+
+msgid "309号房"
+msgstr "Room 309"
+
+msgid "你报警了吗？"
+msgstr "Did you call the police?"
+
+msgid "我现在给你打电话。"
+msgstr "I'm calling you now."
+
+msgid "电话只响一声便挂断。"
+msgstr "The call rings once, then disconnects."
+
+msgid "不要打"
+msgstr "Don't call"
+
+msgid "他们会听见"
+msgstr "They'll hear it"
+
+msgid "谁会听见？"
+msgstr "Who will hear it?"
+
+msgid "你房间里有人？"
+msgstr "Is someone in your room?"
+
+msgid "“对方正在输入”出现又消失。"
+msgstr "“Typing…” appears, then vanishes."
+
+msgid "别相信这里的工作人员"
+msgstr "Don't trust the staff here"
+
+msgid "他们看起来和正常人一样"
+msgstr "They look just like normal people"
+
+msgid "什么意思？"
+msgstr "What do you mean?"
+
+msgid "我现在不能继续发消息了"
+msgstr "I can't keep texting"
+
+msgid "快一点"
+msgstr "Hurry"
+
+msgid "女主再拨，显示“对方暂时无法接听”。她翻到几天前的兼职录取通知。"
+msgstr "An calls again. “The person you are calling is unavailable.” She scrolls back to the job offer from a few days ago."
+
+msgid "那家旅馆……"
+msgstr "That hotel…"
+
+msgid "就是她之前提过的夜班兼职。"
+msgstr "It's the night shift job she told me about."
+
+msgid "几天前，傍晚的咖啡馆。两杯饮料放在桌上，闺蜜把手机递给女主。"
+msgstr "A few days earlier, at a café at dusk. Two drinks sit on the table. An's friend hands her the phone."
+
+msgid "看，我找到兼职了！"
+msgstr "Look, I got a part-time job!"
+
+msgid "你上次也是这么说的。"
+msgstr "That's what you said last time."
+
+msgid "上次那个发传单的不算。这个有正式录取通知。"
+msgstr "Handing out flyers doesn't count. This one has an official offer."
+
+msgid "夜班，三天，工作内容写的是协助前台和整理客房。"
+msgstr "Three nights. It says I'll help at the desk and tidy up the guest rooms."
+
+msgid "工资比我上个月做的几份兼职加起来还多。"
+msgstr "It pays more than all the jobs I worked last month put together."
+
+msgid "夜班、工作轻松、工资还特别高。"
+msgstr "Night shifts, easy work, and unusually good pay."
+
+msgid "这三个词放在一起，通常不像什么好消息。"
+msgstr "Put those three together and it usually spells trouble."
+
+msgid "你能不能偶尔对我的人生有一点信心？"
+msgstr "Could you have a little faith in my life choices for once?"
+
+msgid "我对你有信心。"
+msgstr "I have faith in you."
+
+msgid "我对这种连招聘负责人名字都没写的旅馆没信心。"
+msgstr "I don't have faith in a hotel that won't even say who's hiring."
+
+msgid "人家可能只是管理比较传统。"
+msgstr "Maybe they're just old-fashioned."
+
+msgid "传统到没有联系电话？"
+msgstr "Too old-fashioned for a phone number?"
+
+msgid "有地址就行。我去看看，不对劲就回来。"
+msgstr "There's an address. I'll check it out and leave if anything feels off."
+
+msgid "旅馆叫什么？"
+msgstr "What's the hotel called?"
+
+msgid "夜班旅馆。"
+msgstr "Night Shift Hotel."
+
+msgid "这是名字，还是在提醒你工作时间？"
+msgstr "Is that the name or a reminder of your hours?"
+
+msgid "是不是挺有氛围的？"
+msgstr "It's kind of atmospheric, right?"
+
+msgid "挺像恐怖电影开头的。"
+msgstr "Kind of like the opening of a horror movie."
+
+msgid "恐怖电影里的人要是都像你一样谨慎，电影十分钟就结束了。"
+msgstr "If everyone in horror movies were as careful as you, they'd be over in ten minutes."
+
+msgid "等一下。"
+msgstr "Wait."
+
+msgid "这里写着“员工离店须经管理部门批准”。"
+msgstr "It says, “Staff must obtain management approval before leaving the hotel.”"
+
+msgid "大概是夜班不能随便旷工吧。"
+msgstr "It probably just means you can't ditch your shift."
+
+msgid "正常公司会写“离职流程”，不会写“离店批准”。"
+msgstr "A normal company would say “resignation procedure,” not “approval to leave the premises.”"
+
+msgid "我就做几天，又不是卖给他们了。"
+msgstr "It's a few shifts. It's not like they own me."
+
+msgid "等我拿到工资，请你吃顿好的。"
+msgstr "When I get paid, dinner's on me."
+
+msgid "先把地址发给我。"
+msgstr "Send me the address first."
+
+msgid "发你了，女侦探。"
+msgstr "Sent, Detective."
+
+msgid "每天结束给我回一条消息。"
+msgstr "Text me at the end of every shift."
+
+msgid "知道了。我要是少回一条，你是不是准备直接冲进去找我？"
+msgstr "Okay. If I miss one text, are you going to come charging in after me?"
+
+msgid "我会先报警。"
+msgstr "I'll call the police first."
+
+msgid "你这人真没情趣。"
+msgstr "You're no fun."
+
+msgid "闺蜜笑着靠回卡座。画面淡出，录取通知的那行小字短暂停留。"
+msgstr "Her friend laughs and leans back in the booth. The scene fades, leaving the fine print on the job offer for a moment."
+
+msgid "她去上班以后，每天晚上都会给我发消息。"
+msgstr "She texted me every night after she started working there."
+
+msgid "三天前，消息突然停了。"
+msgstr "Three days ago, the messages stopped."
+
+msgid "女主从聊天记录里打开旧地址，拿起外套和钥匙。"
+msgstr "An opens the old address from their chat, then grabs her coat and keys."
+
+msgid "没有联系电话，也查不到正常的订房页面。"
+msgstr "There's no phone number or proper booking page."
+
+msgid "如果她真的被困在里面，我不能继续等。"
+msgstr "If she's really trapped in there, I can't keep waiting."
+
+msgid "雨夜旅馆外景，暖光只从入口透出。"
+msgstr "Rain falls outside the hotel. Only the entrance gives off a warm light."
+
+msgid "三楼，309。"
+msgstr "Third floor. Room 309."
+
+msgid "先找到她，再弄清楚这里发生了什么。"
+msgstr "Find her first. Then figure out what happened here."
+
+msgid "怪物员工通道"
+msgstr "Monster Staff Access"
+
+msgid "晚上好。"
+msgstr "Good evening."
+
+msgid "这个时间很少有客人独自前来。"
+msgstr "We rarely see guests arrive alone at this hour."
+
+msgid "我不是来住店的。我来找人。"
+msgstr "I'm not staying here. I'm looking for someone."
+
+msgid "找客人，还是找员工？"
+msgstr "A guest or an employee?"
+
+msgid "她之前在这里做夜班兼职。"
+msgstr "She took a part-time night shift here."
+
+msgid "这里的夜班人员很多，流动也很快。"
+msgstr "We have a lot of night staff. People come and go."
+
+msgid "如果没有名字或者登记编号，我恐怕很难帮你。"
+msgstr "Without a name or a registration number, I'm afraid I can't help much."
+
+msgid "她已经三天没有回家了。"
+msgstr "She hasn't come home in three days."
+
+msgid "年轻人临时改变计划，并不罕见。"
+msgstr "It's hardly unusual for young people to change their plans."
+
+msgid "她刚刚给我发了消息。"
+msgstr "She just texted me."
+
+msgid "她说自己在三楼，309号房。"
+msgstr "She said she's on the third floor, in Room 309."
+
+msgid "309？"
+msgstr "309?"
+
+msgid "你知道那个房间。"
+msgstr "You know the room."
+
+msgid "我当然知道旅馆里的房间。"
+msgstr "Of course I know the rooms in this hotel."
+
+msgid "那她是不是在那里？"
+msgstr "So is she in there?"
+
+msgid "309属于客房区域。"
+msgstr "309 is in the guest wing."
+
+msgid "普通访客最好不要随便进入。"
+msgstr "Visitors would do well to stay out."
+
+msgid "她不是客人。她是你们招进来的员工。"
+msgstr "She's not a guest. You hired her."
+
+msgid "员工是否仍在职，需要查看完整登记。"
+msgstr "I'd have to check the full register to see if she's still on staff."
+
+msgid "可惜，这里的记录没有你想象中那么简单。"
+msgstr "Unfortunately, our records aren't quite that simple."
+
+msgid "她说有人不让她离开。"
+msgstr "She says someone won't let her leave."
+
+msgid "“不能离开”和“手续尚未完成”，听起来相似，含义却完全不同。"
+msgstr "“Can't leave” and “hasn't finished the paperwork” may sound similar. They mean very different things."
+
+msgid "对被困在里面的人来说，没有区别。"
+msgstr "Not to the person trapped inside."
+
+msgid "你似乎已经认定这里发生了什么。"
+msgstr "You seem to have made up your mind about what happened here."
+
+msgid "我只知道她在向我求救。"
+msgstr "All I know is that she's asking me for help."
+
+msgid "那么你应该更谨慎一些。"
+msgstr "Then you should be more careful."
+
+msgid "这是提醒，还是威胁？"
+msgstr "Is that a warning or a threat?"
+
+msgid "是建议。"
+msgstr "It's advice."
+
+msgid "楼上的客人有自己的规矩。"
+msgstr "The guests upstairs have rules of their own."
+
+msgid "什么规矩？"
+msgstr "What rules?"
+
+msgid "有些客人不喜欢陌生人。"
+msgstr "Some guests don't like strangers."
+
+msgid "如果你看起来不像这里的工作人员，他们可能会对你产生兴趣。"
+msgstr "If you don't look like staff, they may take an interest in you."
+
+msgid "“产生兴趣”是什么意思？"
+msgstr "What do you mean, “take an interest”?"
+
+msgid "我建议你不要亲自确认。"
+msgstr "I suggest you don't find out firsthand."
+
+msgid "还有些客人对气味非常敏感。"
+msgstr "Other guests are very sensitive to smells."
+
+msgid "他们判断一个人的方式，和我们不太一样。"
+msgstr "They size people up a little differently than we do."
+
+msgid "楼上住的到底是什么人？"
+msgstr "Who exactly is staying upstairs?"
+
+msgid "住客。"
+msgstr "Guests."
+
+msgid "你知道我问的不是这个。"
+msgstr "You know that's not what I was asking."
+
+msgid "而我能回答的只有这个。"
+msgstr "It's the only answer I can give you."
+
+msgid "楼上传来关门声，女主看向楼梯。"
+msgstr "A door shuts upstairs. An looks toward the stairs."
+
+msgid "我要去三楼。"
+msgstr "I'm going to the third floor."
+
+msgid "你可以先上二楼。"
+msgstr "You can start with the second floor."
+
+msgid "如果楼上的客人拦住你，最好听清他们需要什么。"
+msgstr "If a guest stops you up there, listen carefully to what they need."
+
+msgid "然后呢？"
+msgstr "Then what?"
+
+msgid "完成工作的人，通常更容易得到通行。"
+msgstr "People who get their work done usually have an easier time getting through."
+
+msgid "我不是这里的员工。"
+msgstr "I don't work here."
+
+msgid "身份这种东西，在这里主要取决于你佩戴什么。"
+msgstr "Around here, who you are mostly depends on what you're wearing."
+
+msgid "如果我遇到麻烦呢？"
+msgstr "And if I get into trouble?"
+
+msgid "记得找工作人员。"
+msgstr "Ask a member of staff."
+
+msgid "包括你吗？"
+msgstr "Does that include you?"
+
+msgid "前台永远愿意为客人提供帮助。"
+msgstr "The front desk is always happy to help its guests."
+
+msgid "我说过，我不是客人。"
+msgstr "I told you, I'm not a guest."
+
+msgid "现在还不是。"
+msgstr "Not yet."
+
+msgid "经理低头继续看登记簿。"
+msgstr "The manager looks down and goes back to reading the register."
+
+msgid "她知道我朋友在309。"
+msgstr "She knows my friend's in 309."
+
+msgid "她也知道是谁不让她离开。"
+msgstr "She also knows who's keeping her there."
+
+msgid "但在找到她以前，我还不能和这里的人翻脸。"
+msgstr "But I can't pick a fight with these people until I've found her."

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=11 format=3]
 
 [ext_resource type="Script" path="res://scenes/ui/dialogue.gd" id="1_script"]
 
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/avatar_friend.png" id="4_friend"]
 [ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/title_bilingual.png" id="5_title"]
 [ext_resource type="Theme" path="res://scenes/ui/staff_ui_theme.tres" id="6_theme"]
+
+[ext_resource type="Script" path="res://scenes/ui/localized_title.gd" id="8_localized_title"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_notification"]
 bg_color = Color(0.098, 0.145, 0.18, 1)
@@ -272,6 +274,7 @@ mouse_filter = 2
 texture = ExtResource("5_title")
 expand_mode = 1
 stretch_mode = 5
+script = ExtResource("8_localized_title")
 
 [node name="ContinueButton" type="Button" parent="."]
 unique_name_in_owner = true
