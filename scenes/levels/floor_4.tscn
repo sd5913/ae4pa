@@ -1,41 +1,48 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_base.tscn" id="1_base"]
-[ext_resource type="Texture2D" path="res://assets/backgrounds/floor_4.png" id="art_background"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_background"]
-atlas = ExtResource("art_background")
-region = Rect2(0, 845, 3840, 470)
+[ext_resource type="PackedScene" path="res://scenes/levels/floor_4_art.tscn" id="art"]
 
 [node name="Floor4" instance=ExtResource("1_base")]
 floor_number = 4
 
 [node name="FloorBackground" parent="." index="0"]
-position = Vector2(0, 152.1875)
-scale = Vector2(0.9375, 0.9375)
-texture = SubResource("AtlasTexture_background")
+visible = false
+
+[node name="Player" parent="." index="2"]
+z_index = 1
 
 [node name="Room401" type="Marker2D" parent="DoorRoot" index="0"]
-position = Vector2(700, 560)
+position = Vector2(716.25, 560)
 metadata/room_number = 401
 metadata/monster_type = "SESSION_RANDOM"
 
 [node name="Room402" type="Marker2D" parent="DoorRoot" index="1"]
-position = Vector2(1150, 560)
+position = Vector2(1292.8125, 560)
 metadata/room_number = 402
 metadata/monster_type = "SESSION_RANDOM"
 
 [node name="Room403" type="Marker2D" parent="DoorRoot" index="2"]
-position = Vector2(1600, 560)
+position = Vector2(1823.4375, 560)
 metadata/room_number = 403
 metadata/monster_type = "EAR"
 
 [node name="Room404" type="Marker2D" parent="DoorRoot" index="3"]
-position = Vector2(2050, 560)
+position = Vector2(2428.125, 560)
 metadata/room_number = 404
 metadata/monster_type = "SESSION_RANDOM"
 
 [node name="Room405" type="Marker2D" parent="DoorRoot" index="4"]
-position = Vector2(2500, 560)
+position = Vector2(3049.6875, 560)
 metadata/room_number = 405
 metadata/monster_type = "SESSION_RANDOM"
+
+[node name="Floor4Art" parent="." instance=ExtResource("art")]
+position = Vector2(0, 44.375)
+scale = Vector2(0.46875, 0.46875)
+
+[node name="Hint" parent="Interactions/ReturnPoint"]
+visible = false
+
+[node name="Hint" parent="Interactions/ExitPoint"]
+visible = false
