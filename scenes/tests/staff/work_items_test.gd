@@ -5,6 +5,7 @@ extends Node2D
 @onready var authorize_309: CleaningSpot = $Authorize309
 @onready var authorize_exit: CleaningSpot = $AuthorizeExit
 @onready var patrol: Node = $PatrolStaff
+@onready var stain_201: CleaningSpot = $Stain201
 @onready var status: Label = $Status/Label
 @onready var caught: Label = $Caught/Label
 @onready var recovery_timer: Timer = $RecoveryTimer
@@ -19,7 +20,8 @@ func _ready() -> void:
 	GameManager.start_game()
 	CardManager.collect_card("SECURITY")
 	CardManager.collect_card("MANAGER")
-	for work: CleaningSpot in [pickup, authorize_309, authorize_exit]:
+	CardManager.collect_card("CLEANER")
+	for work: CleaningSpot in [pickup, authorize_309, authorize_exit, stain_201]:
 		work.setup(player)
 		work.set_task_active(true)
 		work.work_requested.connect(_on_work_requested.bind(work))
@@ -44,6 +46,11 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_R:
 		_reset_test()
 		get_viewport().set_input_as_handled()
+	elif event is InputEventKey and event.pressed and not event.echo and event.physical_keycode in [KEY_1, KEY_2, KEY_3]:
+		var cards := ["SECURITY", "CLEANER", "MANAGER"]
+		CardManager.equip_card(cards[event.physical_keycode - KEY_1], CardManager.active_slot)
+		_last_event = "测试快捷键：当前槽改为 %s" % CardManager.active_card
+		get_viewport().set_input_as_handled()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -52,7 +59,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			patrol.begin_steal()
 			get_viewport().set_input_as_handled()
 			return
-		for work: CleaningSpot in [pickup, authorize_309, authorize_exit]:
+		for work: CleaningSpot in [pickup, authorize_309, authorize_exit, stain_201]:
 			if work.is_player_in_range():
 				if work.begin_interaction() and work.is_interacting():
 					_held_work = work
@@ -106,7 +113,7 @@ func _reset_test() -> void:
 	CardManager.collect_card("MANAGER")
 	player.global_position = _start_position
 	player.velocity = Vector2.ZERO
-	for work: CleaningSpot in [pickup, authorize_309, authorize_exit]:
+	for work: CleaningSpot in [pickup, authorize_309, authorize_exit, stain_201]:
 		work.set_completed(false)
 		work.set_task_active(true)
 	patrol.reset_caught_alert()
@@ -118,8 +125,9 @@ func _reset_test() -> void:
 
 
 func _refresh_status() -> void:
-	status.text = "B-V4-04/05 人工体验 · A/D 移动 · E 交互/长按 · Q 切身份 · R 全部恢复\n当前身份 %s · 双槽 %s\n包裹柜 SECURITY：%s  |  309 MANAGER：%s  |  5F MANAGER：%s\n巡房文件：背后静止长按 E 0.8 秒 · 进度 %.0f%% · 可取 %s\n%s" % [
+	status.text = "五任务交互 · A/D 移动 · E 交互/长按 · Q 切槽 · 1/2/3 装 SECURITY/CLEANER/MANAGER · R 恢复\n当前身份 %s · 双槽 %s\n201 CLEANER：%s | 202 SECURITY：%s | 309 MANAGER：%s | 503 MANAGER：%s\n402 文件：背后静止长按 E 0.8 秒 · 进度 %.0f%% · 可取 %s\n%s" % [
 		CardManager.active_card, CardManager.get_equipped_cards(),
+		"完成" if stain_201.is_completed() else "可测试",
 		"完成" if pickup.is_completed() else "可测试",
 		"完成" if authorize_309.is_completed() else "可测试",
 		"完成" if authorize_exit.is_completed() else "可测试",

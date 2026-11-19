@@ -16,10 +16,12 @@ func _ready() -> void:
 	var register_309: CleaningSpot = test.get_node("Authorize309")
 	var exit_register: CleaningSpot = test.get_node("AuthorizeExit")
 	var patrol: Node = test.get_node("PatrolStaff")
+	var stain_201: CleaningSpot = test.get_node("Stain201")
 	_expect(pickup.target_id == "PARCEL_CABINET_2F" and pickup.interaction_type == "PICKUP" and pickup.required_card == "SECURITY" and pickup.hold_duration == 0.0, "PARCEL_CABINET_2F scene configuration is incomplete")
 	_expect(register_309.target_id == "REGISTER_309" and register_309.interaction_type == "AUTHORIZE" and register_309.required_card == "MANAGER" and register_309.hold_duration == 0.0, "REGISTER_309 scene configuration is incomplete")
 	_expect(exit_register.target_id == "EXIT_REGISTER_5F" and exit_register.interaction_type == "AUTHORIZE" and exit_register.required_card == "MANAGER" and exit_register.hold_duration == 0.0, "EXIT_REGISTER_5F scene configuration is incomplete")
 	_expect(patrol.target_id == "STAFF_PATROL_4F" and patrol.reward_type == "TASK_ITEM" and patrol.reward_id == "PATROL_RECORD" and patrol.requires_task_eligibility, "STAFF_PATROL_4F scene configuration is incomplete")
+	_expect(stain_201.target_id == "STAIN_201" and stain_201.interaction_type == "CLEAN" and stain_201.required_card == "CLEANER" and stain_201.hold_duration == 1.5, "STAIN_201 scene configuration is incomplete")
 
 	_expect(CardManager.active_card == "SECURITY", "SECURITY test fixture should start active")
 	player.global_position = pickup.global_position
@@ -27,10 +29,11 @@ func _ready() -> void:
 	player.is_moving = false
 	pickup._on_work_area_body_entered(player)
 	await get_tree().physics_frame
-	_expect(pickup.get_node("WorkVisual").visible and pickup.get_node("Hint").visible, "available parcel scene should expose its interaction visual")
+	_expect(pickup.get_node("PersistentVisual").visible and pickup.get_node("ItemVisual").visible and pickup.get_node("Hint").visible, "available parcel scene should expose cabinet, item and hint")
 	_expect(pickup.begin_interaction(), "SECURITY could not PICKUP PARCEL_CABINET_2F")
 	_expect(pickup.is_completed(), "PICKUP should complete on one E press")
-	_expect(not pickup.get_node("WorkVisual").visible and not pickup.get_node("Hint").visible, "completed parcel scene did not hide its visual and hint")
+	_expect(pickup.get_node("PersistentVisual").visible and not pickup.get_node("ItemVisual").visible and not pickup.get_node("Hint").visible, "completed parcel scene did not preserve furniture or hide item/hint")
+	_expect(register_309.get_node("PersistentVisual").visible, "REGISTER_309 did not reuse the formal registration desk asset")
 	_expect(not pickup.begin_interaction(), "completed PICKUP repeated")
 
 	player.global_position = register_309.global_position

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3]
+[gd_scene load_steps=8 format=3]
 
 [ext_resource type="Script" path="res://scenes/tests/staff/work_items_test.gd" id="1_script"]
 [ext_resource type="PackedScene" path="res://scenes/levels/test_corridor.tscn" id="2_corridor"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" path="res://scenes/work/register_309.tscn" id="4_register"]
 [ext_resource type="PackedScene" path="res://scenes/work/exit_register_5f.tscn" id="5_exit"]
 [ext_resource type="PackedScene" path="res://scenes/staff/patrol_staff_4f.tscn" id="6_patrol"]
+[ext_resource type="PackedScene" path="res://scenes/work/cleaning_spot.tscn" id="7_stain"]
 
 [node name="WorkItemsTest" type="Node2D"]
 script = ExtResource("1_script")
@@ -23,6 +24,9 @@ position = Vector2(890, 560)
 
 [node name="PatrolStaff" parent="." instance=ExtResource("6_patrol")]
 position = Vector2(1130, 560)
+
+[node name="Stain201" parent="." instance=ExtResource("7_stain")]
+position = Vector2(1370, 560)
 
 [node name="Status" type="CanvasLayer" parent="."]
 
