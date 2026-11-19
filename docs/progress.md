@@ -863,3 +863,5 @@
 - 提交审查前 main 又更新到 f18e4ce（PR #35／#41）。已再次接入，保留 B 组件、员工参数及所有 main 记录；最终 intro_flow、foundation、ui、staff_core、encounter_flow 和带画面验证退出 0，task_ui 与干净 f18e4ce 均在同一普通门退回断言退出 1。最新证据已替换为最终分支生成的截图与日志。
 
 - C同步main：仅进度文档发生追加段落冲突，已保留B/D与C全部记录；场景/脚本自动合并无冲突。后续回归针对合并后的代码运行。
+
+- C发布前最终回归（同步main@c89c88c后）：floor_4_layout、foundation、encounter_flow、floor_flow、task_01_main_flow、world_interaction全部PASS；资源导入无脚本/资源加载错误，保留既有safe-save系统提示。沿用最终组件实机截图检查，未宣称四楼主线任务已实现。
