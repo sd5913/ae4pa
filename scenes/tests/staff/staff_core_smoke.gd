@@ -68,7 +68,7 @@ func _ready() -> void:
 	for staff: Node in staff_members:
 		if staff.card_id == "CLEANER":
 			_expect(staff.get_node("TurnTimer").is_stopped(), "Cleaner must not run an independent surprise-turn timer during work.")
-			_expect(staff.get_node("BehaviorTimer").wait_time >= 5.0 and staff.get_node("BehaviorTimer").wait_time <= 6.0, "Cleaner work pause must provide a stable 5-6 second steal window.")
+			_expect(staff.get_node("BehaviorTimer").wait_time >= 3.5 and staff.get_node("BehaviorTimer").wait_time <= 4.5, "Cleaner work pause must provide a stable 3.5-4.5 second steal window.")
 			continue
 		var interval_range: Vector2 = staff.get_turn_interval_range()
 		var interval: float = staff.get_current_turn_interval()

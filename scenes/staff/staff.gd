@@ -516,10 +516,10 @@ func _update_cleaner_behavior(delta: float) -> void:
 
 func _get_behavior_pause_range() -> Vector2:
 	if card_id == "CLEANER":
-		return Vector2(4.0, 5.0) if _cleaner_state == "ORGANIZING" else Vector2(5.0, 6.0)
+		return Vector2(3.0, 4.0) if _cleaner_state == "ORGANIZING" else Vector2(3.5, 4.5)
 	if card_id == "MANAGER":
-		return Vector2(6.0, 8.0)
-	return Vector2(4.5, 6.0)
+		return Vector2(2.4, 3.2)
+	return Vector2(3.0, 4.0)
 
 
 func _start_behavior_pause() -> void:

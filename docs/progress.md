@@ -803,3 +803,10 @@
 - 用户已授权将本次三楼组件组装、309高马尾观察窗三态、删除305、登记台落地和五门等比缩放推送个人分支并合入main。同步README与房号说明。
 - 发布前独立顺序回归：foundation_smoke、floor_3_layout_smoke、encounter_flow_smoke、floor_flow_smoke、task_01_main_flow_smoke、world_interaction_smoke全部PASS；编辑器资源扫描没有脚本/资源错误，仍有既有系统safe-save权限诊断。实际Compatibility截图验收沿用同一最终场景的登记台落地、宽门比例及302开门预览。
 - 仅纳入本次场景、309最终PNG、所需Godot导入描述/UID与记录；旧候选图、1F参考重建、观察测试入口保留本地。主线3F任务链/救援聊天尚待后续实现，本次不代表全游戏通关验收。
+
+## 2026年11月19日 B：V5 难度候选与最新 main 兼容复核（Asia/Hong_Kong）
+
+- `work/member-B-v5-staff-polish` 合入 `main@2538f11`，`docs/interfaces.md`／`docs/progress.md` 冲突均保留 B 与 C 的追加记录；没有改写 C 的单门调度、首次遇怪、半随机分配、大耳停步或核验附近禁止换证。
+- 本轮待真人确认参数：保洁 CLEANING 3.5—4.5 秒、ORGANIZING 3—4 秒，保安 3—4 秒，经理 2.4—3.2 秒；转身准备 0.4 秒、背后静止长按 0.8 秒、正面／回头被抓与唯一 E 不变。
+- Godot 4.7.2 资源重新导入；`staff_core_smoke`、`cleaner_v4_smoke`、`world_interaction_smoke`、`task_checkpoint_smoke`、`task_01_main_flow_smoke`、`encounter_flow_smoke` 均 PASS。首次导入前的怪物纹理缓存缺失诊断已通过完整重新导入处理；最终人工难度仍以 F5 试玩反馈为准。
+- 临时中文字体／主题、`assets/temp_review/`、美术预览、组件 PR #41 文件和调试文件不进入本难度提交。
