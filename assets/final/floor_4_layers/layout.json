@@ -1,0 +1,838 @@
+{
+  "canvas": [
+    7680,
+    1280
+  ],
+  "baseline_y": 1100,
+  "reference_canvas": [
+    2172,
+    724
+  ],
+  "reference_band": [
+    0,
+    150,
+    2172,
+    550
+  ],
+  "door_reservations": {
+    "401": {
+      "center_x": 1528,
+      "baseline_y": 1100,
+      "width": 590,
+      "height": 1000
+    },
+    "402": {
+      "center_x": 2758,
+      "baseline_y": 1100,
+      "width": 590,
+      "height": 1000
+    },
+    "403": {
+      "center_x": 3890,
+      "baseline_y": 1100,
+      "width": 590,
+      "height": 1000
+    },
+    "404": {
+      "center_x": 5180,
+      "baseline_y": 1100,
+      "width": 590,
+      "height": 1000
+    },
+    "405": {
+      "center_x": 6506,
+      "baseline_y": 1100,
+      "width": 590,
+      "height": 1000
+    }
+  },
+  "assets": [
+    {
+      "id": "carpet_tile",
+      "file": "assets/final/floor_4_layers/02_ground/carpet_tile.png",
+      "size": [
+        4344,
+        386
+      ],
+      "origin": "generated/carpet_tile.png",
+      "source_crop": [
+        0,
+        166,
+        2172,
+        552
+      ],
+      "sha256": "0c876601cc113be942f37e020c9d8c0fd688e8360be76f811d2696e7e1877a07"
+    },
+    {
+      "id": "wall_tile",
+      "file": "assets/final/floor_4_layers/01_far/wall_tile.png",
+      "size": [
+        3072,
+        1024
+      ],
+      "origin": "generated/wall_tile.png",
+      "source_crop": [
+        0,
+        0,
+        1536,
+        1024
+      ],
+      "sha256": "05d10750546c47887b5e33543f9914485c85f8586a92422f8aa2389c7d2ccfc1"
+    },
+    {
+      "id": "armchair",
+      "file": "assets/final/floor_4_layers/03_furniture/armchair.png",
+      "size": [
+        1294,
+        1189
+      ],
+      "origin": "generated/armchair.png",
+      "source_crop": [
+        0,
+        10,
+        1294,
+        1199
+      ],
+      "sha256": "7f1f35e3c115439b5136256e590aa273ada108f3aa91070dff0d8d3f709e4001"
+    },
+    {
+      "id": "lamp_table",
+      "file": "assets/final/floor_4_layers/03_furniture/lamp_table.png",
+      "size": [
+        915,
+        1510
+      ],
+      "origin": "generated/lamp_table.png",
+      "source_crop": [
+        65,
+        10,
+        980,
+        1520
+      ],
+      "sha256": "374e011311e61589baa70130f963d57ce45c31a3591e3f736dc3e408177887c3"
+    },
+    {
+      "id": "patrol_console",
+      "file": "assets/final/floor_4_layers/03_furniture/patrol_console.png",
+      "size": [
+        1522,
+        1024
+      ],
+      "origin": "generated/patrol_console.png",
+      "source_crop": [
+        0,
+        0,
+        1522,
+        1024
+      ],
+      "sha256": "a102e448699cc27214dbaf39ac9c06aa8aa8bf1a8f83f82decc1e66fa434bb46"
+    },
+    {
+      "id": "flower_pedestal",
+      "file": "assets/final/floor_4_layers/03_furniture/flower_pedestal.png",
+      "size": [
+        1010,
+        1486
+      ],
+      "origin": "generated/flower_pedestal.png",
+      "source_crop": [
+        0,
+        31,
+        1010,
+        1517
+      ],
+      "sha256": "2640b967f06d93d2741ca7bd1aef08a8664055f07c37e730fd04f93b513a5180"
+    },
+    {
+      "id": "bench",
+      "file": "assets/final/floor_4_layers/03_furniture/bench.png",
+      "size": [
+        2166,
+        679
+      ],
+      "origin": "generated/bench.png",
+      "source_crop": [
+        0,
+        45,
+        2166,
+        724
+      ],
+      "sha256": "e26c322cb550c952deac5d3e8894342a274f6cd37b6879cef5ed482e6e894934"
+    },
+    {
+      "id": "floor_sign",
+      "file": "assets/final/floor_4_layers/01_far/floor_sign.png",
+      "size": [
+        1401,
+        916
+      ],
+      "origin": "generated/floor_sign.png",
+      "source_crop": [
+        73,
+        108,
+        1474,
+        1024
+      ],
+      "sha256": "571fcca711720896e36abfa08ab86c96535cd7db7221e35aa7a2c72bb43f0043"
+    },
+    {
+      "id": "portrait",
+      "file": "assets/final/floor_4_layers/03_furniture/portrait.png",
+      "size": [
+        1046,
+        1469
+      ],
+      "origin": "generated/portrait.png",
+      "source_crop": [
+        0,
+        15,
+        1046,
+        1484
+      ],
+      "sha256": "f6bb76fd612eb39c93d8292fa3c7210227d666f20b4f434eb41f5fd0b86c0774"
+    },
+    {
+      "id": "landscape",
+      "file": "assets/final/floor_4_layers/03_furniture/landscape.png",
+      "size": [
+        1532,
+        1024
+      ],
+      "origin": "generated/landscape.png",
+      "source_crop": [
+        0,
+        0,
+        1532,
+        1024
+      ],
+      "sha256": "832dbbde09e8ac9e425289688cae603dc6623f56001248bd1f825399cd0a3742"
+    },
+    {
+      "id": "banner",
+      "file": "assets/final/floor_4_layers/03_furniture/banner.png",
+      "size": [
+        1010,
+        1509
+      ],
+      "origin": "generated/banner.png",
+      "source_crop": [
+        0,
+        27,
+        1010,
+        1536
+      ],
+      "sha256": "baa00d8f0cf3db76f374077ee5205372f4b0dd2f8a6aac2de5e0b910f0c98d1e"
+    },
+    {
+      "id": "palm",
+      "file": "assets/final/floor_4_layers/03_furniture/palm.png",
+      "size": [
+        1018,
+        1532
+      ],
+      "origin": "generated/palm.png",
+      "source_crop": [
+        0,
+        4,
+        1018,
+        1536
+      ],
+      "sha256": "1083dd4589bb332841e88210e666bfc6c7775b044d9274baac5ffe7f36e442e4"
+    },
+    {
+      "id": "landscape_vertical",
+      "file": "assets/final/floor_4_layers/03_furniture/landscape_vertical.png",
+      "size": [
+        1006,
+        1518
+      ],
+      "origin": "generated/landscape_vertical.png",
+      "source_crop": [
+        0,
+        18,
+        1006,
+        1536
+      ],
+      "sha256": "4c759415ede35d3bb4909a0b2701a4639493f6cdd3f1cc31262e86d0968299d2"
+    },
+    {
+      "id": "sky_tile",
+      "file": "assets/final/floor_4_layers/01_far/sky_tile.png",
+      "size": [
+        1774,
+        887
+      ],
+      "origin": "reused from assets/final/floor_3_layers/01_far/sky_tile.png",
+      "source_crop": null,
+      "sha256": "28081e50a957a39be5a8fa9253e816cfe0d8a522852a901bd3b1b8f602032390"
+    },
+    {
+      "id": "stair_left",
+      "file": "assets/final/floor_4_layers/01_far/stair_left.png",
+      "size": [
+        1004,
+        1519
+      ],
+      "origin": "reused from assets/final/floor_3_layers/01_far/stair_left.png",
+      "source_crop": null,
+      "sha256": "84856f2d442b5bb073df7788fa70a4fc6e1adf9486fa546564276616c50b4475"
+    },
+    {
+      "id": "stair_right",
+      "file": "assets/final/floor_4_layers/01_far/stair_right.png",
+      "size": [
+        1061,
+        1463
+      ],
+      "origin": "reused from assets/final/floor_3_layers/01_far/stair_right.png",
+      "source_crop": null,
+      "sha256": "074d0ded08117dd23604dfdaca3d251fc4e5abdbde9115bfcd749ff8d91585aa"
+    },
+    {
+      "id": "outer_pillar",
+      "file": "assets/final/floor_4_layers/01_far/outer_pillar.png",
+      "size": [
+        706,
+        2171
+      ],
+      "origin": "reused from assets/final/floor_3_layers/01_far/outer_pillar.png",
+      "source_crop": null,
+      "sha256": "9b1c8e4f695de71500b1066e1e5caf04c2dbdf607d1848ae1f22e0f46170009a"
+    },
+    {
+      "id": "ceiling_beam_tile",
+      "file": "assets/final/floor_4_layers/01_far/ceiling_beam_tile.png",
+      "size": [
+        1536,
+        105
+      ],
+      "origin": "reused from assets/final/floor_3_layers/01_far/ceiling_beam_tile.png",
+      "source_crop": null,
+      "sha256": "ff645adcd2a711a99e5282f5ac6089b6c7c0ddba610d2ad76ec2e2f078955d7e"
+    },
+    {
+      "id": "warm_glow",
+      "file": "assets/final/floor_4_layers/04_lighting/warm_glow.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "origin": "reused from assets/final/floor_3_layers/04_lighting/warm_glow.png",
+      "source_crop": null,
+      "sha256": "f1d2eef285bcbf29673b1b23d875b6edd94e7b9e9c406842b66fc185d195d2dc"
+    },
+    {
+      "id": "contact_shadow",
+      "file": "assets/final/floor_4_layers/04_lighting/contact_shadow.png",
+      "size": [
+        2131,
+        597
+      ],
+      "origin": "reused from assets/final/floor_3_layers/04_lighting/contact_shadow.png",
+      "source_crop": null,
+      "sha256": "b02920b3eb44903fccc5f2b3c6eddac7cc6cf1371766432873614d4b0dbb7e36"
+    },
+    {
+      "id": "skirting_tile",
+      "file": "assets/final/floor_4_layers/02_ground/skirting_tile.png",
+      "size": [
+        3072,
+        39
+      ],
+      "origin": "wall_tile native bottom trim",
+      "source_crop": [
+        0,
+        985,
+        3072,
+        1024
+      ],
+      "sha256": "ef698a831c13b343a157dfd17e49faebc65ec9db2722f4c247aa9a7d1a59a115"
+    },
+    {
+      "id": "background_region_01",
+      "file": "assets/final/floor_4_layers/01_far/background_region_01.png",
+      "size": [
+        1920,
+        1280
+      ],
+      "origin": "composite of independent architecture layers",
+      "source_crop": null,
+      "sha256": "eb5f264f4665b2ece0e5381c65663a70c2e7cbda26a7713be57a990a01d86363"
+    },
+    {
+      "id": "background_region_02",
+      "file": "assets/final/floor_4_layers/01_far/background_region_02.png",
+      "size": [
+        1920,
+        1280
+      ],
+      "origin": "composite of independent architecture layers",
+      "source_crop": null,
+      "sha256": "8e4e389edbd068f29e81b5b998783192cfc0aad8540a7bc34a3ac2980a95ebb7"
+    },
+    {
+      "id": "background_region_03",
+      "file": "assets/final/floor_4_layers/01_far/background_region_03.png",
+      "size": [
+        1920,
+        1280
+      ],
+      "origin": "composite of independent architecture layers",
+      "source_crop": null,
+      "sha256": "93426b8e10fb9578036db2240ddacfba8b0997f48e5fbdbe9504f58e3fc16d4e"
+    },
+    {
+      "id": "background_region_04",
+      "file": "assets/final/floor_4_layers/01_far/background_region_04.png",
+      "size": [
+        1920,
+        1280
+      ],
+      "origin": "composite of independent architecture layers",
+      "source_crop": null,
+      "sha256": "85f27aa77e69084fade2c7ae4de5a25322755bc223414fb0872e9a00af7bc52c"
+    }
+  ],
+  "placements": [
+    {
+      "name": "outside_city",
+      "group": "01_far",
+      "x": 0,
+      "y": 0,
+      "asset_id": "sky_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 1,
+      "size": [
+        7680,
+        1280
+      ]
+    },
+    {
+      "name": "teal_wallpaper_and_wainscot",
+      "group": "01_far",
+      "x": 850,
+      "y": 100,
+      "asset_id": "wall_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 0.9765625,
+      "size": [
+        6020,
+        1000
+      ]
+    },
+    {
+      "name": "continuous_dark_cornice",
+      "group": "01_far",
+      "x": 60,
+      "y": 0,
+      "asset_id": "ceiling_beam_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 0.9523809523809523,
+      "size": [
+        7560,
+        100
+      ]
+    },
+    {
+      "name": "left_outer_black_pillar",
+      "group": "01_far",
+      "x": 70,
+      "y": 3,
+      "asset_id": "outer_pillar",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.509915014164306,
+      "mirror": false,
+      "size": [
+        360,
+        1107
+      ]
+    },
+    {
+      "name": "right_outer_black_pillar",
+      "group": "01_far",
+      "x": 7320,
+      "y": 3,
+      "asset_id": "outer_pillar",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.509915014164306,
+      "mirror": true,
+      "size": [
+        360,
+        1107
+      ]
+    },
+    {
+      "name": "stair_left",
+      "group": "01_far",
+      "x": 340,
+      "y": 40,
+      "asset_id": "stair_left",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.7011191573403555,
+      "mirror": false,
+      "size": [
+        704,
+        1065
+      ]
+    },
+    {
+      "name": "stair_right",
+      "group": "01_far",
+      "x": 6782,
+      "y": 40,
+      "asset_id": "stair_right",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.7279562542720438,
+      "mirror": false,
+      "size": [
+        772,
+        1065
+      ]
+    },
+    {
+      "name": "floor_sign",
+      "group": "01_far",
+      "x": 144,
+      "y": 450,
+      "asset_id": "floor_sign",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.2074235807860262,
+      "mirror": false,
+      "size": [
+        291,
+        190
+      ]
+    },
+    {
+      "name": "continuous_teal_carpet",
+      "group": "02_ground",
+      "x": 60,
+      "y": 1100,
+      "asset_id": "carpet_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 0.41450777202072536,
+      "size": [
+        7560,
+        160
+      ]
+    },
+    {
+      "name": "separate_skirting",
+      "group": "02_ground",
+      "x": 900,
+      "y": 1070,
+      "asset_id": "skirting_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 0.7692307692307693,
+      "size": [
+        5970,
+        30
+      ]
+    },
+    {
+      "name": "landscape_left",
+      "group": "03_furniture",
+      "x": 968,
+      "y": 409,
+      "asset_id": "landscape_vertical",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.24440052700922266,
+      "mirror": false,
+      "size": [
+        246,
+        371
+      ]
+    },
+    {
+      "name": "armchair",
+      "group": "03_furniture",
+      "x": 1840,
+      "y": 748,
+      "asset_id": "armchair",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.2960470984020185,
+      "mirror": false,
+      "size": [
+        383,
+        352
+      ]
+    },
+    {
+      "name": "lamp_table",
+      "group": "03_furniture",
+      "x": 2263,
+      "y": 750,
+      "asset_id": "lamp_table",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.23169398907103825,
+      "mirror": false,
+      "size": [
+        212,
+        350
+      ]
+    },
+    {
+      "name": "portrait",
+      "group": "03_furniture",
+      "x": 3204,
+      "y": 251,
+      "asset_id": "portrait",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.24574540503744044,
+      "mirror": false,
+      "size": [
+        257,
+        361
+      ]
+    },
+    {
+      "name": "flower_pedestal",
+      "group": "03_furniture",
+      "x": 3202,
+      "y": 644,
+      "asset_id": "flower_pedestal",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.30686406460296095,
+      "mirror": false,
+      "size": [
+        310,
+        456
+      ]
+    },
+    {
+      "name": "banner",
+      "group": "03_furniture",
+      "x": 4444,
+      "y": 277,
+      "asset_id": "banner",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.2332670642809808,
+      "mirror": false,
+      "size": [
+        236,
+        352
+      ]
+    },
+    {
+      "name": "patrol_console",
+      "group": "03_furniture",
+      "x": 4208,
+      "y": 648,
+      "asset_id": "patrol_console",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.44152431011826543,
+      "mirror": false,
+      "size": [
+        672,
+        452
+      ]
+    },
+    {
+      "name": "landscape_right",
+      "group": "03_furniture",
+      "x": 5587,
+      "y": 427,
+      "asset_id": "landscape",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.27676240208877284,
+      "mirror": false,
+      "size": [
+        424,
+        283
+      ]
+    },
+    {
+      "name": "bench",
+      "group": "03_furniture",
+      "x": 5488,
+      "y": 947,
+      "asset_id": "bench",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.22530009233610343,
+      "mirror": false,
+      "size": [
+        488,
+        153
+      ]
+    },
+    {
+      "name": "palm",
+      "group": "03_furniture",
+      "x": 5918,
+      "y": 597,
+      "asset_id": "palm",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.3283289817232376,
+      "mirror": false,
+      "size": [
+        334,
+        503
+      ]
+    },
+    {
+      "name": "chair_contact_shadow",
+      "group": "04_lighting",
+      "x": 1790,
+      "y": 1083,
+      "asset_id": "contact_shadow",
+      "opacity": 0.35,
+      "suggested_blend": "multiply",
+      "size": [
+        470,
+        34
+      ]
+    },
+    {
+      "name": "lamp_table_contact_shadow",
+      "group": "04_lighting",
+      "x": 2260,
+      "y": 1083,
+      "asset_id": "contact_shadow",
+      "opacity": 0.35,
+      "suggested_blend": "multiply",
+      "size": [
+        210,
+        34
+      ]
+    },
+    {
+      "name": "flowers_contact_shadow",
+      "group": "04_lighting",
+      "x": 3220,
+      "y": 1083,
+      "asset_id": "contact_shadow",
+      "opacity": 0.35,
+      "suggested_blend": "multiply",
+      "size": [
+        230,
+        34
+      ]
+    },
+    {
+      "name": "patrol_contact_shadow",
+      "group": "04_lighting",
+      "x": 4210,
+      "y": 1083,
+      "asset_id": "contact_shadow",
+      "opacity": 0.35,
+      "suggested_blend": "multiply",
+      "size": [
+        670,
+        34
+      ]
+    },
+    {
+      "name": "bench_contact_shadow",
+      "group": "04_lighting",
+      "x": 5485,
+      "y": 1083,
+      "asset_id": "contact_shadow",
+      "opacity": 0.35,
+      "suggested_blend": "multiply",
+      "size": [
+        490,
+        34
+      ]
+    },
+    {
+      "name": "palm_contact_shadow",
+      "group": "04_lighting",
+      "x": 5980,
+      "y": 1083,
+      "asset_id": "contact_shadow",
+      "opacity": 0.35,
+      "suggested_blend": "multiply",
+      "size": [
+        280,
+        34
+      ]
+    },
+    {
+      "name": "lamp_light",
+      "group": "04_lighting",
+      "x": 2215,
+      "y": 570,
+      "asset_id": "warm_glow",
+      "opacity": 0.16,
+      "suggested_blend": "screen",
+      "size": [
+        300,
+        240
+      ]
+    },
+    {
+      "name": "patrol_light",
+      "group": "04_lighting",
+      "x": 4170,
+      "y": 650,
+      "asset_id": "warm_glow",
+      "opacity": 0.16,
+      "suggested_blend": "screen",
+      "size": [
+        320,
+        210
+      ]
+    },
+    {
+      "name": "stairs_left_light",
+      "group": "04_lighting",
+      "x": 490,
+      "y": 280,
+      "asset_id": "warm_glow",
+      "opacity": 0.16,
+      "suggested_blend": "screen",
+      "size": [
+        300,
+        340
+      ]
+    },
+    {
+      "name": "stairs_right_light",
+      "group": "04_lighting",
+      "x": 6920,
+      "y": 280,
+      "asset_id": "warm_glow",
+      "opacity": 0.16,
+      "suggested_blend": "screen",
+      "size": [
+        300,
+        340
+      ]
+    }
+  ],
+  "excluded": [
+    "all room doors and attached lanterns",
+    "characters",
+    "exposed pipes and cleaning tools"
+  ],
+  "notes": [
+    "No windows added: approved 4F preview has no windows.",
+    "Architecture reuse keeps gold stairs and black pillars consistent with 3F.",
+    "ORA preview uses normal alpha; screen/multiply are optional engine blend recommendations."
+  ]
+}

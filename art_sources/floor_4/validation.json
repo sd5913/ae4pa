@@ -1,0 +1,265 @@
+{
+  "canvas": [
+    7680,
+    1280
+  ],
+  "groups": 4,
+  "layers": 30,
+  "png_count": 25,
+  "ora_reconstruction_exact": true,
+  "region_stitch_exact": true,
+  "repeat_edges_exact": true,
+  "no_reference_upscaling": true,
+  "assets": [
+    {
+      "id": "carpet_tile",
+      "size": [
+        4344,
+        386
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "wall_tile",
+      "size": [
+        3072,
+        1024
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "armchair",
+      "size": [
+        1294,
+        1189
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 616022
+    },
+    {
+      "id": "lamp_table",
+      "size": [
+        915,
+        1510
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 969721
+    },
+    {
+      "id": "patrol_console",
+      "size": [
+        1522,
+        1024
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 1026239
+    },
+    {
+      "id": "flower_pedestal",
+      "size": [
+        1010,
+        1486
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 1018112
+    },
+    {
+      "id": "bench",
+      "size": [
+        2166,
+        679
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 823457
+    },
+    {
+      "id": "floor_sign",
+      "size": [
+        1401,
+        916
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 352455
+    },
+    {
+      "id": "portrait",
+      "size": [
+        1046,
+        1469
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 686520
+    },
+    {
+      "id": "landscape",
+      "size": [
+        1532,
+        1024
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 619766
+    },
+    {
+      "id": "banner",
+      "size": [
+        1010,
+        1509
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 819661
+    },
+    {
+      "id": "palm",
+      "size": [
+        1018,
+        1532
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 834509
+    },
+    {
+      "id": "landscape_vertical",
+      "size": [
+        1006,
+        1518
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 709207
+    },
+    {
+      "id": "sky_tile",
+      "size": [
+        1774,
+        887
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "stair_left",
+      "size": [
+        1004,
+        1519
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 403056
+    },
+    {
+      "id": "stair_right",
+      "size": [
+        1061,
+        1463
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 420401
+    },
+    {
+      "id": "outer_pillar",
+      "size": [
+        706,
+        2171
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 594313
+    },
+    {
+      "id": "ceiling_beam_tile",
+      "size": [
+        1536,
+        105
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "warm_glow",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_min": 0,
+      "alpha_max": 253,
+      "transparent_pixels": 12622
+    },
+    {
+      "id": "contact_shadow",
+      "size": [
+        2131,
+        597
+      ],
+      "alpha_min": 0,
+      "alpha_max": 251,
+      "transparent_pixels": 932061
+    },
+    {
+      "id": "skirting_tile",
+      "size": [
+        3072,
+        39
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "background_region_01",
+      "size": [
+        1920,
+        1280
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "background_region_02",
+      "size": [
+        1920,
+        1280
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "background_region_03",
+      "size": [
+        1920,
+        1280
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "background_region_04",
+      "size": [
+        1920,
+        1280
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    }
+  ]
+}
