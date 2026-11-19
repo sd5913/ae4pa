@@ -298,6 +298,8 @@ func _setup_doors() -> void:
 			$Floor3Art.bind_door(room,door)
 		elif has_node("Floor4Art"):
 			$Floor4Art.bind_door(room,door)
+		elif has_node("Floor5Art"):
+			$Floor5Art.bind_door(room,door)
 	add_child(scheduler)
 	GameManager.monster_encounter_requested.connect(_on_monster_encounter)
 
