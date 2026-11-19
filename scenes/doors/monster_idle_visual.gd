@@ -13,10 +13,14 @@ func configure(value: String, height_scale: float = 1.0) -> void:
 		var atlas := AtlasTexture.new()
 		atlas.atlas = texture
 		atlas.region = Rect2(i%4*362,i/4*543,362,543)
-		frames.add_frame("idle",atlas,2.0 if i in [0,7] else 1.0)
+		var duration := 2.0 if i in [0,7] else 1.0
+		if value == "NOSE":
+			# Approved sniff cycle: linger at idle and inhale; keep other guests unchanged.
+			duration = [2.52,0.78,0.9,1.32,2.1,0.9,0.9,1.8][i]
+		frames.add_frame("idle",atlas,duration)
 	sprite_frames = frames
 	centered = false
-	var baselines := {"EYE":487.0,"NOSE":514.0,"HAT":507.0,"EAR":455.0,"CHECKER":512.0}
+	var baselines := {"EYE":487.0,"NOSE":504.0,"HAT":507.0,"EAR":455.0,"CHECKER":512.0}
 	offset = Vector2(-181,-baselines[value])
 	scale = Vector2.ONE*height_scale
 	play("idle")

@@ -33,7 +33,19 @@
       362,
       543
     ],
-    "sha256": "bfccdc3521a6f2c02f48839816449befd85b6d99b8efff44298141ef9a0f0b10"
+    "sha256": "8c1892b2169a8fb350314bc717c549cc86bfd2bc4d64548187d81621c87494a5",
+    "version": "2026-11-19 approved bold-outline redesign",
+    "baseline": 504,
+    "durations_ms": [
+      420,
+      130,
+      150,
+      220,
+      350,
+      150,
+      150,
+      300
+    ]
   },
   {
     "id": "hat",

@@ -865,3 +865,10 @@
 - C同步main：仅进度文档发生追加段落冲突，已保留B/D与C全部记录；场景/脚本自动合并无冲突。后续回归针对合并后的代码运行。
 
 - C发布前最终回归（同步main@c89c88c后）：floor_4_layout、foundation、encounter_flow、floor_flow、task_01_main_flow、world_interaction全部PASS；资源导入无脚本/资源加载错误，保留既有safe-save系统提示。沿用最终组件实机截图检查，未宣称四楼主线任务已实现。
+
+
+### 2026-11-19 C：新版长鼻怪8帧动画替换与发布授权
+
+- 用户已确认新版单张与8帧站姿，并授权替换游戏、推送个人分支、合入main。以确认PNG无损替换assets/final/monster_idle/nose_idle_sheet.png，尺寸1448×1086、4×2、每格362×543，真实Alpha0—255，SHA-256更新至manifest；其余四怪PNG未改。art_sources/monster_idle/nose_v2保留确认单张、内置imagegen提示词及8帧边界信息。
+- 共用适配器只调整NOSE脚底基线514→504和各帧时长（420/130/150/220/350/150/150/300ms），保留整格切片、既有显示缩放、开门显示/关门隐藏和模态冻结机制；未改门逻辑、碰撞、卡片或任务。
+- 实际Compatibility渲染检查201门前的新长鼻怪与主角/布景的描边和尺寸、脚底站位；截图为显式预览夹具，不代记剧情/任务完整通关。encounter_flow、floor_2_layout、floor_3_layout、floor_4_layout、task_01_main_flow五项PASS，git diff --check通过。当前main@8e64221已核对，无新增远端提交。
