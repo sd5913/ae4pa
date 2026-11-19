@@ -673,6 +673,13 @@ A 当前工作区在 §18 基础上接入 D `eb5e019` 的 main_menu、help、bag
 - MissionBoard／Failure 保留 main 的自登记模态，在卸载时释放自身登记；A TaskLayer 继续管理 TASK_OFFER／TASK_FAILURE。接受、恢复、新局与卸载的真实回归均已通过。
 
 
+## 22 B-V5 员工职业节奏与正式美术配置（2026-11-17）
+
+- `Staff.patrol_enabled: bool` 仅开启既有“停留／准备转身／短程移动”状态机；不改变 `begin_steal()`、`cancel_steal()`、`task_failure_requested(reason, target_id)` 或 `interaction_state_changed(target_id, state)` 的签名。正式 1F 为经理、保安开启，保洁员沿用原工作循环。
+- 待本轮真人确认的难度参数：保洁员 CLEANING 停留随机 3.5—4.5 秒、ORGANIZING 停留 3—4 秒；保安停留 3—4 秒，经理 2.4—3.2 秒。移动前继续使用 `turn_warning_time=0.4` 的轻微侧看准备动作，不显示黄色悬浮图标。职业循环期间不再叠加独立随机转头计时器；背后静止长按仍为 0.8 秒。
+- CURIOUS 只用于未装备 CLEANER 时的自然观察；结束后恢复进入观察前的逻辑朝向和工作状态。正面 E 或长按期间被转身发现仍发 `task_failure_requested("STAFF_CAUGHT", target_id)`，背后静止长按仍为 0.8 秒。
+- 正式 1F 配置：SECURITY `(400,560)`／巡逻 100px，MANAGER `(1260,560)`／巡逻 100px，CLEANER `(2670,560)`／清洁—工具车 80px；三者 `steal_radius=95`，用于匹配约 184—204px 的正式人物视觉体量，未放宽朝向、静止、任务资格或被抓规则。
+- `CharacterVisual` 显示高度为 AN 190、MANAGER 198、SECURITY 204、CLEANER 184；保安／保洁 V2 静止图位于 `assets/final/staff/q_idle_v2/`，行走仍复用现有六帧表。UI 继续只读 B 的统一交互状态，不自建计时。
 ## 21.1 B 后续任务可实例化组件（2026-11-18）
 
 | PackedScene | 固定配置 | A 的实例化与恢复 |

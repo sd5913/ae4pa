@@ -709,6 +709,14 @@
 - 只沿用既有个人A分支发PR，不创建平行玩法实现；最终推送和main合并状态由GitHub PR／SHA核对后追加。没有将所有本地未提交文件一并打包。
 
 
+## 2026年11月17日 B-V5：员工行为、偷卡稳定性与 V2 美术接入（Asia/Hong_Kong）
+
+- 基于 `origin/main` 98e8130，在独立工作区／新 B 分支完成；没有改写 A 任务系统、C 场景模块或 D UI。正式 1F 将经理移至前台附近短巡逻、保安移至入口站岗巡逻、保洁员移至清洁区—工具车往返，避开主要前景柱；柜台当前单一深度结构不适合把经理强放柜台后方，因此采用用户允许的大堂前台附近方案。
+- 根因对照：角色放大后旧 55px 区域与视觉体量不匹配；CURIOUS 结束还会保留朝向玩家；保洁工作循环又叠加独立随机转头，造成刚按 E 突然转向。正式实例区域校准为 95px，CURIOUS 恢复原朝向，职业循环只由可观察的停留／0.4秒准备／移动驱动；0.8秒、背后、静止、资格、正面／回头被抓均保留。
+- 接入 V2 保安／保洁静止透明 PNG，显示高度 AN190／经理198／保安204／保洁184；女主与经理继续原正式素材及动画，保安／保洁行走暂用原六帧。静止／行走使用同一脚底裁切缩放逻辑，无额外角色实例；临时预览、Debug字段、本机字体和 `.vscode` 均排除。
+- Godot `4.7.2.stable.official.ed1daf0bf` 实跑：`staff_core_smoke`、`cleaner_v4_smoke`、`floor_1_art_smoke`、`world_interaction_smoke`、`task_checkpoint_smoke`、`task_01_main_flow_smoke` 全部 PASS；`main.tscn` headless 启动退出0。覆盖三卡／双槽、真实偷卡与清洁、唯一E、D进度状态、正面／回头失败、检查点恢复和201交付。保留既有 macOS 证书及测试存档不可写诊断，不称环境零错误。
+- 剩余：保安／保洁 V2 专属行走和职业动画尚未制作，本轮按要求不新增大量动画；经理柜台后方活动需未来场景深度／遮挡结构由 A/C 共同确认。正式 Windows 与本提交后的全程真人复测仍待团队验收。
+
 ## 2026-11-17 C：二楼左右楼梯间与栏杆合为单张PNG
 
 - 用户要求按一楼式整体楼梯，避免独立前景栏杆不合理遮挡人物。内置imagegen按原左右朝向／金色拱门及一楼栏杆风格分别生成两张887×1774 Alpha PNG，原尺寸保存；补充实际提示词／SHA／定位清单与说明。
@@ -808,3 +816,10 @@
 - 用户已授权将本次三楼组件组装、309高马尾观察窗三态、删除305、登记台落地和五门等比缩放推送个人分支并合入main。同步README与房号说明。
 - 发布前独立顺序回归：foundation_smoke、floor_3_layout_smoke、encounter_flow_smoke、floor_flow_smoke、task_01_main_flow_smoke、world_interaction_smoke全部PASS；编辑器资源扫描没有脚本/资源错误，仍有既有系统safe-save权限诊断。实际Compatibility截图验收沿用同一最终场景的登记台落地、宽门比例及302开门预览。
 - 仅纳入本次场景、309最终PNG、所需Godot导入描述/UID与记录；旧候选图、1F参考重建、观察测试入口保留本地。主线3F任务链/救援聊天尚待后续实现，本次不代表全游戏通关验收。
+
+## 2026年11月19日 B：V5 难度候选与最新 main 兼容复核（Asia/Hong_Kong）
+
+- `work/member-B-v5-staff-polish` 合入 `main@2538f11`，`docs/interfaces.md`／`docs/progress.md` 冲突均保留 B 与 C 的追加记录；没有改写 C 的单门调度、首次遇怪、半随机分配、大耳停步或核验附近禁止换证。
+- 本轮待真人确认参数：保洁 CLEANING 3.5—4.5 秒、ORGANIZING 3—4 秒，保安 3—4 秒，经理 2.4—3.2 秒；转身准备 0.4 秒、背后静止长按 0.8 秒、正面／回头被抓与唯一 E 不变。
+- Godot 4.7.2 资源重新导入；`staff_core_smoke`、`cleaner_v4_smoke`、`world_interaction_smoke`、`task_checkpoint_smoke`、`task_01_main_flow_smoke`、`encounter_flow_smoke` 均 PASS。首次导入前的怪物纹理缓存缺失诊断已通过完整重新导入处理；最终人工难度仍以 F5 试玩反馈为准。
+- 临时中文字体／主题、`assets/temp_review/`、美术预览、组件 PR #41 文件和调试文件不进入本难度提交。

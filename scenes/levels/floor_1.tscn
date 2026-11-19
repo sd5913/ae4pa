@@ -23,27 +23,37 @@ z_index = 3
 z_index = 3
 
 [node name="SecuritySlot" type="Marker2D" parent="StaffRoot" index="0"]
-position = Vector2(800, 560)
+position = Vector2(400, 560)
 metadata/card_id = "SECURITY"
 
 [node name="Staff" parent="StaffRoot/SecuritySlot" instance=ExtResource("2_staff")]
 card_id = "SECURITY"
+steal_radius = 95.0
+cleaner_walk_distance = 100.0
+cleaner_walk_speed = 34.0
+patrol_enabled = true
 
 [node name="CleanerSlot" type="Marker2D" parent="StaffRoot" index="1"]
-position = Vector2(1600, 560)
+position = Vector2(2670, 560)
 metadata/card_id = "CLEANER"
 
 [node name="Staff" parent="StaffRoot/CleanerSlot" instance=ExtResource("2_staff")]
 card_id = "CLEANER"
 target_id = "STAFF_CLEANER_1F"
 requires_task_eligibility = true
+steal_radius = 95.0
+cleaner_walk_distance = 80.0
 
 [node name="ManagerSlot" type="Marker2D" parent="StaffRoot" index="2"]
-position = Vector2(2400, 560)
+position = Vector2(1260, 560)
 metadata/card_id = "MANAGER"
 
 [node name="Staff" parent="StaffRoot/ManagerSlot" instance=ExtResource("2_staff")]
 card_id = "MANAGER"
+steal_radius = 95.0
+cleaner_walk_distance = 100.0
+cleaner_walk_speed = 24.0
+patrol_enabled = true
 
 [node name="Floor1Art" parent="." instance=ExtResource("3_modular_art")]
 position = Vector2(0, 106.25)
