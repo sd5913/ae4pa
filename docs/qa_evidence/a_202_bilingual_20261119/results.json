@@ -1,0 +1,275 @@
+{
+  "date": "2026-11-19 Asia/Hong_Kong",
+  "head": "caf862d30d36f41a88efb5dde95dbe0ecc61feeb",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "scope": "A task02 bilingual closeout; existing dirty workspace retained; no commit/push",
+  "total_invocations": 13,
+  "passed": 13,
+  "tests": [
+    {
+      "test": "localization_full",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-a-locale-er375u0h",
+        "--script",
+        "res://scenes/tests/core/localization_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-localization_full.log",
+        "--",
+        "--write-english"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 1.8
+    },
+    {
+      "test": "saved_english",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-a-locale-er375u0h",
+        "--script",
+        "res://scenes/tests/core/localization_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-saved_english.log",
+        "--",
+        "--expect-english"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.14
+    },
+    {
+      "test": "set_chinese",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-a-locale-er375u0h",
+        "--script",
+        "res://scenes/tests/core/localization_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-set_chinese.log",
+        "--",
+        "--set-chinese"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.14
+    },
+    {
+      "test": "saved_chinese",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-a-locale-er375u0h",
+        "--script",
+        "res://scenes/tests/core/localization_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-saved_chinese.log",
+        "--",
+        "--expect-chinese"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.14
+    },
+    {
+      "test": "task_02_localization",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        "/private/tmp/ae4pa-a-locale-er375u0h",
+        "--script",
+        "res://scenes/tests/core/task_02_localization_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-task_02_localization.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 1.69
+    },
+    {
+      "test": "core/foundation_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/foundation_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-bilingual-foundation_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 4.0
+    },
+    {
+      "test": "core/task_01_main_flow_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_01_main_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-bilingual-task_01_main_flow_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 6.96
+    },
+    {
+      "test": "core/task_ui_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_ui_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-bilingual-task_ui_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 17.69
+    },
+    {
+      "test": "core/task_checkpoint_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_checkpoint_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-bilingual-task_checkpoint_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 15.9
+    },
+    {
+      "test": "core/task_02_core_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_02_core_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-bilingual-task_02_core_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.14
+    },
+    {
+      "test": "core/task_02_main_flow_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_02_main_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-bilingual-task_02_main_flow_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 17.52
+    },
+    {
+      "test": "doors/floor_4_layout_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/doors/floor_4_layout_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-bilingual-floor_4_layout_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.84
+    },
+    {
+      "test": "core/world_interaction_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/world_interaction_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-a-bilingual-world_interaction_smoke.log"
+      ],
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 10.82
+    }
+  ],
+  "source_sha256": {
+    "assets/final/fonts/hotel_staff_cjk.otf": "fb03d0faa2737d4b52583cd26fd5576bb199d7261b23930c3b1d48035184e884",
+    "localization/en.po": "db05a3819027df1b90c008e19d8328b6c1b8d4f94cf15050f285c2b790d4f8c1",
+    "project.godot": "2a19d87d0ed9baa5fc01df25b9c8fdcea3445375956608500dcab388e459ac1e",
+    "scenes/levels/floor.gd": "65f80a046ba7d95809656b14b4e126cb2d950d797fb463ba24e0715bc3b18435",
+    "scenes/levels/floor_2.tscn": "ebd0fa51a5827c69f492823ce04c386fba18009690e5cc396804609784ea884a",
+    "scenes/main.gd": "ee1d415034d0b531738245c896499ce19e469f25b822b17070768fa5fe814e1b",
+    "scenes/task_hud.gd": "61efb54596868fc802c72f01a4ffabccbcc7df6aefa06f6ec50d74549e9e6511",
+    "scenes/task_ui.gd": "fd405876076f057a9a28fac11840caf0e7b65d727e5b75730596fca8295be582",
+    "scenes/tests/core/foundation_smoke.gd": "b42b26958fe9454f85da943552d99ac8e3ca36bf9c3b5ee9289cc9e4bf6b3b44",
+    "scenes/tests/core/localization_smoke.gd": "88e7968789eeb139714e201eedcffcea16bfda1b80f0df36456bd4e331b30b15",
+    "scenes/tests/core/task_01_main_flow_smoke.gd": "331c7ece9c3dc9a9ea40dbc061b6bb03d1730dc3face3ea3e11b10fe858e18c5",
+    "scenes/tests/core/task_02_core_smoke.gd": "87bc3bf1946a1c93e9656f5199e6fe8be17adafb4068122cf9bb546d5958703f",
+    "scenes/tests/core/task_02_localization_smoke.gd": "0b264bcec375b7de4af215b1269dcdc4ffccbf022820f3babea392528fe283a3",
+    "scenes/tests/core/task_02_main_flow_smoke.gd": "336ef92b513bb198b858e6fe8c7e52e5c74f82db847bb3f7aeae6a75d4fdd6f8",
+    "scenes/tests/core/task_checkpoint_smoke.gd": "1b6dceaaaa20ad118a8c32aaf1e5cac49395d82ed13c9c9b77f41e8bebcfc605",
+    "scenes/tests/core/task_ui_smoke.gd": "538bc846419037430efc2fbb9157b7f7bd0e8e1321ca91f794d2a99414d8664c",
+    "scenes/tests/core/world_interaction_smoke.gd": "67a1d27ce616207ee9196d7f7fa5f5ee1776fa2fc0100b741da13e0bb27a2433",
+    "scenes/tests/doors/floor_4_layout_smoke.gd": "d310065d3bcad19504d4187f0feee950ca3460581c28ac0872ddd4dff353e16a",
+    "scenes/ui/dialogue.gd": "078061c3ec1de1eb4882d2d585adaa4310e8f6e655d4bea452db7e9512a8c444",
+    "scenes/ui/mission_board.gd": "02fa84254ac039be4e169ace101d01f1cbdfbae1923db937b8891def831f9056",
+    "scripts/game_manager.gd": "f449b73ea654016278ea4bfd7e05a0c42a6c176e58b6cbbeb2aee3b7bc56fe09",
+    "scripts/localization.gd": "f7525897c4817595510a3fc22389af9de8b5add2db86fdae694c71571533f31e"
+  },
+  "profile": {
+    "fixture_path": "/private/tmp/ae4pa-a-locale-er375u0h",
+    "resources": "Symlinked to current repository; copied project settings only change custom user-data profile",
+    "name": "ae4pa-a-locale-check-20261119",
+    "player_profile": "not read or written",
+    "persistence": "English saved and verified in a new process, then Chinese saved and verified in another new process"
+  },
+  "font": {
+    "source": "https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/Sans/OTF/SimplifiedChinese/NotoSansCJKsc-Regular.otf",
+    "source_sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+    "existing_codepoints": 580,
+    "final_codepoints": 582,
+    "added": [
+      "U+67DC 柜",
+      "U+5E26 带"
+    ],
+    "original_horizontal_metrics": "all 580 unchanged",
+    "tool": "FontTools 4.60.2, temporary build tool only"
+  },
+  "limitations": [
+    "Headless automation; no human task02 acceptance or actual 180-second wait",
+    "No Windows or native bilingual layout/overflow verification",
+    "Default-sandbox regression logs retain existing system certificate diagnostic; isolated persistence checks run with access to their dedicated profile",
+    "gstack check selector could not fingerprint tree due Git temporary write restriction; no READY_FOR_SHIP claim"
+  ]
+}

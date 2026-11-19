@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_base.tscn" id="1_base"]
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_3_art.tscn" id="3_art"]
+
+[ext_resource type="PackedScene" path="res://scenes/work/register_309.tscn" id="4_register"]
 
 [node name="Floor3" instance=ExtResource("1_base")]
 floor_number = 3
@@ -45,3 +47,27 @@ visible = false
 
 [node name="Hint" parent="Interactions/ExitPoint"]
 visible = false
+
+
+[node name="Task03AcceptSafe" type="Marker2D" parent="Interactions"]
+position = Vector2(1320, 560)
+
+[node name="Register309" parent="Interactions" instance=ExtResource("4_register")]
+position = Vector2(2645, 560)
+z_index = 1
+
+[node name="PersistentVisual" parent="Interactions/Register309" index="1"]
+visible = false
+
+[node name="Hint" parent="Interactions/Register309" index="2"]
+text = "309登记台 · 当前经理身份 · E批准"
+autowrap_mode = 2
+
+[node name="TaskHint" type="Label" parent="Interactions/RescuePoint"]
+offset_left = -155.0
+offset_top = -100.0
+offset_right = 155.0
+offset_bottom = -55.0
+text = "309 · 取得管理批准后开放"
+autowrap_mode = 2
+horizontal_alignment = 1

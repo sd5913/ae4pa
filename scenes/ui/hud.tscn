@@ -78,7 +78,7 @@ theme_override_font_sizes/font_size = 16
 horizontal_alignment = 1
 
 [node name="SlotA" type="Control" parent="Stack/Readout"]
-custom_minimum_size = Vector2(106, 104)
+custom_minimum_size = Vector2(106, 116)
 layout_mode = 2
 mouse_filter = 2
 
@@ -116,7 +116,7 @@ stretch_mode = 5
 unique_name_in_owner = true
 offset_top = 68.0
 offset_right = 106.0
-offset_bottom = 102.0
+offset_bottom = 116.0
 autowrap_mode = 2
 theme_override_colors/font_outline_color = Color(0.1, 0.07, 0.04, 1)
 theme_override_constants/outline_size = 6
@@ -124,7 +124,7 @@ theme_override_font_sizes/font_size = 13
 horizontal_alignment = 1
 
 [node name="SlotB" type="Control" parent="Stack/Readout"]
-custom_minimum_size = Vector2(106, 104)
+custom_minimum_size = Vector2(106, 116)
 layout_mode = 2
 mouse_filter = 2
 
@@ -162,7 +162,7 @@ stretch_mode = 5
 unique_name_in_owner = true
 offset_top = 68.0
 offset_right = 106.0
-offset_bottom = 102.0
+offset_bottom = 116.0
 autowrap_mode = 2
 theme_override_colors/font_outline_color = Color(0.1, 0.07, 0.04, 1)
 theme_override_constants/outline_size = 6

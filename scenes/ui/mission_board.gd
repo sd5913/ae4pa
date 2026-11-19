@@ -12,6 +12,7 @@ var _retry_button: Button
 var _floor_buttons: Array[Button] = []
 var _status: Label
 var _hint: Label
+var _title: Label
 
 
 func _ready() -> void:
@@ -32,6 +33,7 @@ func _ready() -> void:
 	content.add_theme_constant_override("separation", 12)
 	panel.add_child(content)
 	var title := Label.new()
+	_title = title
 	title.text = "201  /  本次任务"
 	title.add_theme_font_size_override("font_size", 30)
 	content.add_child(title)
@@ -107,7 +109,9 @@ func open_task_details() -> void:
 		_accept_button.grab_focus()
 
 
-func configure_task_details(details: String) -> void:
+func configure_task_details(details: String, title_text: String = "") -> void:
+	if not title_text.is_empty():
+		_title.text = title_text
 	_status.self_modulate = Color.WHITE
 	_retry_button.hide()
 	for button: Button in _floor_buttons:

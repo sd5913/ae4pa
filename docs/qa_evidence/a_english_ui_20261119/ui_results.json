@@ -1,0 +1,32 @@
+[
+  {
+    "test": "english_layout",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-ui-final-vekvmwge",
+      "--script",
+      "res://scenes/tests/ui/english_layout_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-ui-english_layout-final.log"
+    ],
+    "exit_code": 0,
+    "errors": []
+  },
+  {
+    "test": "intro_flow",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-ui-final-vekvmwge",
+      "--script",
+      "res://scenes/tests/core/intro_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-ui-intro_flow-final.log"
+    ],
+    "exit_code": 0,
+    "errors": []
+  }
+]

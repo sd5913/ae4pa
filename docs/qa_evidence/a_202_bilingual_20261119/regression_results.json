@@ -1,0 +1,130 @@
+[
+  {
+    "test": "core/foundation_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://scenes/tests/core/foundation_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-a-bilingual-foundation_smoke.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 4.0
+  },
+  {
+    "test": "core/task_01_main_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://scenes/tests/core/task_01_main_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-a-bilingual-task_01_main_flow_smoke.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 6.96
+  },
+  {
+    "test": "core/task_ui_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://scenes/tests/core/task_ui_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-a-bilingual-task_ui_smoke.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 17.69
+  },
+  {
+    "test": "core/task_checkpoint_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://scenes/tests/core/task_checkpoint_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-a-bilingual-task_checkpoint_smoke.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 15.9
+  },
+  {
+    "test": "core/task_02_core_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://scenes/tests/core/task_02_core_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-a-bilingual-task_02_core_smoke.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "test": "core/task_02_main_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://scenes/tests/core/task_02_main_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-a-bilingual-task_02_main_flow_smoke.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 17.52
+  },
+  {
+    "test": "doors/floor_4_layout_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://scenes/tests/doors/floor_4_layout_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-a-bilingual-floor_4_layout_smoke.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.84
+  },
+  {
+    "test": "core/world_interaction_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://scenes/tests/core/world_interaction_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-a-bilingual-world_interaction_smoke.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 10.82
+  }
+]

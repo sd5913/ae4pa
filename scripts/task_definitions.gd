@@ -27,7 +27,7 @@ const TASKS: Dictionary = {
 		"target_id": "REGISTER_309", "work_type": "AUTHORIZE", "work_floor": 3,
 		"steps": ["GET_MANAGER", "EQUIP_MANAGER", "AUTHORIZE_309"],
 		"work_flag": "registration_309_approved", "completion_flags": ["registration_309_approved"],
-		"settlement": "AUTHORIZE_PROPOSED", "confirmation_required": ["D-05"],
+		"settlement": "AUTHORIZE", "confirmation_required": [],
 	},
 	"TASK_04_PATROL": {
 		"name": "夜班巡房记录", "location": "4F · 403", "offer_floor": 4, "room_id": "403",

@@ -1,0 +1,150 @@
+{
+  "head": "caf862d30d36f41a88efb5dde95dbe0ecc61feeb",
+  "tests": [
+    {
+      "test": "core/foundation_smoke.gd",
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 4.07,
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/foundation_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-sync-foundation_smoke.log"
+      ]
+    },
+    {
+      "test": "core/task_01_main_flow_smoke.gd",
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 7.07,
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_01_main_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-sync-task_01_main_flow_smoke.log"
+      ]
+    },
+    {
+      "test": "core/task_ui_smoke.gd",
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 18.02,
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_ui_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-sync-task_ui_smoke.log"
+      ]
+    },
+    {
+      "test": "core/task_checkpoint_smoke.gd",
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 15.68,
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_checkpoint_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-sync-task_checkpoint_smoke.log"
+      ]
+    },
+    {
+      "test": "core/task_02_core_smoke.gd",
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.15,
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_02_core_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-sync-task_02_core_smoke.log"
+      ]
+    },
+    {
+      "test": "core/task_02_main_flow_smoke.gd",
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 17.54,
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_02_main_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-sync-task_02_main_flow_smoke.log"
+      ]
+    },
+    {
+      "test": "doors/floor_4_layout_smoke.gd",
+      "exit_code": 0,
+      "errors": [],
+      "elapsed_seconds": 0.82,
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/doors/floor_4_layout_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-sync-floor_4_layout_smoke.log"
+      ]
+    }
+  ],
+  "date": "2026-11-19 Asia/Hong_Kong",
+  "scope": "Latest main merged into member A branch; preserves uncommitted task02 integration",
+  "passed": 7,
+  "localization_original": {
+    "exit_code": 1,
+    "status": "NOT_PASS",
+    "limitations": [
+      "Sandbox prevents user:// preference and story writes",
+      "Snapshot captured before collecting CLEANER; current dynamic task step changes after collecting it, before locale switches"
+    ],
+    "log": "localization_original.log"
+  },
+  "localization_diagnostic": {
+    "exit_code": 0,
+    "status": "PASS_WITH_LIMITATIONS",
+    "adjustments": [
+      "Temporary script stores story state under /private/tmp",
+      "Captures task view after setting up cards"
+    ],
+    "unverified": "Language preference persistence: sandbox denies user:// writes",
+    "log": "localization_diagnostic.log",
+    "script": "localization_diagnostic.gd"
+  },
+  "source_sha256": {
+    "project.godot": "2a19d87d0ed9baa5fc01df25b9c8fdcea3445375956608500dcab388e459ac1e",
+    "scripts/game_manager.gd": "f449b73ea654016278ea4bfd7e05a0c42a6c176e58b6cbbeb2aee3b7bc56fe09",
+    "scenes/levels/floor.gd": "65f80a046ba7d95809656b14b4e126cb2d950d797fb463ba24e0715bc3b18435",
+    "scenes/main.gd": "f5e6887a13cef8afe3ff2ce383c6442cdcbba56868b4afcf6613f23eca81cf9c",
+    "scenes/task_ui.gd": "fd405876076f057a9a28fac11840caf0e7b65d727e5b75730596fca8295be582",
+    "scenes/task_hud.gd": "b991c0d1948105ddb3dfacc4cc12748cb3dcc67dbab4da20e4b049033a84e781",
+    "scenes/ui/dialogue.gd": "078061c3ec1de1eb4882d2d585adaa4310e8f6e655d4bea452db7e9512a8c444",
+    "scenes/ui/mission_board.gd": "02fa84254ac039be4e169ace101d01f1cbdfbae1923db937b8891def831f9056"
+  }
+}
