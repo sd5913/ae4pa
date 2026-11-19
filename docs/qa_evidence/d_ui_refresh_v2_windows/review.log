@@ -1,0 +1,87 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 546.92 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3070 Laptop GPU
+
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+PASS: opening disables start
+PASS: early request cannot start story
+PASS: capture cover-000
+PASS: capture cover-001
+PASS: capture cover-002
+PASS: capture cover-003
+PASS: capture cover-004
+PASS: capture cover-005
+PASS: capture cover-006
+PASS: capture cover-007
+PASS: capture cover-008
+PASS: capture cover-009
+PASS: capture cover-010
+PASS: capture cover-011
+PASS: capture cover-012
+PASS: capture cover-013
+PASS: capture cover-014
+PASS: capture cover-015
+PASS: capture cover-016
+PASS: capture cover-017
+PASS: capture cover-018
+PASS: capture cover-019
+PASS: capture cover-020
+PASS: capture cover-021
+PASS: capture cover-022
+PASS: capture cover-023
+PASS: capture cover-024
+PASS: capture cover-025
+PASS: capture cover-026
+PASS: capture cover-027
+PASS: capture cover-028
+PASS: capture cover-029
+PASS: capture cover-030
+PASS: capture cover-031
+PASS: capture cover-032
+PASS: capture cover-033
+PASS: capture cover-034
+PASS: capture cover-035
+PASS: capture cover-036
+PASS: capture cover-037
+PASS: capture cover-038
+PASS: capture cover-039
+PASS: capture cover-040
+PASS: capture cover-041
+PASS: capture cover-042
+PASS: capture cover-043
+PASS: capture cover-044
+PASS: capture cover-045
+PASS: opening enables buttons at end
+PASS: 1280x720 title and actions centered
+PASS: 1280x720 title and buttons never overlap
+PASS: capture menu-1280x720
+PASS: 960x540 title and actions centered
+PASS: 960x540 title and buttons never overlap
+PASS: capture menu-960x540
+PASS: main language selector survives UI integration
+PASS: capture menu-english-960x540
+PASS: repeated feedback has no positional drift or accumulated scale
+PASS: disabled button restores scale
+PASS: keyboard tab has button focus
+PASS: menu help opens actual notebook
+PASS: capture notebook-960x540
+PASS: start opens real phone story
+PASS: capture phone-960x540
+PASS: formal main instantiates refreshed HUD
+PASS: no development cards granted
+PASS: BagButton in viewport at 960x540
+PASS: NotebookButton in viewport at 960x540
+PASS: PauseButton in viewport at 960x540
+PASS: capture hud-960x540
+PASS: HUD bag button opens real empty inventory and registers modal
+PASS: capture bag-960x540
+PASS: HUD notebook button opens progressive notebook
+PASS: HUD pause opens real modal
+PASS: capture pause-960x540
+PASS: continue releases pause modal
+PASS: capture hud-1280x720
+PASS: return menu replays guarded opening
+PASS: return menu restores button state and focus
+PASS: second entry starts clean real story
+PASS: capture final-hud
+REVIEW_READY: graphically rendered real main; no card fixture; two sizes

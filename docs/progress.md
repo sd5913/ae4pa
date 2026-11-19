@@ -872,3 +872,12 @@
 - 用户已确认新版单张与8帧站姿，并授权替换游戏、推送个人分支、合入main。以确认PNG无损替换assets/final/monster_idle/nose_idle_sheet.png，尺寸1448×1086、4×2、每格362×543，真实Alpha0—255，SHA-256更新至manifest；其余四怪PNG未改。art_sources/monster_idle/nose_v2保留确认单张、内置imagegen提示词及8帧边界信息。
 - 共用适配器只调整NOSE脚底基线514→504和各帧时长（420/130/150/220/350/150/150/300ms），保留整格切片、既有显示缩放、开门显示/关门隐藏和模态冻结机制；未改门逻辑、碰撞、卡片或任务。
 - 实际Compatibility渲染检查201门前的新长鼻怪与主角/布景的描边和尺寸、脚底站位；截图为显式预览夹具，不代记剧情/任务完整通关。encounter_flow、floor_2_layout、floor_3_layout、floor_4_layout、task_01_main_flow五项PASS，git diff --check通过。当前main@8e64221已核对，无新增远端提交。
+
+## 2026-11-19 D UI Refresh v2：素材包接入与 Windows 审查准备
+
+- 解压根目录 Hotel_UI_Refresh_v2.zip 到项目外，实际查看新增按钮与 HUD 素材；选择性整合附带补丁，未覆盖原 D 工作区和旧暂存结果。
+- 新分支 work/member-D-ui-refresh-v2：封面改居中容器，闪电／短黑屏／标题上升／按钮依次出现，期间禁用误触；返回菜单恢复动画、焦点与状态。统一实际按钮反馈，正式 HUD 接背包／笔记／暂停及原数据。
+- main 在工作期间合入英文切换，已整合到 caf862d 并保留语言选择与通知翻译；主场景仅 UI 接线，不改玩法或发卡。
+- 实际 Godot 4.7.2：导入、开场、基础、独立 UI 及两尺寸图形验证退出 0。task_ui 与干净 main 在同一普通门退回断言退出 1，保留记录交 A。测试副本只调整临时路径与等待动画，未改断言。
+- Windows 实际封面／HUD／空背包／暂停等截图和46帧动画GIF、日志见 docs/qa_evidence/d_ui_refresh_v2_windows/README.md；没有发测试卡片。原生 F5 已观察封面、操作说明与手机，后续完整原生走场受电脑工具弹窗超时限制，未代记通过。
+- 所有改变仍在 D 的新分支准备新 PR，不更新已合并的 #42，不合并 main。缓存、临时进度、原ZIP、包内Linux验证文件不纳入。
