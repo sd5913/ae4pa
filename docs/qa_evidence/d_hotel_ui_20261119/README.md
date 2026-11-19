@@ -1,7 +1,7 @@
 # 黄铜旅馆 UI 审查证据（2026-11-19）
 
 Windows，Godot 4.7.2.stable.official.ed1daf0bf，Compatibility。
-补丁最初应用于 98e8130，本轮已接到最新 main 2538f11；只在进度文档合并双方追加记录，保留 main 的任务、门和管理器实现。
+补丁最初应用于 98e8130，本轮已接到最新 main f18e4ce（含 B 任务组件及员工调整）；只在进度文档合并双方追加记录，保留 main 的任务、门和管理器实现。
 
 ## 画面来源
 
@@ -33,6 +33,8 @@ Windows，Godot 4.7.2.stable.official.ed1daf0bf，Compatibility。
 无窗口开场和任务 UI 使用仓库既有脚本，Windows 临时配置路径只在仓库外的脚本副本中调整，用户存档保留。图形验证脚本也留在仓库外。
 
 
-干净的 main 2538f11 对照实跑：[main-task-ui.log](main-task-ui.log) 同样退出 1，报告完全相同的普通门退回断言。它没有应用 UI 补丁。
+干净的 main f18e4ce 对照实跑：[main-task-ui.log](main-task-ui.log) 同样退出 1，报告完全相同的普通门退回断言。它没有应用 UI 补丁。
 当前分支的 [encounter_flow.log](encounter_flow.log) 退出 0，最新强制相遇流程通过。
 本轮 git diff --check 通过。
+
+最终版本补验：[staff_core.log](staff_core.log) 退出 0。上述截图与日志已用 f18e4ce 上的最终 UI 分支重新生成；main 原有任务／卡片／员工代码未纳入本次差异。

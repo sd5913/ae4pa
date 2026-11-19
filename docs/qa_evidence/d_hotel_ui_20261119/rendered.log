@@ -5,7 +5,7 @@ ERROR: Failed to read the root certificate store.
    at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
 PASS capture menu
 PASS phone notification starts tilted
-PHONE ANGLES [9.0, 9.0, 7.39119911193848, 9.61337757110596, 11.8355989456177, 9.53061294555664, 6.86394643783569, 7.20181274414063]
+PHONE ANGLES [9.0, 9.0, 7.33691024780273, 9.55928802490234, 11.7815093994141, 9.59552001953125, 6.92885303497314, 7.15854167938232]
 PASS phone visibly changes orientation before chat
 PASS capture phone-vibration
 PASS phone settles upright and opens messages

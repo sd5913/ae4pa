@@ -838,3 +838,5 @@
 - task_ui 退出 1：202 普通门安全退回断言失败。干净 main 2538f11 同样失败；最新 encounter_flow 退出 0。未改管理器／门行为或删除断言，交 A 复核强制相遇与旧测试的对接。
 - 背包与 HUD 截图的卡片来自仓库外脚本调用真实 CardManager API 的测试夹具，非剧情取得；夹具、缓存、临时存档和无关导入描述均不纳入。
 - git diff --check 通过。保留 PR 开启等待审查；本条不宣称正式五任务主线已验收。
+
+- 提交审查前 main 又更新到 f18e4ce（PR #35／#41）。已再次接入，保留 B 组件、员工参数及所有 main 记录；最终 intro_flow、foundation、ui、staff_core、encounter_flow 和带画面验证退出 0，task_ui 与干净 f18e4ce 均在同一普通门退回断言退出 1。最新证据已替换为最终分支生成的截图与日志。
