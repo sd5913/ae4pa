@@ -60,15 +60,26 @@ func open_offer(task_id: String) -> void:
 	_refresh_offer()
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready() and board.visible and GameManager.task_status == "AVAILABLE":
+		_refresh_offer_details.call_deferred()
+
+
 func _refresh_offer() -> void:
 	if not board.visible:
 		return
 	if GameManager.task_status != "AVAILABLE" or GameManager.game_state != "PLAYING":
 		board.hide()
 		return
-	var view: Dictionary = GameManager.get_task_view()
-	board.configure_task_details("所需身份：%s · 接受后限时 %d 秒\n回 1F 取得保洁工作证，再到 2F 清理污渍，最后回 201 交付。" % [view["required_card"], int(view["time_limit"])])
+	_refresh_offer_details()
 	_refresh_hud()
+
+
+func _refresh_offer_details() -> void:
+	var view: Dictionary = GameManager.get_task_view()
+	var requirement := tr(view["required_card"], "card requirement")
+	board.configure_task_details(tr("所需身份：%s · 接受后限时 %d 秒\n回 1F 取得保洁工作证，再到 2F 清理污渍，最后回 201 交付。")
+		% [requirement, int(view["time_limit"])])
 
 
 func _on_offer_visibility_changed() -> void:

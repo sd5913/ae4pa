@@ -2,12 +2,14 @@ extends Control
 
 const FLOOR_MODAL := "FLOOR_SELECT"
 const PAUSE_MODAL := "PAUSE"
+const LanguageSelector = preload("res://scenes/ui/language_selector.gd")
 
 var _modal_id := ""
 var _title: Label
 var _message: Label
 var _choices: VBoxContainer
 var _close: Button
+var _language: OptionButton
 
 
 func _ready() -> void:
@@ -34,6 +36,10 @@ func _ready() -> void:
 	content.add_child(_message)
 	_choices = VBoxContainer.new()
 	content.add_child(_choices)
+	_language = LanguageSelector.new()
+	_language.name = "LanguageSelector"
+	_language.hide()
+	content.add_child(_language)
 	_close = Button.new()
 	content.add_child(_close)
 	_close.pressed.connect(close_page)
@@ -83,6 +89,7 @@ func toggle_pause() -> void:
 
 func _open_page(modal_id: String, title: String, close_text: String) -> void:
 	_modal_id = modal_id
+	_language.visible = modal_id == PAUSE_MODAL
 	_title.text = title
 	_close.text = close_text
 	GameManager.set_modal_open(modal_id, true)
