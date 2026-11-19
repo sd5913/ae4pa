@@ -131,6 +131,8 @@ README 由 A 初始建立、D 后续维护；运行环境和公共接口变动�
 
 ## 玩家与交付资料
 
+- [English player quick-start](docs/quick_start_en.md)
+
 - [V4 玩家操作说明](docs/player-guide.md)和[楼层房号表](docs/room-monster-table.md)。
 - [演示录制清单](docs/demo-recording-checklist.md)：完整演示待录制，旧版独立 UI 截图仅作历史资料。
 - D：蔡至纯（UI、对白、测试与说明）。

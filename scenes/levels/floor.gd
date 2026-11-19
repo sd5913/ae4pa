@@ -3,6 +3,7 @@ extends Node2D
 
 signal floor_selection_requested()
 signal notice_requested(text: String)
+signal formatted_notice_requested(template: String, arguments: Array)
 signal manager_talk_requested()
 signal task_offer_requested(task_id: String)
 
@@ -110,20 +111,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		target["node"].request_interaction()
 	elif target["kind"] == "TALK":
 		if GameManager.has_completed_manager_intro():
-			notice_requested.emit("到右端楼梯按 E 上 2F，再向右找到 201 房门；任务在那里接取。")
+			_emit_notice("到右端楼梯按 E 上 2F，再向右找到 201 房门；任务在那里接取。")
 		else:
 			manager_talk_requested.emit()
 	elif target["kind"] == "WORK":
 		if _work.begin_interaction():
 			_held_work = _work
 		else:
-			notice_requested.emit("接受清理任务并将保洁卡切到当前身份，再在污渍处按住 E 1.5 秒。")
+			_emit_notice("接受清理任务并将保洁卡切到当前身份，再在污渍处按住 E 1.5 秒。")
 	elif GameManager.is_interaction_allowed(target["id"]):
 		var staff: Node = target["node"]
 		if staff.begin_steal():
 			_held_staff = staff
 	else:
-		notice_requested.emit("先接受对应任务；此处不会开始偷窃")
+		_emit_notice("先接受对应任务；此处不会开始偷窃")
 
 
 func get_interaction_target_id() -> String:
@@ -306,7 +307,11 @@ func _on_monster_encounter(context: Dictionary) -> void:
 		return
 	if context.room_id == "201" and GameManager.offer_task(context.task_id):
 		return
-	notice_requested.emit("%s：%s。已登记强制任务请求，等待聊天／任务接入。" % [context.room_id,"首次遇见 " + context.monster_type if context.first_encounter else "未满足 " + context.monster_type + " 的通行规则"])
+	var message := (
+		"%s：首次遇见 %s。已登记强制任务请求，等待聊天／任务接入。" if context.first_encounter
+		else "%s：未满足 %s 的通行规则。已登记强制任务请求，等待聊天／任务接入。"
+	)
+	_emit_notice(message, [context.room_id, context.monster_type])
 
 
 func _on_story_intercept(task_id: String, _room_id: String, door: Node2D) -> void:
@@ -323,7 +328,7 @@ func _on_task_submit(task_id: String, door: Node2D) -> void:
 
 
 func _on_story_progress(_task_id: String) -> void:
-	notice_requested.emit("工作完成后回 201 按 E 交付" if GameManager.task_status == "READY_TO_SUBMIT" else "当前任务进行中，请完成清理后返回")
+	_emit_notice("工作完成后回 201 按 E 交付" if GameManager.task_status == "READY_TO_SUBMIT" else "当前任务进行中，请完成清理后返回")
 
 
 func _on_door_violation(reason: String, approach_side: int, door: Node2D) -> void:
@@ -356,8 +361,14 @@ func get_safe_return_position(door: Node2D, approach_side: int) -> Dictionary:
 	return {"position": destination}
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		_refresh_exit_hint()
+		_refresh_staff_captions()
+
+
 func _refresh_exit_hint() -> void:
-	return_hint.text = "靠近后按 E → %dF" % (floor_number - 1) if floor_number > 1 and GameManager.get_available_floors().has(floor_number - 1) else ""
+	return_hint.text = tr("靠近后按 E → %dF") % (floor_number - 1) if floor_number > 1 and GameManager.get_available_floors().has(floor_number - 1) else ""
 	if floor_number == 5:
 		exit_hint.text = "EXIT · 终点接入位\n通关功能待 A-10"
 	elif floor_number == 1 and not GameManager.get_available_floors().has(2):
@@ -369,33 +380,38 @@ func _refresh_exit_hint() -> void:
 	elif not GameManager.get_available_floors().has(floor_number + 1):
 		exit_hint.text = "下一层尚未开放"
 	else:
-		exit_hint.text = "靠近后按 E → %dF" % (floor_number + 1)
+		exit_hint.text = tr("靠近后按 E → %dF") % (floor_number + 1)
 
 
 func _on_card_stolen(card_id: String) -> void:
 	_refresh_staff_captions()
-	var message: String = "获得%s ID" % CARD_NAMES[card_id]
-	notice_requested.emit(message)
+	_emit_notice("获得%s ID", [CARD_NAMES[card_id]])
+
+
+func _emit_notice(template: String, arguments: Array[String] = []) -> void:
+	# Keep the original notice signal for existing scene and preview consumers.
+	notice_requested.emit(template if arguments.is_empty() else template % arguments)
+	formatted_notice_requested.emit(template, arguments)
 
 
 func _refresh_staff_captions() -> void:
 	for slot: Node in $StaffRoot.get_children():
 		var staff: Node = slot.get_node("Staff")
 		var label: Label = slot.get_node("Caption")
-		var role_name: String = CARD_NAMES[staff.card_id]
+		var role_name := tr(CARD_NAMES[staff.card_id])
 		if _can_talk_to_manager(staff):
 			label.text = "经理 · 按 E 查看去向" if GameManager.has_completed_manager_intro() else "经理 · 按 E 交谈（任意一侧）"
 		elif CardManager.has_card(staff.card_id):
-			label.text = "%s · ID 已取得" % role_name
+			label.text = tr("%s · ID 已取得") % role_name
 		elif staff.is_stealing():
-			label.text = "%s · 偷取中\n请保持不动并按住 E" % role_name
+			label.text = tr("%s · 偷取中\n请保持不动并按住 E") % role_name
 		elif staff.is_player_in_range():
 			if not GameManager.is_interaction_allowed(STAFF_TARGET_IDS[staff.card_id]):
-				label.text = "%s · 先接受对应任务" % role_name
+				label.text = tr("%s · 先接受对应任务") % role_name
 			else:
-				label.text = "%s · 身后按住 E 0.8 秒" % role_name if staff.is_player_behind() else "%s · 当前在正面\n请绕到背后" % role_name
+				label.text = tr("%s · 身后按住 E 0.8 秒") % role_name if staff.is_player_behind() else tr("%s · 当前在正面\n请绕到背后") % role_name
 		else:
-			label.text = "%s · 朝%s" % [role_name, "右 →" if staff.facing_direction > 0 else "左 ←"]
+			label.text = tr("%s · 朝%s") % [role_name, tr("右 →") if staff.facing_direction > 0 else tr("左 ←")]
 
 
 func _add_caption(slot: Node2D, caption: String, top: float) -> void:
@@ -404,6 +420,7 @@ func _add_caption(slot: Node2D, caption: String, top: float) -> void:
 	label.position = Vector2(-160, top)
 	label.size = Vector2(320, 64)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	label.add_theme_font_size_override("font_size", 18)
 	label.text = caption
 	slot.add_child(label)

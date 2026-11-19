@@ -12,6 +12,11 @@ func _ready() -> void:
 	super._ready()
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		_refresh_notebook()
+
+
 func _show_page(page_index: int) -> void:
 	super._show_page(page_index)
 	_refresh_notebook()
@@ -24,7 +29,7 @@ func _refresh_notebook() -> void:
 		_work_card_page.get_node(row + "Rule").text = "已获得，可在背包选择佩戴槽。" if CardManager.has_card(CARD_ROWS[row]) else "尚未获得。"
 	for index: int in range(ENTRY_NODES.size()):
 		var entry: Dictionary = view["entries"][index]
-		_monster_page.get_node(ENTRY_NODES[index] + "Id").text = "%s · %s" % [STATUS_LABELS[entry["status"]], entry["name"]]
+		_monster_page.get_node(ENTRY_NODES[index] + "Id").text = "%s · %s" % [tr(STATUS_LABELS[entry["status"]]), tr(entry["name"])]
 		_monster_page.get_node(ENTRY_NODES[index] + "Rule").text = entry["text"]
 	var hint: Label = _monster_page.get_node("Unconfirmed")
 	hint.visible = not view["unlocked"]

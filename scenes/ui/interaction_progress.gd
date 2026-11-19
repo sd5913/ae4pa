@@ -118,8 +118,8 @@ func _display(state: Dictionary) -> void:
 		return
 	var kind: String = ACTION_TEXT.get(state["interaction_type"], state["interaction_type"])
 	var reason: String = BLOCK_TEXT.get(state["block_reason"], state["block_reason"])
-	_details.text = "%s · %s · %s\n%.2f / %.2f 秒" % [
-		kind, STATUS_TEXT[_status], reason, state["elapsed"], state["required_time"],
+	_details.text = tr("%s · %s · %s\n%.2f / %.2f 秒") % [
+		tr(kind), tr(STATUS_TEXT[_status]), tr(reason), state["elapsed"], state["required_time"],
 	]
 	_progress.value = state["progress"]
 	show()

@@ -115,6 +115,21 @@ func _ready() -> void:
 	_continue_button.grab_focus()
 
 
+func _notification(what: int) -> void:
+	if what != NOTIFICATION_TRANSLATION_CHANGED or not is_node_ready():
+		return
+	for row: Control in _sms_history.get_children():
+		_size_sms_body(row.get_node("Bubble/Body"))
+	if _sms_history.get_child_count() > 0:
+		_scroll_sms_to_message(_sms_history.get_child(-1))
+	if _cue.visible and not _beats.is_empty():
+		_refresh_stage_cue()
+
+
+func _refresh_stage_cue() -> void:
+	_cue.text = tr("（%s）") % tr(_beats[_line_index].text)
+
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not visible or _dialogue_id.is_empty() or _transition_in_progress:
 		return
@@ -275,7 +290,7 @@ func _show_story_beat() -> void:
 		_sms_panel.hide()
 		_frame.hide()
 		_portrait.hide()
-		_cue.text = "（" + str(beat.text) + "）"
+		_refresh_stage_cue()
 		_cue.show()
 	elif mode == "title":
 		_sms_panel.hide()
@@ -328,6 +343,7 @@ func _add_sms_message(speaker: String, text: String) -> void:
 	avatar.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	avatar.texture = FRIEND_AVATAR if is_friend else AN_AVATAR
 	var bubble := PanelContainer.new()
+	bubble.name = "Bubble"
 	bubble.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color("414a34") if is_friend else Color("dfbd78")
@@ -342,10 +358,7 @@ func _add_sms_message(speaker: String, text: String) -> void:
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	body.add_theme_color_override("font_color", Color("fff4dc") if is_friend else Color("3c2920"))
 	body.add_theme_font_size_override("font_size", 17)
-	var font := body.get_theme_font("font")
-	body.custom_minimum_size.x = minf(146.0, ceilf(font.get_string_size(
-		text, HORIZONTAL_ALIGNMENT_LEFT, -1, body.get_theme_font_size("font_size")
-	).x))
+	body.name = "Body"
 	bubble.add_child(body)
 	var spacer := Control.new()
 	spacer.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -359,7 +372,15 @@ func _add_sms_message(speaker: String, text: String) -> void:
 		row.add_child(bubble)
 		row.add_child(avatar)
 	_sms_history.add_child(row)
+	_size_sms_body(body)
 	_scroll_sms_to_message(row)
+
+
+func _size_sms_body(body: Label) -> void:
+	var font := body.get_theme_font("font")
+	body.custom_minimum_size.x = minf(146.0, ceilf(font.get_string_size(
+		tr(body.text), HORIZONTAL_ALIGNMENT_LEFT, -1, body.get_theme_font_size("font_size")
+	).x))
 
 
 func _scroll_sms_to_message(row: Control) -> void:
