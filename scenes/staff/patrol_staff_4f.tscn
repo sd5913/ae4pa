@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/staff/staff.tscn" id="1_staff"]
+
+[node name="PatrolStaff4F" instance=ExtResource("1_staff")]
+card_id = "SECURITY"
+target_id = "STAFF_PATROL_4F"
+reward_type = "TASK_ITEM"
+reward_id = "PATROL_RECORD"
+requires_task_eligibility = true
+cleaner_behavior_enabled = false
+
+[node name="CardMarker" parent="." index="3"]
+text = "FILE"
+
+[node name="FeedbackLabel" parent="." index="4"]
+text = "GOT PATROL RECORD"

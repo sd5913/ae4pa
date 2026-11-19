@@ -155,11 +155,12 @@ func is_completed() -> bool:
 
 
 func _set_completed_visual(completed: bool) -> void:
-	var visual: CanvasItem = get_node_or_null("WorkVisual")
-	if visual == null:
-		visual = get_node_or_null("Stain")
-	if visual != null:
-		visual.visible = not completed
+	# Only the reward/interaction item disappears. Environment furniture such as
+	# the parcel cabinet or 309 desk remains visible after completion.
+	for node_name: String in ["WorkVisual", "ItemVisual", "Stain"]:
+		var visual: CanvasItem = get_node_or_null(node_name)
+		if visual != null:
+			visual.visible = not completed
 	$Hint.visible = not completed
 	$WorkArea.set_deferred("monitoring", not completed)
 

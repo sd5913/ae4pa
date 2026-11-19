@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/work/work_point.tscn" id="1_work"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/05_interactive/mail_package_cabinet.png" id="2_cabinet"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/05_interactive/sealed_envelope.png" id="3_parcel"]
+
+[node name="ParcelCabinet2F" instance=ExtResource("1_work")]
+target_id = "PARCEL_CABINET_2F"
+interaction_type = "PICKUP"
+required_card = "SECURITY"
+hold_duration = 0.0
+
+[node name="WorkVisual" parent="." index="0"]
+visible = false
+
+[node name="PersistentVisual" type="Sprite2D" parent="." index="1"]
+position = Vector2(0, -48)
+scale = Vector2(0.22, 0.22)
+texture = ExtResource("2_cabinet")
+
+[node name="ItemVisual" type="Sprite2D" parent="." index="2"]
+position = Vector2(0, -37)
+scale = Vector2(0.085, 0.085)
+texture = ExtResource("3_parcel")
+
+[node name="Hint" parent="." index="3"]
+text = "PARCEL · SECURITY · E"
