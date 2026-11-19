@@ -30,7 +30,7 @@ func _resize_layout() -> void:
 
 func _set_interactive(enabled: bool) -> void:
 	_ready_for_input = enabled
-	for button: Button in [%StartButton, %HelpButton]:
+	for button: Button in [%StartButton, %HelpButton, %LanguageSelector]:
 		button.disabled = not enabled
 		button.focus_mode = Control.FOCUS_ALL if enabled else Control.FOCUS_NONE
 
@@ -42,7 +42,7 @@ func _play_opening() -> void:
 	_title.modulate.a = 0.0
 	_title.offset_top = 72
 	_title.offset_bottom = 72
-	for button: Button in [%StartButton, %HelpButton]:
+	for button: Button in [%StartButton, %HelpButton, %LanguageSelector]:
 		button.modulate.a = 0.0
 		button.scale = Vector2.ONE
 	_blackout.color.a = 1.0
@@ -64,6 +64,7 @@ func _play_opening() -> void:
 	_opening.parallel().tween_property(_title, "modulate:a", 1.0, 0.6)
 	_opening.tween_property(%StartButton, "modulate:a", 1.0, 0.25)
 	_opening.tween_property(%HelpButton, "modulate:a", 1.0, 0.25)
+	_opening.tween_property(%LanguageSelector, "modulate:a", 1.0, 0.2)
 	_opening.finished.connect(_finish_opening, CONNECT_ONE_SHOT)
 
 func _show_lightning() -> void:
@@ -79,7 +80,7 @@ func _finish_opening() -> void:
 	_title.offset_top = 0.0
 	_title.offset_bottom = 0.0
 	_title.modulate.a = 1.0
-	for button: Button in [%StartButton, %HelpButton]:
+	for button: Button in [%StartButton, %HelpButton, %LanguageSelector]:
 		button.modulate.a = 1.0
 	_set_interactive(true)
 	if visible:

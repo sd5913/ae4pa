@@ -83,6 +83,11 @@ func _ready() -> void:
 	_sync_modal_state()
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		refresh_from_game_manager()
+
+
 func _sync_modal_state() -> void:
 	if GameManager.has_method("set_modal_open"):
 		GameManager.call("set_modal_open", MODAL_ID, visible)
@@ -132,23 +137,23 @@ func refresh_from_game_manager(_unused: Variant = null) -> void:
 		var floor_number := index + 1
 		var button := _floor_buttons[index]
 		button.disabled = not available_floors.has(floor_number)
-		button.text = "%dF%s" % [floor_number, " · 可前往" if not button.disabled else ""]
+		button.text = "%dF%s" % [floor_number, tr(" · 可前往") if not button.disabled else ""]
 	var remaining: float = float(task_view.get("remaining_time", 0.0))
 	var target_id: String = str(task_view.get("target_id", ""))
 	var step: String = str(task_view.get("step", ""))
-	_hint.text = "目标：%s · 步骤：%s · 剩余：%s" % [target_id, step, _format_time(remaining)] if not target_id.is_empty() else "任务目标与剩余时间由 GameManager 提供。"
+	_hint.text = tr("目标：%s · 步骤：%s · 剩余：%s") % [tr(target_id), tr(step), _format_time(remaining)] if not target_id.is_empty() else "任务目标与剩余时间由 GameManager 提供。"
 
 
 func show_warning(message: String) -> void:
 	_retry_button.visible = false
 	_retry_button.disabled = true
-	_status.text = "普通警告 · " + message
+	_status.text = tr("普通警告 · %s") % tr(message)
 	_status.self_modulate = Color("f0c86e")
 	show()
 
 
 func show_task_failure(reason: String) -> void:
-	_status.text = "任务失败 · " + reason
+	_status.text = tr("任务失败 · %s") % tr(reason)
 	_status.self_modulate = Color("f08a72")
 	_retry_button.visible = true
 	_retry_button.disabled = true
@@ -186,7 +191,7 @@ func _select_floor(floor_number: int) -> void:
 
 func _on_task_failed(task_id: String, reason: String) -> void:
 	refresh_from_game_manager()
-	show_task_failure("%s：%s" % [task_id, reason])
+	show_task_failure("%s：%s" % [task_id, tr(reason)])
 
 
 func _on_retry_pressed() -> void:
@@ -204,10 +209,10 @@ func _format_task_view(task_status: String, task_name: String, location: String)
 		"COMPLETED": "已完成",
 		"FAILED": "失败",
 	}
-	var status_text: String = str(status_names.get(task_status, task_status))
+	var status_text := tr(status_names.get(task_status, task_status))
 	if task_name.is_empty():
 		return status_text
-	return "%s · %s · %s" % [status_text, task_name, location]
+	return "%s · %s · %s" % [status_text, tr(task_name), tr(location)]
 
 
 func _format_time(seconds: float) -> String:

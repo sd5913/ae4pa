@@ -261,7 +261,7 @@ func _complete_steal() -> bool:
 	if succeeded:
 		_end_suspicion(true)
 		turn_warning.visible = false
-		feedback_label.text = "GOT %s" % completed_reward_id
+		feedback_label.text = "GOT %s" % tr(completed_reward_id)
 		feedback_label.visible = true
 		feedback_timer.start()
 		_update_card_marker()

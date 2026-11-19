@@ -265,13 +265,22 @@ func reset_cycle() -> void:
 		_update_phase()
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		_refresh_state_label()
+
+
+func _refresh_state_label() -> void:
+	$StateLabel.text = "%s · %s" % [tr(monster_type), door_state]
+
+
 func _refresh_visuals() -> void:
 	$MonsterPlaceholder.visible = door_state == "OPEN" and not managed_cycle
 	if has_node("MonsterIdle"):
 		$MonsterIdle.visible = door_state == "OPEN"
 	$DoorPanel.visible = door_state != "OPEN"
 	$Handle.visible = door_state != "OPEN"
-	$StateLabel.text = monster_type + " · " + door_state
+	_refresh_state_label()
 	$Frame.modulate = Color.WHITE
 	$WarningLabel.visible = door_state == "WARNING"
 

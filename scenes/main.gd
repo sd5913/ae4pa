@@ -3,6 +3,8 @@ extends Node2D
 
 const STORY_MODAL: String = "STORY_DIALOGUE"
 var _active_dialogue_id: String = ""
+var _notice_template := ""
+var _notice_arguments: Array = []
 
 @onready var state_label: Label = $DeveloperOverlay/Margin/Info/State
 @onready var notice_label: Label = $DeveloperOverlay/Margin/Info/Notice
@@ -38,6 +40,12 @@ func _ready() -> void:
 	GameManager.set_floor_host($World)
 	GameManager.start_game()
 	_show_menu()
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		_refresh_notice()
+		_refresh_state_label(GameManager.game_state)
 
 
 func _input(event: InputEvent) -> void:
@@ -125,8 +133,12 @@ func _on_state_changed(new_state: String) -> void:
 	if new_state in ["FAILED", "RESTORING", "LOADING", "MENU"]:
 		notebook.close_help()
 		bag.close_bag()
-	state_label.text = "状态：%s · %dF · 已获：%d/3 · 双槽：%s · 当前：%s" % [
-		new_state, GameManager.current_floor, CardManager.get_owned_cards().size(),
+	_refresh_state_label(new_state)
+
+
+func _refresh_state_label(state: String) -> void:
+	state_label.text = tr("状态：%s · %dF · 已获：%d/3 · 双槽：%s · 当前：%s") % [
+		state, GameManager.current_floor, CardManager.get_owned_cards().size(),
 		CardManager.get_equipped_cards(), CardManager.active_card
 	]
 
@@ -139,12 +151,12 @@ func _on_cards_changed() -> void:
 func _on_floor_changed(_number: int) -> void:
 	var floor_node: Node = $World.get_child(0)
 	floor_node.get_node("EntranceLabel").visible = "--developer-ui" in OS.get_cmdline_user_args()
-	floor_node.notice_requested.connect(_show_notice)
+	floor_node.formatted_notice_requested.connect(_show_notice)
 	floor_node.manager_talk_requested.connect(_on_manager_talk_requested)
 	floor_node.task_offer_requested.connect($TaskLayer.open_offer)
 	floor_node.floor_selection_requested.connect($TaskLayer.open_floor_selection)
 	$TaskLayer.bind_interaction_floor(floor_node)
-	notice_label.text = "E 交谈／楼梯／交付；工作处长按 E，Q 切换当前身份。"
+	_show_notice("E 交谈／楼梯／交付；工作处长按 E，Q 切换当前身份。")
 	_on_state_changed(GameManager.game_state)
 	_refresh_objective()
 
@@ -184,18 +196,33 @@ func _on_manager_talk_requested() -> void:
 		_show_story_dialogue("V4_MANAGER_TALK")
 
 
-func _show_notice(message: String) -> void:
-	notice_label.text = message
-	$TaskLayer/HUD.show_notice(message)
+func _show_notice(message: String, arguments: Array = []) -> void:
+	_notice_template = message
+	_notice_arguments = arguments
+	_refresh_notice()
+
+
+func _refresh_notice() -> void:
+	if _notice_template.is_empty():
+		return
+	if _notice_arguments.is_empty():
+		notice_label.text = tr(_notice_template)
+		$TaskLayer/HUD.show_notice(notice_label.text)
+		return
+	var arguments := _notice_arguments.map(func(argument: String) -> String: return tr(argument))
+	notice_label.text = tr(_notice_template) % arguments
+	$TaskLayer/HUD.show_notice(notice_label.text)
 
 
 func _on_game_failed(reason: String) -> void:
-	_show_notice("偷窃被发现 · 可重新挑战本任务" if reason == "STAFF_CAUGHT" else "失败：" + reason)
+	if reason == "STAFF_CAUGHT":
+		_show_notice("偷窃被发现 · 可重新挑战本任务")
+	else:
+		_show_notice("失败：%s", [reason])
 
 
 func _on_safe_return_started(reason: String) -> void:
-	_show_notice("普通门警告：%s · 已退回来侧，请观察后重试" % reason)
-
+	_show_notice("普通门警告：%s · 已退回来侧，请观察后重试", [reason])
 
 func _open_bag_from_toolbar() -> void:
 	if GameManager.is_world_input_allowed():
