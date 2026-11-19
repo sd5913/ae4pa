@@ -1,0 +1,257 @@
+{
+  "canvas": [
+    7680,
+    940
+  ],
+  "layer_count": 35,
+  "assets": [
+    {
+      "id": "wall_tile",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "sky_tile",
+      "size": [
+        1774,
+        887
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "stair_left",
+      "size": [
+        1004,
+        1519
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 403056
+    },
+    {
+      "id": "stair_right",
+      "size": [
+        1061,
+        1463
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 420401
+    },
+    {
+      "id": "window_pair",
+      "size": [
+        1490,
+        1020
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 597842
+    },
+    {
+      "id": "carpet_tile",
+      "size": [
+        2172,
+        724
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "sofa",
+      "size": [
+        1754,
+        862
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 565777
+    },
+    {
+      "id": "lamp_table",
+      "size": [
+        988,
+        1425
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 1106465
+    },
+    {
+      "id": "side_table",
+      "size": [
+        1302,
+        1112
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 961053
+    },
+    {
+      "id": "portrait",
+      "size": [
+        1018,
+        1514
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 766553
+    },
+    {
+      "id": "flower_table",
+      "size": [
+        1073,
+        1444
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 866737
+    },
+    {
+      "id": "candelabra",
+      "size": [
+        729,
+        2063
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 1021727
+    },
+    {
+      "id": "banner",
+      "size": [
+        1002,
+        1536
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 785007
+    },
+    {
+      "id": "book_console",
+      "size": [
+        1379,
+        1078
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 676803
+    },
+    {
+      "id": "registration_desk",
+      "size": [
+        1482,
+        1017
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 479978
+    },
+    {
+      "id": "round_crest",
+      "size": [
+        1247,
+        1247
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 716195
+    },
+    {
+      "id": "certificate",
+      "size": [
+        1009,
+        1453
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 337904
+    },
+    {
+      "id": "palm_tall",
+      "size": [
+        990,
+        1508
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 886947
+    },
+    {
+      "id": "palm_small",
+      "size": [
+        1085,
+        1427
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 1047458
+    },
+    {
+      "id": "pendant",
+      "size": [
+        828,
+        1719
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 1097350
+    },
+    {
+      "id": "floor_sign",
+      "size": [
+        1482,
+        999
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 727595
+    },
+    {
+      "id": "warm_glow",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_min": 0,
+      "alpha_max": 253,
+      "transparent_pixels": 12622
+    },
+    {
+      "id": "contact_shadow",
+      "size": [
+        2131,
+        597
+      ],
+      "alpha_min": 0,
+      "alpha_max": 251,
+      "transparent_pixels": 932061
+    },
+    {
+      "id": "outer_pillar",
+      "size": [
+        706,
+        2171
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 594313
+    }
+  ],
+  "ora_layer_count_verified": true,
+  "merged_preview_identical": true,
+  "reference_pixels_used_for_assets": false,
+  "gameplay_scene_modified": false,
+  "ora_rebuilt_from_layers_identical": true,
+  "background_regions": 4,
+  "background_regions_opaque": true,
+  "game_export_png_count": 29
+}

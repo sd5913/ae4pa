@@ -49,7 +49,7 @@ func _ready() -> void:
 	if _work != null:
 		_work.setup(player)
 		_work.cleaning_completed.connect(_on_cleaning_completed)
-	if $Interactions.has_node("RescuePoint"):
+	if $Interactions.has_node("RescuePoint") and not has_node("Floor3Art"):
 		_add_caption($Interactions/RescuePoint, "309 · 救援接入位\n对白与救援尚未实现", -165.0)
 	_refresh_exit_hint()
 	_refresh_staff_captions()
@@ -267,39 +267,44 @@ func get_task_checkpoint_position(task_id: String) -> Dictionary:
 
 
 func _setup_doors() -> void:
+	var scheduler := preload("res://scenes/doors/door_scheduler.gd").new()
+	scheduler.player = player
 	for slot: Node2D in $DoorRoot.get_children():
-		# M1 assembles 201 plus one ordinary door, without enabling task 02.
-		if floor_number != 2 or slot.name not in ["Room201", "Room202"]:
-			if not has_node("Floor2Art"):
-				_add_caption(slot, "%s · %s\n房门接入位" % [slot.get_meta("room_number"), slot.get_meta("monster_type")], -230.0)
+		var room := str(slot.get_meta("room_number"))
+		if preload("res://scenes/doors/v4_door_catalog.gd").pool(room).is_empty():
 			continue
-		var door_scene: PackedScene = preload("res://scenes/doors/room_201_door.tscn") if slot.name == "Room201" else preload("res://scenes/doors/monster_door.tscn")
-		var door: Node2D = door_scene.instantiate()
-		if not door.has_method("finish_safe_return") or not door.has_method("set_story_state"):
-			door.free()
-			_add_caption(slot, "%s · 门组件待同步 C PR #12" % slot.get_meta("room_number"), -230.0)
-			continue # Never connect the V3 component that still fails the whole floor.
+		var door: Node2D = preload("res://scenes/doors/monster_door.tscn").instantiate()
 		door.name = "Door"
-		door.room_id = str(slot.get_meta("room_number"))
-		door.monster_type = slot.get_meta("monster_type")
-		if slot.name == "Room201":
-			# Match the baked background doorway; gameplay origin stays at its marker.
-			door.get_node("Art").position = Vector2(-40, 10)
-			door.get_node("Art").scale = Vector2(0.32, 0.32)
-			door.door_mode = "STORY"
-			door.task_id = GameManager.TASK_01_ID
-			door.story_radius = 120.0
+		preload("res://scenes/doors/v4_door_catalog.gd").configure(door,room)
+		# Coordinated production floors; old standalone component adapters keep their API.
+		door.managed_cycle = true
+		slot.set_meta("monster_type",door.monster_type)
+		slot.add_child(door)
+		door.set_managed_state("CLOSED")
+		door.setup(player)
+		door._last_managed_x = player.global_position.x
+		if room == "201":
 			door.story_intercept_requested.connect(_on_story_intercept.bind(door))
 			door.task_submit_requested.connect(_on_task_submit.bind(door))
 			door.story_progress_requested.connect(_on_story_progress)
-		else:
-			_safe_points[door] = [$Interactions/Room202LeftSafe, $Interactions/Room202RightSafe]
-			door.rule_violated.connect(_on_door_violation.bind(door))
-		slot.add_child(door)
-		if has_node("Floor2Art"):
-			$Floor2Art.bind_door(door.room_id, door)
-		door.setup(player)
+		if room == "202" and has_node("Interactions/Room202LeftSafe"):
+			_safe_points[door] = [$Interactions/Room202LeftSafe,$Interactions/Room202RightSafe]
 		_doors.append(door)
+		scheduler.doors.append(door)
+		if has_node("Floor2Art"):
+			$Floor2Art.bind_door(room,door)
+		elif has_node("Floor3Art"):
+			$Floor3Art.bind_door(room,door)
+	add_child(scheduler)
+	GameManager.monster_encounter_requested.connect(_on_monster_encounter)
+
+
+func _on_monster_encounter(context: Dictionary) -> void:
+	if not _doors.any(func(door: Node2D): return door.room_id == context.room_id):
+		return
+	if context.room_id == "201" and GameManager.offer_task(context.task_id):
+		return
+	notice_requested.emit("%s：%s。已登记强制任务请求，等待聊天／任务接入。" % [context.room_id,"首次遇见 " + context.monster_type if context.first_encounter else "未满足 " + context.monster_type + " 的通行规则"])
 
 
 func _on_story_intercept(task_id: String, _room_id: String, door: Node2D) -> void:

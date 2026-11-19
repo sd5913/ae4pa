@@ -183,7 +183,7 @@ func _run() -> void:
 	_expect(game.get("task_status") == "COMPLETED", "Real work and real C E delivery settle task 01")
 	_expect(game.call("get_world_flags").get("passage_201_unlocked", false), "Only actual delivery unlocks the passage")
 	_expect(not game.call("can_retry_current_task"), "Completed task cannot roll back")
-	# Deterministic C phase fixture; detection and safe return still run on real frames.
+	# Deterministic C phase fixture; the new rule registers a forced encounter, not safe return.
 	var ordinary: Node = _floor().get_node("DoorRoot/Room202/Door")
 	ordinary.set_process(false)
 	ordinary.set("door_state", "CLOSED")
@@ -192,7 +192,7 @@ func _run() -> void:
 	ordinary.set("door_state", "OPEN")
 	_player().global_position.x = ordinary.global_position.x - 20.0
 	await _settle()
-	_expect(_player().global_position.x == _floor().get_node("Interactions/Room202LeftSafe").global_position.x and game.get("task_status") == "COMPLETED", "After retries, actual wrong-card door detection still returns safely without rolling back delivery")
+	_expect(game.call("get_pending_monster_encounter").get("room_id", "") == "202" and game.get("task_status") == "COMPLETED", "After retries, forced encounter is registered without rolling back delivery")
 	game.call("start_game")
 	_expect(not game.call("can_retry_current_task") and cards.call("get_owned_cards").is_empty(), "New game clears task checkpoint and cards")
 	await _finish()

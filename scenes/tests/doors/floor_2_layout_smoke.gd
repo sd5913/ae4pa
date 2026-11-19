@@ -29,6 +29,22 @@ func _run() -> void:
 	await create_timer(0.15).timeout
 	Input.action_release("move_right")
 	_expect(preview.get_node("Player").position.x > start, "Walk-through player can move without task fixtures")
+	_expect(not art.has_node("Foreground/LeftRail") and not art.has_node("Foreground/RightRail"), "Detached foreground stair railings are removed")
+	for side: String in ["Left", "Right"]:
+		var stair: Sprite2D = art.get_node("Travel/" + side + "Stairs")
+		_expect(stair.texture.resource_path.ends_with("stairs_" + side.to_lower() + "_integrated.png"), "Stairs and railing use one integrated PNG per side")
+		_expect(stair.get_children().is_empty() and stair.get_script() == null, "Integrated stairs add no collision or input components")
+		_expect(art.get_node("Travel").z_index < preview.get_node("Player").z_index, "Entire stairwell including railing is behind player")
+	for stair_x: float in [280.0,3400.0]:
+		preview.get_node("Player").position = Vector2(stair_x-45,560)
+		Input.action_press("move_right")
+		await create_timer(.65).timeout
+		Input.action_release("move_right")
+		_expect(preview.get_node("Player").position.x > stair_x+45, "Player can walk past either integrated stairwell")
+		Input.action_press("move_left")
+		await create_timer(.65).timeout
+		Input.action_release("move_left")
+		_expect(preview.get_node("Player").position.x < stair_x-30, "Player can return past either stairwell without blocking")
 	preview.queue_free()
 	await process_frame
 	var floor_node = load("res://scenes/levels/floor_2.tscn").instantiate()
@@ -49,7 +65,8 @@ func _run() -> void:
 		await process_frame
 		await process_frame
 		_expect(visual.state == "WARNING", "Real door cycle drives modular art state")
-	_expect(floor_node.get_node("Player").z_index < art.get_node("Foreground").z_index,"Foreground railing can occlude player")
+	_expect(floor_node.get_node("Player").z_index < art.get_node("Foreground").z_index,"Existing foreground columns retain their layer")
+	_expect(floor_node.get_node("Interactions/ReturnPoint").position == Vector2(192,560) and floor_node.get_node("Interactions/ExitPoint").position == Vector2(3400,560), "Stair interaction anchors are unchanged")
 	floor_node.queue_free()
 	await process_frame
 	print("FLOOR_2_LAYOUT: ","PASS" if failures == 0 else "FAIL")

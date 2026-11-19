@@ -22,3 +22,5 @@ func _sync_door(room_id: String, door: Node2D) -> void:
 	var visual: Node = get_node_or_null("Doors/Room" + room_id)
 	if visual != null:
 		visual.set_state(door.door_state)
+		if not Engine.is_editor_hint():
+			visual.set_monster(door.monster_type)

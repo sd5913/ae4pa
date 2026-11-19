@@ -1,45 +1,47 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_base.tscn" id="1_base"]
-[ext_resource type="Texture2D" path="res://assets/backgrounds/floor_3.png" id="art_background"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_background"]
-atlas = ExtResource("art_background")
-region = Rect2(0, 866, 3840, 428)
+[ext_resource type="PackedScene" path="res://scenes/levels/floor_3_art.tscn" id="3_art"]
 
 [node name="Floor3" instance=ExtResource("1_base")]
 floor_number = 3
 
 [node name="FloorBackground" parent="." index="0"]
-position = Vector2(0, 190.625)
-scale = Vector2(0.9375, 0.9375)
-texture = SubResource("AtlasTexture_background")
+visible = false
+
+[node name="Player" parent="." index="2"]
+z_index = 1
 
 [node name="Room301" type="Marker2D" parent="DoorRoot" index="0"]
-position = Vector2(700, 560)
+position = Vector2(1139.0625, 560)
 metadata/room_number = 301
-metadata/monster_type = "NOSE"
+metadata/monster_type = "SESSION_RANDOM"
 
 [node name="Room302" type="Marker2D" parent="DoorRoot" index="1"]
-position = Vector2(1150, 560)
+position = Vector2(1514.0625, 560)
 metadata/room_number = 302
-metadata/monster_type = "EYE"
-
-[node name="Room303" type="Marker2D" parent="DoorRoot" index="2"]
-position = Vector2(1600, 560)
-metadata/room_number = 303
-metadata/monster_type = "CHECKER"
-
-[node name="Room304" type="Marker2D" parent="DoorRoot" index="3"]
-position = Vector2(2050, 560)
-metadata/room_number = 304
 metadata/monster_type = "HAT"
 
-[node name="Room305" type="Marker2D" parent="DoorRoot" index="4"]
-position = Vector2(2500, 560)
-metadata/room_number = 305
-metadata/monster_type = "EAR"
+[node name="Room303" type="Marker2D" parent="DoorRoot" index="2"]
+position = Vector2(1879.6875, 560)
+metadata/room_number = 303
+metadata/monster_type = "SESSION_RANDOM"
+
+[node name="Room304" type="Marker2D" parent="DoorRoot" index="3"]
+position = Vector2(2310.9375, 560)
+metadata/room_number = 304
+metadata/monster_type = "SESSION_RANDOM"
 
 [node name="RescuePoint" type="Marker2D" parent="Interactions" index="1"]
-position = Vector2(3000, 560)
+position = Vector2(3023.4375, 560)
 metadata/room_number = 309
+
+[node name="Floor3Art" parent="." instance=ExtResource("3_art")]
+position = Vector2(0, 175.625)
+scale = Vector2(0.46875, 0.46875)
+
+[node name="Hint" parent="Interactions/ReturnPoint"]
+visible = false
+
+[node name="Hint" parent="Interactions/ExitPoint"]
+visible = false

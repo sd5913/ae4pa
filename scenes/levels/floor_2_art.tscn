@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3]
+[gd_scene load_steps=29 format=3]
 
 [ext_resource type="Script" path="res://scenes/levels/floor_2_art.gd" id="1"]
 [ext_resource type="Script" path="res://scenes/doors/floor_door_art.gd" id="2"]
@@ -14,8 +14,8 @@
 [ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/04_back_furniture/plant_large.png" id="12"]
 [ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/04_back_furniture/sofa.png" id="13"]
 [ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/04_back_furniture/flowers_pedestal.png" id="14"]
-[ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/05_interactive/stairs_left_portal.png" id="15"]
-[ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/05_interactive/stairs_right_portal.png" id="16"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/05_interactive/stairs_left_integrated.png" id="15"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/05_interactive/stairs_right_integrated.png" id="16"]
 [ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/05_interactive/floor_sign_2f.png" id="17"]
 [ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/05_interactive/mail_package_cabinet.png" id="18"]
 [ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/05_interactive/mop_bucket.png" id="19"]
@@ -28,8 +28,6 @@
 [ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/06_foreground/column_left.png" id="26"]
 [ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/06_foreground/column_right.png" id="27"]
 [ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/06_foreground/rope_barrier.png" id="28"]
-[ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/06_foreground/stair_handrail_left.png" id="29"]
-[ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/06_foreground/stair_handrail_right.png" id="30"]
 
 [node name="Floor2Art" type="Node2D"]
 script = ExtResource("1")
@@ -323,16 +321,22 @@ centered = false
 [node name="Travel" type="Node2D" parent="."]
 
 [node name="LeftStairs" type="Sprite2D" parent="Travel"]
-position = Vector2(50.167331, -23.282051)
-scale = Vector2(0.868525896, 0.897435897)
+position = Vector2(190, 18)
+scale = Vector2(0.269468479604, 0.237523689198)
 texture = ExtResource("15")
 centered = false
+region_enabled = true
+region_rect = Rect2(39, 60, 809, 1643)
+region_filter_clip_enabled = true
 
 [node name="RightStairs" type="Sprite2D" parent="Travel"]
-position = Vector2(3387.063830, -23.475410)
-scale = Vector2(0.936170213, 0.901639344)
+position = Vector2(3520, 18)
+scale = Vector2(0.291005291005, 0.244473342003)
 texture = ExtResource("16")
 centered = false
+region_enabled = true
+region_rect = Rect2(65, 96, 756, 1590)
+region_filter_clip_enabled = true
 
 [node name="FloorSign" type="Sprite2D" parent="Travel"]
 position = Vector2(26.131148, 45.520231)
@@ -418,7 +422,7 @@ position = Vector2(2616.000000, 404.457831)
 scale = Vector2(0.274193548, 0.337349398)
 script = ExtResource("2")
 room_id = "204"
-state = "WARNING"
+state = "CLOSED"
 
 [node name="Sprite2D" type="Sprite2D" parent="Doors/Room204"]
 position = Vector2(-640, -1280)
@@ -430,7 +434,7 @@ position = Vector2(3252.000000, 404.457831)
 scale = Vector2(0.274193548, 0.337349398)
 script = ExtResource("2")
 room_id = "205"
-state = "OPEN"
+state = "CLOSED"
 
 [node name="Sprite2D" type="Sprite2D" parent="Doors/Room205"]
 position = Vector2(-640, -1280)
@@ -456,16 +460,4 @@ centered = false
 position = Vector2(1503.554084, 114.000000)
 scale = Vector2(0.805739514, 0.714285714)
 texture = ExtResource("28")
-centered = false
-
-[node name="LeftRail" type="Sprite2D" parent="Foreground"]
-position = Vector2(149.508475, 197.049587)
-scale = Vector2(0.545762712, 0.451790634)
-texture = ExtResource("29")
-centered = false
-
-[node name="RightRail" type="Sprite2D" parent="Foreground"]
-position = Vector2(3531.453608, 197.280992)
-scale = Vector2(0.453608247, 0.449035813)
-texture = ExtResource("30")
 centered = false

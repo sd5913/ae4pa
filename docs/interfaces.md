@@ -680,3 +680,7 @@ A 当前工作区在 §18 基础上接入 D `eb5e019` 的 main_menu、help、bag
 - CURIOUS 只用于未装备 CLEANER 时的自然观察；结束后恢复进入观察前的逻辑朝向和工作状态。正面 E 或长按期间被转身发现仍发 `task_failure_requested("STAFF_CAUGHT", target_id)`，背后静止长按仍为 0.8 秒。
 - 正式 1F 配置：SECURITY `(400,560)`／巡逻 100px，MANAGER `(1260,560)`／巡逻 100px，CLEANER `(2670,560)`／清洁—工具车 80px；三者 `steal_radius=95`，用于匹配约 184—204px 的正式人物视觉体量，未放宽朝向、静止、任务资格或被抓规则。
 - `CharacterVisual` 显示高度为 AN 190、MANAGER 198、SECURITY 204、CLEANER 184；保安／保洁 V2 静止图位于 `assets/final/staff/q_idle_v2/`，行走仍复用现有六帧表。UI 继续只读 B 的统一交互状态，不自建计时。
+
+## 22 单门调度与半随机遇怪（2026-11-18 本地）
+
+生产楼层改用 door_scheduler.gd，独立旧组件测试保留原相位 API。新门逻辑与 D/A 接头见 [房间分配及接入限制](room-monster-table.md)。普通违规改为持有强制任务请求，未接 A/D 的后续任务不可当作已可玩。
