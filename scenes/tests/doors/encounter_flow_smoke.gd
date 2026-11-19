@@ -98,7 +98,7 @@ func run() -> void:
 		var upper = load("res://scenes/levels/floor_%d.tscn" % number).instantiate()
 		root.add_child(upper)
 		await process_frame
-		check(upper._doors.size() == 5,"Five assembled doors on floor " + str(number))
+		check(upper._doors.size() == (4 if number == 3 else 5),"Expected assembled doors on floor " + str(number))
 		for door in upper._doors:
 			check(catalog.pool(door.room_id).has(door.monster_type),"Runtime upper-floor assignment")
 			check(door.has_node("MonsterIdle"),"Upper-floor animated stand-in")

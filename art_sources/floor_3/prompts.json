@@ -1,0 +1,170 @@
+[
+  {
+    "key": "wall_tile",
+    "alpha": false,
+    "ref": "reference_crops/reference_region_2.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. A seamless horizontally repeatable purple/plum hotel wall elevation panel. Original deep violet vertical striped wallpaper, top black wooden ceiling cornice, gold thin trim, plum rectangular wainscoting at lower quarter. Perfect straight-on orthographic, wall fully fills rectangular canvas edge-to-edge, horizontal rails exactly level across left/right edges. NO door, archway, furniture, portrait, plants, people, lamps, floor or lighting halos. Subtle flat ambient warmth only. Intended full tile 1536x1024, top cornice 8%, wainscot starts 76% height. No transparent margin. Opaque complete background tile.",
+    "generated_file": "generated/wall_tile.png"
+  },
+  {
+    "key": "sky_tile",
+    "alpha": false,
+    "ref": "reference_crops/reference_region_1.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. Outside purple night sky with gothic distant city silhouette at lower half, matching reference stylized violet dusk hotel exterior, no hotel facade or windows, no floor or people, full-bleed background tile, taller dark lavender foreground towers, muted peach-lit tiny windows. Flat side view illustration, not photoreal. Only distant exterior skyline, no interior or doors. Opaque complete background tile.",
+    "generated_file": "generated/sky_tile.png"
+  },
+  {
+    "key": "stair_left",
+    "alpha": true,
+    "ref": "reference_crops/stair_left_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONE complete LEFT END hotel stairwell cutout, full warm golden tall arch, hanging round bulb, black heavy carved wooden outer columns AND black top beam, stairs ascend toward RIGHT, integrated gold diagonal banister and all rail posts in SAME image. Reference orientation exactly. Fully intact bases and caps, no detached foreground rail component. No floor sign, no other furniture, NO door leaf, NO people. Portrait full object uncropped transparent exterior, preserve real transparency through outside silhouette only; interior gold walls opaque. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/stair_left.png"
+  },
+  {
+    "key": "stair_right",
+    "alpha": true,
+    "ref": "reference_crops/stair_right_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONE complete RIGHT END hotel stairwell cutout. Full golden tall arch and warm bulb, black heavy carved wooden columns AND top beam, stairs ascend toward LEFT, integrated gold diagonal banister and rail posts SAME image. Match right-end reference orientation; not left-end stairs. Full caps, bases, uncropped silhouette, no door leaf, no sign, no people. Portrait on genuine transparent exterior; stairwell interior opaque. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/stair_right.png"
+  },
+  {
+    "key": "window_pair",
+    "alpha": true,
+    "ref": "reference_crops/window_pair_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONE architectural pair of TWO tall arched windows joined by gold central pilaster, gold ochre frames and black decorative fanlight mullions, violet gothic city visible through glass. No furniture, plant, lamp, sofa, wall panel around windows or room door. Exterior silhouette transparent, actual window panes contain painted purple dusk city. Full pair uncropped straight-on. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/window_pair.png"
+  },
+  {
+    "key": "carpet_tile",
+    "alpha": false,
+    "ref": "reference_crops/reference_strip.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY a seamless horizontally repeatable burgundy carpet and narrow gold edging floor strip for this hallway. Full-bleed wide rectangular tile: richly textured deep wine carpet across top 70%, fine gold horizontal edging near lower quarter, dark plum-black floor fascia below. Same elevation side-scrolling view. No wall, furniture, doors, people. Uniform left/right edges aligned, no rug end caps, no white border. Wide 1536x512 tile. Opaque complete background tile.",
+    "generated_file": "generated/carpet_tile.png"
+  },
+  {
+    "key": "sofa",
+    "alpha": true,
+    "ref": "reference_crops/sofa_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY the burgundy Victorian two-seat sofa, elegant curving gold-edged carved wooden back, dark tufted diamond upholstery, two rounded rolled arms, long rose-red seat cushion, four dark carved short feet. Complete object, frontal view, no cushions added, no surroundings or lamps. Transparent background and transparent openings below seat, no ground shadow. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/sofa.png"
+  },
+  {
+    "key": "lamp_table",
+    "alpha": true,
+    "ref": "reference_crops/lamp_table_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY one cream pleated shade brass table lamp on its small dark mahogany round pedestal side table as one grouped furniture asset. Reference tall thin black pedestal, circular top and carved feet, classic lamp golden base. Entire lamp and table uncropped. Soft shaded luminous shade but NO external glow halo, no room wall, no sofa, no ground or shadows. True transparent background. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/lamp_table.png"
+  },
+  {
+    "key": "side_table",
+    "alpha": true,
+    "ref": "reference_crops/side_table_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY a low small dark mahogany square side table / stool with thin gold rim, four straight carved legs and lower stretcher. Frontal view, complete feet, top empty. No lamp, other furniture, wall, floor, contact shadow. Genuine transparent backdrop, including spaces between legs. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/side_table.png"
+  },
+  {
+    "key": "portrait",
+    "alpha": true,
+    "ref": "reference_crops/portrait_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY the ornate oval gold framed Victorian profile silhouette portrait from reference: cream female aristocrat silhouette on deep plum oval, elaborate gilded Rococo crest and curled ornaments, intact frame. Static painted profile is part of the painting, not a live person; no full character, room wall or external shadow. Transparent outside frame. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/portrait.png"
+  },
+  {
+    "key": "flower_table",
+    "alpha": true,
+    "ref": "reference_crops/flower_table_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY the small carved dark wooden square pedestal table carrying an ivory-yellow round flower vase with abundant lavender purple hydrangea blossoms and dark green leaves. Match reference, full vase and full table legs, individual natural floral shapes. No wall, room, lamps, people or external contact shadows. True alpha outside object and between legs. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/flower_table.png"
+  },
+  {
+    "key": "candelabra",
+    "alpha": true,
+    "ref": "reference_crops/candelabra_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY the tall elegant gold brass three-arm candelabra on its tall dark carved narrow pedestal stand. Three ivory candles of staggered heights, tiny warm flames, brass scrolling arms and round golden base, complete stand feet. No door, wall, floor, humans, external glow halo or floor shadow. Full vertical asset on transparent background. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/candelabra.png"
+  },
+  {
+    "key": "banner",
+    "alpha": true,
+    "ref": "reference_crops/banner_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY deep burgundy hanging hotel heraldic banner with gold border and a golden stylized horned bull/demon skull hotel emblem, central lower pointed tail, horizontal gold rod with finial ends and tiny black hanging cord. Match reference. No text, no door or wall, transparent outside full fabric and rod. No external lighting halo. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/banner.png"
+  },
+  {
+    "key": "book_console",
+    "alpha": true,
+    "ref": "reference_crops/book_console_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY a small dark mahogany paneled pedestal book cabinet / console. Broad flat narrow golden trim tabletop, front square recessed wood panels and two small feet, on top two small stacks of cream and ochre books. No banner, wall, door, people or lamp. Entire object transparent cutout; no floor or cast shadow. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/book_console.png"
+  },
+  {
+    "key": "registration_desk",
+    "alpha": true,
+    "ref": "reference_crops/registration_desk_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY the complete unstaffed 309 management registration desk group, reconstruct the area formerly hidden by the receptionist. Wide dark mahogany paneled reception counter with gold rim, behind it a large matching rectangular cubby/key rack with orderly gold hooks and small golden keys. On counter an OPEN ivory ledger centered-left, brass green/gold banker dome desk lamp at center-right, one burgundy box and one small cream file box to right. Add no labels or numeric door plaques. Remove receptionist COMPLETELY including head, arms, hands, clothing; convincingly finish the counter and cubbies behind that person. Single reusable furniture grouping, full feet/rack uncropped. Frontal elevation. No background wall, ceiling, city, carpet, hanging ceiling lamps, neighboring door, plant, crest or certificate. Transparent outside desk and rack, genuine alpha through empty open spaces, no ground shadow. Wide landscape high resolution 2048x1408. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/registration_desk.png"
+  },
+  {
+    "key": "round_crest",
+    "alpha": true,
+    "ref": "reference_crops/round_crest_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY a round wall medallion, narrow double gold rim, deep plum circular inset with simple gold management/bust silhouette emblem matching reference. Complete circular wall plaque. No wall, additional characters, text or background shadow. Genuine transparent outside circle. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/round_crest.png"
+  },
+  {
+    "key": "certificate",
+    "alpha": true,
+    "ref": "reference_crops/certificate_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY one ornate rectangular gilded framed cream certificate, narrow dark wood inner border, small gold crest at top, short decorative dark horizontal rules and burgundy wax seal ribbon near bottom right. No readable words or numbers, no people, wall or shadow. Front elevation entire frame uncropped, transparent exterior. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/certificate.png"
+  },
+  {
+    "key": "palm_tall",
+    "alpha": true,
+    "ref": "reference_crops/palm_tall_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY one tall lush dark green broad-leaf hotel palm in a tall fluted gold urn planter with pedestal foot. Leaves arch left and right, tiered long leaves, original stylized painted shading. Full leaves and pot, no window, wall, sofa or floor shadow. True alpha through leaf gaps and outside silhouette. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/palm_tall.png"
+  },
+  {
+    "key": "palm_small",
+    "alpha": true,
+    "ref": "reference_crops/palm_small_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY one compact dark green pointed-leaf potted hotel plant in small fluted gold urn on pedestal foot, exactly the rightmost stair-side planter type in reference. Full leaves and pot. No door, frame, wall, floor or shadows. Genuine transparent background and leaf gaps. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/palm_small.png"
+  },
+  {
+    "key": "pendant",
+    "alpha": true,
+    "ref": "reference_crops/pendant_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY one complete hanging brass lantern ceiling pendant: thin black suspension cord with ornate black connector, gold metal roof and collar, warm cream pear/teardrop glass diffuser. Full cord from top to glass tip. No ceiling block, wall, door, characters or external glow halo. Genuine transparent exterior. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/pendant.png"
+  },
+  {
+    "key": "floor_sign",
+    "alpha": true,
+    "ref": "reference_crops/floor_sign_reference.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONLY the ornate gold floor plaque, bevelled ochre rim, cream gold face, exact black text '3F' centered. Complete ornamental irregular rectangular silhouette, no pole or column, room wall, lamp, stairwell or people. Genuine transparent exterior. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/floor_sign.png"
+  },
+  {
+    "key": "warm_glow",
+    "alpha": true,
+    "ref": "reference_crops/reference_strip.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONE isolated soft radial warm amber light glow effect on REAL transparent alpha. Bright warm cream luminous center smoothly fading through golden amber to FULLY TRANSPARENT edges, no solid black/white backing, no checkerboard, no physical lamp, no room or object, no text. Perfectly smooth circular falloff, modest low-opacity outer halo suitable additive/screen layer. Wide generous transparent margin. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/warm_glow.png"
+  },
+  {
+    "key": "contact_shadow",
+    "alpha": true,
+    "ref": "reference_crops/reference_strip.png",
+    "prompt": "Use case: identity-preserving stylized-concept game art. Reference image defines the approved third-floor Monster Hotel art style: hand-painted crisp 2D cartoon gothic Victorian, plum burgundy and warm brass, softly textured shaded shapes, clean sharp edges, frontal side-scrolling elevation with no camera tilt. Reconstruct ONLY the described asset as a HIGH DETAIL standalone production layer, not a miniature scene or an entire building. No humans/characters/creatures, no room doors, no text except explicitly required. Single requested asset only, generous margin for transparent sprites, no sheets or labels. ONE isolated soft horizontal elliptical charcoal plum contact shadow effect on REAL transparent alpha. Flat wide low oval, soft darkest center, smoothly faded transparent edge. No object, floor, light, white/black backing or text. Designed as multiply/normal alpha shadow beneath furniture. Generous transparent margins. Export actual RGBA transparency, not painted checker or background.",
+    "generated_file": "generated/contact_shadow.png"
+  },
+  {
+    "key": "outer_pillar",
+    "alpha": true,
+    "ref": "reference_crops/outer_pillar_reference.png",
+    "prompt": "Use case: identity-preserving game architecture cutout. Reconstruct ONLY the tall heavy black wooden OUTER LEFT STRUCTURAL PILLAR shown behind the 3F plaque in reference, in the same crisp hand-painted 2D gothic Victorian hotel style. One straight full-height nearly black / very dark plum wooden pillar with brown highlights, wide stepped beveled square pedestal foot, solid thick rectangular shaft with narrow recessed panels and thin crossband trim, broad stepped rectangular top capital supporting a roof. Front elevation, no perspective tilt. Keep it heavy and square like reference, not a thin round classical column. REMOVE the 3F plaque completely: finish uninterrupted dark wood underneath. No text, sign, floor, arch, stairs, wall, skyline, characters or extra objects. Full top capital and pedestal uncropped, generous transparent exterior. Portrait PNG with true alpha, at least 1536px tall native detail.",
+    "generated_file": "generated/outer_pillar.png"
+  }
+]

@@ -9,7 +9,7 @@ static func pool(room: String) -> Array:
 	var n := int(room)
 	if n in [203,204,205,301]:
 		return ["NOSE","EYE"]
-	if n in [303,304,305,401,402]:
+	if n in [303,304,401,402]:
 		return ["NOSE","EYE","HAT"]
 	if n in [404,405]:
 		return ["NOSE","EYE","HAT","EAR"]
@@ -22,6 +22,8 @@ static func get_rows(floor_number: int = 0) -> Array[Dictionary]:
 	for f in range(2,6):
 		for i in range(1,6):
 			var room := str(f*100+i)
+			if room == "305":
+				continue
 			if floor_number == 0 or floor_number == f:
 				rows.append({"room":room,"floor":f,"monster":pool(room)[0],"pool":pool(room),"first":FIRST.has(room),"task":TASKS[pool(room)[0]]})
 	return rows
