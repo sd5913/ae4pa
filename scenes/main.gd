@@ -102,7 +102,7 @@ func _show_story_dialogue(dialogue_id: String) -> void:
 	if dialogue_id == TASK_02_INTRO:
 		var lines: Array[String] = [
 			"我是202的住客。清洁工作完成了？我还有一件遗失的包裹。",
-			"接受任务后，你有180秒。先在二楼保安身后长按E取得工作证。",
+			"接受任务后，你有180秒。先返回一楼，在保安身后长按E取得工作证。",
 			"按Q把保安证切为当前身份，再到我门前的保管柜按E领取包裹。只放在备用槽不行。",
 			"取到后回202按E交付，我才会开放通往三楼的路。现在请确认是否接受。",
 		]
@@ -191,7 +191,7 @@ func _on_task_offered(task_id: String) -> void:
 	elif task_id == GameManager.TASK_03_ID:
 		_show_notice("302管理授权任务待接受：回1F取经理证，装备并切为当前身份，回3F登记台批准。")
 	elif task_id == GameManager.TASK_02_ID:
-		_show_notice("202包裹任务待接受：二楼保安取证 → Q切保安 → 保管柜领取 → 回202交付。")
+		_show_notice("202包裹任务待接受：一楼保安取证 → Q切保安 → 二楼保管柜领取 → 回202交付。")
 	_refresh_objective()
 
 
@@ -200,7 +200,7 @@ func _on_task_accepted(task_id: String) -> void:
 		if task_id == GameManager.TASK_03_ID:
 			_show_notice("任务已接受：回1F取经理证，I装备、Q切当前身份，再回3F登记台按E批准309。")
 			return
-		_show_notice("任务已接受：在二楼保安身后取证，Q切保安身份，到门前保管柜领取，再回202交付。" if task_id == GameManager.TASK_02_ID else "任务已接受：回 1F 取得保洁工作证，再到 2F 扫帚旁清理，最后回 201 交付。")
+		_show_notice("任务已接受：回一楼在保安身后取证，Q切保安身份，返回二楼保管柜领取，再回202交付。" if task_id == GameManager.TASK_02_ID else "任务已接受：回 1F 取得保洁工作证，再到 2F 扫帚旁清理，最后回 201 交付。")
 
 
 func _refresh_objective() -> void:
@@ -233,7 +233,7 @@ func _task_02_objective() -> String:
 		"AVAILABLE": return "在202面板接受包裹任务，接受后开始180秒计时。"
 		"ACTIVE":
 			if not CardManager.has_card("SECURITY"):
-				return "在二楼保安身后长按E取得工作证。"
+				return "返回一楼，在保安身后长按E取得工作证。"
 			return "到保管柜按E领取包裹。" if CardManager.active_card == "SECURITY" else "Q切到保安身份，再到保管柜按E领取包裹。"
 		"READY_TO_SUBMIT": return "带包裹回202按E交付。"
 		"COMPLETED": return "202已交付；从二楼右梯上3F，到302接受管理授权任务。"
