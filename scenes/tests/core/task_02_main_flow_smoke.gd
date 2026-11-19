@@ -49,6 +49,7 @@ func _run() -> void:
 	_freeze_guard(_floor().get_node("StaffRoot/SecuritySlot/Staff"))
 	_player().position.x = 580
 	await _settle()
+	await _read_monster_dialogue()
 	var board = main.get_node("TaskLayer/MissionBoard")
 	board._accept_button.pressed.emit()
 	await _settle()
@@ -61,9 +62,10 @@ func _run() -> void:
 	await _settle()
 	await _tap()
 	_expect(game.task_status == "COMPLETED", "Real201 delivery precedes202")
+	await _read_monster_dialogue()
 	_player().global_position.x = _floor().get_node("DoorRoot/Room202").global_position.x - 110
 	await _settle()
-	_expect(main.get("_active_dialogue_id") == "TASK_02_INTRO" and main.dialogue.visible, "202 opens real monster dialogue before accepting")
+	_expect(main.get("_active_dialogue_id") == "TASK_02_INTRO" and main.get_node("TaskLayer/MonsterDialogue").visible, "202 opens real monster dialogue before accepting")
 	if main.get("_active_dialogue_id") != "TASK_02_INTRO":
 		await _finish()
 		return
@@ -149,6 +151,7 @@ func _run() -> void:
 	_expect("202" in main.notice_label.text and "201" not in main.notice_label.text, "Returning with parcel gives202 delivery feedback, not stale201 cleaning text")
 	await _tap()
 	_expect(game.task_status == "COMPLETED" and game.get_world_flags().get("parcel_delivered",false) and game.get_available_floors().has(3), "Real202 E delivery unlocks3F")
+	await _read_monster_dialogue()
 	# Exercise actual blocking and Q recovery at each remaining normal door.
 	for room in ["203","204","205"]:
 		for door in _floor().get("_doors"):
@@ -217,6 +220,13 @@ func _steal_security() -> void:
 	await _key("interact",true)
 	await create_timer(0.9).timeout
 	await _key("interact",false)
+
+func _read_monster_dialogue() -> void:
+	var screen: Control = main.get_node("TaskLayer/MonsterDialogue")
+	for i in range(80):
+		if not screen.visible: return
+		await _tap()
+	_expect(false, "Monster dialogue closes after real E input")
 
 func _finish() -> void:
 	main.queue_free()

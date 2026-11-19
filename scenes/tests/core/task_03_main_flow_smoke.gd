@@ -63,16 +63,19 @@ func _run() -> void:
 	await _travel(2)
 	var board: Control = main.get_node("TaskLayer/MissionBoard")
 	game.offer_task("TASK_01_CLEAN")
+	await _read_monster_dialogue()
 	board.get("_accept_button").pressed.emit()
 	cards.collect_card("CLEANER")
 	game.record_work_result("STAIN_201")
 	game.submit_task("TASK_01_CLEAN")
+	await _read_monster_dialogue()
 	game.offer_task("TASK_02_PARCEL")
 	board.get("_accept_button").pressed.emit()
 	cards.collect_card("SECURITY")
 	cards.switch_active()
 	game.record_work_result("PARCEL_CABINET_2F")
 	game.submit_task("TASK_02_PARCEL")
+	await _read_monster_dialogue()
 	await _travel(3)
 	# Explicit prior01/02 encounter history; the setup above completed them via APIs.
 	game.get("_seen_monsters")["NOSE"] = true
@@ -192,6 +195,13 @@ func _run() -> void:
 	_expect(not game.get_available_floors().has(1) and not game.get_available_floors().has(2) and not game.request_floor_travel(1) and not game.request_floor_travel(2), "Rescue blocks stale lower-floor requests as well as choices")
 	_expect(game.get_available_floors().has(4), "Legitimate rescue fact opens normal4F access")
 	await _finish()
+func _read_monster_dialogue() -> void:
+	var screen: Control = main.get_node("TaskLayer/MonsterDialogue")
+	for i in range(80):
+		if not screen.visible: return
+		await _tap()
+	_expect(false, "Monster dialogue closes after real E input")
+
 func _finish() -> void:
 	main.queue_free()
 	await process_frame
