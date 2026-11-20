@@ -289,6 +289,19 @@ func _can_unlock_next_floor() -> bool:
 	return false
 
 
+func is_tutorial_room_revealed(room_id: String) -> bool:
+	return _world_flags.get("tutorial_room_%s_revealed" % room_id, false)
+
+
+func reveal_tutorial_room(room_id: String) -> bool:
+	if current_floor != 2: return false
+	for task_id: String in TUTORIAL_TASKS:
+		if get_task_definition(task_id)["room_id"] == room_id and can_offer_task(task_id):
+			_world_flags["tutorial_room_%s_revealed" % room_id] = true
+			return true
+	return false
+
+
 func can_offer_task(task_id: String) -> bool:
 	if game_state != "PLAYING" or not _manager_intro_finished or not ENABLED_TASKS.has(task_id):
 		return false
@@ -309,6 +322,8 @@ func offer_task(task_id: String) -> bool:
 	remaining_time = 0.0
 	fail_reason = ""
 	_task_checkpoint.clear()
+	if TUTORIAL_TASKS.has(task_id):
+		_world_flags["tutorial_room_%s_revealed" % get_task_definition(task_id)["room_id"]] = true
 	if task_id == TASK_02_ID:
 		_world_flags["task_02_intro_completed"] = true
 	task_offered.emit(task_id)
@@ -439,6 +454,7 @@ func record_work_result(target_id: String) -> bool:
 
 
 func submit_task(task_id: String) -> bool:
+	if _pending_monster_encounter.get("reason", "") == "SWITCHED_NEAR_CHECKER": return false
 	if not is_world_input_allowed() or task_status != "READY_TO_SUBMIT" or remaining_time <= 0.0:
 		return false
 	if not ENABLED_TASKS.has(current_task_id) or task_id != current_task_id:
@@ -448,8 +464,16 @@ func submit_task(task_id: String) -> bool:
 		return false
 	if definition.has("work_steps") and not definition["work_steps"].all(func(work: Dictionary): return _world_flags.get(work["flag"], false)):
 		return false
+	if CardManager.active_card != get_submission_card(task_id) or (definition.has("work_steps") and not has_required_equipment(task_id)):
+		return false
 	_complete_task(definition)
 	return true
+
+
+func get_submission_card(task_id: String) -> String:
+	var definition := get_task_definition(task_id)
+	var work_steps: Array = definition.get("work_steps", [])
+	return work_steps.back()["required_card"] if not work_steps.is_empty() else definition.get("required_card", "")
 
 
 func has_required_equipment(task_id: String) -> bool:

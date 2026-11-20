@@ -13,11 +13,16 @@ hold_duration = 0.0
 visible = false
 
 [node name="PersistentVisual" type="Sprite2D" parent="." index="1"]
-position = Vector2(0, -59)
-scale = Vector2(0.12, 0.12)
+position = Vector2(0, -81.36)
+scale = Vector2(0.16, 0.16)
 texture = ExtResource("2_desk")
 
 [node name="Hint" parent="." index="2"]
-offset_left = -170.0
-offset_right = 170.0
-text = "205 APPROVAL · MANAGER · E"
+visible = false
+offset_top = -218.0
+offset_bottom = -176.0
+theme_override_font_sizes/font_size = 16
+autowrap_mode = 3
+offset_left = -100.0
+offset_right = 100.0
+text = "通行登记台 · 经理批准"

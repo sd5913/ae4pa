@@ -38,6 +38,26 @@ func _ready() -> void:
 	GameManager.set_floor_host($World)
 	GameManager.start_game()
 	_show_menu()
+	_bind_monster_visuals.call_deferred()
+
+
+func _bind_monster_visuals() -> void:
+	var screen: Control = get_node_or_null("TaskLayer/MonsterDialogue")
+	if screen == null:
+		_bind_monster_visuals.call_deferred()
+		return
+	screen.visibility_changed.connect(_sync_monster_visuals)
+	_sync_monster_visuals()
+
+func _sync_monster_visuals() -> void:
+	if not has_node("World") or $World.get_child_count() == 0: return
+	var screen: Control = get_node_or_null("TaskLayer/MonsterDialogue")
+	var room := ""
+	if screen != null and screen.visible:
+		var kind: String = screen.get("_id").get_slice(":", 0)
+		var tasks: Dictionary = screen.get_script().TASKS
+		if tasks.has(kind): room = GameManager.get_task_definition(tasks[kind])["room_id"]
+	$World.get_child(0).set_monster_dialogue_room(room)
 
 
 func _notification(what: int) -> void:
@@ -60,7 +80,11 @@ func _input(event: InputEvent) -> void:
 		if bag.visible:
 			bag.close_bag()
 		elif GameManager.is_world_input_allowed():
-			bag.open_bag()
+			var restricted: String = $World.get_child(0).get_identity_restriction_room() if $World.get_child_count()>0 else ""
+			if restricted.is_empty():
+				bag.open_bag()
+			else:
+				_show_notice("核验区内不能调整证件。先退到安全工作台，再按I换证。")
 		get_viewport().set_input_as_handled()
 	elif notebook.visible or bag.visible or menu.visible:
 		if event.is_action_pressed("switch_id") or event.is_action_pressed("interact"):
@@ -178,6 +202,7 @@ func _on_floor_changed(_number: int) -> void:
 	floor_node.task_dialogue_requested.connect(_on_task_dialogue_requested)
 	floor_node.floor_selection_requested.connect($TaskLayer.open_floor_selection)
 	$TaskLayer.bind_interaction_floor(floor_node)
+	_sync_monster_visuals()
 	_show_notice("E 交谈／楼梯／交付；工作处长按 E，Q 切换当前身份。")
 	_on_state_changed(GameManager.game_state)
 	_refresh_objective()

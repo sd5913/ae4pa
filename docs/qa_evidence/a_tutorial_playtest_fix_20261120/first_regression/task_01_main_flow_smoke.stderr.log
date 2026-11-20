@@ -1,0 +1,38 @@
+ERROR: Walking to actual 201 boundary opens real mission UI
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _expect (res://scenes/tests/core/task_01_main_flow_smoke.gd:12)
+       [1] _run (res://scenes/tests/core/task_01_main_flow_smoke.gd:48)
+       [2] _settle (res://scenes/tests/core/task_01_main_flow_smoke.gd:18)
+ERROR: Task offer modal blocks movement until closed
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _expect (res://scenes/tests/core/task_01_main_flow_smoke.gd:12)
+       [1] _run (res://scenes/tests/core/task_01_main_flow_smoke.gd:49)
+       [2] _settle (res://scenes/tests/core/task_01_main_flow_smoke.gd:18)
+ERROR: Actual accept button accepts and releases modal
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _expect (res://scenes/tests/core/task_01_main_flow_smoke.gd:12)
+       [1] _run (res://scenes/tests/core/task_01_main_flow_smoke.gd:52)
+       [2] _settle (res://scenes/tests/core/task_01_main_flow_smoke.gd:18)
+ERROR: Real E hold cleans through B component and floor signal
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _expect (res://scenes/tests/core/task_01_main_flow_smoke.gd:12)
+       [1] _run (res://scenes/tests/core/task_01_main_flow_smoke.gd:65)
+       [2] _key (res://scenes/tests/core/task_01_main_flow_smoke.gd:25)
+       [3] _settle (res://scenes/tests/core/task_01_main_flow_smoke.gd:18)
+ERROR: Return E delivery unlocks the passage
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _expect (res://scenes/tests/core/task_01_main_flow_smoke.gd:12)
+       [1] _run (res://scenes/tests/core/task_01_main_flow_smoke.gd:70)
+       [2] _key (res://scenes/tests/core/task_01_main_flow_smoke.gd:25)
+       [3] _settle (res://scenes/tests/core/task_01_main_flow_smoke.gd:18)
+ERROR: Completed task can pass the former barrier
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _expect (res://scenes/tests/core/task_01_main_flow_smoke.gd:12)
+       [1] _run (res://scenes/tests/core/task_01_main_flow_smoke.gd:74)
+       [2] _settle (res://scenes/tests/core/task_01_main_flow_smoke.gd:18)

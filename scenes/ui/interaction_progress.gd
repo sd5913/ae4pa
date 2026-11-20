@@ -10,7 +10,7 @@ const ACTION_TEXT := {"STEAL": "偷取", "CLEAN": "清理", "PICKUP": "领取", 
 const BLOCK_TEXT := {
 	"ALERTED": "员工已警觉", "CURIOUS": "员工正在观察", "OUT_OF_RANGE": "超出交互范围",
 	"DISABLED": "交互暂不可用", "INELIGIBLE": "任务条件未满足", "STAFF_MOVING": "等员工停下",
-	"PLAYER_MOVING": "先停下", "FRONT": "请到员工背后", "TASK_INACTIVE": "任务未开始",
+	"PLAYER_MOVING": "先停下", "FRONT": "请到员工背后", "TASK_INACTIVE": "当前步骤未开放",
 	"NO_PLAYER": "玩家尚未就绪", "WORLD_LOCKED": "当前无法操作", "WRONG_IDENTITY": "当前工作证不符合要求",
 }
 
@@ -118,6 +118,12 @@ func _display(state: Dictionary) -> void:
 		return
 	var kind: String = ACTION_TEXT.get(state["interaction_type"], state["interaction_type"])
 	var reason: String = BLOCK_TEXT.get(state["block_reason"], state["block_reason"])
+	if float(state["required_time"]) <= 0.0:
+		_details.text = tr("%s · %s\n%s") % [tr(kind), tr(STATUS_TEXT[_status]), "按E操作" if state["block_reason"] == "READY" else tr(reason)]
+		_progress.hide()
+		show()
+		return
+	_progress.show()
 	_details.text = tr("%s · %s · %s\n%.2f / %.2f 秒") % [
 		tr(kind), tr(STATUS_TEXT[_status]), tr(reason), state["elapsed"], state["required_time"],
 	]

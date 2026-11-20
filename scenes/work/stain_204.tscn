@@ -9,7 +9,8 @@ required_card = "CLEANER"
 hold_duration = 1.5
 
 [node name="Hint" parent="." index="1"]
+visible = false
 offset_left = -170.0
 offset_right = 170.0
-text = "204 STAIN · CLEANER · HOLD E"
+text = "204污渍 · 保洁长按E"
 horizontal_alignment = 1

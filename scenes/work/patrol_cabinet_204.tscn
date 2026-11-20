@@ -13,11 +13,16 @@ hold_duration = 0.0
 visible = false
 
 [node name="PersistentVisual" type="Sprite2D" parent="." index="1"]
-position = Vector2(0, -48)
-scale = Vector2(0.22, 0.22)
+position = Vector2(0, -87.04)
+scale = Vector2(0.34, 0.34)
 texture = ExtResource("2_cabinet")
 
 [node name="Hint" parent="." index="2"]
-offset_left = -170.0
-offset_right = 170.0
-text = "204 PATROL · SECURITY · E"
+visible = false
+offset_top = -218.0
+offset_bottom = -176.0
+theme_override_font_sizes/font_size = 16
+autowrap_mode = 3
+offset_left = -100.0
+offset_right = 100.0
+text = "巡房资料柜 · 保安领取"

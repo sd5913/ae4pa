@@ -73,6 +73,7 @@ func _run() -> void:
 	await _travel(2)
 	_player().global_position.x = 580.0
 	await _settle()
+	await create_timer(1.6).timeout
 	await _drain_monster()
 	_expect(board.visible and game.get("task_status") == "AVAILABLE", "Real 201 intercept opens D task offer")
 	_expect(not game.call("is_world_input_allowed"), "Task offer registers its modal")
@@ -287,6 +288,7 @@ func _reach_offer(dialogue: Control) -> void:
 	await _travel(2)
 	_player().global_position.x = 580.0
 	await _settle()
+	await create_timer(1.6).timeout
 	await _drain_monster()
 
 

@@ -49,6 +49,9 @@ func _run() -> void:
 	_expect(_floor().get_node("StaffRoot").get_child_count() == 0, "No card staff on2F")
 	_player().position.x = 580
 	await _settle()
+	for i in range(150):
+		if main.get_node("TaskLayer/MonsterDialogue").visible: break
+		await physics_frame
 	await _read_monster_dialogue()
 	var board = main.get_node("TaskLayer/MissionBoard")
 	board._accept_button.pressed.emit()
@@ -65,6 +68,9 @@ func _run() -> void:
 	await _read_monster_dialogue()
 	_player().global_position.x = _floor().get_node("DoorRoot/Room202").global_position.x - 110
 	await _settle()
+	for i in range(150):
+		if main.get("_active_dialogue_id") == "TASK_02_INTRO":break
+		await physics_frame
 	_expect(main.get("_active_dialogue_id") == "TASK_02_INTRO" and main.get_node("TaskLayer/MonsterDialogue").visible, "202 opens real monster dialogue before accepting")
 	if main.get("_active_dialogue_id") != "TASK_02_INTRO":
 		await _finish()

@@ -5,8 +5,51 @@ var player: HotelPlayer
 var active: Node2D
 var elapsed := 0.0
 var cooldown := 0.0
+## A opts the five2F teaching doors into a persistent encounter lifecycle.
+var tutorial_mode := false
+var story_dialogue_room := ""
+
+func set_story_dialogue_room(room_id: String) -> void:
+	story_dialogue_room = room_id
+	if tutorial_mode: sync_tutorial_visuals()
+
+func sync_tutorial_visuals() -> void:
+	for door: Node2D in doors:
+		if not story_dialogue_room.is_empty():
+			door.set_managed_state("OPEN" if story_dialogue_room == door.room_id else "CLOSED")
+		elif GameManager.get_completed_task_ids().has(door.task_id):
+			door.set_managed_state("CLOSED")
+		elif GameManager.is_tutorial_room_revealed(door.room_id):
+			door.set_managed_state("OPEN")
+		elif door == active:
+			door.set_managed_state("WARNING")
+		else:
+			door.set_managed_state("CLOSED")
+
+func _process_tutorial(delta: float) -> void:
+	sync_tutorial_visuals() # Dialogue can freeze input, never its visible resident.
+	if not GameManager.is_world_input_allowed() or not is_instance_valid(player): return
+	if is_instance_valid(active):
+		if GameManager.is_tutorial_room_revealed(active.room_id) or not GameManager.can_offer_task(active.task_id):
+			active = null
+		else:
+			elapsed += delta
+			if elapsed >= active.warning_time:
+				if GameManager.reveal_tutorial_room(active.room_id): active.set_managed_state("OPEN")
+			return
+	for door: Node2D in doors:
+		if GameManager.can_offer_task(door.task_id) and absf(player.global_position.x-door.global_position.x) < 210.0:
+			if GameManager.is_tutorial_room_revealed(door.room_id): return
+			active = door
+			elapsed = 0.0
+			door.set_managed_state("WARNING")
+			return
+
 
 func _process(delta: float) -> void:
+	if tutorial_mode:
+		_process_tutorial(delta)
+		return
 	if not GameManager.is_world_input_allowed() or not is_instance_valid(player):
 		return
 	var pending: Dictionary = GameManager.get_pending_monster_encounter()

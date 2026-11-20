@@ -43,6 +43,9 @@ func _run() -> void:
 	await create_timer(2.8).timeout
 	Input.action_release("move_right")
 	await _settle()
+	for i in range(150):
+		if main.get_node("TaskLayer/MonsterDialogue").visible: break
+		await physics_frame
 	await _read_monster_dialogue(main)
 	var board = main.get_node("TaskLayer/MissionBoard")
 	_expect(game.task_status == "AVAILABLE" and board.visible,"Walking to actual 201 boundary opens real mission UI")

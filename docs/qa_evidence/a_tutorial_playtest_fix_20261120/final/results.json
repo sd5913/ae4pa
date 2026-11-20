@@ -1,0 +1,728 @@
+[
+  {
+    "name": "five_monster_main_flow_smoke",
+    "test": "core/five_monster_main_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/five_monster_main_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-five_monster_main_flow_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 56.93
+  },
+  {
+    "name": "task_03_main_flow_smoke",
+    "test": "core/task_03_main_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_03_main_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_03_main_flow_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 15.5
+  },
+  {
+    "name": "english_layout_smoke",
+    "test": "ui/english_layout_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/english_layout_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-english_layout_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.45
+  },
+  {
+    "name": "localization_full",
+    "test": "core/localization_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-localization_full.godot.log",
+      "--",
+      "--write-english"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 2.76
+  },
+  {
+    "name": "saved_english",
+    "test": "core/localization_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-saved_english.godot.log",
+      "--",
+      "--expect-english"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.13
+  },
+  {
+    "name": "set_chinese",
+    "test": "core/localization_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-set_chinese.godot.log",
+      "--",
+      "--set-chinese"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.13
+  },
+  {
+    "name": "saved_chinese",
+    "test": "core/localization_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-saved_chinese.godot.log",
+      "--",
+      "--expect-chinese"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.13
+  },
+  {
+    "name": "task_02_localization_smoke",
+    "test": "core/task_02_localization_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_02_localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_02_localization_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 2.95
+  },
+  {
+    "name": "foundation_smoke",
+    "test": "core/foundation_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/foundation_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-foundation_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 7.11
+  },
+  {
+    "name": "task_01_smoke",
+    "test": "core/task_01_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_01_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_01_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.23
+  },
+  {
+    "name": "task_01_main_flow_smoke",
+    "test": "core/task_01_main_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_01_main_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_01_main_flow_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 10.43
+  },
+  {
+    "name": "task_checkpoint_smoke",
+    "test": "core/task_checkpoint_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_checkpoint_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_checkpoint_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 25.57
+  },
+  {
+    "name": "task_ui_smoke",
+    "test": "core/task_ui_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_ui_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_ui_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 27.53
+  },
+  {
+    "name": "world_interaction_smoke",
+    "test": "core/world_interaction_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/world_interaction_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-world_interaction_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 14.92
+  },
+  {
+    "name": "floor_return_smoke",
+    "test": "core/floor_return_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/floor_return_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-floor_return_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 2.85
+  },
+  {
+    "name": "task_definitions_smoke",
+    "test": "core/task_definitions_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_definitions_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_definitions_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "interaction_allowed_smoke",
+    "test": "core/interaction_allowed_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/interaction_allowed_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-interaction_allowed_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "notebook_smoke",
+    "test": "core/notebook_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/notebook_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-notebook_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.13
+  },
+  {
+    "name": "task_02_core_smoke",
+    "test": "core/task_02_core_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_02_core_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_02_core_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "task_02_main_flow_smoke",
+    "test": "core/task_02_main_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_02_main_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_02_main_flow_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 35.44
+  },
+  {
+    "name": "task_03_core_smoke",
+    "test": "core/task_03_core_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_03_core_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_03_core_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.13
+  },
+  {
+    "name": "five_monster_tasks_smoke",
+    "test": "core/five_monster_tasks_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/five_monster_tasks_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-five_monster_tasks_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "intro_flow_smoke",
+    "test": "core/intro_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/intro_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-intro_flow_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 3.94
+  },
+  {
+    "name": "encounter_flow_smoke",
+    "test": "doors/encounter_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/encounter_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-encounter_flow_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.96
+  },
+  {
+    "name": "safe_return_smoke",
+    "test": "core/safe_return_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/safe_return_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-safe_return_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 2.95
+  },
+  {
+    "name": "floor_3_layout_smoke",
+    "test": "doors/floor_3_layout_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/floor_3_layout_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-floor_3_layout_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.83
+  },
+  {
+    "name": "floor_4_layout_smoke",
+    "test": "doors/floor_4_layout_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/floor_4_layout_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-floor_4_layout_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.86
+  },
+  {
+    "name": "tutorial_catalog_smoke",
+    "test": "doors/tutorial_catalog_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/tutorial_catalog_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-tutorial_catalog_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.23
+  },
+  {
+    "name": "tutorial_lifecycle_smoke",
+    "test": "doors/tutorial_lifecycle_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/tutorial_lifecycle_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-tutorial_lifecycle_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.64
+  },
+  {
+    "name": "tutorial_delivery_identity_smoke",
+    "test": "core/tutorial_delivery_identity_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/tutorial_delivery_identity_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-tutorial_delivery_identity_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "tutorial_work_layout_smoke",
+    "test": "ui/tutorial_work_layout_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/tutorial_work_layout_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-tutorial_work_layout_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.64
+  },
+  {
+    "name": "checker_safe_bag_smoke",
+    "test": "ui/checker_safe_bag_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/checker_safe_bag_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-checker_safe_bag_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 2.93
+  },
+  {
+    "name": "known_monster_rules_smoke",
+    "test": "doors/known_monster_rules_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/known_monster_rules_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-known_monster_rules_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.75
+  },
+  {
+    "name": "v4_catalog_smoke",
+    "test": "doors/v4_catalog_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/v4_catalog_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-v4_catalog_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.45
+  },
+  {
+    "name": "tutorial_workpoints_smoke",
+    "test": "staff/tutorial_workpoints_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/staff/tutorial_workpoints_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-tutorial_workpoints_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.04
+  },
+  {
+    "name": "monster_text_glyphs_smoke",
+    "test": "ui/monster_text_glyphs_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/monster_text_glyphs_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-monster_text_glyphs_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.13
+  },
+  {
+    "name": "tutorial_hud_smoke",
+    "test": "ui/tutorial_hud_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/tutorial_hud_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-tutorial_hud_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.74
+  },
+  {
+    "name": "monster_dialogue_smoke",
+    "test": "ui/monster_dialogue_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/monster_dialogue_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-monster_dialogue_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 4.27
+  },
+  {
+    "name": "staff_core_smoke",
+    "test": "staff/staff_core_smoke.tscn",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "res://scenes/tests/staff/staff_core_smoke.tscn",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-staff_core_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.14
+  },
+  {
+    "name": "work_items_smoke",
+    "test": "staff/work_items_smoke.tscn",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "res://scenes/tests/staff/work_items_smoke.tscn",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-work_items_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.64
+  },
+  {
+    "name": "cleaner_v4_smoke",
+    "test": "staff/cleaner_v4_smoke.tscn",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "res://scenes/tests/staff/cleaner_v4_smoke.tscn",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-cleaner_v4_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.23
+  },
+  {
+    "name": "ui_test",
+    "test": "ui/ui_test.tscn",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "res://scenes/tests/ui/ui_test.tscn",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-ui_test.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.34
+  }
+]

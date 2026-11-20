@@ -136,11 +136,11 @@ position = Vector2(2280, 560)
 z_index = 1
 
 [node name="TransitPickup205" parent="Interactions" instance=ExtResource("8_pickup")]
-position = Vector2(2690, 560)
+position = Vector2(2630, 560)
 z_index = 1
 
 [node name="TransitRegister205" parent="Interactions" instance=ExtResource("9_register")]
-position = Vector2(2820, 560)
+position = Vector2(2850, 560)
 z_index = 1
 
 [node name="Task203AcceptSafe" type="Marker2D" parent="Interactions"]

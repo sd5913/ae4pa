@@ -760,3 +760,12 @@ A 当前工作区在 §18 基础上接入 D `eb5e019` 的 main_menu、help、bag
 - 三名取证员工只属于1F；2F取证保安实例已移除，TASK_02定义改为 `STAFF_SECURITY_1F`，任务时限／领取／交付／失败规则不变。楼层重载按CardManager所有权抑制重复取卡；4F `STAFF_PATROL_4F`仍为独立TASK_ITEM角色。
 - I键使用现有Bag/equip_card接口；收藏显示三卡，装备仍为两槽，Q仍只切两槽。第三张未装备卡的获取反馈提示I；Bag优先选中未装备卡，明确A/B替换不丢卡。没有修改CardManager、怪物核验或房门规则。
 - 正式接入不依赖临时Autoload、`assets/review/`、本机字体或F6预览。自动化覆盖及视觉验收限制见进度记录。
+
+
+## 2026-11-21 二楼教学门生命周期补充
+
+- A在2F设置`door_scheduler.tutorial_mode=true`；3F及以上原循环不变。
+- `GameManager.reveal_tutorial_room(room_id)->bool`／`is_tutorial_room_revealed(room_id)->bool`由世界旗标保存揭示状态，只影响表现，不授卡／不结算任务。警报完成且满足接取前置才揭示；检查点保留该事实。
+- `floor.set_monster_dialogue_room(room_id)`由A读取D真实面板的房间更新，C`set_story_dialogue_room`负责单门画面与结束恢复；D不写任务真值。
+- `GameManager.get_submission_card(task_id)`返回最后工作所需身份，`submit_task`增加当前身份及指定双槽复核；核验违规须先安全退回。
+- `floor.get_identity_restriction_room()->String`供A的I入口阻止核验区内打开证件管理；工作台位于范围外。205领取／批准新x为2630／2850。

@@ -36,11 +36,33 @@ func travel(f: int) -> void:
 	await move_to(3400 if f > g.current_floor else 192)
 	check(g.request_floor_travel(f), "actual stair travel " + str(f))
 	await settle()
+func walk_to(x: float) -> void:
+	var action := "move_right" if player().position.x < x else "move_left"
+	Input.action_press(action)
+	for i in range(300):
+		if absf(player().position.x-x)<7.0: break
+		await physics_frame
+	Input.action_release(action); await settle()
+	check(absf(player().position.x-x)<12.0, "real walking reaches work point")
 func equip(card: String, second: String = "") -> void:
-	# Real bag API; work identity and actual Q are still checked by production.
-	c.equip_card(card, c.active_slot)
-	if not second.is_empty(): c.equip_card(second, 1-c.active_slot)
-	await settle()
+	# Actual I screen, card selection and equipment buttons; no direct slot fixture.
+	if second.is_empty() and c.get_equipped_cards().has(card):
+		if c.active_card != card: await tap("switch_id")
+		return
+	if not floor_node().get_identity_restriction_room().is_empty(): await walk_to(2850)
+	var slot: int = c.active_slot
+	await tap("open_bag")
+	var bag: Control = main.get_node("MenuLayer/Bag")
+	for spec: Array in [[card,slot],[second,1-slot]]:
+		if spec[0].is_empty() or c.get_equipped_cards()[spec[1]]==spec[0]: continue
+		var items: ItemList = bag.get_node("%OwnedCards")
+		for i in range(items.item_count):
+			if items.get_item_metadata(i)==spec[0]:
+				items.select(i);items.item_selected.emit(i)
+				bag.get_node("%EquipSlotA" if spec[1]==0 else "%EquipSlotB").pressed.emit()
+				break
+	await tap("open_bag");await settle()
+	check(c.active_card==card and (second.is_empty() or c.get_equipped_cards().has(second)),"actual I/Q prepares requested identities")
 func steal(slot: String, card: String) -> void:
 	await travel(1)
 	var staff: Node = floor_node().get_node("StaffRoot/" + slot + "/Staff")
@@ -54,11 +76,18 @@ func steal(slot: String, card: String) -> void:
 	await key("interact", true); await create_timer(1.0).timeout; await key("interact", false)
 	check(c.has_card(card), "real theft obtained " + card)
 	await travel(2)
+	var room: String=g.get_task_definition(g.current_task_id)["room_id"]
+	check(floor_node().get_node("DoorRoot/Room"+room+"/Door").door_state=="OPEN", "unfinished monster is already at door after returning from1F")
 func offer(room: String, task: String) -> bool:
 	await move_to(floor_node().get_node("DoorRoot/Room" + room).position.x - 110)
-	await settle()
+	check(floor_node().get_node("DoorRoot/Room"+room+"/Door").door_state=="WARNING", room+" first contact has visible warning before dialogue")
+	await capture(room+"_warning")
+	for i in range(150):
+		if screen.visible: break
+		await physics_frame
 	check(screen.visible and not board.visible, room + " D intro before acceptance")
 	if room in ["203", "204", "205"]: check("201" not in main.get_node("TaskLayer/HUD/%Objective").text, room + " actual HUD has no201 fallback")
+	check(floor_node().get_node("Floor2Art/Doors/Room"+room+"/MonsterIdle").is_visible_in_tree(),room+" real artwork monster appears in intro")
 	await capture(room + "_intro")
 	# D preserves202's established intro-before-offer callback; other offers precede intro.
 	if room != "202": check(g.current_task_id == task and g.task_status == "AVAILABLE", room + " actual intercept offers correct task")
@@ -73,11 +102,15 @@ func offer(room: String, task: String) -> bool:
 	return true
 func work(node_name: String, hold: bool = false) -> void:
 	var spot: Node2D = floor_node().get_node("Interactions/" + node_name)
-	await move_to(spot.global_position.x)
+	if node_name.begins_with("Transit"):
+		await walk_to(spot.global_position.x)
+		check(floor_node().get_interaction_target_id()==spot.target_id,"205 targets its visible workstation")
+	else: await move_to(spot.global_position.x)
 	await key("interact", true)
 	if hold: await create_timer(1.65).timeout
 	await key("interact", false)
 	if not spot.is_completed(): print("WORK_DIAGNOSTIC ", node_name, " ", spot.get_interaction_state(), " selected=", floor_node().get_interaction_target_id())
+	elif node_name.begins_with("Transit"): await capture("205_work_"+node_name)
 func remind(room: String, phase: String) -> void:
 	await move_to(floor_node().get_node("DoorRoot/Room" + room).position.x - 35)
 	await tap()
@@ -89,6 +122,8 @@ func deliver(room: String, task: String) -> void:
 	await move_to(floor_node().get_node("DoorRoot/Room" + room).position.x - 35)
 	await tap()
 	check(g.get_completed_task_ids().has(task) and screen.get("_id").ends_with(":DELIVERED"), room + " real E settlement before success dialogue")
+	check(floor_node().get_node("DoorRoot/Room"+room+"/Door").door_state=="OPEN",room+" monster is visible during real delivery dialogue")
+	check(floor_node().get_node("Floor2Art/Doors/Room"+room+"/MonsterIdle").is_visible_in_tree(),room+" real artwork monster appears in delivery")
 	await capture(room + "_delivered")
 	await drain()
 	await remind(room, "COMPLETED")
@@ -172,6 +207,8 @@ func run() -> void:
 	await work("PatrolCabinet204")
 	await deliver("204", "TASK_T04_DUAL_WORK")
 	if not await offer("205", "TASK_T05_TRANSIT"): end(); return
+	await tap("open_bag")
+	check(not main.get_node("MenuLayer/Bag").visible,"205 directs equipment preparation away from inspection range")
 	await equip("SECURITY", "MANAGER")
 	await work("TransitRegister205")
 	check(not g.get_world_flags().get("transit_205_approved", false), "205 approval before pickup rejected")
@@ -190,12 +227,10 @@ func run() -> void:
 	check(g.get_pending_monster_encounter().is_empty(), "all task encounter requests settled")
 	check(not g.has_friend and not g.get_world_flags().get("exit_form_approved", false), "five tutorial tasks never fake rescue or EXIT")
 	var checker: Node = floor_node().get_node("DoorRoot/Room205/Door")
-	checker.set_managed_state("OPEN")
 	await move_to(checker.global_position.x - 35)
 	await tap("switch_id")
-	check(g.get_pending_monster_encounter().get("room_id", "") == "205", "completed205 still reports near-door Q")
+	check(checker.door_state=="CLOSED" and g.get_pending_monster_encounter().is_empty(), "completed205 never cycles or re-inspects passing player")
 	await move_to(2820)
-	check(g.get_pending_monster_encounter().is_empty(), "completed205 checker request clears on safe retreat")
 	await travel(3)
 	check(g.current_floor == 3, "after all five deliveries reach real3F")
 	end()

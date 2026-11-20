@@ -33,7 +33,11 @@ func _run() -> void:
 	var story_position: Vector2 = _floor().get_node("DoorRoot/Room201").global_position
 	_player().global_position.x = 580.0
 	await _settle()
-	_expect(game.get("task_status") == "AVAILABLE", "Real 201 offers before acceptance")
+	for i in range(150):
+		if game.get("task_status") == "AVAILABLE": break
+		await physics_frame
+	var before_world: Dictionary=game.call("get_world_flags")
+	_expect(game.get("task_status") == "AVAILABLE", "Real 201 offers after its initial warning")
 	_expect(game.call("accept_task", "TASK_01_CLEAN"), "Acceptance captures real B cards before work")
 	_expect(not game.call("can_retry_current_task"), "Active task cannot be retried")
 	await _travel(1)
@@ -139,7 +143,7 @@ func _run() -> void:
 	_expect(game.get("task_status") == "AVAILABLE" and game.get("remaining_time") == 0.0, "Retry waits for another acceptance")
 	_expect(cards.call("export_snapshot") == before_cards, "Retry revokes the task card and restores prior slots/active identity")
 	_expect(restored_events == [1, 0], "Restore refreshes cards once without an active identity event")
-	_expect(game.call("get_world_flags") == {"prior_note": true}, "Retry revokes cleaning while keeping prior world facts")
+	_expect(game.call("get_world_flags") == before_world and game.call("is_tutorial_room_revealed", "201"), "Retry revokes cleaning while keeping prior world facts")
 	_expect(game.call("get_notebook_view") == before_notes, "Retry restores the same manager clues without leaking the unearned rule")
 	_expect(game.call("is_world_input_allowed"), "Recovery releases its modal/input locks")
 	_expect(_floor().get_node("DoorRoot/Room202/Door").is_physics_processing(), "Recovery resumes actual ordinary-door detection after clearing modals")
@@ -183,15 +187,12 @@ func _run() -> void:
 	_expect(game.get("task_status") == "COMPLETED", "Real work and real C E delivery settle task 01")
 	_expect(game.call("get_world_flags").get("passage_201_unlocked", false), "Only actual delivery unlocks the passage")
 	_expect(not game.call("can_retry_current_task"), "Completed task cannot roll back")
-	# Deterministic C phase fixture; the new rule registers a forced encounter, not safe return.
+	#202 must now complete its actual warning before its first offer.
 	var ordinary: Node = _floor().get_node("DoorRoot/Room202/Door")
-	ordinary.set_process(false)
-	ordinary.set("door_state", "CLOSED")
-	_player().global_position.x = ordinary.global_position.x - 180.0
-	await _settle()
-	ordinary.set("door_state", "OPEN")
-	_player().global_position.x = ordinary.global_position.x - 20.0
-	await _settle()
+	_player().global_position.x = ordinary.global_position.x - 112.0
+	for i in range(150):
+		if game.get("current_task_id")=="TASK_02_PARCEL":break
+		await physics_frame
 	_expect(game.call("get_pending_monster_encounter").get("room_id", "") == "202" and game.get("current_task_id") == "TASK_02_PARCEL" and game.get("task_status") == "AVAILABLE", "After retries and201 delivery, independent core adapter offers202 without starting its clock")
 	_expect(game.get("remaining_time") == 0.0 and game.call("get_completed_task_ids").has("TASK_01_CLEAN") and cards.call("has_card", "CLEANER") and game.call("get_world_flags").get("passage_201_unlocked", false), "202 offer preserves201 achievements and its card rather than rolling them back")
 	game.call("start_game")

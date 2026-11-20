@@ -1,5 +1,7 @@
 # A／B／C接续D：二楼五怪主流程
 
+> 2026-11-21 试玩修复已追加：二楼首次完整预警、任务住客留场、完成退场；对白绑定实际怪物、交付复核当前证件；205工作点重排并通过真实I/Q/A-D/E。最新42项及画面见[试玩修复证据](qa_evidence/a_tutorial_playtest_fix_20261120/README.md)。下方旧38项记录为历史范围。
+
 整合PR：[PR #50](https://github.com/sd5913/ae4pa/pull/50)，已推送、未合并。
 
 开发分支：`work/member-A-five-monster-tutorial`；基线 `main@a802721`，已包含D `work/member-D-monster-dialogue-current@0ce69db`／PR48与B PR49。按2026-11-20本轮用户明确配置整合；只更新PR，不合入main。
@@ -12,7 +14,7 @@
 | 202／EYE | TASK_02_PARCEL，180秒 | 最新配置保安在1F → SECURITY领取原包裹柜 | 原parcel_collected → 回202交付；复用D真实成功对白 |
 | 203／HAT | TASK_T03_ROOM_SERVICE，240秒 | 1F经理取证、I装备／Q当前MANAGER → 2F房务登记台x1650 | room_service_203_approved → 回203交付、passage_203_unlocked |
 | 204／EAR | TASK_T04_DUAL_WORK，210秒 | 双槽CLEANER＋SECURITY；CLEANER长按清理x2120独立污渍 → SECURITY领取x2280资料柜 | stain_204_cleaned＋tutorial_patrol_collected → 回204交付、passage_204_unlocked |
-| 205／CHECKER | TASK_T05_TRANSIT，210秒 | 双槽SECURITY＋MANAGER；SECURITY领取x2690待审通行单 → MANAGER批准x2820登记台 | transit_205_collected＋transit_205_approved → 回205交付、passage_205_unlocked |
+| 205／CHECKER | TASK_T05_TRANSIT，210秒 | 双槽SECURITY＋MANAGER；SECURITY领取x2630待审通行单 → MANAGER批准x2850登记台 | transit_205_collected＋transit_205_approved → 回205交付、passage_205_unlocked |
 
 后三项时限是可调试用初值，尚未做真人节奏校准。文件成果仍由GameManager保存，不新增通用物品背包。每个工作核验当前身份、指定装备槽、真实来源、楼层、顺序、活动任务、模态及剩余时间；B组件执行动作、A接收真实work_requested后结算。持卡、Q或结束对白都不会完成工作。
 
@@ -48,3 +50,16 @@
 定向套件、先红后绿、独立评审修复、源文件指纹及截图索引见[证据目录](qa_evidence/a_five_monster_20261120/README.md)。旧309回归使用单列`tutorial_test_setup.gd`的API前置夹具，部分故意恢复旧双卡布局以保留缺经理证／偷证恢复边界；它不作为新五怪正式流程证据。
 
 尚未完成：真人五怪验收／时限校准、Windows、完整309救援／跟随、正式04／05与最终逃脱。201原真人六项和202成功／超时结果保留，不迁移为新任务人工通过。
+
+
+## 试玩后的任务差异化建议（待采用，尚未改玩法）
+
+保留201／202已验证任务。先缩短后三关重复跑腿和重复说明，将各关重点分开：
+
+| 房间 | 建议的体验重点 | 具体调整方向 |
+|---|---|---|
+| 203礼帽客 | 管理权限与剧情线索 | 以第三卡入包、替换槽、经理身份为核心；批准后提供一条309线索，对白缩短到必要信息。 |
+| 204大耳客 | 安静、停步与观察时机 | 保洁整理改短步骤，保安读取记录强调静止与听觉规则，形成一次时机挑战，减少重复长按清理。 |
+| 205核验客 | 安全区配证与综合核验 | 后续可把领取／批准收束为一个清晰柜台的两阶段提示，预先准备双证后完成核验；缩短找台与往返，保留安全区换证约束。 |
+
+优先完善204，再压缩203／205对白与路线。本轮只修反馈缺陷并保留任务目标，这些变体不记作已实现，也不改309／逃脱条件。
