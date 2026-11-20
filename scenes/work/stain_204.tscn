@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/work/cleaning_spot.tscn" id="1_work"]
+
+[node name="Stain204" instance=ExtResource("1_work")]
+target_id = "STAIN_204"
+interaction_type = "CLEAN"
+required_card = "CLEANER"
+hold_duration = 1.5
+
+[node name="Hint" parent="." index="1"]
+offset_left = -170.0
+offset_right = 170.0
+text = "204 STAIN · CLEANER · HOLD E"
+horizontal_alignment = 1

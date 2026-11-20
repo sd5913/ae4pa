@@ -16,7 +16,7 @@ func run() -> void:
 		var selected: String = gm.get_room_monster(row.room)
 		check(row.pool.has(selected),"Allowed pool " + row.room)
 		check(gm.get_room_monster(row.room) == selected,"Stable assignment " + row.room)
-	check(gm.get_room_monster("302") == "HAT" and gm.get_room_monster("403") == "EAR" and gm.get_room_monster("501") == "CHECKER","Later introductions")
+	check(gm.get_room_monster("203") == "HAT" and gm.get_room_monster("204") == "EAR" and gm.get_room_monster("205") == "CHECKER","All first introductions on2F")
 	var floor_node = load("res://scenes/levels/floor_2.tscn").instantiate()
 	root.add_child(floor_node)
 	await process_frame

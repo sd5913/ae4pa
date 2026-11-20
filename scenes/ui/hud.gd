@@ -68,7 +68,7 @@ func _refresh_task_display() -> void:
 	var task_name: String = str(task_view.get("name", ""))
 	var location: String = str(task_view.get("location", ""))
 	var status: String = str(task_view.get("status", ""))
-	var target_id: String = str(task_view.get("target_id", ""))
+	var target_id: String = str(task_view.get("target_label", task_view.get("target_id", "")))
 	var step: String = str(task_view.get("step", ""))
 	var objective := "当前无任务" if task_name.is_empty() else "%s · %s" % [tr(task_name), tr(location)]
 	if not target_id.is_empty():

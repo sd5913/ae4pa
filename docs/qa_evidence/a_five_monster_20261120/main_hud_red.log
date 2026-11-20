@@ -1,0 +1,15 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+FAIL: TASK_T03_ROOM_SERVICE AVAILABLE leaked201 objective
+FAIL: TASK_T03_ROOM_SERVICE READY_TO_SUBMIT leaked201 objective
+FAIL: TASK_T03_ROOM_SERVICE COMPLETED leaked201 objective
+FAIL: TASK_T03_ROOM_SERVICE FAILED leaked201 objective
+FAIL: TASK_T04_DUAL_WORK AVAILABLE leaked201 objective
+FAIL: TASK_T04_DUAL_WORK READY_TO_SUBMIT leaked201 objective
+FAIL: TASK_T04_DUAL_WORK COMPLETED leaked201 objective
+FAIL: TASK_T04_DUAL_WORK FAILED leaked201 objective
+FAIL: TASK_T05_TRANSIT AVAILABLE leaked201 objective
+FAIL: TASK_T05_TRANSIT READY_TO_SUBMIT leaked201 objective
+FAIL: TASK_T05_TRANSIT COMPLETED leaked201 objective
+FAIL: 205 completion needs real upstairs objective
+FAIL: TASK_T05_TRANSIT FAILED leaked201 objective

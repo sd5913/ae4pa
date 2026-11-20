@@ -77,7 +77,7 @@ func run() -> void:
 	screen.advance()
 	check(completed == ["NOSE:INTRO", "NOSE:DELIVERED"], "each completion signal emitted once")
 	check(not game.submit_task("TASK_01_CLEAN") and screen.phase_for_201() == "COMPLETED", "repeat interaction cannot settle again")
-	check(not screen.show_dialogue("EAR:DELIVERED") and not screen.show_dialogue("CHECKER:DELIVERED"), "unimplemented dual-card task contracts cannot claim runtime success")
+	check(not screen.show_dialogue("EAR:DELIVERED") and not screen.show_dialogue("CHECKER:DELIVERED"), "unfinished dual-card task contracts cannot claim runtime success")
 	var all: Dictionary = screen.data()
 	for monster: String in all:
 		for phase: String in all[monster]:

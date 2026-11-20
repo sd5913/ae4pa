@@ -14,7 +14,7 @@ func _ready() -> void:
 	status.text = "TEST DOUBLE · A/D 移动 · T 接受 · Y 可交付 · E 请求 · R 重置镜像\n配置预览：5/1.5/3 秒；不是正式五任务／路障／安全点验证"
 	add_child(status)
 	var index: int = 0
-	for room: String in ["201", "202", "303", "402", "503"]:
+	for room: String in ["201", "202", "203", "204", "205"]:
 		var door: Node2D = preload("res://scenes/doors/monster_door.tscn").instantiate()
 		Catalog.configure(door, room)
 		door.position = Vector2(450 + index * 500, 560)
@@ -28,7 +28,7 @@ func _ready() -> void:
 		door.story_progress_requested.connect(func(task: String): status.text = "TEST DOUBLE · 进度提示 " + task)
 		door.task_submit_requested.connect(func(task: String):
 			door.set_story_state("COMPLETED")
-			status.text = "TEST DOUBLE · 已收到交付请求 " + task + "；303 是否需要交付仍待 A 确认"
+			status.text = "TEST DOUBLE · 已收到交付请求 " + task + "；此镜像不改变正式任务状态"
 		)
 		index += 1
 

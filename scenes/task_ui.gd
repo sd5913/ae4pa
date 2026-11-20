@@ -82,8 +82,13 @@ func _refresh_offer_details() -> void:
 	var view: Dictionary = GameManager.get_task_view()
 	var requirement := tr(view["required_card"], "card requirement")
 	var details: String
-	if view["task_id"] == GameManager.TASK_03_ID:
-		details = tr("所需身份：%s · 接受后限时 %d 秒\n回1F经理身后取证 → I装备／Q切当前经理\n回3F登记台按E批准即完成，不需回302交付。") % [tr("经理工作证"), int(view["time_limit"])]
+	if GameManager.get_task_definition(view["task_id"]).has("instructions"):
+		var definition := GameManager.get_task_definition(view["task_id"])
+		var names := {"CLEANER": "保洁工作证", "SECURITY": "保安工作证", "MANAGER": "经理工作证"}
+		var cards: Array = definition["required_cards"].map(func(card: String): return names[card])
+		details = "所需身份：%s · 接受后限时%d秒\n%s" % ["＋".join(cards), int(view["time_limit"]), definition["instructions"]]
+	elif view["task_id"] == GameManager.TASK_03_ID:
+		details = tr("所需身份：%s · 接受后限时 %d 秒\n沿用经理工作证 → I装备／Q切当前经理\n回3F登记台按E批准即完成，不需回302交付。") % [tr("经理工作证"), int(view["time_limit"])]
 	elif view["task_id"] == GameManager.TASK_02_ID:
 		details = tr("所需身份：%s · 接受后限时 %d 秒\n返回一楼在保安身后取证 → Q切为当前保安\n返回二楼保管柜按E领取 → 回202交付。") % [tr("保安工作证"), int(view["time_limit"])]
 	else:
@@ -111,7 +116,9 @@ func _show_failure(reason: String) -> void:
 	if reason == "TASK_TIMEOUT":
 		failure.get_node("%Reason").text = "任务超时，请回到接取前重新挑战。"
 	var can_retry := GameManager.can_retry_current_task()
-	var retry_message: String = "回到302接受前，保留201／202成果，撤销本任务经理卡与批准。" if GameManager.current_task_id == GameManager.TASK_03_ID else ""
+	var retry_message: String = "回到302接取前，保留前序任务和已有证件，仅撤销本次309批准。" if GameManager.current_task_id == GameManager.TASK_03_ID else ""
+	if GameManager.get_task_definition(GameManager.current_task_id).has("instructions"):
+		retry_message = "回到%s接取前，保留前序任务与证件，撤销本任务的工作成果及交付。" % GameManager.get_task_definition(GameManager.current_task_id)["room_id"]
 	failure.configure_retry(can_retry,
 		retry_message if can_retry and not retry_message.is_empty() else
 		("回到202接受前，保留201成果，撤销本任务保安卡与包裹。" if GameManager.current_task_id == GameManager.TASK_02_ID else "回到 201 接受前，撤销本任务获得的卡片与清理结果。") if can_retry else "当前没有可恢复的任务检查点。")

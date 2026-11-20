@@ -1,0 +1,37 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+FAIL: 2F lesson intercepts as story: 202
+FAIL: 2F lesson is marked first: 203
+FAIL: Fixed 2F lesson species: 203
+FAIL: Lesson uses its tutorial task: 203
+FAIL: Real door receives lesson species and task: 203
+FAIL: 2F lesson intercepts as story: 203
+FAIL: 2F lesson is marked first: 204
+FAIL: Fixed 2F lesson species: 204
+FAIL: Lesson uses its tutorial task: 204
+FAIL: Real door receives lesson species and task: 204
+FAIL: 2F lesson intercepts as story: 204
+FAIL: 2F lesson is marked first: 205
+FAIL: Fixed 2F lesson species: 205
+FAIL: Lesson uses its tutorial task: 205
+FAIL: Real door receives lesson species and task: 205
+FAIL: 2F lesson intercepts as story: 205
+FAIL: Later room can choose every taught species: 301
+FAIL: Later room does not repeat a forced first lesson: 302
+FAIL: Later room can choose every taught species: 302
+FAIL: Later room can choose every taught species: 303
+FAIL: Later room can choose every taught species: 304
+FAIL: Later room can choose every taught species: 401
+FAIL: Later room can choose every taught species: 402
+FAIL: Later room does not repeat a forced first lesson: 403
+FAIL: Later room can choose every taught species: 403
+FAIL: Later room can choose every taught species: 404
+FAIL: Later room can choose every taught species: 405
+FAIL: Later room does not repeat a forced first lesson: 501
+FAIL: Later room can choose every taught species: 501
+FAIL: Exactly five first lessons, all on 2F
+FAIL: Former first room is no longer forced: 302
+FAIL: Former first room is no longer forced: 403
+FAIL: Former first room is no longer forced: 501

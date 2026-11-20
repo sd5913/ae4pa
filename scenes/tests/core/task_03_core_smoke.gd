@@ -25,8 +25,9 @@ func _run() -> void:
 	game.record_work_result("PARCEL_CABINET_2F")
 	game.submit_task("TASK_02_PARCEL")
 	_expect(not game.offer_task("TASK_03_AUTHORIZE"), "03 cannot be offered on2F")
+	_expect(load("res://scenes/tests/core/tutorial_test_setup.gd").complete_remaining(game, cards), "Explicit new tutorial prerequisite fixture")
 	game.current_floor = 3
-	_expect(game.offer_task("TASK_03_AUTHORIZE"), "Delivered02 permits03 on3F")
+	_expect(game.offer_task("TASK_03_AUTHORIZE"), "All2F deliveries permit03 on3F")
 	if game.current_task_id != "TASK_03_AUTHORIZE":
 		_finish()
 		return

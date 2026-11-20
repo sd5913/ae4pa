@@ -83,6 +83,10 @@ func _run() -> void:
 	_check(game.request_floor_travel(2), "Travel to the real task floor")
 	await process_frame
 	_check(game.offer_task(game.TASK_01_ID), "Offer the cleaning task")
+	var monster: Control = main.get_node("TaskLayer/MonsterDialogue")
+	for i in range(80):
+		if not monster.visible: break
+		monster.advance()
 	_check(game.accept_task(game.TASK_01_ID), "Accept the real timed task and make a checkpoint")
 
 	var task_layer := main.get_node("TaskLayer")

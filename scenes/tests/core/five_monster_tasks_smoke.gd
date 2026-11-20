@@ -1,0 +1,77 @@
+extends SceneTree
+## Domain checks; main-flow companion separately exercises real B work and doors.
+var errors: Array[String] = []
+var g: Node
+var c: Node
+func _initialize() -> void: call_deferred("run")
+func check(ok: bool, text: String) -> void:
+	if not ok: errors.append(text)
+func identity(card: String, second: String = "") -> void:
+	if not c.has_card(card): c.collect_card(card)
+	c.equip_card(card, c.active_slot)
+	if not second.is_empty():
+		if not c.has_card(second): c.collect_card(second)
+		c.equip_card(second, 1 - c.active_slot)
+func finish(task: String, target: String, card: String) -> void:
+	check(g.offer_task(task) and g.accept_task(task), "accept " + task)
+	identity(card)
+	check(g.record_work_result(target) and g.submit_task(task), "complete " + task)
+func run() -> void:
+	g = root.get_node("GameManager"); c = root.get_node("CardManager")
+	g.start_game(); g.set_process(false); g.complete_manager_intro(); g.current_floor = 2
+	finish("TASK_01_CLEAN", "STAIN_201", "CLEANER")
+	finish("TASK_02_PARCEL", "PARCEL_CABINET_2F", "SECURITY")
+	check(g.can_offer_task("TASK_T03_ROOM_SERVICE"), "203 tutorial available after202")
+	if not g.can_offer_task("TASK_T03_ROOM_SERVICE"):
+		end(); return
+	check(not g._can_unlock_next_floor(), "202 alone cannot skip three tutorials")
+	check(g.offer_task("TASK_T03_ROOM_SERVICE") and g.accept_task("TASK_T03_ROOM_SERVICE"), "203 accepted")
+	check(g.get_task_view()["target_id"] == "STAFF_MANAGER_1F", "203 missing card HUD points to real manager source")
+	check(not g.record_work_result("ROOM_SERVICE_203"), "wrong identity cannot approve203")
+	identity("MANAGER")
+	check(not g.submit_task("TASK_T03_ROOM_SERVICE"), "holding manager never delivers203")
+	check(g.record_work_result("ROOM_SERVICE_203"), "203 correct approval")
+	check(g.task_status == "READY_TO_SUBMIT", "203 approval still requires delivery")
+	check(not g.get_world_flags().get("registration_309_approved", false), "203 does not approve309")
+	check(g.submit_task("TASK_T03_ROOM_SERVICE"), "203 real delivery")
+	check(g.offer_task("TASK_T04_DUAL_WORK") and g.accept_task("TASK_T04_DUAL_WORK"), "204 accepted")
+	identity("SECURITY", "CLEANER")
+	check(not g.record_work_result("PATROL_CABINET_204"), "204 clean first")
+	check(not g.record_work_result("STAIN_201"), "201 result cannot replace204")
+	identity("CLEANER", "MANAGER")
+	check(not g.record_work_result("STAIN_204"), "204 needs both specified slots")
+	identity("CLEANER", "SECURITY")
+	check(g.record_work_result("STAIN_204"), "204 real clean")
+	check(g.get_task_view()["target_id"] == "PATROL_CABINET_204", "204 HUD advances to actual next work target")
+	check(not g.submit_task("TASK_T04_DUAL_WORK") and g.task_status == "ACTIVE", "204 one step insufficient")
+	check(not g.record_work_result("PATROL_CABINET_204"), "204 wrong current rejects record")
+	identity("SECURITY", "CLEANER")
+	check(g.record_work_result("PATROL_CABINET_204") and g.submit_task("TASK_T04_DUAL_WORK"), "204 both work and delivery")
+	check(g.offer_task("TASK_T05_TRANSIT") and g.accept_task("TASK_T05_TRANSIT"), "205 accepted")
+	identity("MANAGER", "SECURITY")
+	check(not g.record_work_result("TRANSIT_REGISTER_205"), "205 pickup required before approval")
+	check(not g.record_work_result("TRANSIT_PICKUP_205"), "205 pickup wrong current")
+	identity("SECURITY", "MANAGER")
+	check(g.record_work_result("TRANSIT_PICKUP_205"), "205 pickup")
+	check(not g.submit_task("TASK_T05_TRANSIT"), "205 pickup alone insufficient")
+	check(not g.record_work_result("TRANSIT_REGISTER_205"), "205 approval active manager only")
+	identity("MANAGER", "SECURITY")
+	check(g.record_work_result("TRANSIT_REGISTER_205"), "205 approve")
+	check(not g._can_unlock_next_floor(), "205 work alone does not open3F")
+	check(g.submit_task("TASK_T05_TRANSIT") and g._can_unlock_next_floor(), "205 delivery unlocks3F")
+	check(g.get_task_view()["target_id"] == "STAIRS_UP_2F" and "3F" in g.get_task_view()["step"], "205 completed HUD points upstairs instead of pickup again")
+	check(not g.get_world_flags().get("exit_form_approved", false) and not g.has_friend, "205 never exits or rescues")
+	check(not g.record_work_result("REGISTER_309"), "wrong task cannot approve309")
+	g.current_floor = 3
+	check(g.get_room_monster("302") == "HAT", "formal302 metadata matches actual manager resident")
+	g.request_monster_encounter("302", "HAT", "STORY_TASK")
+	check(g.get_pending_monster_encounter().get("task_id", "") == "TASK_03_AUTHORIZE", "formal302 context names309 task rather than completed203")
+	g.resolve_monster_encounter("302")
+	check(g.offer_task("TASK_03_AUTHORIZE") and g.accept_task("TASK_03_AUTHORIZE"), "later309 task retained")
+	check(g.record_work_result("REGISTER_309") and g.task_status == "COMPLETED", "309 approval still settles separately")
+	check(g.get_world_flags().get("registration_309_approved", false), "309 own flag set only later")
+	end()
+func end() -> void:
+	for error in errors: printerr("FAIL: " + error)
+	if errors.is_empty(): print("PASS: five tutorial task contracts and independent309/EXIT state")
+	quit(0 if errors.is_empty() else 1)

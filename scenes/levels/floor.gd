@@ -7,6 +7,7 @@ signal formatted_notice_requested(template: String, arguments: Array)
 signal manager_talk_requested()
 signal task_offer_requested(task_id: String)
 signal task_dialogue_requested(task_id: String)
+signal task_reminder_requested(task_id: String)
 
 const CARD_NAMES: Dictionary = {"SECURITY": "保安", "CLEANER": "保洁", "MANAGER": "经理"}
 const STAFF_TARGET_IDS: Dictionary = {"CLEANER": "STAFF_CLEANER_1F", "SECURITY": "STAFF_SECURITY_1F", "MANAGER": "STAFF_MANAGER_1F"}
@@ -51,7 +52,7 @@ func _ready() -> void:
 		staff.set_process_unhandled_input(false)
 	_setup_doors()
 	_work = get_node_or_null("Interactions/Stain201Slot/CleaningSpot")
-	for path: String in ["Interactions/Stain201Slot/CleaningSpot", "Interactions/ParcelCabinet2F", "Interactions/Register309"]:
+	for path: String in ["Interactions/Stain201Slot/CleaningSpot", "Interactions/ParcelCabinet2F", "Interactions/Register309", "Interactions/RoomService203", "Interactions/Stain204", "Interactions/PatrolCabinet204", "Interactions/TransitPickup205", "Interactions/TransitRegister205"]:
 		var work: CleaningSpot = get_node_or_null(path)
 		if work != null:
 			_works.append(work)
@@ -74,6 +75,7 @@ func _process(delta: float) -> void:
 	_refresh_component_eligibility()
 	_try_offer_task_02()
 	_try_offer_task_03()
+	_try_offer_tutorials()
 	_resolve_known_card_encounter()
 	if is_instance_valid(_held_staff):
 		if not GameManager.is_world_input_allowed() or not _held_staff.is_player_in_range() or player.is_moving or Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right") or not GameManager.is_interaction_allowed(_held_staff.target_id):
@@ -117,6 +119,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			GameManager.request_floor_travel(target["floor"])
 	elif target["kind"] == "OFFER":
 		task_offer_requested.emit(target["node"].task_id)
+	elif target["kind"] == "REMINDER":
+		if target["node"].task_id == GameManager.TASK_03_ID:
+			_on_story_progress(GameManager.TASK_03_ID)
+		else:
+			task_reminder_requested.emit(target["node"].task_id)
 	elif target["kind"] == "STORY":
 		target["node"].request_interaction()
 	elif target["kind"] == "TALK":
@@ -131,7 +138,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if work.begin_interaction():
 			_held_work = work if work.is_interacting() else null
 		else:
-			_emit_notice("先接受对应任务并切到所需当前身份；清理须长按 E，包裹柜按 E 领取。")
+			_emit_notice("先接受任务、准备指定装备槽并切到所需当前身份；清理长按E，其他工作按E。")
 	elif GameManager.is_interaction_allowed(target["id"]):
 		var staff: Node = target["node"]
 		if staff.begin_steal():
@@ -158,10 +165,13 @@ func _choose_interaction_target() -> Dictionary:
 		if work.visible and not work.is_completed() and absf(player.global_position.x - work.global_position.x) <= 70.0:
 			candidates.append({"id": work.target_id, "kind": "WORK", "node": work, "priority": 1 if work.can_interact() else 3, "distance": absf(player.global_position.x - work.global_position.x)})
 	for door: Node2D in _doors:
-		if door.door_mode == "STORY" and GameManager.current_task_id == door.task_id and GameManager.task_status in ["AVAILABLE", "READY_TO_SUBMIT"]:
+		if door.door_mode == "STORY":
+			var current: bool = GameManager.current_task_id == door.task_id
+			var completed: bool = GameManager.get_completed_task_ids().has(door.task_id)
 			var distance: float = absf(player.global_position.x - door.global_position.x)
-			if distance <= door.story_radius:
-				candidates.append({"id": "ROOM_" + door.room_id, "kind": "OFFER" if GameManager.task_status == "AVAILABLE" else "STORY", "node": door, "priority": 0, "distance": distance})
+			if distance <= door.story_radius and (completed or (current and GameManager.task_status in ["AVAILABLE", "ACTIVE", "READY_TO_SUBMIT"])):
+				var kind := "REMINDER" if completed or GameManager.task_status == "ACTIVE" else "OFFER" if GameManager.task_status == "AVAILABLE" else "STORY"
+				candidates.append({"id": "ROOM_" + door.room_id, "kind": kind, "node": door, "priority": 0, "distance": distance})
 	for slot: Node in $StaffRoot.get_children():
 		var staff: Node2D = slot.get_node("Staff")
 		if _can_talk_to_manager(staff):
@@ -209,15 +219,10 @@ func _refresh_component_eligibility() -> void:
 		staff.set_interaction_enabled(GameManager.is_world_input_allowed())
 		staff.set_task_eligible(GameManager.is_interaction_allowed(staff.target_id))
 	for work: CleaningSpot in _works:
-		var task_id: String = ""
-		for enabled_id: String in GameManager.ENABLED_TASKS:
-			if GameManager.get_task_definition(enabled_id)["target_id"] == work.target_id:
-				task_id = enabled_id
-				break
-		if task_id.is_empty():
+		var flag: String = GameManager.get_work_flag(work.target_id)
+		if flag.is_empty():
 			work.set_task_active(false)
 			continue
-		var flag: String = GameManager.get_task_definition(task_id)["work_flag"]
 		var completed: bool = GameManager.get_world_flags().get(flag, false)
 		if work.is_completed() != completed:
 			work.set_completed(completed)
@@ -273,6 +278,14 @@ func _apply_task_route() -> void:
 			right_bound = minf(right_bound, $DoorRoot/Room201.global_position.x - 112.0)
 	if task_02_barrier_x > 0.0 and not GameManager.get_world_flags().get("passage_202_unlocked", false):
 		right_bound = minf(right_bound, task_02_barrier_x - 24.0)
+	if floor_number == 2:
+		for task_id: String in [GameManager.TUTORIAL_03_ID, GameManager.TUTORIAL_04_ID, GameManager.TUTORIAL_05_ID]:
+			if GameManager.get_completed_task_ids().has(task_id): continue
+			var room: Node2D = get_node("DoorRoot/Room" + GameManager.get_task_definition(task_id)["room_id"])
+			right_bound = minf(right_bound, room.global_position.x - 24.0)
+			if GameManager.can_offer_task(task_id) or (GameManager.current_task_id == task_id and GameManager.task_status == "AVAILABLE"):
+				right_bound = minf(right_bound, room.global_position.x - 112.0)
+			break
 	player.set_walk_bounds(64.0, right_bound)
 	if has_node("Interactions/Task01Barrier"):
 		$Interactions/Task01Barrier.visible = not GameManager.get_world_flags().get("passage_201_unlocked", false)
@@ -290,6 +303,8 @@ func get_task_checkpoint_position(task_id: String) -> Dictionary:
 	if not GameManager.ENABLED_TASKS.has(task_id) or floor_number != GameManager.get_task_definition(task_id)["offer_floor"] or _doors.is_empty():
 		return {}
 	var marker_path: String = "Interactions/Task03AcceptSafe" if task_id == GameManager.TASK_03_ID else "Interactions/Task01AcceptSafe" if task_id == GameManager.TASK_01_ID else "Interactions/Task02AcceptSafe"
+	if task_id in [GameManager.TUTORIAL_03_ID, GameManager.TUTORIAL_04_ID, GameManager.TUTORIAL_05_ID]:
+		marker_path = "Interactions/Task%sAcceptSafe" % GameManager.get_task_definition(task_id)["room_id"]
 	var marker: Node2D = get_node(marker_path)
 	var room: Node2D = get_node("DoorRoot/Room" + GameManager.get_task_definition(task_id)["room_id"])
 	var destination: Vector2 = marker.global_position
@@ -312,8 +327,10 @@ func _setup_doors() -> void:
 		var door: Node2D = preload("res://scenes/doors/monster_door.tscn").instantiate()
 		door.name = "Door"
 		preload("res://scenes/doors/v4_door_catalog.gd").configure(door,room)
-		if room in ["202", "302"]:
-			door.door_mode = "STORY" # A's formal task adapter; C's catalog remains reusable.
+		if room == "302":
+			door.door_mode = "STORY" # Later independent309 task, never a second first tutorial.
+			door.task_id = GameManager.TASK_03_ID
+			door.monster_type = "HAT"
 		# Coordinated production floors; old standalone component adapters keep their API.
 		door.managed_cycle = true
 		slot.set_meta("monster_type",door.monster_type)
@@ -321,7 +338,7 @@ func _setup_doors() -> void:
 		door.set_managed_state("CLOSED")
 		door.setup(player)
 		door._last_managed_x = player.global_position.x
-		if room in ["201", "202", "302"]:
+		if door.door_mode == "STORY":
 			door.story_intercept_requested.connect(_on_story_intercept.bind(door))
 			door.task_submit_requested.connect(_on_task_submit.bind(door))
 			door.story_progress_requested.connect(_on_story_progress)
@@ -342,12 +359,26 @@ func _setup_doors() -> void:
 func _on_monster_encounter(context: Dictionary) -> void:
 	if not _doors.any(func(door: Node2D): return door.room_id == context.room_id):
 		return
-	if context.room_id == "201" and GameManager.offer_task(context.task_id):
+	for door: Node2D in _doors:
+		if door.room_id == context.room_id and door.door_mode == "STORY":
+			# The UI can freeze C before its next physics sample. Preserve approach
+			# side synchronously, including a frame that crossed the door centre.
+			if not GameManager.get_completed_task_ids().has(door.task_id) and absf(player.global_position.x - door.global_position.x) <= door.story_radius:
+				var side := -1.0 if door._last_managed_x <= door.global_position.x else 1.0
+				if (player.global_position.x - door.global_position.x) * side < 16.0:
+					player.global_position.x = door.global_position.x + side * 16.0
+			if door.task_id in [GameManager.TASK_02_ID, GameManager.TASK_03_ID]:
+				_try_offer_followup(door.task_id)
+			else:
+				GameManager.offer_task(door.task_id)
+			return
+	if floor_number >= 2 and not context.first_encounter and context.monster_type == "EAR":
+		_emit_notice("门开时停下脚步，等待门关闭后再经过。")
 		return
-	if context.room_id in ["202", "302"]:
-		_try_offer_followup(GameManager.TASK_02_ID if context.room_id == "202" else GameManager.TASK_03_ID)
+	if floor_number >= 2 and not context.first_encounter and context.monster_type == "CHECKER":
+		_emit_notice("核验范围内不得换证；先退回门外安全位置准备证件，再重新通过。")
 		return
-	if floor_number in [2, 3] and not context.first_encounter and context.monster_type in ["NOSE", "EYE", "HAT"]:
+	if floor_number >= 2 and not context.first_encounter and context.monster_type in ["NOSE", "EYE", "HAT"]:
 		_emit_notice("%s需要当前%s身份；按Q切换到对应工作证后通过。", [context.room_id, {"NOSE": "保洁", "EYE": "保安", "HAT": "经理"}[context.monster_type]])
 		return
 	var message := (
@@ -368,6 +399,19 @@ func _try_offer_task_03() -> void:
 	_try_offer_followup(GameManager.TASK_03_ID)
 
 
+func _try_offer_tutorials() -> void:
+	if floor_number != 2 or not GameManager.is_world_input_allowed(): return
+	for task_id: String in GameManager.TUTORIAL_TASKS:
+		if not GameManager.can_offer_task(task_id): continue
+		var room: Node2D = get_node("DoorRoot/Room" + GameManager.get_task_definition(task_id)["room_id"])
+		if absf(player.global_position.x - room.global_position.x) > 120.0: return
+		if GameManager.get_pending_monster_encounter().is_empty():
+			GameManager.request_monster_encounter(room.get_node("Door").room_id, room.get_node("Door").monster_type, "STORY_TASK")
+		elif task_id != GameManager.TASK_02_ID:
+			GameManager.offer_task(task_id)
+		return
+
+
 func _try_offer_followup(task_id: String) -> void:
 	if not GameManager.is_world_input_allowed() or not GameManager.can_offer_task(task_id):
 		return
@@ -384,16 +428,24 @@ func _try_offer_followup(task_id: String) -> void:
 
 
 func _resolve_known_card_encounter() -> void:
-	if floor_number not in [2, 3] or not GameManager.is_world_input_allowed():
+	if floor_number < 2 or not GameManager.is_world_input_allowed():
 		return
 	var context: Dictionary = GameManager.get_pending_monster_encounter()
 	if context.is_empty() or context.get("first_encounter", true):
 		return
 	var required: Dictionary = {"NOSE": "CLEANER", "EYE": "SECURITY", "HAT": "MANAGER"}
 	for door: Node2D in _doors:
-		if door.room_id == context.room_id and door.door_mode == "NORMAL" and required.get(door.monster_type, "") == CardManager.active_card:
+		if door.room_id != context.room_id: continue
+		if door.door_mode == "STORY":
+			if door.monster_type == "CHECKER" and absf(player.global_position.x - door.global_position.x) > door.radius:
+				GameManager.resolve_monster_encounter(context.room_id)
+			continue
+		var resolved: bool = required.has(door.monster_type) and required[door.monster_type] == CardManager.active_card
+		if door.monster_type == "EAR": resolved = not player.is_moving
+		if door.monster_type == "CHECKER": resolved = absf(player.global_position.x - door.global_position.x) > door.radius
+		if resolved:
 			GameManager.resolve_monster_encounter(context.room_id)
-			_emit_notice("%s身份核对通过，可以继续前进。", [context.room_id])
+			_emit_notice("%s规则核对通过；大耳门开时保持静止，核验门前不要换证。", [context.room_id])
 			return
 
 
@@ -414,8 +466,11 @@ func _on_task_submit(task_id: String, door: Node2D) -> void:
 
 
 func _on_story_progress(task_id: String) -> void:
+	if task_id in [GameManager.TUTORIAL_03_ID, GameManager.TUTORIAL_04_ID, GameManager.TUTORIAL_05_ID]:
+		_emit_notice("工作完成后返回%s按E交付；未完成时按E询问进度。", [GameManager.get_task_definition(task_id)["room_id"]])
+		return
 	if task_id == GameManager.TASK_03_ID:
-		_emit_notice("回1F取得经理证，装备并切为当前身份，再到3F登记台按E批准309。")
+		_emit_notice("沿用已有经理证，装备并切为当前身份，再到3F登记台按E批准309。")
 		return
 	if task_id == GameManager.TASK_02_ID:
 		_emit_notice("包裹已领取，在202按E交付。" if GameManager.task_status == "READY_TO_SUBMIT" else "202任务进行中：取得保安证，切为当前身份，再去保管柜领取包裹。")
@@ -469,7 +524,7 @@ func _refresh_exit_hint() -> void:
 	elif floor_number == 1 and not GameManager.get_available_floors().has(2):
 		exit_hint.text = "先完成经理初次对白，再上 2F"
 	elif floor_number == 2 and not GameManager.get_available_floors().has(3):
-		exit_hint.text = "完成 201 和 202 任务后开放 3F"
+		exit_hint.text = "完成201—205五项任务并逐一交付后开放3F"
 	elif floor_number == 3 and not GameManager.has_friend:
 		exit_hint.text = "先完成 309 救援才能上楼\n救援功能待 A-08"
 	elif not GameManager.get_available_floors().has(floor_number + 1):

@@ -25,6 +25,7 @@ func _ready() -> void:
 	GameManager.safe_return_started.connect(_on_safe_return_started)
 	GameManager.modal_changed.connect(_sync_story_controls)
 	GameManager.task_offered.connect(_on_task_offered)
+	GameManager.task_completed.connect(_on_tutorial_completed)
 	$TaskLayer/MissionBoard.task_accepted.connect(_on_task_accepted)
 	GameManager.task_updated.connect(_refresh_objective)
 	dialogue.dialogue_finished.connect(_on_dialogue_finished)
@@ -108,12 +109,12 @@ func _show_story_dialogue(dialogue_id: String) -> void:
 			GameManager.set_modal_open(STORY_MODAL, false)
 	elif dialogue_id == TASK_03_INTRO:
 		var lines: Array[String] = [
-			"我是302的住客。309的登记还没有得到管理批准。",
-			"接受后有240秒。先回一楼，在经理身后长按E取得经理工作证。",
+			"二楼教学已经完成。309仍有独立的登记限制，需要管理批准。",
+			"接受后有240秒。沿用已取得的经理工作证，不需要再次偷证。",
 			"打开背包，把经理证放进一个佩戴槽，再按Q切为当前经理身份。",
 			"回三楼，在309附近登记台按E批准；批准即完成任务并停表，不用回302交付。",
 		]
-		if not dialogue.show_task_dialogue(dialogue_id, "礼帽客 · 302", lines):
+		if not dialogue.show_task_dialogue(dialogue_id, "309登记 · 302", lines):
 			_active_dialogue_id = ""
 			GameManager.set_modal_open(STORY_MODAL, false)
 			$TaskLayer.show()
@@ -173,6 +174,7 @@ func _on_floor_changed(_number: int) -> void:
 	floor_node.formatted_notice_requested.connect(_show_notice)
 	floor_node.manager_talk_requested.connect(_on_manager_talk_requested)
 	floor_node.task_offer_requested.connect($TaskLayer.open_offer)
+	floor_node.task_reminder_requested.connect($TaskLayer/TaskMonsterDialogue.show_task_reminder)
 	floor_node.task_dialogue_requested.connect(_on_task_dialogue_requested)
 	floor_node.floor_selection_requested.connect($TaskLayer.open_floor_selection)
 	$TaskLayer.bind_interaction_floor(floor_node)
@@ -182,24 +184,38 @@ func _on_floor_changed(_number: int) -> void:
 
 
 func _on_task_offered(task_id: String) -> void:
-	if task_id == GameManager.TASK_01_ID:
+	if GameManager.get_task_definition(task_id).has("work_steps"):
+		_show_notice(GameManager.get_task_definition(task_id)["instructions"])
+	elif task_id == GameManager.TASK_01_ID:
 		_show_notice("201 的客人提出清洁任务；请在面板中确认接受，接受后开始 210 秒计时。")
 	elif task_id == GameManager.TASK_03_ID:
-		_show_notice("302管理授权任务待接受：回1F取经理证，装备并切为当前身份，回3F登记台批准。")
+		_show_notice("302管理授权任务待接受：沿用经理证，装备并切为当前身份，回3F登记台批准。")
 	elif task_id == GameManager.TASK_02_ID:
 		_show_notice("202包裹任务待接受：一楼保安取证 → Q切保安 → 二楼保管柜领取 → 回202交付。")
 	_refresh_objective()
 
 
+func _on_tutorial_completed(task_id: String) -> void:
+	if GameManager.get_task_definition(task_id).has("work_steps"):
+		_show_notice(GameManager.get_task_view()["step"])
+
+
 func _on_task_accepted(task_id: String) -> void:
+	if task_id in [GameManager.TUTORIAL_03_ID, GameManager.TUTORIAL_04_ID, GameManager.TUTORIAL_05_ID]:
+		_show_notice(GameManager.get_task_definition(task_id)["instructions"])
+		return
 	if task_id == GameManager.current_task_id and GameManager.task_status == "ACTIVE":
 		if task_id == GameManager.TASK_03_ID:
-			_show_notice("任务已接受：回1F取经理证，I装备、Q切当前身份，再回3F登记台按E批准309。")
+			_show_notice("沿用经理证，I装备／Q切当前经理 → 回3F登记台按E批准309。")
 			return
 		_show_notice("任务已接受：回一楼在保安身后取证，Q切保安身份，返回二楼保管柜领取，再回202交付。" if task_id == GameManager.TASK_02_ID else "任务已接受：回 1F 取得保洁工作证，再到 2F 扫帚旁清理，最后回 201 交付。")
 
 
 func _refresh_objective() -> void:
+	if GameManager.current_task_id in [GameManager.TUTORIAL_03_ID, GameManager.TUTORIAL_04_ID, GameManager.TUTORIAL_05_ID]:
+		var view := GameManager.get_task_view()
+		objective_label.text = "%s · %s" % [view["name"], view["step"]]
+		return
 	if GameManager.current_task_id == GameManager.TASK_03_ID:
 		objective_label.text = tr("当前目标：%s") % tr(_task_03_objective())
 		return
@@ -232,7 +248,7 @@ func _task_02_objective() -> String:
 				return "返回一楼，在保安身后长按E取得工作证。"
 			return "到保管柜按E领取包裹。" if CardManager.active_card == "SECURITY" else "Q切到保安身份，再到保管柜按E领取包裹。"
 		"READY_TO_SUBMIT": return "带包裹回202按E交付。"
-		"COMPLETED": return "202已交付；从二楼右梯上3F，到302接受管理授权任务。"
+		"COMPLETED": return "202已交付；继续到203完成房务申请教学。"
 		"FAILED": return "重新挑战本任务，回202重新接受；201成果保留。"
 	return "前往202。"
 

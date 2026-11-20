@@ -76,6 +76,7 @@ func _run() -> void:
 	game.record_work_result("PARCEL_CABINET_2F")
 	game.submit_task("TASK_02_PARCEL")
 	await _read_monster_dialogue()
+	_expect(load("res://scenes/tests/core/tutorial_test_setup.gd").complete_remaining(game, cards, main), "Explicit new2F prerequisite fixture before independent309 regression")
 	await _travel(3)
 	# Explicit prior01/02 encounter history; the setup above completed them via APIs.
 	game.get("_seen_monsters")["NOSE"] = true

@@ -152,13 +152,15 @@ func _run() -> void:
 	await _settle()
 	_expect("202" in main.notice_label.text and "201" not in main.notice_label.text, "Returning with parcel gives202 delivery feedback, not stale201 cleaning text")
 	await _tap()
-	_expect(game.task_status == "COMPLETED" and game.get_world_flags().get("parcel_delivered",false) and game.get_available_floors().has(3), "Real202 E delivery unlocks3F")
+	_expect(game.task_status == "COMPLETED" and game.get_world_flags().get("parcel_delivered",false) and not game.get_available_floors().has(3), "Real202 E delivery unlocks next tutorial rather than skipping to3F")
 	await _read_monster_dialogue()
-	# Exercise actual blocking and Q recovery at each remaining normal door.
-	for room in ["203","204","205"]:
+	_expect(load("res://scenes/tests/core/tutorial_test_setup.gd").complete_remaining(game, cards, main), "Explicit tutorial prerequisite fixture; actual new tasks tested by five_monster_main_flow")
+	await _travel(3)
+	# Keep known normal-door Q recovery coverage on later ordinary doors.
+	for room in ["301","303","304"]:
 		for door in _floor().get("_doors"):
 			door.set_managed_state("CLOSED")
-		var kind: String = "EYE" if room == "204" else "NOSE"
+		var kind: String = "EYE" if room == "303" else "NOSE"
 		var wrong_card: String = "CLEANER" if kind == "EYE" else "SECURITY"
 		if cards.active_card != wrong_card:
 			await _tap("switch_id")
@@ -183,9 +185,8 @@ func _run() -> void:
 			break
 	Input.action_release("move_right")
 	await _settle()
-	await _travel(3,false)
 	await _settle()
-	_expect(game.current_floor == 3 and game.current_task_id == "TASK_02_PARCEL" and game.can_offer_task("TASK_03_AUTHORIZE") and not game.offer_task("TASK_04_PATROL"), "3F arrival preserves02, makes authorized03 available at its own trigger, and still rejects04")
+	_expect(game.current_floor == 3 and game.get_completed_task_ids().has("TASK_02_PARCEL") and game.can_offer_task("TASK_03_AUTHORIZE") and not game.offer_task("TASK_04_PATROL"), "3F arrival preserves02, makes authorized03 available at its own trigger, and still rejects04")
 	_player().position.x = 192
 	_expect(game.request_floor_travel(2), "3F can revisit2F")
 	await _settle()

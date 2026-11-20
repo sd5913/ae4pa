@@ -1,5 +1,7 @@
 # 怪物员工通道公共接口与 V4 迁移提案
 
+> 2026-11-20 新增实际合同：`TASK_T03_ROOM_SERVICE`、`TASK_T04_DUAL_WORK`、`TASK_T05_TRANSIT`及五工作点已接；`get_task_view()`新增`required_cards`／`target_label`，目标随真实步骤变化，完成后指向下一房／3F。`get_work_flag(target_id)`供楼层镜像B组件，`has_required_equipment(task_id)`校验指定卡组。现有方法签名不变；具体ID、坐标、阶段、恢复与后续边界见[五怪接线交接](five_monster_tutorial_handoff_20261120.md)。下方旧接线历史不代替当前配置。
+
 当前工作区基线为 `main@c89c88c` 加本轮202未提交接入；第25节及[202交接](task_02_handoff_20261119.md)优先于旧“仅任务01／02未开放”描述。201真人六项用户ok保留原f18e4ce范围，202已有自动检查但未代记真人通过。历史发布／接线记录保留，不能把新教学／双卡提案当现成API。
 
 本文件按《Monster Staff Access Godot三周逐步分工 共享美术版 V2》第 01—03 部分的职责起草，供 A/B/C/D 在同一 Godot 项目中接入模块。它对应手册中建议的“接口约定.txt”，统一使用本 Markdown 文件维护，不再创建第二份接口清单。

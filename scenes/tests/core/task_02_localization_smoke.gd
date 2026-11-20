@@ -50,26 +50,25 @@ func _run() -> void:
 	await process_frame
 	var board: Control = main.get_node("TaskLayer/MissionBoard")
 	_expect(game.offer_task(game.TASK_01_ID), "Fixture offers201")
+	_drain_monster()
 	board.get("_accept_button").pressed.emit()
 	cards.collect_card("CLEANER")
 	_expect(game.record_work_result("STAIN_201") and game.submit_task(game.TASK_01_ID), "Explicit201 completion fixture")
+	_drain_monster()
 	main.call("_show_story_dialogue", "TASK_02_INTRO")
+	var monster: Control = main.get_node("TaskLayer/MonsterDialogue")
+	_expect(monster.visible and monster.get("_id") == "EYE:INTRO", "202 uses D actual on-site panel")
 	var cjk_font: Font = load("res://assets/final/fonts/hotel_staff_cjk.otf")
-	for source_line: String in main.dialogue.get("_lines"):
-		for i in source_line.length():
-			var code := source_line.unicode_at(i)
-			if code >= 0x4e00 and code <= 0x9fff:
-				_expect(cjk_font.has_char(code), "Bundled CJK font covers202 dialogue: " + source_line[i])
-	main.dialogue.call("_on_continue_pressed")
+	for row: Array in monster.get("_lines"):
+		for i in row[1].length():
+			var code: int = row[1].unicode_at(i)
+			if code >= 0x4e00 and code <= 0x9fff: _expect(cjk_font.has_char(code), "Bundled font covers D202 dialogue")
+	monster.advance()
+	var line_index: int = monster.get("_index")
+	var text: String = monster.get("_body").text
 	await _switch("en")
-	var line: Label = main.dialogue.get("_line")
-	var speaker: Label = main.dialogue.get("_speaker")
-	_english(line.atr(line.text), "202 current dialogue line")
-	_english(speaker.atr(speaker.text), "202 speaker")
-	for i in range(8):
-		if not main.dialogue.visible:
-			break
-		main.dialogue.call("_on_continue_pressed")
+	_expect(monster.get("_index") == line_index and monster.get("_body").text == text, "Locale switching preserves D Chinese narrative (English narrative not delivered)")
+	_drain_monster()
 	await process_frame
 	_expect(board.visible and game.current_task_id == game.TASK_02_ID and game.remaining_time == 0, "Translated dialogue still opens202 offer without time")
 	_english(board.get("_hint").text, "202 offer details")
@@ -112,11 +111,11 @@ func _run() -> void:
 	cards.switch_active()
 	_expect(game.record_work_result("PARCEL_CABINET_2F") and game.submit_task(game.TASK_02_ID), "Retried202 can still deliver")
 	await _switch("zh_CN")
-	_expect("3F" in hud.get_node("%Objective").text, "Completion announces3F")
+	_expect("203" in main.objective_label.text and "203" in hud.get_node("%Objective").text, "Completion announces next2F tutorial in real HUD")
 	await _switch("en")
 	_english(hud.get_node("%Objective").text, "202 completed objective")
 	_english(main.objective_label.text, "202 completed developer objective")
-	_expect(game.get_available_floors().has(3), "Translated completion preserves3F unlock")
+	_expect(not game.get_available_floors().has(3) and game.can_offer_task("TASK_T03_ROOM_SERVICE"), "Translated completion advances to203 before3F")
 	localization.set_language("zh_CN")
 	main.queue_free()
 	await process_frame
@@ -124,3 +123,9 @@ func _run() -> void:
 		printerr("FAIL: ", message)
 	print("TASK_02_LOCALIZATION: PASS" if failures.is_empty() else "TASK_02_LOCALIZATION: FAIL")
 	quit(0 if failures.is_empty() else 1)
+
+func _drain_monster() -> void:
+	var monster: Control = main.get_node("TaskLayer/MonsterDialogue")
+	for i in range(80):
+		if not monster.visible: return
+		monster.advance()

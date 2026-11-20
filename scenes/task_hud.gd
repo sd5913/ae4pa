@@ -11,7 +11,13 @@ func _refresh_task_display() -> void:
 	var view: Dictionary = GameManager.get_task_view()
 	var status: String = view["status"]
 	var objective: String = "前往前台与经理交谈"
-	if view["task_id"] == GameManager.TASK_03_ID:
+	if GameManager.get_task_definition(view["task_id"]).has("work_steps"):
+		var room: String = GameManager.get_task_definition(view["task_id"])["room_id"]
+		match status:
+			"AVAILABLE": objective = "在%s接受当前任务" % room
+			"ACTIVE", "READY_TO_SUBMIT", "COMPLETED": objective = view["step"]
+			"FAILED": objective = "重新挑战后回%s接受任务" % room
+	elif view["task_id"] == GameManager.TASK_03_ID:
 		match status:
 			"AVAILABLE": objective = "在302接受240秒授权任务"
 			"ACTIVE":
@@ -26,7 +32,7 @@ func _refresh_task_display() -> void:
 			"ACTIVE":
 				objective = "返回一楼，在保安身后长按E取证" if not CardManager.has_card("SECURITY") else "到保管柜按E领取包裹" if CardManager.active_card == "SECURITY" else "Q切保安身份，到保管柜按E领取"
 			"READY_TO_SUBMIT": objective = "带包裹回202按E交付"
-			"COMPLETED": objective = "202已交付；上3F到302接授权任务"
+			"COMPLETED": objective = "202已交付；继续到203接房务申请任务"
 			"FAILED": objective = "回202重新接受；201成果保留"
 	else:
 		match status:
