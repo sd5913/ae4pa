@@ -18,6 +18,9 @@ var _notice_arguments: Array = []
 
 
 func _ready() -> void:
+	var reunion := preload("res://scenes/room309_reunion.gd").new()
+	reunion.name = "Room309Reunion"
+	add_child(reunion)
 	GameManager.state_changed.connect(_on_state_changed)
 	CardManager.cards_changed.connect(_on_cards_changed)
 	GameManager.floor_changed.connect(_on_floor_changed)
@@ -244,7 +247,7 @@ func _task_03_objective() -> String:
 			if not CardManager.has_card("MANAGER"): return "回1F经理身后长按E取得工作证。"
 			if not CardManager.get_equipped_cards().has("MANAGER"): return "I将经理证放入佩戴槽。"
 			return "3F登记台按E批准309。" if CardManager.active_card == "MANAGER" else "Q切为经理，再回3F登记台批准。"
-		"COMPLETED": return "309登记已批准；任务03完成，救援后续尚未开放。"
+		"COMPLETED": return "帕希卡已同行，前往五楼消防出口。" if GameManager.has_friend else "309登记已批准；切为保洁身份进入309，寻找帕希卡。"
 		"FAILED": return "回302重新接受；201／202成果保留。"
 	return "前往3F的302。"
 

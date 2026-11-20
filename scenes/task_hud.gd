@@ -43,7 +43,4 @@ func _refresh_task_display() -> void:
 				objective = "201已完成；向右到202接包裹任务"
 			"FAILED":
 				objective = "重新挑战后回 201 接受任务"
-	if not str(view["name"]).is_empty():
-		objective = "%s · %s\n%s" % [tr(view["name"]), tr(view["location"]), tr(objective)]
-	var seconds: int = maxi(0, ceili(view["remaining_time"]))
-	_apply_task_display(objective, tr("剩余时间：%d:%02d · %s") % [seconds / 60, seconds % 60, tr(STATUS_NAMES.get(status, status))])
+	_apply_task_view(view, tr(objective))

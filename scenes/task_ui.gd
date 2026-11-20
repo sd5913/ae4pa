@@ -33,7 +33,7 @@ func _ready() -> void:
 	GameManager.state_changed.connect(_on_state_changed)
 	interaction_progress = InteractionProgress.new()
 	interaction_progress.name = "InteractionProgress"
-	hud.get_node("Stack").add_child(interaction_progress)
+	hud.get_node("%InteractionArea").add_child(interaction_progress)
 	_refresh_hud()
 
 

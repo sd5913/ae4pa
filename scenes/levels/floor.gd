@@ -7,6 +7,7 @@ signal formatted_notice_requested(template: String, arguments: Array)
 signal manager_talk_requested()
 signal task_offer_requested(task_id: String)
 signal task_dialogue_requested(task_id: String)
+signal rescue_open_requested()
 
 const CARD_NAMES: Dictionary = {"SECURITY": "保安", "CLEANER": "保洁", "MANAGER": "经理"}
 const STAFF_TARGET_IDS: Dictionary = {"CLEANER": "STAFF_CLEANER_1F", "SECURITY": "STAFF_SECURITY_1F", "MANAGER": "STAFF_MANAGER_1F"}
@@ -125,7 +126,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			manager_talk_requested.emit()
 	elif target["kind"] == "RESCUE_GATE":
-		_emit_notice("309登记已批准；救援后续尚未开放。" if GameManager.get_world_flags().get("registration_309_approved", false) else "309尚未获准；先完成302的管理授权任务。")
+		if GameManager.has_friend:
+			_emit_notice("帕希卡已同行；前往五楼消防出口。")
+		elif not GameManager.get_completed_task_ids().has(GameManager.TASK_03_ID) or not GameManager.get_world_flags().get("registration_309_approved", false):
+			_emit_notice("309尚未获准；先完成302的管理授权任务。")
+		elif CardManager.active_card != "CLEANER":
+			_emit_notice("309：需要当前生效的保洁身份；持有或备用槽不算开门权限。")
+		else:
+			rescue_open_requested.emit()
 	elif target["kind"] == "WORK":
 		var work: CleaningSpot = target["node"]
 		if work.begin_interaction():
@@ -282,7 +290,7 @@ func _apply_task_route() -> void:
 		if door.door_mode == "STORY":
 			door.set_story_state("COMPLETED" if GameManager.get_completed_task_ids().has(door.task_id) else GameManager.task_status if GameManager.current_task_id == door.task_id else "NONE")
 	if floor_number == 3 and has_node("Interactions/RescuePoint/TaskHint"):
-		$Interactions/RescuePoint/TaskHint.text = "309登记已批准；救援后续尚未开放。" if GameManager.get_world_flags().get("registration_309_approved", false) else "309 · 先取得管理批准"
+		$Interactions/RescuePoint/TaskHint.text = "帕希卡已同行" if GameManager.has_friend else "309 · 当前保洁身份 · E 开门" if GameManager.get_world_flags().get("registration_309_approved", false) else "309 · 先取得管理批准"
 	queue_redraw()
 
 
@@ -471,7 +479,7 @@ func _refresh_exit_hint() -> void:
 	elif floor_number == 2 and not GameManager.get_available_floors().has(3):
 		exit_hint.text = "完成 201 和 202 任务后开放 3F"
 	elif floor_number == 3 and not GameManager.has_friend:
-		exit_hint.text = "先完成 309 救援才能上楼\n救援功能待 A-08"
+		exit_hint.text = "先进入 309 找到帕希卡，再前往五楼出口"
 	elif not GameManager.get_available_floors().has(floor_number + 1):
 		exit_hint.text = "下一层尚未开放"
 	else:

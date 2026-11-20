@@ -178,7 +178,7 @@ func show_dialogue(dialogue_id: String) -> void:
 			_show_line()
 		"RESCUE_309":
 			_lines = RESCUE_309_LINES.duplicate()
-			_speaker.text = "闺蜜"
+			_speaker.text = tr("帕希卡")
 			_set_scene("lobby", false)
 			_show_line()
 		V4_INTRO_ID:
@@ -311,7 +311,7 @@ func _show_story_beat() -> void:
 	var mode: String = beat.mode
 	_speaker.visible = mode == "dialogue"
 	_line.visible = mode == "dialogue"
-	_speaker.text = "安" if beat.speaker == "女主" else beat.speaker
+	_speaker.text = "安" if beat.speaker == "女主" else tr("帕希卡") if beat.speaker in ["闺蜜", "帕希卡", "Persica", "friend"] else beat.speaker
 	_line.text = beat.text
 	_cue.hide()
 	_story_title.hide()
@@ -367,7 +367,7 @@ func _finish_phone_animation() -> void:
 
 
 func _add_sms_message(speaker: String, text: String) -> void:
-	var is_friend := speaker == "闺蜜"
+	var is_friend := speaker in ["闺蜜", "帕希卡", "Persica", "friend"]
 	var row := HBoxContainer.new()
 	row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -428,7 +428,7 @@ func _scroll_sms_to_message(row: Control) -> void:
 
 
 func _display_portrait(speaker: String, expression: String) -> void:
-	if speaker == "闺蜜":
+	if speaker in ["闺蜜", "帕希卡", "Persica", "friend"]:
 		var index := int(FACE_INDEX.get(expression, 0))
 		_portrait.texture = _atlas_cell(FRIEND_SHEET, index)
 	else:
