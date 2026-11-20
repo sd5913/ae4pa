@@ -83,8 +83,8 @@ func _on_identity_changed(action: String) -> void:
 		return
 	_sample_entry()
 	if managed_cycle:
-		if monster_type == "CHECKER" and action in ["SWITCH_ACTIVE", "EQUIP_CARD"] and door_state == "OPEN" and is_instance_valid(_player) and absf(_player.global_position.x-global_position.x) <= radius:
-			GameManager.request_monster_encounter(room_id, monster_type, "SWITCHED_NEAR_CHECKER")
+		if monster_type == "CHECKER" and action in ["SWITCH_ACTIVE", "EQUIP_CARD"] and _can_check() and _story_status not in ["ACTIVE", "READY_TO_SUBMIT", "COMPLETED"]:
+			_report_violation("SWITCHED_NEAR_CHECKER")
 		return
 	if monster_type == "CHECKER" and action in ["SWITCH_ACTIVE", "EQUIP_CARD"] and _can_check():
 		_report_violation("SWITCHED_NEAR_CHECKER")
@@ -160,7 +160,11 @@ func _sample_entry() -> void:
 
 func _report_violation(reason: String) -> void:
 	if managed_cycle:
-		GameManager.request_monster_encounter(room_id, monster_type, reason)
+		if _violation_pending or not GameManager.is_world_input_allowed():
+			return
+		_violation_pending = true
+		var side: int = -1 if _last_managed_x <= global_position.x else 1
+		rule_violated.emit(reason, side)
 		return
 	# Unknown spawn/teleport inside is not evidence of a safe approach direction.
 	if _violation_pending or _entry_side == 0:
@@ -176,6 +180,7 @@ func finish_safe_return() -> bool:
 		return false
 	_sample_entry()
 	_violation_pending = false
+	_last_managed_x = _player.global_position.x
 	return true
 
 
@@ -302,9 +307,14 @@ func _check_managed_encounter() -> void:
 		var wrong: bool = required.has(monster_type) and CardManager.active_card != required[monster_type]
 		wrong = wrong or (monster_type == "EAR" and _player.is_moving)
 		# Story work in progress is handled by A, never re-offer every frame.
-		var existing_story: bool = door_mode == "STORY" and _story_status in ["ACTIVE","READY_TO_SUBMIT","COMPLETED"]
-		if not existing_story and (first or (wrong and distance <= radius)):
-			GameManager.request_monster_encounter(room_id,monster_type,"FIRST_ENCOUNTER" if first else "WRONG_RULE")
+		var task_room: bool = door_mode == "STORY" or preload("res://scenes/doors/v4_door_catalog.gd").FIRST.has(room_id)
+		var existing_story: bool = task_room and _story_status in ["ACTIVE", "READY_TO_SUBMIT", "COMPLETED"]
+		if not existing_story and not first and wrong and distance <= radius:
+			_report_violation("MOVED_NEAR_EAR" if monster_type == "EAR" else "WRONG_CARD")
+			_last_managed_x = _player.global_position.x
+			return
+		if not existing_story and first:
+			GameManager.request_monster_encounter(room_id,monster_type,"FIRST_ENCOUNTER")
 			pending = GameManager.get_pending_monster_encounter()
 		if pending.get("room_id", "") == room_id:
 			var side := -1.0 if _last_managed_x <= global_position.x else 1.0

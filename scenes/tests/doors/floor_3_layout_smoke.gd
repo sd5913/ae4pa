@@ -42,6 +42,9 @@ func run() -> void:
 		if child.get_script()==load("res://scenes/doors/door_scheduler.gd"):
 			child.set_process(false)
 	floor_node.player.set_physics_process(false)
+	# Art-only traversal fixture; production302 gate is tested separately.
+	gm._completed_task_ids.append(gm.TASK_03_ID)
+	floor_node._apply_task_route()
 	floor_node.player.global_position.x = 192
 	Input.action_press("move_right")
 	for i in range(45):floor_node.player._physics_process(0.5)

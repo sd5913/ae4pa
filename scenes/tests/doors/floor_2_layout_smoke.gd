@@ -26,7 +26,9 @@ func _run() -> void:
 			_expect(room.get_node("Sprite2D").texture.get_size() == Vector2(1280,1280), "All state textures retain full canvas")
 	var start: float = preview.get_node("Player").position.x
 	Input.action_press("move_right")
-	await create_timer(0.15).timeout
+	# Wait for actual input/physics frames; cold texture loading can consume a
+	# wall-clock timer before the first physics tick in headless runs.
+	for i in range(12): await physics_frame
 	Input.action_release("move_right")
 	_expect(preview.get_node("Player").position.x > start, "Walk-through player can move without task fixtures")
 	_expect(not art.has_node("Foreground/LeftRail") and not art.has_node("Foreground/RightRail"), "Detached foreground stair railings are removed")
