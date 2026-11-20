@@ -1,5 +1,5 @@
 extends SceneTree
-## Production managed doors return to the left stair memory point on floors2–5.
+## Production ordinary doors3–5F plus an explicit2F ordinary-component compatibility fixture.
 var failures: Array[String] = []
 var game: Node
 var cards: Node
@@ -45,6 +45,9 @@ func run() -> void:
 			item.set_physics_process(false)
 		var room: String = {2: "203", 3: "301", 4: "401", 5: "502"}[number]
 		var door: Node2D = floor_node.get_node("DoorRoot/Room" + room + "/Door")
+		# All2F doors are now compulsory tutorials. Only this isolated detector fixture
+		# converts203 to NORMAL to retain2F landing/inspection API coverage.
+		if number == 2: door.door_mode = "NORMAL"
 		var player = floor_node.player
 		var memory: Vector2 = floor_node.return_point.global_position
 		door.monster_type = "NOSE"

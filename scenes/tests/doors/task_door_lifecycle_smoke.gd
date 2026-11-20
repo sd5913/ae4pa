@@ -49,6 +49,7 @@ func close_dialogue() -> void:
 	for i in range(30):
 		if not dialogue.visible: break
 		dialogue.advance()
+	floor_node.set_monster_dialogue_room("")
 
 func run() -> void:
 	game = root.get_node("GameManager")
@@ -65,16 +66,20 @@ func run() -> void:
 	root.add_child(dialogue)
 	game.task_completed.connect(func(task: String):
 		if task in ["TASK_01_CLEAN", "TASK_02_PARCEL"]:
+			floor_node.set_monster_dialogue_room("201" if task == "TASK_01_CLEAN" else "202")
+		if task in ["TASK_01_CLEAN", "TASK_02_PARCEL"]:
 			check(dialogue.show_dialogue("NOSE:DELIVERED" if task == "TASK_01_CLEAN" else "EYE:DELIVERED"), "Real delivery dialogue opens")
 	)
 	var nose: Node2D = floor_node.get_node("DoorRoot/Room201/Door")
 	floor_node.player.global_position.x = nose.global_position.x - 112
 	scheduler._process(0.1)
+	check(nose.door_state == "WARNING", "201 first approach warns before opening")
+	scheduler._process(nose.warning_time)
 	nose._physics_process(0)
 	check(nose.door_state == "OPEN" and game.task_status == "AVAILABLE", "201 initial encounter opens and offers")
 	check(game.accept_task("TASK_01_CLEAN"), "201 actual acceptance")
 	scheduler._process(0)
-	check(nose.door_state == "CLOSED", "Accepted 201 closes")
+	check(nose.door_state == "OPEN", "Accepted201 keeps resident supervising")
 	await travel(1)
 	cards.collect_card("CLEANER")
 	cards.equip_card("CLEANER", cards.active_slot)
@@ -82,7 +87,7 @@ func run() -> void:
 	nose = floor_node.get_node("DoorRoot/Room201/Door")
 	floor_node.player.global_position.x = nose.global_position.x - 112
 	for i in range(10): scheduler._process(10)
-	check(nose.door_state == "CLOSED", "Returning with cleaner card does not replay 201 opening")
+	check(nose.door_state == "OPEN", "Returning keeps201 resident without replaying warning")
 	check(not game.record_work_started("PARCEL_CABINET_2F"), "Unrelated work cannot start supervision")
 	floor_node.player.global_position.x = 852
 	await settle()
@@ -117,11 +122,13 @@ func run() -> void:
 	var eye: Node2D = floor_node.get_node("DoorRoot/Room202/Door")
 	floor_node.player.global_position.x = eye.global_position.x - 110
 	scheduler._process(0)
+	check(eye.door_state == "WARNING", "202 first approach warns before opening")
+	scheduler._process(eye.warning_time)
 	eye._physics_process(0)
 	floor_node._try_offer_task_02()
 	check(game.accept_task("TASK_02_PARCEL"), "202 actual acceptance")
 	for i in range(10): scheduler._process(10)
-	check(eye.door_state == "CLOSED", "202 remains shut during task execution")
+	check(eye.door_state == "OPEN", "202 resident supervises throughout task")
 	cards.collect_card("SECURITY")
 	cards.equip_card("SECURITY", cards.active_slot)
 	floor_node.player.global_position.x = 990
@@ -129,7 +136,7 @@ func run() -> void:
 	press_e()
 	check(game.task_status == "READY_TO_SUBMIT", "Actual parcel cabinet reports pickup")
 	scheduler._process(100)
-	check(eye.door_state == "CLOSED", "Parcel ready but player still away keeps 202 closed")
+	check(eye.door_state == "OPEN", "202 resident stays visible away from doorway")
 	floor_node.player.global_position.x = eye.global_position.x - 110
 	scheduler._process(0)
 	check(eye.door_state == "OPEN" and nose.door_state == "CLOSED", "Return to 202 opens only that door")
@@ -144,6 +151,7 @@ func run() -> void:
 	close_dialogue()
 	scheduler._process(0)
 	check(eye.door_state == "CLOSED", "202 closes after dialogue")
+	check(load("res://scenes/tests/core/tutorial_test_setup.gd").complete_remaining(game, cards), "Explicit203–205 prerequisite fixture before independent302 regression")
 	await travel(3)
 	if game.current_floor != 3:
 		printerr("STATE: ", game.current_task_id, " / ", game.task_status, " / ", game.get_pending_monster_encounter())
@@ -174,6 +182,7 @@ func run() -> void:
 		game._load_floor(pair[0])
 		bind_floor()
 		var door: Node2D = floor_node.get_node("DoorRoot/Room" + pair[1] + "/Door")
+		check(not load("res://scenes/doors/v4_door_catalog.gd").FIRST.has(pair[1]), "Later task room is not duplicate first teaching")
 		game.current_task_id = pair[2]
 		game.task_status = "ACTIVE"
 		floor_node.player.global_position.x = door.global_position.x

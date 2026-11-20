@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+FAIL: 201 rejects delivery with wrong current ID even after work
+FAIL: wrong ID cannot retire monster or unlock passage
+FAIL: 201 accepts real result and correct ID

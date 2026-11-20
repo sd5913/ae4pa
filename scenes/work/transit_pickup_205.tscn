@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/work/work_point.tscn" id="1_work"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_2_layers/05_interactive/mail_package_cabinet.png" id="2_cabinet"]
+
+[node name="TransitPickup205" instance=ExtResource("1_work")]
+target_id = "TRANSIT_PICKUP_205"
+interaction_type = "PICKUP"
+required_card = "SECURITY"
+hold_duration = 0.0
+
+[node name="WorkVisual" parent="." index="0"]
+visible = false
+
+[node name="PersistentVisual" type="Sprite2D" parent="." index="1"]
+position = Vector2(0, -87.04)
+scale = Vector2(0.34, 0.34)
+texture = ExtResource("2_cabinet")
+
+[node name="Hint" parent="." index="2"]
+visible = false
+offset_top = -218.0
+offset_bottom = -176.0
+theme_override_font_sizes/font_size = 16
+autowrap_mode = 3
+offset_left = -100.0
+offset_right = 100.0
+text = "待审通行单 · 保安领取"

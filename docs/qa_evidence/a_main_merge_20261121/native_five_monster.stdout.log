@@ -1,0 +1,24 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 4.1 Metal - 91.7 - Compatibility - Using Device: Apple - Apple M5
+
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/201_warning.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/201_intro.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/201_delivered.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/202_warning.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/202_intro.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/202_delivered.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/203_warning.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/203_intro.png
+WORK_DIAGNOSTIC RoomService203 { "target_id": "ROOM_SERVICE_203", "interaction_type": "AUTHORIZE", "status": "BLOCKED", "progress": 0.0, "elapsed": 0.0, "required_time": 0.0, "block_reason": "TASK_INACTIVE" } selected=ROOM_SERVICE_203
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/203_delivered.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/204_warning.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/204_intro.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/204_delivered.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/205_warning.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/205_intro.png
+WORK_DIAGNOSTIC TransitRegister205 { "target_id": "TRANSIT_REGISTER_205", "interaction_type": "AUTHORIZE", "status": "BLOCKED", "progress": 0.0, "elapsed": 0.0, "required_time": 0.0, "block_reason": "TASK_INACTIVE" } selected=TRANSIT_REGISTER_205
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/205_work_TransitPickup205.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/205_work_TransitPickup205.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/205_work_TransitRegister205.png
+CAPTURE: /var/folders/fj/z3_ry3xd17j8jhkgxrsdnq7c0000gn/T/ae4pa-five-monster-native-81124/205_delivered.png
+PASS: normal new game201–205, real theft/work/E delivery, reminders and retries

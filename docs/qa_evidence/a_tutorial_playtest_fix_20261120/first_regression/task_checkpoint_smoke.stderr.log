@@ -1,0 +1,3 @@
+FAIL: Real 201 offers before acceptance
+FAIL: Acceptance captures real B cards before work
+FAIL: Late event from a removed floor cannot fail the new world

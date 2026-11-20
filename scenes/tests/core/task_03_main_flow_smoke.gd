@@ -4,6 +4,7 @@ var failures: Array[String] = []
 var game: Node
 var cards: Node
 var main: Node
+var safe_return_reasons: Array[String] = []
 func _initialize() -> void: call_deferred("_run")
 func _expect(ok: bool, message: String) -> void:
 	if not ok: failures.append(message)
@@ -51,6 +52,7 @@ func _capture(name: String) -> void:
 	root.get_texture().get_image().save_png("/private/tmp/ae4pa-task03-native/" + name + ".png")
 func _run() -> void:
 	game = root.get_node("GameManager")
+	game.safe_return_started.connect(func(reason: String): safe_return_reasons.append(reason))
 	cards = root.get_node("CardManager")
 	root.get_node("Localization").set_language("zh_CN")
 	main = load("res://scenes/main.tscn").instantiate()
@@ -76,6 +78,7 @@ func _run() -> void:
 	game.record_work_result("PARCEL_CABINET_2F")
 	game.submit_task("TASK_02_PARCEL")
 	await _read_monster_dialogue()
+	_expect(load("res://scenes/tests/core/tutorial_test_setup.gd").complete_remaining(game, cards, main), "Explicit new2F prerequisite fixture before independent309 regression")
 	await _travel(3)
 	# Explicit prior01/02 encounter history; the setup above completed them via APIs.
 	game.get("_seen_monsters")["NOSE"] = true
@@ -85,9 +88,9 @@ func _run() -> void:
 	first_door.set_managed_state("OPEN")
 	_player().position.x = first_door.global_position.x - 70
 	await _settle()
-	_expect(game.get_pending_monster_encounter().get("room_id", "") == "301", "Known3F wrong identity creates a real contact")
+	_expect(safe_return_reasons.has("WRONG_CARD") and _player().position == _floor().return_point.position, "Known3F wrong identity returns through real detector to this floor stair")
 	await _tap("switch_id")
-	_expect(game.get_pending_monster_encounter().is_empty(), "Correct Q clears known3F contact without restarting201")
+	_expect(game.get_pending_monster_encounter().is_empty(), "Q at safe stairs leaves no known3F contact or repeated201 task")
 	first_door.set_managed_state("CLOSED")
 	await _tap("switch_id")
 	_player().position.x = 1420

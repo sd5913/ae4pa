@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/work/work_point.tscn" id="1_work"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_3_layers/03_furniture/registration_desk.png" id="2_desk"]
+
+[node name="RoomService203" instance=ExtResource("1_work")]
+target_id = "ROOM_SERVICE_203"
+interaction_type = "AUTHORIZE"
+required_card = "MANAGER"
+hold_duration = 0.0
+
+[node name="WorkVisual" parent="." index="0"]
+visible = false
+
+[node name="PersistentVisual" type="Sprite2D" parent="." index="1"]
+position = Vector2(0, -81.36)
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("2_desk")
+
+[node name="Hint" parent="." index="2"]
+visible = false
+offset_top = -218.0
+offset_bottom = -176.0
+theme_override_font_sizes/font_size = 16
+autowrap_mode = 3
+offset_left = -100.0
+offset_right = 100.0
+text = "房务申请 · 经理批准"

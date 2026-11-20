@@ -1,0 +1,3 @@
+FAIL: Early202 contact cannot overwrite active201 or start dialogue
+FAIL: Real201 delivery precedes202
+FAIL: 202 opens real monster dialogue before accepting

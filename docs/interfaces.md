@@ -1,5 +1,7 @@
 # 怪物员工通道公共接口与 V4 迁移提案
 
+> 2026-11-20 新增实际合同：`TASK_T03_ROOM_SERVICE`、`TASK_T04_DUAL_WORK`、`TASK_T05_TRANSIT`及五工作点已接；`get_task_view()`新增`required_cards`／`target_label`，目标随真实步骤变化，完成后指向下一房／3F。`get_work_flag(target_id)`供楼层镜像B组件，`has_required_equipment(task_id)`校验指定卡组。现有方法签名不变；具体ID、坐标、阶段、恢复与后续边界见[五怪接线交接](five_monster_tutorial_handoff_20261120.md)。下方旧接线历史不代替当前配置。
+
 当前工作区基线为 `main@c89c88c` 加本轮202未提交接入；第25节及[202交接](task_02_handoff_20261119.md)优先于旧“仅任务01／02未开放”描述。201真人六项用户ok保留原f18e4ce范围，202已有自动检查但未代记真人通过。历史发布／接线记录保留，不能把新教学／双卡提案当现成API。
 
 本文件按《Monster Staff Access Godot三周逐步分工 共享美术版 V2》第 01—03 部分的职责起草，供 A/B/C/D 在同一 Godot 项目中接入模块。它对应手册中建议的“接口约定.txt”，统一使用本 Markdown 文件维护，不再创建第二份接口清单。
@@ -759,9 +761,24 @@ A 当前工作区在 §18 基础上接入 D `eb5e019` 的 main_menu、help、bag
 - I键使用现有Bag/equip_card接口；收藏显示三卡，装备仍为两槽，Q仍只切两槽。第三张未装备卡的获取反馈提示I；Bag优先选中未装备卡，明确A/B替换不丢卡。没有修改CardManager、怪物核验或房门规则。
 - 正式接入不依赖临时Autoload、`assets/review/`、本机字体或F6预览。自动化覆盖及视觉验收限制见进度记录。
 
+
+## 2026-11-21 二楼教学门生命周期补充
+
+- A在2F设置`door_scheduler.tutorial_mode=true`；3F及以上原循环不变。
+- `GameManager.reveal_tutorial_room(room_id)->bool`／`is_tutorial_room_revealed(room_id)->bool`由世界旗标保存揭示状态，只影响表现，不授卡／不结算任务。警报完成且满足接取前置才揭示；检查点保留该事实。
+- `floor.set_monster_dialogue_room(room_id)`由A读取D真实面板的房间更新，C`set_story_dialogue_room`负责单门画面与结束恢复；D不写任务真值。
+- `GameManager.get_submission_card(task_id)`返回最后工作所需身份，`submit_task`增加当前身份及指定双槽复核；核验违规须先安全退回。
+- `floor.get_identity_restriction_room()->String`供A的I入口阻止核验区内打开证件管理；工作台位于范围外。205领取／批准新x为2630／2850。
 ## 2026-11-21 用户试玩修订：任务门生命周期与本层退回
 
 - 正式托管门的已知怪物违规经`rule_violated(reason, approach_side)`接楼层`_on_door_violation`，交给`GameManager.request_safe_return`；保留单次去重、输入锁、同物理帧保护、来源验证和`finish_safe_return`确认。2—5F目的地统一取本层`Interactions/ReturnPoint`左侧楼梯，从左右哪侧进入都相同；允许向左越过沿途门和任务边界，落点仍校验地图边界及全部门检测区。首次介绍请求接口不变。
 - 楼层在真实`CleaningSpot.begin_interaction`成功后调用`GameManager.record_work_started(target_id) -> bool`。管理器校验当前任务、楼层、工作点及身份后存`stain_201_cleaned_started`世界标记；沿用现有任务检查点快照恢复，不另存任务或计时真值。
 - `door_scheduler.task_phase(door)`只控制固定任务房201/202/302/403/501；201清洁开始至交付持续开门，202/403/501执行时关闭、就绪回门才开启，302接受后一直关闭，所有已完成任务房退出随机调度。E交付前`prepare_delivery(door)`先关闭当前其他门再打开交付门，避免同一帧先弹对白导致关门冻结；对白期间按既有模态冻结，结束后关闭。04/05仅预接展示策略，不启用未完成任务流程。
 - 三楼302接取前的行走右界设在302左112像素，接受后才解除；不以301证件核验作为302主线已经完成的依据。
+
+
+## 2026-11-21 PR50／最新main整合后的约定
+
+上方C旧2F关门说明被本轮用户确认的教学生命周期取代：201—205首次完整WARNING→OPEN，接取后留场直到真实交付；3F+普通门保留本层左梯退回。302／403／501的后续固定任务使用独立任务号判断，不再用FIRST教学表判断。302仍是独立309登记，接取前右界不变；403／501仅预留后续状态，不启用04／05任务。
+
+D新工具栏bag_requested与I键进入同一A入口，均检查floor.get_identity_restriction_room()；世界模态仍由GameManager管理。原有309 rescue_open_requested、36拍CG、friend_rescued及跟随接线保留。504／505无房门、无随机池；实际公共配置17间。详见[合并证据](qa_evidence/a_main_merge_20261121/README.md)。

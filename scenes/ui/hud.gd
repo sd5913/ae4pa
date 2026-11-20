@@ -119,6 +119,7 @@ func _apply_task_view(view: Dictionary, objective: String) -> void:
 
 func _next_objective(completed_id: String) -> String:
 	if GameManager.has_friend: return tr("前往五楼消防出口，与帕希卡一起离开")
+	if completed_id == GameManager.TASK_03_ID: return tr("309登记已批准；切为保洁身份进入309，寻找帕希卡。")
 	# Read the real catalog and prerequisites. UI never opens or offers a task.
 	var catalog: Dictionary = preload("res://scripts/task_definitions.gd").TASKS
 	var completed: Array = GameManager.get_completed_task_ids()

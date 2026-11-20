@@ -73,6 +73,8 @@ func _run() -> void:
 	await _travel(2)
 	_player().global_position.x = 580.0
 	await _settle()
+	await create_timer(1.6).timeout
+	await _drain_monster()
 	_expect(board.visible and game.get("task_status") == "AVAILABLE", "Real 201 intercept opens D task offer")
 	_expect(not game.call("is_world_input_allowed"), "Task offer registers its modal")
 	game.call("_process", 10.0)
@@ -195,6 +197,7 @@ func _run() -> void:
 	await _action("interact", false)
 	_expect(game.get("task_status") == "COMPLETED" and not board.visible and not failure.visible, "Real 201 E settles after UI retries without stale panels")
 	_expect(game.call("get_world_flags").get("passage_201_unlocked", false), "Delivery opens the actual passage")
+	await _drain_monster()
 	await _action("open_help", true)
 	await _action("open_help", false)
 	notebook.get_node("%NextButton").pressed.emit()
@@ -285,6 +288,8 @@ func _reach_offer(dialogue: Control) -> void:
 	await _travel(2)
 	_player().global_position.x = 580.0
 	await _settle()
+	await create_timer(1.6).timeout
+	await _drain_monster()
 
 
 func _floor() -> Node:
@@ -408,3 +413,10 @@ func _action(action: String, pressed: bool) -> void:
 func _expect(condition: bool, message: String) -> void:
 	if not condition:
 		failures.append(message)
+
+func _drain_monster() -> void:
+	var monster: Control = main.get_node("TaskLayer/MonsterDialogue")
+	for i in range(80):
+		if not monster.visible: return
+		await _action("interact", true)
+		await _action("interact", false)

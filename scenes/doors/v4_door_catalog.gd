@@ -1,19 +1,13 @@
 extends RefCounted
 ## Session-stable semi-random room assignments. No route unlocks here.
-const FIRST = {"201":"NOSE", "202":"EYE", "302":"HAT", "403":"EAR", "501":"CHECKER"}
-const TASKS = {"NOSE":"TASK_01_CLEAN", "EYE":"TASK_02_PARCEL", "HAT":"TASK_03_AUTHORIZE", "EAR":"TASK_04_PATROL", "CHECKER":"TASK_05_EXIT"}
+const FIRST = {"201":"NOSE", "202":"EYE", "203":"HAT", "204":"EAR", "205":"CHECKER"}
+const TASKS = {"NOSE":"TASK_01_CLEAN", "EYE":"TASK_02_PARCEL", "HAT":"TASK_T03_ROOM_SERVICE", "EAR":"TASK_T04_DUAL_WORK", "CHECKER":"TASK_T05_TRANSIT"}
 
 static func pool(room: String) -> Array:
 	if FIRST.has(room):
 		return [FIRST[room]]
 	var n := int(room)
-	if n in [203,204,205,301]:
-		return ["NOSE","EYE"]
-	if n in [303,304,401,402]:
-		return ["NOSE","EYE","HAT"]
-	if n in [404,405]:
-		return ["NOSE","EYE","HAT","EAR"]
-	if n in [502,503]:
+	if n in [301,302,303,304,401,402,403,404,405,501,502,503]:
 		return ["NOSE","EYE","HAT","EAR","CHECKER"]
 	return []
 
@@ -34,7 +28,7 @@ static func configure(door: Node2D, room: String, use_trial_timing: bool = true)
 	door.room_id = room
 	door.monster_type = GameManager.get_room_monster(room)
 	door.task_id = TASKS[door.monster_type]
-	door.door_mode = "STORY" if room == "201" else "NORMAL"
+	door.door_mode = "STORY" if FIRST.has(room) else "NORMAL"
 	door.closed_time = 5.0 if use_trial_timing else 5.5
 	door.warning_time = 1.5 if use_trial_timing else 1.4
 	door.open_time = 3.0 if use_trial_timing else 2.8

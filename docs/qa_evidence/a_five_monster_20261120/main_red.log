@@ -1,0 +1,54 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+FAIL: 201 real E reminder MISSING_CARD
+FAIL: real theft obtained CLEANER
+FAIL: actual stair travel 2
+ERROR: Node not found: "Interactions/Stain201Slot/CleaningSpot" (relative to "/root/Main/World/Floor1").
+   at: get_node (scene/main/node.cpp:1976)
+   GDScript backtrace (most recent call first):
+       [0] work (res://scenes/tests/core/five_monster_main_flow_smoke.gd:65)
+       [1] run (res://scenes/tests/core/five_monster_main_flow_smoke.gd:117)
+       [2] steal (res://scenes/tests/core/five_monster_main_flow_smoke.gd:51)
+       [3] travel (res://scenes/tests/core/five_monster_main_flow_smoke.gd:37)
+       [4] settle (res://scenes/tests/core/five_monster_main_flow_smoke.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'position' on a base object of type 'null instance'.
+          at: work (res://scenes/tests/core/five_monster_main_flow_smoke.gd:66)
+          GDScript backtrace (most recent call first):
+              [0] work (res://scenes/tests/core/five_monster_main_flow_smoke.gd:66)
+              [1] run (res://scenes/tests/core/five_monster_main_flow_smoke.gd:117)
+              [2] steal (res://scenes/tests/core/five_monster_main_flow_smoke.gd:51)
+              [3] travel (res://scenes/tests/core/five_monster_main_flow_smoke.gd:37)
+              [4] settle (res://scenes/tests/core/five_monster_main_flow_smoke.gd:16)
+FAIL: 201 ready only after real work
+ERROR: Node not found: "DoorRoot/Room201" (relative to "/root/Main/World/Floor1").
+   at: get_node (scene/main/node.cpp:1976)
+   GDScript backtrace (most recent call first):
+       [0] deliver (res://scenes/tests/core/five_monster_main_flow_smoke.gd:78)
+       [1] run (res://scenes/tests/core/five_monster_main_flow_smoke.gd:118)
+       [2] steal (res://scenes/tests/core/five_monster_main_flow_smoke.gd:51)
+       [3] travel (res://scenes/tests/core/five_monster_main_flow_smoke.gd:37)
+       [4] settle (res://scenes/tests/core/five_monster_main_flow_smoke.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'position' on a base object of type 'null instance'.
+          at: deliver (res://scenes/tests/core/five_monster_main_flow_smoke.gd:78)
+          GDScript backtrace (most recent call first):
+              [0] deliver (res://scenes/tests/core/five_monster_main_flow_smoke.gd:78)
+              [1] run (res://scenes/tests/core/five_monster_main_flow_smoke.gd:118)
+              [2] steal (res://scenes/tests/core/five_monster_main_flow_smoke.gd:51)
+              [3] travel (res://scenes/tests/core/five_monster_main_flow_smoke.gd:37)
+              [4] settle (res://scenes/tests/core/five_monster_main_flow_smoke.gd:16)
+ERROR: Node not found: "DoorRoot/Room202" (relative to "/root/Main/World/Floor1").
+   at: get_node (scene/main/node.cpp:1976)
+   GDScript backtrace (most recent call first):
+       [0] offer (res://scenes/tests/core/five_monster_main_flow_smoke.gd:53)
+       [1] run (res://scenes/tests/core/five_monster_main_flow_smoke.gd:119)
+       [2] steal (res://scenes/tests/core/five_monster_main_flow_smoke.gd:51)
+       [3] travel (res://scenes/tests/core/five_monster_main_flow_smoke.gd:37)
+       [4] settle (res://scenes/tests/core/five_monster_main_flow_smoke.gd:16)
+SCRIPT ERROR: Invalid access to property or key 'position' on a base object of type 'null instance'.
+          at: offer (res://scenes/tests/core/five_monster_main_flow_smoke.gd:53)
+          GDScript backtrace (most recent call first):
+              [0] offer (res://scenes/tests/core/five_monster_main_flow_smoke.gd:53)
+              [1] run (res://scenes/tests/core/five_monster_main_flow_smoke.gd:119)
+              [2] steal (res://scenes/tests/core/five_monster_main_flow_smoke.gd:51)
+              [3] travel (res://scenes/tests/core/five_monster_main_flow_smoke.gd:37)
+              [4] settle (res://scenes/tests/core/five_monster_main_flow_smoke.gd:16)

@@ -1,8 +1,9 @@
 extends Control
-## Display only. Proposed tasks require A's real settlement contract before runtime use.
+## Display only. Every runtime phase is guarded by A's actual task facts.
 signal dialogue_finished(dialogue_id: String)
 const DATA_PATH := "res://scenes/ui/monster_dialogues.json"
 const MODAL_ID := "MONSTER_DIALOGUE"
+const TASKS := {"NOSE": "TASK_01_CLEAN", "EYE": "TASK_02_PARCEL", "HAT": "TASK_T03_ROOM_SERVICE", "EAR": "TASK_T04_DUAL_WORK", "CHECKER": "TASK_T05_TRANSIT"}
 var _id := ""
 var _index := 0
 var _lines: Array = []
@@ -56,13 +57,26 @@ func phase_for_task(task_id: String, card_id: String) -> String:
 	match view.get("status"):
 		"AVAILABLE": return "INTRO"
 		"READY_TO_SUBMIT": return "RETURN"
-		"ACTIVE": return "WORK_PENDING" if CardManager.has_card(card_id) else "MISSING_CARD"
+		"ACTIVE":
+			var definition := GameManager.get_task_definition(task_id)
+			var required: Array = definition.get("required_cards", [card_id])
+			if not required.all(func(card: String): return CardManager.has_card(card)):
+				return "MISSING_CARD"
+			if required.size() > 1 and not GameManager.has_required_equipment(task_id): return "MISSING_CARD"
+			var flags := GameManager.get_world_flags()
+			if task_id == "TASK_T04_DUAL_WORK":
+				if flags.get("stain_204_cleaned", false): return "CLEAN_ONLY"
+				if flags.get("tutorial_patrol_collected", false): return "RECORD_ONLY"
+			if task_id == "TASK_T05_TRANSIT" and flags.get("transit_205_collected", false):
+				return "PICKUP_ONLY" if CardManager.active_card == "MANAGER" else "WRONG_IDENTITY"
+			return "WORK_PENDING"
 	return ""
 
 func show_dialogue(dialogue_id: String) -> bool:
 	var parts := dialogue_id.split(":")
-	if parts.size() != 2 or parts[0] not in ["NOSE", "EYE"]: return false
-	var actual := phase_for_task("TASK_01_CLEAN" if parts[0] == "NOSE" else "TASK_02_PARCEL", "CLEANER" if parts[0] == "NOSE" else "SECURITY")
+	if parts.size() != 2 or not TASKS.has(parts[0]): return false
+	var task_id: String = TASKS[parts[0]]
+	var actual := phase_for_task(task_id, GameManager.get_task_definition(task_id).get("required_card", ""))
 	if parts[1] == "DELIVERED":
 		if actual != "COMPLETED": return false
 	elif actual != parts[1]: return false

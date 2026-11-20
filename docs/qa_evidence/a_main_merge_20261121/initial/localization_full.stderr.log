@@ -1,0 +1,669 @@
+ERROR: Node not found: "Actions/LanguageSelector" (relative to "/root/Main/MenuLayer/MainMenu").
+   at: get_node (scene/main/node.cpp:1976)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/localization_smoke.gd:34)
+SCRIPT ERROR: Cannot call method 'select' on a null value.
+          at: _choose (res://scenes/tests/core/localization_smoke.gd:167)
+          GDScript backtrace (most recent call first):
+              [0] _choose (res://scenes/tests/core/localization_smoke.gd:167)
+              [1] _run (res://scenes/tests/core/localization_smoke.gd:36)
+ERROR: Main-menu switch updates the locale in place
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:37)
+ERROR: Godot translates scene text
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:39)
+ERROR: Formatted strings preserve arguments and padding
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:40)
+ERROR: English catalog contains the story line: 你睡了吗？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 能来接我吗
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 现在？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 你终于舍得回消息了。你这几天去哪了？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 我还在之前说过的那家旅馆
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 他们不让我离开
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: “他们”是谁？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 你先把地址发给我。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 三楼
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 309号房
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 你报警了吗？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 我现在给你打电话。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 电话只响一声便挂断。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 不要打
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 他们会听见
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 谁会听见？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 你房间里有人？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: “对方正在输入”出现又消失。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 别相信这里的工作人员
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 他们看起来和正常人一样
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 什么意思？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 我现在不能继续发消息了
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 快一点
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 女主再拨，显示“对方暂时无法接听”。她翻到几天前的兼职录取通知。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 那家旅馆……
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 就是她之前提过的夜班兼职。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 几天前，傍晚的咖啡馆。两杯饮料放在桌上，闺蜜把手机递给女主。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 看，我找到兼职了！
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 你上次也是这么说的。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 上次那个发传单的不算。这个有正式录取通知。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 夜班，三天，工作内容写的是协助前台和整理客房。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 工资比我上个月做的几份兼职加起来还多。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 夜班、工作轻松、工资还特别高。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 这三个词放在一起，通常不像什么好消息。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 你能不能偶尔对我的人生有一点信心？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 我对你有信心。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 我对这种连招聘负责人名字都没写的旅馆没信心。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 人家可能只是管理比较传统。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 传统到没有联系电话？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 有地址就行。我去看看，不对劲就回来。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 旅馆叫什么？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 夜班旅馆。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 这是名字，还是在提醒你工作时间？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 是不是挺有氛围的？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 挺像恐怖电影开头的。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 恐怖电影里的人要是都像你一样谨慎，电影十分钟就结束了。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 等一下。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 这里写着“员工离店须经管理部门批准”。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 大概是夜班不能随便旷工吧。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 正常公司会写“离职流程”，不会写“离店批准”。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 我就做几天，又不是卖给他们了。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 等我拿到工资，请你吃顿好的。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 先把地址发给我。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 发你了，女侦探。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 每天结束给我回一条消息。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 知道了。我要是少回一条，你是不是准备直接冲进去找我？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 我会先报警。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 你这人真没情趣。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 闺蜜笑着靠回卡座。画面淡出，录取通知的那行小字短暂停留。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 她去上班以后，每天晚上都会给我发消息。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 三天前，消息突然停了。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 女主从聊天记录里打开旧地址，拿起外套和钥匙。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 没有联系电话，也查不到正常的订房页面。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 如果她真的被困在里面，我不能继续等。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 雨夜旅馆外景，暖光只从入口透出。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 三楼，309。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 先找到她，再弄清楚这里发生了什么。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 怪物员工通道
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 晚上好。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 这个时间很少有客人独自前来。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 我不是来住店的。我来找人。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 找客人，还是找员工？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 她之前在这里做夜班兼职。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 这里的夜班人员很多，流动也很快。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 如果没有名字或者登记编号，我恐怕很难帮你。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 她已经三天没有回家了。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 年轻人临时改变计划，并不罕见。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 她刚刚给我发了消息。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 她说自己在三楼，309号房。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 309？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 你知道那个房间。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 我当然知道旅馆里的房间。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 那她是不是在那里？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 309属于客房区域。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 普通访客最好不要随便进入。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 她不是客人。她是你们招进来的员工。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 员工是否仍在职，需要查看完整登记。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 可惜，这里的记录没有你想象中那么简单。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 她说有人不让她离开。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: “不能离开”和“手续尚未完成”，听起来相似，含义却完全不同。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 对被困在里面的人来说，没有区别。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 你似乎已经认定这里发生了什么。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 我只知道她在向我求救。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 那么你应该更谨慎一些。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 这是提醒，还是威胁？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 是建议。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 楼上的客人有自己的规矩。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 什么规矩？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 有些客人不喜欢陌生人。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 如果你看起来不像这里的工作人员，他们可能会对你产生兴趣。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: “产生兴趣”是什么意思？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 我建议你不要亲自确认。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 还有些客人对气味非常敏感。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 他们判断一个人的方式，和我们不太一样。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 楼上住的到底是什么人？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 住客。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 你知道我问的不是这个。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 而我能回答的只有这个。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 楼上传来关门声，女主看向楼梯。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 我要去三楼。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 你可以先上二楼。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 如果楼上的客人拦住你，最好听清他们需要什么。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 然后呢？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 完成工作的人，通常更容易得到通行。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 我不是这里的员工。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 身份这种东西，在这里主要取决于你佩戴什么。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 如果我遇到麻烦呢？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 记得找工作人员。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 包括你吗？
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 前台永远愿意为客人提供帮助。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 我说过，我不是客人。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 现在还不是。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 经理低头继续看登记簿。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 她知道我朋友在309。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 她也知道是谁不让她离开。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+ERROR: English catalog contains the story line: 但在找到她以前，我还不能和这里的人翻脸。
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:174)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:50)
+SCRIPT ERROR: Cannot call method 'select' on a null value.
+          at: _choose (res://scenes/tests/core/localization_smoke.gd:167)
+          GDScript backtrace (most recent call first):
+              [0] _choose (res://scenes/tests/core/localization_smoke.gd:167)
+              [1] _run (res://scenes/tests/core/localization_smoke.gd:51)
+SCRIPT ERROR: Cannot call method 'select' on a null value.
+          at: _choose (res://scenes/tests/core/localization_smoke.gd:167)
+          GDScript backtrace (most recent call first):
+              [0] _choose (res://scenes/tests/core/localization_smoke.gd:167)
+              [1] _run (res://scenes/tests/core/localization_smoke.gd:61)
+SCRIPT ERROR: Cannot call method 'select' on a null value.
+          at: _choose (res://scenes/tests/core/localization_smoke.gd:167)
+          GDScript backtrace (most recent call first):
+              [0] _choose (res://scenes/tests/core/localization_smoke.gd:167)
+              [1] _run (res://scenes/tests/core/localization_smoke.gd:65)

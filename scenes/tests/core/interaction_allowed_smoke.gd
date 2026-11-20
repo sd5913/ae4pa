@@ -34,12 +34,13 @@ func _run() -> void:
 	_expect(_allowed("STAFF_CLEANER_1F"), "Task eligibility survives return to 1F")
 	var time_before: float = game.get("remaining_time")
 	var task_before: Dictionary = game.call("get_task_view")
+	var flags_before: Dictionary = game.call("get_world_flags")
 	for _attempt: int in range(3):
 		_allowed("STAFF_CLEANER_1F")
 		_allowed("STAIN_201")
 	_expect(cards.call("get_owned_cards").is_empty(), "Eligibility never grants a card")
 	_expect(game.call("get_task_view") == task_before, "Queries do not advance or modify the task")
-	_expect(game.call("get_world_flags").is_empty(), "Queries do not complete work")
+	_expect(game.call("get_world_flags") == flags_before and not game.call("get_world_flags").get("stain_201_cleaned", false), "Queries preserve reveal metadata and do not complete work")
 	_expect(is_equal_approx(game.get("remaining_time"), time_before), "Queries do not consume or reset time")
 	for modal_id: String in ["DIALOGUE", "HELP", "BAG", "PAUSE"]:
 		game.call("set_modal_open", modal_id, true)

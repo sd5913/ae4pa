@@ -72,8 +72,10 @@ func run() -> void:
 	game.record_work_result("PARCEL_CABINET_2F")
 	game.submit_task("TASK_02_PARCEL")
 	drain_monster()
+	check(load("res://scenes/tests/core/tutorial_test_setup.gd").complete_remaining(game, cards, main),"explicit203–205 fixture for independent309 regression")
+	main.get_node("TaskLayer/MissionBoard").hide()
 	player().position.x = 3400
-	check(game.request_floor_travel(3),"real3F permission after01/02")
+	check(game.request_floor_travel(3),"real3F permission after five tutorial deliveries")
 	await settle()
 	game.offer_task("TASK_03_AUTHORIZE")
 	main.get_node("TaskLayer/MissionBoard").hide()

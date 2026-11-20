@@ -28,6 +28,11 @@ func run() -> void:
 	var screen: Control = main.get_node("TaskLayer/MonsterDialogue")
 	var board: Control = main.get_node("TaskLayer/MissionBoard")
 	check(game.request_monster_encounter("201", "NOSE", "FIRST_ENCOUNTER"), "real pending encounter request")
+	check(not screen.visible, "a pending request alone never skips the first warning")
+	main.get_node("World").get_child(0).get_node("Player").position.x=553.625
+	for i in range(150):
+		if screen.visible:break
+		await physics_frame
 	check(game.get_task_view().get("task_id") == "TASK_01_CLEAN" and game.get_task_view().get("status") == "AVAILABLE", "real encounter produces the 201 offer")
 	check(screen.visible and not board.visible and not game.is_world_input_allowed(), "201 introduction is shown before task board with world locked")
 	await capture("201-introduction")
@@ -77,7 +82,7 @@ func run() -> void:
 	screen.advance()
 	check(completed == ["NOSE:INTRO", "NOSE:DELIVERED"], "each completion signal emitted once")
 	check(not game.submit_task("TASK_01_CLEAN") and screen.phase_for_201() == "COMPLETED", "repeat interaction cannot settle again")
-	check(not screen.show_dialogue("EAR:DELIVERED") and not screen.show_dialogue("CHECKER:DELIVERED"), "unimplemented dual-card task contracts cannot claim runtime success")
+	check(not screen.show_dialogue("EAR:DELIVERED") and not screen.show_dialogue("CHECKER:DELIVERED"), "unfinished dual-card task contracts cannot claim runtime success")
 	var all: Dictionary = screen.data()
 	for monster: String in all:
 		for phase: String in all[monster]:

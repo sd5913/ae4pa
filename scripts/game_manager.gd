@@ -20,7 +20,7 @@ var _pending_monster_encounter: Dictionary = {}
 
 func get_room_monster(room: String) -> String:
 	if not _room_monsters.has(room):
-		var choices: Array = preload("res://scenes/doors/v4_door_catalog.gd").pool(room)
+		var choices: Array = ["HAT"] if room == "302" else preload("res://scenes/doors/v4_door_catalog.gd").pool(room)
 		if choices.is_empty():
 			return ""
 		_room_monsters[room] = choices.pick_random()
@@ -36,7 +36,7 @@ func request_monster_encounter(room: String, kind: String, reason: String) -> bo
 	if not is_world_input_allowed() or not _pending_monster_encounter.is_empty():
 		return false
 	var first := not has_met_monster(kind)
-	_pending_monster_encounter = {"room_id":room,"monster_type":kind,"first_encounter":first,"reason":reason,"task_id":preload("res://scenes/doors/v4_door_catalog.gd").TASKS[kind]}
+	_pending_monster_encounter = {"room_id":room,"monster_type":kind,"first_encounter":first,"reason":reason,"task_id":TASK_03_ID if room == "302" else preload("res://scenes/doors/v4_door_catalog.gd").TASKS[kind]}
 	_seen_monsters[kind] = true
 	monster_encounter_requested.emit(get_pending_monster_encounter())
 	return true
@@ -53,7 +53,11 @@ const TaskDefinitions = preload("res://scripts/task_definitions.gd")
 const TASK_01_ID: String = "TASK_01_CLEAN"
 const TASK_02_ID: String = "TASK_02_PARCEL"
 const TASK_03_ID: String = "TASK_03_AUTHORIZE"
-const ENABLED_TASKS: Array[String] = [TASK_01_ID, TASK_02_ID, TASK_03_ID]
+const TUTORIAL_03_ID := "TASK_T03_ROOM_SERVICE"
+const TUTORIAL_04_ID := "TASK_T04_DUAL_WORK"
+const TUTORIAL_05_ID := "TASK_T05_TRANSIT"
+const TUTORIAL_TASKS: Array[String] = [TASK_01_ID, TASK_02_ID, TUTORIAL_03_ID, TUTORIAL_04_ID, TUTORIAL_05_ID]
+const ENABLED_TASKS: Array[String] = [TASK_01_ID, TASK_02_ID, TUTORIAL_03_ID, TUTORIAL_04_ID, TUTORIAL_05_ID, TASK_03_ID]
 
 var game_state: String = "MENU"
 var current_floor: int = 1
@@ -159,20 +163,48 @@ func get_task_view() -> Dictionary:
 		"name": definition.get("name", ""),
 		"location": definition.get("location", ""),
 		"step": _get_task_step(definition),
-		"target_id": definition.get("target_id", ""),
+		"target_id": _get_task_target(definition),
+		"target_label": _get_task_target_label(definition),
 		"required_card": definition.get("required_card", ""),
+		"required_cards": definition.get("required_cards", [definition.get("required_card", "")]),
 	}
 
 
 func _get_task_step(definition: Dictionary) -> String:
-	if definition.is_empty() or task_status not in ["ACTIVE", "READY_TO_SUBMIT"]:
-		return ""
+	if definition.is_empty(): return ""
+	if task_status == "COMPLETED" and definition.has("work_steps"):
+		return "二楼五项任务已交付，前往3F继续309登记。" if current_task_id == TUTORIAL_05_ID else "前往%s继续下一项任务。" % ("204" if current_task_id == TUTORIAL_03_ID else "205")
+	if task_status not in ["ACTIVE", "READY_TO_SUBMIT"]: return ""
 	var steps: Array = definition["steps"]
 	if task_status == "READY_TO_SUBMIT":
-		return steps.back()
+		return "返回%s按E交付" % definition["room_id"] if definition.has("work_steps") else steps.back()
+	if definition.has("work_steps"):
+		if not CardManager.has_card(definition["required_card"]): return "回1F经理身后长按E取得工作证。"
+		if not has_required_equipment(current_task_id): return "打开I，装备本任务指定工作证，再Q切当前工作身份。"
+		for work: Dictionary in definition["work_steps"]:
+			if not _world_flags.get(work["flag"], false):
+				return work["label"]
 	if current_task_id == TASK_03_ID and CardManager.active_card == "MANAGER":
 		return steps[2]
 	return steps[0] if not CardManager.has_card(definition["required_card"]) else steps[1]
+
+
+func _get_task_target(definition: Dictionary) -> String:
+	if definition.has("work_steps"):
+		if task_status == "COMPLETED": return "STAIRS_UP_2F" if current_task_id == TUTORIAL_05_ID else "ROOM_" + ("204" if current_task_id == TUTORIAL_03_ID else "205")
+		if not CardManager.has_card(definition["required_card"]): return definition["staff_target_id"]
+		if not has_required_equipment(current_task_id): return "CARD_BAG"
+		if task_status == "READY_TO_SUBMIT": return "ROOM_" + definition["room_id"]
+		for work: Dictionary in definition["work_steps"]:
+			if not _world_flags.get(work["flag"], false): return work["target_id"]
+	return definition.get("target_id", "")
+
+
+func _get_task_target_label(definition: Dictionary) -> String:
+	var target := _get_task_target(definition)
+	var labels := {"STAFF_MANAGER_1F": "一楼经理", "CARD_BAG": "I证件管理", "STAIRS_UP_2F": "二楼右梯 → 3F", "ROOM_204": "前往204", "ROOM_205": "前往205", "ROOM_SERVICE_203": "二楼房务登记台", "STAIN_204": "204独立污渍", "PATROL_CABINET_204": "二楼巡房资料柜", "TRANSIT_PICKUP_205": "二楼通行单领取点", "TRANSIT_REGISTER_205": "二楼通行登记台"}
+	if definition.has("work_steps") and task_status == "READY_TO_SUBMIT": return "返回" + definition["room_id"]
+	return labels.get(target, target)
 
 
 func get_task_definition(task_id: String) -> Dictionary:
@@ -198,8 +230,13 @@ func is_interaction_allowed(target_id: String) -> bool:
 	if not ENABLED_TASKS.has(current_task_id):
 		return false
 	var definition: Dictionary = get_task_definition(current_task_id)
-	if target_id == definition["staff_target_id"]:
+	if not target_id.is_empty() and target_id == definition["staff_target_id"]:
 		return not CardManager.has_card(definition["required_card"])
+	if definition.has("work_steps"):
+		for work: Dictionary in definition["work_steps"]:
+			if not _world_flags.get(work["flag"], false):
+				return target_id == work["target_id"] and has_required_equipment(current_task_id)
+		return false
 	if target_id == definition["target_id"]:
 		return not _world_flags.get(definition["work_flag"], false)
 	return false
@@ -226,6 +263,8 @@ func get_available_floors() -> Array[int]:
 
 
 func request_floor_travel(floor_number: int) -> bool:
+	# A checker violation must be retried outside its range; do not carry it across floors.
+	if _pending_monster_encounter.get("reason", "") == "SWITCHED_NEAR_CHECKER": return false
 	if not is_world_input_allowed() or not _has_floor_host() or not get_available_floors().has(floor_number):
 		return false
 	var floor_node: Node = _floor_host.get_child(0)
@@ -242,11 +281,24 @@ func _can_unlock_next_floor() -> bool:
 		1:
 			return _manager_intro_finished
 		2:
-			return _completed_task_ids.has(TASK_01_ID) and _completed_task_ids.has("TASK_02_PARCEL")
+			return TUTORIAL_TASKS.all(func(id: String): return _completed_task_ids.has(id))
 		3:
 			return has_friend
 		4:
 			return has_friend and _completed_task_ids.has("TASK_04_PATROL")
+	return false
+
+
+func is_tutorial_room_revealed(room_id: String) -> bool:
+	return _world_flags.get("tutorial_room_%s_revealed" % room_id, false)
+
+
+func reveal_tutorial_room(room_id: String) -> bool:
+	if current_floor != 2: return false
+	for task_id: String in TUTORIAL_TASKS:
+		if get_task_definition(task_id)["room_id"] == room_id and can_offer_task(task_id):
+			_world_flags["tutorial_room_%s_revealed" % room_id] = true
+			return true
 	return false
 
 
@@ -270,6 +322,8 @@ func offer_task(task_id: String) -> bool:
 	remaining_time = 0.0
 	fail_reason = ""
 	_task_checkpoint.clear()
+	if TUTORIAL_TASKS.has(task_id):
+		_world_flags["tutorial_room_%s_revealed" % get_task_definition(task_id)["room_id"]] = true
 	if task_id == TASK_02_ID:
 		_world_flags["task_02_intro_completed"] = true
 	task_offered.emit(task_id)
@@ -387,6 +441,20 @@ func record_work_result(target_id: String) -> bool:
 	if not is_interaction_allowed(target_id):
 		return false
 	var definition: Dictionary = get_task_definition(current_task_id)
+	if definition.has("work_steps"):
+		if current_floor != definition["work_floor"] or not has_required_equipment(current_task_id):
+			return false
+		for work: Dictionary in definition["work_steps"]:
+			if work["target_id"] != target_id:
+				continue
+			if CardManager.active_card != work["required_card"] or _world_flags.get(work["flag"], false):
+				return false
+			_world_flags[work["flag"]] = true
+			if definition["work_steps"].all(func(step: Dictionary): return _world_flags.get(step["flag"], false)):
+				task_status = "READY_TO_SUBMIT"
+			task_updated.emit()
+			return true
+		return false
 	if not ENABLED_TASKS.has(current_task_id) or target_id != definition["target_id"] or current_floor != definition["work_floor"]:
 		return false
 	if CardManager.active_card != definition["required_card"] or _world_flags.get(definition["work_flag"], false):
@@ -402,6 +470,7 @@ func record_work_result(target_id: String) -> bool:
 
 
 func submit_task(task_id: String) -> bool:
+	if _pending_monster_encounter.get("reason", "") == "SWITCHED_NEAR_CHECKER": return false
 	if not is_world_input_allowed() or task_status != "READY_TO_SUBMIT" or remaining_time <= 0.0:
 		return false
 	if not ENABLED_TASKS.has(current_task_id) or task_id != current_task_id:
@@ -409,11 +478,37 @@ func submit_task(task_id: String) -> bool:
 	var definition: Dictionary = get_task_definition(task_id)
 	if current_floor != definition["offer_floor"] or not _world_flags.get(definition["work_flag"], false):
 		return false
+	if definition.has("work_steps") and not definition["work_steps"].all(func(work: Dictionary): return _world_flags.get(work["flag"], false)):
+		return false
+	if CardManager.active_card != get_submission_card(task_id) or (definition.has("work_steps") and not has_required_equipment(task_id)):
+		return false
 	_complete_task(definition)
 	return true
 
 
+func get_submission_card(task_id: String) -> String:
+	var definition := get_task_definition(task_id)
+	var work_steps: Array = definition.get("work_steps", [])
+	return work_steps.back()["required_card"] if not work_steps.is_empty() else definition.get("required_card", "")
+
+
+func has_required_equipment(task_id: String) -> bool:
+	var required: Array = get_task_definition(task_id).get("required_cards", [])
+	return required.all(func(card: String): return CardManager.get_equipped_cards().has(card))
+
+
+func get_work_flag(target_id: String) -> String:
+	for task_id: String in ENABLED_TASKS:
+		var definition := get_task_definition(task_id)
+		for work: Dictionary in definition.get("work_steps", []):
+			if work["target_id"] == target_id: return work["flag"]
+		if definition["target_id"] == target_id: return definition["work_flag"]
+	return ""
+
+
 func _complete_task(definition: Dictionary) -> void:
+	remaining_time = 0.0
+	resolve_monster_encounter(definition["room_id"])
 	task_status = "COMPLETED"
 	_completed_task_ids.append(current_task_id)
 	for flag: String in definition["completion_flags"]:

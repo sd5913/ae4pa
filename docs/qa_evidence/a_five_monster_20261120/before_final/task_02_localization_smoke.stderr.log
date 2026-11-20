@@ -1,0 +1,17 @@
+FAIL: Explicit201 completion fixture
+FAIL: Translated dialogue still opens202 offer without time
+FAIL: 202 offer preserves actual limit and room
+FAIL: 202 offer title contains untranslated Chinese: 201 / 本次任务
+FAIL: Open offer returns to Chinese
+FAIL: 202 timer uses the shared minute format
+FAIL: 202 developer objective contains untranslated Chinese: 当前目标：Q 切到保洁身份，回 2F 污渍处按住 E 1.5 秒清理。
+FAIL: Standby security still needs switching
+FAIL: Real task API records parcel
+FAIL: 202 timeout shows actual failure UI
+FAIL: 202 retry explanation is not empty
+FAIL: Retry explanation preserves both task references
+FAIL: Translated retry retains201 and rolls back202
+FAIL: Retried202 can still deliver
+FAIL: Completion announces3F
+FAIL: 202 completed developer objective contains untranslated Chinese: 当前目标：Q 切到保洁身份，回 2F 污渍处按住 E 1.5 秒清理。
+FAIL: Translated completion advances to203 before3F

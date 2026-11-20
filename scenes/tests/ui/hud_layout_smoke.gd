@@ -43,7 +43,7 @@ func run() -> void:
 	main.get_node("World").get_child(0).get_node("Player").position.x = 3400
 	check(game.request_floor_travel(2), "real 2F travel")
 	await process_frame
-	check(game.request_monster_encounter("201","NOSE","FIRST_ENCOUNTER"), "real 201 offer")
+	check(game.offer_task("TASK_01_CLEAN"), "explicit201 offer fixture for UI layout; full warning is tested by main flow")
 	drain()
 	main.get_node("TaskLayer/MissionBoard").hide()
 	check(game.accept_task("TASK_01_CLEAN"), "accept 201")

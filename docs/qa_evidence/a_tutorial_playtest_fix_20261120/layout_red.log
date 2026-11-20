@@ -1,0 +1,11 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+FAIL: 205 pickup and approval do not share overlapping interaction zones
+FAIL: RoomService203 is a readable grounded prop, not a miniature placeholder
+FAIL: RoomService203 does not leave permanent overlapping debug labels
+FAIL: PatrolCabinet204 is a readable grounded prop, not a miniature placeholder
+FAIL: PatrolCabinet204 does not leave permanent overlapping debug labels
+FAIL: TransitPickup205 is a readable grounded prop, not a miniature placeholder
+FAIL: TransitPickup205 does not leave permanent overlapping debug labels
+FAIL: TransitRegister205 is a readable grounded prop, not a miniature placeholder
+FAIL: TransitRegister205 does not leave permanent overlapping debug labels

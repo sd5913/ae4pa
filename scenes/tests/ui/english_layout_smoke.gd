@@ -35,9 +35,9 @@ func _run() -> void:
 	cards.collect_card("SECURITY")
 	root.get_node("Localization").set_language("en")
 	await _settle()
-	for path in ["Stack/Readout/SlotA", "Stack/Readout/SlotB"]:
-		var slot: Control = hud.get_node(path)
-		var caption: Label = slot.get_node("SlotAValue" if path.ends_with("A") else "SlotBValue")
+	for id in ["%SlotAValue", "%SlotBValue"]:
+		var caption: Label = hud.get_node(id)
+		var slot: Control = caption.get_parent()
 		_expect(slot.get_global_rect().encloses(caption.get_global_rect()), "HUD slot reserves enough space for its caption")
 	dialogue.queue_free()
 	hud.queue_free()

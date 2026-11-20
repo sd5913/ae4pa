@@ -1,0 +1,50 @@
+ERROR: Node not found: "StaffRoot/CleanerSlot/Staff" (relative to "/root/Main/World/Floor2").
+   at: get_node (scene/main/node.cpp:1976)
+   GDScript backtrace (most recent call first):
+       [0] _steal (res://scenes/tests/core/task_ui_smoke.gd:306)
+       [1] _run (res://scenes/tests/core/task_ui_smoke.gd:113)
+       [2] _travel (res://scenes/tests/core/task_ui_smoke.gd:369)
+       [3] _action (res://scenes/tests/core/task_ui_smoke.gd:405)
+SCRIPT ERROR: Invalid access to property or key 'global_position' on a base object of type 'null instance'.
+          at: _steal (res://scenes/tests/core/task_ui_smoke.gd:307)
+          GDScript backtrace (most recent call first):
+              [0] _steal (res://scenes/tests/core/task_ui_smoke.gd:307)
+              [1] _run (res://scenes/tests/core/task_ui_smoke.gd:113)
+              [2] _travel (res://scenes/tests/core/task_ui_smoke.gd:369)
+              [3] _action (res://scenes/tests/core/task_ui_smoke.gd:405)
+ERROR: Index p_idx = 0 is out of bounds (items.size() = 0).
+   at: get_item_icon (scene/gui/item_list.cpp:235)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/task_ui_smoke.gd:119)
+       [1] _action (res://scenes/tests/core/task_ui_smoke.gd:405)
+ERROR: Index p_idx = 0 is out of bounds (items.size() = 0).
+   at: select (scene/gui/item_list.cpp:430)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/task_ui_smoke.gd:123)
+       [1] _action (res://scenes/tests/core/task_ui_smoke.gd:405)
+FAIL: Real 201 intercept opens D task offer
+FAIL: Offer explains required identity and the full limit
+FAIL: World E/Q over an offer neither accept nor switch identity
+FAIL: Closing unaccepted offer releases only its input lock
+FAIL: At 201, E reopens an offer closed without accepting
+FAIL: Esc opens pause and locks world input
+FAIL: Continue closes pause and restores world input
+FAIL: Task clock resumes after continuing
+FAIL: Real stair E opens the modal selector
+FAIL: The real floor list contains 1F
+FAIL: Real rear E theft grants the task card
+FAIL: Real I opens D bag with the actually stolen card
+FAIL: The real cleaner card has a bag icon
+FAIL: A populated bag clears stale empty-inventory feedback
+FAIL: D equipment button calls real CardManager slot replacement
+FAIL: Closing bag resumes world Q into the selected cleaner slot
+FAIL: HUD shows only the equipped card artwork
+FAIL: Real stair E opens the modal selector
+FAIL: The real cleaning point initially displays READY at zero progress
+FAIL: HUD follows the real cleaning progress signal
+FAIL: HUD displays elapsed and required time from the component
+FAIL: Completion hides the interaction hint
+FAIL: Real cleaning reaches delivery, not settlement
+FAIL: Real 202 first contact retains the forced task request for the future adapter
+FAIL: Pending contact keeps the player on the approach side of 202
+FAIL: A new game's acceptance view has no stale failure control

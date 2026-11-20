@@ -1,0 +1,4 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+FAIL: 202 actual intercept offers correct task
+OFFER_DIAGNOSTIC 202 current=TASK_01_CLEAN status=COMPLETED x=1116.25 pending={ "room_id": "202", "monster_type": "EYE", "first_encounter": true, "reason": "STORY_TASK", "task_id": "TASK_02_PARCEL" } modal={ "STORY_DIALOGUE": true, "MONSTER_DIALOGUE": true } dialogue=TASK_02_INTRO screen=EYE:INTRO

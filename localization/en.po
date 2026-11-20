@@ -1403,5 +1403,67 @@ msgstr "You have 240 seconds after accepting. Return to 1F and hold E behind the
 msgid "礼帽客 · 302"
 msgstr "Top-Hatted Guest · 302"
 
+msgid "二楼教学已经完成。309仍有独立的登记限制，需要管理批准。"
+msgstr "The 2F tutorial is complete. Room 309 still needs a separate management approval."
+
+msgid "接受后有240秒。沿用已取得的经理工作证，不需要再次偷证。"
+msgstr "You have 240 seconds after accepting. Use your existing Manager ID; you do not need to steal it again."
+
+msgid "309登记 · 302"
+msgstr "Room 309 Registration · 302"
+
+msgid "202已交付；继续到203完成房务申请教学。"
+msgstr "Room 202 delivered. Continue to Room 203 for the room-service tutorial."
+
+msgid "沿用经理证，I装备／Q切当前经理 → 回3F登记台按E批准309。"
+msgstr "Use your Manager ID · I: Equip / Q: Activate → E at the 3F register"
+
+msgid "302管理授权任务待接受：沿用经理证，装备并切为当前身份，回3F登记台批准。"
+msgstr "Room 302 task available: equip and activate your Manager ID, then use the 3F register."
+
+msgid "所需身份：%s · 接受后限时 %d 秒\n沿用经理工作证 → I装备／Q切当前经理\n回3F登记台按E批准即完成，不需回302交付。"
+msgstr "Required: %s · %d seconds after accepting\nUse your Manager ID → I: Equip / Q: Activate\nE at the 3F register completes the task. No return to Room 302 needed."
+
+msgid "回到302接取前，保留前序任务和已有证件，仅撤销本次309批准。"
+msgstr "Return to before accepting at Room 302. Keep earlier tasks and existing IDs; undo only this task’s Room 309 approval."
+
+msgid "沿用已有经理证，装备并切为当前身份，再到3F登记台按E批准309。"
+msgstr "Use your existing Manager ID, equip and activate it, then press E at the register on 3F."
+
+msgid "202已交付；继续到203接房务申请任务"
+msgstr "Room 202 delivered · Continue to Room 203 for the room-service task"
 msgid "帕希卡"
 msgstr "Persica"
+
+msgid "309登记已批准；切为保洁身份进入309，寻找帕希卡。"
+msgstr "Room 309 registration approved. Activate the Cleaner ID and enter Room 309 to find Persica."
+
+msgid "帕希卡已同行，前往五楼消防出口。"
+msgstr "Persica is with you. Head to the fire exit on 5F."
+
+msgid "前往五楼消防出口，与帕希卡一起离开"
+msgstr "Head to the fire exit on 5F and leave with Persica."
+
+msgid "剩余时间 %02d:%02d"
+msgstr "Time left %02d:%02d"
+
+msgid "状态：%s"
+msgstr "Status: %s"
+
+msgid "切换工作证"
+msgstr "Switch ID"
+
+msgid "下一步：前往 %dF · %s"
+msgstr "Next: Go to %dF · %s"
+
+msgid "后续目标待主线接口提供"
+msgstr "The next objective is awaiting story integration"
+
+msgid "%s · %s · %s  %.2f / %.2f 秒"
+msgstr "%s · %s · %s  %.2f / %.2f s"
+
+msgid "%s：%s"
+msgstr "%s: %s"
+
+msgid "当前步骤未开放"
+msgstr "This step is not available yet"

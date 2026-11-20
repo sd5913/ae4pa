@@ -49,10 +49,10 @@ func _run() -> void:
 	_expect(not game.get_available_floors().has(3), "Pickup alone does not open3F")
 	_expect(not game.submit_task("TASK_01_CLEAN") and game.submit_task("TASK_02_PARCEL"), "Only actual current task delivers")
 	_expect(game.get_completed_task_ids() == ["TASK_01_CLEAN","TASK_02_PARCEL"], "Both achievements remain")
-	_expect(game.get_world_flags().get("stain_201_cleaned",false) and game.get_world_flags().get("parcel_delivered",false) and game.get_available_floors().has(3), "Delivery retains201 and unlocks3F")
+	_expect(game.get_world_flags().get("stain_201_cleaned",false) and game.get_world_flags().get("parcel_delivered",false) and not game.get_available_floors().has(3), "Delivery retains201; remaining2F tutorials still gate3F")
 	_expect(not game.submit_task("TASK_02_PARCEL"), "Delivery is once only")
 	game.current_floor = 3
-	_expect(game.offer_task("TASK_03_AUTHORIZE") and game.task_status == "AVAILABLE" and game.remaining_time == 0, "Delivered02 permits the now-authorized03 offer without starting its timer")
+	_expect(not game.offer_task("TASK_03_AUTHORIZE") and game.get_completed_task_ids().has("TASK_02_PARCEL"), "Delivered02 does not skip203–205 to reach309 task")
 	_expect(not game.offer_task("TASK_04_PATROL") and game.get_completed_task_ids().has("TASK_02_PARCEL"), "04 remains gated and02 remains completed")
 	_finish()
 
