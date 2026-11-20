@@ -24,7 +24,7 @@ func _refresh_task_display() -> void:
 		match status:
 			"AVAILABLE": objective = "在202接受180秒包裹任务"
 			"ACTIVE":
-				objective = "二楼保安身后长按E取证" if not CardManager.has_card("SECURITY") else "到保管柜按E领取包裹" if CardManager.active_card == "SECURITY" else "Q切保安身份，到保管柜按E领取"
+				objective = "返回一楼，在保安身后长按E取证" if not CardManager.has_card("SECURITY") else "到保管柜按E领取包裹" if CardManager.active_card == "SECURITY" else "Q切保安身份，到保管柜按E领取"
 			"READY_TO_SUBMIT": objective = "带包裹回202按E交付"
 			"COMPLETED": objective = "202已交付；上3F到302接授权任务"
 			"FAILED": objective = "回202重新接受；201成果保留"

@@ -55,6 +55,8 @@ var facing_direction: int = 1
 
 
 func _ready() -> void:
+	if reward_type == "TASK_ITEM" and reward_id == "PATROL_RECORD":
+		add_child(preload("res://scenes/work/task_item_visual.gd").new())
 	var rectangle: RectangleShape2D = steal_shape.shape.duplicate() as RectangleShape2D
 	rectangle.size.x = steal_radius * 2.0
 	steal_shape.shape = rectangle

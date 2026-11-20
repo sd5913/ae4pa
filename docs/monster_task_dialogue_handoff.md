@@ -2,12 +2,14 @@
 
 最终核对基线：main d0fec0d（含工作期间合入的 PR #47）。原 caf862d 工作目录保留，新目录 ae4pa-monster-dialogue-current／work/member-D-monster-dialogue-current。本轮未修改其他成员管理器；验证时未提交，现按用户授权整理为目标 main 的草稿 PR，实际提交与推送状态以 PR 为准。收尾 Fetch 后 origin/main 仍为 d0fec0d；代码未变，不重复运行已通过的测试。
 
+2026-11-20 合并收尾：用户新授权将 PR #48 合入 main。Fetch 发现 main 已更新至 `147e3ec`（PR #49），本分支合入其角色／工作点美术及交互改动。进度文档保留双方记录；202 保留 D 现场对白显示，并保留 main 的一楼保安取证配置、B 交互和其他主流程。下列旧验证基线作为历史证据，不冒充新合并结果；新增定向回归日志另记。
+
 ## 当前配置与本轮方案
 
 | 怪物 | 团队真实配置 | 本轮处理 |
 |---|---|---|
 | NOSE | 201，TASK_01_CLEAN，1F 保洁，STAIN_201，210 秒，DELIVER | 正式接初见和真实交付成功对白，完整保留原清理、偷证、计时和检查点 |
-| EYE | 202，TASK_02_PARCEL；#47 已开放二楼保安／保管柜／交付 | 复用 A 的 TASK_02_INTRO 入口和完成回调；D 底部逐人对白接任务面板，task_completed 后才播放交付确认 |
+| EYE | 202，TASK_02_PARCEL；PR #49 将取证保安统一保留在 1F，包裹柜与交付仍在 2F | 复用 A 的 TASK_02_INTRO 入口和完成回调；D 底部逐人对白接任务面板，task_completed 后才播放交付确认；路线和时限由真实任务配置与面板读取 |
 | HAT | 首见 302；TASK_03_AUTHORIZE 位于 3F，REGISTER_309，结算 AUTHORIZE | 保留已实现的 309 授权。用户提出的 203 二楼房务申请是不同任务，只有文案预览，不套用 registration_309_approved |
 | EAR | 首见 403；4F 巡房记录，HAS_FRIEND 前置 | 新 204“独立污渍＋巡房记录”缺真实双工作合同，只有明确标注的预览 |
 | CHECKER | 首见 501；5F 最终离店许可 | 新 205“二楼通行单领取＋批准＋交付”缺独立文件合同，只有预览；不会开放 EXIT 或写救援状态 |

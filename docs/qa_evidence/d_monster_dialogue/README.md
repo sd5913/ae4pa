@@ -44,3 +44,14 @@ Windows 根证书读取错误仍出现，未阻断以上用例。此前 current-
 - 新对白尚无经确认英文翻译。
 
 F6 文案预览：[monster_dialogue_preview.tscn](../../../scenes/tests/ui/monster_dialogue_preview.tscn)。清楚标识预览，不改任务进度。
+## 2026-11-20 与 PR #49 合并后的补测
+
+main 更新至 147e3ec 后，保留双方功能并解决 main.gd 的 202 显示段和双方进度追加记录。以下为本次真实补测，全部退出 0：
+
+- [资源导入](merge49-import.log)
+- [怪物现场对白](merge49-ui-monster_dialogue_smoke.log)
+- [201 主场景](merge49-core-task_01_main_flow_smoke.log)
+- [202 主场景](merge49-core-task_02_main_flow_smoke.log)
+- [309 主场景](merge49-core-task_03_main_flow_smoke.log)
+
+同前述 Godot 4.7.2 和隔离用户目录，使用仓库原脚本；未改断言。这些无窗口检查不代表本次新增人工试玩或画面验收。
