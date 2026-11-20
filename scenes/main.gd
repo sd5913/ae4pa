@@ -297,7 +297,7 @@ func _on_game_failed(reason: String) -> void:
 
 
 func _on_safe_return_started(reason: String) -> void:
-	_show_notice("普通门警告：%s · 已退回来侧，请观察后重试", [reason])
+	_show_notice("普通门警告：%s · 已退回本层左侧楼梯，请观察后重试", [reason])
 
 func _open_bag_from_toolbar() -> void:
 	if GameManager.is_world_input_allowed():

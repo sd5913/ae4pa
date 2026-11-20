@@ -758,3 +758,10 @@ A 当前工作区在 §18 基础上接入 D `eb5e019` 的 main_menu、help、bag
 - 三名取证员工只属于1F；2F取证保安实例已移除，TASK_02定义改为 `STAFF_SECURITY_1F`，任务时限／领取／交付／失败规则不变。楼层重载按CardManager所有权抑制重复取卡；4F `STAFF_PATROL_4F`仍为独立TASK_ITEM角色。
 - I键使用现有Bag/equip_card接口；收藏显示三卡，装备仍为两槽，Q仍只切两槽。第三张未装备卡的获取反馈提示I；Bag优先选中未装备卡，明确A/B替换不丢卡。没有修改CardManager、怪物核验或房门规则。
 - 正式接入不依赖临时Autoload、`assets/review/`、本机字体或F6预览。自动化覆盖及视觉验收限制见进度记录。
+
+## 2026-11-21 用户试玩修订：任务门生命周期与本层退回
+
+- 正式托管门的已知怪物违规经`rule_violated(reason, approach_side)`接楼层`_on_door_violation`，交给`GameManager.request_safe_return`；保留单次去重、输入锁、同物理帧保护、来源验证和`finish_safe_return`确认。2—5F目的地统一取本层`Interactions/ReturnPoint`左侧楼梯，从左右哪侧进入都相同；允许向左越过沿途门和任务边界，落点仍校验地图边界及全部门检测区。首次介绍请求接口不变。
+- 楼层在真实`CleaningSpot.begin_interaction`成功后调用`GameManager.record_work_started(target_id) -> bool`。管理器校验当前任务、楼层、工作点及身份后存`stain_201_cleaned_started`世界标记；沿用现有任务检查点快照恢复，不另存任务或计时真值。
+- `door_scheduler.task_phase(door)`只控制固定任务房201/202/302/403/501；201清洁开始至交付持续开门，202/403/501执行时关闭、就绪回门才开启，302接受后一直关闭，所有已完成任务房退出随机调度。E交付前`prepare_delivery(door)`先关闭当前其他门再打开交付门，避免同一帧先弹对白导致关门冻结；对白期间按既有模态冻结，结束后关闭。04/05仅预接展示策略，不启用未完成任务流程。
+- 三楼302接取前的行走右界设在302左112像素，接受后才解除；不以301证件核验作为302主线已经完成的依据。

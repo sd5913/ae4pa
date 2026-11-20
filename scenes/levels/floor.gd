@@ -24,7 +24,7 @@ var _work: CleaningSpot
 var _works: Array[CleaningSpot] = []
 var _needs_e_release: bool = false
 var _doors: Array[Node2D] = []
-var _safe_points: Dictionary = {}
+var _door_scheduler: Node
 
 @onready var player: HotelPlayer = $Player
 @onready var exit_point: Marker2D = $Interactions/ExitPoint
@@ -138,6 +138,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		var work: CleaningSpot = target["node"]
 		if work.begin_interaction():
 			_held_work = work if work.is_interacting() else null
+			if work.interaction_type == "CLEAN":
+				GameManager.record_work_started(work.target_id)
 		else:
 			_emit_notice("先接受对应任务并切到所需当前身份；清理须长按 E，包裹柜按 E 领取。")
 	elif GameManager.is_interaction_allowed(target["id"]):
@@ -281,13 +283,18 @@ func _apply_task_route() -> void:
 			right_bound = minf(right_bound, $DoorRoot/Room201.global_position.x - 112.0)
 	if task_02_barrier_x > 0.0 and not GameManager.get_world_flags().get("passage_202_unlocked", false):
 		right_bound = minf(right_bound, task_02_barrier_x - 24.0)
+	# 302 is compulsory from either approach; a normal door cannot leave the player
+	# beyond this story gate before accepting the management task.
+	if floor_number == 3 and not GameManager.get_completed_task_ids().has(GameManager.TASK_03_ID):
+		if GameManager.current_task_id != GameManager.TASK_03_ID or GameManager.task_status not in ["ACTIVE", "READY_TO_SUBMIT"]:
+			right_bound = minf(right_bound, $DoorRoot/Room302.global_position.x - 112.0)
 	player.set_walk_bounds(64.0, right_bound)
 	if has_node("Interactions/Task01Barrier"):
 		$Interactions/Task01Barrier.visible = not GameManager.get_world_flags().get("passage_201_unlocked", false)
 	if has_node("Interactions/Task02Barrier"):
 		$Interactions/Task02Barrier.visible = GameManager.get_world_flags().get("passage_201_unlocked", false) and not GameManager.get_world_flags().get("passage_202_unlocked", false)
 	for door: Node2D in _doors:
-		if door.door_mode == "STORY":
+		if preload("res://scenes/doors/v4_door_catalog.gd").FIRST.has(door.room_id):
 			door.set_story_state("COMPLETED" if GameManager.get_completed_task_ids().has(door.task_id) else GameManager.task_status if GameManager.current_task_id == door.task_id else "NONE")
 	if floor_number == 3 and has_node("Interactions/RescuePoint/TaskHint"):
 		$Interactions/RescuePoint/TaskHint.text = "帕希卡已同行" if GameManager.has_friend else "309 · 当前保洁身份 · E 开门" if GameManager.get_world_flags().get("registration_309_approved", false) else "309 · 先取得管理批准"
@@ -312,6 +319,7 @@ func get_task_checkpoint_position(task_id: String) -> Dictionary:
 
 func _setup_doors() -> void:
 	var scheduler := preload("res://scenes/doors/door_scheduler.gd").new()
+	_door_scheduler = scheduler
 	scheduler.player = player
 	for slot: Node2D in $DoorRoot.get_children():
 		var room := str(slot.get_meta("room_number"))
@@ -329,12 +337,11 @@ func _setup_doors() -> void:
 		door.set_managed_state("CLOSED")
 		door.setup(player)
 		door._last_managed_x = player.global_position.x
+		door.rule_violated.connect(_on_door_violation.bind(door))
 		if room in ["201", "202", "302"]:
 			door.story_intercept_requested.connect(_on_story_intercept.bind(door))
 			door.task_submit_requested.connect(_on_task_submit.bind(door))
 			door.story_progress_requested.connect(_on_story_progress)
-		if room == "202" and has_node("Interactions/Room202LeftSafe"):
-			_safe_points[door] = [$Interactions/Room202LeftSafe,$Interactions/Room202RightSafe]
 		_doors.append(door)
 		scheduler.doors.append(door)
 		if has_node("Floor2Art"):
@@ -419,6 +426,7 @@ func _on_story_intercept(task_id: String, _room_id: String, door: Node2D) -> voi
 
 func _on_task_submit(task_id: String, door: Node2D) -> void:
 	if GameManager.is_world_input_allowed() and absf(player.global_position.x - door.global_position.x) <= door.story_radius:
+		_door_scheduler.prepare_delivery(door)
 		GameManager.submit_task(task_id)
 	door.set_story_state(GameManager.task_status if GameManager.current_task_id == task_id else "NONE")
 
@@ -438,15 +446,13 @@ func _on_door_violation(reason: String, approach_side: int, door: Node2D) -> voi
 
 
 func get_safe_return_position(door: Node2D, approach_side: int) -> Dictionary:
-	if approach_side not in [-1, 1] or not _safe_points.has(door) or not _doors.has(door):
+	if floor_number not in [2, 3, 4, 5] or approach_side not in [-1, 1] or not _doors.has(door):
 		return {}
 	if not is_ancestor_of(door) or not door.has_method("finish_safe_return"):
 		return {}
-	var point: Node2D = _safe_points[door][0 if approach_side == -1 else 1]
-	var destination: Vector2 = point.global_position
-	# C's recorded entry side wins even if this frame crossed the door centre.
-	if (destination.x - door.global_position.x) * approach_side <= door.radius:
-		return {}
+	# The left stair landing is this floor's memory point, from either approach.
+	# Teleporting backwards across intervening doors/route locks is intentional.
+	var destination: Vector2 = return_point.global_position
 	if destination.x < 64.0 or destination.x > corridor_width - 64.0:
 		return {}
 	if not is_equal_approx(destination.y, player.global_position.y):
@@ -454,14 +460,6 @@ func get_safe_return_position(door: Node2D, approach_side: int) -> Dictionary:
 	for other: Node2D in _doors:
 		var exclusion_radius: float = other.story_radius if other.door_mode == "STORY" else other.radius
 		if absf(destination.x - other.global_position.x) <= exclusion_radius:
-			return {}
-		if other != door and other.global_position.x >= minf(destination.x, player.global_position.x) - exclusion_radius and other.global_position.x <= maxf(destination.x, player.global_position.x) + exclusion_radius:
-			return {} # Do not carry the player through a neighbouring danger region.
-	if task_01_barrier_x > 0.0 and not GameManager.get_world_flags().get("passage_201_unlocked", false):
-		if maxf(destination.x, player.global_position.x) >= task_01_barrier_x - 24.0:
-			return {}
-	if task_02_barrier_x > 0.0 and not GameManager.get_world_flags().get("passage_202_unlocked", false):
-		if maxf(destination.x, player.global_position.x) >= task_02_barrier_x - 24.0:
 			return {}
 	return {"position": destination}
 

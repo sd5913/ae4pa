@@ -676,8 +676,8 @@ msgstr "Caught stealing · You can retry this task"
 msgid "失败：%s"
 msgstr "Failed: %s"
 
-msgid "普通门警告：%s · 已退回来侧，请观察后重试"
-msgstr "Door warning: %s · You were moved back. Watch the door before trying again."
+msgid "普通门警告：%s · 已退回本层左侧楼梯，请观察后重试"
+msgstr "Door warning: %s · Returned to this floor's left stairs. Watch the door before trying again."
 
 msgid "B · 员工接入位"
 msgstr "B · Staff position"
