@@ -1,5 +1,10 @@
 extends PanelContainer
 
+signal bag_requested()
+signal notebook_requested()
+signal pause_requested()
+signal task_details_requested()
+
 const CardDisplay = preload("res://scenes/ui/card_display.gd")
 const ACTIVE_SLOT_FRAME := preload("res://assets/final/ui/hotel_interface/card_slot_active.png")
 const INACTIVE_SLOT_FRAME := preload("res://assets/final/ui/hotel_interface/card_slot_inactive.png")
@@ -24,6 +29,10 @@ var _last_task_display := ""
 
 
 func _ready() -> void:
+	%BagButton.pressed.connect(func() -> void: bag_requested.emit())
+	%NotebookButton.pressed.connect(func() -> void: notebook_requested.emit())
+	%PauseButton.pressed.connect(func() -> void: pause_requested.emit())
+	%TaskButton.pressed.connect(func() -> void: task_details_requested.emit())
 	_notice_source = get_node_or_null("../../DeveloperOverlay/Margin/Info/Notice")
 	if is_instance_valid(_notice_source):
 		_notice_source.hide() # Keep A's source text intact; display it once inside HUD.
@@ -153,6 +162,11 @@ func set_notice(message: String) -> void:
 	var text_width: float = _notice.get_theme_font("font").get_string_size(_notice.text, HORIZONTAL_ALIGNMENT_LEFT, -1, _notice.get_theme_font_size("font_size")).x
 	_notice.size_flags_horizontal = Control.SIZE_SHRINK_BEGIN
 	_notice.custom_minimum_size.x = minf(text_width + 8, 528)
+
+
+func show_notice(message: String) -> void:
+	# Preserve PR51's single, prioritized notice instead of the old fading duplicate.
+	set_notice(message)
 
 
 func _action_key(action: String) -> String:

@@ -1,6 +1,10 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=8 format=3]
 [ext_resource type="Script" path="res://scenes/ui/hud.gd" id="1"]
 [ext_resource type="Theme" path="res://scenes/ui/hud_theme.tres" id="2"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_bag.png" id="bag"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_journal.png" id="journal"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_pause.png" id="pause"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_hourglass.png" id="task"]
 [sub_resource type="StyleBoxEmpty" id="Empty"]
 [node name="HUD" type="PanelContainer"]
 anchors_preset = 10
@@ -203,3 +207,40 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"HudHint"
 horizontal_alignment = 1
+
+[node name="Toolbar" type="HBoxContainer" parent="Margin/Groups/Right"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="BagButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_constants/icon_max_width = 16
+text = "背包"
+icon = ExtResource("bag")
+
+[node name="NotebookButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_constants/icon_max_width = 16
+text = "笔记"
+icon = ExtResource("journal")
+
+[node name="PauseButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_constants/icon_max_width = 16
+text = "暂停"
+icon = ExtResource("pause")
+
+[node name="TaskButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_constants/icon_max_width = 16
+text = "任务"
+icon = ExtResource("task")

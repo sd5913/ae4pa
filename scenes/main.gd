@@ -35,6 +35,11 @@ func _ready() -> void:
 	$TaskLayer.menu_requested.connect(_show_menu)
 	menu.start_requested.connect(_start_session)
 	menu.help_requested.connect(notebook.open_help)
+	var hud: Control = $TaskLayer/HUD
+	hud.bag_requested.connect(_open_bag_from_toolbar)
+	hud.notebook_requested.connect(_open_notebook_from_toolbar)
+	hud.pause_requested.connect($TaskLayer.play_overlay.toggle_pause)
+	hud.task_details_requested.connect($TaskLayer/MissionBoard.open_task_details)
 	notebook.set_process_unhandled_input(false)
 	bag.set_process_unhandled_input(false)
 	GameManager.set_floor_host($World)
@@ -81,7 +86,8 @@ func _show_menu() -> void:
 	$DeveloperOverlay.hide()
 	$TaskLayer.hide()
 	menu.show()
-	menu.get_node("%StartButton").grab_focus()
+	if not menu.get_node("%StartButton").disabled:
+		menu.get_node("%StartButton").grab_focus()
 
 
 func _start_session() -> void:
@@ -128,7 +134,7 @@ func _on_dialogue_finished(dialogue_id: String) -> void:
 	if dialogue_id != _active_dialogue_id:
 		return
 	_active_dialogue_id = ""
-	$DeveloperOverlay.show()
+	$DeveloperOverlay.visible = "--developer-ui" in OS.get_cmdline_user_args()
 	$TaskLayer.show()
 	if dialogue_id == "V4_MANAGER_TALK":
 		GameManager.complete_manager_intro()
@@ -173,6 +179,7 @@ func _on_cards_changed() -> void:
 
 func _on_floor_changed(_number: int) -> void:
 	var floor_node: Node = $World.get_child(0)
+	floor_node.get_node("EntranceLabel").visible = "--developer-ui" in OS.get_cmdline_user_args()
 	floor_node.formatted_notice_requested.connect(_show_notice)
 	floor_node.manager_talk_requested.connect(_on_manager_talk_requested)
 	floor_node.task_offer_requested.connect($TaskLayer.open_offer)
@@ -275,9 +282,11 @@ func _refresh_notice() -> void:
 		return
 	if _notice_arguments.is_empty():
 		notice_label.text = tr(_notice_template)
+		$TaskLayer/HUD.show_notice(notice_label.text)
 		return
 	var arguments := _notice_arguments.map(func(argument: String) -> String: return tr(argument))
 	notice_label.text = tr(_notice_template) % arguments
+	$TaskLayer/HUD.show_notice(notice_label.text)
 
 
 func _on_game_failed(reason: String) -> void:
@@ -289,3 +298,12 @@ func _on_game_failed(reason: String) -> void:
 
 func _on_safe_return_started(reason: String) -> void:
 	_show_notice("普通门警告：%s · 已退回来侧，请观察后重试", [reason])
+
+func _open_bag_from_toolbar() -> void:
+	if GameManager.is_world_input_allowed():
+		bag.open_bag()
+
+
+func _open_notebook_from_toolbar() -> void:
+	if GameManager.is_world_input_allowed():
+		notebook.open_help()

@@ -1,0 +1,14 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 546.92 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3070 Laptop GPU
+
+ERROR: Failed to read the root certificate store.
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+PASS: menu locks input during actual opening tween
+PASS: opening completes and restores button
+PASS: real start opens existing intro
+PASS: PR51 HUD title and hidden duplicate remain
+PASS: toolbar bag invokes real bag
+PASS: toolbar notebook invokes real notebook
+PASS: toolbar pause invokes real modal
+PASS: menu return replays animation with input guard
+PASS: menu return restores interactivity

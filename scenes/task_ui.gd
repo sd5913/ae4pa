@@ -23,6 +23,7 @@ func _ready() -> void:
 	play_overlay = PlayOverlay.new()
 	play_overlay.name = "PlayOverlay"
 	add_child(play_overlay)
+	play_overlay.return_to_menu_requested.connect(func() -> void: menu_requested.emit())
 	board.task_accepted.connect(_on_task_accepted)
 	board.visibility_changed.connect(_on_offer_visibility_changed)
 	failure.retry_requested.connect(_on_retry_requested)
