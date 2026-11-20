@@ -1,5 +1,7 @@
 # A／B／C接续D：二楼五怪主流程
 
+整合PR：[PR #50](https://github.com/sd5913/ae4pa/pull/50)，已推送、未合并。
+
 开发分支：`work/member-A-five-monster-tutorial`；基线 `main@a802721`，已包含D `work/member-D-monster-dialogue-current@0ce69db`／PR48与B PR49。按2026-11-20本轮用户明确配置整合；只更新PR，不合入main。
 
 ## 真实合同与位置
