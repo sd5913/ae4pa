@@ -17,6 +17,9 @@ const FAILURE_MODAL: String = "TASK_FAILURE"
 
 
 func _ready() -> void:
+	var monster_guide := preload("res://scenes/ui/task_monster_dialogue.gd").new()
+	monster_guide.name = "TaskMonsterDialogue"
+	add_child(monster_guide)
 	play_overlay = PlayOverlay.new()
 	play_overlay.name = "PlayOverlay"
 	add_child(play_overlay)
@@ -31,7 +34,7 @@ func _ready() -> void:
 	GameManager.state_changed.connect(_on_state_changed)
 	interaction_progress = InteractionProgress.new()
 	interaction_progress.name = "InteractionProgress"
-	hud.get_node("%ProgressHost").add_child(interaction_progress)
+	hud.get_node("%InteractionArea").add_child(interaction_progress)
 	_refresh_hud()
 
 
@@ -53,7 +56,7 @@ func _input(event: InputEvent) -> void:
 
 
 func open_offer(task_id: String) -> void:
-	if task_id != GameManager.current_task_id or GameManager.task_status != "AVAILABLE" or GameManager.game_state != "PLAYING" or GameManager.current_floor != 2:
+	if task_id != GameManager.current_task_id or GameManager.task_status != "AVAILABLE" or GameManager.game_state != "PLAYING" or GameManager.current_floor != GameManager.get_task_definition(task_id).get("offer_floor", 0):
 		return
 	failure.hide()
 	GameManager.set_modal_open(FAILURE_MODAL, false)
@@ -79,8 +82,14 @@ func _refresh_offer() -> void:
 func _refresh_offer_details() -> void:
 	var view: Dictionary = GameManager.get_task_view()
 	var requirement := tr(view["required_card"], "card requirement")
-	board.configure_task_details(tr("所需身份：%s · 接受后限时 %d 秒\n回 1F 取得保洁工作证，再到 2F 清理污渍，最后回 201 交付。")
-		% [requirement, int(view["time_limit"])])
+	var details: String
+	if view["task_id"] == GameManager.TASK_03_ID:
+		details = tr("所需身份：%s · 接受后限时 %d 秒\n回1F经理身后取证 → I装备／Q切当前经理\n回3F登记台按E批准即完成，不需回302交付。") % [tr("经理工作证"), int(view["time_limit"])]
+	elif view["task_id"] == GameManager.TASK_02_ID:
+		details = tr("所需身份：%s · 接受后限时 %d 秒\n返回一楼在保安身后取证 → Q切为当前保安\n返回二楼保管柜按E领取 → 回202交付。") % [tr("保安工作证"), int(view["time_limit"])]
+	else:
+		details = tr("所需身份：%s · 接受后限时 %d 秒\n回 1F 取得保洁工作证，再到 2F 清理污渍，最后回 201 交付。") % [requirement, int(view["time_limit"])]
+	board.configure_task_details(details, tr("%s / 本次任务") % GameManager.get_task_definition(view["task_id"])["room_id"])
 
 
 func _on_offer_visibility_changed() -> void:
@@ -103,8 +112,10 @@ func _show_failure(reason: String) -> void:
 	if reason == "TASK_TIMEOUT":
 		failure.get_node("%Reason").text = "任务超时，请回到接取前重新挑战。"
 	var can_retry := GameManager.can_retry_current_task()
+	var retry_message: String = "回到302接受前，保留201／202成果，撤销本任务经理卡与批准。" if GameManager.current_task_id == GameManager.TASK_03_ID else ""
 	failure.configure_retry(can_retry,
-		"回到 201 接受前，撤销本任务获得的卡片与清理结果。" if can_retry else "当前没有可恢复的任务检查点。")
+		retry_message if can_retry and not retry_message.is_empty() else
+		("回到202接受前，保留201成果，撤销本任务保安卡与包裹。" if GameManager.current_task_id == GameManager.TASK_02_ID else "回到 201 接受前，撤销本任务获得的卡片与清理结果。") if can_retry else "当前没有可恢复的任务检查点。")
 	GameManager.set_modal_open(FAILURE_MODAL, true)
 	_refresh_hud()
 

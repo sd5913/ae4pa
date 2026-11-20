@@ -11,6 +11,7 @@ signal task_failed(task_id: String, reason: String)
 signal modal_changed()
 signal safe_return_started(reason: String)
 signal notebook_changed()
+signal friend_rescued()
 ## D/A consume this request; the pending encounter is not a completed task.
 signal monster_encounter_requested(context: Dictionary)
 var _room_monsters: Dictionary = {}
@@ -50,6 +51,9 @@ func resolve_monster_encounter(room: String) -> bool:
 
 const TaskDefinitions = preload("res://scripts/task_definitions.gd")
 const TASK_01_ID: String = "TASK_01_CLEAN"
+const TASK_02_ID: String = "TASK_02_PARCEL"
+const TASK_03_ID: String = "TASK_03_AUTHORIZE"
+const ENABLED_TASKS: Array[String] = [TASK_01_ID, TASK_02_ID, TASK_03_ID]
 
 var game_state: String = "MENU"
 var current_floor: int = 1
@@ -140,6 +144,8 @@ func get_notebook_view() -> Dictionary:
 		entries[1]["text"] = "有些住客对气味敏感。"
 	if _completed_task_ids.has(TASK_01_ID):
 		entries[1] = {"id": "NOSE", "name": "长鼻客", "status": "KNOWN", "text": "长鼻客开门时会辨识气味。将保洁工作证切为当前身份后再经过。"}
+	if _completed_task_ids.has(TASK_02_ID):
+		entries[0] = {"id": "EYE", "name": "独眼客", "status": "KNOWN", "text": "独眼客只认可保安身份。将保安工作证切为当前身份后再经过。"}
 	return {"unlocked": _manager_intro_finished, "entries": entries}
 
 
@@ -152,10 +158,21 @@ func get_task_view() -> Dictionary:
 		"time_limit": definition.get("time_limit", 0.0),
 		"name": definition.get("name", ""),
 		"location": definition.get("location", ""),
-		"step": "RETURN_TO_201" if task_status == "READY_TO_SUBMIT" else "CLEAN_STAIN" if task_status == "ACTIVE" else "",
+		"step": _get_task_step(definition),
 		"target_id": definition.get("target_id", ""),
 		"required_card": definition.get("required_card", ""),
 	}
+
+
+func _get_task_step(definition: Dictionary) -> String:
+	if definition.is_empty() or task_status not in ["ACTIVE", "READY_TO_SUBMIT"]:
+		return ""
+	var steps: Array = definition["steps"]
+	if task_status == "READY_TO_SUBMIT":
+		return steps.back()
+	if current_task_id == TASK_03_ID and CardManager.active_card == "MANAGER":
+		return steps[2]
+	return steps[0] if not CardManager.has_card(definition["required_card"]) else steps[1]
 
 
 func get_task_definition(task_id: String) -> Dictionary:
@@ -178,13 +195,13 @@ func is_interaction_allowed(target_id: String) -> bool:
 	# Task eligibility only; B separately checks position, facing, hold and identity.
 	if game_state != "PLAYING" or task_status != "ACTIVE" or remaining_time <= 0.0 or not _open_modals.is_empty():
 		return false
-	if current_task_id != TASK_01_ID:
+	if not ENABLED_TASKS.has(current_task_id):
 		return false
-	match target_id:
-		"STAFF_CLEANER_1F":
-			return not CardManager.has_card("CLEANER")
-		"STAIN_201":
-			return not _world_flags.get("stain_201_cleaned", false)
+	var definition: Dictionary = get_task_definition(current_task_id)
+	if target_id == definition["staff_target_id"]:
+		return not CardManager.has_card(definition["required_card"])
+	if target_id == definition["target_id"]:
+		return not _world_flags.get(definition["work_flag"], false)
 	return false
 
 
@@ -197,6 +214,8 @@ func get_available_floors() -> Array[int]:
 	if game_state != "PLAYING":
 		return available
 	for floor_number: int in _visited_floors:
+		if has_friend and floor_number < 3:
+			continue
 		if floor_number != current_floor:
 			available.append(floor_number)
 	var next_floor: int = current_floor + 1
@@ -231,26 +250,41 @@ func _can_unlock_next_floor() -> bool:
 	return false
 
 
-func offer_task(task_id: String) -> bool:
-	if game_state != "PLAYING" or current_floor != 2 or not _manager_intro_finished:
+func can_offer_task(task_id: String) -> bool:
+	if game_state != "PLAYING" or not _manager_intro_finished or not ENABLED_TASKS.has(task_id):
 		return false
-	if task_id != TASK_01_ID or task_status != "NONE":
+	var definition: Dictionary = get_task_definition(task_id)
+	if current_floor != definition["offer_floor"] or task_status not in ["NONE", "COMPLETED"] or _completed_task_ids.has(task_id):
+		return false
+	for prerequisite: String in definition["prerequisites"]:
+		if prerequisite != "MANAGER_INTRO" and not _completed_task_ids.has(prerequisite):
+			return false
+	return true
+
+
+func offer_task(task_id: String) -> bool:
+	if not can_offer_task(task_id):
 		return false
 	current_task_id = task_id
 	task_status = "AVAILABLE"
+	remaining_time = 0.0
+	fail_reason = ""
+	_task_checkpoint.clear()
+	if task_id == TASK_02_ID:
+		_world_flags["task_02_intro_completed"] = true
 	task_offered.emit(task_id)
 	task_updated.emit()
 	return true
 
 
 func accept_task(task_id: String) -> bool:
-	if game_state != "PLAYING" or current_floor != 2 or task_status != "AVAILABLE" or current_task_id != task_id:
+	if game_state != "PLAYING" or not ENABLED_TASKS.has(task_id) or current_floor != get_task_definition(task_id)["offer_floor"] or task_status != "AVAILABLE" or current_task_id != task_id:
 		return false
 	var checkpoint: Dictionary = _capture_task_checkpoint()
 	if _has_floor_host() and checkpoint.is_empty():
 		return false
 	_task_checkpoint = checkpoint
-	resolve_monster_encounter("201")
+	resolve_monster_encounter(get_task_definition(task_id)["room_id"])
 	task_status = "ACTIVE"
 	remaining_time = get_task_definition(task_id)["time_limit"]
 	task_updated.emit()
@@ -277,7 +311,8 @@ func _capture_task_checkpoint() -> Dictionary:
 func can_retry_current_task() -> bool:
 	return game_state == "FAILED" and task_status == "FAILED" and _has_floor_host() \
 		and _task_checkpoint.get("task_id", "") == current_task_id \
-		and _task_checkpoint.get("floor", 0) == 2 \
+		and ENABLED_TASKS.has(current_task_id) \
+		and _task_checkpoint.get("floor", 0) == get_task_definition(current_task_id)["offer_floor"] \
 		and CardManager.validate_snapshot(_task_checkpoint.get("cards", {}))
 
 
@@ -288,7 +323,7 @@ func retry_current_task() -> bool:
 	_room_monsters = checkpoint.get("room_monsters", {}).duplicate(true)
 	_seen_monsters = checkpoint.get("seen_monsters", {}).duplicate(true)
 	_pending_monster_encounter = checkpoint.get("pending_encounter", {}).duplicate(true)
-	var scene: PackedScene = load("res://scenes/levels/floor_2.tscn")
+	var scene: PackedScene = load("res://scenes/levels/floor_%d.tscn" % checkpoint["floor"])
 	var floor_node: Node2D = scene.instantiate()
 	_set_state("RESTORING") # Cancel old holds before restoring cards or world facts.
 	_floor_host.add_child(floor_node)
@@ -335,11 +370,16 @@ func retry_current_task() -> bool:
 func record_work_result(target_id: String) -> bool:
 	if not is_interaction_allowed(target_id):
 		return false
-	if current_task_id != TASK_01_ID or target_id != "STAIN_201" or current_floor != 2:
+	var definition: Dictionary = get_task_definition(current_task_id)
+	if not ENABLED_TASKS.has(current_task_id) or target_id != definition["target_id"] or current_floor != definition["work_floor"]:
 		return false
-	if CardManager.active_card != "CLEANER" or _world_flags.has("stain_201_cleaned"):
+	if CardManager.active_card != definition["required_card"] or _world_flags.get(definition["work_flag"], false):
 		return false
-	_world_flags["stain_201_cleaned"] = true
+	_world_flags[definition["work_flag"]] = true
+	if definition["settlement"] == "AUTHORIZE":
+		remaining_time = 0.0
+		_complete_task(definition)
+		return true
 	task_status = "READY_TO_SUBMIT"
 	task_updated.emit()
 	return true
@@ -348,15 +388,34 @@ func record_work_result(target_id: String) -> bool:
 func submit_task(task_id: String) -> bool:
 	if not is_world_input_allowed() or task_status != "READY_TO_SUBMIT" or remaining_time <= 0.0:
 		return false
-	if current_task_id != TASK_01_ID or task_id != TASK_01_ID or current_floor != 2:
+	if not ENABLED_TASKS.has(current_task_id) or task_id != current_task_id:
 		return false
-	if not _world_flags.get("stain_201_cleaned", false):
+	var definition: Dictionary = get_task_definition(task_id)
+	if current_floor != definition["offer_floor"] or not _world_flags.get(definition["work_flag"], false):
 		return false
+	_complete_task(definition)
+	return true
+
+
+func _complete_task(definition: Dictionary) -> void:
 	task_status = "COMPLETED"
-	_completed_task_ids.append(task_id)
-	_world_flags["passage_201_unlocked"] = true
+	_completed_task_ids.append(current_task_id)
+	for flag: String in definition["completion_flags"]:
+		_world_flags[flag] = true
 	notebook_changed.emit()
-	task_completed.emit(task_id)
+	task_completed.emit(current_task_id)
+	task_updated.emit()
+
+
+## Called after a real rescue dialogue finishes; current main keeps that entry gated
+## until D supplies the complete309 story. Core tests use an explicit callback fixture.
+func rescue_friend() -> bool:
+	if not is_world_input_allowed() or current_floor != 3 or has_friend or not _completed_task_ids.has(TASK_03_ID) or not _world_flags.get("registration_309_approved", false):
+		return false
+	has_friend = true
+	_world_flags["rescue_309_completed"] = true
+	friend_rescued.emit()
+	notebook_changed.emit()
 	task_updated.emit()
 	return true
 

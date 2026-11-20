@@ -1,549 +1,246 @@
-[gd_scene load_steps=13 format=3]
-
-[ext_resource type="Script" path="res://scenes/ui/hud.gd" id="script"]
-[ext_resource type="Theme" path="res://scenes/ui/staff_ui_theme.tres" id="theme"]
-[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/quest_paper.png" id="quest_paper"]
-[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/toolbar_plate.png" id="toolbar_plate"]
-[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/status_strip.png" id="status_strip"]
-[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/notice_paper.png" id="notice_paper"]
-[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_bag.png" id="icon_bag"]
-[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_journal.png" id="icon_journal"]
-[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_pause.png" id="icon_pause"]
-[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_hourglass.png" id="icon_hourglass"]
-
-
-[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_key.png" id="icon_key"]
-
+[gd_scene load_steps=8 format=3]
+[ext_resource type="Script" path="res://scenes/ui/hud.gd" id="1"]
+[ext_resource type="Theme" path="res://scenes/ui/hud_theme.tres" id="2"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_bag.png" id="bag"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_journal.png" id="journal"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_pause.png" id="pause"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_hourglass.png" id="task"]
 [sub_resource type="StyleBoxEmpty" id="Empty"]
-
 [node name="HUD" type="PanelContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+mouse_filter = 2
+theme = ExtResource("2")
+theme_override_styles/panel = SubResource("Empty")
+script = ExtResource("1")
+[node name="Margin" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_top = 24
+[node name="Groups" type="HBoxContainer" parent="Margin"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 24
+[node name="Left" type="VBoxContainer" parent="Margin/Groups"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_constants/separation = 8
+[node name="Stack" type="VBoxContainer" parent="Margin/Groups/Left"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+[node name="NoticeRow" type="HBoxContainer" parent="Margin/Groups/Left/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 16
+[node name="Notice" type="Label" parent="Margin/Groups/Left/Stack/NoticeRow"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HudPrompt"
+autowrap_mode = 2
+[node name="NoticeKey" type="Label" parent="Margin/Groups/Left/Stack/NoticeRow"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HudHint"
+text = ""
+[node name="InteractionArea" type="VBoxContainer" parent="Margin/Groups/Left/Stack"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+[node name="TaskPlate" type="PanelContainer" parent="Margin/Groups/Left/Stack"]
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"HudTask"
+[node name="TaskReadout" type="VBoxContainer" parent="Margin/Groups/Left/Stack/TaskPlate"]
+layout_mode = 2
+theme_override_constants/separation = 8
+mouse_filter = 2
+[node name="Header" type="HBoxContainer" parent="Margin/Groups/Left/Stack/TaskPlate/TaskReadout"]
+layout_mode = 2
+theme_override_constants/separation = 8
+[node name="TaskTitle" type="Label" parent="Margin/Groups/Left/Stack/TaskPlate/TaskReadout/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"HudTitle"
+autowrap_mode = 2
+[node name="Objective" type="Label" parent="Margin/Groups/Left/Stack/TaskPlate/TaskReadout"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HudBody"
+autowrap_mode = 2
+[node name="RemainingTime" type="Label" parent="Margin/Groups/Left/Stack/TaskPlate/TaskReadout/Header"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HudMeta"
+autowrap_mode = 0
+[node name="Right" type="VBoxContainer" parent="Margin/Groups"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+mouse_filter = 2
+[node name="Readout" type="HBoxContainer" parent="Margin/Groups/Right"]
+layout_mode = 2
+theme_override_constants/separation = 16
+mouse_filter = 2
+[node name="FloorColumn" type="VBoxContainer" parent="Margin/Groups/Right/Readout"]
+layout_mode = 2
+theme_override_constants/separation = 8
+[node name="Identity" type="PanelContainer" parent="Margin/Groups/Right/Readout/FloorColumn"]
+custom_minimum_size = Vector2(176, 96)
+layout_mode = 2
+size_flags_vertical = 0
+theme_type_variation = &"HudFloorPlate"
+mouse_filter = 2
+[node name="Details" type="VBoxContainer" parent="Margin/Groups/Right/Readout/FloorColumn/Identity"]
+layout_mode = 2
+alignment = 1
+[node name="FloorValue" type="Label" parent="Margin/Groups/Right/Readout/FloorColumn/Identity/Details"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HudFloor"
+horizontal_alignment = 1
+text = "1F"
+[node name="ActiveCardValue" type="Label" parent="Margin/Groups/Right/Readout/FloorColumn/Identity/Details"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+[node name="SlotA" type="VBoxContainer" parent="Margin/Groups/Right/Readout"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+mouse_filter = 2
+[node name="Letter" type="Label" parent="Margin/Groups/Right/Readout/SlotA"]
+layout_mode = 2
+theme_type_variation = &"HudHint"
+horizontal_alignment = 1
+text = "A"
+[node name="Image" type="Control" parent="Margin/Groups/Right/Readout/SlotA"]
+custom_minimum_size = Vector2(96, 80)
+layout_mode = 2
+mouse_filter = 2
+[node name="SlotAFrame" type="TextureRect" parent="Margin/Groups/Right/Readout/SlotA/Image"]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 2
-theme = ExtResource("theme")
-theme_override_styles/panel = SubResource("Empty")
-script = ExtResource("script")
-
-[node name="Layout" type="Control" parent="."]
+expand_mode = 1
+stretch_mode = 5
+[node name="SlotAArt" type="TextureRect" parent="Margin/Groups/Right/Readout/SlotA/Image"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 15.0
+offset_right = -24.0
+offset_bottom = -16.0
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+[node name="SlotAValue" type="Label" parent="Margin/Groups/Right/Readout/SlotA"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HudSlot"
+horizontal_alignment = 1
+[node name="SlotAActive" type="Label" parent="Margin/Groups/Right/Readout/SlotA"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"HudActive"
+horizontal_alignment = 1
+text = "◆ 生效"
+[node name="SlotB" type="VBoxContainer" parent="Margin/Groups/Right/Readout"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+theme_override_constants/separation = 0
+mouse_filter = 2
+[node name="Letter" type="Label" parent="Margin/Groups/Right/Readout/SlotB"]
+layout_mode = 2
+theme_type_variation = &"HudHint"
+horizontal_alignment = 1
+text = "B"
+[node name="Image" type="Control" parent="Margin/Groups/Right/Readout/SlotB"]
+custom_minimum_size = Vector2(96, 80)
 layout_mode = 2
 mouse_filter = 2
-
-[node name="FloorPlate" type="TextureRect" parent="Layout"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 22.0
-offset_top = 22.0
-offset_right = 144.0
-offset_bottom = 72.0
-
-mouse_filter = 2
-texture = ExtResource("status_strip")
-expand_mode = 1
-stretch_mode = 0
-
-[node name="FloorValue" type="Label" parent="Layout"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 35.0
-offset_top = 27.0
-offset_right = 131.0
-offset_bottom = 64.0
+[node name="SlotBFrame" type="TextureRect" parent="Margin/Groups/Right/Readout/SlotB/Image"]
 unique_name_in_owner = true
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.98, 0.9, 0.71, 1)
-theme_override_font_sizes/font_size = 25
-text = "1F"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-
-[node name="ClockPlate" type="TextureRect" parent="Layout"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 152.0
-offset_top = 22.0
-offset_right = 407.0
-offset_bottom = 72.0
-
-mouse_filter = 2
-texture = ExtResource("status_strip")
-expand_mode = 1
-stretch_mode = 0
-
-[node name="ClockIcon" type="TextureRect" parent="Layout"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 162.0
-offset_top = 35.0
-offset_right = 186.0
-offset_bottom = 59.0
-
-mouse_filter = 2
-texture = ExtResource("icon_hourglass")
-expand_mode = 1
-stretch_mode = 0
-
-[node name="RemainingTime" type="Label" parent="Layout"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 191.0
-offset_top = 27.0
-offset_right = 395.0
-offset_bottom = 65.0
-unique_name_in_owner = true
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.98, 0.9, 0.71, 1)
-theme_override_font_sizes/font_size = 16
-text = ""
-horizontal_alignment = 0
-vertical_alignment = 1
-
-
-[node name="QuestPlate" type="TextureRect" parent="Layout"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 22.0
-offset_top = 87.0
-offset_right = 407.0
-offset_bottom = 222.0
-
-mouse_filter = 2
-texture = ExtResource("quest_paper")
-expand_mode = 1
-stretch_mode = 0
-
-[node name="QuestHeading" type="Label" parent="Layout"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 46.0
-offset_top = 104.0
-offset_right = 311.0
-offset_bottom = 129.0
-
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.23, 0.16, 0.08, 1)
-theme_override_font_sizes/font_size = 15
-text = "当前目标"
-horizontal_alignment = 0
-vertical_alignment = 1
-
-
-[node name="TaskButton" type="Button" parent="Layout"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 316.0
-offset_top = 103.0
-offset_right = 384.0
-offset_bottom = 137.0
-unique_name_in_owner = true
-theme_override_font_sizes/font_size = 13
-text = "详情"
-
-[node name="Objective" type="Label" parent="Layout"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 46.0
-offset_top = 138.0
-offset_right = 384.0
-offset_bottom = 204.0
-unique_name_in_owner = true
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.23, 0.16, 0.08, 1)
-theme_override_font_sizes/font_size = 18
-text = ""
-horizontal_alignment = 0
-vertical_alignment = 1
-autowrap_mode = 2
-
-[node name="ToolbarPlate" type="TextureRect" parent="Layout"]
-layout_mode = 0
-anchor_left = 1
-anchor_right = 1
-anchor_top = 0
-anchor_bottom = 0
-offset_left = -407.0
-offset_top = 22.0
-offset_right = -22.0
-offset_bottom = 90.0
-
-mouse_filter = 2
-texture = ExtResource("toolbar_plate")
-expand_mode = 1
-stretch_mode = 0
-
-[node name="BagButton" type="Button" parent="Layout"]
-layout_mode = 0
-anchor_left = 1
-anchor_right = 1
-anchor_top = 0
-anchor_bottom = 0
-offset_left = -390.0
-offset_top = 33.0
-offset_right = -272.0
-offset_bottom = 78.0
-unique_name_in_owner = true
-theme_override_font_sizes/font_size = 14
-theme_override_constants/icon_max_width = 23
-theme_override_constants/h_separation = 3
-icon = ExtResource("icon_bag")
-expand_icon = true
-text = "背包"
-tooltip_text = "背包（I）"
-
-[node name="NotebookButton" type="Button" parent="Layout"]
-layout_mode = 0
-anchor_left = 1
-anchor_right = 1
-anchor_top = 0
-anchor_bottom = 0
-offset_left = -270.0
-offset_top = 33.0
-offset_right = -152.0
-offset_bottom = 78.0
-unique_name_in_owner = true
-theme_override_font_sizes/font_size = 14
-theme_override_constants/icon_max_width = 23
-theme_override_constants/h_separation = 3
-icon = ExtResource("icon_journal")
-expand_icon = true
-text = "笔记"
-tooltip_text = "调查笔记与操作说明（H）"
-
-[node name="PauseButton" type="Button" parent="Layout"]
-layout_mode = 0
-anchor_left = 1
-anchor_right = 1
-anchor_top = 0
-anchor_bottom = 0
-offset_left = -150.0
-offset_top = 33.0
-offset_right = -32.0
-offset_bottom = 78.0
-unique_name_in_owner = true
-theme_override_font_sizes/font_size = 14
-theme_override_constants/icon_max_width = 23
-theme_override_constants/h_separation = 3
-icon = ExtResource("icon_pause")
-expand_icon = true
-text = "暂停"
-tooltip_text = "暂停（Esc）"
-
-[node name="EquipmentPlate" type="TextureRect" parent="Layout"]
-layout_mode = 0
-anchor_left = 1
-anchor_right = 1
-anchor_top = 1
-anchor_bottom = 1
-offset_left = -274.0
-offset_top = -170.0
-offset_right = -22.0
-offset_bottom = -22.0
-
-mouse_filter = 2
-texture = ExtResource("toolbar_plate")
-expand_mode = 1
-stretch_mode = 0
-
-[node name="IdentityKey" type="TextureRect" parent="Layout"]
-anchor_left = 1.0
+anchors_preset = 15
 anchor_right = 1.0
-anchor_top = 1.0
 anchor_bottom = 1.0
-offset_left = -253.0
-offset_top = -160.0
-offset_right = -231.0
-offset_bottom = -137.0
-mouse_filter = 2
-texture = ExtResource("icon_key")
-expand_mode = 1
-stretch_mode = 5
-
-[node name="ActiveCardValue" type="Label" parent="Layout"]
-layout_mode = 0
-anchor_left = 1
-anchor_right = 1
-anchor_top = 1
-anchor_bottom = 1
-offset_left = -225.0
-offset_top = -158.0
-offset_right = -40.0
-offset_bottom = -133.0
-unique_name_in_owner = true
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.98, 0.9, 0.71, 1)
-theme_override_font_sizes/font_size = 15
-text = ""
-horizontal_alignment = 1
-vertical_alignment = 1
-
-
-[node name="SlotA" type="Control" parent="Layout"]
-layout_mode = 0
-anchor_left = 1
-anchor_right = 1
-anchor_top = 1
-anchor_bottom = 1
-offset_left = -258.0
-offset_top = -134.0
-offset_right = -153.0
-offset_bottom = -38.0
-mouse_filter = 2
-
-[node name="SlotAFrame" type="TextureRect" parent="Layout/SlotA"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 18.0
-offset_top = 0.0
-offset_right = 88.0
-offset_bottom = 98.0
-unique_name_in_owner = true
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
-
-[node name="SlotALetter" type="Label" parent="Layout/SlotA"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 0.0
-offset_top = 14.0
-offset_right = 106.0
-offset_bottom = 30.0
-
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.98, 0.9, 0.71, 1)
-theme_override_font_sizes/font_size = 11
-text = "A"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-
-[node name="SlotAArt" type="TextureRect" parent="Layout/SlotA"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 27.0
-offset_top = 29.0
-offset_right = 79.0
-offset_bottom = 72.0
+[node name="SlotBArt" type="TextureRect" parent="Margin/Groups/Right/Readout/SlotB/Image"]
 unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = 15.0
+offset_right = -24.0
+offset_bottom = -16.0
 mouse_filter = 2
 expand_mode = 1
 stretch_mode = 5
-
-[node name="SlotAValue" type="Label" parent="Layout/SlotA"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 0.0
-offset_top = 73.0
-offset_right = 106.0
-offset_bottom = 94.0
+[node name="SlotBValue" type="Label" parent="Margin/Groups/Right/Readout/SlotB"]
 unique_name_in_owner = true
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.98, 0.9, 0.71, 1)
-theme_override_font_sizes/font_size = 12
-text = ""
+layout_mode = 2
+theme_type_variation = &"HudSlot"
 horizontal_alignment = 1
-vertical_alignment = 1
-
-
-[node name="SlotB" type="Control" parent="Layout"]
-layout_mode = 0
-anchor_left = 1
-anchor_right = 1
-anchor_top = 1
-anchor_bottom = 1
-offset_left = -143.0
-offset_top = -134.0
-offset_right = -38.0
-offset_bottom = -38.0
-mouse_filter = 2
-
-[node name="SlotBFrame" type="TextureRect" parent="Layout/SlotB"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 18.0
-offset_top = 0.0
-offset_right = 88.0
-offset_bottom = 98.0
+[node name="SlotBActive" type="Label" parent="Margin/Groups/Right/Readout/SlotB"]
 unique_name_in_owner = true
-mouse_filter = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SlotBLetter" type="Label" parent="Layout/SlotB"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 0.0
-offset_top = 14.0
-offset_right = 106.0
-offset_bottom = 30.0
-
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.98, 0.9, 0.71, 1)
-theme_override_font_sizes/font_size = 11
-text = "B"
+layout_mode = 2
+theme_type_variation = &"HudActive"
 horizontal_alignment = 1
-vertical_alignment = 1
-
-
-[node name="SlotBArt" type="TextureRect" parent="Layout/SlotB"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 27.0
-offset_top = 29.0
-offset_right = 79.0
-offset_bottom = 72.0
+text = "◆ 生效"
+[node name="SwitchHint" type="Label" parent="Margin/Groups/Right/Readout/FloorColumn"]
 unique_name_in_owner = true
-mouse_filter = 2
-expand_mode = 1
-stretch_mode = 5
-
-[node name="SlotBValue" type="Label" parent="Layout/SlotB"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 0.0
-offset_top = 73.0
-offset_right = 106.0
-offset_bottom = 94.0
-unique_name_in_owner = true
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.98, 0.9, 0.71, 1)
-theme_override_font_sizes/font_size = 12
-text = ""
+layout_mode = 2
+theme_type_variation = &"HudHint"
 horizontal_alignment = 1
-vertical_alignment = 1
 
+[node name="Toolbar" type="HBoxContainer" parent="Margin/Groups/Right"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
 
-[node name="SwitchHint" type="Label" parent="Layout"]
-layout_mode = 0
-anchor_left = 1
-anchor_right = 1
-anchor_top = 1
-anchor_bottom = 1
-offset_left = -256.0
-offset_top = -42.0
-offset_right = -40.0
-offset_bottom = -22.0
-
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.98, 0.9, 0.71, 1)
-theme_override_font_sizes/font_size = 12
-text = "Q 切换身份"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-
-[node name="ProgressHost" type="VBoxContainer" parent="Layout"]
-layout_mode = 0
-anchor_left = 0.5
-anchor_right = 0.5
-anchor_top = 1
-anchor_bottom = 1
-offset_left = -182.0
-offset_top = -123.0
-offset_right = 182.0
-offset_bottom = -37.0
+[node name="BagButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
 unique_name_in_owner = true
-mouse_filter = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_constants/icon_max_width = 16
+text = "背包"
+icon = ExtResource("bag")
 
-[node name="Notice" type="Control" parent="Layout"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 1
-anchor_bottom = 1
-offset_left = 22.0
-offset_top = -93.0
-offset_right = 424.0
-offset_bottom = -22.0
+[node name="NotebookButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
 unique_name_in_owner = true
-visible = false
-mouse_filter = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_constants/icon_max_width = 16
+text = "笔记"
+icon = ExtResource("journal")
 
-[node name="Paper" type="TextureRect" parent="Layout/Notice"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 402.0
-offset_bottom = 71.0
-
-mouse_filter = 2
-texture = ExtResource("notice_paper")
-expand_mode = 1
-stretch_mode = 0
-
-[node name="NoticeText" type="Label" parent="Layout/Notice"]
-layout_mode = 0
-anchor_left = 0
-anchor_right = 0
-anchor_top = 0
-anchor_bottom = 0
-offset_left = 21.0
-offset_top = 12.0
-offset_right = 380.0
-offset_bottom = 60.0
+[node name="PauseButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
 unique_name_in_owner = true
-mouse_filter = 2
-theme_override_colors/font_color = Color(0.23, 0.16, 0.08, 1)
-theme_override_font_sizes/font_size = 15
-text = ""
-horizontal_alignment = 0
-vertical_alignment = 1
-autowrap_mode = 2
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_constants/icon_max_width = 16
+text = "暂停"
+icon = ExtResource("pause")
+
+[node name="TaskButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 14
+theme_override_constants/icon_max_width = 16
+text = "任务"
+icon = ExtResource("task")

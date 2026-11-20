@@ -1,103 +1,103 @@
 extends Node2D
 
-const CELL_SIZE := 512
-const WALK_FPS := 9.0
-const DISPLAY_HEIGHTS := {
-	"an": 190.0,
-	"manager": 198.0,
-	"security": 204.0,
-	"cleaner": 184.0,
-}
-const V2_STAND_PATHS := {
-	"security": "res://assets/final/staff/q_idle_v2/security_idle_side.png",
-	"cleaner": "res://assets/final/staff/q_idle_v2/cleaner_idle_side.png",
-}
-const ART := {
-	"an": {
-		"stand": preload("res://assets/final/player/q_front/an_q_front.png"),
-		"walk": preload("res://assets/final/player/q_walk/an_walk.png"),
-		## Visible bounds measured within the standing image, then each of the six cells.
-		"bounds": [Rect2(129, 151, 488, 809),
-			Rect2(138, 18, 282, 467), Rect2(114, 19, 279, 468), Rect2(82, 18, 274, 466),
-			Rect2(140, 23, 287, 465), Rect2(112, 23, 281, 466), Rect2(81, 22, 275, 464)],
-	},
-	"cleaner": {
-		"stand": preload("res://assets/final/staff/q_front/cleaner_q_front.png"),
-		"walk": preload("res://assets/final/staff/q_walk/cleaner_walk.png"),
-		## Visible bounds measured within the standing image, then each of the six cells.
-		"bounds": [Rect2(160, 110, 448, 850),
-			Rect2(151, 35, 266, 455), Rect2(122, 44, 263, 444), Rect2(97, 37, 261, 453),
-			Rect2(152, 36, 270, 453), Rect2(124, 42, 262, 446), Rect2(96, 39, 262, 449)],
-	},
-	"manager": {
-		"stand": preload("res://assets/final/staff/q_front/manager_q_front.png"),
-		"walk": preload("res://assets/final/staff/q_walk/manager_walk.png"),
-		## Visible bounds measured within the standing image, then each of the six cells.
-		"bounds": [Rect2(160, 140, 476, 830),
-			Rect2(164, 21, 301, 460), Rect2(98, 22, 299, 458), Rect2(61, 20, 297, 460),
-			Rect2(162, 19, 303, 465), Rect2(97, 19, 304, 460), Rect2(61, 18, 300, 461)],
-	},
-	"security": {
-		"stand": preload("res://assets/final/staff/q_front/security_q_front.png"),
-		"walk": preload("res://assets/final/staff/q_walk/security_walk.png"),
-		## Visible bounds measured within the standing image, then each of the six cells.
-		"bounds": [Rect2(149, 110, 470, 850),
-			Rect2(138, 23, 278, 458), Rect2(124, 24, 272, 457), Rect2(107, 23, 272, 458),
-			Rect2(138, 26, 278, 455), Rect2(121, 27, 276, 454), Rect2(106, 26, 275, 455)],
-	},
-}
-
 @export var character_id := "an"
-@export var visible_height := 66.0
-
-var _art: Dictionary
+@export var visible_height := 190.0
+const DISPLAY_HEIGHTS := {"an":190.0,"manager":190.0,"security":200.0,"cleaner":190.0}
+var _master: Texture2D
+var _atlas: Texture2D
+var _master_rect: Rect2
+var _cell: Vector2
+var _cycle_ratio := 1.0
+var _origins: Array[Vector2] = []
+var _phase := 0.0
 var _walking := false
-var _elapsed := 0.0
-var _frame := 0
+var cleaning_active := false
+var _owner_node: Node2D
+var _previous_x := 0.0
 
+# AN: 160px/s / 96px per cycle * 6 frames = 10fps (previously 16fps).
+const AN_WALK_CYCLE_DISTANCE := 96.0
+const STAFF_WALK_CYCLE_DISTANCE := 60.0
 
 func _ready() -> void:
 	set_character(character_id)
-	set_process(false)
 
+func set_cleaning_visual(active: bool) -> void:
+	cleaning_active = active
+	queue_redraw()
 
 func set_character(id: String) -> void:
-	_art = ART[id].duplicate()
+	character_id = id
 	visible_height = DISPLAY_HEIGHTS[id]
-	if V2_STAND_PATHS.has(id):
-		var image := Image.load_from_file(ProjectSettings.globalize_path(V2_STAND_PATHS[id]))
-		_art["stand"] = ImageTexture.create_from_image(image)
+	var master := (load("res://assets/final/characters/approved_static/%s.png" % id) as Texture2D).get_image()
+	var side := master.get_region(Rect2i(master.get_width()/2,0,master.get_width()/2,master.get_height()))
+	_master = ImageTexture.create_from_image(side)
+	_master_rect = _solid_bounds(side)
+	var image := (load("res://assets/final/characters/approved_actions/%s.png" % id) as Texture2D).get_image()
+	_atlas = ImageTexture.create_from_image(image)
+	_cell = Vector2(image.get_width()/3.0,image.get_height()/4.0)
+	_origins.clear()
+	var cycle_height := 0.0
+	for i in 12:
+		var frame := image.get_region(Rect2i(Vector2i(i%3,i/3)*Vector2i(_cell),Vector2i(_cell)))
+		var bounds := _solid_bounds(frame)
+		_origins.append(Vector2(bounds.get_center().x,bounds.end.y))
+		if i < 6:
+			cycle_height = maxf(cycle_height,bounds.size.y)
+	_cycle_ratio = (200.0 if id == "security" else 190.0) / cycle_height
+	_owner_node = get_parent().get_parent() if get_parent().name == "Visual" else get_parent()
+	_previous_x = _owner_node.global_position.x
 	queue_redraw()
 
+func _solid_bounds(image: Image) -> Rect2:
+	var lo := image.get_size()
+	var hi := Vector2i.ZERO
+	for y in image.get_height():
+		for x in image.get_width():
+			if image.get_pixel(x,y).a >= 0.5:
+				lo = Vector2i(mini(x,lo.x),mini(y,lo.y))
+				hi = Vector2i(maxi(x,hi.x),maxi(y,hi.y))
+	return Rect2(lo,hi-lo+Vector2i.ONE)
 
-func set_walking(walking: bool) -> void:
-	if _walking == walking:
-		return
-	_walking = walking
-	_elapsed = 0.0
-	_frame = 0
-	set_process(walking)
-	queue_redraw()
-
+func set_walking(value: bool) -> void:
+	_walking = value
 
 func _process(delta: float) -> void:
-	_elapsed = fmod(_elapsed + delta, 6.0 / WALK_FPS)
-	var frame_index := int(_elapsed * WALK_FPS)
-	if _frame != frame_index:
-		_frame = frame_index
-		queue_redraw()
-
+	if not is_instance_valid(_owner_node):
+		return
+	var distance := absf(_owner_node.global_position.x-_previous_x)
+	_previous_x = _owner_node.global_position.x
+	if GameManager.game_state == "PLAYING":
+		var cycle_distance := AN_WALK_CYCLE_DISTANCE if character_id == "an" else STAFF_WALK_CYCLE_DISTANCE
+		_phase += distance/cycle_distance if _walking else delta*0.6
+	queue_redraw()
 
 func _draw() -> void:
-	if _art.is_empty():
+	if _atlas == null:
 		return
-	var texture: Texture2D = _art["walk"] if _walking else _art["stand"]
-	var bounds: Rect2 = _art["bounds"][_frame + 1 if _walking else 0]
-	var source := Rect2(Vector2.ZERO, texture.get_size())
-	if _walking:
-		source = Rect2(Vector2(_frame % 3, 0 if _frame < 3 else 1) * CELL_SIZE, Vector2.ONE * CELL_SIZE)
-
-	# Keep the visible foot and head at the same height for every pose.
-	var ratio := visible_height / bounds.size.y
-	var origin := Vector2(bounds.get_center().x, bounds.end.y)
-	draw_texture_rect_region(texture, Rect2(-origin * ratio, source.size * ratio), source)
+	var frame := -1
+	if character_id == "an" and cleaning_active:
+		frame = 8
+	elif _walking:
+		frame = int(_phase*6.0)%6
+	elif is_instance_valid(_owner_node) and _owner_node.has_method("is_alerted"):
+		if _owner_node.is_alerted():
+			frame = 11
+		elif _owner_node.is_suspicious():
+			frame = 10
+		else:
+			var state: String = _owner_node.get_cleaner_behavior_state()
+			if state.begins_with("TURN"):
+				frame = 9
+			elif character_id == "cleaner" and state == "CLEANING":
+				frame = 6+int(_phase*2.0)%2
+			elif character_id == "cleaner" and state == "ORGANIZING":
+				frame = 8
+			elif character_id in ["manager","security"] and state in ["CLEANING","ORGANIZING"]:
+				frame = 6+int(_phase*3.0)%3
+	if frame < 0:
+		var ratio := (200.0 if character_id == "security" else 190.0)/_master_rect.size.y
+		draw_texture_rect_region(_master,Rect2(-Vector2(_master_rect.get_center().x,_master_rect.end.y)*ratio,_master.get_size()*ratio),Rect2(Vector2.ZERO,_master.get_size()))
+	else:
+		var source := Rect2(Vector2(frame%3,frame/3)*_cell,_cell)
+		draw_texture_rect_region(_atlas,Rect2(-_origins[frame]*_cycle_ratio,_cell*_cycle_ratio),source)

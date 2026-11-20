@@ -1,0 +1,64 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+WARNING: Could not save the language preference: Can't open file
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] set_language (res://scripts/localization.gd:27)
+         [1] _select_language (res://scenes/ui/language_selector.gd:21)
+         [2] _choose (res://scenes/tests/core/localization_smoke.gd:162)
+         [3] _run (res://scenes/tests/core/localization_smoke.gd:36)
+WARNING: Could not save the language preference: Can't open file
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] set_language (res://scripts/localization.gd:27)
+         [1] _select_language (res://scenes/ui/language_selector.gd:21)
+         [2] _choose (res://scenes/tests/core/localization_smoke.gd:162)
+         [3] _run (res://scenes/tests/core/localization_smoke.gd:51)
+WARNING: Could not save the language preference: Can't open file
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] set_language (res://scripts/localization.gd:27)
+         [1] _select_language (res://scenes/ui/language_selector.gd:21)
+         [2] _choose (res://scenes/tests/core/localization_smoke.gd:162)
+         [3] _run (res://scenes/tests/core/localization_smoke.gd:61)
+WARNING: Could not save the language preference: Can't open file
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] set_language (res://scripts/localization.gd:27)
+         [1] _select_language (res://scenes/ui/language_selector.gd:21)
+         [2] _choose (res://scenes/tests/core/localization_smoke.gd:162)
+         [3] _run (res://scenes/tests/core/localization_smoke.gd:65)
+ERROR: Unable to save completed intro state: Can't open file
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _save_intro_read (res://scenes/ui/dialogue.gd:498)
+       [1] _finish (res://scenes/ui/dialogue.gd:486)
+       [2] _advance (res://scenes/ui/dialogue.gd:470)
+       [3] _on_continue_pressed (res://scenes/ui/dialogue.gd:502)
+       [4] _run (res://scenes/tests/core/localization_smoke.gd:77)
+ERROR: Completed dialogue writes to the separate story file
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:168)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:80)
+WARNING: Could not save the language preference: Can't open file
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] set_language (res://scripts/localization.gd:27)
+         [1] _select_language (res://scenes/ui/language_selector.gd:21)
+         [2] _choose (res://scenes/tests/core/localization_smoke.gd:162)
+         [3] _run (res://scenes/tests/core/localization_smoke.gd:111)
+WARNING: Could not save the language preference: Can't open file
+     at: push_warning (core/variant/variant_utility.cpp:1033)
+     GDScript backtrace (most recent call first):
+         [0] set_language (res://scripts/localization.gd:27)
+         [1] _select_language (res://scenes/ui/language_selector.gd:21)
+         [2] _choose (res://scenes/tests/core/localization_smoke.gd:162)
+         [3] _run (res://scenes/tests/core/localization_smoke.gd:117)
+ERROR: Both pause-menu switches preserve the floor, player, task, checkpoint, cards and paused clock
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/core/localization_smoke.gd:168)
+       [1] _run (res://scenes/tests/core/localization_smoke.gd:120)

@@ -1,0 +1,14 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+FAIL: Undelivered202 blocks the rear corridor while leaving guard/cabinet reachable
+FAIL: Real2F rear theft gives standby security without switching identity
+FAIL: Real security E pickup reaches ready-to-deliver
+FAIL: Reward disappears while formal cabinet remains
+FAIL: Real stair revisit retains parcel and card without reoffering
+FAIL: Returning with parcel gives202 delivery feedback, not stale201 cleaning text
+FAIL: Known contact explains the actual identity instead of waiting for unimplemented dialogue
+FAIL: Known contact explains the actual identity instead of waiting for unimplemented dialogue
+FAIL: Known contact explains the actual identity instead of waiting for unimplemented dialogue
+TASK_02_MAIN_FLOW: FAIL

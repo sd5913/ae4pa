@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+PASS: F5 D acceptance/HUD/failure/retry, real B/C task loop, timeout/caught rollback, modal ownership and forced-contact preservation.

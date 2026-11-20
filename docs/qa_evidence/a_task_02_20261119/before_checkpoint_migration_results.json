@@ -1,0 +1,345 @@
+{
+  "date": "2026-11-19 Asia/Hong_Kong",
+  "head": "c89c88cfa4fdf07e291ff8b5ce88ea48051a1233",
+  "engine": "4.7.2.stable.official.ed1daf0bf",
+  "scope": "task02 F5 integration plus affected201/B/C/UI regression; local uncommitted changes",
+  "human_task02_acceptance": "not_performed",
+  "source_sha256": {
+    "project.godot": "dc5a1a7af9ffba8fb708ddd71c8a9be8be7763f75433d2c9ff09a8b837529797",
+    "scripts/game_manager.gd": "f449b73ea654016278ea4bfd7e05a0c42a6c176e58b6cbbeb2aee3b7bc56fe09",
+    "scenes/levels/floor.gd": "083eda534fec6b51d272334bb124c565ac7597caa0683c0172dcd0871c438c9c",
+    "scenes/levels/floor_2.tscn": "ebd0fa51a5827c69f492823ce04c386fba18009690e5cc396804609784ea884a",
+    "scenes/main.gd": "1d9e90a4ae7c217302e12edb2a2f01ed31f46e0a3c7edf73651e8b5e93c8d532",
+    "scenes/task_ui.gd": "277c0c91e0952b9c9c1281496638646d668a364c147be63df419e48ad2dcf1f6",
+    "scenes/task_hud.gd": "76ee8bd8347bdd10ad16bbab0b8844cf6e23a355ab883964615d026a9ed64f01",
+    "scenes/ui/dialogue.gd": "f1c875c81f5c7622fc0ca711432fbaad972a92584f718d11bc3c31899505acc5",
+    "scenes/ui/mission_board.gd": "9e7aada45d58526b9a4b8ab3ef654bc4b12e7e9db500793b2b9d874f8db53f9f",
+    "scenes/tests/core/foundation_smoke.gd": "b42b26958fe9454f85da943552d99ac8e3ca36bf9c3b5ee9289cc9e4bf6b3b44",
+    "scenes/tests/core/task_01_smoke.gd": "8e4217f49142574ffc189dc17c9884754c58314b54718bd2181abe1f3024fccf",
+    "scenes/tests/core/task_01_main_flow_smoke.gd": "331c7ece9c3dc9a9ea40dbc061b6bb03d1730dc3face3ea3e11b10fe858e18c5",
+    "scenes/tests/core/task_checkpoint_smoke.gd": "69ba695e17fb813d0a7f27e0cda7a6ee5ea0b7c53eed821a0e782b8aca69656a",
+    "scenes/tests/core/task_ui_smoke.gd": "538bc846419037430efc2fbb9157b7f7bd0e8e1321ca91f794d2a99414d8664c",
+    "scenes/tests/core/world_interaction_smoke.gd": "67a1d27ce616207ee9196d7f7fa5f5ee1776fa2fc0100b741da13e0bb27a2433",
+    "scenes/tests/core/floor_return_smoke.gd": "516e2096349d3033baa8c9493a03f7b69b26c23d9159c6fa4e78896ada5edc8e",
+    "scenes/tests/core/task_definitions_smoke.gd": "b5554e0da425d51ddbdd67fd57b87a8261ac9af4f69c99fb80eb31806e0179fc",
+    "scenes/tests/core/interaction_allowed_smoke.gd": "52fb956755b5a8317d8938a98279cb813be9743829f4392c8cc880a25b065e60",
+    "scenes/tests/core/notebook_smoke.gd": "c35f6083f25aec68bd2ee9a368d83dd6dffa1ea16aa6a4b8fc83ae22ea121bb5",
+    "scenes/tests/core/task_02_core_smoke.gd": "87bc3bf1946a1c93e9656f5199e6fe8be17adafb4068122cf9bb546d5958703f",
+    "scenes/tests/core/task_02_main_flow_smoke.gd": "336ef92b513bb198b858e6fe8c7e52e5c74f82db847bb3f7aeae6a75d4fdd6f8",
+    "scenes/tests/doors/encounter_flow_smoke.gd": "96eaf61b908fd836d8138942a01f02046e479ab3b41050c0baea8942b4a36d28",
+    "scenes/tests/core/safe_return_smoke.gd": "0e364064b34c07cca3753d0f476ccf71110b993287014888e8dd887a9a225b94",
+    "scenes/tests/staff/staff_core_smoke.tscn": "72c905eebcc92e096fccf7116942f346c0ae42537f4f5f477e9f571cabb77a7a",
+    "scenes/tests/staff/work_items_smoke.tscn": "c90695e973c80d0b7974d9dd8fb071d9e693d211fa830acd7c789aa68007554e",
+    "scenes/tests/staff/cleaner_v4_smoke.tscn": "13c4bd35860b8d7a6d21f3240e9cdc8114f6c10986a05bedfc1d91b099796968"
+  },
+  "total": 17,
+  "passed": 16,
+  "tests": [
+    {
+      "test": "core/foundation_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/foundation_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-foundation_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 3.86,
+      "errors": [],
+      "log": "foundation_smoke.log"
+    },
+    {
+      "test": "core/task_01_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_01_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-task_01_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 0.14,
+      "errors": [],
+      "log": "task_01_smoke.log"
+    },
+    {
+      "test": "core/task_01_main_flow_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_01_main_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-task_01_main_flow_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 6.53,
+      "errors": [],
+      "log": "task_01_main_flow_smoke.log"
+    },
+    {
+      "test": "core/task_checkpoint_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_checkpoint_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-task_checkpoint_smoke.log"
+      ],
+      "exit_code": 1,
+      "result": "FAIL",
+      "elapsed_seconds": 15.79,
+      "errors": [
+        "FAIL: After retries, forced encounter is registered without rolling back delivery"
+      ],
+      "log": "task_checkpoint_smoke.log"
+    },
+    {
+      "test": "core/task_ui_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_ui_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-task_ui_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 17.73,
+      "errors": [],
+      "log": "task_ui_smoke.log"
+    },
+    {
+      "test": "core/world_interaction_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/world_interaction_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-world_interaction_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 10.89,
+      "errors": [],
+      "log": "world_interaction_smoke.log"
+    },
+    {
+      "test": "core/floor_return_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/floor_return_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-floor_return_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 1.49,
+      "errors": [],
+      "log": "floor_return_smoke.log"
+    },
+    {
+      "test": "core/task_definitions_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_definitions_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-task_definitions_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 0.14,
+      "errors": [],
+      "log": "task_definitions_smoke.log"
+    },
+    {
+      "test": "core/interaction_allowed_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/interaction_allowed_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-interaction_allowed_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 0.13,
+      "errors": [],
+      "log": "interaction_allowed_smoke.log"
+    },
+    {
+      "test": "core/notebook_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/notebook_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-notebook_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 0.14,
+      "errors": [],
+      "log": "notebook_smoke.log"
+    },
+    {
+      "test": "core/task_02_core_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_02_core_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-task_02_core_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 0.14,
+      "errors": [],
+      "log": "task_02_core_smoke.log"
+    },
+    {
+      "test": "core/task_02_main_flow_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/task_02_main_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-task_02_main_flow_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 17.56,
+      "errors": [],
+      "log": "task_02_main_flow_smoke.log"
+    },
+    {
+      "test": "doors/encounter_flow_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/doors/encounter_flow_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-encounter_flow_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 1.11,
+      "errors": [],
+      "log": "encounter_flow_smoke.log"
+    },
+    {
+      "test": "core/safe_return_smoke.gd",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "--script",
+        "res://scenes/tests/core/safe_return_smoke.gd",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-safe_return_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 1.7,
+      "errors": [],
+      "log": "safe_return_smoke.log"
+    },
+    {
+      "test": "staff/staff_core_smoke.tscn",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "res://scenes/tests/staff/staff_core_smoke.tscn",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-staff_core_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 0.54,
+      "errors": [],
+      "log": "staff_core_smoke.log"
+    },
+    {
+      "test": "staff/work_items_smoke.tscn",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "res://scenes/tests/staff/work_items_smoke.tscn",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-work_items_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 0.45,
+      "errors": [],
+      "log": "work_items_smoke.log"
+    },
+    {
+      "test": "staff/cleaner_v4_smoke.tscn",
+      "command": [
+        "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+        "--headless",
+        "--path",
+        ".",
+        "res://scenes/tests/staff/cleaner_v4_smoke.tscn",
+        "--log-file",
+        "/private/tmp/ae4pa-task02-suite-cleaner_v4_smoke.log"
+      ],
+      "exit_code": 0,
+      "result": "PASS",
+      "elapsed_seconds": 0.43,
+      "errors": [],
+      "log": "cleaner_v4_smoke.log"
+    }
+  ],
+  "sources_unchanged_during_run": true
+}

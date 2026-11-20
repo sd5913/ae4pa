@@ -14,7 +14,7 @@ const TASKS: Dictionary = {
 	"TASK_02_PARCEL": {
 		"name": "遗失的包裹", "location": "2F · 202", "offer_floor": 2, "room_id": "202",
 		"prerequisites": ["TASK_01_CLEAN"], "time_limit": 180.0,
-		"required_card": "SECURITY", "staff_target_id": "STAFF_SECURITY_2F",
+		"required_card": "SECURITY", "staff_target_id": "STAFF_SECURITY_1F",
 		"target_id": "PARCEL_CABINET_2F", "work_type": "PICKUP", "work_floor": 2,
 		"steps": ["GET_SECURITY", "PICKUP_PARCEL", "RETURN_TO_202"],
 		"work_flag": "parcel_collected", "completion_flags": ["parcel_delivered", "passage_202_unlocked"],
@@ -27,7 +27,7 @@ const TASKS: Dictionary = {
 		"target_id": "REGISTER_309", "work_type": "AUTHORIZE", "work_floor": 3,
 		"steps": ["GET_MANAGER", "EQUIP_MANAGER", "AUTHORIZE_309"],
 		"work_flag": "registration_309_approved", "completion_flags": ["registration_309_approved"],
-		"settlement": "AUTHORIZE_PROPOSED", "confirmation_required": ["D-05"],
+		"settlement": "AUTHORIZE", "confirmation_required": [],
 	},
 	"TASK_04_PATROL": {
 		"name": "夜班巡房记录", "location": "4F · 403", "offer_floor": 4, "room_id": "403",

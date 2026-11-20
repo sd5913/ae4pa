@@ -67,10 +67,10 @@ msgid "长鼻客"
 msgstr "Long-Nosed Guest"
 
 msgid "长鼻客开门时会辨识气味。将保洁工作证切为当前身份后再经过。"
-msgstr "The Long-Nosed Guest checks your scent when their door opens. Make the Housekeeping ID active before passing."
+msgstr "The Long-Nosed Guest checks your scent when their door opens. Make the Cleaner ID active before passing."
 
 msgid "所需身份：%s · 接受后限时 %d 秒\n回 1F 取得保洁工作证，再到 2F 清理污渍，最后回 201 交付。"
-msgstr "Required: %s · %d seconds after accepting\nGet the Housekeeping ID on 1F. Clean the stain on 2F, then turn in the task at Room 201."
+msgstr "Required: %s · %d seconds after accepting\nGet the Cleaner ID on 1F. Clean the stain on 2F, then turn in the task at Room 201."
 
 msgid "任务超时"
 msgstr "Time's Up"
@@ -142,10 +142,10 @@ msgid "在 201 接受清洁任务"
 msgstr "Accept the cleaning task at Room 201"
 
 msgid "回 1F 取得保洁工作证"
-msgstr "Get the Housekeeping ID on 1F"
+msgstr "Get the Cleaner ID on 1F"
 
 msgid "使用保洁身份清理 2F 污渍"
-msgstr "Clean the stain on 2F with the Housekeeping ID active"
+msgstr "Clean the stain on 2F with the Cleaner ID active"
 
 msgid "回 201 房门按 E 交付"
 msgstr "Press E at Room 201 to turn in the task"
@@ -259,7 +259,7 @@ msgid "独眼客 EYE 检查时安全；只保护独眼客。"
 msgstr "Protects you during checks by the One-Eyed Guest only."
 
 msgid "CLEANER  /  保洁工作证"
-msgstr "CLEANER / Housekeeping ID"
+msgstr "CLEANER / Cleaner ID"
 
 msgid "长鼻客 NOSE 检查时安全；只保护长鼻客。"
 msgstr "Protects you during checks by the Long-Nosed Guest only."
@@ -283,7 +283,7 @@ msgid "NOSE  /  长鼻客"
 msgstr "NOSE / Long-Nosed Guest"
 
 msgid "游玩中，门 OPEN 且在范围内：当前卡非 CLEANER → WRONG_CARD；用保洁卡或等关门。"
-msgstr "Within range of their open door, use the Housekeeping ID or wait for the door to close."
+msgstr "Within range of their open door, use the Cleaner ID or wait for the door to close."
 
 msgid "HAT  /  礼帽客"
 msgstr "HAT / Top-Hatted Guest"
@@ -331,7 +331,7 @@ msgid "保安工作证"
 msgstr "Security ID"
 
 msgid "保洁工作证"
-msgstr "Housekeeping ID"
+msgstr "Cleaner ID"
 
 msgid "经理工作证"
 msgstr "Manager ID"
@@ -557,7 +557,7 @@ msgid "到右端楼梯按 E 上 2F，再向右找到 201 房门；任务在那�
 msgstr "Press E at the stairs on the right to go to 2F. Keep right to find the task at Room 201."
 
 msgid "接受清理任务并将保洁卡切到当前身份，再在污渍处按住 E 1.5 秒。"
-msgstr "Accept the cleaning task and make the Housekeeping ID active. Hold E at the stain for 1.5 seconds."
+msgstr "Accept the cleaning task and make the Cleaner ID active. Hold E at the stain for 1.5 seconds."
 
 msgid "先接受对应任务；此处不会开始偷窃"
 msgstr "Accept the relevant task before trying to steal an ID here."
@@ -641,7 +641,7 @@ msgid "201 的客人提出清洁任务；请在面板中确认接受，接受后
 msgstr "The guest in Room 201 has a cleaning task. The 210-second timer starts when you accept."
 
 msgid "任务已接受：回 1F 取得保洁工作证，再到 2F 扫帚旁清理，最后回 201 交付。"
-msgstr "Task accepted. Get the Housekeeping ID on 1F, clean by the broom on 2F, then turn in the task at Room 201."
+msgstr "Task accepted. Get the Cleaner ID on 1F, clean by the broom on 2F, then turn in the task at Room 201."
 
 msgid "当前目标：到 1F 前台找经理，靠近后按 E 交谈。"
 msgstr "Objective: Press E near the front desk manager on 1F to talk."
@@ -659,7 +659,7 @@ msgid "当前目标：回 1F，在保洁身后长按 E 取得工作证。"
 msgstr "Objective: Return to 1F. Hold E behind the housekeeper to get their ID."
 
 msgid "当前目标：Q 切到保洁身份，回 2F 污渍处按住 E 1.5 秒清理。"
-msgstr "Objective: Use Q to make the Housekeeping ID active. On 2F, hold E at the stain for 1.5 seconds."
+msgstr "Objective: Use Q to make the Cleaner ID active. On 2F, hold E at the stain for 1.5 seconds."
 
 msgid "当前目标：回 201 房门按 E 交付。"
 msgstr "Objective: Press E at Room 201 to turn in the task."
@@ -749,7 +749,7 @@ msgid "EXIT_FORM"
 msgstr "Exit Form"
 
 msgid "GET_CLEANER"
-msgstr "Get the Housekeeping ID"
+msgstr "Get the Cleaner ID"
 
 msgid "GET_SECURITY"
 msgstr "Get the Security ID"
@@ -784,7 +784,7 @@ msgstr "Return to Room 501"
 # Card IDs retained in the Chinese task panel.
 msgctxt "card requirement"
 msgid "CLEANER"
-msgstr "Housekeeping ID"
+msgstr "Cleaner ID"
 
 msgctxt "card requirement"
 msgid "SECURITY"
@@ -1197,3 +1197,211 @@ msgstr "She also knows who's keeping her there."
 
 msgid "但在找到她以前，我还不能和这里的人翻脸。"
 msgstr "But I can't pick a fight with these people until I've found her."
+
+# A: Room 202 integration and task feedback.
+
+msgid "我是202的住客。清洁工作完成了？我还有一件遗失的包裹。"
+msgstr "I'm the guest in Room 202. Finished cleaning? I have a missing parcel for you to find."
+
+msgid "接受任务后，你有180秒。先返回一楼，在保安身后长按E取得工作证。"
+msgstr "You have 180 seconds after accepting. Return to 1F and hold E behind the guard to take the Security ID."
+
+msgid "按Q把保安证切为当前身份，再到我门前的保管柜按E领取包裹。只放在备用槽不行。"
+msgstr "Press Q to make the Security ID active. Then press E at the cabinet outside my room to collect the parcel. Keeping the ID in the standby slot will not work."
+
+msgid "取到后回202按E交付，我才会开放通往三楼的路。现在请确认是否接受。"
+msgstr "Bring it back to Room 202 and press E to turn it in. Then I will open the way to 3F. Decide whether to accept the task."
+
+msgid "独眼客 · 202"
+msgstr "One-Eyed Guest · 202"
+
+msgid "所需身份：%s · 接受后限时 %d 秒\n返回一楼在保安身后取证 → Q切为当前保安\n返回二楼保管柜按E领取 → 回202交付。"
+msgstr "Required: %s · %d seconds after accepting\nReturn to 1F for the guard's ID → Q to make it active\nReturn to the 2F cabinet → E to collect → Room 202."
+
+msgid "%s / 本次任务"
+msgstr "%s / Current Task"
+
+msgid "在202接受180秒包裹任务"
+msgstr "Accept the 180-second parcel task at Room 202"
+
+msgid "返回一楼，在保安身后长按E取证"
+msgstr "Return to 1F; hold E behind the guard for the ID"
+
+msgid "到保管柜按E领取包裹"
+msgstr "Press E at the cabinet to collect the parcel"
+
+msgid "Q切保安身份，到保管柜按E领取"
+msgstr "Q: Security ID → E: Collect parcel"
+
+msgid "带包裹回202按E交付"
+msgstr "Bring the parcel to Room 202 and press E to turn it in"
+
+msgid "202已交付；二楼右梯可上3F"
+msgstr "Room 202 complete; use the right stairs on 2F to reach 3F"
+
+msgid "回202重新接受；201成果保留"
+msgstr "Accept again at Room 202; Room 201 progress is kept"
+
+msgid "201已完成；向右到202接包裹任务"
+msgstr "Room 201 complete; head right to Room 202 for the parcel task"
+
+msgid "回到202接受前，保留201成果，撤销本任务保安卡与包裹。"
+msgstr "Return to before accepting at Room 202. Keep Room 201 progress; undo the Security ID and parcel gained during this task."
+
+msgid "202包裹任务待接受：一楼保安取证 → Q切保安 → 二楼保管柜领取 → 回202交付。"
+msgstr "Room 202 · Parcel task available. Read the details to accept."
+
+msgid "任务已接受：回一楼在保安身后取证，Q切保安身份，返回二楼保管柜领取，再回202交付。"
+msgstr "Task accepted · Guard's ID → Q: Security → Cabinet → Room 202"
+
+msgid "当前目标：%s"
+msgstr "Current objective: %s"
+
+msgid "在202面板接受包裹任务，接受后开始180秒计时。"
+msgstr "Accept the parcel task at Room 202. The 180-second clock starts when you accept."
+
+msgid "返回一楼，在保安身后长按E取得工作证。"
+msgstr "Return to 1F and hold E behind the guard for the Security ID."
+
+msgid "到保管柜按E领取包裹。"
+msgstr "Press E at the cabinet to collect the parcel."
+
+msgid "Q切到保安身份，再到保管柜按E领取包裹。"
+msgstr "Press Q to make Security active, then press E at the cabinet to collect the parcel."
+
+msgid "带包裹回202按E交付。"
+msgstr "Bring the parcel to Room 202 and press E to turn it in."
+
+msgid "202已交付，可从二楼右梯上3F；当前试玩到三楼入口。"
+msgstr "Room 202 complete. Take the right stairs on 2F to 3F. This demo ends at the 3F entrance."
+
+msgid "重新挑战本任务，回202重新接受；201成果保留。"
+msgstr "Retry and accept the task again at Room 202. Room 201 progress is kept."
+
+msgid "前往202。"
+msgstr "Go to Room 202."
+
+msgid "201已交付；向右到202接包裹任务。"
+msgstr "Room 201 complete. Head right to Room 202 for the parcel task."
+
+msgid "先接受对应任务并切到所需当前身份；清理须长按 E，包裹柜按 E 领取。"
+msgstr "Accept the task and activate the required ID first. Hold E to clean; press E at the cabinet to collect the parcel."
+
+msgid "%s需要当前%s身份；按Q切换到对应工作证后通过。"
+msgstr "Room %s requires the %s ID to be active. Press Q to switch to it before passing."
+
+msgid "%s身份核对通过，可以继续前进。"
+msgstr "Room %s: ID verified. You may continue."
+
+msgid "包裹已领取，在202按E交付。"
+msgstr "Parcel collected. Press E at Room 202 to turn it in."
+
+msgid "202任务进行中：取得保安证，切为当前身份，再去保管柜领取包裹。"
+msgstr "Room 202 task in progress: get the Security ID, make it active, then collect the parcel at the cabinet."
+
+msgid "保管柜 · 当前保安身份 · E领取"
+msgstr "Parcel cabinet · Security ID · E: Collect"
+
+msgid "202包裹交付后开放后段"
+msgstr "Turn in parcel at Room 202 to pass"
+
+# A: Task03 manager approval, confirmed D-05/D-07.
+
+msgid "202已交付；上3F到302接授权任务"
+msgstr "Room 202 complete; go to Room 302 on 3F"
+
+msgid "202已交付；从二楼右梯上3F，到302接受管理授权任务。"
+msgstr "Room 202 complete. Take the right stairs to 3F and accept the approval task at Room 302."
+
+msgid "302管理授权任务待接受：回1F取经理证，装备并切为当前身份，回3F登记台批准。"
+msgstr "Room 302 · Approval task available. Read the details to accept."
+
+msgid "309 · 先取得管理批准"
+msgstr "Room 309 · Manager approval required"
+
+msgid "309 · 取得管理批准后开放"
+msgstr "Room 309 · Requires manager approval"
+
+msgid "309尚未获准；先完成302的管理授权任务。"
+msgstr "Room 309 is not approved. Complete the approval task from Room 302 first."
+
+msgid "309登记台 · 当前经理身份 · E批准"
+msgstr "309 register · Manager ID · E: Approve"
+
+msgid "309登记已批准；任务03完成"
+msgstr "Room 309 approved; Task 03 complete"
+
+msgid "309登记已批准；任务03完成，救援后续尚未开放。"
+msgstr "Room 309 approved; Task 03 complete. The rescue sequence is not available yet."
+
+msgid "309登记已批准；救援后续尚未开放。"
+msgstr "Room 309 approved. The rescue sequence is not available yet."
+
+msgid "3F登记台按E批准309"
+msgstr "3F register · E: Approve Room 309"
+
+msgid "3F登记台按E批准309。"
+msgstr "Press E at the register on 3F to approve Room 309."
+
+msgid "I将经理证放入佩戴槽"
+msgstr "I: Equip the Manager ID in a slot"
+
+msgid "I将经理证放入佩戴槽。"
+msgstr "Press I and equip the Manager ID in a slot."
+
+msgid "Q切为经理，再回3F登记台批准。"
+msgstr "Press Q to make Manager active, then use the register on 3F."
+
+msgid "Q切为经理，回3F登记台批准"
+msgstr "Q: Manager ID → 3F register"
+
+msgid "任务已接受：回1F取经理证，I装备、Q切当前身份，再回3F登记台按E批准309。"
+msgstr "Task accepted · Manager ID on 1F → I: Equip → Q: Activate → 3F register"
+
+msgid "前往3F的302。"
+msgstr "Go to Room 302 on 3F."
+
+msgid "回1F取得经理证，装备并切为当前身份，再到3F登记台按E批准309。"
+msgstr "Get the Manager ID on 1F, equip and activate it, then press E at the register on 3F."
+
+msgid "回1F经理身后长按E取得工作证。"
+msgstr "Hold E behind the manager on 1F to take the Manager ID."
+
+msgid "回1F经理身后长按E取证"
+msgstr "Hold E behind the manager on 1F"
+
+msgid "回302重新接受；201／202成果保留"
+msgstr "Retry at Room 302; keep Rooms 201/202"
+
+msgid "回302重新接受；201／202成果保留。"
+msgstr "Accept again at Room 302. Progress in Rooms 201 and 202 is kept."
+
+msgid "回三楼，在309附近登记台按E批准；批准即完成任务并停表，不用回302交付。"
+msgstr "Return to the register near Room 309 on 3F and press E to approve. Approval completes the task and stops the clock. No return to Room 302 is needed."
+
+msgid "回到302接受前，保留201／202成果，撤销本任务经理卡与批准。"
+msgstr "Return to before accepting at Room 302. Keep Rooms 201/202 progress; undo the Manager ID and approval gained during this task."
+
+msgid "在302接受240秒授权任务"
+msgstr "Accept the 240-second task at Room 302"
+
+msgid "在302接受240秒授权任务。"
+msgstr "Accept the 240-second approval task at Room 302."
+
+msgid "我是302的住客。309的登记还没有得到管理批准。"
+msgstr "I'm the guest in Room 302. Room 309 still needs the manager's approval."
+
+msgid "所需身份：%s · 接受后限时 %d 秒\n回1F经理身后取证 → I装备／Q切当前经理\n回3F登记台按E批准即完成，不需回302交付。"
+msgstr "Required: %s · %d seconds after accepting\nTake the manager's ID on 1F → I: Equip / Q: Activate\nE at the 3F register completes the task. No return to Room 302 needed."
+
+msgid "打开背包，把经理证放进一个佩戴槽，再按Q切为当前经理身份。"
+msgstr "Open the bag and put the Manager ID in an equipment slot. Then press Q to make it your active ID."
+
+msgid "接受后有240秒。先回一楼，在经理身后长按E取得经理工作证。"
+msgstr "You have 240 seconds after accepting. Return to 1F and hold E behind the manager to take the Manager ID."
+
+msgid "礼帽客 · 302"
+msgstr "Top-Hatted Guest · 302"
+
+msgid "帕希卡"
+msgstr "Persica"

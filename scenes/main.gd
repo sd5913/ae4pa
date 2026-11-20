@@ -2,6 +2,8 @@ extends Node2D
 ## A assembles D dialogue/task UI with real B/C gameplay and checkpoint recovery.
 
 const STORY_MODAL: String = "STORY_DIALOGUE"
+const TASK_02_INTRO: String = "TASK_02_INTRO"
+const TASK_03_INTRO: String = "TASK_03_INTRO"
 var _active_dialogue_id: String = ""
 var _notice_template := ""
 var _notice_arguments: Array = []
@@ -16,6 +18,9 @@ var _notice_arguments: Array = []
 
 
 func _ready() -> void:
+	var reunion := preload("res://scenes/room309_reunion.gd").new()
+	reunion.name = "Room309Reunion"
+	add_child(reunion)
 	GameManager.state_changed.connect(_on_state_changed)
 	CardManager.cards_changed.connect(_on_cards_changed)
 	GameManager.floor_changed.connect(_on_floor_changed)
@@ -45,6 +50,7 @@ func _ready() -> void:
 func _notification(what: int) -> void:
 	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
 		_refresh_notice()
+		_refresh_objective()
 		_refresh_state_label(GameManager.game_state)
 
 
@@ -102,7 +108,26 @@ func _show_story_dialogue(dialogue_id: String) -> void:
 	$DeveloperOverlay.hide()
 	$TaskLayer.hide()
 	GameManager.set_modal_open(STORY_MODAL, true)
-	dialogue.show_dialogue(dialogue_id)
+	if dialogue_id == TASK_02_INTRO:
+		# Same A completion callback and offer contract; only the display is D-owned.
+		$TaskLayer.show()
+		$TaskLayer/HUD.hide()
+		if not $TaskLayer/MonsterDialogue.show_dialogue("EYE:INTRO"):
+			_active_dialogue_id = ""
+			GameManager.set_modal_open(STORY_MODAL, false)
+	elif dialogue_id == TASK_03_INTRO:
+		var lines: Array[String] = [
+			"我是302的住客。309的登记还没有得到管理批准。",
+			"接受后有240秒。先回一楼，在经理身后长按E取得经理工作证。",
+			"打开背包，把经理证放进一个佩戴槽，再按Q切为当前经理身份。",
+			"回三楼，在309附近登记台按E批准；批准即完成任务并停表，不用回302交付。",
+		]
+		if not dialogue.show_task_dialogue(dialogue_id, "礼帽客 · 302", lines):
+			_active_dialogue_id = ""
+			GameManager.set_modal_open(STORY_MODAL, false)
+			$TaskLayer.show()
+	else:
+		dialogue.show_dialogue(dialogue_id)
 
 
 func _on_dialogue_finished(dialogue_id: String) -> void:
@@ -114,6 +139,10 @@ func _on_dialogue_finished(dialogue_id: String) -> void:
 	if dialogue_id == "V4_MANAGER_TALK":
 		GameManager.complete_manager_intro()
 	GameManager.set_modal_open(STORY_MODAL, false)
+	if dialogue_id in [TASK_02_INTRO, TASK_03_INTRO]:
+		GameManager.offer_task(GameManager.TASK_02_ID if dialogue_id == TASK_02_INTRO else GameManager.TASK_03_ID)
+		_refresh_objective()
+		return
 	_show_notice("经理交谈完成 · 从右端楼梯上 2F，向右找到 201 房门接任务" if dialogue_id == "V4_MANAGER_TALK" else "到前台找经理，靠近后按 E 交谈")
 	_refresh_objective()
 
@@ -154,6 +183,7 @@ func _on_floor_changed(_number: int) -> void:
 	floor_node.formatted_notice_requested.connect(_show_notice)
 	floor_node.manager_talk_requested.connect(_on_manager_talk_requested)
 	floor_node.task_offer_requested.connect($TaskLayer.open_offer)
+	floor_node.task_dialogue_requested.connect(_on_task_dialogue_requested)
 	floor_node.floor_selection_requested.connect($TaskLayer.open_floor_selection)
 	$TaskLayer.bind_interaction_floor(floor_node)
 	_show_notice("E 交谈／楼梯／交付；工作处长按 E，Q 切换当前身份。")
@@ -164,15 +194,28 @@ func _on_floor_changed(_number: int) -> void:
 func _on_task_offered(task_id: String) -> void:
 	if task_id == GameManager.TASK_01_ID:
 		_show_notice("201 的客人提出清洁任务；请在面板中确认接受，接受后开始 210 秒计时。")
+	elif task_id == GameManager.TASK_03_ID:
+		_show_notice("302管理授权任务待接受：回1F取经理证，装备并切为当前身份，回3F登记台批准。")
+	elif task_id == GameManager.TASK_02_ID:
+		_show_notice("202包裹任务待接受：一楼保安取证 → Q切保安 → 二楼保管柜领取 → 回202交付。")
 	_refresh_objective()
 
 
 func _on_task_accepted(task_id: String) -> void:
 	if task_id == GameManager.current_task_id and GameManager.task_status == "ACTIVE":
-		_show_notice("任务已接受：回 1F 取得保洁工作证，再到 2F 扫帚旁清理，最后回 201 交付。")
+		if task_id == GameManager.TASK_03_ID:
+			_show_notice("任务已接受：回1F取经理证，I装备、Q切当前身份，再回3F登记台按E批准309。")
+			return
+		_show_notice("任务已接受：回一楼在保安身后取证，Q切保安身份，返回二楼保管柜领取，再回202交付。" if task_id == GameManager.TASK_02_ID else "任务已接受：回 1F 取得保洁工作证，再到 2F 扫帚旁清理，最后回 201 交付。")
 
 
 func _refresh_objective() -> void:
+	if GameManager.current_task_id == GameManager.TASK_03_ID:
+		objective_label.text = tr("当前目标：%s") % tr(_task_03_objective())
+		return
+	if GameManager.current_task_id == GameManager.TASK_02_ID:
+		objective_label.text = tr("当前目标：%s") % tr(_task_02_objective())
+		return
 	if not GameManager.has_completed_manager_intro():
 		objective_label.text = "当前目标：到 1F 前台找经理，靠近后按 E 交谈。"
 		return
@@ -186,9 +229,41 @@ func _refresh_objective() -> void:
 		"READY_TO_SUBMIT":
 			objective_label.text = "当前目标：回 201 房门按 E 交付。"
 		"COMPLETED":
-			objective_label.text = "任务 01 已交付；任务 02 尚未开放。"
+			objective_label.text = "201已交付；向右到202接包裹任务。"
 		"FAILED":
 			objective_label.text = "任务失败；点击“重新挑战本任务”，回 201 重新接受。"
+
+
+func _task_02_objective() -> String:
+	match GameManager.task_status:
+		"AVAILABLE": return "在202面板接受包裹任务，接受后开始180秒计时。"
+		"ACTIVE":
+			if not CardManager.has_card("SECURITY"):
+				return "返回一楼，在保安身后长按E取得工作证。"
+			return "到保管柜按E领取包裹。" if CardManager.active_card == "SECURITY" else "Q切到保安身份，再到保管柜按E领取包裹。"
+		"READY_TO_SUBMIT": return "带包裹回202按E交付。"
+		"COMPLETED": return "202已交付；从二楼右梯上3F，到302接受管理授权任务。"
+		"FAILED": return "重新挑战本任务，回202重新接受；201成果保留。"
+	return "前往202。"
+
+
+func _task_03_objective() -> String:
+	match GameManager.task_status:
+		"AVAILABLE": return "在302接受240秒授权任务。"
+		"ACTIVE":
+			if not CardManager.has_card("MANAGER"): return "回1F经理身后长按E取得工作证。"
+			if not CardManager.get_equipped_cards().has("MANAGER"): return "I将经理证放入佩戴槽。"
+			return "3F登记台按E批准309。" if CardManager.active_card == "MANAGER" else "Q切为经理，再回3F登记台批准。"
+		"COMPLETED": return "帕希卡已同行，前往五楼消防出口。" if GameManager.has_friend else "309登记已批准；切为保洁身份进入309，寻找帕希卡。"
+		"FAILED": return "回302重新接受；201／202成果保留。"
+	return "前往3F的302。"
+
+
+func _on_task_dialogue_requested(task_id: String) -> void:
+	if task_id == GameManager.TASK_02_ID:
+		_show_story_dialogue(TASK_02_INTRO)
+	elif task_id == GameManager.TASK_03_ID:
+		_show_story_dialogue(TASK_03_INTRO)
 
 
 func _on_manager_talk_requested() -> void:

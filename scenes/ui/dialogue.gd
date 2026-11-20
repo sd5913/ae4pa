@@ -113,6 +113,8 @@ func _ready() -> void:
 	visible = false
 	_skip_transitions = "--ui-smoke" in OS.get_cmdline_user_args()
 	_continue_button.grab_focus()
+	resized.connect(_fit_dialogue_text.call_deferred)
+	_line.resized.connect(_fit_dialogue_text.call_deferred)
 
 
 func _notification(what: int) -> void:
@@ -124,6 +126,20 @@ func _notification(what: int) -> void:
 		_scroll_sms_to_message(_sms_history.get_child(-1))
 	if _cue.visible and not _beats.is_empty():
 		_refresh_stage_cue()
+	_fit_dialogue_text.call_deferred()
+
+
+func _fit_dialogue_text() -> void:
+	if not is_node_ready() or not _line.visible or not _frame.visible:
+		return
+	# Grow upward for translated paragraphs, leaving the fixed action row clear.
+	var text_bottom := _continue_button.position.y - 16.0
+	var text_top := minf(size.y * _line.anchor_top, text_bottom - _line.get_minimum_size().y)
+	_line.offset_top = text_top - size.y * _line.anchor_top
+	_line.offset_bottom = text_bottom - size.y * _line.anchor_bottom
+	_speaker.offset_top = text_top - 60.0 - size.y * _speaker.anchor_top
+	_speaker.offset_bottom = text_top - 8.0 - size.y * _speaker.anchor_bottom
+	_frame.offset_top = text_top - 32.0 - size.y * _frame.anchor_top
 
 
 func _refresh_stage_cue() -> void:
@@ -162,7 +178,7 @@ func show_dialogue(dialogue_id: String) -> void:
 			_show_line()
 		"RESCUE_309":
 			_lines = RESCUE_309_LINES.duplicate()
-			_speaker.text = "闺蜜"
+			_speaker.text = tr("帕希卡")
 			_set_scene("lobby", false)
 			_show_line()
 		V4_INTRO_ID:
@@ -192,6 +208,25 @@ func show_dialogue(dialogue_id: String) -> void:
 	_continue_button.text = "继续"
 	show()
 	_continue_button.grab_focus()
+
+
+## Shared task adapter: A owns when to offer/start a task; D only presents these lines.
+func show_task_dialogue(dialogue_id: String, speaker: String, lines: Array[String]) -> bool:
+	if lines.is_empty() or not _dialogue_id.is_empty():
+		return false
+	_finish_phone_animation()
+	_dialogue_id = dialogue_id
+	_line_index = 0
+	_lines.assign(lines)
+	_beats.clear()
+	_speaker.text = speaker
+	_set_scene("lobby", false)
+	_show_line()
+	_skip_button.hide()
+	_continue_button.text = "继续"
+	show()
+	_continue_button.grab_focus()
+	return true
 
 
 func has_completed_intro() -> bool:
@@ -266,6 +301,7 @@ func _show_line() -> void:
 	else:
 		_portrait.hide()
 	_story_title.hide()
+	_fit_dialogue_text.call_deferred()
 
 
 func _show_story_beat() -> void:
@@ -275,7 +311,7 @@ func _show_story_beat() -> void:
 	var mode: String = beat.mode
 	_speaker.visible = mode == "dialogue"
 	_line.visible = mode == "dialogue"
-	_speaker.text = "安" if beat.speaker == "女主" else beat.speaker
+	_speaker.text = "安" if beat.speaker == "女主" else tr("帕希卡") if beat.speaker in ["闺蜜", "帕希卡", "Persica", "friend"] else beat.speaker
 	_line.text = beat.text
 	_cue.hide()
 	_story_title.hide()
@@ -301,6 +337,7 @@ func _show_story_beat() -> void:
 		_sms_panel.hide()
 		_frame.show()
 		_display_portrait(str(beat.speaker), str(beat.expression))
+		_fit_dialogue_text.call_deferred()
 
 
 func _animate_phone_notification() -> void:
@@ -330,7 +367,7 @@ func _finish_phone_animation() -> void:
 
 
 func _add_sms_message(speaker: String, text: String) -> void:
-	var is_friend := speaker == "闺蜜"
+	var is_friend := speaker in ["闺蜜", "帕希卡", "Persica", "friend"]
 	var row := HBoxContainer.new()
 	row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -391,7 +428,7 @@ func _scroll_sms_to_message(row: Control) -> void:
 
 
 func _display_portrait(speaker: String, expression: String) -> void:
-	if speaker == "闺蜜":
+	if speaker in ["闺蜜", "帕希卡", "Persica", "friend"]:
 		var index := int(FACE_INDEX.get(expression, 0))
 		_portrait.texture = _atlas_cell(FRIEND_SHEET, index)
 	else:

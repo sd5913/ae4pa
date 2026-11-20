@@ -1,0 +1,3616 @@
+{
+  "bag": [
+    {
+      "lines": 1,
+      "minimum": [
+        40.0,
+        17.0
+      ],
+      "path": "World/Floor2/StaffRoot/SecuritySlot/Staff/BehaviorLabel",
+      "rect": [
+        382.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "WATCH",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor2/StaffRoot/SecuritySlot/Caption",
+      "rect": [
+        260.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Security Guard · ID already collected",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        324.0,
+        27.0
+      ],
+      "path": "World/Floor2/Interactions/ParcelCabinet2F/Hint",
+      "rect": [
+        870.0,
+        478.0,
+        324.0,
+        34.0
+      ],
+      "text": "Parcel cabinet · Security ID · E: Collect",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        267.0,
+        24.0
+      ],
+      "path": "World/Floor2/Interactions/Task02Barrier/Hint",
+      "rect": [
+        1370.0,
+        450.0,
+        290.0,
+        45.0
+      ],
+      "text": "Turn in parcel at Room 202 to pass",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "Background/Fill",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        122.0
+      ]
+    },
+    {
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin/Info",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        122.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin/Info/Notice",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        27.0
+      ],
+      "text": "Task accepted · Guard's ID → Q: Security → Cabinet → Room 202",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        409.0,
+        260.0
+      ],
+      "path": "TaskLayer/HUD",
+      "rect": [
+        814.0,
+        24.0,
+        442.0,
+        260.0
+      ]
+    },
+    {
+      "minimum": [
+        409.0,
+        260.0
+      ],
+      "path": "TaskLayer/HUD/Stack",
+      "rect": [
+        814.0,
+        24.0,
+        442.0,
+        260.0
+      ]
+    },
+    {
+      "minimum": [
+        409.0,
+        116.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout",
+      "rect": [
+        814.0,
+        24.0,
+        442.0,
+        116.0
+      ]
+    },
+    {
+      "minimum": [
+        187.0,
+        95.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/Identity",
+      "rect": [
+        814.0,
+        24.0,
+        220.0,
+        116.0
+      ]
+    },
+    {
+      "minimum": [
+        81.0,
+        65.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/Identity/Details",
+      "rect": [
+        867.0,
+        39.0,
+        114.0,
+        86.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        28.0,
+        37.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/Identity/Details/FloorValue",
+      "rect": [
+        867.0,
+        49.0,
+        114.0,
+        37.0
+      ],
+      "text": "2F",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        81.0,
+        24.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/Identity/Details/ActiveCardValue",
+      "rect": [
+        867.0,
+        90.0,
+        114.0,
+        24.0
+      ],
+      "text": "Cleaner ID",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        106.0,
+        116.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA",
+      "rect": [
+        1039.0,
+        24.0,
+        106.0,
+        116.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA/SlotAFrame",
+      "rect": [
+        1059.0,
+        24.0,
+        66.0,
+        94.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        8.0,
+        18.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA/SlotALetter",
+      "rect": [
+        1039.0,
+        37.0,
+        106.0,
+        18.0
+      ],
+      "text": "A",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA/SlotAArt",
+      "rect": [
+        1067.0,
+        51.0,
+        50.0,
+        42.0
+      ]
+    },
+    {
+      "lines": 2,
+      "minimum": [
+        1.0,
+        43.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA/SlotAValue",
+      "rect": [
+        1039.0,
+        92.0,
+        106.0,
+        48.0
+      ],
+      "text": "Cleaner ID · Active",
+      "visible_lines": 2
+    },
+    {
+      "minimum": [
+        106.0,
+        116.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB",
+      "rect": [
+        1150.0,
+        24.0,
+        106.0,
+        116.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB/SlotBFrame",
+      "rect": [
+        1170.0,
+        24.0,
+        66.0,
+        94.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        8.0,
+        18.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB/SlotBLetter",
+      "rect": [
+        1150.0,
+        37.0,
+        106.0,
+        18.0
+      ],
+      "text": "B",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB/SlotBArt",
+      "rect": [
+        1178.0,
+        51.0,
+        50.0,
+        42.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        20.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB/SlotBValue",
+      "rect": [
+        1150.0,
+        92.0,
+        106.0,
+        48.0
+      ],
+      "text": "Security ID",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        364.0,
+        136.0
+      ],
+      "path": "TaskLayer/HUD/Stack/TaskPlate",
+      "rect": [
+        814.0,
+        148.0,
+        442.0,
+        136.0
+      ]
+    },
+    {
+      "minimum": [
+        208.0,
+        80.0
+      ],
+      "path": "TaskLayer/HUD/Stack/TaskPlate/TaskReadout",
+      "rect": [
+        894.0,
+        176.0,
+        286.0,
+        80.0
+      ]
+    },
+    {
+      "lines": 2,
+      "minimum": [
+        1.0,
+        53.0
+      ],
+      "path": "TaskLayer/HUD/Stack/TaskPlate/TaskReadout/Objective",
+      "rect": [
+        894.0,
+        176.0,
+        286.0,
+        53.0
+      ],
+      "text": "The Missing Parcel · 2F · 202\nQ: Security ID → E: Collect parcel",
+      "visible_lines": 2
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        208.0,
+        24.0
+      ],
+      "path": "TaskLayer/HUD/Stack/TaskPlate/TaskReadout/RemainingTime",
+      "rect": [
+        894.0,
+        232.0,
+        286.0,
+        24.0
+      ],
+      "text": "Time left: 3:00 · In progress",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/Bag",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/Bag/Shade",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/Bag/Case",
+      "rect": [
+        76.0,
+        50.0,
+        1128.0,
+        578.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/Bag/Case/OwnedCards",
+      "rect": [
+        176.0,
+        261.0,
+        537.0,
+        218.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        169.0,
+        35.0
+      ],
+      "path": "MenuLayer/Bag/Case/OwnedHeading",
+      "rect": [
+        156.0,
+        155.0,
+        535.0,
+        68.0
+      ],
+      "text": "Collected  3 / 3",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        171.0,
+        35.0
+      ],
+      "path": "MenuLayer/Bag/Case/EquippedHeading",
+      "rect": [
+        771.0,
+        155.0,
+        350.0,
+        68.0
+      ],
+      "text": "Equipped  2 / 2",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/Bag/Case/SlotAArt",
+      "rect": [
+        808.0,
+        273.0,
+        108.0,
+        108.0
+      ]
+    },
+    {
+      "lines": 2,
+      "minimum": [
+        1.0,
+        47.0
+      ],
+      "path": "MenuLayer/Bag/Case/SlotAValue",
+      "rect": [
+        787.0,
+        385.0,
+        150.0,
+        47.0
+      ],
+      "text": "Cleaner ID\nActive",
+      "visible_lines": 2
+    },
+    {
+      "minimum": [
+        119.0,
+        32.0
+      ],
+      "path": "MenuLayer/Bag/Case/EquipSlotA",
+      "rect": [
+        797.0,
+        431.0,
+        130.0,
+        39.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/Bag/Case/SlotBArt",
+      "rect": [
+        979.0,
+        273.0,
+        108.0,
+        108.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        22.0
+      ],
+      "path": "MenuLayer/Bag/Case/SlotBValue",
+      "rect": [
+        958.0,
+        385.0,
+        150.0,
+        44.0
+      ],
+      "text": "Security ID",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        119.0,
+        32.0
+      ],
+      "path": "MenuLayer/Bag/Case/EquipSlotB",
+      "rect": [
+        968.0,
+        431.0,
+        130.0,
+        39.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        373.0,
+        24.0
+      ],
+      "path": "MenuLayer/Bag/Case/Status",
+      "rect": [
+        161.0,
+        517.0,
+        526.0,
+        43.0
+      ],
+      "text": "Select a staff ID, then choose an equipment slot.",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        100.0,
+        25.0
+      ],
+      "path": "MenuLayer/Bag/Case/CloseButton",
+      "rect": [
+        858.0,
+        520.0,
+        178.0,
+        40.0
+      ]
+    }
+  ],
+  "dialogue202": [
+    {
+      "lines": 1,
+      "minimum": [
+        40.0,
+        17.0
+      ],
+      "path": "World/Floor2/StaffRoot/SecuritySlot/Staff/BehaviorLabel",
+      "rect": [
+        382.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "WATCH",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor2/StaffRoot/SecuritySlot/Caption",
+      "rect": [
+        260.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Security Guard · Facing Right →",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        324.0,
+        27.0
+      ],
+      "path": "World/Floor2/Interactions/ParcelCabinet2F/Hint",
+      "rect": [
+        870.0,
+        478.0,
+        324.0,
+        34.0
+      ],
+      "text": "Parcel cabinet · Security ID · E: Collect",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        267.0,
+        24.0
+      ],
+      "path": "World/Floor2/Interactions/Task02Barrier/Hint",
+      "rect": [
+        1370.0,
+        450.0,
+        290.0,
+        45.0
+      ],
+      "text": "Turn in parcel at Room 202 to pass",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "Background/Fill",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "StoryLayer/Dialogue",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "StoryLayer/Dialogue/Background",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "StoryLayer/Dialogue/Tint",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "StoryLayer/Dialogue/DialogueFrame",
+      "rect": [
+        236.800003051758,
+        478.919982910156,
+        928.000061035156,
+        205.080017089844
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        228.0,
+        37.0
+      ],
+      "path": "StoryLayer/Dialogue/Speaker",
+      "rect": [
+        435.200012207031,
+        450.919982910156,
+        228.0,
+        51.9999694824219
+      ],
+      "text": "One-Eyed Guest · 202",
+      "visible_lines": 1
+    },
+    {
+      "lines": 3,
+      "minimum": [
+        1.0,
+        111.0
+      ],
+      "path": "StoryLayer/Dialogue/Line",
+      "rect": [
+        441.600006103516,
+        510.919952392578,
+        679.680053710938,
+        111.000030517578
+      ],
+      "text": "Press Q to make the Security ID active. Then press E at the cabinet outside my room to collect the parcel. Keeping the ID in the standby slot will not work.",
+      "visible_lines": 3
+    },
+    {
+      "minimum": [
+        97.0,
+        33.0
+      ],
+      "path": "StoryLayer/Dialogue/ContinueButton",
+      "rect": [
+        985.599975585938,
+        637.919982910156,
+        153.599975585938,
+        38.1600341796875
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "StoryLayer/Dialogue/Fade",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    }
+  ],
+  "failure202": [
+    {
+      "lines": 1,
+      "minimum": [
+        40.0,
+        17.0
+      ],
+      "path": "World/Floor2/StaffRoot/SecuritySlot/Staff/BehaviorLabel",
+      "rect": [
+        382.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "WATCH",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor2/StaffRoot/SecuritySlot/Caption",
+      "rect": [
+        260.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Security Guard · ID already collected",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        324.0,
+        27.0
+      ],
+      "path": "World/Floor2/Interactions/ParcelCabinet2F/Hint",
+      "rect": [
+        870.0,
+        478.0,
+        324.0,
+        34.0
+      ],
+      "text": "Parcel cabinet · Security ID · E: Collect",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        267.0,
+        24.0
+      ],
+      "path": "World/Floor2/Interactions/Task02Barrier/Hint",
+      "rect": [
+        1370.0,
+        450.0,
+        290.0,
+        45.0
+      ],
+      "text": "Turn in parcel at Room 202 to pass",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "Background/Fill",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        122.0
+      ]
+    },
+    {
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin/Info",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        122.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin/Info/Notice",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        27.0
+      ],
+      "text": "Failed: Task timed out",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/Failure",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/Failure/Shade",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        520.0,
+        370.0
+      ],
+      "path": "TaskLayer/Failure/Center",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        520.0,
+        370.0
+      ],
+      "path": "TaskLayer/Failure/Center/Panel",
+      "rect": [
+        380.0,
+        175.0,
+        520.0,
+        370.0
+      ]
+    },
+    {
+      "minimum": [
+        175.0,
+        314.0
+      ],
+      "path": "TaskLayer/Failure/Center/Panel/Content",
+      "rect": [
+        416.0,
+        203.0,
+        448.0,
+        314.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        112.0,
+        27.0
+      ],
+      "path": "TaskLayer/Failure/Center/Panel/Content/Eyebrow",
+      "rect": [
+        416.0,
+        203.0,
+        448.0,
+        27.0
+      ],
+      "text": "Current Task",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        175.0,
+        54.0
+      ],
+      "path": "TaskLayer/Failure/Center/Panel/Content/Title",
+      "rect": [
+        416.0,
+        246.0,
+        448.0,
+        54.0
+      ],
+      "text": "Time's Up",
+      "visible_lines": 1
+    },
+    {
+      "lines": 2,
+      "minimum": [
+        1.0,
+        73.0
+      ],
+      "path": "TaskLayer/Failure/Center/Panel/Content/Reason",
+      "rect": [
+        416.0,
+        316.0,
+        448.0,
+        73.0
+      ],
+      "text": "Time ran out. Retry from before you accepted the task.",
+      "visible_lines": 2
+    },
+    {
+      "minimum": [
+        111.0,
+        48.0
+      ],
+      "path": "TaskLayer/Failure/Center/Panel/Content/RetryButton",
+      "rect": [
+        416.0,
+        405.0,
+        448.0,
+        48.0
+      ]
+    },
+    {
+      "minimum": [
+        168.0,
+        48.0
+      ],
+      "path": "TaskLayer/Failure/Center/Panel/Content/MenuButton",
+      "rect": [
+        416.0,
+        469.0,
+        448.0,
+        48.0
+      ]
+    }
+  ],
+  "help": [
+    {
+      "lines": 1,
+      "minimum": [
+        40.0,
+        17.0
+      ],
+      "path": "World/Floor1/StaffRoot/SecuritySlot/Staff/BehaviorLabel",
+      "rect": [
+        362.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "WATCH",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor1/StaffRoot/SecuritySlot/Caption",
+      "rect": [
+        240.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Security Guard · Facing Right →",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        55.0,
+        17.0
+      ],
+      "path": "World/Floor1/StaffRoot/CleanerSlot/Staff/BehaviorLabel",
+      "rect": [
+        2632.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "CLEANING",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor1/StaffRoot/CleanerSlot/Caption",
+      "rect": [
+        2510.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Housekeeper · Facing Right →",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        40.0,
+        17.0
+      ],
+      "path": "World/Floor1/StaffRoot/ManagerSlot/Staff/BehaviorLabel",
+      "rect": [
+        1222.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "WATCH",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor1/StaffRoot/ManagerSlot/Caption",
+      "rect": [
+        1100.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Manager · Facing Right →",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor1/Interactions/ReturnPoint/Hint",
+      "rect": [
+        92.0,
+        590.0,
+        320.0,
+        70.0
+      ],
+      "text": "",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        341.0,
+        27.0
+      ],
+      "path": "World/Floor1/Interactions/ExitPoint/Hint",
+      "rect": [
+        3240.0,
+        590.0,
+        341.0,
+        70.0
+      ],
+      "text": "Talk to the manager before going to 2F.",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        435.0,
+        27.0
+      ],
+      "path": "World/Floor1/EntranceLabel",
+      "rect": [
+        64.0,
+        595.0,
+        536.0,
+        45.0
+      ],
+      "text": "Floor Entrance · Move with A / D or the arrow keys",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "Background/Fill",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/MainMenu",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/MainMenu/Cover",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/MainMenu/Title",
+      "rect": [
+        217.600006103516,
+        57.5999984741211,
+        563.200073242188,
+        201.600006103516
+      ]
+    },
+    {
+      "lines": 2,
+      "minimum": [
+        394.0,
+        133.0
+      ],
+      "path": "MenuLayer/MainMenu/Title/@Label@53",
+      "rect": [
+        217.600006103516,
+        57.5999984741211,
+        563.200073242188,
+        201.600006103516
+      ],
+      "text": "Monster Staff\nAccess",
+      "visible_lines": 2
+    },
+    {
+      "minimum": [
+        128.0,
+        156.0
+      ],
+      "path": "MenuLayer/MainMenu/Actions",
+      "rect": [
+        262.399993896484,
+        369.600036621094,
+        236.799987792969,
+        156.0
+      ]
+    },
+    {
+      "minimum": [
+        120.0,
+        48.0
+      ],
+      "path": "MenuLayer/MainMenu/Actions/StartButton",
+      "rect": [
+        262.399993896484,
+        369.600036621094,
+        236.0,
+        48.0
+      ]
+    },
+    {
+      "minimum": [
+        126.0,
+        48.0
+      ],
+      "path": "MenuLayer/MainMenu/Actions/HelpButton",
+      "rect": [
+        262.399993896484,
+        427.600036621094,
+        236.0,
+        48.0
+      ]
+    },
+    {
+      "minimum": [
+        128.0,
+        40.0
+      ],
+      "path": "MenuLayer/MainMenu/Actions/LanguageSelector",
+      "rect": [
+        262.399993896484,
+        485.600036621094,
+        236.0,
+        40.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/Notebook",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/Notebook/Shade",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/Notebook/BookBackdrop",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        900.0,
+        590.0
+      ],
+      "path": "MenuLayer/Notebook/Center",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        900.0,
+        590.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel",
+      "rect": [
+        190.0,
+        65.0,
+        900.0,
+        590.0
+      ]
+    },
+    {
+      "minimum": [
+        435.0,
+        534.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content",
+      "rect": [
+        226.0,
+        93.0,
+        828.0,
+        534.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        280.0,
+        25.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/Eyebrow",
+      "rect": [
+        226.0,
+        93.0,
+        828.0,
+        25.0
+      ],
+      "text": "Night Shift Hotel / Staff Handbook",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        435.0,
+        48.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/Title",
+      "rect": [
+        226.0,
+        128.0,
+        828.0,
+        48.0
+      ],
+      "text": "Controls and Monster Guide",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        230.0,
+        33.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/PageTitle",
+      "rect": [
+        226.0,
+        186.0,
+        828.0,
+        33.0
+      ],
+      "text": "Controls and Staff IDs",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        188.0,
+        60.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/@HBoxContainer@54",
+      "rect": [
+        226.0,
+        229.0,
+        828.0,
+        60.0
+      ]
+    },
+    {
+      "minimum": [
+        60.0,
+        60.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/@HBoxContainer@54/@TextureRect@55",
+      "rect": [
+        546.0,
+        229.0,
+        60.0,
+        60.0
+      ]
+    },
+    {
+      "minimum": [
+        60.0,
+        60.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/@HBoxContainer@54/@TextureRect@56",
+      "rect": [
+        610.0,
+        229.0,
+        60.0,
+        60.0
+      ]
+    },
+    {
+      "minimum": [
+        60.0,
+        60.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/@HBoxContainer@54/@TextureRect@57",
+      "rect": [
+        674.0,
+        229.0,
+        60.0,
+        60.0
+      ]
+    },
+    {
+      "minimum": [
+        403.0,
+        164.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/WorkCardPage",
+      "rect": [
+        226.0,
+        299.0,
+        828.0,
+        164.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        204.0,
+        29.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/WorkCardPage/SecurityId",
+      "rect": [
+        226.0,
+        299.0,
+        643.0,
+        29.0
+      ],
+      "text": "SECURITY / Security ID",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        161.0,
+        29.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/WorkCardPage/SecurityRule",
+      "rect": [
+        893.0,
+        299.0,
+        161.0,
+        29.0
+      ],
+      "text": "Not collected yet.",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        196.0,
+        29.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/WorkCardPage/CleanerId",
+      "rect": [
+        226.0,
+        336.0,
+        643.0,
+        29.0
+      ],
+      "text": "CLEANER / Cleaner ID",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        161.0,
+        29.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/WorkCardPage/CleanerRule",
+      "rect": [
+        893.0,
+        336.0,
+        161.0,
+        29.0
+      ],
+      "text": "Not collected yet.",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        218.0,
+        29.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/WorkCardPage/ManagerId",
+      "rect": [
+        226.0,
+        373.0,
+        643.0,
+        29.0
+      ],
+      "text": "MANAGER / Manager ID",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        161.0,
+        29.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/WorkCardPage/ManagerRule",
+      "rect": [
+        893.0,
+        373.0,
+        161.0,
+        29.0
+      ],
+      "text": "Not collected yet.",
+      "visible_lines": 1
+    },
+    {
+      "lines": 2,
+      "minimum": [
+        1.0,
+        53.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/WorkCardPage/CardNote",
+      "rect": [
+        226.0,
+        410.0,
+        643.0,
+        53.0
+      ],
+      "text": "Equip up to two IDs. Only one is active. Press Q to switch or I to change slots. IDs grant no abilities, speed boosts, or room access.",
+      "visible_lines": 2
+    },
+    {
+      "lines": 2,
+      "minimum": [
+        1.0,
+        49.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/InputSummary",
+      "rect": [
+        226.0,
+        473.0,
+        828.0,
+        49.0
+      ],
+      "text": "A/D or arrows: Move. E: Talk, use stairs, or turn in tasks. Hold E: Steal or clean. Q: Switch active ID. I: Bag. H: Controls and notes.",
+      "visible_lines": 2
+    },
+    {
+      "minimum": [
+        216.0,
+        41.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/PageActions",
+      "rect": [
+        226.0,
+        532.0,
+        828.0,
+        41.0
+      ]
+    },
+    {
+      "minimum": [
+        100.0,
+        41.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/PageActions/PreviousButton",
+      "rect": [
+        226.0,
+        532.0,
+        100.0,
+        41.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        45.0,
+        33.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/PageActions/PageIndicator",
+      "rect": [
+        336.0,
+        536.0,
+        657.0,
+        33.0
+      ],
+      "text": "1 / 2",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        51.0,
+        33.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/PageActions/NextButton",
+      "rect": [
+        1003.0,
+        532.0,
+        51.0,
+        41.0
+      ]
+    },
+    {
+      "minimum": [
+        125.0,
+        44.0
+      ],
+      "path": "MenuLayer/Notebook/Center/Panel/Content/CloseButton",
+      "rect": [
+        226.0,
+        583.0,
+        828.0,
+        44.0
+      ]
+    }
+  ],
+  "hud202": [
+    {
+      "lines": 1,
+      "minimum": [
+        40.0,
+        17.0
+      ],
+      "path": "World/Floor2/StaffRoot/SecuritySlot/Staff/BehaviorLabel",
+      "rect": [
+        382.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "WATCH",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor2/StaffRoot/SecuritySlot/Caption",
+      "rect": [
+        260.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Security Guard · ID already collected",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        324.0,
+        27.0
+      ],
+      "path": "World/Floor2/Interactions/ParcelCabinet2F/Hint",
+      "rect": [
+        870.0,
+        478.0,
+        324.0,
+        34.0
+      ],
+      "text": "Parcel cabinet · Security ID · E: Collect",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        267.0,
+        24.0
+      ],
+      "path": "World/Floor2/Interactions/Task02Barrier/Hint",
+      "rect": [
+        1370.0,
+        450.0,
+        290.0,
+        45.0
+      ],
+      "text": "Turn in parcel at Room 202 to pass",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "Background/Fill",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        122.0
+      ]
+    },
+    {
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin/Info",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        122.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin/Info/Notice",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        27.0
+      ],
+      "text": "Task accepted · Guard's ID → Q: Security → Cabinet → Room 202",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        409.0,
+        260.0
+      ],
+      "path": "TaskLayer/HUD",
+      "rect": [
+        814.0,
+        24.0,
+        442.0,
+        260.0
+      ]
+    },
+    {
+      "minimum": [
+        409.0,
+        260.0
+      ],
+      "path": "TaskLayer/HUD/Stack",
+      "rect": [
+        814.0,
+        24.0,
+        442.0,
+        260.0
+      ]
+    },
+    {
+      "minimum": [
+        409.0,
+        116.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout",
+      "rect": [
+        814.0,
+        24.0,
+        442.0,
+        116.0
+      ]
+    },
+    {
+      "minimum": [
+        187.0,
+        95.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/Identity",
+      "rect": [
+        814.0,
+        24.0,
+        220.0,
+        116.0
+      ]
+    },
+    {
+      "minimum": [
+        81.0,
+        65.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/Identity/Details",
+      "rect": [
+        867.0,
+        39.0,
+        114.0,
+        86.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        28.0,
+        37.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/Identity/Details/FloorValue",
+      "rect": [
+        867.0,
+        49.0,
+        114.0,
+        37.0
+      ],
+      "text": "2F",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        81.0,
+        24.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/Identity/Details/ActiveCardValue",
+      "rect": [
+        867.0,
+        90.0,
+        114.0,
+        24.0
+      ],
+      "text": "Cleaner ID",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        106.0,
+        116.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA",
+      "rect": [
+        1039.0,
+        24.0,
+        106.0,
+        116.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA/SlotAFrame",
+      "rect": [
+        1059.0,
+        24.0,
+        66.0,
+        94.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        8.0,
+        18.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA/SlotALetter",
+      "rect": [
+        1039.0,
+        37.0,
+        106.0,
+        18.0
+      ],
+      "text": "A",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA/SlotAArt",
+      "rect": [
+        1067.0,
+        51.0,
+        50.0,
+        42.0
+      ]
+    },
+    {
+      "lines": 2,
+      "minimum": [
+        1.0,
+        43.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA/SlotAValue",
+      "rect": [
+        1039.0,
+        92.0,
+        106.0,
+        48.0
+      ],
+      "text": "Cleaner ID · Active",
+      "visible_lines": 2
+    },
+    {
+      "minimum": [
+        106.0,
+        116.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB",
+      "rect": [
+        1150.0,
+        24.0,
+        106.0,
+        116.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB/SlotBFrame",
+      "rect": [
+        1170.0,
+        24.0,
+        66.0,
+        94.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        8.0,
+        18.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB/SlotBLetter",
+      "rect": [
+        1150.0,
+        37.0,
+        106.0,
+        18.0
+      ],
+      "text": "B",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB/SlotBArt",
+      "rect": [
+        1178.0,
+        51.0,
+        50.0,
+        42.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        20.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB/SlotBValue",
+      "rect": [
+        1150.0,
+        92.0,
+        106.0,
+        48.0
+      ],
+      "text": "Security ID",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        364.0,
+        136.0
+      ],
+      "path": "TaskLayer/HUD/Stack/TaskPlate",
+      "rect": [
+        814.0,
+        148.0,
+        442.0,
+        136.0
+      ]
+    },
+    {
+      "minimum": [
+        208.0,
+        80.0
+      ],
+      "path": "TaskLayer/HUD/Stack/TaskPlate/TaskReadout",
+      "rect": [
+        894.0,
+        176.0,
+        286.0,
+        80.0
+      ]
+    },
+    {
+      "lines": 2,
+      "minimum": [
+        1.0,
+        53.0
+      ],
+      "path": "TaskLayer/HUD/Stack/TaskPlate/TaskReadout/Objective",
+      "rect": [
+        894.0,
+        176.0,
+        286.0,
+        53.0
+      ],
+      "text": "The Missing Parcel · 2F · 202\nQ: Security ID → E: Collect parcel",
+      "visible_lines": 2
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        208.0,
+        24.0
+      ],
+      "path": "TaskLayer/HUD/Stack/TaskPlate/TaskReadout/RemainingTime",
+      "rect": [
+        894.0,
+        232.0,
+        286.0,
+        24.0
+      ],
+      "text": "Time left: 3:00 · In progress",
+      "visible_lines": 1
+    }
+  ],
+  "menu": [
+    {
+      "lines": 1,
+      "minimum": [
+        40.0,
+        17.0
+      ],
+      "path": "World/Floor1/StaffRoot/SecuritySlot/Staff/BehaviorLabel",
+      "rect": [
+        362.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "WATCH",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor1/StaffRoot/SecuritySlot/Caption",
+      "rect": [
+        240.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Security Guard · Facing Right →",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        55.0,
+        17.0
+      ],
+      "path": "World/Floor1/StaffRoot/CleanerSlot/Staff/BehaviorLabel",
+      "rect": [
+        2632.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "CLEANING",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor1/StaffRoot/CleanerSlot/Caption",
+      "rect": [
+        2510.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Housekeeper · Facing Right →",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        40.0,
+        17.0
+      ],
+      "path": "World/Floor1/StaffRoot/ManagerSlot/Staff/BehaviorLabel",
+      "rect": [
+        1222.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "WATCH",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor1/StaffRoot/ManagerSlot/Caption",
+      "rect": [
+        1100.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Manager · Facing Right →",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor1/Interactions/ReturnPoint/Hint",
+      "rect": [
+        92.0,
+        590.0,
+        320.0,
+        70.0
+      ],
+      "text": "",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        341.0,
+        27.0
+      ],
+      "path": "World/Floor1/Interactions/ExitPoint/Hint",
+      "rect": [
+        3240.0,
+        590.0,
+        341.0,
+        70.0
+      ],
+      "text": "Talk to the manager before going to 2F.",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        435.0,
+        27.0
+      ],
+      "path": "World/Floor1/EntranceLabel",
+      "rect": [
+        64.0,
+        595.0,
+        536.0,
+        45.0
+      ],
+      "text": "Floor Entrance · Move with A / D or the arrow keys",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "Background/Fill",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/MainMenu",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/MainMenu/Cover",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "MenuLayer/MainMenu/Title",
+      "rect": [
+        217.600006103516,
+        57.5999984741211,
+        563.200073242188,
+        201.600006103516
+      ]
+    },
+    {
+      "lines": 2,
+      "minimum": [
+        394.0,
+        133.0
+      ],
+      "path": "MenuLayer/MainMenu/Title/@Label@53",
+      "rect": [
+        217.600006103516,
+        57.5999984741211,
+        563.200073242188,
+        201.600006103516
+      ],
+      "text": "Monster Staff\nAccess",
+      "visible_lines": 2
+    },
+    {
+      "minimum": [
+        128.0,
+        156.0
+      ],
+      "path": "MenuLayer/MainMenu/Actions",
+      "rect": [
+        262.399993896484,
+        369.600036621094,
+        236.799987792969,
+        156.0
+      ]
+    },
+    {
+      "minimum": [
+        120.0,
+        48.0
+      ],
+      "path": "MenuLayer/MainMenu/Actions/StartButton",
+      "rect": [
+        262.399993896484,
+        369.600036621094,
+        236.0,
+        48.0
+      ]
+    },
+    {
+      "minimum": [
+        126.0,
+        48.0
+      ],
+      "path": "MenuLayer/MainMenu/Actions/HelpButton",
+      "rect": [
+        262.399993896484,
+        427.600036621094,
+        236.0,
+        48.0
+      ]
+    },
+    {
+      "minimum": [
+        128.0,
+        40.0
+      ],
+      "path": "MenuLayer/MainMenu/Actions/LanguageSelector",
+      "rect": [
+        262.399993896484,
+        485.600036621094,
+        236.0,
+        40.0
+      ]
+    }
+  ],
+  "offer202": [
+    {
+      "lines": 1,
+      "minimum": [
+        40.0,
+        17.0
+      ],
+      "path": "World/Floor2/StaffRoot/SecuritySlot/Staff/BehaviorLabel",
+      "rect": [
+        382.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "WATCH",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor2/StaffRoot/SecuritySlot/Caption",
+      "rect": [
+        260.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Security Guard · Facing Right →",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        324.0,
+        27.0
+      ],
+      "path": "World/Floor2/Interactions/ParcelCabinet2F/Hint",
+      "rect": [
+        870.0,
+        478.0,
+        324.0,
+        34.0
+      ],
+      "text": "Parcel cabinet · Security ID · E: Collect",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        267.0,
+        24.0
+      ],
+      "path": "World/Floor2/Interactions/Task02Barrier/Hint",
+      "rect": [
+        1370.0,
+        450.0,
+        290.0,
+        45.0
+      ],
+      "text": "Turn in parcel at Room 202 to pass",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "Background/Fill",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        122.0
+      ]
+    },
+    {
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin/Info",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        122.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin/Info/Notice",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        27.0
+      ],
+      "text": "Room 202 · Parcel task available. Read the details to accept.",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/MissionBoard",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/MissionBoard/@ColorRect@17",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        760.0,
+        364.0
+      ],
+      "path": "TaskLayer/MissionBoard/@CenterContainer@18",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        760.0,
+        364.0
+      ],
+      "path": "TaskLayer/MissionBoard/@CenterContainer@18/@PanelContainer@19",
+      "rect": [
+        260.0,
+        178.0,
+        760.0,
+        364.0
+      ]
+    },
+    {
+      "minimum": [
+        408.0,
+        308.0
+      ],
+      "path": "TaskLayer/MissionBoard/@CenterContainer@18/@PanelContainer@19/@VBoxContainer@20",
+      "rect": [
+        296.0,
+        206.0,
+        688.0,
+        308.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        265.0,
+        44.0
+      ],
+      "path": "TaskLayer/MissionBoard/@CenterContainer@18/@PanelContainer@19/@VBoxContainer@20/@Label@21",
+      "rect": [
+        296.0,
+        206.0,
+        688.0,
+        44.0
+      ],
+      "text": "202 / Current Task",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        408.0,
+        33.0
+      ],
+      "path": "TaskLayer/MissionBoard/@CenterContainer@18/@PanelContainer@19/@VBoxContainer@20/@Label@22",
+      "rect": [
+        296.0,
+        262.0,
+        688.0,
+        33.0
+      ],
+      "text": "Available · The Missing Parcel · 2F · 202",
+      "visible_lines": 1
+    },
+    {
+      "lines": 3,
+      "minimum": [
+        1.0,
+        105.0
+      ],
+      "path": "TaskLayer/MissionBoard/@CenterContainer@18/@PanelContainer@19/@VBoxContainer@20/@Label@23",
+      "rect": [
+        296.0,
+        307.0,
+        688.0,
+        105.0
+      ],
+      "text": "Required: Security ID · 180 seconds after accepting\nTake the guard's ID on 2F → Q to make it active\nE at the cabinet to collect the parcel → Return to Room 202.",
+      "visible_lines": 3
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/MissionBoard/@CenterContainer@18/@PanelContainer@19/@VBoxContainer@20/@HBoxContainer@24",
+      "rect": [
+        296.0,
+        424.0,
+        688.0,
+        0.0
+      ]
+    },
+    {
+      "minimum": [
+        125.0,
+        33.0
+      ],
+      "path": "TaskLayer/MissionBoard/@CenterContainer@18/@PanelContainer@19/@VBoxContainer@20/@Button@30",
+      "rect": [
+        296.0,
+        436.0,
+        688.0,
+        33.0
+      ]
+    },
+    {
+      "minimum": [
+        57.0,
+        33.0
+      ],
+      "path": "TaskLayer/MissionBoard/@CenterContainer@18/@PanelContainer@19/@VBoxContainer@20/@Button@32",
+      "rect": [
+        296.0,
+        481.0,
+        688.0,
+        33.0
+      ]
+    }
+  ],
+  "pause": [
+    {
+      "lines": 1,
+      "minimum": [
+        40.0,
+        17.0
+      ],
+      "path": "World/Floor2/StaffRoot/SecuritySlot/Staff/BehaviorLabel",
+      "rect": [
+        382.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "WATCH",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor2/StaffRoot/SecuritySlot/Caption",
+      "rect": [
+        260.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Security Guard · ID already collected",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        324.0,
+        27.0
+      ],
+      "path": "World/Floor2/Interactions/ParcelCabinet2F/Hint",
+      "rect": [
+        870.0,
+        478.0,
+        324.0,
+        34.0
+      ],
+      "text": "Parcel cabinet · Security ID · E: Collect",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        267.0,
+        24.0
+      ],
+      "path": "World/Floor2/Interactions/Task02Barrier/Hint",
+      "rect": [
+        1370.0,
+        450.0,
+        290.0,
+        45.0
+      ],
+      "text": "Turn in parcel at Room 202 to pass",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "Background/Fill",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        122.0
+      ]
+    },
+    {
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin/Info",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        122.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "DeveloperOverlay/Margin/Info/Notice",
+      "rect": [
+        32.0,
+        28.0,
+        768.0,
+        27.0
+      ],
+      "text": "Task accepted · Guard's ID → Q: Security → Cabinet → Room 202",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        409.0,
+        260.0
+      ],
+      "path": "TaskLayer/HUD",
+      "rect": [
+        814.0,
+        24.0,
+        442.0,
+        260.0
+      ]
+    },
+    {
+      "minimum": [
+        409.0,
+        260.0
+      ],
+      "path": "TaskLayer/HUD/Stack",
+      "rect": [
+        814.0,
+        24.0,
+        442.0,
+        260.0
+      ]
+    },
+    {
+      "minimum": [
+        409.0,
+        116.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout",
+      "rect": [
+        814.0,
+        24.0,
+        442.0,
+        116.0
+      ]
+    },
+    {
+      "minimum": [
+        187.0,
+        95.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/Identity",
+      "rect": [
+        814.0,
+        24.0,
+        220.0,
+        116.0
+      ]
+    },
+    {
+      "minimum": [
+        81.0,
+        65.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/Identity/Details",
+      "rect": [
+        867.0,
+        39.0,
+        114.0,
+        86.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        28.0,
+        37.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/Identity/Details/FloorValue",
+      "rect": [
+        867.0,
+        49.0,
+        114.0,
+        37.0
+      ],
+      "text": "2F",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        81.0,
+        24.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/Identity/Details/ActiveCardValue",
+      "rect": [
+        867.0,
+        90.0,
+        114.0,
+        24.0
+      ],
+      "text": "Cleaner ID",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        106.0,
+        116.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA",
+      "rect": [
+        1039.0,
+        24.0,
+        106.0,
+        116.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA/SlotAFrame",
+      "rect": [
+        1059.0,
+        24.0,
+        66.0,
+        94.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        8.0,
+        18.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA/SlotALetter",
+      "rect": [
+        1039.0,
+        37.0,
+        106.0,
+        18.0
+      ],
+      "text": "A",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA/SlotAArt",
+      "rect": [
+        1067.0,
+        51.0,
+        50.0,
+        42.0
+      ]
+    },
+    {
+      "lines": 2,
+      "minimum": [
+        1.0,
+        43.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotA/SlotAValue",
+      "rect": [
+        1039.0,
+        92.0,
+        106.0,
+        48.0
+      ],
+      "text": "Cleaner ID · Active",
+      "visible_lines": 2
+    },
+    {
+      "minimum": [
+        106.0,
+        116.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB",
+      "rect": [
+        1150.0,
+        24.0,
+        106.0,
+        116.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB/SlotBFrame",
+      "rect": [
+        1170.0,
+        24.0,
+        66.0,
+        94.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        8.0,
+        18.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB/SlotBLetter",
+      "rect": [
+        1150.0,
+        37.0,
+        106.0,
+        18.0
+      ],
+      "text": "B",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB/SlotBArt",
+      "rect": [
+        1178.0,
+        51.0,
+        50.0,
+        42.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        20.0
+      ],
+      "path": "TaskLayer/HUD/Stack/Readout/SlotB/SlotBValue",
+      "rect": [
+        1150.0,
+        92.0,
+        106.0,
+        48.0
+      ],
+      "text": "Security ID",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        364.0,
+        136.0
+      ],
+      "path": "TaskLayer/HUD/Stack/TaskPlate",
+      "rect": [
+        814.0,
+        148.0,
+        442.0,
+        136.0
+      ]
+    },
+    {
+      "minimum": [
+        208.0,
+        80.0
+      ],
+      "path": "TaskLayer/HUD/Stack/TaskPlate/TaskReadout",
+      "rect": [
+        894.0,
+        176.0,
+        286.0,
+        80.0
+      ]
+    },
+    {
+      "lines": 2,
+      "minimum": [
+        1.0,
+        53.0
+      ],
+      "path": "TaskLayer/HUD/Stack/TaskPlate/TaskReadout/Objective",
+      "rect": [
+        894.0,
+        176.0,
+        286.0,
+        53.0
+      ],
+      "text": "The Missing Parcel · 2F · 202\nQ: Security ID → E: Collect parcel",
+      "visible_lines": 2
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        208.0,
+        24.0
+      ],
+      "path": "TaskLayer/HUD/Stack/TaskPlate/TaskReadout/RemainingTime",
+      "rect": [
+        894.0,
+        232.0,
+        286.0,
+        24.0
+      ],
+      "text": "Time left: 3:00 · In progress",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/PlayOverlay",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "TaskLayer/PlayOverlay/@ColorRect@33",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        420.0,
+        218.0
+      ],
+      "path": "TaskLayer/PlayOverlay/@CenterContainer@34",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        420.0,
+        218.0
+      ],
+      "path": "TaskLayer/PlayOverlay/@CenterContainer@34/@PanelContainer@35",
+      "rect": [
+        430.0,
+        251.0,
+        420.0,
+        218.0
+      ]
+    },
+    {
+      "minimum": [
+        153.0,
+        162.0
+      ],
+      "path": "TaskLayer/PlayOverlay/@CenterContainer@34/@PanelContainer@35/@VBoxContainer@36",
+      "rect": [
+        466.0,
+        279.0,
+        348.0,
+        162.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        145.0,
+        33.0
+      ],
+      "path": "TaskLayer/PlayOverlay/@CenterContainer@34/@PanelContainer@35/@VBoxContainer@36/@Label@37",
+      "rect": [
+        466.0,
+        279.0,
+        348.0,
+        33.0
+      ],
+      "text": "Game Paused",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        33.0
+      ],
+      "path": "TaskLayer/PlayOverlay/@CenterContainer@34/@PanelContainer@35/@VBoxContainer@36/@Label@38",
+      "rect": [
+        466.0,
+        322.0,
+        348.0,
+        33.0
+      ],
+      "text": "The task timer is paused.",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        128.0,
+        33.0
+      ],
+      "path": "TaskLayer/PlayOverlay/@CenterContainer@34/@PanelContainer@35/@VBoxContainer@36/LanguageSelector",
+      "rect": [
+        466.0,
+        365.0,
+        348.0,
+        33.0
+      ]
+    },
+    {
+      "minimum": [
+        153.0,
+        33.0
+      ],
+      "path": "TaskLayer/PlayOverlay/@CenterContainer@34/@PanelContainer@35/@VBoxContainer@36/@Button@50",
+      "rect": [
+        466.0,
+        408.0,
+        348.0,
+        33.0
+      ]
+    }
+  ],
+  "phone": [
+    {
+      "lines": 1,
+      "minimum": [
+        40.0,
+        17.0
+      ],
+      "path": "World/Floor1/StaffRoot/SecuritySlot/Staff/BehaviorLabel",
+      "rect": [
+        362.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "WATCH",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor1/StaffRoot/SecuritySlot/Caption",
+      "rect": [
+        240.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Security Guard · Facing Right →",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        55.0,
+        17.0
+      ],
+      "path": "World/Floor1/StaffRoot/CleanerSlot/Staff/BehaviorLabel",
+      "rect": [
+        2632.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "CLEANING",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor1/StaffRoot/CleanerSlot/Caption",
+      "rect": [
+        2510.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Housekeeper · Facing Right →",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        40.0,
+        17.0
+      ],
+      "path": "World/Floor1/StaffRoot/ManagerSlot/Staff/BehaviorLabel",
+      "rect": [
+        1222.0,
+        568.0,
+        82.0,
+        20.0
+      ],
+      "text": "WATCH",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor1/StaffRoot/ManagerSlot/Caption",
+      "rect": [
+        1100.0,
+        395.0,
+        320.0,
+        64.0
+      ],
+      "text": "Manager · Facing Right →",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        1.0,
+        27.0
+      ],
+      "path": "World/Floor1/Interactions/ReturnPoint/Hint",
+      "rect": [
+        92.0,
+        590.0,
+        320.0,
+        70.0
+      ],
+      "text": "",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        341.0,
+        27.0
+      ],
+      "path": "World/Floor1/Interactions/ExitPoint/Hint",
+      "rect": [
+        3240.0,
+        590.0,
+        341.0,
+        70.0
+      ],
+      "text": "Talk to the manager before going to 2F.",
+      "visible_lines": 1
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        435.0,
+        27.0
+      ],
+      "path": "World/Floor1/EntranceLabel",
+      "rect": [
+        64.0,
+        595.0,
+        536.0,
+        45.0
+      ],
+      "text": "Floor Entrance · Move with A / D or the arrow keys",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "Background/Fill",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "StoryLayer/Dialogue",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "StoryLayer/Dialogue/Background",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "StoryLayer/Dialogue/Tint",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "StoryLayer/Dialogue/SMSPanel",
+      "rect": [
+        627.0,
+        23.0,
+        416.0,
+        624.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "StoryLayer/Dialogue/SMSPanel/PhoneFrame",
+      "rect": [
+        627.0,
+        23.0,
+        416.0,
+        624.0
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "StoryLayer/Dialogue/SMSPanel/PhoneScreen",
+      "rect": [
+        705.0,
+        119.0,
+        243.0,
+        441.0
+      ]
+    },
+    {
+      "minimum": [
+        199.0,
+        44.0
+      ],
+      "path": "StoryLayer/Dialogue/SMSPanel/PhoneScreen/PhoneChat",
+      "rect": [
+        714.0,
+        128.0,
+        225.0,
+        422.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        104.0,
+        29.0
+      ],
+      "path": "StoryLayer/Dialogue/SMSPanel/PhoneScreen/PhoneChat/PhoneHeader",
+      "rect": [
+        714.0,
+        128.0,
+        225.0,
+        29.0
+      ],
+      "text": "Best Friend",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        1.0
+      ],
+      "path": "StoryLayer/Dialogue/SMSPanel/PhoneScreen/PhoneChat/PhoneDivider",
+      "rect": [
+        714.0,
+        164.0,
+        225.0,
+        1.0
+      ]
+    },
+    {
+      "minimum": [
+        199.0,
+        0.0
+      ],
+      "path": "StoryLayer/Dialogue/SMSPanel/PhoneScreen/PhoneChat/SMSScroll",
+      "rect": [
+        714.0,
+        172.0,
+        225.0,
+        378.0
+      ]
+    },
+    {
+      "minimum": [
+        199.0,
+        39.0
+      ],
+      "path": "StoryLayer/Dialogue/SMSPanel/PhoneScreen/PhoneChat/SMSScroll/SMSHistory",
+      "rect": [
+        714.0,
+        172.0,
+        225.0,
+        39.0
+      ]
+    },
+    {
+      "minimum": [
+        199.0,
+        39.0
+      ],
+      "path": "StoryLayer/Dialogue/SMSPanel/PhoneScreen/PhoneChat/SMSScroll/SMSHistory/@HBoxContainer@62",
+      "rect": [
+        714.0,
+        172.0,
+        225.0,
+        39.0
+      ]
+    },
+    {
+      "minimum": [
+        36.0,
+        36.0
+      ],
+      "path": "StoryLayer/Dialogue/SMSPanel/PhoneScreen/PhoneChat/SMSScroll/SMSHistory/@HBoxContainer@62/@TextureRect@60",
+      "rect": [
+        714.0,
+        172.0,
+        36.0,
+        36.0
+      ]
+    },
+    {
+      "minimum": [
+        149.0,
+        39.0
+      ],
+      "path": "StoryLayer/Dialogue/SMSPanel/PhoneScreen/PhoneChat/SMSScroll/SMSHistory/@HBoxContainer@62/Bubble",
+      "rect": [
+        757.0,
+        172.0,
+        149.0,
+        39.0
+      ]
+    },
+    {
+      "lines": 1,
+      "minimum": [
+        129.0,
+        25.0
+      ],
+      "path": "StoryLayer/Dialogue/SMSPanel/PhoneScreen/PhoneChat/SMSScroll/SMSHistory/@HBoxContainer@62/Bubble/Body",
+      "rect": [
+        767.0,
+        179.0,
+        129.0,
+        25.0
+      ],
+      "text": "Are you awake?",
+      "visible_lines": 1
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "StoryLayer/Dialogue/SMSPanel/PhoneScreen/PhoneChat/SMSScroll/SMSHistory/@HBoxContainer@62/@Control@61",
+      "rect": [
+        913.0,
+        172.0,
+        26.0,
+        39.0
+      ]
+    },
+    {
+      "minimum": [
+        97.0,
+        33.0
+      ],
+      "path": "StoryLayer/Dialogue/ContinueButton",
+      "rect": [
+        985.599975585938,
+        637.919982910156,
+        153.599975585938,
+        38.1600341796875
+      ]
+    },
+    {
+      "minimum": [
+        0.0,
+        0.0
+      ],
+      "path": "StoryLayer/Dialogue/Fade",
+      "rect": [
+        0.0,
+        0.0,
+        1280.0,
+        720.0
+      ]
+    }
+  ]
+}
