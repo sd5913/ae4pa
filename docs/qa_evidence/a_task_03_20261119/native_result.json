@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+    "--path",
+    "/private/tmp/ae4pa-task03-native-project-fky92lsd",
+    "--script",
+    "res://scenes/tests/core/task_03_main_flow_smoke.gd",
+    "--log-file",
+    "/private/tmp/ae4pa-task03-native.log",
+    "--",
+    "--capture"
+  ],
+  "exit_code": 0,
+  "errors": []
+}

@@ -98,12 +98,14 @@ func _run() -> void:
 	var player: Node2D = active_floor.get_node("Player")
 	var position := player.global_position
 	var remaining: float = game.remaining_time
-	var task: Dictionary = game.get_task_view()
 	var checkpoint: Dictionary = game.get("_task_checkpoint").duplicate(true)
 	var flags: Dictionary = game.get_world_flags()
 	var cards := root.get_node("CardManager")
+	# Prepare cards before capturing state: acquiring an ID changes the task step.
 	cards.collect_card("CLEANER")
 	cards.equip_card("CLEANER", 1)
+	var task: Dictionary = game.get_task_view()
+	_check(task["step"] == "CLEAN_STAIN", "Collected cleaner advances the real task step before locale switching")
 	var card_state: Dictionary = cards.export_snapshot()
 	active_floor.formatted_notice_requested.emit("获得%s ID", ["保洁"])
 	_check(pause.visible and not game.is_world_input_allowed() and not checkpoint.is_empty(),

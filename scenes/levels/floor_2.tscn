@@ -1,17 +1,22 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_base.tscn" id="1_base"]
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_2_art.tscn" id="2_modular_art"]
 [ext_resource type="PackedScene" path="res://scenes/work/cleaning_spot.tscn" id="3_cleaning_spot"]
+[ext_resource type="PackedScene" path="res://scenes/work/parcel_cabinet_2f.tscn" id="4_parcel"]
 
 [node name="Floor2" instance=ExtResource("1_base")]
 floor_number = 2
 task_01_barrier_x = 1250.0
+task_02_barrier_x = 1500.0
 
 [node name="FloorBackground" parent="." index="0"]
 visible = false
 
 [node name="Player" parent="." index="2"]
+z_index = 1
+
+[node name="StaffRoot" parent="." index="3"]
 z_index = 1
 
 [node name="Room201" type="Marker2D" parent="DoorRoot" index="0"]
@@ -48,6 +53,30 @@ target_id = "STAIN_201"
 
 [node name="Task01AcceptSafe" type="Marker2D" parent="Interactions" index="3"]
 position = Vector2(520, 560)
+
+[node name="Task02AcceptSafe" type="Marker2D" parent="Interactions"]
+position = Vector2(1070, 560)
+
+[node name="ParcelCabinet2F" parent="Interactions" instance=ExtResource("4_parcel")]
+position = Vector2(990, 560)
+z_index = 1
+
+[node name="PersistentVisual" parent="Interactions/ParcelCabinet2F" index="1"]
+visible = false
+
+[node name="Hint" parent="Interactions/ParcelCabinet2F" index="3"]
+text = "保管柜 · 当前保安身份 · E领取"
+
+[node name="Task02Barrier" type="Node2D" parent="Interactions"]
+position = Vector2(1500, 560)
+
+[node name="Hint" type="Label" parent="Interactions/Task02Barrier"]
+offset_left = -130.0
+offset_top = -110.0
+offset_right = 160.0
+offset_bottom = -65.0
+text = "202包裹交付后开放后段"
+horizontal_alignment = 1
 
 [node name="Room201RightSafe" type="Marker2D" parent="Interactions" index="4"]
 position = Vector2(1120, 560)

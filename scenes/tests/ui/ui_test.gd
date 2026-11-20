@@ -76,11 +76,14 @@ func _run_smoke() -> void:
 	_check(_hud.get_node("%FloorValue").text == "%dF" % GameManager.current_floor,
 		"HUD reads the current floor from GameManager", failures)
 	var task_name := str(task_view.get("name", ""))
-	_check(objective.text.contains(task_name if not task_name.is_empty() else "当前无任务"),
+	_check(_hud.get_node("%TaskTitle").text.contains(task_name if not task_name.is_empty() else "当前无任务"),
 		"HUD displays the task name from the live task view", failures)
 	var remaining_seconds := maxi(0, ceili(float(task_view.get("remaining_time", 0.0))))
-	var expected_time := "%d:%02d" % [remaining_seconds / 60, remaining_seconds % 60]
-	_check(remaining.text.contains(expected_time), "HUD displays GameManager's remaining time", failures)
+	var expected_time := "%02d:%02d" % [remaining_seconds / 60, remaining_seconds % 60]
+	if str(task_view.get("status")) in ["ACTIVE", "READY_TO_SUBMIT"]:
+		_check(remaining.text.contains(expected_time), "HUD displays GameManager's remaining time", failures)
+	else:
+		_check(not remaining.text.contains("剩余时间"), "Inactive HUD does not claim a running countdown", failures)
 	_check(_hud.find_children("*", "Timer", true, false).is_empty(),
 		"HUD does not create or advance a private timer", failures)
 

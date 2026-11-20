@@ -25,6 +25,8 @@ func _show_page(page_index: int) -> void:
 func _refresh_notebook() -> void:
 	var view: Dictionary = GameManager.get_notebook_view()
 	_page_title.text = "操作与工作证" if _page_index == 0 else "调查笔记"
+	if _page_index == 1 and GameManager.has_friend:
+		_page_title.text = tr("调查笔记") + " · " + tr("帕希卡")
 	for row: String in CARD_ROWS:
 		_work_card_page.get_node(row + "Rule").text = "已获得，可在背包选择佩戴槽。" if CardManager.has_card(CARD_ROWS[row]) else "尚未获得。"
 	for index: int in range(ENTRY_NODES.size()):
