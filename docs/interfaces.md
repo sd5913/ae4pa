@@ -769,3 +769,16 @@ A 当前工作区在 §18 基础上接入 D `eb5e019` 的 main_menu、help、bag
 - `floor.set_monster_dialogue_room(room_id)`由A读取D真实面板的房间更新，C`set_story_dialogue_room`负责单门画面与结束恢复；D不写任务真值。
 - `GameManager.get_submission_card(task_id)`返回最后工作所需身份，`submit_task`增加当前身份及指定双槽复核；核验违规须先安全退回。
 - `floor.get_identity_restriction_room()->String`供A的I入口阻止核验区内打开证件管理；工作台位于范围外。205领取／批准新x为2630／2850。
+## 2026-11-21 用户试玩修订：任务门生命周期与本层退回
+
+- 正式托管门的已知怪物违规经`rule_violated(reason, approach_side)`接楼层`_on_door_violation`，交给`GameManager.request_safe_return`；保留单次去重、输入锁、同物理帧保护、来源验证和`finish_safe_return`确认。2—5F目的地统一取本层`Interactions/ReturnPoint`左侧楼梯，从左右哪侧进入都相同；允许向左越过沿途门和任务边界，落点仍校验地图边界及全部门检测区。首次介绍请求接口不变。
+- 楼层在真实`CleaningSpot.begin_interaction`成功后调用`GameManager.record_work_started(target_id) -> bool`。管理器校验当前任务、楼层、工作点及身份后存`stain_201_cleaned_started`世界标记；沿用现有任务检查点快照恢复，不另存任务或计时真值。
+- `door_scheduler.task_phase(door)`只控制固定任务房201/202/302/403/501；201清洁开始至交付持续开门，202/403/501执行时关闭、就绪回门才开启，302接受后一直关闭，所有已完成任务房退出随机调度。E交付前`prepare_delivery(door)`先关闭当前其他门再打开交付门，避免同一帧先弹对白导致关门冻结；对白期间按既有模态冻结，结束后关闭。04/05仅预接展示策略，不启用未完成任务流程。
+- 三楼302接取前的行走右界设在302左112像素，接受后才解除；不以301证件核验作为302主线已经完成的依据。
+
+
+## 2026-11-21 PR50／最新main整合后的约定
+
+上方C旧2F关门说明被本轮用户确认的教学生命周期取代：201—205首次完整WARNING→OPEN，接取后留场直到真实交付；3F+普通门保留本层左梯退回。302／403／501的后续固定任务使用独立任务号判断，不再用FIRST教学表判断。302仍是独立309登记，接取前右界不变；403／501仅预留后续状态，不启用04／05任务。
+
+D新工具栏bag_requested与I键进入同一A入口，均检查floor.get_identity_restriction_room()；世界模态仍由GameManager管理。原有309 rescue_open_requested、36拍CG、friend_rescued及跟随接线保留。504／505无房门、无随机池；实际公共配置17间。详见[合并证据](qa_evidence/a_main_merge_20261121/README.md)。

@@ -8,6 +8,7 @@ signal manager_talk_requested()
 signal task_offer_requested(task_id: String)
 signal task_dialogue_requested(task_id: String)
 signal task_reminder_requested(task_id: String)
+signal rescue_open_requested()
 
 const CARD_NAMES: Dictionary = {"SECURITY": "保安", "CLEANER": "保洁", "MANAGER": "经理"}
 const STAFF_TARGET_IDS: Dictionary = {"CLEANER": "STAFF_CLEANER_1F", "SECURITY": "STAFF_SECURITY_1F", "MANAGER": "STAFF_MANAGER_1F"}
@@ -24,7 +25,6 @@ var _work: CleaningSpot
 var _works: Array[CleaningSpot] = []
 var _needs_e_release: bool = false
 var _doors: Array[Node2D] = []
-var _safe_points: Dictionary = {}
 var _door_scheduler: Node
 
 @onready var player: HotelPlayer = $Player
@@ -134,11 +134,20 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			manager_talk_requested.emit()
 	elif target["kind"] == "RESCUE_GATE":
-		_emit_notice("309登记已批准；救援后续尚未开放。" if GameManager.get_world_flags().get("registration_309_approved", false) else "309尚未获准；先完成302的管理授权任务。")
+		if GameManager.has_friend:
+			_emit_notice("帕希卡已同行；前往五楼消防出口。")
+		elif not GameManager.get_completed_task_ids().has(GameManager.TASK_03_ID) or not GameManager.get_world_flags().get("registration_309_approved", false):
+			_emit_notice("309尚未获准；先完成302的管理授权任务。")
+		elif CardManager.active_card != "CLEANER":
+			_emit_notice("309：需要当前生效的保洁身份；持有或备用槽不算开门权限。")
+		else:
+			rescue_open_requested.emit()
 	elif target["kind"] == "WORK":
 		var work: CleaningSpot = target["node"]
 		if work.begin_interaction():
 			_held_work = work if work.is_interacting() else null
+			if work.interaction_type == "CLEAN":
+				GameManager.record_work_started(work.target_id)
 		else:
 			var reason: String = work.get_interaction_block_reason()
 			if reason == "PLAYER_MOVING":
@@ -300,6 +309,11 @@ func _apply_task_route() -> void:
 			if GameManager.can_offer_task(task_id) or (GameManager.current_task_id == task_id and GameManager.task_status == "AVAILABLE"):
 				right_bound = minf(right_bound, room.global_position.x - 112.0)
 			break
+	# 302 is compulsory from either approach; a normal door cannot leave the player
+	# beyond this story gate before accepting the management task.
+	if floor_number == 3 and not GameManager.get_completed_task_ids().has(GameManager.TASK_03_ID):
+		if GameManager.current_task_id != GameManager.TASK_03_ID or GameManager.task_status not in ["ACTIVE", "READY_TO_SUBMIT"]:
+			right_bound = minf(right_bound, $DoorRoot/Room302.global_position.x - 112.0)
 	player.set_walk_bounds(64.0, right_bound)
 	if has_node("Interactions/Task01Barrier"):
 		$Interactions/Task01Barrier.visible = not GameManager.get_world_flags().get("passage_201_unlocked", false)
@@ -309,7 +323,7 @@ func _apply_task_route() -> void:
 		if door.door_mode == "STORY":
 			door.set_story_state("COMPLETED" if GameManager.get_completed_task_ids().has(door.task_id) else GameManager.task_status if GameManager.current_task_id == door.task_id else "NONE")
 	if floor_number == 3 and has_node("Interactions/RescuePoint/TaskHint"):
-		$Interactions/RescuePoint/TaskHint.text = "309登记已批准；救援后续尚未开放。" if GameManager.get_world_flags().get("registration_309_approved", false) else "309 · 先取得管理批准"
+		$Interactions/RescuePoint/TaskHint.text = "帕希卡已同行" if GameManager.has_friend else "309 · 当前保洁身份 · E 开门" if GameManager.get_world_flags().get("registration_309_approved", false) else "309 · 先取得管理批准"
 	if floor_number == 2 and is_instance_valid(_door_scheduler): _door_scheduler.sync_tutorial_visuals()
 	queue_redraw()
 
@@ -366,12 +380,11 @@ func _setup_doors() -> void:
 		door.set_managed_state("CLOSED")
 		door.setup(player)
 		door._last_managed_x = player.global_position.x
+		door.rule_violated.connect(_on_door_violation.bind(door))
 		if door.door_mode == "STORY":
 			door.story_intercept_requested.connect(_on_story_intercept.bind(door))
 			door.task_submit_requested.connect(_on_task_submit.bind(door))
 			door.story_progress_requested.connect(_on_story_progress)
-		if room == "202" and has_node("Interactions/Room202LeftSafe"):
-			_safe_points[door] = [$Interactions/Room202LeftSafe,$Interactions/Room202RightSafe]
 		_doors.append(door)
 		scheduler.doors.append(door)
 		if has_node("Floor2Art"):
@@ -380,6 +393,8 @@ func _setup_doors() -> void:
 			$Floor3Art.bind_door(room,door)
 		elif has_node("Floor4Art"):
 			$Floor4Art.bind_door(room,door)
+		elif has_node("Floor5Art"):
+			$Floor5Art.bind_door(room,door)
 	add_child(scheduler)
 	GameManager.monster_encounter_requested.connect(_on_monster_encounter)
 
@@ -490,6 +505,7 @@ func _on_story_intercept(task_id: String, _room_id: String, door: Node2D) -> voi
 
 func _on_task_submit(task_id: String, door: Node2D) -> void:
 	if GameManager.is_world_input_allowed() and absf(player.global_position.x - door.global_position.x) <= door.story_radius:
+		_door_scheduler.prepare_delivery(door)
 		if not GameManager.submit_task(task_id):
 			if GameManager.get_pending_monster_encounter().get("reason", "") == "SWITCHED_NEAR_CHECKER":
 				_emit_notice("先退到门外安全区准备证件，再回来交付核验。")
@@ -516,15 +532,13 @@ func _on_door_violation(reason: String, approach_side: int, door: Node2D) -> voi
 
 
 func get_safe_return_position(door: Node2D, approach_side: int) -> Dictionary:
-	if approach_side not in [-1, 1] or not _safe_points.has(door) or not _doors.has(door):
+	if floor_number not in [2, 3, 4, 5] or approach_side not in [-1, 1] or not _doors.has(door):
 		return {}
 	if not is_ancestor_of(door) or not door.has_method("finish_safe_return"):
 		return {}
-	var point: Node2D = _safe_points[door][0 if approach_side == -1 else 1]
-	var destination: Vector2 = point.global_position
-	# C's recorded entry side wins even if this frame crossed the door centre.
-	if (destination.x - door.global_position.x) * approach_side <= door.radius:
-		return {}
+	# The left stair landing is this floor's memory point, from either approach.
+	# Teleporting backwards across intervening doors/route locks is intentional.
+	var destination: Vector2 = return_point.global_position
 	if destination.x < 64.0 or destination.x > corridor_width - 64.0:
 		return {}
 	if not is_equal_approx(destination.y, player.global_position.y):
@@ -532,14 +546,6 @@ func get_safe_return_position(door: Node2D, approach_side: int) -> Dictionary:
 	for other: Node2D in _doors:
 		var exclusion_radius: float = other.story_radius if other.door_mode == "STORY" else other.radius
 		if absf(destination.x - other.global_position.x) <= exclusion_radius:
-			return {}
-		if other != door and other.global_position.x >= minf(destination.x, player.global_position.x) - exclusion_radius and other.global_position.x <= maxf(destination.x, player.global_position.x) + exclusion_radius:
-			return {} # Do not carry the player through a neighbouring danger region.
-	if task_01_barrier_x > 0.0 and not GameManager.get_world_flags().get("passage_201_unlocked", false):
-		if maxf(destination.x, player.global_position.x) >= task_01_barrier_x - 24.0:
-			return {}
-	if task_02_barrier_x > 0.0 and not GameManager.get_world_flags().get("passage_202_unlocked", false):
-		if maxf(destination.x, player.global_position.x) >= task_02_barrier_x - 24.0:
 			return {}
 	return {"position": destination}
 
@@ -559,7 +565,7 @@ func _refresh_exit_hint() -> void:
 	elif floor_number == 2 and not GameManager.get_available_floors().has(3):
 		exit_hint.text = "完成201—205五项任务并逐一交付后开放3F"
 	elif floor_number == 3 and not GameManager.has_friend:
-		exit_hint.text = "先完成 309 救援才能上楼\n救援功能待 A-08"
+		exit_hint.text = "先进入 309 找到帕希卡，再前往五楼出口"
 	elif not GameManager.get_available_floors().has(floor_number + 1):
 		exit_hint.text = "下一层尚未开放"
 	else:

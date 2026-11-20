@@ -1,0 +1,325 @@
+{
+  "canvas": [
+    7680,
+    1500
+  ],
+  "groups": 4,
+  "layers": 44,
+  "png_count": 31,
+  "ora_reconstruction_exact": true,
+  "region_stitch_exact": true,
+  "repeat_edges_exact": true,
+  "no_reference_upscaling": true,
+  "assets": [
+    {
+      "id": "wall_tile",
+      "size": [
+        3072,
+        1024
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "roof_side_tile",
+      "size": [
+        4340,
+        293
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 373768
+    },
+    {
+      "id": "carpet_tile",
+      "size": [
+        4224,
+        199
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "roof_center",
+      "size": [
+        2165,
+        506
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 338412
+    },
+    {
+      "id": "checkout_desk",
+      "size": [
+        1740,
+        871
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 533928
+    },
+    {
+      "id": "armchair",
+      "size": [
+        1274,
+        1177
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 799911
+    },
+    {
+      "id": "exit_bay",
+      "size": [
+        1522,
+        1015
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 726752
+    },
+    {
+      "id": "window_pair",
+      "size": [
+        1504,
+        995
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 484876
+    },
+    {
+      "id": "gramophone_console",
+      "size": [
+        1401,
+        978
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 886772
+    },
+    {
+      "id": "white_lily",
+      "size": [
+        1037,
+        1331
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 845984
+    },
+    {
+      "id": "castle_painting",
+      "size": [
+        1071,
+        1434
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 653992
+    },
+    {
+      "id": "pendant",
+      "size": [
+        1504,
+        1024
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 1183837
+    },
+    {
+      "id": "floor_sign",
+      "size": [
+        1522,
+        1005
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 941552
+    },
+    {
+      "id": "crescent_moon",
+      "size": [
+        1495,
+        1015
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 831372
+    },
+    {
+      "id": "crest_plaque",
+      "size": [
+        1232,
+        1160
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 581016
+    },
+    {
+      "id": "roof_finial",
+      "size": [
+        1227,
+        1150
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 1167157
+    },
+    {
+      "id": "sconce",
+      "size": [
+        1072,
+        1421
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 1128085
+    },
+    {
+      "id": "sky_tile",
+      "size": [
+        1774,
+        887
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "stair_left",
+      "size": [
+        1004,
+        1519
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 403056
+    },
+    {
+      "id": "outer_pillar",
+      "size": [
+        706,
+        2171
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 594313
+    },
+    {
+      "id": "ceiling_beam_tile",
+      "size": [
+        1536,
+        105
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "lamp_table",
+      "size": [
+        988,
+        1425
+      ],
+      "alpha_min": 0,
+      "alpha_max": 254,
+      "transparent_pixels": 1106465
+    },
+    {
+      "id": "palm_tall",
+      "size": [
+        990,
+        1508
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "transparent_pixels": 886947
+    },
+    {
+      "id": "warm_glow",
+      "size": [
+        1536,
+        1024
+      ],
+      "alpha_min": 0,
+      "alpha_max": 253,
+      "transparent_pixels": 12622
+    },
+    {
+      "id": "contact_shadow",
+      "size": [
+        2131,
+        597
+      ],
+      "alpha_min": 0,
+      "alpha_max": 251,
+      "transparent_pixels": 932061
+    },
+    {
+      "id": "skirting_tile",
+      "size": [
+        3072,
+        39
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "roof_rail_cap_tile",
+      "size": [
+        4020,
+        30
+      ],
+      "alpha_min": 243,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "background_region_01",
+      "size": [
+        1920,
+        1500
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "background_region_02",
+      "size": [
+        1920,
+        1500
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "background_region_03",
+      "size": [
+        1920,
+        1500
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    },
+    {
+      "id": "background_region_04",
+      "size": [
+        1920,
+        1500
+      ],
+      "alpha_min": 255,
+      "alpha_max": 255,
+      "transparent_pixels": 0
+    }
+  ]
+}

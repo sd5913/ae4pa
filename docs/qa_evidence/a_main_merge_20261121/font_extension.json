@@ -1,0 +1,12 @@
+{
+  "source_sha256": "2c76254f6fc379fddfce0a7e84fb5385bb135d3e399294f6eeb6680d0365b74b",
+  "before": 661,
+  "after": 664,
+  "added": [
+    "希",
+    "帕",
+    "防"
+  ],
+  "existing_horizontal_metrics_preserved": true,
+  "renaming": "existing Hotel Staff CJK family and PostScript names preserved"
+}

@@ -1,173 +1,128 @@
 extends SceneTree
-## Compatibility coverage for A's retained explicit safe-return API with real doors.
-## Production managed doors request forced encounters; encounter_flow/task_ui cover that path.
-
+## Production ordinary doors3–5F plus an explicit2F ordinary-component compatibility fixture.
 var failures: Array[String] = []
 var game: Node
 var cards: Node
 var host: Node2D
 
-
 func _initialize() -> void:
-	call_deferred("_run")
+	call_deferred("run")
 
+func check(ok: bool, message: String) -> void:
+	if not ok:
+		failures.append(message)
+		printerr("FAIL: ", message)
 
-func _run() -> void:
+func settle() -> void:
+	for i in range(5): await physics_frame
+	await process_frame
+
+func run() -> void:
 	game = root.get_node("GameManager")
 	cards = root.get_node("CardManager")
-	if not game.has_method("request_safe_return"):
-		printerr("FAIL: A must implement request_safe_return")
-		quit(1)
-		return
-	var probe: Node = load("res://scenes/doors/monster_door.tscn").instantiate()
-	var has_v4: bool = probe.has_method("finish_safe_return")
-	probe.free()
-	if not has_v4:
-		printerr("BLOCKED: sync C PR #12 before running the real-door integration check")
-		quit(2)
-		return
 	host = Node2D.new()
 	root.add_child(host)
-	game.call("set_floor_host", host)
-	game.call("start_game")
-	game.call("complete_manager_intro")
-	host.get_child(0).get_node("Player").global_position.x = 3400.0
-	game.call("request_floor_travel", 2)
-	var floor_node: Node = host.get_child(0)
-	var player: Node2D = floor_node.get_node("Player")
-	var story: Node = floor_node.get_node_or_null("DoorRoot/Room201/Door")
-	var normal: Node = floor_node.get_node_or_null("DoorRoot/Room202/Door")
-	if story == null or normal == null:
-		_expect(false, "A instantiates real 201 and one ordinary door")
-		await _finish()
-		return
-	_expect(story.scene_file_path == "res://scenes/doors/monster_door.tscn" and story.managed_cycle, "Main 201 uses the real managed story component")
-	_expect(normal.scene_file_path == "res://scenes/doors/monster_door.tscn", "202 retains its generic door")
-	var art: Node2D = floor_node.get_node("Floor2Art/Doors")
-	_expect(art.get_node("Room201/Sprite2D").texture.get_size() == Vector2(1280, 1280), "Separate production art retains the complete 201 PNG canvas")
-	_expect(player.z_index > art.z_index, "Corridor player remains in front of the separate door art")
-	# Freeze production scheduling/detection only in this compatibility fixture.
-	# No automatic return is expected from current managed-door encounters.
-	for child: Node in floor_node.get_children():
-		if child.get_script() == load("res://scenes/doors/door_scheduler.gd"):
-			child.set_process(false)
-	normal.set_physics_process(false)
-	story.set_managed_state("OPEN")
-	var normal_x: float = normal.global_position.x
-	var left_safe_x: float = floor_node.get_node("Interactions/Room202LeftSafe").global_position.x
-	var right_safe_x: float = floor_node.get_node("Interactions/Room202RightSafe").global_position.x
-	game.set_process(false) # Advance the real task timer explicitly for deterministic checks.
-	player.global_position.x = story.global_position.x
-	await physics_frame
-	await physics_frame
-	_expect(game.get("task_status") == "AVAILABLE" and game.get("remaining_time") == 0.0, "Real story interception offers without starting time")
-	game.call("accept_task", "TASK_01_CLEAN")
-	cards.call("collect_card", "CLEANER")
-	game.call("record_work_result", "STAIN_201") # B work component remains undelivered.
-	await _action(true)
-	await _action(false)
-	_expect(game.get("task_status") == "COMPLETED", "Unique E submits through the real 201 request")
-	_expect(game.call("get_world_flags").get("passage_201_unlocked", false), "Delivery opens the route before ordinary-door tests")
-	var flags: Dictionary = game.call("get_world_flags")
-	var inventory: Array = cards.call("get_owned_cards")
-	var time_before: float = game.get("remaining_time")
-	# A stale/unregistered source or unknown direction must not move the player.
-	var foreign := Node2D.new()
-	root.add_child(foreign)
-	player.global_position.x = 1300.0
-	game.call("request_safe_return", foreign, "WRONG_CARD", -1)
-	game.call("request_safe_return", normal, "WRONG_CARD", 0)
-	_expect(player.global_position.x == 1300.0, "Invalid sources and unknown approach sides cannot teleport")
-	foreign.queue_free()
-	# Exercise A's explicit API from both recorded approach directions.
-	for side: int in [-1, 1]:
-		player.global_position.x = normal_x + side * 180.0
-		normal.set("door_state", "CLOSED")
-		await physics_frame
-		await physics_frame
-		normal.set_process(false)
-		normal.set("door_state", "OPEN")
-		# Cross the door centre in one frame; entry evidence, not facing/current side, wins.
-		player.global_position.x = normal_x - side * 20.0
-		game.call("request_safe_return", normal, "WRONG_CARD", side)
-		await physics_frame
-		await process_frame
-		await process_frame
-		_expect(player.global_position.x == (left_safe_x if side == -1 else right_safe_x), "Explicit compatibility request returns to its supplied approach side")
-		_expect(game.get("game_state") == "PLAYING", "Safe return resumes play without task failure")
-		_expect(not player.is_moving, "Teleport does not count as EAR movement")
-	_expect(game.call("get_world_flags") == flags and cards.call("get_owned_cards") == inventory, "Safe return preserves world and card truth")
-	_expect(game.get("remaining_time") == time_before, "Safe return never resets task time")
-	# A-state fixture isolates a running task from the still unavailable task-02 gameplay.
-	game.set("task_status", "ACTIVE")
-	game.set("remaining_time", 37.5)
-	normal.set("door_state", "CLOSED")
-	await physics_frame
-	player.global_position.x = (normal_x - 20.0)
-	game.call("request_safe_return", normal, "WRONG_CARD", -1)
-	game.call("_process", 5.0)
-	_expect(game.get("remaining_time") == 37.5 and game.get("task_status") == "ACTIVE", "Return locks preserve a running task and stop only the return interval")
-	await process_frame
-	await process_frame
-	game.call("_process", 1.0)
-	_expect(game.get("remaining_time") == 36.5, "The same task clock continues after return")
-	await physics_frame
-	# Registered points are revalidated after layout/radius changes.
-	var left_point: Node2D = floor_node.get_node("Interactions/Room202LeftSafe")
-	left_point.global_position.x = story.global_position.x
-	player.global_position.x = (normal_x - 20.0)
-	game.call("request_safe_return", normal, "WRONG_CARD", -1)
-	_expect(player.global_position.x == (normal_x - 20.0), "A rejects a safe point inside the story region")
-	left_point.global_position.x = left_safe_x
-	var original_barrier: float = floor_node.task_01_barrier_x
-	floor_node.task_01_barrier_x = normal_x - 50.0
-	game.set("_world_flags", {}) # A route lock between actor and destination forbids return.
-	floor_node.call("_apply_task_route")
-	left_point.global_position.x = normal_x - 150.0
-	player.global_position.x = (normal_x - 20.0)
-	game.call("request_safe_return", normal, "WRONG_CARD", -1)
-	_expect(player.global_position.x == (normal_x - 20.0), "Safe return cannot cross the undelivered route lock")
-	floor_node.task_01_barrier_x = original_barrier
-	game.set("_world_flags", flags)
-	floor_node.call("_apply_task_route")
-	left_point.global_position.x = left_safe_x
-	# One synchronous batch cannot cause two returns, and new-floor sources stay isolated.
-	await physics_frame
-	normal.set("door_state", "CLOSED")
-	player.global_position.x = (normal_x - 20.0)
-	game.call("request_safe_return", normal, "WRONG_CARD", -1)
-	game.call("request_safe_return", normal, "WRONG_CARD", 1)
-	_expect(player.global_position.x == left_safe_x, "Same-frame requests cannot return twice")
-	await process_frame
-	await process_frame
-	player.global_position.x = 192.0
-	_expect(game.call("request_floor_travel", 1), "Return releases movement and stair input")
-	var new_player: Node2D = host.get_child(0).get_node("Player")
-	var arrival: Vector2 = new_player.global_position
-	game.call("request_safe_return", normal, "WRONG_CARD", -1)
-	_expect(new_player.global_position == arrival, "Removed-floor source cannot move the new player")
-	await _finish()
-
-
-func _action(pressed: bool) -> void:
-	var event := InputEventAction.new()
-	event.action = "interact"
-	event.pressed = pressed
-	Input.parse_input_event(event)
-	await process_frame
-
-
-func _expect(condition: bool, message: String) -> void:
-	if not condition:
-		failures.append(message)
-
-
-func _finish() -> void:
-	game.set_process(true)
+	game.set_floor_host(host)
+	game.start_game()
+	game.set_process(false)
+	# Explicit unlocked-floor fixtures exercise the real production detectors;
+	# this does not claim completed task04/05 gameplay.
+	for number in [2, 3, 4, 5]:
+		game.current_task_id = "TASK_03_AUTHORIZE"
+		game.task_status = "ACTIVE"
+		game._completed_task_ids.assign(["TASK_01_CLEAN", "TASK_02_PARCEL"])
+		game._world_flags = {"passage_201_unlocked": true, "passage_202_unlocked": true}
+		game._pending_monster_encounter.clear()
+		game._seen_monsters = {"NOSE": true, "EYE": true, "HAT": true, "EAR": true, "CHECKER": true}
+		game._load_floor(number)
+		var floor_node: Node = host.get_child(0)
+		floor_node.set_process(false)
+		floor_node.player.set_physics_process(false)
+		for child in floor_node.get_children():
+			if child.get_script() == load("res://scenes/doors/door_scheduler.gd"):
+				child.set_process(false)
+		for item in floor_node._doors:
+			item.set_physics_process(false)
+		var room: String = {2: "203", 3: "301", 4: "401", 5: "502"}[number]
+		var door: Node2D = floor_node.get_node("DoorRoot/Room" + room + "/Door")
+		# All2F doors are now compulsory tutorials. Only this isolated detector fixture
+		# converts203 to NORMAL to retain2F landing/inspection API coverage.
+		if number == 2: door.door_mode = "NORMAL"
+		var player = floor_node.player
+		var memory: Vector2 = floor_node.return_point.global_position
+		door.monster_type = "NOSE"
+		game.remaining_time = 37.5
+		cards.reset_for_new_game()
+		var truth: Dictionary = game.get_world_flags()
+		for side in [-1, 1]:
+			await settle()
+			player.global_position.x = door.global_position.x + side * 60
+			door._last_managed_x = door.global_position.x + side * 180
+			door.set_managed_state("OPEN")
+			door._physics_process(0)
+			check(player.global_position == memory, "Wrong ID from either side returns to left stairs: " + room + "/" + str(side))
+			check(game.game_state == "SAFE_RETURN" and not player.is_moving, "Return locks input and clears movement")
+			game._process(5)
+			check(game.remaining_time == 37.5 and game.task_status == "ACTIVE", "Return preserves active task and timer")
+			check(game.get_pending_monster_encounter().is_empty(), "Wrong ID does not leave a centre-wall encounter")
+			await settle()
+			check(game.game_state == "PLAYING" and not door._violation_pending, "Return resumes and acknowledges real detector")
+			check(game.get_world_flags() == truth and cards.get_owned_cards().is_empty(), "Return preserves inventory and world progress")
+		# Correct card passes even from the right; closed doors need no card.
+		cards.collect_card("CLEANER")
+		for side in [-1, 1]:
+			player.global_position.x = door.global_position.x + side * 60
+			door._last_managed_x = door.global_position.x + side * 180
+			door._physics_process(0)
+			check(is_equal_approx(player.global_position.x, door.global_position.x + side * 60), "Correct ID passes from either side: " + room)
+		door.set_managed_state("CLOSED")
+		cards.equip_card("NONE", cards.active_slot)
+		door._physics_process(0)
+		check(game.game_state == "PLAYING" and player.global_position != memory, "Closed door passes without ID")
+		# Existing EAR and CHECKER rules use the same safe landing.
+		door.monster_type = "EAR"
+		door.set_managed_state("OPEN")
+		player.is_moving = false
+		door._physics_process(0)
+		check(game.game_state == "PLAYING", "EAR still permits stopping")
+		player.is_moving = true
+		door._physics_process(0)
+		check(player.global_position == memory, "EAR moving returns to left stairs")
+		await settle()
+		door.monster_type = "CHECKER"
+		player.global_position.x = door.global_position.x + 60
+		door._last_managed_x = door.global_position.x + 180
+		cards.switch_active()
+		check(player.global_position == memory, "CHECKER nearby switch returns to left stairs")
+		await settle()
+		player.global_position.x = door.global_position.x - 60
+		door._last_managed_x = door.global_position.x - 180
+		door._sample_entry()
+		# Explicit inspection protocol retains evidence while a modal is open.
+		door._entry_side = -1
+		check(door.begin_identity_inspection(), "Begin checker inspection")
+		game.set_modal_open("RETURN_TEST", true)
+		cards.switch_active()
+		game.set_modal_open("RETURN_TEST", false)
+		check(door.end_identity_inspection() and player.global_position == memory, "Deferred checker inspection also returns to stairs")
+		await settle()
+		var foreign := Node2D.new()
+		root.add_child(foreign)
+		player.global_position.x = door.global_position.x + 60
+		var before: Vector2 = player.global_position
+		game.request_safe_return(foreign, "WRONG_CARD", -1)
+		game.request_safe_return(door, "WRONG_CARD", 0)
+		check(player.global_position == before, "Foreign source and unknown side cannot teleport")
+		foreign.queue_free()
+		var radius_before: float = door.radius
+		door.radius = absf(door.global_position.x - memory.x) + 1
+		check(floor_node.get_safe_return_position(door, -1).is_empty(), "Reject memory point inside a changed danger radius")
+		door.radius = radius_before
+		game._process(1)
+		check(game.remaining_time == 36.5, "The same countdown resumes after return")
+	game.set_floor_host(null)
 	host.queue_free()
 	await process_frame
-	for failure: String in failures:
-		printerr("FAIL: ", failure)
-	if failures.is_empty():
-		print("PASS: retained explicit safe-return API, real door/art binding, dual-side guards and persistence; not production encounter behavior.")
+	game.set_process(true)
+	print("SAFE_RETURN: PASS" if failures.is_empty() else "SAFE_RETURN: FAIL")
 	quit(0 if failures.is_empty() else 1)

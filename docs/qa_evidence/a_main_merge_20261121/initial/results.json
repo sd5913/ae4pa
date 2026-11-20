@@ -1,0 +1,1084 @@
+[
+  {
+    "name": "five_monster_main_flow_smoke",
+    "test": "core/five_monster_main_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/five_monster_main_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-five_monster_main_flow_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 59.65
+  },
+  {
+    "name": "task_03_main_flow_smoke",
+    "test": "core/task_03_main_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_03_main_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_03_main_flow_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 15.77
+  },
+  {
+    "name": "english_layout_smoke",
+    "test": "ui/english_layout_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/english_layout_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-english_layout_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.55
+  },
+  {
+    "name": "localization_full",
+    "test": "core/localization_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-localization_full.godot.log",
+      "--",
+      "--ui-smoke",
+      "--write-english"
+    ],
+    "exit_code": 1,
+    "errors": [
+      "ERROR: Node not found: \"Actions/LanguageSelector\" (relative to \"/root/Main/MenuLayer/MainMenu\").",
+      "SCRIPT ERROR: Cannot call method 'select' on a null value.",
+      "ERROR: Main-menu switch updates the locale in place",
+      "ERROR: Godot translates scene text",
+      "ERROR: Formatted strings preserve arguments and padding",
+      "ERROR: English catalog contains the story line: 你睡了吗？",
+      "ERROR: English catalog contains the story line: 能来接我吗",
+      "ERROR: English catalog contains the story line: 现在？",
+      "ERROR: English catalog contains the story line: 你终于舍得回消息了。你这几天去哪了？",
+      "ERROR: English catalog contains the story line: 我还在之前说过的那家旅馆",
+      "ERROR: English catalog contains the story line: 他们不让我离开",
+      "ERROR: English catalog contains the story line: “他们”是谁？",
+      "ERROR: English catalog contains the story line: 你先把地址发给我。",
+      "ERROR: English catalog contains the story line: 三楼",
+      "ERROR: English catalog contains the story line: 309号房",
+      "ERROR: English catalog contains the story line: 你报警了吗？",
+      "ERROR: English catalog contains the story line: 我现在给你打电话。",
+      "ERROR: English catalog contains the story line: 电话只响一声便挂断。",
+      "ERROR: English catalog contains the story line: 不要打",
+      "ERROR: English catalog contains the story line: 他们会听见",
+      "ERROR: English catalog contains the story line: 谁会听见？",
+      "ERROR: English catalog contains the story line: 你房间里有人？",
+      "ERROR: English catalog contains the story line: “对方正在输入”出现又消失。",
+      "ERROR: English catalog contains the story line: 别相信这里的工作人员",
+      "ERROR: English catalog contains the story line: 他们看起来和正常人一样",
+      "ERROR: English catalog contains the story line: 什么意思？",
+      "ERROR: English catalog contains the story line: 我现在不能继续发消息了",
+      "ERROR: English catalog contains the story line: 快一点",
+      "ERROR: English catalog contains the story line: 女主再拨，显示“对方暂时无法接听”。她翻到几天前的兼职录取通知。",
+      "ERROR: English catalog contains the story line: 那家旅馆……",
+      "ERROR: English catalog contains the story line: 就是她之前提过的夜班兼职。",
+      "ERROR: English catalog contains the story line: 几天前，傍晚的咖啡馆。两杯饮料放在桌上，闺蜜把手机递给女主。",
+      "ERROR: English catalog contains the story line: 看，我找到兼职了！",
+      "ERROR: English catalog contains the story line: 你上次也是这么说的。",
+      "ERROR: English catalog contains the story line: 上次那个发传单的不算。这个有正式录取通知。",
+      "ERROR: English catalog contains the story line: 夜班，三天，工作内容写的是协助前台和整理客房。",
+      "ERROR: English catalog contains the story line: 工资比我上个月做的几份兼职加起来还多。",
+      "ERROR: English catalog contains the story line: 夜班、工作轻松、工资还特别高。",
+      "ERROR: English catalog contains the story line: 这三个词放在一起，通常不像什么好消息。",
+      "ERROR: English catalog contains the story line: 你能不能偶尔对我的人生有一点信心？",
+      "ERROR: English catalog contains the story line: 我对你有信心。",
+      "ERROR: English catalog contains the story line: 我对这种连招聘负责人名字都没写的旅馆没信心。",
+      "ERROR: English catalog contains the story line: 人家可能只是管理比较传统。",
+      "ERROR: English catalog contains the story line: 传统到没有联系电话？",
+      "ERROR: English catalog contains the story line: 有地址就行。我去看看，不对劲就回来。",
+      "ERROR: English catalog contains the story line: 旅馆叫什么？",
+      "ERROR: English catalog contains the story line: 夜班旅馆。",
+      "ERROR: English catalog contains the story line: 这是名字，还是在提醒你工作时间？",
+      "ERROR: English catalog contains the story line: 是不是挺有氛围的？",
+      "ERROR: English catalog contains the story line: 挺像恐怖电影开头的。",
+      "ERROR: English catalog contains the story line: 恐怖电影里的人要是都像你一样谨慎，电影十分钟就结束了。",
+      "ERROR: English catalog contains the story line: 等一下。",
+      "ERROR: English catalog contains the story line: 这里写着“员工离店须经管理部门批准”。",
+      "ERROR: English catalog contains the story line: 大概是夜班不能随便旷工吧。",
+      "ERROR: English catalog contains the story line: 正常公司会写“离职流程”，不会写“离店批准”。",
+      "ERROR: English catalog contains the story line: 我就做几天，又不是卖给他们了。",
+      "ERROR: English catalog contains the story line: 等我拿到工资，请你吃顿好的。",
+      "ERROR: English catalog contains the story line: 先把地址发给我。",
+      "ERROR: English catalog contains the story line: 发你了，女侦探。",
+      "ERROR: English catalog contains the story line: 每天结束给我回一条消息。",
+      "ERROR: English catalog contains the story line: 知道了。我要是少回一条，你是不是准备直接冲进去找我？",
+      "ERROR: English catalog contains the story line: 我会先报警。",
+      "ERROR: English catalog contains the story line: 你这人真没情趣。",
+      "ERROR: English catalog contains the story line: 闺蜜笑着靠回卡座。画面淡出，录取通知的那行小字短暂停留。",
+      "ERROR: English catalog contains the story line: 她去上班以后，每天晚上都会给我发消息。",
+      "ERROR: English catalog contains the story line: 三天前，消息突然停了。",
+      "ERROR: English catalog contains the story line: 女主从聊天记录里打开旧地址，拿起外套和钥匙。",
+      "ERROR: English catalog contains the story line: 没有联系电话，也查不到正常的订房页面。",
+      "ERROR: English catalog contains the story line: 如果她真的被困在里面，我不能继续等。",
+      "ERROR: English catalog contains the story line: 雨夜旅馆外景，暖光只从入口透出。",
+      "ERROR: English catalog contains the story line: 三楼，309。",
+      "ERROR: English catalog contains the story line: 先找到她，再弄清楚这里发生了什么。",
+      "ERROR: English catalog contains the story line: 怪物员工通道",
+      "ERROR: English catalog contains the story line: 晚上好。",
+      "ERROR: English catalog contains the story line: 这个时间很少有客人独自前来。",
+      "ERROR: English catalog contains the story line: 我不是来住店的。我来找人。",
+      "ERROR: English catalog contains the story line: 找客人，还是找员工？",
+      "ERROR: English catalog contains the story line: 她之前在这里做夜班兼职。",
+      "ERROR: English catalog contains the story line: 这里的夜班人员很多，流动也很快。",
+      "ERROR: English catalog contains the story line: 如果没有名字或者登记编号，我恐怕很难帮你。",
+      "ERROR: English catalog contains the story line: 她已经三天没有回家了。",
+      "ERROR: English catalog contains the story line: 年轻人临时改变计划，并不罕见。",
+      "ERROR: English catalog contains the story line: 她刚刚给我发了消息。",
+      "ERROR: English catalog contains the story line: 她说自己在三楼，309号房。",
+      "ERROR: English catalog contains the story line: 309？",
+      "ERROR: English catalog contains the story line: 你知道那个房间。",
+      "ERROR: English catalog contains the story line: 我当然知道旅馆里的房间。",
+      "ERROR: English catalog contains the story line: 那她是不是在那里？",
+      "ERROR: English catalog contains the story line: 309属于客房区域。",
+      "ERROR: English catalog contains the story line: 普通访客最好不要随便进入。",
+      "ERROR: English catalog contains the story line: 她不是客人。她是你们招进来的员工。",
+      "ERROR: English catalog contains the story line: 员工是否仍在职，需要查看完整登记。",
+      "ERROR: English catalog contains the story line: 可惜，这里的记录没有你想象中那么简单。",
+      "ERROR: English catalog contains the story line: 她说有人不让她离开。",
+      "ERROR: English catalog contains the story line: “不能离开”和“手续尚未完成”，听起来相似，含义却完全不同。",
+      "ERROR: English catalog contains the story line: 对被困在里面的人来说，没有区别。",
+      "ERROR: English catalog contains the story line: 你似乎已经认定这里发生了什么。",
+      "ERROR: English catalog contains the story line: 我只知道她在向我求救。",
+      "ERROR: English catalog contains the story line: 那么你应该更谨慎一些。",
+      "ERROR: English catalog contains the story line: 这是提醒，还是威胁？",
+      "ERROR: English catalog contains the story line: 是建议。",
+      "ERROR: English catalog contains the story line: 楼上的客人有自己的规矩。",
+      "ERROR: English catalog contains the story line: 什么规矩？",
+      "ERROR: English catalog contains the story line: 有些客人不喜欢陌生人。",
+      "ERROR: English catalog contains the story line: 如果你看起来不像这里的工作人员，他们可能会对你产生兴趣。",
+      "ERROR: English catalog contains the story line: “产生兴趣”是什么意思？",
+      "ERROR: English catalog contains the story line: 我建议你不要亲自确认。",
+      "ERROR: English catalog contains the story line: 还有些客人对气味非常敏感。",
+      "ERROR: English catalog contains the story line: 他们判断一个人的方式，和我们不太一样。",
+      "ERROR: English catalog contains the story line: 楼上住的到底是什么人？",
+      "ERROR: English catalog contains the story line: 住客。",
+      "ERROR: English catalog contains the story line: 你知道我问的不是这个。",
+      "ERROR: English catalog contains the story line: 而我能回答的只有这个。",
+      "ERROR: English catalog contains the story line: 楼上传来关门声，女主看向楼梯。",
+      "ERROR: English catalog contains the story line: 我要去三楼。",
+      "ERROR: English catalog contains the story line: 你可以先上二楼。",
+      "ERROR: English catalog contains the story line: 如果楼上的客人拦住你，最好听清他们需要什么。",
+      "ERROR: English catalog contains the story line: 然后呢？",
+      "ERROR: English catalog contains the story line: 完成工作的人，通常更容易得到通行。",
+      "ERROR: English catalog contains the story line: 我不是这里的员工。",
+      "ERROR: English catalog contains the story line: 身份这种东西，在这里主要取决于你佩戴什么。",
+      "ERROR: English catalog contains the story line: 如果我遇到麻烦呢？",
+      "ERROR: English catalog contains the story line: 记得找工作人员。",
+      "ERROR: English catalog contains the story line: 包括你吗？",
+      "ERROR: English catalog contains the story line: 前台永远愿意为客人提供帮助。",
+      "ERROR: English catalog contains the story line: 我说过，我不是客人。",
+      "ERROR: English catalog contains the story line: 现在还不是。",
+      "ERROR: English catalog contains the story line: 经理低头继续看登记簿。",
+      "ERROR: English catalog contains the story line: 她知道我朋友在309。",
+      "ERROR: English catalog contains the story line: 她也知道是谁不让她离开。",
+      "ERROR: English catalog contains the story line: 但在找到她以前，我还不能和这里的人翻脸。",
+      "SCRIPT ERROR: Cannot call method 'select' on a null value.",
+      "SCRIPT ERROR: Cannot call method 'select' on a null value.",
+      "SCRIPT ERROR: Cannot call method 'select' on a null value."
+    ],
+    "elapsed_seconds": 2.67
+  },
+  {
+    "name": "saved_english",
+    "test": "core/localization_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-saved_english.godot.log",
+      "--",
+      "--ui-smoke",
+      "--expect-english"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "set_chinese",
+    "test": "core/localization_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-set_chinese.godot.log",
+      "--",
+      "--ui-smoke",
+      "--set-chinese"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "saved_chinese",
+    "test": "core/localization_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-saved_chinese.godot.log",
+      "--",
+      "--ui-smoke",
+      "--expect-chinese"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "task_02_localization_smoke",
+    "test": "core/task_02_localization_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_02_localization_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_02_localization_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 2.96
+  },
+  {
+    "name": "foundation_smoke",
+    "test": "core/foundation_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/foundation_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-foundation_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 6.95
+  },
+  {
+    "name": "task_01_smoke",
+    "test": "core/task_01_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_01_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_01_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.25
+  },
+  {
+    "name": "task_01_main_flow_smoke",
+    "test": "core/task_01_main_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_01_main_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_01_main_flow_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 10.35
+  },
+  {
+    "name": "task_checkpoint_smoke",
+    "test": "core/task_checkpoint_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_checkpoint_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_checkpoint_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 25.43
+  },
+  {
+    "name": "task_ui_smoke",
+    "test": "core/task_ui_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_ui_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_ui_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 27.72
+  },
+  {
+    "name": "world_interaction_smoke",
+    "test": "core/world_interaction_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/world_interaction_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-world_interaction_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 14.94
+  },
+  {
+    "name": "floor_return_smoke",
+    "test": "core/floor_return_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/floor_return_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-floor_return_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 2.86
+  },
+  {
+    "name": "task_definitions_smoke",
+    "test": "core/task_definitions_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_definitions_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_definitions_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "interaction_allowed_smoke",
+    "test": "core/interaction_allowed_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/interaction_allowed_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-interaction_allowed_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.13
+  },
+  {
+    "name": "notebook_smoke",
+    "test": "core/notebook_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/notebook_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-notebook_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "task_02_core_smoke",
+    "test": "core/task_02_core_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_02_core_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_02_core_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "task_02_main_flow_smoke",
+    "test": "core/task_02_main_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_02_main_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_02_main_flow_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": "timeout",
+    "errors": [
+      "timeout150s"
+    ]
+  },
+  {
+    "name": "task_03_core_smoke",
+    "test": "core/task_03_core_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/task_03_core_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_03_core_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "five_monster_tasks_smoke",
+    "test": "core/five_monster_tasks_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/five_monster_tasks_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-five_monster_tasks_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "intro_flow_smoke",
+    "test": "core/intro_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/intro_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-intro_flow_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 4.04
+  },
+  {
+    "name": "encounter_flow_smoke",
+    "test": "doors/encounter_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/encounter_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-encounter_flow_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 2.14
+  },
+  {
+    "name": "safe_return_smoke",
+    "test": "core/safe_return_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/safe_return_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-safe_return_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 5.13
+  },
+  {
+    "name": "floor_3_layout_smoke",
+    "test": "doors/floor_3_layout_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/floor_3_layout_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-floor_3_layout_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.84
+  },
+  {
+    "name": "floor_4_layout_smoke",
+    "test": "doors/floor_4_layout_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/floor_4_layout_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-floor_4_layout_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.85
+  },
+  {
+    "name": "tutorial_catalog_smoke",
+    "test": "doors/tutorial_catalog_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/tutorial_catalog_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-tutorial_catalog_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 1,
+    "errors": [
+      "FAIL: All 19 public rooms are configured; 305 stays reserved"
+    ],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "tutorial_lifecycle_smoke",
+    "test": "doors/tutorial_lifecycle_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/tutorial_lifecycle_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-tutorial_lifecycle_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.65
+  },
+  {
+    "name": "tutorial_delivery_identity_smoke",
+    "test": "core/tutorial_delivery_identity_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/tutorial_delivery_identity_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-tutorial_delivery_identity_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.13
+  },
+  {
+    "name": "tutorial_work_layout_smoke",
+    "test": "ui/tutorial_work_layout_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/tutorial_work_layout_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-tutorial_work_layout_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.63
+  },
+  {
+    "name": "checker_safe_bag_smoke",
+    "test": "ui/checker_safe_bag_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/checker_safe_bag_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-checker_safe_bag_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 2.97
+  },
+  {
+    "name": "known_monster_rules_smoke",
+    "test": "doors/known_monster_rules_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/known_monster_rules_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-known_monster_rules_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 1,
+    "errors": [
+      "FAIL: switching near learned CHECKER still violates",
+      "FAIL: checker request remains inside inspection range"
+    ],
+    "elapsed_seconds": 0.75
+  },
+  {
+    "name": "v4_catalog_smoke",
+    "test": "doors/v4_catalog_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/v4_catalog_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-v4_catalog_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 1,
+    "errors": [
+      "FAIL: 19 current room configurations (305 removed)"
+    ],
+    "elapsed_seconds": 0.45
+  },
+  {
+    "name": "tutorial_workpoints_smoke",
+    "test": "staff/tutorial_workpoints_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/staff/tutorial_workpoints_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-tutorial_workpoints_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.06
+  },
+  {
+    "name": "monster_text_glyphs_smoke",
+    "test": "ui/monster_text_glyphs_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/monster_text_glyphs_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-monster_text_glyphs_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 1,
+    "errors": [
+      "FAIL: monster/task text missing glyphs: 帕希防"
+    ],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "tutorial_hud_smoke",
+    "test": "ui/tutorial_hud_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/tutorial_hud_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-tutorial_hud_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 1,
+    "errors": [
+      "FAIL: 205 completion needs real upstairs objective"
+    ],
+    "elapsed_seconds": 1.76
+  },
+  {
+    "name": "monster_dialogue_smoke",
+    "test": "ui/monster_dialogue_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/monster_dialogue_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-monster_dialogue_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 4.27
+  },
+  {
+    "name": "staff_core_smoke",
+    "test": "staff/staff_core_smoke.tscn",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "res://scenes/tests/staff/staff_core_smoke.tscn",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-staff_core_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.04
+  },
+  {
+    "name": "work_items_smoke",
+    "test": "staff/work_items_smoke.tscn",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "res://scenes/tests/staff/work_items_smoke.tscn",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-work_items_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.63
+  },
+  {
+    "name": "cleaner_v4_smoke",
+    "test": "staff/cleaner_v4_smoke.tscn",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "res://scenes/tests/staff/cleaner_v4_smoke.tscn",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-cleaner_v4_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.34
+  },
+  {
+    "name": "ui_test",
+    "test": "ui/ui_test.tscn",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "res://scenes/tests/ui/ui_test.tscn",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-ui_test.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.34
+  },
+  {
+    "name": "floor_flow_smoke",
+    "test": "core/floor_flow_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/floor_flow_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-floor_flow_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 9.02
+  },
+  {
+    "name": "floor_2_layout_smoke",
+    "test": "doors/floor_2_layout_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/floor_2_layout_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-floor_2_layout_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 1,
+    "errors": [
+      "ERROR: Real door cycle drives modular art state",
+      "ERROR: Real door cycle drives modular art state"
+    ],
+    "elapsed_seconds": 3.84
+  },
+  {
+    "name": "floor_5_layout_smoke",
+    "test": "doors/floor_5_layout_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/floor_5_layout_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-floor_5_layout_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 1,
+    "errors": [
+      "FAIL: Removed rooms excluded from catalog"
+    ],
+    "elapsed_seconds": 0.85
+  },
+  {
+    "name": "v4_doors_smoke",
+    "test": "doors/v4_doors_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/v4_doors_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-v4_doors_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.34
+  },
+  {
+    "name": "v4_identity_smoke",
+    "test": "doors/v4_identity_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/v4_identity_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-v4_identity_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.33
+  },
+  {
+    "name": "reunion_309_smoke",
+    "test": "ui/reunion_309_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/reunion_309_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-reunion_309_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 12.64
+  },
+  {
+    "name": "task_door_lifecycle_smoke",
+    "test": "doors/task_door_lifecycle_smoke.gd",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/doors/task_door_lifecycle_smoke.gd",
+      "--log-file",
+      "/private/tmp/ae4pa-playtest-task_door_lifecycle_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": "timeout",
+    "errors": [
+      "timeout150s"
+    ]
+  }
+]

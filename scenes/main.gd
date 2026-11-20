@@ -18,6 +18,9 @@ var _notice_arguments: Array = []
 
 
 func _ready() -> void:
+	var reunion := preload("res://scenes/room309_reunion.gd").new()
+	reunion.name = "Room309Reunion"
+	add_child(reunion)
 	GameManager.state_changed.connect(_on_state_changed)
 	CardManager.cards_changed.connect(_on_cards_changed)
 	GameManager.floor_changed.connect(_on_floor_changed)
@@ -33,6 +36,11 @@ func _ready() -> void:
 	$TaskLayer.menu_requested.connect(_show_menu)
 	menu.start_requested.connect(_start_session)
 	menu.help_requested.connect(notebook.open_help)
+	var hud: Control = $TaskLayer/HUD
+	hud.bag_requested.connect(_open_bag_from_toolbar)
+	hud.notebook_requested.connect(_open_notebook_from_toolbar)
+	hud.pause_requested.connect($TaskLayer.play_overlay.toggle_pause)
+	hud.task_details_requested.connect($TaskLayer/MissionBoard.open_task_details)
 	notebook.set_process_unhandled_input(false)
 	bag.set_process_unhandled_input(false)
 	GameManager.set_floor_host($World)
@@ -79,12 +87,8 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("open_bag"):
 		if bag.visible:
 			bag.close_bag()
-		elif GameManager.is_world_input_allowed():
-			var restricted: String = $World.get_child(0).get_identity_restriction_room() if $World.get_child_count()>0 else ""
-			if restricted.is_empty():
-				bag.open_bag()
-			else:
-				_show_notice("核验区内不能调整证件。先退到安全工作台，再按I换证。")
+		else:
+			_open_bag_from_toolbar()
 		get_viewport().set_input_as_handled()
 	elif notebook.visible or bag.visible or menu.visible:
 		if event.is_action_pressed("switch_id") or event.is_action_pressed("interact"):
@@ -103,7 +107,8 @@ func _show_menu() -> void:
 	$DeveloperOverlay.hide()
 	$TaskLayer.hide()
 	menu.show()
-	menu.get_node("%StartButton").grab_focus()
+	if not menu.get_node("%StartButton").disabled:
+		menu.get_node("%StartButton").grab_focus()
 
 
 func _start_session() -> void:
@@ -150,7 +155,7 @@ func _on_dialogue_finished(dialogue_id: String) -> void:
 	if dialogue_id != _active_dialogue_id:
 		return
 	_active_dialogue_id = ""
-	$DeveloperOverlay.show()
+	$DeveloperOverlay.visible = "--developer-ui" in OS.get_cmdline_user_args()
 	$TaskLayer.show()
 	if dialogue_id == "V4_MANAGER_TALK":
 		GameManager.complete_manager_intro()
@@ -195,6 +200,7 @@ func _on_cards_changed() -> void:
 
 func _on_floor_changed(_number: int) -> void:
 	var floor_node: Node = $World.get_child(0)
+	floor_node.get_node("EntranceLabel").visible = "--developer-ui" in OS.get_cmdline_user_args()
 	floor_node.formatted_notice_requested.connect(_show_notice)
 	floor_node.manager_talk_requested.connect(_on_manager_talk_requested)
 	floor_node.task_offer_requested.connect($TaskLayer.open_offer)
@@ -285,7 +291,7 @@ func _task_03_objective() -> String:
 			if not CardManager.has_card("MANAGER"): return "回1F经理身后长按E取得工作证。"
 			if not CardManager.get_equipped_cards().has("MANAGER"): return "I将经理证放入佩戴槽。"
 			return "3F登记台按E批准309。" if CardManager.active_card == "MANAGER" else "Q切为经理，再回3F登记台批准。"
-		"COMPLETED": return "309登记已批准；任务03完成，救援后续尚未开放。"
+		"COMPLETED": return "帕希卡已同行，前往五楼消防出口。" if GameManager.has_friend else "309登记已批准；切为保洁身份进入309，寻找帕希卡。"
 		"FAILED": return "回302重新接受；201／202成果保留。"
 	return "前往3F的302。"
 
@@ -313,9 +319,11 @@ func _refresh_notice() -> void:
 		return
 	if _notice_arguments.is_empty():
 		notice_label.text = tr(_notice_template)
+		$TaskLayer/HUD.show_notice(notice_label.text)
 		return
 	var arguments := _notice_arguments.map(func(argument: String) -> String: return tr(argument))
 	notice_label.text = tr(_notice_template) % arguments
+	$TaskLayer/HUD.show_notice(notice_label.text)
 
 
 func _on_game_failed(reason: String) -> void:
@@ -326,4 +334,17 @@ func _on_game_failed(reason: String) -> void:
 
 
 func _on_safe_return_started(reason: String) -> void:
-	_show_notice("普通门警告：%s · 已退回来侧，请观察后重试", [reason])
+	_show_notice("普通门警告：%s · 已退回本层左侧楼梯，请观察后重试", [reason])
+
+func _open_bag_from_toolbar() -> void:
+	if not GameManager.is_world_input_allowed(): return
+	var restricted: String = $World.get_child(0).get_identity_restriction_room() if $World.get_child_count()>0 else ""
+	if restricted.is_empty():
+		bag.open_bag()
+	else:
+		_show_notice("核验区内不能调整证件。先退到安全工作台，再按I换证。")
+
+
+func _open_notebook_from_toolbar() -> void:
+	if GameManager.is_world_input_allowed():
+		notebook.open_help()

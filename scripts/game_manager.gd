@@ -421,6 +421,22 @@ func retry_current_task() -> bool:
 	return true
 
 
+func record_work_started(target_id: String) -> bool:
+	# Persist supervision across floor travel, but only after real eligible work starts.
+	if not is_interaction_allowed(target_id):
+		return false
+	var definition: Dictionary = get_task_definition(current_task_id)
+	if current_floor != definition["work_floor"]:
+		return false
+	if definition.get("work_type", "") != "CLEAN" or target_id != definition.get("target_id", "") or CardManager.active_card != definition.get("required_card", ""):
+		return false
+	var flag: String = definition["work_flag"] + "_started"
+	if not _world_flags.get(flag, false):
+		_world_flags[flag] = true
+		task_updated.emit()
+	return true
+
+
 func record_work_result(target_id: String) -> bool:
 	if not is_interaction_allowed(target_id):
 		return false

@@ -23,7 +23,7 @@ func _run() -> void:
 	catalog = load("res://scenes/doors/v4_door_catalog.gd")
 	door_scene = load("res://scenes/doors/monster_door.tscn")
 	var rows: Array[Dictionary] = catalog.get_rows()
-	_expect(rows.size() == 19, "All 19 public rooms are configured; 305 stays reserved")
+	_expect(rows.size() == 17, "All17 public rooms configured;305/504/505 excluded")
 	var first_rooms: Array[String] = []
 	for row: Dictionary in rows:
 		var room: String = row.room
@@ -55,7 +55,7 @@ func _run() -> void:
 	_expect(catalog.get_rows(2).size() == 5 and catalog.get_rows(3).size() == 4, "Floor filters retain 2F lessons and reserved 305")
 	for room: String in ["302", "403", "501"]:
 		_expect(not catalog.FIRST.has(room), "Former first room is no longer forced: " + room)
-	for room: String in ["305", "999"]:
+	for room: String in ["305", "504", "505", "999"]:
 		var door: Node2D = door_scene.instantiate()
 		_expect(catalog.pool(room).is_empty() and not catalog.configure(door, room), "Reserved or unknown room rejected: " + room)
 		door.free()

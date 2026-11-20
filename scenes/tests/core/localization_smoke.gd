@@ -31,7 +31,7 @@ func _run() -> void:
 	current_scene = main
 	await process_frame
 	var menu := main.get_node("MenuLayer/MainMenu")
-	var selector: OptionButton = menu.get_node("Actions/LanguageSelector")
+	var selector: OptionButton = menu.get_node("%LanguageSelector")
 	_check(TranslationServer.get_locale() == "zh_CN", "A fresh profile defaults to Simplified Chinese")
 	_choose(selector, 1)
 	_check(TranslationServer.get_locale() == "en" and main == current_scene and menu.visible,
@@ -116,7 +116,7 @@ func _run() -> void:
 		"Pause holds the world and a real checkpoint exists")
 	_choose(pause_selector, 1)
 	await process_frame
-	_check(task_layer.get_node("HUD").get_node("%RemainingTime").text.contains("In progress"),
+	_check(task_layer.get_node("HUD").get_node("%RemainingTime").text.contains("Time left"),
 		"Already visible HUD updates behind the pause menu")
 	_check(main.notice_label.text == "Collected the Housekeeper's ID",
 		"The current formatted notice updates in English")

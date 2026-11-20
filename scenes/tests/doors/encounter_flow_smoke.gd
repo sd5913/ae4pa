@@ -67,10 +67,16 @@ func run() -> void:
 	eye._physics_process(0.0)
 	check(gm.get_pending_monster_encounter().is_empty(),"Closed door passes without card")
 	check(not eye.get_node("MonsterIdle").visible,"Closed door has no monster")
+	var violations: Array[String] = []
+	eye.rule_violated.connect(func(reason: String, _side: int): violations.append(reason))
 	eye.set_managed_state("OPEN")
 	eye._physics_process(0.0)
-	check(gm.get_pending_monster_encounter().get("reason","") == "WRONG_RULE","Known wrong card forces request")
+	check(violations == ["WRONG_CARD"] and gm.get_pending_monster_encounter().is_empty(),"Known wrong card requests safe return rather than centre wall")
+	player.global_position.x = eye.global_position.x - 200
+	eye.finish_safe_return()
+	player.global_position.x = eye.global_position.x + 20
 	gm.resolve_monster_encounter("202")
+	eye.door_mode = "NORMAL" # Explicit ordinary-rule fixture after the formal202 checks.
 	gm._seen_monsters["EAR"] = true
 	eye.monster_type = "EAR"
 	player.is_moving = false
@@ -78,11 +84,14 @@ func run() -> void:
 	check(gm.get_pending_monster_encounter().is_empty(),"Ear stopped safe")
 	player.is_moving = true
 	eye._physics_process(0.0)
-	check(not gm.get_pending_monster_encounter().is_empty(),"Ear moving forces request")
+	check(violations.back() == "MOVED_NEAR_EAR","Ear movement requests safe return")
+	player.global_position.x = eye.global_position.x - 200
+	eye.finish_safe_return()
+	player.global_position.x = eye.global_position.x + 20
 	gm.resolve_monster_encounter("202")
 	eye.monster_type = "CHECKER"
 	eye._on_identity_changed("SWITCH_ACTIVE")
-	check(gm.get_pending_monster_encounter().get("reason","") == "SWITCHED_NEAR_CHECKER","Checker retains no-change rule")
+	check(violations.back() == "SWITCHED_NEAR_CHECKER","Checker retains no-change rule")
 	gm.resolve_monster_encounter("202")
 	eye.monster_type = "EYE"
 	for i in range(400):
@@ -107,7 +116,7 @@ func run() -> void:
 		var upper = load("res://scenes/levels/floor_%d.tscn" % number).instantiate()
 		root.add_child(upper)
 		await process_frame
-		check(upper._doors.size() == (4 if number == 3 else 5),"Expected assembled doors on floor " + str(number))
+		check(upper._doors.size() == (4 if number == 3 else 3 if number == 5 else 5),"Expected assembled doors on floor " + str(number))
 		for door in upper._doors:
 			check(catalog.pool(door.room_id).has(door.monster_type),"Runtime upper-floor assignment")
 			check(door.has_node("MonsterIdle"),"Upper-floor animated stand-in")

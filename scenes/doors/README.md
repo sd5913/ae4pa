@@ -1,5 +1,7 @@
 # C-01 至 C-13 通用房门交接
 
+> **2026-11-20 试玩修订：** 正式楼层任务门由 `door_scheduler.gd.task_phase` 按真实任务状态接管；201清洁监督持续开门、202回门交付开门、302接取后关闭、所有已完成任务门永久关闭。普通已认识怪物违规通过 `rule_violated` 接 `GameManager.request_safe_return`，2—5F统一退回 `Interactions/ReturnPoint` 左楼梯。非托管独立组件接口不变。专项检查：`res://scenes/tests/doors/task_door_lifecycle_smoke.gd`、`res://scenes/tests/core/safe_return_smoke.gd`。详见[门表](../../docs/room-monster-table.md)。
+
 > **2026-11-13：** 最新正式接入复核、C-V4-04可选背包核验上下文、C-V4-05全门表和五任务门F6见 [本轮交接](v4_m2_handoff.md)。新F6为 `res://scenes/tests/doors/v4_catalog_preview.tscn`（TEST DOUBLE）；五怪模态内普通检测静默，冻结期补检须A显式接新接口，未自动启用。共享默认周期保留，新目录可选5／1.5／3秒。
 
 > **2026-11-12 V4 迁移：** 当前 NORMAL 门已经改为只报告违规事件，STORY 门提供固定剧情触发与交付请求。下方 V3 的 GameManager.fail／FAILED 说明是历史基线，不能作为当前接入方式；本轮接口、F6、实测和待联调项以 [C-V4-01～03 交接](v4_handoff.md) 为准。旧 V3 失败断言脚本不能直接作为 V4 通过证据，600 组检测和真实核验事件已迁入 v4_doors_smoke。

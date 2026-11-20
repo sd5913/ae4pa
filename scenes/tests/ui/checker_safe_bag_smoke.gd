@@ -17,11 +17,17 @@ func run()->void:
 	await tap()
 	if bag.visible:failures.append("open checker range must not permit bag equipment changes")
 	if bag.visible:await tap()
+	main.get_node("TaskLayer/HUD").bag_requested.emit();await process_frame
+	if bag.visible:failures.append("toolbar must enforce the same checker bag restriction as I")
+	if bag.visible:bag.close_bag()
 	f.player.position.x=2850
 	for i in range(4):await physics_frame
 	await tap()
 	if not bag.visible:failures.append("205 safe workstation still allows real I equipment")
 	if bag.visible:await tap()
+	main.get_node("TaskLayer/HUD").bag_requested.emit();await process_frame
+	if not bag.visible:failures.append("safe workstation permits toolbar bag access")
+	if bag.visible:bag.close_bag()
 	main.queue_free();await process_frame
 	for message in failures:printerr("FAIL: "+message)
 	if failures.is_empty():print("PASS: checker rejects in-range bag and permits safe workstation equipment")

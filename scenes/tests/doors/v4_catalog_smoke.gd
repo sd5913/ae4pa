@@ -12,7 +12,7 @@ func _initialize() -> void:
 func _run() -> void:
 	Catalog = load("res://scenes/doors/v4_door_catalog.gd")
 	var rows: Array[Dictionary] = Catalog.get_rows()
-	_expect(rows.size() == 19, "19 current room configurations (305 removed)")
+	_expect(rows.size() == 17, "17 current room configurations (305/504/505 removed)")
 	var tasks := ["TASK_01_CLEAN", "TASK_02_PARCEL", "TASK_T03_ROOM_SERVICE", "TASK_T04_DUAL_WORK", "TASK_T05_TRANSIT"]
 	var found: Array[String] = []
 	var game: Node = root.get_node("GameManager")
@@ -82,7 +82,7 @@ func _run() -> void:
 	for failure: String in failures:
 		printerr("FAIL: ", failure)
 	if failures.is_empty():
-		print("PASS C-V4-05: 19 rooms, five task IDs, trial/historical timings, reset phases, independent five-door F6. Production routes and unconfirmed policies remain pending.")
+		print("PASS C-V4-05: 17 rooms, five task IDs, trial/historical timings, reset phases, independent five-door F6. Production routes and unconfirmed policies remain pending.")
 	quit(0 if failures.is_empty() else 1)
 
 

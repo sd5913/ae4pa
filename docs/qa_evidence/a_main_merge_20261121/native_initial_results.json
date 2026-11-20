@@ -1,0 +1,55 @@
+[
+  {
+    "name": "hud",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/hud_layout_smoke.gd",
+      "--",
+      "--ui-smoke",
+      "--after"
+    ],
+    "exit_code": 1,
+    "errors": [
+      "FAIL: accept 201",
+      "FAIL: real 201 setup settlement",
+      "FAIL: accept 202",
+      "FAIL: real component readiness replaces generic hint",
+      "FAIL: real parcel pickup",
+      "FAIL: real parcel delivery"
+    ],
+    "elapsed_seconds": 5.59
+  },
+  {
+    "name": "five_monster",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/core/five_monster_main_flow_smoke.gd",
+      "--",
+      "--capture"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 61.18
+  },
+  {
+    "name": "reunion_309",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--path",
+      "/private/tmp/ae4pa-five-monster-20261120",
+      "--script",
+      "res://scenes/tests/ui/reunion_309_smoke.gd",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 14.32
+  }
+]

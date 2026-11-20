@@ -24,13 +24,15 @@ var _progress := ProgressBar.new()
 
 func _ready() -> void:
 	_details.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_details.theme_type_variation = &"HudMeta"
 	_details.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_details.add_theme_color_override("font_outline_color", Color("292117"))
-	_details.add_theme_constant_override("outline_size", 5)
+	_details.add_theme_constant_override("outline_size", 0)
 	add_child(_details)
 	_progress.max_value = 1.0
 	_progress.step = 0.0
-	_progress.custom_minimum_size.y = 18.0
+	_progress.custom_minimum_size.y = 6.0
+	_progress.show_percentage = false
 	_progress.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	var track := StyleBoxTexture.new()
 	track.texture = PROGRESS_TRACK
@@ -124,9 +126,13 @@ func _display(state: Dictionary) -> void:
 		show()
 		return
 	_progress.show()
-	_details.text = tr("%s · %s · %s\n%.2f / %.2f 秒") % [
+	_details.text = tr("%s · %s · %s  %.2f / %.2f 秒") % [
 		tr(kind), tr(STATUS_TEXT[_status]), tr(reason), state["elapsed"], state["required_time"],
 	]
+	_details.tooltip_text = _details.text + " · " + str(state.get("target_id", ""))
+	_details.theme_type_variation = &"HudPrompt" if _status == "BLOCKED" else &"HudMeta"
+	if _status == "BLOCKED":
+		_details.text = tr("%s：%s") % [tr(kind), tr(reason)]
 	_progress.value = state["progress"]
 	show()
 

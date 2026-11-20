@@ -1,41 +1,38 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_base.tscn" id="1_base"]
-[ext_resource type="Texture2D" path="res://assets/backgrounds/floor_5.png" id="art_background"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_background"]
-atlas = ExtResource("art_background")
-region = Rect2(0, 736, 3840, 688)
+[ext_resource type="PackedScene" path="res://scenes/levels/floor_5_art.tscn" id="art"]
 
 [node name="Floor5" instance=ExtResource("1_base")]
 floor_number = 5
 
 [node name="FloorBackground" parent="." index="0"]
-position = Vector2(0, -53.125)
-scale = Vector2(0.9375, 0.9375)
-texture = SubResource("AtlasTexture_background")
+visible = false
+
+[node name="Player" parent="." index="2"]
+z_index = 1
 
 [node name="Room501" type="Marker2D" parent="DoorRoot" index="0"]
-position = Vector2(700, 560)
+position = Vector2(1087.5, 560)
 metadata/room_number = 501
 metadata/monster_type = "CHECKER"
 
 [node name="Room502" type="Marker2D" parent="DoorRoot" index="1"]
-position = Vector2(1150, 560)
+position = Vector2(1696.875, 560)
 metadata/room_number = 502
 metadata/monster_type = "SESSION_RANDOM"
 
 [node name="Room503" type="Marker2D" parent="DoorRoot" index="2"]
-position = Vector2(1600, 560)
+position = Vector2(2610.9375, 560)
 metadata/room_number = 503
 metadata/monster_type = "SESSION_RANDOM"
 
-[node name="Room504" type="Marker2D" parent="DoorRoot" index="3"]
-position = Vector2(2050, 560)
-metadata/room_number = 504
-metadata/monster_type = "SESSION_RANDOM"
+[node name="Floor5Art" parent="." instance=ExtResource("art")]
+position = Vector2(0, -68.125)
+scale = Vector2(0.46875, 0.46875)
 
-[node name="Room505" type="Marker2D" parent="DoorRoot" index="4"]
-position = Vector2(2500, 560)
-metadata/room_number = 505
-metadata/monster_type = "SESSION_RANDOM"
+[node name="Hint" parent="Interactions/ReturnPoint"]
+visible = false
+
+[node name="Hint" parent="Interactions/ExitPoint"]
+visible = false

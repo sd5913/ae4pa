@@ -9,6 +9,14 @@ func run() -> void:
 	g.set_process(false)
 	for id: String in ["TASK_T03_ROOM_SERVICE", "TASK_T04_DUAL_WORK", "TASK_T05_TRANSIT"]:
 		for status: String in ["AVAILABLE", "ACTIVE", "READY_TO_SUBMIT", "COMPLETED", "FAILED"]:
+			# D HUD reads both status and authoritative completion prerequisites.
+			var completed: Array[String] = ["TASK_01_CLEAN", "TASK_02_PARCEL"]
+			for previous: String in ["TASK_T03_ROOM_SERVICE", "TASK_T04_DUAL_WORK", "TASK_T05_TRANSIT"]:
+				if previous == id:
+					if status == "COMPLETED": completed.append(previous)
+					break
+				completed.append(previous)
+			g.set("_completed_task_ids", completed)
 			g.current_task_id = id; g.task_status = status; g.current_floor = 2
 			g.task_updated.emit(); await process_frame
 			if status == "AVAILABLE":

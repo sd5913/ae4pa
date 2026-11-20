@@ -152,6 +152,11 @@ func run() -> void:
 	root.add_child(main); await settle()
 	main.dialogue.set_skip_transitions_for_test(true)
 	screen = main.get_node("TaskLayer/MonsterDialogue"); board = main.get_node("TaskLayer/MissionBoard")
+	# Wait for D's actual animated opening before starting the normal new game.
+	for i in range(360):
+		if not main.get_node("MenuLayer/MainMenu/%StartButton").disabled: break
+		await physics_frame
+	check(not main.get_node("MenuLayer/MainMenu/%StartButton").disabled, "animated menu becomes ready")
 	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
 	await drain_story(); await settle()
 	await move_to(floor_node().get_node("StaffRoot/ManagerSlot").position.x + 30)

@@ -26,7 +26,9 @@ func _run() -> void:
 			_expect(room.get_node("Sprite2D").texture.get_size() == Vector2(1280,1280), "All state textures retain full canvas")
 	var start: float = preview.get_node("Player").position.x
 	Input.action_press("move_right")
-	await create_timer(0.15).timeout
+	# Wait for actual input/physics frames; cold texture loading can consume a
+	# wall-clock timer before the first physics tick in headless runs.
+	for i in range(12): await physics_frame
 	Input.action_release("move_right")
 	_expect(preview.get_node("Player").position.x > start, "Walk-through player can move without task fixtures")
 	_expect(not art.has_node("Foreground/LeftRail") and not art.has_node("Foreground/RightRail"), "Detached foreground stair railings are removed")
@@ -51,6 +53,9 @@ func _run() -> void:
 	root.add_child(floor_node)
 	await process_frame
 	art = floor_node.get_node("Floor2Art")
+	for child in floor_node.get_children():
+		if child.get_script() == load("res://scenes/doors/door_scheduler.gd"): child.set_process(false)
+	floor_node.set_process(false)
 	_expect(floor_node.get_node("FloorBackground").texture == null, "Modular floor does not overlay the old baked corridor")
 	for room_id: String in ["201","202"]:
 		var door = floor_node.get_node("DoorRoot/Room" + room_id + "/Door")
@@ -59,12 +64,11 @@ func _run() -> void:
 		var bottom: float = visual.global_position.y - 31.0 * visual.global_scale.y
 		_expect(absf(bottom-560.0)<0.001,"Door threshold aligns with actual walking ground")
 		_expect(not door.visible,"Old placeholder visuals are hidden")
-		door.set_process(false)
-		door.offset = 5.6
-		door.reset_cycle()
+		door.set_physics_process(false)
+		door.set_managed_state("WARNING")
 		await process_frame
 		await process_frame
-		_expect(visual.state == "WARNING", "Real door cycle drives modular art state")
+		_expect(visual.state == "WARNING", "Production managed door WARNING drives modular art state")
 	_expect(floor_node.get_node("Player").z_index < art.get_node("Foreground").z_index,"Existing foreground columns retain their layer")
 	_expect(floor_node.get_node("Interactions/ReturnPoint").position == Vector2(192,560) and floor_node.get_node("Interactions/ExitPoint").position == Vector2(3400,560), "Stair interaction anchors are unchanged")
 	floor_node.queue_free()

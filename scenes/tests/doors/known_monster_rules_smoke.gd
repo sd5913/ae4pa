@@ -1,5 +1,6 @@
 extends SceneTree
 var failures: Array[String] = []
+var violations: Array[String] = []
 func _initialize() -> void: call_deferred("run")
 func check(ok: bool, text: String) -> void:
 	if not ok: failures.append(text)
@@ -21,12 +22,14 @@ func run() -> void:
 	p.set("is_moving", false); floor_node._resolve_known_card_encounter()
 	check(g.get_pending_monster_encounter().is_empty(), "standing still resolves learned EAR without new tutorial")
 	g.resolve_monster_encounter("301")
+	door.rule_violated.connect(func(reason: String, _side: int): violations.append(reason))
 	door.monster_type = "CHECKER"
 	c.switch_active() # Actual identity event while in open checker radius.
-	check(g.get_pending_monster_encounter().get("room_id", "") == "301", "switching near learned CHECKER still violates")
+	check(violations == ["SWITCHED_NEAR_CHECKER"], "switching near learned CHECKER emits the real violation")
 	floor_node._resolve_known_card_encounter()
-	check(not g.get_pending_monster_encounter().is_empty(), "checker request remains inside inspection range")
+	check(g.get_pending_monster_encounter().is_empty() and door._violation_pending, "known checker uses safe-return acknowledgment rather than a centre-wall encounter")
 	p.global_position.x = door.global_position.x - 150
+	check(door.finish_safe_return(), "safe retreat acknowledges learned checker violation")
 	floor_node._resolve_known_card_encounter()
 	check(g.get_pending_monster_encounter().is_empty(), "retreat to safe area permits learned CHECKER retry")
 	floor_node.queue_free(); await process_frame
