@@ -17,6 +17,9 @@ const FAILURE_MODAL: String = "TASK_FAILURE"
 
 
 func _ready() -> void:
+	var monster_guide := preload("res://scenes/ui/task_monster_dialogue.gd").new()
+	monster_guide.name = "TaskMonsterDialogue"
+	add_child(monster_guide)
 	play_overlay = PlayOverlay.new()
 	play_overlay.name = "PlayOverlay"
 	add_child(play_overlay)

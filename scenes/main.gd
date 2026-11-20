@@ -100,16 +100,12 @@ func _show_story_dialogue(dialogue_id: String) -> void:
 	$TaskLayer.hide()
 	GameManager.set_modal_open(STORY_MODAL, true)
 	if dialogue_id == TASK_02_INTRO:
-		var lines: Array[String] = [
-			"我是202的住客。清洁工作完成了？我还有一件遗失的包裹。",
-			"接受任务后，你有180秒。先返回一楼，在保安身后长按E取得工作证。",
-			"按Q把保安证切为当前身份，再到我门前的保管柜按E领取包裹。只放在备用槽不行。",
-			"取到后回202按E交付，我才会开放通往三楼的路。现在请确认是否接受。",
-		]
-		if not dialogue.show_task_dialogue(dialogue_id, "独眼客 · 202", lines):
+		# Same A completion callback and offer contract; only the display is D-owned.
+		$TaskLayer.show()
+		$TaskLayer/HUD.hide()
+		if not $TaskLayer/MonsterDialogue.show_dialogue("EYE:INTRO"):
 			_active_dialogue_id = ""
 			GameManager.set_modal_open(STORY_MODAL, false)
-			$TaskLayer.show()
 	elif dialogue_id == TASK_03_INTRO:
 		var lines: Array[String] = [
 			"我是302的住客。309的登记还没有得到管理批准。",

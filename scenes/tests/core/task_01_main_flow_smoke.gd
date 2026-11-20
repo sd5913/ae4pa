@@ -43,6 +43,7 @@ func _run() -> void:
 	await create_timer(2.8).timeout
 	Input.action_release("move_right")
 	await _settle()
+	await _read_monster_dialogue(main)
 	var board = main.get_node("TaskLayer/MissionBoard")
 	_expect(game.task_status == "AVAILABLE" and board.visible,"Walking to actual 201 boundary opens real mission UI")
 	_expect(not game.is_world_input_allowed(),"Task offer modal blocks movement until closed")
@@ -67,6 +68,7 @@ func _run() -> void:
 	await _key(true)
 	await _key(false)
 	_expect(game.task_status == "COMPLETED" and game.get_world_flags().get("passage_201_unlocked",false),"Return E delivery unlocks the passage")
+	await _read_monster_dialogue(main)
 	player.position.x = 1400
 	await _settle()
 	_expect(player.position.x > 1250,"Completed task can pass the former barrier")
@@ -74,3 +76,11 @@ func _run() -> void:
 	await process_frame
 	print("TASK_01_MAIN_FLOW: ","PASS" if failures == 0 else "FAIL")
 	quit(0 if failures == 0 else 1)
+
+func _read_monster_dialogue(main: Node) -> void:
+	var screen: Control = main.get_node("TaskLayer/MonsterDialogue")
+	for i in range(80):
+		if not screen.visible: return
+		await _key(true)
+		await _key(false)
+	_expect(false, "Monster dialogue closes after real E input")
