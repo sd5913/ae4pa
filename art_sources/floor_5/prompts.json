@@ -1,0 +1,104 @@
+[
+  {
+    "key": "wall_tile",
+    "alpha": false,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. Opaque full-bleed1536x1024 horizontally repeatable WALL texture: upper72% elegant warm burgundy/coral-red wallpaper with subtle vertical floral stripes from reference5F, bottom28% dark red carved wooden rectangular wainscoting and horizontal gold dado rail. No windows, doors, decorations, roof, furniture, floor or external padding. Fill whole rectangle, no black margins.",
+    "generated_file": "generated/wall_tile.png"
+  },
+  {
+    "key": "roof_side_tile",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. ONE horizontal REPEATABLE ROOFTOP BALUSTRADE AND EAVE MODULE matching the left/right flat top sections: dark near-black walnut rail supported by evenly spaced short turned balusters, shallow burgundy sloped roofing panels beneath the balusters, stout dark eave beam along bottom, fine golden rim lighting. NO tall end posts, no finials, no central gable, no wall or sky, no people. Module endpoints must be equal height and continue seamlessly on horizontal repetition; the spaces between balusters ABOVE the roof slope are genuine transparent sky holes. Wide straight horizontal architectural sprite, no perspective, transparent exterior.",
+    "generated_file": "generated/roof_side_tile.png"
+  },
+  {
+    "key": "carpet_tile",
+    "alpha": false,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. Opaque horizontally repeatable RED CARPET strip: deep wine-red woven runner, subtle darker ornamental motifs, fine golden top and bottom borders, dark wooden lower plinth. Wide rectangle texture, straight-on narrow floor elevation, no perspective or background wall, no objects. Entire rectangle is carpet, no black padding.",
+    "generated_file": "generated/carpet_tile.png"
+  },
+  {
+    "key": "roof_center",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. ISOLATED CENTRAL ROOFTOP CROWN: complete central burgundy ornamental hotel crest gable with gold horned HOTEL LOGO and black carved outline, flanked by the two glowing gold half-circle fanlight windows with black radial muntins seen at roof center in reference. ONE connected symmetric architectural assembly including complete curved dark roof trims and lower beam. No sky behind or around silhouette, no wall underneath, no room doors, no extra windows. Original three-lobed silhouette, largest center crest and two lower half-circle windows. Native wide canvas, object fills image, true transparent exterior.",
+    "generated_file": "generated/roof_center.png"
+  },
+  {
+    "key": "checkout_desk",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. Large DEPARTURE REGISTRATION COUNTER from reference right-center, without the attendant. Dark walnut paneled long front counter, gold edge trim, brass drawer hardware; matching low wooden key-cubby rack behind the countertop. Reconstruct clean furniture hidden by attendant; cubbies complete and visible, no holes where person was. On tabletop only neatly stacked cream envelopes/forms, small boxes and an open departure ledger at center-right. NO human, face, silhouette, mannequin, foreground flower vase or ceiling lamps; no wall or carpet. One complete front-facing furniture assembly with solid base, transparent exterior.",
+    "generated_file": "generated/checkout_desk.png"
+  },
+  {
+    "key": "armchair",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. One burgundy upholstered LOUNGE ARMCHAIR from far-left seating pair. Tall rounded red tufted back, rounded upholstered arms and seat, dark walnut short legs with gold tips, front three-quarter view turned slightly toward right as reference left chair. Only one chair, no table or lamp, plant, carpet or wall. Full silhouette and feet, genuine transparent exterior.",
+    "generated_file": "generated/armchair.png"
+  },
+  {
+    "key": "exit_bay",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. Complete far-RIGHT EXIT ARCH AND OUTDOOR LANDING assembly. Dark wood structural bay with small red glowing sign exact text EXIT above gold-trimmed open round arch, no door leaf; empty arch reveals purple sky. Gold threshold onto narrow horizontal balcony platform with integrated black railing and short descending stair/handrail at right, one hanging gold lantern from eave. Same readable side-view outline as reference, full platform base and railing retained together. NO humans anywhere, no attendant, NO room doors, no background sky outside the architectural silhouette; sky holes between railing pickets are transparent. Entire complete structure visible on transparent canvas.",
+    "generated_file": "generated/exit_bay.png"
+  },
+  {
+    "key": "window_pair",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. Pair of tall adjacent golden ARCHED WINDOWS from left lounge, burgundy swag curtains gathered along tops and sides, fine black window muntins, muted purple twilight gothic skyline painted through glazing. Connected twin-window gold mullion assembly, complete sills included. No wall outside, no armchairs, lamp, plant or people. True transparent exterior surrounding whole paired-window sprite.",
+    "generated_file": "generated/window_pair.png"
+  },
+  {
+    "key": "gramophone_console",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. Two adjacent small dark walnut low side cabinets, warm gold-edged panels, one drawer each and short curved legs, as the music console between501 and502. Left cabinet holds a brass antique GRAMOPHONE with large upward-curving golden horn and burgundy base, right cabinet holds a tiny golden rectangular letter tray/box. One joined front-view furniture assembly, no painting behind, no wall/floor, no person or shadows.",
+    "generated_file": "generated/gramophone_console.png"
+  },
+  {
+    "key": "white_lily",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. White LILY BOUQUET in small deep plum-black tapered vase from left corner of departure desk. Several ivory-white trumpet/star lily blossoms, pale gold stamens, dark green leaves and stems, complete vase foot. Only flower vase, no desk, no person, no background or glow.",
+    "generated_file": "generated/white_lily.png"
+  },
+  {
+    "key": "castle_painting",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. One tall VERTICAL GILDED CASTLE PAINTING from between501 and502. Gold angular ornate rectangular frame, simple purple night sky, crescent moon, stylized silhouetted gothic castle towers and low mountains within frame. Full frame intact, no gramophone/furniture/wall around it, no human motifs. Transparent exterior.",
+    "generated_file": "generated/castle_painting.png"
+  },
+  {
+    "key": "pendant",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. Three warm golden glowing SPHERICAL BULBS hanging below a single dark wrought-iron branching CEILING PENDANT from departure desk zone. One vertical chain, short sculptural central support, three equal globe lamps in horizontal row as reference. Entire chain and all three globes visible, no ceiling, wall, desk or people. Full transparent exterior, only local illumination inside glass, no external halo.",
+    "generated_file": "generated/pendant.png"
+  },
+  {
+    "key": "floor_sign",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. Only small GOLD FLOOR PLAQUE reading exactly '5F' from far-left pillar, rounded scalloped horizontal brass rectangle, thick beveled golden frame, dark thin edge, black serif5F centered. No column or staircase or background, true transparent exterior, no extra text.",
+    "generated_file": "generated/floor_sign.png"
+  },
+  {
+    "key": "crescent_moon",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. Only a small slender GOLDEN-PEACH CRESCENT MOON matching upper-right night sky of reference, stylized softly painted curved crescent, no stars, face, halo, outline ring or sky. True transparent outside and inside crescent silhouette. One isolated simple game sky decoration.",
+    "generated_file": "generated/crescent_moon.png"
+  },
+  {
+    "key": "crest_plaque",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. Small square BURGUNDY WALL CREST PLAQUE above departure desk flowers. Ornate gold rectangular frame with flared upper corners, plain burgundy inner panel and one gold horned hotel crest centered. Rigid framed decorative panel, NOT fabric pennant, no hanging rod, no words. True transparent exterior.",
+    "generated_file": "generated/crest_plaque.png"
+  },
+  {
+    "key": "roof_finial",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. One small decorative ROOFTOP POST WITH GOLD FINIAL from roof railing. Short thick near-black walnut square pedestal/post with small cap, topped by pointed symmetrical stacked gold spindle finial. Only ornamental architectural post, no sky/railings/eave/wall. Full silhouette, transparent exterior, front elevation.",
+    "generated_file": "generated/roof_finial.png"
+  },
+  {
+    "key": "sconce",
+    "alpha": true,
+    "prompt": "Production 2D game component extracted and repainted at native high detail from the attached FIFTH FLOOR reference. Match approved warm burgundy-red, antique gold, dark sculpted wooden edges and refined hand-painted gothic storybook hotel style. Orthographic straight-on side-view/elevation. ONE isolated named component only, NOT a whole floor or asset sheet. NO people, staff, silhouettes, monsters, room doors, door-mounted lanterns, labels or watermark. Keep complete silhouette, safe margins, no cast shadow or external glow baked into furniture. Transparent exterior is genuine alpha, not a black backdrop or checkerboard. One antique brass WALL CANDLE SCONCE, three short golden candle-shaped warm lights on three branching gold arms, small dark brass mounting plate. From reference near painting and exit. Entire fixture complete, no wall, no external halo, no shadows, true transparent exterior.",
+    "generated_file": "generated/sconce.png"
+  }
+]

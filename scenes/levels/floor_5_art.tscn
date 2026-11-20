@@ -1,0 +1,385 @@
+[gd_scene load_steps=33 format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/floor_2_art.gd" id="r1"]
+[ext_resource type="Script" path="res://scenes/doors/floor_door_art.gd" id="r2"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/01_far/sky_tile.png" id="r3"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/01_far/crescent_moon.png" id="r4"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/01_far/wall_tile.png" id="r5"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/01_far/outer_pillar.png" id="r6"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/01_far/stair_left.png" id="r7"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/01_far/floor_sign.png" id="r8"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/01_far/window_pair.png" id="r9"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/01_far/ceiling_beam_tile.png" id="r10"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/01_far/roof_side_tile.png" id="r11"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/01_far/roof_rail_cap_tile.png" id="r12"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/01_far/roof_center.png" id="r13"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/01_far/roof_finial.png" id="r14"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/01_far/exit_bay.png" id="r15"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/02_ground/carpet_tile.png" id="r16"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/02_ground/skirting_tile.png" id="r17"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/03_furniture/palm_tall.png" id="r18"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/03_furniture/armchair.png" id="r19"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/03_furniture/lamp_table.png" id="r20"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/03_furniture/castle_painting.png" id="r21"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/03_furniture/gramophone_console.png" id="r22"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/03_furniture/checkout_desk.png" id="r23"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/03_furniture/white_lily.png" id="r24"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/03_furniture/crest_plaque.png" id="r25"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/03_furniture/pendant.png" id="r26"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/03_furniture/sconce.png" id="r27"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/04_lighting/contact_shadow.png" id="r28"]
+[ext_resource type="Texture2D" path="res://assets/final/floor_5_layers/04_lighting/warm_glow.png" id="r29"]
+[ext_resource type="Texture2D" path="res://assets/final/doors/room_501/door_closed.png" id="r30"]
+[ext_resource type="Texture2D" path="res://assets/final/doors/room_502/door_closed.png" id="r31"]
+[ext_resource type="Texture2D" path="res://assets/final/doors/room_503/door_closed.png" id="r32"]
+
+[node name="Floor5Art" type="Node2D"]
+script = ExtResource("r1")
+
+[node name="Architecture" type="Node2D" parent="."]
+
+[node name="outside_twilight_city" type="Sprite2D" parent="Architecture"]
+position = Vector2(0, 0)
+centered = false
+texture = ExtResource("r3")
+scale = Vector2(1, 1)
+texture_repeat = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 7680.0, 1500.0)
+
+[node name="crescent_moon" type="Sprite2D" parent="Architecture"]
+position = Vector2(7260, 170)
+centered = false
+texture = ExtResource("r4")
+scale = Vector2(0.15719063545150502, 0.15763546798029557)
+
+[node name="burgundy_wallpaper_and_wainscot" type="Sprite2D" parent="Architecture"]
+position = Vector2(300, 610)
+centered = false
+texture = ExtResource("r5")
+scale = Vector2(0.712890625, 0.712890625)
+texture_repeat = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 8696.986301369863, 1024.0)
+
+[node name="left_full_black_pillar" type="Sprite2D" parent="Architecture"]
+position = Vector2(112, 610)
+centered = false
+texture = ExtResource("r6")
+scale = Vector2(0.3356940509915014, 0.33625057577153383)
+
+[node name="stair_left" type="Sprite2D" parent="Architecture"]
+position = Vector2(370, 657)
+centered = false
+texture = ExtResource("r7")
+scale = Vector2(0.46713147410358563, 0.467412771560237)
+
+[node name="floor_sign" type="Sprite2D" parent="Architecture"]
+position = Vector2(148, 850)
+centered = false
+texture = ExtResource("r8")
+scale = Vector2(0.17936925098554535, 0.1791044776119403)
+
+[node name="window_pair" type="Sprite2D" parent="Architecture"]
+position = Vector2(986, 660)
+centered = false
+texture = ExtResource("r9")
+scale = Vector2(0.6429521276595744, 0.6432160804020101)
+
+[node name="continuous_roof_eave" type="Sprite2D" parent="Architecture"]
+position = Vector2(100, 590)
+centered = false
+texture = ExtResource("r10")
+scale = Vector2(0.47619047619047616, 0.47619047619047616)
+texture_repeat = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 15225.0, 105.0)
+
+[node name="roof_balustrade_left" type="Sprite2D" parent="Architecture"]
+position = Vector2(180, 340)
+centered = false
+texture = ExtResource("r11")
+scale = Vector2(0.9556313993174061, 0.9556313993174061)
+texture_repeat = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 2804.4285714285716, 293.0)
+
+[node name="roof_balustrade_right" type="Sprite2D" parent="Architecture"]
+position = Vector2(4820, 340)
+centered = false
+texture = ExtResource("r11")
+scale = Vector2(0.9556313993174061, 0.9556313993174061)
+texture_repeat = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 2427.714285714286, 293.0)
+
+[node name="roof_top_rail_left" type="Sprite2D" parent="Architecture"]
+position = Vector2(180, 340)
+centered = false
+texture = ExtResource("r12")
+scale = Vector2(0.9333333333333333, 0.9333333333333333)
+texture_repeat = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 2871.4285714285716, 30.0)
+
+[node name="roof_top_rail_right" type="Sprite2D" parent="Architecture"]
+position = Vector2(4820, 340)
+centered = false
+texture = ExtResource("r12")
+scale = Vector2(0.9333333333333333, 0.9333333333333333)
+texture_repeat = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 2485.714285714286, 30.0)
+
+[node name="roof_center" type="Sprite2D" parent="Architecture"]
+position = Vector2(2758, 146.0)
+centered = false
+texture = ExtResource("r13")
+scale = Vector2(1.0, 1.0)
+
+[node name="roof_post_1" type="Sprite2D" parent="Architecture"]
+position = Vector2(170, 451)
+centered = false
+texture = ExtResource("r14")
+scale = Vector2(0.1466992665036675, 0.14695652173913043)
+
+[node name="roof_post_2" type="Sprite2D" parent="Architecture"]
+position = Vector2(1830, 451)
+centered = false
+texture = ExtResource("r14")
+scale = Vector2(0.1466992665036675, 0.14695652173913043)
+
+[node name="roof_post_3" type="Sprite2D" parent="Architecture"]
+position = Vector2(5630, 451)
+centered = false
+texture = ExtResource("r14")
+scale = Vector2(0.1466992665036675, 0.14695652173913043)
+
+[node name="roof_post_4" type="Sprite2D" parent="Architecture"]
+position = Vector2(7000, 451)
+centered = false
+texture = ExtResource("r14")
+scale = Vector2(0.1466992665036675, 0.14695652173913043)
+
+[node name="exit_bay" type="Sprite2D" parent="Architecture"]
+position = Vector2(6312, 604)
+centered = false
+texture = ExtResource("r15")
+scale = Vector2(0.8180026281208935, 0.8177339901477833)
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="continuous_red_carpet" type="Sprite2D" parent="Ground"]
+position = Vector2(110, 1340)
+centered = false
+texture = ExtResource("r16")
+scale = Vector2(0.6030150753768844, 0.6030150753768844)
+texture_repeat = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 12338.000000000002, 199.00000000000003)
+
+[node name="separate_skirting" type="Sprite2D" parent="Ground"]
+position = Vector2(850, 1310)
+centered = false
+texture = ExtResource("r17")
+scale = Vector2(0.7692307692307693, 0.7692307692307693)
+texture_repeat = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 7150.0, 39.0)
+
+[node name="dark_floor_foundation" type="Sprite2D" parent="Ground"]
+position = Vector2(110, 1460)
+centered = false
+texture = ExtResource("r10")
+scale = Vector2(0.38095238095238093, 0.38095238095238093)
+texture_repeat = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 19530.0, 105.0)
+
+[node name="Furniture" type="Node2D" parent="."]
+
+[node name="palm_tall" type="Sprite2D" parent="Furniture"]
+position = Vector2(820, 840)
+centered = false
+texture = ExtResource("r18")
+scale = Vector2(0.3333333333333333, 0.33355437665782495)
+
+[node name="lounge_chair_left" type="Sprite2D" parent="Furniture"]
+position = Vector2(1170, 1084)
+centered = false
+texture = ExtResource("r19")
+scale = Vector2(0.2205651491365777, 0.22090059473237042)
+
+[node name="lounge_chair_right" type="Sprite2D" parent="Furniture"]
+position = Vector2(1720, 1084)
+centered = false
+texture = ExtResource("r19")
+scale = Vector2(0.2205651491365777, 0.22090059473237042)
+flip_h = true
+
+[node name="lounge_lamp_table" type="Sprite2D" parent="Furniture"]
+position = Vector2(1456, 1011)
+centered = false
+texture = ExtResource("r20")
+scale = Vector2(0.23178137651821862, 0.23157894736842105)
+
+[node name="castle_painting" type="Sprite2D" parent="Furniture"]
+position = Vector2(2836, 660)
+centered = false
+texture = ExtResource("r21")
+scale = Vector2(0.33426704014939307, 0.33472803347280333)
+
+[node name="gramophone_console" type="Sprite2D" parent="Furniture"]
+position = Vector2(2766, 1009)
+centered = false
+texture = ExtResource("r22")
+scale = Vector2(0.34760885082084225, 0.3476482617586912)
+
+[node name="checkout_desk" type="Sprite2D" parent="Furniture"]
+position = Vector2(4080, 748)
+centered = false
+texture = ExtResource("r23")
+scale = Vector2(0.6890804597701149, 0.6888633754305397)
+
+[node name="white_lily" type="Sprite2D" parent="Furniture"]
+position = Vector2(4100, 885)
+centered = false
+texture = ExtResource("r24")
+scale = Vector2(0.1726133076181292, 0.1728024042073629)
+
+[node name="crest_plaque" type="Sprite2D" parent="Furniture"]
+position = Vector2(4048, 640)
+centered = false
+texture = ExtResource("r25")
+scale = Vector2(0.2069805194805195, 0.20689655172413793)
+
+[node name="pendant" type="Sprite2D" parent="Furniture"]
+position = Vector2(4680, 625)
+centered = false
+texture = ExtResource("r26")
+scale = Vector2(0.2393617021276596, 0.2392578125)
+
+[node name="wall_sconce_1" type="Sprite2D" parent="Furniture"]
+position = Vector2(2670, 806)
+centered = false
+texture = ExtResource("r27")
+scale = Vector2(0.13992537313432835, 0.14004222378606615)
+
+[node name="wall_sconce_2" type="Sprite2D" parent="Furniture"]
+position = Vector2(3280, 806)
+centered = false
+texture = ExtResource("r27")
+scale = Vector2(0.13992537313432835, 0.14004222378606615)
+
+[node name="wall_sconce_3" type="Sprite2D" parent="Furniture"]
+position = Vector2(5960, 806)
+centered = false
+texture = ExtResource("r27")
+scale = Vector2(0.13992537313432835, 0.14004222378606615)
+
+[node name="Lighting" type="Node2D" parent="."]
+
+[node name="lounge_contact_shadow" type="Sprite2D" parent="Lighting"]
+position = Vector2(1110, 1325)
+centered = false
+texture = ExtResource("r28")
+scale = Vector2(0.4364148287189113, 0.05360134003350084)
+modulate = Color(1, 1, 1, 0.35)
+
+[node name="plant_contact_shadow" type="Sprite2D" parent="Lighting"]
+position = Vector2(840, 1325)
+centered = false
+texture = ExtResource("r28")
+scale = Vector2(0.12200844673862037, 0.05360134003350084)
+modulate = Color(1, 1, 1, 0.35)
+
+[node name="music_console_contact_shadow" type="Sprite2D" parent="Lighting"]
+position = Vector2(2730, 1325)
+centered = false
+texture = ExtResource("r28")
+scale = Vector2(0.2721726888784608, 0.05360134003350084)
+modulate = Color(1, 1, 1, 0.35)
+
+[node name="departure_desk_contact_shadow" type="Sprite2D" parent="Lighting"]
+position = Vector2(4020, 1325)
+centered = false
+texture = ExtResource("r28")
+scale = Vector2(0.6288127639605818, 0.05360134003350084)
+modulate = Color(1, 1, 1, 0.35)
+
+[node name="warm_light_1" type="Sprite2D" parent="Lighting"]
+position = Vector2(1430, 1010)
+centered = false
+texture = ExtResource("r29")
+scale = Vector2(0.1953125, 0.244140625)
+modulate = Color(1, 1, 1, 0.15)
+
+[node name="warm_light_2" type="Sprite2D" parent="Lighting"]
+position = Vector2(4730, 780)
+centered = false
+texture = ExtResource("r29")
+scale = Vector2(0.29296875, 0.21484375)
+modulate = Color(1, 1, 1, 0.15)
+
+[node name="warm_light_3" type="Sprite2D" parent="Lighting"]
+position = Vector2(2595, 785)
+centered = false
+texture = ExtResource("r29")
+scale = Vector2(0.1953125, 0.25390625)
+modulate = Color(1, 1, 1, 0.15)
+
+[node name="warm_light_4" type="Sprite2D" parent="Lighting"]
+position = Vector2(3220, 785)
+centered = false
+texture = ExtResource("r29")
+scale = Vector2(0.1953125, 0.25390625)
+modulate = Color(1, 1, 1, 0.15)
+
+[node name="warm_light_5" type="Sprite2D" parent="Lighting"]
+position = Vector2(5870, 785)
+centered = false
+texture = ExtResource("r29")
+scale = Vector2(0.1953125, 0.25390625)
+modulate = Color(1, 1, 1, 0.15)
+
+[node name="warm_light_6" type="Sprite2D" parent="Lighting"]
+position = Vector2(555, 845)
+centered = false
+texture = ExtResource("r29")
+scale = Vector2(0.1953125, 0.29296875)
+modulate = Color(1, 1, 1, 0.15)
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Room501" type="Node2D" parent="Doors"]
+position = Vector2(2320, 1340)
+scale = Vector2(0.66, 0.66)
+script = ExtResource("r2")
+room_id = "501"
+
+[node name="Sprite2D" type="Sprite2D" parent="Doors/Room501"]
+position = Vector2(-627, -1220)
+centered = false
+texture = ExtResource("r30")
+
+[node name="Room502" type="Node2D" parent="Doors"]
+position = Vector2(3620, 1340)
+scale = Vector2(0.66, 0.66)
+script = ExtResource("r2")
+room_id = "502"
+
+[node name="Sprite2D" type="Sprite2D" parent="Doors/Room502"]
+position = Vector2(-627, -1220)
+centered = false
+texture = ExtResource("r31")
+
+[node name="Room503" type="Node2D" parent="Doors"]
+position = Vector2(5570, 1340)
+scale = Vector2(0.66, 0.66)
+script = ExtResource("r2")
+room_id = "503"
+
+[node name="Sprite2D" type="Sprite2D" parent="Doors/Room503"]
+position = Vector2(-627, -1220)
+centered = false
+texture = ExtResource("r32")

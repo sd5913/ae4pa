@@ -1,0 +1,1121 @@
+{
+  "canvas": [
+    7680,
+    1500
+  ],
+  "baseline_y": 1340,
+  "reference_canvas": [
+    3840,
+    2160
+  ],
+  "reference_band": [
+    0,
+    720,
+    3840,
+    1470
+  ],
+  "door_reservations": {
+    "501": {
+      "center_x": 2320,
+      "baseline_y": 1340
+    },
+    "502": {
+      "center_x": 3620,
+      "baseline_y": 1340
+    },
+    "503": {
+      "center_x": 5570,
+      "baseline_y": 1340
+    }
+  },
+  "assets": [
+    {
+      "id": "wall_tile",
+      "file": "assets/final/floor_5_layers/01_far/wall_tile.png",
+      "size": [
+        3072,
+        1024
+      ],
+      "origin": "generated/wall_tile.png",
+      "source_crop": [
+        0,
+        0,
+        1536,
+        1024
+      ],
+      "sha256": "857c6cba8c9b22bfd932c85d2f91110b5aa3900ad1800a7593fa16df2be1b307"
+    },
+    {
+      "id": "roof_side_tile",
+      "file": "assets/final/floor_5_layers/01_far/roof_side_tile.png",
+      "size": [
+        4340,
+        293
+      ],
+      "origin": "generated/roof_side_tile.png",
+      "source_crop": [
+        1,
+        250,
+        2171,
+        543
+      ],
+      "sha256": "8f5f85e4d499bcd3472337cdc354e3c3a6904ef705a0d183922f42cee03e9546"
+    },
+    {
+      "id": "carpet_tile",
+      "file": "assets/final/floor_5_layers/02_ground/carpet_tile.png",
+      "size": [
+        4224,
+        199
+      ],
+      "origin": "generated/carpet_tile.png",
+      "source_crop": [
+        30,
+        294,
+        2142,
+        493
+      ],
+      "sha256": "5ef38f2d4419a999c081c283996f438498618f7d3fd4555249dc6c5dddb408c8"
+    },
+    {
+      "id": "roof_center",
+      "file": "assets/final/floor_5_layers/01_far/roof_center.png",
+      "size": [
+        2165,
+        506
+      ],
+      "origin": "generated/roof_center.png",
+      "source_crop": [
+        2,
+        100,
+        2167,
+        606
+      ],
+      "sha256": "c926a21d01a728bfc2e8671fa46a7cafffc4cb779e86a027a208002257e929b6"
+    },
+    {
+      "id": "checkout_desk",
+      "file": "assets/final/floor_5_layers/03_furniture/checkout_desk.png",
+      "size": [
+        1740,
+        871
+      ],
+      "origin": "generated/checkout_desk.png",
+      "source_crop": [
+        0,
+        0,
+        1740,
+        871
+      ],
+      "sha256": "e8a893ba7bef5cab4c5f435dd61459c08699910a862ff0dfe8df2dfd6259e3d9"
+    },
+    {
+      "id": "armchair",
+      "file": "assets/final/floor_5_layers/03_furniture/armchair.png",
+      "size": [
+        1274,
+        1177
+      ],
+      "origin": "generated/armchair.png",
+      "source_crop": [
+        0,
+        0,
+        1274,
+        1177
+      ],
+      "sha256": "71007c72f5de38f1a5662da4a806558191d22afab6f2a347efa0b19bcfca7d02"
+    },
+    {
+      "id": "exit_bay",
+      "file": "assets/final/floor_5_layers/01_far/exit_bay.png",
+      "size": [
+        1522,
+        1015
+      ],
+      "origin": "generated/exit_bay.png",
+      "source_crop": [
+        0,
+        9,
+        1522,
+        1024
+      ],
+      "sha256": "cf74bc442c69968c5cff3de8fdf5525612845ed323adee9dfd7f69b6a177b40f"
+    },
+    {
+      "id": "window_pair",
+      "file": "assets/final/floor_5_layers/01_far/window_pair.png",
+      "size": [
+        1504,
+        995
+      ],
+      "origin": "generated/window_pair.png",
+      "source_crop": [
+        0,
+        7,
+        1504,
+        1002
+      ],
+      "sha256": "eac9747cb7fcfa5d92b99f8cfc68fd624f4a2c4b7cf5c5bba7b2a540dbb65b59"
+    },
+    {
+      "id": "gramophone_console",
+      "file": "assets/final/floor_5_layers/03_furniture/gramophone_console.png",
+      "size": [
+        1401,
+        978
+      ],
+      "origin": "generated/gramophone_console.png",
+      "source_crop": [
+        79,
+        20,
+        1480,
+        998
+      ],
+      "sha256": "d4c76e188e4d01b68ab714b3025694d58aea0099d28b94b800d4eb0482cd8321"
+    },
+    {
+      "id": "white_lily",
+      "file": "assets/final/floor_5_layers/03_furniture/white_lily.png",
+      "size": [
+        1037,
+        1331
+      ],
+      "origin": "generated/white_lily.png",
+      "source_crop": [
+        39,
+        34,
+        1076,
+        1365
+      ],
+      "sha256": "1900ff8d722755083d0beeae0b942a8fe9d36b88b2cf9c6891988e1fe0864829"
+    },
+    {
+      "id": "castle_painting",
+      "file": "assets/final/floor_5_layers/03_furniture/castle_painting.png",
+      "size": [
+        1071,
+        1434
+      ],
+      "origin": "generated/castle_painting.png",
+      "source_crop": [
+        0,
+        9,
+        1071,
+        1443
+      ],
+      "sha256": "3f7606d68e17b3bdca13a60515e39beb6fb1c8b15f32a8ed1a7d09f3392110bb"
+    },
+    {
+      "id": "pendant",
+      "file": "assets/final/floor_5_layers/03_furniture/pendant.png",
+      "size": [
+        1504,
+        1024
+      ],
+      "origin": "generated/pendant.png",
+      "source_crop": [
+        0,
+        0,
+        1504,
+        1024
+      ],
+      "sha256": "b3c95790147b3cc085c387c6a6431929692fc186fdda016c68df93f9e61c9aed"
+    },
+    {
+      "id": "floor_sign",
+      "file": "assets/final/floor_5_layers/01_far/floor_sign.png",
+      "size": [
+        1522,
+        1005
+      ],
+      "origin": "generated/floor_sign.png",
+      "source_crop": [
+        0,
+        19,
+        1522,
+        1024
+      ],
+      "sha256": "085784cf4684d49151eaf27312a71defdd019f1c8dc4966893807ff29ba41e8e"
+    },
+    {
+      "id": "crescent_moon",
+      "file": "assets/final/floor_5_layers/01_far/crescent_moon.png",
+      "size": [
+        1495,
+        1015
+      ],
+      "origin": "generated/crescent_moon.png",
+      "source_crop": [
+        21,
+        9,
+        1516,
+        1024
+      ],
+      "sha256": "08dfa07b753d977780615334904be2dec1fb1bc3dd3f1d50e3f5b05e69288bcb"
+    },
+    {
+      "id": "crest_plaque",
+      "file": "assets/final/floor_5_layers/03_furniture/crest_plaque.png",
+      "size": [
+        1232,
+        1160
+      ],
+      "origin": "generated/crest_plaque.png",
+      "source_crop": [
+        0,
+        39,
+        1232,
+        1199
+      ],
+      "sha256": "06f7008d06559ae944c5aae4e39e2f50555327a3beb7f7bc5e5d84949d7cc5e2"
+    },
+    {
+      "id": "roof_finial",
+      "file": "assets/final/floor_5_layers/01_far/roof_finial.png",
+      "size": [
+        1227,
+        1150
+      ],
+      "origin": "generated/roof_finial.png",
+      "source_crop": [
+        65,
+        39,
+        1292,
+        1189
+      ],
+      "sha256": "52f3d9e67d1e631ccfe975f6d68392ef662bb8e56cb264fdbba8199bbe7bb0fc"
+    },
+    {
+      "id": "sconce",
+      "file": "assets/final/floor_5_layers/03_furniture/sconce.png",
+      "size": [
+        1072,
+        1421
+      ],
+      "origin": "generated/sconce.png",
+      "source_crop": [
+        0,
+        11,
+        1072,
+        1432
+      ],
+      "sha256": "305bcb1ea0c09d1575c0e0dc45bda9383d97b59e974f87c4a00a515123665648"
+    },
+    {
+      "id": "sky_tile",
+      "file": "assets/final/floor_5_layers/01_far/sky_tile.png",
+      "size": [
+        1774,
+        887
+      ],
+      "origin": "reused from assets/final/floor_3_layers/01_far/sky_tile.png",
+      "source_crop": null,
+      "sha256": "28081e50a957a39be5a8fa9253e816cfe0d8a522852a901bd3b1b8f602032390"
+    },
+    {
+      "id": "stair_left",
+      "file": "assets/final/floor_5_layers/01_far/stair_left.png",
+      "size": [
+        1004,
+        1519
+      ],
+      "origin": "reused from assets/final/floor_3_layers/01_far/stair_left.png",
+      "source_crop": null,
+      "sha256": "84856f2d442b5bb073df7788fa70a4fc6e1adf9486fa546564276616c50b4475"
+    },
+    {
+      "id": "outer_pillar",
+      "file": "assets/final/floor_5_layers/01_far/outer_pillar.png",
+      "size": [
+        706,
+        2171
+      ],
+      "origin": "reused from assets/final/floor_3_layers/01_far/outer_pillar.png",
+      "source_crop": null,
+      "sha256": "9b1c8e4f695de71500b1066e1e5caf04c2dbdf607d1848ae1f22e0f46170009a"
+    },
+    {
+      "id": "ceiling_beam_tile",
+      "file": "assets/final/floor_5_layers/01_far/ceiling_beam_tile.png",
+      "size": [
+        1536,
+        105
+      ],
+      "origin": "reused from assets/final/floor_3_layers/01_far/ceiling_beam_tile.png",
+      "source_crop": null,
+      "sha256": "ff645adcd2a711a99e5282f5ac6089b6c7c0ddba610d2ad76ec2e2f078955d7e"
+    },
+    {
+      "id": "lamp_table",
+      "file": "assets/final/floor_5_layers/03_furniture/lamp_table.png",
+      "size": [
+        988,
+        1425
+      ],
+      "origin": "reused from assets/final/floor_3_layers/03_furniture/lamp_table.png",
+      "source_crop": null,
+      "sha256": "efb899c2fab0beab578114795e68211889b73ce6b0339d42fc07a1a0fd67380e"
+    },
+    {
+      "id": "palm_tall",
+      "file": "assets/final/floor_5_layers/03_furniture/palm_tall.png",
+      "size": [
+        990,
+        1508
+      ],
+      "origin": "reused from assets/final/floor_3_layers/03_furniture/palm_tall.png",
+      "source_crop": null,
+      "sha256": "ede85effa4f3809a500d5b3c43e5d51906e6e84bda177e76d67eb4702516d02e"
+    },
+    {
+      "id": "warm_glow",
+      "file": "assets/final/floor_5_layers/04_lighting/warm_glow.png",
+      "size": [
+        1536,
+        1024
+      ],
+      "origin": "reused from assets/final/floor_3_layers/04_lighting/warm_glow.png",
+      "source_crop": null,
+      "sha256": "f1d2eef285bcbf29673b1b23d875b6edd94e7b9e9c406842b66fc185d195d2dc"
+    },
+    {
+      "id": "contact_shadow",
+      "file": "assets/final/floor_5_layers/04_lighting/contact_shadow.png",
+      "size": [
+        2131,
+        597
+      ],
+      "origin": "reused from assets/final/floor_3_layers/04_lighting/contact_shadow.png",
+      "source_crop": null,
+      "sha256": "b02920b3eb44903fccc5f2b3c6eddac7cc6cf1371766432873614d4b0dbb7e36"
+    },
+    {
+      "id": "skirting_tile",
+      "file": "assets/final/floor_5_layers/02_ground/skirting_tile.png",
+      "size": [
+        3072,
+        39
+      ],
+      "origin": "wall_tile bottom native trim",
+      "source_crop": [
+        0,
+        985,
+        3072,
+        1024
+      ],
+      "sha256": "dd77018faeb071f09309d0ce06ae1eb2492279a0dc81a9da808652bafde08705"
+    },
+    {
+      "id": "roof_rail_cap_tile",
+      "file": "assets/final/floor_5_layers/01_far/roof_rail_cap_tile.png",
+      "size": [
+        4020,
+        30
+      ],
+      "origin": "native crop from roof_side_tile top rail",
+      "source_crop": [
+        80,
+        6,
+        2090,
+        36
+      ],
+      "sha256": "843ef2d72d26e39d443877a2ad8997d920efb3249d1a7674277ba1d1d3f88d43"
+    },
+    {
+      "id": "background_region_01",
+      "file": "assets/final/floor_5_layers/01_far/background_region_01.png",
+      "size": [
+        1920,
+        1500
+      ],
+      "origin": "composite of independent architecture layers",
+      "source_crop": null,
+      "sha256": "848416eb2d22d64db1ca9a73646f29d66fa75e1dfc52b70e6cb02e81b5956640"
+    },
+    {
+      "id": "background_region_02",
+      "file": "assets/final/floor_5_layers/01_far/background_region_02.png",
+      "size": [
+        1920,
+        1500
+      ],
+      "origin": "composite of independent architecture layers",
+      "source_crop": null,
+      "sha256": "5d819bbe4c04773b3a9c83dde706b425248a91ddbddcfb419050eead033f134a"
+    },
+    {
+      "id": "background_region_03",
+      "file": "assets/final/floor_5_layers/01_far/background_region_03.png",
+      "size": [
+        1920,
+        1500
+      ],
+      "origin": "composite of independent architecture layers",
+      "source_crop": null,
+      "sha256": "aa66edff84e49432ee8905200793bf277ff87ae2dd83ad76aa9a1ccf80bd2ee1"
+    },
+    {
+      "id": "background_region_04",
+      "file": "assets/final/floor_5_layers/01_far/background_region_04.png",
+      "size": [
+        1920,
+        1500
+      ],
+      "origin": "composite of independent architecture layers",
+      "source_crop": null,
+      "sha256": "c32f04a04127e3e77478e0c1f464caf84ab23ae62308a287b8a50d2650ef2ba9"
+    }
+  ],
+  "placements": [
+    {
+      "name": "outside_twilight_city",
+      "group": "01_far",
+      "x": 0,
+      "y": 0,
+      "asset_id": "sky_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 1,
+      "size": [
+        7680,
+        1500
+      ]
+    },
+    {
+      "name": "crescent_moon",
+      "group": "01_far",
+      "x": 7260,
+      "y": 170,
+      "asset_id": "crescent_moon",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.15719063545150502,
+      "mirror": false,
+      "size": [
+        235,
+        160
+      ]
+    },
+    {
+      "name": "burgundy_wallpaper_and_wainscot",
+      "group": "01_far",
+      "x": 300,
+      "y": 610,
+      "asset_id": "wall_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 0.712890625,
+      "size": [
+        6200,
+        730
+      ]
+    },
+    {
+      "name": "left_full_black_pillar",
+      "group": "01_far",
+      "x": 112,
+      "y": 610,
+      "asset_id": "outer_pillar",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.33625057577153383,
+      "mirror": false,
+      "size": [
+        237,
+        730
+      ]
+    },
+    {
+      "name": "stair_left",
+      "group": "01_far",
+      "x": 370,
+      "y": 657,
+      "asset_id": "stair_left",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.467412771560237,
+      "mirror": false,
+      "size": [
+        469,
+        710
+      ]
+    },
+    {
+      "name": "floor_sign",
+      "group": "01_far",
+      "x": 148,
+      "y": 850,
+      "asset_id": "floor_sign",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.1791044776119403,
+      "mirror": false,
+      "size": [
+        273,
+        180
+      ]
+    },
+    {
+      "name": "window_pair",
+      "group": "01_far",
+      "x": 986,
+      "y": 660,
+      "asset_id": "window_pair",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.6432160804020101,
+      "mirror": false,
+      "size": [
+        967,
+        640
+      ]
+    },
+    {
+      "name": "continuous_roof_eave",
+      "group": "01_far",
+      "x": 100,
+      "y": 590,
+      "asset_id": "ceiling_beam_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 0.47619047619047616,
+      "size": [
+        7250,
+        50
+      ]
+    },
+    {
+      "name": "roof_balustrade_left",
+      "group": "01_far",
+      "x": 180,
+      "y": 340,
+      "asset_id": "roof_side_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 0.9556313993174061,
+      "size": [
+        2680,
+        280
+      ]
+    },
+    {
+      "name": "roof_balustrade_right",
+      "group": "01_far",
+      "x": 4820,
+      "y": 340,
+      "asset_id": "roof_side_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 0.9556313993174061,
+      "size": [
+        2320,
+        280
+      ]
+    },
+    {
+      "name": "roof_top_rail_left",
+      "group": "01_far",
+      "x": 180,
+      "y": 340,
+      "asset_id": "roof_rail_cap_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 0.9333333333333333,
+      "size": [
+        2680,
+        28
+      ]
+    },
+    {
+      "name": "roof_top_rail_right",
+      "group": "01_far",
+      "x": 4820,
+      "y": 340,
+      "asset_id": "roof_rail_cap_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 0.9333333333333333,
+      "size": [
+        2320,
+        28
+      ]
+    },
+    {
+      "name": "roof_center",
+      "group": "01_far",
+      "x": 2758,
+      "y": 114,
+      "asset_id": "roof_center",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 1,
+      "mirror": false,
+      "size": [
+        2165,
+        506
+      ]
+    },
+    {
+      "name": "roof_post_1",
+      "group": "01_far",
+      "x": 170,
+      "y": 451,
+      "asset_id": "roof_finial",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.1466992665036675,
+      "mirror": false,
+      "size": [
+        180,
+        169
+      ]
+    },
+    {
+      "name": "roof_post_2",
+      "group": "01_far",
+      "x": 1830,
+      "y": 451,
+      "asset_id": "roof_finial",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.1466992665036675,
+      "mirror": false,
+      "size": [
+        180,
+        169
+      ]
+    },
+    {
+      "name": "roof_post_3",
+      "group": "01_far",
+      "x": 5630,
+      "y": 451,
+      "asset_id": "roof_finial",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.1466992665036675,
+      "mirror": false,
+      "size": [
+        180,
+        169
+      ]
+    },
+    {
+      "name": "roof_post_4",
+      "group": "01_far",
+      "x": 7000,
+      "y": 451,
+      "asset_id": "roof_finial",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.1466992665036675,
+      "mirror": false,
+      "size": [
+        180,
+        169
+      ]
+    },
+    {
+      "name": "exit_bay",
+      "group": "01_far",
+      "x": 6312,
+      "y": 604,
+      "asset_id": "exit_bay",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.8177339901477833,
+      "mirror": false,
+      "size": [
+        1245,
+        830
+      ]
+    },
+    {
+      "name": "continuous_red_carpet",
+      "group": "02_ground",
+      "x": 110,
+      "y": 1340,
+      "asset_id": "carpet_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 0.6030150753768844,
+      "size": [
+        7440,
+        120
+      ]
+    },
+    {
+      "name": "separate_skirting",
+      "group": "02_ground",
+      "x": 850,
+      "y": 1310,
+      "asset_id": "skirting_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 0.7692307692307693,
+      "size": [
+        5500,
+        30
+      ]
+    },
+    {
+      "name": "dark_floor_foundation",
+      "group": "02_ground",
+      "x": 110,
+      "y": 1460,
+      "asset_id": "ceiling_beam_tile",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "tiled": true,
+      "scale": 0.38095238095238093,
+      "size": [
+        7440,
+        40
+      ]
+    },
+    {
+      "name": "palm_tall",
+      "group": "03_furniture",
+      "x": 820,
+      "y": 840,
+      "asset_id": "palm_tall",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.3333333333333333,
+      "mirror": false,
+      "size": [
+        330,
+        503
+      ]
+    },
+    {
+      "name": "lounge_chair_left",
+      "group": "03_furniture",
+      "x": 1170,
+      "y": 1084,
+      "asset_id": "armchair",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.22090059473237042,
+      "mirror": false,
+      "size": [
+        281,
+        260
+      ]
+    },
+    {
+      "name": "lounge_chair_right",
+      "group": "03_furniture",
+      "x": 1720,
+      "y": 1084,
+      "asset_id": "armchair",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.22090059473237042,
+      "mirror": true,
+      "size": [
+        281,
+        260
+      ]
+    },
+    {
+      "name": "lounge_lamp_table",
+      "group": "03_furniture",
+      "x": 1456,
+      "y": 1011,
+      "asset_id": "lamp_table",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.23157894736842105,
+      "mirror": false,
+      "size": [
+        229,
+        330
+      ]
+    },
+    {
+      "name": "castle_painting",
+      "group": "03_furniture",
+      "x": 2836,
+      "y": 660,
+      "asset_id": "castle_painting",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.33472803347280333,
+      "mirror": false,
+      "size": [
+        358,
+        480
+      ]
+    },
+    {
+      "name": "gramophone_console",
+      "group": "03_furniture",
+      "x": 2766,
+      "y": 1009,
+      "asset_id": "gramophone_console",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.3476482617586912,
+      "mirror": false,
+      "size": [
+        487,
+        340
+      ]
+    },
+    {
+      "name": "checkout_desk",
+      "group": "03_furniture",
+      "x": 4080,
+      "y": 748,
+      "asset_id": "checkout_desk",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.6888633754305397,
+      "mirror": false,
+      "size": [
+        1199,
+        600
+      ]
+    },
+    {
+      "name": "white_lily",
+      "group": "03_furniture",
+      "x": 4100,
+      "y": 885,
+      "asset_id": "white_lily",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.1728024042073629,
+      "mirror": false,
+      "size": [
+        179,
+        230
+      ]
+    },
+    {
+      "name": "crest_plaque",
+      "group": "03_furniture",
+      "x": 4048,
+      "y": 640,
+      "asset_id": "crest_plaque",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.20689655172413793,
+      "mirror": false,
+      "size": [
+        255,
+        240
+      ]
+    },
+    {
+      "name": "pendant",
+      "group": "03_furniture",
+      "x": 4680,
+      "y": 625,
+      "asset_id": "pendant",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.2392578125,
+      "mirror": false,
+      "size": [
+        360,
+        245
+      ]
+    },
+    {
+      "name": "wall_sconce_1",
+      "group": "03_furniture",
+      "x": 2670,
+      "y": 806,
+      "asset_id": "sconce",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.13992537313432835,
+      "mirror": false,
+      "size": [
+        150,
+        199
+      ]
+    },
+    {
+      "name": "wall_sconce_2",
+      "group": "03_furniture",
+      "x": 3280,
+      "y": 806,
+      "asset_id": "sconce",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.13992537313432835,
+      "mirror": false,
+      "size": [
+        150,
+        199
+      ]
+    },
+    {
+      "name": "wall_sconce_3",
+      "group": "03_furniture",
+      "x": 5960,
+      "y": 806,
+      "asset_id": "sconce",
+      "opacity": 1,
+      "suggested_blend": "normal",
+      "scale": 0.13992537313432835,
+      "mirror": false,
+      "size": [
+        150,
+        199
+      ]
+    },
+    {
+      "name": "lounge_contact_shadow",
+      "group": "04_lighting",
+      "x": 1110,
+      "y": 1325,
+      "asset_id": "contact_shadow",
+      "opacity": 0.35,
+      "suggested_blend": "multiply",
+      "size": [
+        930,
+        32
+      ]
+    },
+    {
+      "name": "plant_contact_shadow",
+      "group": "04_lighting",
+      "x": 840,
+      "y": 1325,
+      "asset_id": "contact_shadow",
+      "opacity": 0.35,
+      "suggested_blend": "multiply",
+      "size": [
+        260,
+        32
+      ]
+    },
+    {
+      "name": "music_console_contact_shadow",
+      "group": "04_lighting",
+      "x": 2730,
+      "y": 1325,
+      "asset_id": "contact_shadow",
+      "opacity": 0.35,
+      "suggested_blend": "multiply",
+      "size": [
+        580,
+        32
+      ]
+    },
+    {
+      "name": "departure_desk_contact_shadow",
+      "group": "04_lighting",
+      "x": 4020,
+      "y": 1325,
+      "asset_id": "contact_shadow",
+      "opacity": 0.35,
+      "suggested_blend": "multiply",
+      "size": [
+        1340,
+        32
+      ]
+    },
+    {
+      "name": "warm_light_1",
+      "group": "04_lighting",
+      "x": 1430,
+      "y": 1010,
+      "asset_id": "warm_glow",
+      "opacity": 0.15,
+      "suggested_blend": "screen",
+      "size": [
+        300,
+        250
+      ]
+    },
+    {
+      "name": "warm_light_2",
+      "group": "04_lighting",
+      "x": 4730,
+      "y": 780,
+      "asset_id": "warm_glow",
+      "opacity": 0.15,
+      "suggested_blend": "screen",
+      "size": [
+        450,
+        220
+      ]
+    },
+    {
+      "name": "warm_light_3",
+      "group": "04_lighting",
+      "x": 2595,
+      "y": 785,
+      "asset_id": "warm_glow",
+      "opacity": 0.15,
+      "suggested_blend": "screen",
+      "size": [
+        300,
+        260
+      ]
+    },
+    {
+      "name": "warm_light_4",
+      "group": "04_lighting",
+      "x": 3220,
+      "y": 785,
+      "asset_id": "warm_glow",
+      "opacity": 0.15,
+      "suggested_blend": "screen",
+      "size": [
+        300,
+        260
+      ]
+    },
+    {
+      "name": "warm_light_5",
+      "group": "04_lighting",
+      "x": 5870,
+      "y": 785,
+      "asset_id": "warm_glow",
+      "opacity": 0.15,
+      "suggested_blend": "screen",
+      "size": [
+        300,
+        260
+      ]
+    },
+    {
+      "name": "warm_light_6",
+      "group": "04_lighting",
+      "x": 555,
+      "y": 845,
+      "asset_id": "warm_glow",
+      "opacity": 0.15,
+      "suggested_blend": "screen",
+      "size": [
+        300,
+        300
+      ]
+    }
+  ],
+  "excluded": [
+    "all room doors and door-mounted lamps",
+    "all people including attendant and exit pair"
+  ],
+  "notes": [
+    "Exit is an empty architectural opening with EXIT sign and integrated landing/railing.",
+    "No room504/505 invented: this delivery follows supplied art, not runtime room catalog.",
+    "Roof, exit, furniture and lights are independent native components.",
+    "Optional screen/multiply recommendations only; ORA preview uses normal alpha blending."
+  ]
+}

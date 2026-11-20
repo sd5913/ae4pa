@@ -173,7 +173,7 @@ func _check_floor(host: Node, number: int, arrive_from_above: bool = false) -> v
 	var camera: Camera2D = player.get_node("Camera2D")
 	_expect(camera.limit_left == 0 and camera.limit_right == 3600, "Camera matches floor width")
 	_expect(camera.limit_top == 0 and camera.limit_bottom == 720, "Camera remains horizontal")
-	_expect(floor_node.get_node("DoorRoot").get_child_count() == (0 if number == 1 else 4 if number == 3 else 5), "Room count follows floor layout; 3F has no305")
+	_expect(floor_node.get_node("DoorRoot").get_child_count() == (0 if number == 1 else 4 if number == 3 else 3 if number == 5 else 5), "Room count follows floor layout; 3F has no305; 5F has no504/505")
 
 
 func _expect(condition: bool, message: String) -> void:
