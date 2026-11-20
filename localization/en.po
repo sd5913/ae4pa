@@ -1402,3 +1402,6 @@ msgstr "You have 240 seconds after accepting. Return to 1F and hold E behind the
 
 msgid "礼帽客 · 302"
 msgstr "Top-Hatted Guest · 302"
+
+msgid "帕希卡"
+msgstr "Persica"
