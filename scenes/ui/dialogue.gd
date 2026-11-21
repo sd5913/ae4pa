@@ -365,7 +365,7 @@ func _animate_phone_notification() -> void:
 	_vibration_marks.show()
 	_sms_panel.rotation_degrees = 9
 	_phone_tween = create_tween()
-	for angle: float in [13.0, -12.0, 11.0, -10.0, 9.0, -8.0, 7.0, -6.0, 5.0, -4.0, 3.0, -2.0]:
+	for angle: float in [13.0, -12.0, 11.0, -10.0, 9.0, -8.0, 7.0, -6.0, 5.0, -4.0, 3.0, -2.0, 1.5, -1.0]:
 		_phone_tween.tween_property(_sms_panel, "rotation_degrees", angle, 0.105)
 	_phone_tween.tween_callback(_vibration_marks.hide)
 	_phone_tween.tween_property(_sms_panel, "rotation_degrees", 0.0, 0.22).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)

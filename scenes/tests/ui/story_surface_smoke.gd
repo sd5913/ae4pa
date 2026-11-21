@@ -38,7 +38,9 @@ func run() -> void:
 	check(menu.get("_ready_for_input"), "cover opening finishes with interactive buttons")
 	await shot("menu")
 	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
-	await create_timer(1.7).timeout
+	var phone_deadline := Time.get_ticks_msec() + 5000
+	while not dialogue.get("_phone_waiting_for_open") and Time.get_ticks_msec() < phone_deadline:
+		await process_frame
 	check(dialogue.visible and dialogue.get("_line_index") == 0, "normal start enters real SMS with no auto advance")
 	check(dialogue.get_node_or_null("%ContinueButton") == null, "continue button and its focus target removed")
 	check(not dialogue.get_node("%SkipButton").visible, "first reading cannot skip")
