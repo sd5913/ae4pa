@@ -32,6 +32,7 @@ func _ready() -> void:
 	_expect(pickup.get_node("PersistentVisual").visible and not pickup.get_node("ItemVisual").visible and pickup.get_node("Hint").visible, "available parcel uses one envelope baked into the cabinet, without a duplicate small envelope")
 	_expect(pickup.begin_interaction(), "SECURITY could not PICKUP PARCEL_CABINET_2F")
 	_expect(pickup.is_completed(), "PICKUP should complete on one E press")
+	_expect(not pickup.can_interact(), "Completed parcel must not advertise itself as interactable")
 	_expect(pickup.get_node("PersistentVisual").visible and not pickup.get_node("ItemVisual").visible and not pickup.get_node("Hint").visible, "completed parcel scene did not preserve furniture or hide item/hint")
 	_expect(register_309.get_node("PersistentVisual").visible, "REGISTER_309 did not reuse the formal registration desk asset")
 	_expect(not pickup.begin_interaction(), "completed PICKUP repeated")
@@ -42,6 +43,7 @@ func _ready() -> void:
 	register_309._on_work_area_body_entered(player)
 	await get_tree().physics_frame
 	_expect(not register_309.begin_interaction(), "SECURITY incorrectly satisfied MANAGER authorization")
+	_expect(register_309.get_interaction_block_reason() == "WRONG_IDENTITY", "Wrong identity must retain its exact UI reason")
 	CardManager.switch_active()
 	_expect(CardManager.active_card == "MANAGER", "MANAGER slot did not become active")
 	_expect(register_309.begin_interaction(), "MANAGER could not AUTHORIZE REGISTER_309")
@@ -51,6 +53,7 @@ func _ready() -> void:
 	exit_register._on_work_area_body_entered(player)
 	await get_tree().physics_frame
 	_expect(exit_register.begin_interaction(), "MANAGER could not AUTHORIZE EXIT_REGISTER_5F")
+	_expect(not exit_register.can_interact(), "Completed exit approval must not advertise itself as interactable")
 	exit_register.set_completed(false)
 	_expect(exit_register.begin_interaction(), "restored AUTHORIZE point did not become available")
 
@@ -82,6 +85,7 @@ func _ready() -> void:
 	GameManager.set_modal_open("WORK_ITEMS_SMOKE", false)
 	_expect(progress_point.begin_interaction(), "work progress did not restart after cancellation")
 	progress_point.advance_interaction(1.5)
+	_expect(not progress_point.can_interact(), "Completed cleaning must not advertise itself as interactable")
 	_expect(_work_state_events.any(func(state: Dictionary) -> bool: return state.status == "COMPLETED" and is_equal_approx(state.progress, 1.0)), "work completion did not notify UI")
 	progress_point.set_completed(false)
 	_expect(_work_state_events.any(func(state: Dictionary) -> bool: return state.status == "RESET"), "work reset did not notify UI")
@@ -100,6 +104,7 @@ func _ready() -> void:
 	_expect(not patrol.begin_steal(), "front PATROL_RECORD steal should fail")
 	_expect(GameManager.game_state == "FAILED", "front PATROL_RECORD steal did not report failure")
 	_expect(_staff_state_events.any(func(state: Dictionary) -> bool: return state.status == "CAUGHT"), "staff caught state did not notify UI")
+	_expect(not patrol.feedback_label.visible, "Caught feedback must not be obscured by a cancellation or reward label")
 	test._on_recovery_timer_timeout()
 	_expect(_staff_state_events.any(func(state: Dictionary) -> bool: return state.status == "RESET"), "staff reset did not notify UI")
 	patrol.set_process(false)
@@ -120,18 +125,28 @@ func _ready() -> void:
 	_expect(staff_state.status == "ACTIVE" and is_equal_approx(staff_state.progress, 0.5), "staff active state or progress is wrong")
 	_expect(is_equal_approx(staff_state.elapsed, 0.4) and is_equal_approx(staff_state.required_time, 0.8), "staff elapsed/required time is wrong")
 	patrol.cancel_steal()
+	_expect(patrol.feedback_label.visible and "取消" in patrol.feedback_label.text, "Released E needs visible cancellation feedback")
 	_expect(patrol.get_interaction_progress() == 0.0, "cancelled staff progress did not reset")
 	_expect(_staff_state_events.any(func(state: Dictionary) -> bool: return state.status == "CANCELLED"), "staff cancellation did not notify UI")
 	_expect(patrol.begin_steal(), "PATROL_RECORD steal did not restart")
+	patrol.set("_is_suspicious", true) # Curiosity must not mask the real cancellation trigger.
+	player.global_position.x += 1.0
+	patrol._process(0.1)
+	_expect(not patrol.is_stealing() and "先停下" in patrol.feedback_label.text, "Movement cancellation explains why the hold ended")
+	_expect(_patrol_events.is_empty(), "Movement cancellation must not reward a file")
+	patrol.set("_is_suspicious", false)
+	_expect(patrol.begin_steal(), "Theft restarts after movement stops")
 	patrol._process(0.8)
 	_expect(_patrol_events == [["PATROL_RECORD", "STAFF_PATROL_4F"]], "PATROL_RECORD event payload or count is wrong")
 	_expect(not patrol.is_reward_available() and not CardManager.VALID_CARDS.has("PATROL_RECORD"), "task item leaked into card ownership")
 	_expect(not patrol.get_node("CardMarker").visible, "collected PATROL_RECORD marker remained visible")
+	_expect("巡房文件" in patrol.feedback_label.text and "装备" not in patrol.feedback_label.text, "Patrol reward is a task file, not an equipped card")
 	_expect(patrol.get_interaction_block_reason() == "INELIGIBLE", "collected task item block reason is not readable")
 	_expect(_staff_state_events.any(func(state: Dictionary) -> bool: return state.status == "COMPLETED" and is_equal_approx(state.progress, 1.0)), "staff completion did not notify UI")
 	_expect(not patrol.begin_steal(), "PATROL_RECORD repeated before restore")
 	patrol.set_reward_available(true)
 	_expect(patrol.is_reward_available(), "A restore hook did not make PATROL_RECORD available")
+	_expect(not patrol.feedback_label.visible, "Restored file must not retain the old collected-file message")
 
 	if _failed:
 		get_tree().quit(1)

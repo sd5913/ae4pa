@@ -5,6 +5,9 @@ func _ready() -> void:
 	staff = get_parent()
 	z_index = 3
 func get_rear_direction() -> int: return -staff.facing_direction
+func _get_stand_color() -> Color:
+	# Rear position alone is not sufficient: movement and locks also reject E.
+	return Color("a4d5be") if staff.get_interaction_block_reason() in ["READY", "STEALING"] else Color("efc57f")
 func _process(_delta: float) -> void:
 	var player: Node2D = staff.get("_player")
 	visible = GameManager.is_world_input_allowed() and staff.is_task_eligible() and staff.is_reward_available() and is_instance_valid(player) and absf(player.global_position.x - staff.global_position.x) < 220
@@ -14,7 +17,7 @@ func _draw() -> void:
 	var width: float = maxf(0, staff.steal_radius - 12)
 	var side: float = get_rear_direction()
 	var center := Vector2(side * (12 + width * 0.5), 0)
-	var color := Color("a4d5be") if staff.is_player_behind() else Color("efc57f")
+	var color := _get_stand_color()
 	var rect := Rect2(center - Vector2(width*0.5, 7), Vector2(width,14))
 	draw_rect(rect, Color(color,0.3))
 	draw_rect(rect, color, false, 2)

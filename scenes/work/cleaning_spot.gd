@@ -98,7 +98,8 @@ func _complete_interaction() -> void:
 
 func can_interact() -> bool:
 	return (
-		_task_active
+		not _completion_reported
+		and _task_active
 		and _player_in_range
 		and _player != null
 		and not _player.is_moving
