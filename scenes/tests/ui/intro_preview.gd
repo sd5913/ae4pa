@@ -41,6 +41,8 @@ func _run_smoke() -> void:
 	_chain_manager = false
 	start_button.hide()
 	dialogue.show_dialogue("V4_INTRO")
+	await get_tree().process_frame
+	await get_tree().process_frame
 	_check(dialogue.visible and dialogue._beats.size() > 50, "V4 intro opens with full TSV content", failures)
 	_check(not dialogue.get_node("%SkipButton").visible, "First-run intro cannot be skipped", failures)
 	_check(dialogue.get_node("%Background").texture != null, "Intro background texture is loaded", failures)
@@ -50,12 +52,16 @@ func _run_smoke() -> void:
 	var key := InputEventAction.new()
 	key.action = "interact"
 	key.pressed = true
-	dialogue._unhandled_input(key)
+	dialogue._input(key)
 	_check(dialogue._line_index == first_index + 1, "E action advances one beat", failures)
 	var mouse := InputEventMouseButton.new()
 	mouse.button_index = MOUSE_BUTTON_LEFT
+	mouse.position = dialogue.get_node("%SMSScroll").get_global_rect().get_center()
 	mouse.pressed = true
-	dialogue._unhandled_input(mouse)
+	dialogue._input(mouse)
+	mouse = mouse.duplicate()
+	mouse.pressed = false
+	dialogue._input(mouse)
 	_check(dialogue._line_index == first_index + 2, "Mouse click advances one beat", failures)
 	await _drain_dialogue(failures)
 	_check(_completed == ["V4_INTRO"], "Intro completion emits V4_INTRO once", failures)
@@ -82,7 +88,7 @@ func _drain_dialogue(failures: Array[String]) -> void:
 	var guard := 0
 	while dialogue.visible and guard < 200:
 		var previous_index: int = dialogue._line_index
-		dialogue.get_node("%ContinueButton").pressed.emit()
+		dialogue._advance()
 		await get_tree().process_frame
 		guard += 1
 		if dialogue.visible and dialogue._dialogue_id != "" and dialogue._line_index == previous_index and not dialogue._transition_in_progress:

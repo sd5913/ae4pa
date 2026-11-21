@@ -85,11 +85,11 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -13.0
-offset_top = -337.0
-offset_right = 403.0
-offset_bottom = 287.0
-pivot_offset = Vector2(199, 317)
+offset_left = -52.0
+offset_top = -350.0
+offset_right = 401.333
+offset_bottom = 330.0
+pivot_offset = Vector2(226.667, 340)
 mouse_filter = 2
 
 [node name="VibrationMarks" type="TextureRect" parent="SMSPanel"]
@@ -114,10 +114,10 @@ expand_mode = 1
 
 [node name="PhoneScreen" type="Control" parent="SMSPanel"]
 layout_mode = 0
-offset_left = 78.0
-offset_top = 96.0
-offset_right = 321.0
-offset_bottom = 537.0
+offset_left = 85.0
+offset_top = 104.6
+offset_right = 349.8
+offset_bottom = 585.2
 mouse_filter = 2
 
 [node name="PhoneChat" type="VBoxContainer" parent="SMSPanel/PhoneScreen"]
@@ -135,7 +135,7 @@ theme_override_constants/separation = 7
 [node name="PhoneHeader" type="Label" parent="SMSPanel/PhoneScreen/PhoneChat"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.23, 0.18, 0.13, 1)
-theme_override_font_sizes/font_size = 19
+theme_override_font_sizes/font_size = 21
 text = "帕希卡"
 horizontal_alignment = 1
 
@@ -149,7 +149,7 @@ color = Color(0.63, 0.49, 0.29, 0.42)
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
-mouse_filter = 2
+mouse_filter = 0
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
@@ -248,10 +248,10 @@ mouse_filter = 2
 unique_name_in_owner = true
 visible = false
 layout_mode = 0
-anchor_left = 0.18
-anchor_top = 0.13
-anchor_right = 0.82
-anchor_bottom = 0.4
+anchor_left = 0.2
+anchor_top = 0.25
+anchor_right = 0.8
+anchor_bottom = 0.55
 theme_override_colors/font_color = Color(1, 0.94, 0.82, 1)
 theme_override_colors/font_shadow_color = Color(0.02, 0.025, 0.04, 0.92)
 theme_override_constants/shadow_offset_x = 2
@@ -276,23 +276,18 @@ expand_mode = 1
 stretch_mode = 5
 script = ExtResource("8_localized_title")
 
-[node name="ContinueButton" type="Button" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchor_left = 0.77
-anchor_top = 0.886
-anchor_right = 0.89
-anchor_bottom = 0.939
-text = "继续"
-
 [node name="SkipButton" type="Button" parent="."]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
-anchor_left = 0.345
-anchor_top = 0.886
-anchor_right = 0.51
-anchor_bottom = 0.939
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -324.0
+offset_top = -80.0
+offset_right = -24.0
+offset_bottom = -24.0
 text = "跳过已读序章"
 
 [node name="Fade" type="ColorRect" parent="."]
@@ -306,5 +301,4 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[connection signal="pressed" from="ContinueButton" to="." method="_on_continue_pressed"]
 [connection signal="pressed" from="SkipButton" to="." method="_on_skip_pressed"]

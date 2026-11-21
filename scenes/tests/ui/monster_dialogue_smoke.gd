@@ -41,18 +41,21 @@ func run() -> void:
 	var event := InputEventAction.new()
 	event.action = "interact"
 	event.pressed = true
-	screen._unhandled_input(event)
+	screen._input(event)
 	check(screen.get("_index") == 1, "E advances exactly one line")
 	var echo := InputEventKey.new()
 	echo.physical_keycode = KEY_E
 	echo.pressed = true
 	echo.echo = true
-	screen._unhandled_input(echo)
+	screen._input(echo)
 	check(screen.get("_index") == 1, "keyboard echo cannot advance dialogue")
 	var click := InputEventMouseButton.new()
 	click.button_index = MOUSE_BUTTON_LEFT
+	click.position = screen.get("_panel").get_global_rect().get_center()
 	click.pressed = true
-	screen._unhandled_input(click)
+	screen._input(click)
+	click.pressed = false
+	screen._input(click)
 	check(screen.get("_index") == 2, "left click advances exactly one line")
 	game.set_modal_open("OTHER_PAGE", true)
 	drain(screen)

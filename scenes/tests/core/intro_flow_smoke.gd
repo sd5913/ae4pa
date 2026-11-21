@@ -20,7 +20,7 @@ func _run() -> void:
 		printerr("FAIL: F5 must mount D's real dialogue scene")
 		quit(1)
 		return
-	dialogue.set_progress_file_path_for_test("/private/tmp/ae4pa-intro-flow-%d.cfg" % OS.get_process_id())
+	dialogue.set_progress_file_path_for_test(OS.get_environment("TEMP").path_join("ae4pa-intro-flow-%d.cfg" % OS.get_process_id()))
 	dialogue.set_skip_transitions_for_test(true)
 	root.add_child(main)
 	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
@@ -47,7 +47,12 @@ func _run() -> void:
 	_expect(dialogue.get("_line_index") == index + 1, "A real E advances exactly one story beat")
 	var mouse := InputEventMouseButton.new()
 	mouse.button_index = MOUSE_BUTTON_LEFT
+	mouse.position = root.get_final_transform() * dialogue.get_node("%SMSScroll").get_global_rect().get_center()
 	mouse.pressed = true
+	Input.parse_input_event(mouse)
+	await process_frame
+	mouse = mouse.duplicate()
+	mouse.pressed = false
 	Input.parse_input_event(mouse)
 	await process_frame
 	_expect(dialogue.get("_line_index") == index + 2, "A real mouse event advances the next beat")
@@ -71,7 +76,7 @@ func _run() -> void:
 	game.call("set_modal_open", "OTHER_PAGE", true)
 	# Reach final beat via the real UI, then close with E (held through modal release).
 	while dialogue.get("_line_index") < dialogue.get("_beats").size() - 1:
-		dialogue.get_node("%ContinueButton").emit_signal("pressed")
+		dialogue._advance()
 	await _action("interact", true)
 	_expect(not dialogue.visible and game.call("has_completed_manager_intro"), "Only manager completion opens the upstairs story gate")
 	_expect(not game.call("is_world_input_allowed"), "Closing dialogue does not close another page's modal")
@@ -91,7 +96,7 @@ func _run() -> void:
 	_expect(game.call("is_world_input_allowed"), "Unloading main releases its own dialogue modal")
 	_expect(cards.is_processing_unhandled_input(), "Standalone B input is restored after main unload")
 	dialogue = null
-	DirAccess.remove_absolute("/private/tmp/ae4pa-intro-flow-%d.cfg" % OS.get_process_id())
+	DirAccess.remove_absolute(OS.get_environment("TEMP").path_join("ae4pa-intro-flow-%d.cfg" % OS.get_process_id()))
 	for failure: String in failures:
 		printerr("FAIL: ", failure)
 	if failures.is_empty():
@@ -102,7 +107,7 @@ func _run() -> void:
 func _drain(dialogue: Control) -> void:
 	var guard: int = 0
 	while dialogue.visible and guard < 200:
-		dialogue.get_node("%ContinueButton").emit_signal("pressed")
+		dialogue._advance()
 		guard += 1
 	await process_frame
 	_expect(guard < 200, "Actual TSV story terminates")
