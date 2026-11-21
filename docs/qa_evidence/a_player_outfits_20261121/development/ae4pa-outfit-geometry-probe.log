@@ -1,0 +1,24 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/final/characters/approved_static/an.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+     at: load_from_file (core/io/image.cpp:2780)
+     GDScript backtrace (most recent call first):
+         [0] run (/private/tmp/ae4pa-outfit-geometry-probe.gd:12)
+WARNING: Loaded resource as image file, this will not work on export: 'res://assets/final/characters/approved_actions/an.png'. Instead, import the image file as an Image resource and load it normally as a resource.
+     at: load_from_file (core/io/image.cpp:2780)
+     GDScript backtrace (most recent call first):
+         [0] run (/private/tmp/ae4pa-outfit-geometry-probe.gd:13)
+-1 bounds=[P: (50.0, 60.0), S: (411.0, 899.0)] gold=[P: (202.0, 440.0), S: (189.0, 307.0)]
+0 bounds=[P: (96.0, 5.0), S: (161.0, 347.0)] gold=[P: (137.0, 152.0), S: (99.0, 122.0)]
+1 bounds=[P: (95.0, 5.0), S: (160.0, 351.0)] gold=[P: (140.0, 152.0), S: (78.0, 121.0)]
+2 bounds=[P: (95.0, 5.0), S: (160.0, 351.0)] gold=[P: (152.0, 152.0), S: (69.0, 116.0)]
+3 bounds=[P: (95.0, 6.0), S: (167.0, 344.0)] gold=[P: (138.0, 152.0), S: (93.0, 122.0)]
+4 bounds=[P: (95.0, 6.0), S: (160.0, 350.0)] gold=[P: (141.0, 152.0), S: (81.0, 121.0)]
+5 bounds=[P: (95.0, 6.0), S: (159.0, 350.0)] gold=[P: (145.0, 152.0), S: (76.0, 114.0)]
+6 bounds=[P: (81.0, 24.0), S: (211.0, 326.0)] gold=[P: (117.0, 162.0), S: (134.0, 106.0)]
+7 bounds=[P: (98.0, 5.0), S: (175.0, 348.0)] gold=[P: (137.0, 141.0), S: (113.0, 127.0)]
+8 bounds=[P: (82.0, 5.0), S: (226.0, 347.0)] gold=[P: (105.0, 140.0), S: (134.0, 160.0)]
+9 bounds=[P: (98.0, 6.0), S: (156.0, 345.0)] gold=[P: (138.0, 152.0), S: (87.0, 116.0)]
+10 bounds=[P: (96.0, 6.0), S: (158.0, 345.0)] gold=[P: (135.0, 156.0), S: (94.0, 113.0)]
+11 bounds=[P: (92.0, 6.0), S: (161.0, 345.0)] gold=[P: (111.0, 153.0), S: (107.0, 117.0)]
+DONE

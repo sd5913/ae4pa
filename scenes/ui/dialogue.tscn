@@ -136,7 +136,7 @@ theme_override_constants/separation = 7
 layout_mode = 2
 theme_override_colors/font_color = Color(0.23, 0.18, 0.13, 1)
 theme_override_font_sizes/font_size = 21
-text = "帕希卡"
+text = "Terese"
 horizontal_alignment = 1
 
 [node name="PhoneDivider" type="ColorRect" parent="SMSPanel/PhoneScreen/PhoneChat"]
@@ -186,7 +186,7 @@ stretch_mode = 5
 layout_mode = 2
 theme_override_colors/font_color = Color(1, 0.86, 0.6, 1)
 theme_override_font_sizes/font_size = 21
-text = "帕希卡"
+text = "Terese"
 horizontal_alignment = 1
 
 [node name="NotificationText" type="Label" parent="SMSPanel/PhoneScreen/PhoneNotification/Notice"]

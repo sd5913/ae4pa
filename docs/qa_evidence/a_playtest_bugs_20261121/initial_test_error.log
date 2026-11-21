@@ -1,0 +1,19 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCRIPT ERROR: Out of bounds get index '24' (on base: 'Array[String]')
+          at: _show_line (res://scenes/ui/dialogue.gd:295)
+          GDScript backtrace (most recent call first):
+              [0] _show_line (res://scenes/ui/dialogue.gd:295)
+              [1] run (res://scenes/tests/core/playtest_bugfix_smoke.gd:47)
+              [2] settle (res://scenes/tests/core/playtest_bugfix_smoke.gd:14)
+FAIL: First acquired card becomes usable after premature empty-slot Q
+FAIL: Later collection never changes an existing identity
+FAIL: Actual opening names the protagonist Carol
+FAIL: Real309 data uses Carol and Terese
+FAIL: Story checker cannot be bypassed with Q
+FAIL: Q remains usable at the safe workstation
+FAIL: World companion label is Terese
+FAIL: Real ordinary door returns Carol to stairs
+FAIL: Terese returns with Carol in the same frame
+FAIL: Existing downstairs prompt is visible in the interaction range
+FAIL: Downstairs menu never offers an unreachable upstairs destination

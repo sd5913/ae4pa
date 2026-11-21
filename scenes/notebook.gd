@@ -15,6 +15,11 @@ func _show_page(page_index: int) -> void:
 	_refresh_notebook()
 
 
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
+		_refresh_notebook()
+
+
 func _refresh_notebook() -> void:
 	if not is_node_ready() or _page_index < 5 or _page_index >= 10:
 		return

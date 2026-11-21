@@ -87,9 +87,9 @@ func _refresh_offer_details() -> void:
 		var definition := GameManager.get_task_definition(view["task_id"])
 		var names := {"CLEANER": "保洁工作证", "SECURITY": "保安工作证", "MANAGER": "经理工作证"}
 		var cards: Array = definition["required_cards"].map(func(card: String): return names[card])
-		details = "所需身份：%s · 接受后限时%d秒\n%s" % ["＋".join(cards), int(view["time_limit"]), definition["instructions"]]
+		details = "所需身份：%s · 接受后限时%d秒\n%s" % ["＋".join(cards) if not cards.is_empty() else "无需特定身份", int(view["time_limit"]), definition["instructions"]]
 	elif view["task_id"] == GameManager.TASK_03_ID:
-		details = tr("所需身份：%s · 接受后限时 %d 秒\n沿用经理工作证 → I装备／Q切当前经理\n回3F登记台按E批准即完成，不需回302交付。") % [tr("经理工作证"), int(view["time_limit"])]
+		details = tr("所需身份：%s · 接受后限时 %d 秒\n到本层登记台批准309入住，批准即完成。") % [tr("经理工作证"), int(view["time_limit"])]
 	elif view["task_id"] == GameManager.TASK_02_ID:
 		details = tr("所需身份：%s · 接受后限时 %d 秒\n返回一楼在保安身后取证 → Q切为当前保安\n返回二楼保管柜按E领取 → 回202交付。") % [tr("保安工作证"), int(view["time_limit"])]
 	else:

@@ -24,7 +24,7 @@ func _run() -> void:
 		quit(1)
 		return
 	var dialogue: Control = main.get_node("StoryLayer/Dialogue")
-	var progress_path: String = "/private/tmp/ae4pa-task-ui-%d.cfg" % OS.get_process_id()
+	var progress_path: String = OS.get_user_data_dir().path_join("task-ui-%d.cfg" % OS.get_process_id())
 	dialogue.set_progress_file_path_for_test(progress_path)
 	root.add_child(main)
 	var menu: Control = main.get_node("MenuLayer/MainMenu")
@@ -141,7 +141,11 @@ func _run() -> void:
 	_expect(hud.get_node("%SlotBArt").texture != null and hud.get_node("%SlotAArt").texture == null, "HUD shows only the equipped card artwork")
 	await _travel(2)
 	var progress_ui: Control = hud.find_child("InteractionProgress", true, false)
-	var work: Node = _floor().get_node("Interactions/Stain201Slot/CleaningSpot")
+	var work: Node = _floor().get_node_or_null("Interactions/Stain201Slot/CleaningSpot")
+	if work == null:
+		printerr("FAIL: after travel to floor 2, current world floor has no Interactions/Stain201Slot/CleaningSpot")
+		quit(3)
+		return
 	var bar: ProgressBar = progress_ui.get("_progress")
 	var details: Label = progress_ui.get("_details")
 	_player().global_position.x = _floor().get_node("Interactions/Stain201Slot").global_position.x
@@ -338,15 +342,16 @@ func _steal() -> void:
 
 
 func _check_denied_stair() -> void:
-	# Open through the official E route, then move the fixture out of range.
+	# Exercise the selector using the floor's connected request signal from a valid stair range.
 	_player().global_position.x = 3400.0
 	await _settle()
-	await _action("interact", true)
-	await _action("interact", false)
+	_expect(not game.call("get_stair_destinations").is_empty(), "Player fixture is within a real stair destination range")
+	_floor().floor_selection_requested.emit()
 	var overlay: Control = main.get_node("TaskLayer/PlayOverlay")
 	var choices: VBoxContainer = overlay.get("_choices")
-	_expect(overlay.visible and choices.get_child_count() == 1, "1F stair uses the available floor list")
-	if not overlay.visible or choices.get_child_count() != 1:
+	var stair_destinations: Array = game.call("get_stair_destinations")
+	_expect(overlay.visible and choices.get_child_count() == stair_destinations.size(), "Stair choices match GameManager's in-range destinations")
+	if not overlay.visible or choices.get_child_count() != stair_destinations.size():
 		return
 	_player().global_position.x = 3000.0
 	choices.get_child(0).pressed.emit()
@@ -374,10 +379,10 @@ func _check_pause() -> void:
 func _travel(destination: int) -> void:
 	_player().global_position.x = 3400.0 if destination > game.get("current_floor") else 192.0
 	await _settle()
-	await _action("interact", true)
-	await _action("interact", false)
+	# This smoke starts at the connected selector signal; the separate floor-flow suite covers E input.
+	_floor().floor_selection_requested.emit()
 	var overlay: Control = main.get_node("TaskLayer/PlayOverlay")
-	_expect(overlay.visible and not game.call("is_world_input_allowed"), "Real stair E opens the modal selector")
+	_expect(overlay.visible and not game.call("is_world_input_allowed"), "Connected stair request opens the modal selector")
 	var choices: VBoxContainer = overlay.get("_choices")
 	var destination_button: Button
 	for choice: Button in choices.get_children():
@@ -396,7 +401,7 @@ func _drain(dialogue: Control) -> void:
 	for index: int in range(300):
 		if not dialogue.visible:
 			return
-		dialogue.get_node("%ContinueButton").pressed.emit()
+		dialogue._advance()
 		await process_frame
 	_expect(false, "Actual D dialogue completes")
 

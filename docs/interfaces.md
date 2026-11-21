@@ -1,5 +1,9 @@
 # 怪物员工通道公共接口与 V4 迁移提案
 
+> 2026-11-21 Carol身份外观：Player在`Visual/Artwork/IdentityOutfit`只读active_card，监听cards_changed以覆盖Q／装备／快照／新局；原胸前证件图标移除。公共人物绘制新增只读`get_render_pose()`（frame／texture／source／destination），原帧选择与绘制几何不变，普通员工不加换装材质。见[接入与验证](player_identity_outfits_handoff_20261121.md)。
+
+> 2026-11-21 本地交互教学：A新增只读`GameManager.get_monster_guide(kind) -> Dictionary`（`name`／`text`），笔记与普通门复习共用；`STAIR_INTERACTION_RADIUS=70.0`统一楼梯渲染与既有许可检查。`bag_adapter.gd`在D原ItemList／槽位上转发Godot拖放，仍调用CardManager.equip_card和既有核验区限制。员工与门的对外签名不变；轻量饰品与标记不参与任务结算。[本轮交接](interaction_onboarding_handoff_20261121.md)。
+
 > 2026-11-20 新增实际合同：`TASK_T03_ROOM_SERVICE`、`TASK_T04_DUAL_WORK`、`TASK_T05_TRANSIT`及五工作点已接；`get_task_view()`新增`required_cards`／`target_label`，目标随真实步骤变化，完成后指向下一房／3F。`get_work_flag(target_id)`供楼层镜像B组件，`has_required_equipment(task_id)`校验指定卡组。现有方法签名不变；具体ID、坐标、阶段、恢复与后续边界见[五怪接线交接](five_monster_tutorial_handoff_20261120.md)。下方旧接线历史不代替当前配置。
 
 当前工作区基线为 `main@c89c88c` 加本轮202未提交接入；第25节及[202交接](task_02_handoff_20261119.md)优先于旧“仅任务01／02未开放”描述。201真人六项用户ok保留原f18e4ce范围，202已有自动检查但未代记真人通过。历史发布／接线记录保留，不能把新教学／双卡提案当现成API。
@@ -782,3 +786,15 @@ A 当前工作区在 §18 基础上接入 D `eb5e019` 的 main_menu、help、bag
 上方C旧2F关门说明被本轮用户确认的教学生命周期取代：201—205首次完整WARNING→OPEN，接取后留场直到真实交付；3F+普通门保留本层左梯退回。302／403／501的后续固定任务使用独立任务号判断，不再用FIRST教学表判断。302仍是独立309登记，接取前右界不变；403／501仅预留后续状态，不启用04／05任务。
 
 D新工具栏bag_requested与I键进入同一A入口，均检查floor.get_identity_restriction_room()；世界模态仍由GameManager管理。原有309 rescue_open_requested、36拍CG、friend_rescued及跟随接线保留。504／505无房门、无随机池；实际公共配置17间。详见[合并证据](qa_evidence/a_main_merge_20261121/README.md)。
+
+
+## A后段实际接线（2026-11-21，本地未提交）
+
+403／TASK_04_PATROL、501／TASK_05_EXIT现已启用，分别180秒，真实工作后返回房间交付；正常新局可经真实309 CG到EXIT。旧“04／05未接”是历史状态。[当前交接](late_mainline_handoff_20261121.md)列实际位置、检查点和范围。
+
+- GameManager新增`record_task_item_result(item_id: String, target_id: String) -> bool`，仅STEAL_FILE资格和正确奖励／目标成立时记录成果，不能用`record_work_result`伪造文件。A楼层额外验证真实员工来源及持有中的偷窃交互。
+- `can_escape() -> bool`／`request_escape() -> bool`：核对实际5F出口距离、救援、03／04／05、巡房交付及离店批准／交付、世界输入和待处理拦截；成功设WON并一次发`game_won()`。D不直接写WON。
+- `get_story_objective() -> String`提供救援后403→501→EXIT近期目标，HUD、309回访／结算提示共用。
+- 任务定义`checkpoint_marker`供403／501读取；仍复用现有接受前快照和`retry_current_task()`，不是第二套存档。A监听B `task_item_stolen(item_id,target_id)`，按快照刷新`set_reward_available`。
+- A新增相邻`scenes/late_mainline.gd`适配D现有Dialogue和Win；无新UI真值。每个新局统一经过MENU清理D对白缓存，返回菜单移除同行。
+- 最新51项矩阵、新局八任务／309／EXIT整链、原生Compatibility通过；位置／朝向／时钟控制和人工边界见[证据](qa_evidence/a_late_mainline_20261121/README.md)。

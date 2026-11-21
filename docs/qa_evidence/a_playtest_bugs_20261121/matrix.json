@@ -1,0 +1,971 @@
+[
+  {
+    "name": "five_monster_main_flow_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/five_monster_main_flow_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/five_monster_main_flow_smoke.godot.log"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 60.09
+  },
+  {
+    "name": "task_03_main_flow_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/task_03_main_flow_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/task_03_main_flow_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 15.82
+  },
+  {
+    "name": "english_layout_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/ui/english_layout_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/english_layout_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.54
+  },
+  {
+    "name": "localization_full",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/localization_full.godot.log",
+      "--",
+      "--ui-smoke",
+      "--write-english"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 2.81
+  },
+  {
+    "name": "saved_english",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/saved_english.godot.log",
+      "--",
+      "--ui-smoke",
+      "--expect-english"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "set_chinese",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/set_chinese.godot.log",
+      "--",
+      "--ui-smoke",
+      "--set-chinese"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.13
+  },
+  {
+    "name": "saved_chinese",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/saved_chinese.godot.log",
+      "--",
+      "--ui-smoke",
+      "--expect-chinese"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.13
+  },
+  {
+    "name": "task_02_localization_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/task_02_localization_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/task_02_localization_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 3.05
+  },
+  {
+    "name": "foundation_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/foundation_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/foundation_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 6.78
+  },
+  {
+    "name": "task_01_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/task_01_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/task_01_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.24
+  },
+  {
+    "name": "task_01_main_flow_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/task_01_main_flow_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/task_01_main_flow_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 10.18
+  },
+  {
+    "name": "task_checkpoint_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/task_checkpoint_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/task_checkpoint_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 25.62
+  },
+  {
+    "name": "task_ui_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/task_ui_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/task_ui_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 27.92
+  },
+  {
+    "name": "world_interaction_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      ".",
+      "--log-file",
+      "/private/tmp/ae4pa-world-interaction-bugfix-recheck.log",
+      "--script",
+      "res://scenes/tests/core/world_interaction_smoke.gd",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "evidence": "world_interaction_recheck.log",
+    "note": "Latest actual recheck after adding first-real-card activation assertion; original cleanup/delivery checks retained."
+  },
+  {
+    "name": "floor_return_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/floor_return_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/floor_return_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 2.83
+  },
+  {
+    "name": "task_definitions_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/task_definitions_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/task_definitions_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "interaction_allowed_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/interaction_allowed_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/interaction_allowed_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "notebook_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/notebook_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/notebook_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "task_02_core_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/task_02_core_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/task_02_core_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "task_02_main_flow_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/task_02_main_flow_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/task_02_main_flow_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 35.49
+  },
+  {
+    "name": "task_03_core_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/task_03_core_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/task_03_core_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "five_monster_tasks_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/five_monster_tasks_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/five_monster_tasks_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "intro_flow_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/intro_flow_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/intro_flow_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 4.01
+  },
+  {
+    "name": "encounter_flow_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/doors/encounter_flow_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/encounter_flow_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 2.5
+  },
+  {
+    "name": "safe_return_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/safe_return_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/safe_return_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 5.34
+  },
+  {
+    "name": "floor_3_layout_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/doors/floor_3_layout_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/floor_3_layout_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.88
+  },
+  {
+    "name": "floor_4_layout_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/doors/floor_4_layout_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/floor_4_layout_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.07
+  },
+  {
+    "name": "tutorial_catalog_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/doors/tutorial_catalog_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/tutorial_catalog_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.24
+  },
+  {
+    "name": "tutorial_lifecycle_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/doors/tutorial_lifecycle_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/tutorial_lifecycle_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.66
+  },
+  {
+    "name": "tutorial_delivery_identity_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/tutorial_delivery_identity_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/tutorial_delivery_identity_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "tutorial_work_layout_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/ui/tutorial_work_layout_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/tutorial_work_layout_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.55
+  },
+  {
+    "name": "checker_safe_bag_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/ui/checker_safe_bag_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/checker_safe_bag_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 2.95
+  },
+  {
+    "name": "known_monster_rules_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/doors/known_monster_rules_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/known_monster_rules_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.77
+  },
+  {
+    "name": "v4_catalog_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/doors/v4_catalog_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/v4_catalog_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.45
+  },
+  {
+    "name": "tutorial_workpoints_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/staff/tutorial_workpoints_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/tutorial_workpoints_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.18
+  },
+  {
+    "name": "monster_text_glyphs_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/ui/monster_text_glyphs_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/monster_text_glyphs_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.25
+  },
+  {
+    "name": "tutorial_hud_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/ui/tutorial_hud_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/tutorial_hud_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.81
+  },
+  {
+    "name": "monster_dialogue_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/ui/monster_dialogue_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/monster_dialogue_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 4.32
+  },
+  {
+    "name": "staff_core_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "res://scenes/tests/staff/staff_core_smoke.tscn",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/staff_core_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.08
+  },
+  {
+    "name": "work_items_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "res://scenes/tests/staff/work_items_smoke.tscn",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/work_items_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.67
+  },
+  {
+    "name": "cleaner_v4_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "res://scenes/tests/staff/cleaner_v4_smoke.tscn",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/cleaner_v4_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 1.26
+  },
+  {
+    "name": "ui_test",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "res://scenes/tests/ui/ui_test.tscn",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/ui_test.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.34
+  },
+  {
+    "name": "floor_flow_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/floor_flow_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/floor_flow_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 9.28
+  },
+  {
+    "name": "floor_2_layout_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/doors/floor_2_layout_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/floor_2_layout_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 3.87
+  },
+  {
+    "name": "floor_5_layout_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/doors/floor_5_layout_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/floor_5_layout_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.76
+  },
+  {
+    "name": "v4_doors_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/doors/v4_doors_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/v4_doors_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.35
+  },
+  {
+    "name": "v4_identity_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/doors/v4_identity_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/v4_identity_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.35
+  },
+  {
+    "name": "reunion_309_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/ui/reunion_309_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/reunion_309_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 12.84
+  },
+  {
+    "name": "task_door_lifecycle_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/doors/task_door_lifecycle_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/task_door_lifecycle_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 6.72
+  },
+  {
+    "name": "late_mainline_core_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/late_mainline_core_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/late_mainline_core_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.14
+  },
+  {
+    "name": "late_mainline_main_flow_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/late_mainline_main_flow_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/late_mainline_main_flow_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 16.65
+  },
+  {
+    "name": "playtest_bugfix_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/playtest_bugfix_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/playtest_bugfix_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 4.67
+  },
+  {
+    "name": "full_mainline_escape_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/full_mainline_escape_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_playtest_bugs_20261121/regression/full_mainline_escape_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 68.71
+  },
+  {
+    "name": "character_names_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      ".",
+      "--log-file",
+      "/private/tmp/ae4pa-character-names-final.log",
+      "--script",
+      "res://scenes/tests/ui/character_names_smoke.gd"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "evidence": "names_final.log"
+  }
+]

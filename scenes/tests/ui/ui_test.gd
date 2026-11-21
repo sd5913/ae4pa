@@ -25,6 +25,7 @@ func _ready() -> void:
 	_win.restart_requested.connect(_close_win_preview.bind("收到重开请求"))
 	_win.return_to_menu_requested.connect(_close_win_preview.bind("收到通关页返回菜单请求"))
 	if "--ui-smoke" in OS.get_cmdline_user_args():
+		Localization.set_language("zh_CN") # These assertions intentionally compare Chinese labels.
 		GameManager.start_game()
 		GameManager.complete_manager_intro()
 		_run_smoke.call_deferred()

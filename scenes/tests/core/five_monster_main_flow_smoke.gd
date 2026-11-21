@@ -23,7 +23,7 @@ func tap(action: String = "interact") -> void:
 func drain_story() -> void:
 	for i in range(100):
 		if not main.dialogue.visible: return
-		main.dialogue.get_node("%ContinueButton").pressed.emit()
+		main.dialogue._advance()
 		await process_frame
 func drain() -> void:
 	for i in range(50):

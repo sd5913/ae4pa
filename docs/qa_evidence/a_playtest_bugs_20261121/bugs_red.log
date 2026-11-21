@@ -1,0 +1,11 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+FAIL: First acquired card becomes usable after premature empty-slot Q
+FAIL: Later collection never changes an existing identity
+FAIL: Actual opening names the protagonist Carol
+FAIL: Real309 data uses Carol and Terese
+FAIL: Story checker cannot be bypassed with Q
+FAIL: World companion label is Terese
+FAIL: Terese returns with Carol in the same frame
+FAIL: Existing downstairs prompt is visible in the interaction range
+FAIL: Downstairs menu never offers an unreachable upstairs destination

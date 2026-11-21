@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_base.tscn" id="1_base"]
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_4_art.tscn" id="art"]
+[ext_resource type="PackedScene" path="res://scenes/staff/patrol_staff_4f.tscn" id="patrol"]
 
 [node name="Floor4" instance=ExtResource("1_base")]
 floor_number = 4
@@ -11,6 +12,18 @@ visible = false
 
 [node name="Player" parent="." index="2"]
 z_index = 1
+
+[node name="StaffRoot" parent="." index="3"]
+z_index = 1
+
+[node name="PatrolSlot" type="Node2D" parent="StaffRoot"]
+position = Vector2(1550, 560)
+
+[node name="Staff" parent="StaffRoot/PatrolSlot" instance=ExtResource("patrol")]
+steal_radius = 95.0
+
+[node name="Task403AcceptSafe" type="Marker2D" parent="Interactions"]
+position = Vector2(1650, 560)
 
 [node name="Room401" type="Marker2D" parent="DoorRoot" index="0"]
 position = Vector2(716.25, 560)

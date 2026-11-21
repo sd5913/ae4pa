@@ -98,6 +98,7 @@ func _run() -> void:
 	await create_timer(0.9).timeout
 	await _action("interact", false)
 	_expect(cards.call("has_card", "CLEANER"), "Accepted task still uses real B theft and card collection")
+	_expect(cards.get("active_card") == "CLEANER", "First real theft activates the card despite earlier empty-slot cancellation Q")
 	var time_before: float = game.get("remaining_time")
 	player.global_position.x = 3400.0
 	await _settle()
@@ -112,7 +113,7 @@ func _run() -> void:
 	await _settle()
 	_expect(player.global_position.x < 1250.0, "Undelivered task cannot cross the 201 barrier")
 	# Querying work from a modal must not advance the task even with the right card.
-	cards.call("switch_active") # The earlier cancellation check selected the empty slot.
+	# First collection now fixes the earlier empty-slot Q; cleaner is already active.
 	game.call("set_modal_open", "BAG", true)
 	_expect(not game.call("record_work_result", "STAIN_201"), "Modal work cannot advance world state")
 	game.call("set_modal_open", "BAG", false)

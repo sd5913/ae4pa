@@ -1,0 +1,78 @@
+[
+  {
+    "name": "localization_full",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/localization_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_interaction_onboarding_20261121/recheck/localization_full.godot.log",
+      "--",
+      "--ui-smoke",
+      "--write-english"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 2.79
+  },
+  {
+    "name": "task_02_main_flow_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/task_02_main_flow_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_interaction_onboarding_20261121/recheck/task_02_main_flow_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 1,
+    "errors": [
+      "FAIL: Known contact explains the actual floor-stair return",
+      "FAIL: Known contact explains the actual floor-stair return",
+      "FAIL: Known contact explains the actual floor-stair return"
+    ],
+    "elapsed_seconds": 35.5
+  },
+  {
+    "name": "ui_test",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "res://scenes/tests/ui/ui_test.tscn",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_interaction_onboarding_20261121/recheck/ui_test.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 0.34
+  },
+  {
+    "name": "interaction_onboarding_smoke",
+    "command": [
+      "/Users/xiaxiabao/Downloads/Godot.app/Contents/MacOS/Godot",
+      "--headless",
+      "--path",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa",
+      "--script",
+      "res://scenes/tests/core/interaction_onboarding_smoke.gd",
+      "--log-file",
+      "/Users/xiaxiabao/Desktop/Coding Course/ae4pa/docs/qa_evidence/a_interaction_onboarding_20261121/recheck/interaction_onboarding_smoke.godot.log",
+      "--",
+      "--ui-smoke"
+    ],
+    "exit_code": 0,
+    "errors": [],
+    "elapsed_seconds": 4.73
+  }
+]

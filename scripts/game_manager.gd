@@ -12,6 +12,7 @@ signal modal_changed()
 signal safe_return_started(reason: String)
 signal notebook_changed()
 signal friend_rescued()
+signal game_won()
 ## D/A consume this request; the pending encounter is not a completed task.
 signal monster_encounter_requested(context: Dictionary)
 var _room_monsters: Dictionary = {}
@@ -20,7 +21,8 @@ var _pending_monster_encounter: Dictionary = {}
 
 func get_room_monster(room: String) -> String:
 	if not _room_monsters.has(room):
-		var choices: Array = ["HAT"] if room == "302" else preload("res://scenes/doors/v4_door_catalog.gd").pool(room)
+		var fixed := {"302": "HAT", "403": "EAR", "501": "CHECKER"}
+		var choices: Array = [fixed[room]] if fixed.has(room) else preload("res://scenes/doors/v4_door_catalog.gd").pool(room)
 		if choices.is_empty():
 			return ""
 		_room_monsters[room] = choices.pick_random()
@@ -36,7 +38,8 @@ func request_monster_encounter(room: String, kind: String, reason: String) -> bo
 	if not is_world_input_allowed() or not _pending_monster_encounter.is_empty():
 		return false
 	var first := not has_met_monster(kind)
-	_pending_monster_encounter = {"room_id":room,"monster_type":kind,"first_encounter":first,"reason":reason,"task_id":TASK_03_ID if room == "302" else preload("res://scenes/doors/v4_door_catalog.gd").TASKS[kind]}
+	var fixed_tasks := {"302": TASK_03_ID, "403": TASK_04_ID, "501": TASK_05_ID}
+	_pending_monster_encounter = {"room_id":room,"monster_type":kind,"first_encounter":first,"reason":reason,"task_id":fixed_tasks.get(room, preload("res://scenes/doors/v4_door_catalog.gd").TASKS[kind])}
 	_seen_monsters[kind] = true
 	monster_encounter_requested.emit(get_pending_monster_encounter())
 	return true
@@ -49,15 +52,20 @@ func resolve_monster_encounter(room: String) -> bool:
 	return true
 
 
+const STAIR_INTERACTION_RADIUS := 70.0
+
 const TaskDefinitions = preload("res://scripts/task_definitions.gd")
 const TASK_01_ID: String = "TASK_01_CLEAN"
 const TASK_02_ID: String = "TASK_02_PARCEL"
 const TASK_03_ID: String = "TASK_03_AUTHORIZE"
+const TASK_04_ID: String = "TASK_04_PATROL"
+const TASK_05_ID: String = "TASK_05_EXIT"
+const LATE_TASKS: Array[String] = [TASK_04_ID, TASK_05_ID]
 const TUTORIAL_03_ID := "TASK_T03_ROOM_SERVICE"
 const TUTORIAL_04_ID := "TASK_T04_DUAL_WORK"
 const TUTORIAL_05_ID := "TASK_T05_TRANSIT"
 const TUTORIAL_TASKS: Array[String] = [TASK_01_ID, TASK_02_ID, TUTORIAL_03_ID, TUTORIAL_04_ID, TUTORIAL_05_ID]
-const ENABLED_TASKS: Array[String] = [TASK_01_ID, TASK_02_ID, TUTORIAL_03_ID, TUTORIAL_04_ID, TUTORIAL_05_ID, TASK_03_ID]
+const ENABLED_TASKS: Array[String] = [TASK_01_ID, TASK_02_ID, TUTORIAL_03_ID, TUTORIAL_04_ID, TUTORIAL_05_ID, TASK_03_ID, TASK_04_ID, TASK_05_ID]
 
 var game_state: String = "MENU"
 var current_floor: int = 1
@@ -146,11 +154,23 @@ func get_notebook_view() -> Dictionary:
 		entries[0]["text"] = "有些住客不喜欢陌生人。"
 		entries[1]["status"] = "HINT"
 		entries[1]["text"] = "有些住客对气味敏感。"
-	if _completed_task_ids.has(TASK_01_ID):
-		entries[1] = {"id": "NOSE", "name": "长鼻客", "status": "KNOWN", "text": "长鼻客开门时会辨识气味。将保洁工作证切为当前身份后再经过。"}
-	if _completed_task_ids.has(TASK_02_ID):
-		entries[0] = {"id": "EYE", "name": "独眼客", "status": "KNOWN", "text": "独眼客只认可保安身份。将保安工作证切为当前身份后再经过。"}
+	var learned := {"NOSE": TASK_01_ID, "EYE": TASK_02_ID, "HAT": TUTORIAL_03_ID, "EAR": TUTORIAL_04_ID, "CHECKER": TUTORIAL_05_ID}
+	for entry: Dictionary in entries:
+		if _completed_task_ids.has(learned[entry["id"]]):
+			entry.merge(get_monster_guide(entry["id"]), true)
+			entry["status"] = "KNOWN"
 	return {"unlocked": _manager_intro_finished, "entries": entries}
+
+
+func get_monster_guide(kind: String) -> Dictionary:
+	var guides := {
+		"NOSE": {"name": "长鼻客", "text": "长鼻客开门时会辨识气味。将保洁工作证切为当前身份后再经过。"},
+		"EYE": {"name": "独眼客", "text": "独眼客只认可保安身份。将保安工作证切为当前身份后再经过。"},
+		"HAT": {"name": "礼帽客", "text": "礼帽客只认可经理身份。先在安全处切为当前经理，再经过。"},
+		"EAR": {"name": "大耳客", "text": "大耳客开门时请停下不动，等门关闭再走。换证不能代替静止。"},
+		"CHECKER": {"name": "核验客", "text": "核验客开门时不要在门前换证。先在安全处准备，保持身份经过。"},
+	}
+	return guides.get(kind, {}).duplicate()
 
 
 func get_task_view() -> Dictionary:
@@ -172,6 +192,13 @@ func get_task_view() -> Dictionary:
 
 func _get_task_step(definition: Dictionary) -> String:
 	if definition.is_empty(): return ""
+	if LATE_TASKS.has(current_task_id):
+		match task_status:
+			"AVAILABLE": return "在%s接受任务，接受后限时180秒。" % definition["room_id"]
+			"FAILED": return "重新挑战后回%s接受，救援和前序成果保留。" % definition["room_id"]
+			"COMPLETED": return "403已交付；从右端楼梯上5F，在501接离店任务。" if current_task_id == TASK_04_ID else "离店单已交付；前往五楼消防出口按E逃离。"
+			"READY_TO_SUBMIT": return "返回%s按E交付" % definition["room_id"]
+			"ACTIVE": return "在巡房员工身后站定，长按E偷取巡房记录。" if current_task_id == TASK_04_ID else "切为当前经理身份，在五楼离店登记台按E批准。"
 	if task_status == "COMPLETED" and definition.has("work_steps"):
 		return "二楼五项任务已交付，前往3F继续309登记。" if current_task_id == TUTORIAL_05_ID else "前往%s继续下一项任务。" % ("204" if current_task_id == TUTORIAL_03_ID else "205")
 	if task_status not in ["ACTIVE", "READY_TO_SUBMIT"]: return ""
@@ -190,6 +217,10 @@ func _get_task_step(definition: Dictionary) -> String:
 
 
 func _get_task_target(definition: Dictionary) -> String:
+	if LATE_TASKS.has(current_task_id):
+		if task_status in ["AVAILABLE", "FAILED", "READY_TO_SUBMIT"]: return "ROOM_" + definition["room_id"]
+		if task_status == "COMPLETED": return "STAIRS_UP_4F" if current_task_id == TASK_04_ID else "EXIT_5F"
+		return definition["target_id"]
 	if definition.has("work_steps"):
 		if task_status == "COMPLETED": return "STAIRS_UP_2F" if current_task_id == TUTORIAL_05_ID else "ROOM_" + ("204" if current_task_id == TUTORIAL_03_ID else "205")
 		if not CardManager.has_card(definition["required_card"]): return definition["staff_target_id"]
@@ -202,6 +233,8 @@ func _get_task_target(definition: Dictionary) -> String:
 
 func _get_task_target_label(definition: Dictionary) -> String:
 	var target := _get_task_target(definition)
+	if LATE_TASKS.has(current_task_id):
+		return {"ROOM_403": "返回403", "ROOM_501": "返回501", "STAFF_PATROL_4F": "4F巡房员工", "EXIT_REGISTER_5F": "五楼离店登记台", "STAIRS_UP_4F": "4F右梯 → 5F", "EXIT_5F": "五楼消防出口"}.get(target, target)
 	var labels := {"STAFF_MANAGER_1F": "一楼经理", "CARD_BAG": "I证件管理", "STAIRS_UP_2F": "二楼右梯 → 3F", "ROOM_204": "前往204", "ROOM_205": "前往205", "ROOM_SERVICE_203": "二楼房务登记台", "STAIN_204": "204独立污渍", "PATROL_CABINET_204": "二楼巡房资料柜", "TRANSIT_PICKUP_205": "二楼通行单领取点", "TRANSIT_REGISTER_205": "二楼通行登记台"}
 	if definition.has("work_steps") and task_status == "READY_TO_SUBMIT": return "返回" + definition["room_id"]
 	return labels.get(target, target)
@@ -230,6 +263,8 @@ func is_interaction_allowed(target_id: String) -> bool:
 	if not ENABLED_TASKS.has(current_task_id):
 		return false
 	var definition: Dictionary = get_task_definition(current_task_id)
+	if definition.get("work_type", "") == "STEAL_FILE":
+		return current_floor == definition["work_floor"] and target_id == definition["target_id"] and not _world_flags.get(definition["work_flag"], false)
 	if not target_id.is_empty() and target_id == definition["staff_target_id"]:
 		return not CardManager.has_card(definition["required_card"])
 	if definition.has("work_steps"):
@@ -270,10 +305,29 @@ func request_floor_travel(floor_number: int) -> bool:
 	var floor_node: Node = _floor_host.get_child(0)
 	var player: Node2D = floor_node.get_node_or_null("Player")
 	var stair: Node2D = floor_node.get_node_or_null("Interactions/ExitPoint" if floor_number > current_floor else "Interactions/ReturnPoint")
-	if player == null or stair == null or absf(player.global_position.x - stair.global_position.x) > 70.0:
+	if player == null or stair == null or absf(player.global_position.x - stair.global_position.x) > STAIR_INTERACTION_RADIUS:
 		return false
 	_load_floor(floor_number, floor_number < current_floor)
 	return true
+
+
+func get_stair_destinations() -> Array[int]:
+	var destinations: Array[int] = []
+	if not _has_floor_host() or _floor_host.get_child_count() != 1: return destinations
+	var floor_node: Node = _floor_host.get_child(0)
+	var player: Node2D = floor_node.get_node_or_null("Player")
+	if player == null: return destinations
+	for destination: int in get_available_floors():
+		var stair: Node2D = floor_node.get_node_or_null("Interactions/ExitPoint" if destination > current_floor else "Interactions/ReturnPoint")
+		if stair != null and absf(player.global_position.x - stair.global_position.x) <= STAIR_INTERACTION_RADIUS:
+			destinations.append(destination)
+	return destinations
+
+
+func get_identity_restriction_room() -> String:
+	if not _has_floor_host() or _floor_host.get_child_count() != 1: return ""
+	var floor_node: Node = _floor_host.get_child(0)
+	return floor_node.get_identity_restriction_room() if floor_node.has_method("get_identity_restriction_room") else ""
 
 
 func _can_unlock_next_floor() -> bool:
@@ -308,8 +362,16 @@ func can_offer_task(task_id: String) -> bool:
 	var definition: Dictionary = get_task_definition(task_id)
 	if current_floor != definition["offer_floor"] or task_status not in ["NONE", "COMPLETED"] or _completed_task_ids.has(task_id):
 		return false
-	for prerequisite: String in definition["prerequisites"]:
-		if prerequisite != "MANAGER_INTRO" and not _completed_task_ids.has(prerequisite):
+	return _task_prerequisites_met(definition)
+
+
+func _task_prerequisites_met(definition: Dictionary) -> bool:
+	for prerequisite: String in definition.get("prerequisites", []):
+		if prerequisite == "HAS_FRIEND":
+			if not has_friend: return false
+		elif prerequisite == "MANAGER_INTRO":
+			if not _manager_intro_finished: return false
+		elif not _completed_task_ids.has(prerequisite):
 			return false
 	return true
 
@@ -334,6 +396,7 @@ func offer_task(task_id: String) -> bool:
 func accept_task(task_id: String) -> bool:
 	if game_state != "PLAYING" or not ENABLED_TASKS.has(task_id) or current_floor != get_task_definition(task_id)["offer_floor"] or task_status != "AVAILABLE" or current_task_id != task_id:
 		return false
+	if not _task_prerequisites_met(get_task_definition(task_id)): return false
 	var checkpoint: Dictionary = _capture_task_checkpoint()
 	if _has_floor_host() and checkpoint.is_empty():
 		return false
@@ -441,6 +504,7 @@ func record_work_result(target_id: String) -> bool:
 	if not is_interaction_allowed(target_id):
 		return false
 	var definition: Dictionary = get_task_definition(current_task_id)
+	if definition.get("work_type", "") == "STEAL_FILE": return false
 	if definition.has("work_steps"):
 		if current_floor != definition["work_floor"] or not has_required_equipment(current_task_id):
 			return false
@@ -469,6 +533,17 @@ func record_work_result(target_id: String) -> bool:
 	return true
 
 
+func record_task_item_result(item_id: String, target_id: String) -> bool:
+	if not is_interaction_allowed(target_id): return false
+	var definition := get_task_definition(current_task_id)
+	if definition.get("work_type", "") != "STEAL_FILE" or item_id != definition.get("reward_id", "") or target_id != definition["target_id"] or current_floor != definition["work_floor"]:
+		return false
+	_world_flags[definition["work_flag"]] = true
+	task_status = "READY_TO_SUBMIT"
+	task_updated.emit()
+	return true
+
+
 func submit_task(task_id: String) -> bool:
 	if _pending_monster_encounter.get("reason", "") == "SWITCHED_NEAR_CHECKER": return false
 	if not is_world_input_allowed() or task_status != "READY_TO_SUBMIT" or remaining_time <= 0.0:
@@ -480,7 +555,8 @@ func submit_task(task_id: String) -> bool:
 		return false
 	if definition.has("work_steps") and not definition["work_steps"].all(func(work: Dictionary): return _world_flags.get(work["flag"], false)):
 		return false
-	if CardManager.active_card != get_submission_card(task_id) or (definition.has("work_steps") and not has_required_equipment(task_id)):
+	var submission_card := get_submission_card(task_id)
+	if (not submission_card.is_empty() and CardManager.active_card != submission_card) or (definition.has("work_steps") and not has_required_equipment(task_id)):
 		return false
 	_complete_task(definition)
 	return true
@@ -518,8 +594,7 @@ func _complete_task(definition: Dictionary) -> void:
 	task_updated.emit()
 
 
-## Called after a real rescue dialogue finishes; current main keeps that entry gated
-## until D supplies the complete309 story. Core tests use an explicit callback fixture.
+## Only the completed real309 CG callback settles rescue in the main scene.
 func rescue_friend() -> bool:
 	if not is_world_input_allowed() or current_floor != 3 or has_friend or not _completed_task_ids.has(TASK_03_ID) or not _world_flags.get("registration_309_approved", false):
 		return false
@@ -528,6 +603,34 @@ func rescue_friend() -> bool:
 	friend_rescued.emit()
 	notebook_changed.emit()
 	task_updated.emit()
+	return true
+
+
+func can_escape() -> bool:
+	if not is_world_input_allowed() or current_floor != 5 or not has_friend or task_status != "COMPLETED" or current_task_id != TASK_05_ID or not _pending_monster_encounter.is_empty(): return false
+	if not [TASK_03_ID, TASK_04_ID, TASK_05_ID].all(func(id: String): return _completed_task_ids.has(id)): return false
+	for flag: String in ["registration_309_approved", "rescue_309_completed", "patrol_delivered", "exit_form_approved", "exit_form_delivered"]:
+		if not _world_flags.get(flag, false): return false
+	if not _has_floor_host() or _floor_host.get_child_count() != 1: return false
+	var floor_node: Node = _floor_host.get_child(0)
+	if floor_node.get("floor_number") != 5: return false
+	var player: Node2D = floor_node.get_node_or_null("Player")
+	var exit_point: Node2D = floor_node.get_node_or_null("Interactions/ExitPoint")
+	return player != null and exit_point != null and player.global_position.distance_to(exit_point.global_position) <= 70.0
+
+
+func get_story_objective() -> String:
+	if not has_friend: return "309登记已批准；切为保洁身份进入309。"
+	if not _completed_task_ids.has(TASK_04_ID): return "Terese已同行；前往4F403取得并交付巡房记录。"
+	if not _completed_task_ids.has(TASK_05_ID): return "403已交付；前往5F501办理并交付离店单。"
+	return "离店单已交付；前往五楼消防出口按E逃离。"
+
+
+func request_escape() -> bool:
+	if not can_escape(): return false
+	remaining_time = 0.0
+	_set_state("WON")
+	game_won.emit()
 	return true
 
 

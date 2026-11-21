@@ -89,13 +89,14 @@ func _run() -> void:
 
 func _finish_prologue(main: Node) -> void:
 	# Movement is checked after the actual opening yields control, never through it.
+	main.get_node("MenuLayer/MainMenu").call("_finish_opening")
 	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
 	var opening: Control = main.get_node("StoryLayer/Dialogue")
 	await create_timer(0.6).timeout
 	opening.set_skip_transitions_for_test(true)
 	var guard: int = 0
 	while opening.visible and guard < 200:
-		opening.get_node("%ContinueButton").emit_signal("pressed")
+		opening._advance()
 		guard += 1
 	_expect(guard < 200, "Main's real prologue returns control before movement checks")
 	await process_frame
