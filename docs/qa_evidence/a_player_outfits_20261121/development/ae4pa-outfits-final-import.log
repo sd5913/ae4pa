@@ -1,0 +1,168 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started 项目初始化 (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | 正在扫描文件结构……[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | 正在加载全局类名……[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | 正在校验 GDExtension……[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | 正在创建自动加载脚本……[39m[0m
+[  66% ] [90m[1mfirst_scan_filesystem[22m | 正在初始化插件……[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | 正在启动文件扫描……[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started 正在注册全局类…… (4 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  20% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  40% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  60% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1m_update_scan_actions[22m | Started 正在扫描动作…… (45 steps)[39m[0m
+[   0% ] [90m[1m_update_scan_actions[22m | cleaner_idle.png[39m[0m
+[   2% ] [90m[1m_update_scan_actions[22m | cleaner_restored.png[39m[0m
+[   4% ] [90m[1m_update_scan_actions[22m | cleaner_walk_left.png[39m[0m
+[   6% ] [90m[1m_update_scan_actions[22m | manager_idle.png[39m[0m
+[   8% ] [90m[1m_update_scan_actions[22m | security_walk_right.png[39m[0m
+[  10% ] [90m[1m_update_scan_actions[22m | cleaner.png[39m[0m
+[  13% ] [90m[1m_update_scan_actions[22m | cleaner_0.png[39m[0m
+[  15% ] [90m[1m_update_scan_actions[22m | cleaner_1.png[39m[0m
+[  17% ] [90m[1m_update_scan_actions[22m | cleaner_2.png[39m[0m
+[  19% ] [90m[1m_update_scan_actions[22m | cleaner_3.png[39m[0m
+[  21% ] [90m[1m_update_scan_actions[22m | cleaner_4.png[39m[0m
+[  23% ] [90m[1m_update_scan_actions[22m | cleaner_5.png[39m[0m
+[  26% ] [90m[1m_update_scan_actions[22m | cleaner_8.png[39m[0m
+[  28% ] [90m[1m_update_scan_actions[22m | cleaner_-1.png[39m[0m
+[  30% ] [90m[1m_update_scan_actions[22m | gallery.png[39m[0m
+[  32% ] [90m[1m_update_scan_actions[22m | manager.png[39m[0m
+[  34% ] [90m[1m_update_scan_actions[22m | manager_0.png[39m[0m
+[  36% ] [90m[1m_update_scan_actions[22m | manager_1.png[39m[0m
+[  39% ] [90m[1m_update_scan_actions[22m | manager_2.png[39m[0m
+[  41% ] [90m[1m_update_scan_actions[22m | manager_3.png[39m[0m
+[  43% ] [90m[1m_update_scan_actions[22m | manager_4.png[39m[0m
+[  45% ] [90m[1m_update_scan_actions[22m | manager_5.png[39m[0m
+[  47% ] [90m[1m_update_scan_actions[22m | manager_8.png[39m[0m
+[  50% ] [90m[1m_update_scan_actions[22m | manager_-1.png[39m[0m
+[  52% ] [90m[1m_update_scan_actions[22m | none_0.png[39m[0m
+[  54% ] [90m[1m_update_scan_actions[22m | none_1.png[39m[0m
+[  56% ] [90m[1m_update_scan_actions[22m | none_2.png[39m[0m
+[  58% ] [90m[1m_update_scan_actions[22m | none_3.png[39m[0m
+[  60% ] [90m[1m_update_scan_actions[22m | none_4.png[39m[0m
+[  63% ] [90m[1m_update_scan_actions[22m | none_5.png[39m[0m
+[  65% ] [90m[1m_update_scan_actions[22m | none_8.png[39m[0m
+[  67% ] [90m[1m_update_scan_actions[22m | none_-1.png[39m[0m
+[  69% ] [90m[1m_update_scan_actions[22m | original.png[39m[0m
+[  71% ] [90m[1m_update_scan_actions[22m | security.png[39m[0m
+[  73% ] [90m[1m_update_scan_actions[22m | security_0.png[39m[0m
+[  76% ] [90m[1m_update_scan_actions[22m | security_1.png[39m[0m
+[  78% ] [90m[1m_update_scan_actions[22m | security_2.png[39m[0m
+[  80% ] [90m[1m_update_scan_actions[22m | security_3.png[39m[0m
+[  82% ] [90m[1m_update_scan_actions[22m | security_4.png[39m[0m
+[  84% ] [90m[1m_update_scan_actions[22m | security_5.png[39m[0m
+[  86% ] [90m[1m_update_scan_actions[22m | security_8.png[39m[0m
+[  89% ] [90m[1m_update_scan_actions[22m | security_-1.png[39m[0m
+[  91% ] [90m[1m_update_scan_actions[22m | 怪兽旅馆小组合作项目-任务清单v1.csv[39m[0m
+[  93% ] [90m[1m_update_scan_actions[22m | 怪兽旅馆小组合作项目-功能状态v1.csv[39m[0m
+[  95% ] [90m[1m_update_scan_actions[22m | 怪兽旅馆小组合作项目-问题与待办v1.csv[39m[0m
+[92m[ DONE ][39m [1m_update_scan_actions[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started 正在导入或重新导入资产 (42 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[   2% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[   4% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[   6% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[   9% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  11% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  13% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  16% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  18% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  20% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  23% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  25% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  27% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  30% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  32% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  34% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  37% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  39% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  41% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  44% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  46% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  48% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  51% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  53% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  55% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  58% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  60% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  62% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  65% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  67% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  69% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  72% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  74% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  76% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  79% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  81% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  83% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  86% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  88% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  90% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  93% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  95% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[   0% ] [90m[1mreimport[22m | 正在执行重新导入的前置操作……[39m[0m
+[   0% ] [90m[1mreimport[22m | manager_5.png[39m[0m
+[   2% ] [90m[1mreimport[22m | manager_8.png[39m[0m
+[   4% ] [90m[1mreimport[22m | manager_-1.png[39m[0m
+[   6% ] [90m[1mreimport[22m | none_0.png[39m[0m
+[   9% ] [90m[1mreimport[22m | none_1.png[39m[0m
+[  11% ] [90m[1mreimport[22m | none_2.png[39m[0m
+[  13% ] [90m[1mreimport[22m | none_3.png[39m[0m
+[  16% ] [90m[1mreimport[22m | none_4.png[39m[0m
+[  18% ] [90m[1mreimport[22m | none_5.png[39m[0m
+[  20% ] [90m[1mreimport[22m | none_8.png[39m[0m
+[  23% ] [90m[1mreimport[22m | none_-1.png[39m[0m
+[  25% ] [90m[1mreimport[22m | original.png[39m[0m
+[  27% ] [90m[1mreimport[22m | security.png[39m[0m
+[  30% ] [90m[1mreimport[22m | security_0.png[39m[0m
+[  32% ] [90m[1mreimport[22m | security_1.png[39m[0m
+[  34% ] [90m[1mreimport[22m | security_2.png[39m[0m
+[  37% ] [90m[1mreimport[22m | security_3.png[39m[0m
+[  39% ] [90m[1mreimport[22m | security_4.png[39m[0m
+[  41% ] [90m[1mreimport[22m | security_5.png[39m[0m
+[  44% ] [90m[1mreimport[22m | security_8.png[39m[0m
+[  46% ] [90m[1mreimport[22m | security_-1.png[39m[0m
+[  48% ] [90m[1mreimport[22m | cleaner_idle.png[39m[0m
+[  51% ] [90m[1mreimport[22m | cleaner_restored.png[39m[0m
+[  53% ] [90m[1mreimport[22m | cleaner_walk_left.png[39m[0m
+[  55% ] [90m[1mreimport[22m | manager_idle.png[39m[0m
+[  58% ] [90m[1mreimport[22m | security_walk_right.png[39m[0m
+[  60% ] [90m[1mreimport[22m | cleaner.png[39m[0m
+[  62% ] [90m[1mreimport[22m | cleaner_0.png[39m[0m
+[  65% ] [90m[1mreimport[22m | cleaner_1.png[39m[0m
+[  67% ] [90m[1mreimport[22m | cleaner_2.png[39m[0m
+[  69% ] [90m[1mreimport[22m | cleaner_3.png[39m[0m
+[  72% ] [90m[1mreimport[22m | cleaner_4.png[39m[0m
+[  74% ] [90m[1mreimport[22m | cleaner_5.png[39m[0m
+[  76% ] [90m[1mreimport[22m | cleaner_8.png[39m[0m
+[  79% ] [90m[1mreimport[22m | cleaner_-1.png[39m[0m
+[  81% ] [90m[1mreimport[22m | gallery.png[39m[0m
+[  83% ] [90m[1mreimport[22m | manager.png[39m[0m
+[  86% ] [90m[1mreimport[22m | manager_0.png[39m[0m
+[  88% ] [90m[1mreimport[22m | manager_1.png[39m[0m
+[  90% ] [90m[1mreimport[22m | manager_2.png[39m[0m
+[  93% ] [90m[1mreimport[22m | manager_3.png[39m[0m
+[  95% ] [90m[1mreimport[22m | manager_4.png[39m[0m
+[  97% ] [90m[1mreimport[22m | 正在结束资产导入……[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started 正在导入或重新导入资产 (42 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | 正在执行重新导入的后置操作……[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started 正在加载编辑器 (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | 正在加载编辑器布局……[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | 正在加载停靠面板……[39m[0m
+[  33% ] [90m[1mloading_editor_layout[22m | 正在重新打开场景……[39m[0m
+[  50% ] [90m[1mloading_editor_layout[22m | 正在加载中央编辑器布局……[39m[0m
+[  66% ] [90m[1mloading_editor_layout[22m | 正在加载插件窗口布局……[39m[0m
+[  83% ] [90m[1mloading_editor_layout[22m | 编辑器布局就绪。[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m

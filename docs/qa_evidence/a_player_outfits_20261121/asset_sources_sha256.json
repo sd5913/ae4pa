@@ -1,0 +1,18 @@
+{
+  "assets/final/characters/approved_static/an.png": {
+    "sha256": "f6acd3da65472bae350c21553e49a8e38d33a033d70e452f72bfb23882c78ba3",
+    "head_git_blob": "9d68f227c3bea22f4f788cd830770e405586f89b",
+    "unchanged_from_head": true
+  },
+  "assets/final/characters/approved_actions/an.png": {
+    "sha256": "74ab4ece80008862e2868eedcb3c3f2f05b0d028011278fdc7166c24799ca776",
+    "head_git_blob": "8efd90f46e4678814b125534d0b12e058bb778af",
+    "unchanged_from_head": true
+  },
+  "assets/final/player/identity_outfits/cleaner_headscarf.png": {
+    "sha256": "364621c7c049cbed7e4ff5813a3b8ec35d2a3266bea579df5d6bcf7a4abe12fa"
+  },
+  "assets/final/player/identity_outfits/security_cap.png": {
+    "sha256": "20d2e8dd604bb334a470ae0b90a4a861ee298c83a75cb926cd87e5eccfb766ed"
+  }
+}

@@ -9,6 +9,8 @@ func run() -> void:
 	var gm = root.get_node("GameManager")
 	gm.start_game()
 	gm.current_floor = 4
+	# Art traversal isolates collisions from the newly enabled403 story gate.
+	gm.get("_completed_task_ids").append("TASK_04_PATROL")
 	var floor_node = load("res://scenes/levels/floor_4.tscn").instantiate()
 	root.add_child(floor_node)
 	await process_frame

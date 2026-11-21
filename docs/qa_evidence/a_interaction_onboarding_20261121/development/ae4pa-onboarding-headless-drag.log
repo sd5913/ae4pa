@@ -1,0 +1,6 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+DRAG DEBUG: [(64, 64), (0, 0), (443.0, 358.5), (862.0, 347.0), [P: (0.0, 23.0), S: (178.0, 149.0)], [P: (178.0, 23.0), S: (178.0, 149.0)]]
+DRAG DATA: <null> mouse=(17240.0, 6660.0) hover=<Object#null>
+FAIL: Real mouse motion starts the D bag drag
+FAIL: Real mouse drop equips selected card in A

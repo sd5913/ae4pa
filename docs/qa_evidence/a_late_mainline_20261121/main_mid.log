@@ -1,0 +1,59 @@
+Long repetitive sandbox log compacted; original preserved at /private/tmp/ae4pa-late-original-logs-20261121/main_mid.log
+
+1 occurrences: ERROR: Condition "ret != noErr" is true. Returning: ""
+10127 occurrences: ERROR: FreeType: Error loading font: '' (face_index=0).
+2 occurrences: ERROR: Condition "!_ensure_cache_for_size(fd, size, ffsd)" is true.
+32 occurrences: ERROR: Condition "!_ensure_cache_for_size(fd, size, ffsd)" is true. Returning: String()
+32 occurrences: ERROR: Condition "!_ensure_cache_for_size(fd, size, ffsd)" is true. Returning: 0
+32 occurrences: ERROR: Condition "!_ensure_cache_for_size(fd, size, ffsd)" is true. Returning: 400
+32 occurrences: ERROR: Condition "!_ensure_cache_for_size(fd, size, ffsd)" is true. Returning: 100
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=1).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=2).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=3).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=4).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=5).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=6).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=7).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=8).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=9).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=10).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=11).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=12).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=13).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=14).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=15).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=16).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=17).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=18).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=19).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=20).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=21).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=22).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=23).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=24).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=25).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=26).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=27).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=28).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=29).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=30).
+4 occurrences: ERROR: FreeType: Error loading font: '' (face_index=31).
+3 occurrences: ERROR: Condition "!_ensure_cache_for_size(fd, size, ffsd)" is true. Returning: Dictionary()
+9211 occurrences: ERROR: Condition "!_ensure_cache_for_size(fd, size, ffsd)" is true. Returning: 0.0
+907 occurrences: ERROR: Condition "!_ensure_cache_for_size(fd, size, ffsd)" is true. Returning: nullptr
+907 occurrences: ERROR: Parameter "hb_font" is null.
+
+FAIL: 403 formal intercept opens actual dialogue
+FAIL: Intro and closing do not start task clock
+FAIL: Real task board opens
+FAIL: 403 accepts with real checkpoint
+FAIL: Real front theft fails403
+FAIL: 403 retry returns to untimed offer
+FAIL: Real task board opens
+FAIL: Real rear hold steals task file
+FAIL: 403 retry lands at safe marker
+FAIL: Real task board opens
+FAIL: Collected patrol remains unavailable after revisit
+FAIL: Actual403 E delivery unlocks5F
+FAIL: Legal stair travel to 5F
+FAIL: 5F contains actual B exit register

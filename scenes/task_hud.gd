@@ -11,7 +11,7 @@ func _refresh_task_display() -> void:
 	var view: Dictionary = GameManager.get_task_view()
 	var status: String = view["status"]
 	var objective: String = "前往前台与经理交谈"
-	if GameManager.get_task_definition(view["task_id"]).has("work_steps"):
+	if GameManager.get_task_definition(view["task_id"]).has("work_steps") or GameManager.LATE_TASKS.has(view["task_id"]):
 		var room: String = GameManager.get_task_definition(view["task_id"])["room_id"]
 		match status:
 			"AVAILABLE": objective = "在%s接受当前任务" % room

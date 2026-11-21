@@ -1,0 +1,62 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: Mission board reads the task ID from GameManager.get_task_view()
+ERROR: FAIL: Mission board displays the status from the real task view
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/ui/ui_test.gd:168)
+       [1] _run_smoke (res://scenes/tests/ui/ui_test.gd:68)
+PASS: Floor choices mirror GameManager.get_available_floors()
+PASS: Floor choices mirror GameManager.get_available_floors()
+PASS: Floor choices mirror GameManager.get_available_floors()
+PASS: Floor choices mirror GameManager.get_available_floors()
+PASS: Floor choices mirror GameManager.get_available_floors()
+PASS: HUD reads the current floor from GameManager
+ERROR: FAIL: HUD displays the task name from the live task view
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/ui/ui_test.gd:168)
+       [1] _run_smoke (res://scenes/tests/ui/ui_test.gd:79)
+PASS: Inactive HUD does not claim a running countdown
+PASS: HUD does not create or advance a private timer
+PASS: Opening the mission board registers a modal with GameManager
+PASS: A denied floor request restores the board without changing floors
+PASS: A denied floor request restores modal registration
+PASS: Closing the board releases its modal registration
+PASS: Unavailable tasks cannot be accepted
+PASS: Unavailable task sends no accepted signal
+ERROR: FAIL: Ordinary warning stays separate from task failure
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/ui/ui_test.gd:168)
+       [1] _run_smoke (res://scenes/tests/ui/ui_test.gd:114)
+ERROR: FAIL: Task failure uses its own display
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _check (res://scenes/tests/ui/ui_test.gd:168)
+       [1] _run_smoke (res://scenes/tests/ui/ui_test.gd:117)
+PASS: Retry stays disabled because main has no checkpoint restore API
+PASS: Failure page shows the real reason text
+PASS: Failure page retry remains disabled without checkpoint restoration
+PASS: Win screen starts hidden
+PASS: Win screen displays the ending
+PASS: Win screen does not fabricate statistics
+PASS: Win screen focuses the restart button
+PASS: Win restart emits only its request
+PASS: Win return emits only its request
+ERROR: Mission board displays the status from the real task view
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _run_smoke (res://scenes/tests/ui/ui_test.gd:135)
+ERROR: HUD displays the task name from the live task view
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _run_smoke (res://scenes/tests/ui/ui_test.gd:135)
+ERROR: Ordinary warning stays separate from task failure
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _run_smoke (res://scenes/tests/ui/ui_test.gd:135)
+ERROR: Task failure uses its own display
+   at: push_error (core/variant/variant_utility.cpp:1023)
+   GDScript backtrace (most recent call first):
+       [0] _run_smoke (res://scenes/tests/ui/ui_test.gd:135)

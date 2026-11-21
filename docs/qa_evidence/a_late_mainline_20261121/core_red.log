@@ -1,0 +1,10 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Condition "ret != noErr" is true. Returning: ""
+   at: get_system_ca_certificates (platform/macos/os_macos.mm:1035)
+FAIL: HAS_FRIEND reads the real rescue fact
+FAIL: 403 accepts with 180-second clock
+FAIL: 403 limit is 180
+FAIL: Patrol reward is eligible without an empty card requirement
+FAIL: Typed task file settlement exists
+FAIL: Guarded EXIT API and one-shot signal exist

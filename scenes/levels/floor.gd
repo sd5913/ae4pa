@@ -35,6 +35,9 @@ var _door_scheduler: Node
 
 
 func _ready() -> void:
+	var markers := preload("res://scenes/levels/interaction_markers.gd").new()
+	markers.name = "InteractionMarkers"
+	add_child(markers)
 	player.global_position = $SpawnPoint.global_position
 	player.set_walk_bounds(64.0, corridor_width - 64.0)
 	var camera: Camera2D = player.get_node("Camera2D")
@@ -44,17 +47,21 @@ func _ready() -> void:
 		_add_caption(slot, "", -165.0)
 		var staff: Node = slot.get_node("Staff")
 		staff.setup(player)
+		var guide := preload("res://scenes/staff/staff_interaction_guide.gd").new()
+		guide.name = "InteractionGuide"
+		staff.add_child(guide)
 		if staff.target_id.is_empty():
 			staff.target_id = STAFF_TARGET_IDS[staff.card_id]
 		staff.requires_task_eligibility = true
 		staff.task_failure_requested.connect(_on_staff_failure.bind(staff))
 		staff.card_stolen.connect(_on_card_stolen)
+		staff.task_item_stolen.connect(_on_task_item_stolen.bind(staff))
 		# A dispatches formal-floor E; B's own F6 adapter remains unchanged.
 		staff.set_process_unhandled_input(false)
 	if has_node("Floor2Art/BackFurniture/Sofa"): $Floor2Art/BackFurniture/Sofa.hide()
 	_setup_doors()
 	_work = get_node_or_null("Interactions/Stain201Slot/CleaningSpot")
-	for path: String in ["Interactions/Stain201Slot/CleaningSpot", "Interactions/ParcelCabinet2F", "Interactions/Register309", "Interactions/RoomService203", "Interactions/Stain204", "Interactions/PatrolCabinet204", "Interactions/TransitPickup205", "Interactions/TransitRegister205"]:
+	for path: String in ["Interactions/Stain201Slot/CleaningSpot", "Interactions/ParcelCabinet2F", "Interactions/Register309", "Interactions/RoomService203", "Interactions/Stain204", "Interactions/PatrolCabinet204", "Interactions/TransitPickup205", "Interactions/TransitRegister205", "Interactions/ExitRegister5F"]:
 		var work: CleaningSpot = get_node_or_null(path)
 		if work != null:
 			_works.append(work)
@@ -77,6 +84,7 @@ func _process(delta: float) -> void:
 	_refresh_component_eligibility()
 	_try_offer_task_02()
 	_try_offer_task_03()
+	_try_offer_late_tasks()
 	_try_offer_tutorials()
 	_resolve_known_card_encounter()
 	if is_instance_valid(_held_staff):
@@ -98,6 +106,14 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("switch_id") and not GameManager.is_world_input_allowed():
 		get_viewport().set_input_as_handled()
+	elif event.is_action_pressed("switch_id") and not event.is_echo():
+		var room := get_identity_restriction_room()
+		var checker: Node = get_node_or_null("DoorRoot/Room" + room + "/Door") if not room.is_empty() else null
+		# Normal doors keep C's existing violation/return rule. A must also guard
+		# story checkers, whose task lifecycle intentionally bypasses normal detection.
+		if checker != null and checker.door_mode == "STORY":
+			_emit_notice("核验区内不能调整证件。先退到安全工作台，再按I换证。")
+			get_viewport().set_input_as_handled()
 	# Observe release even when a UI consumes it before _unhandled_input.
 	if event.is_action_released("interact"):
 		_cancel_held_interaction()
@@ -114,7 +130,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	get_viewport().set_input_as_handled()
 	_needs_e_release = true
-	if target["kind"] == "STAIR":
+	if target["kind"] == "EXIT":
+		if not GameManager.request_escape():
+			_emit_notice("消防出口尚未获准：先救出Terese，并完成403巡房与501离店单交付。")
+	elif target["kind"] == "STAIR":
 		if floor_selection_requested.has_connections():
 			floor_selection_requested.emit()
 		else:
@@ -123,7 +142,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		task_offer_requested.emit(target["node"].task_id)
 	elif target["kind"] == "REMINDER":
 		if target["node"].task_id == GameManager.TASK_03_ID:
-			_on_story_progress(GameManager.TASK_03_ID)
+			_on_story_progress(target["node"].task_id)
 		else:
 			task_reminder_requested.emit(target["node"].task_id)
 	elif target["kind"] == "STORY":
@@ -135,7 +154,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			manager_talk_requested.emit()
 	elif target["kind"] == "RESCUE_GATE":
 		if GameManager.has_friend:
-			_emit_notice("帕希卡已同行；前往五楼消防出口。")
+			_emit_notice(GameManager.get_story_objective())
 		elif not GameManager.get_completed_task_ids().has(GameManager.TASK_03_ID) or not GameManager.get_world_flags().get("registration_309_approved", false):
 			_emit_notice("309尚未获准；先完成302的管理授权任务。")
 		elif CardManager.active_card != "CLEANER":
@@ -163,7 +182,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		if staff.begin_steal():
 			_held_staff = staff
 	else:
-		_emit_notice("先接受对应任务；此处不会开始偷窃")
+		var staff: Node = target["node"]
+		if staff.reward_type == "CARD" and CardManager.has_card(staff.card_id):
+			_emit_notice("已取得%s工作证，请按当前任务目标继续。", [CARD_NAMES[staff.card_id]])
+		else:
+			_emit_notice("先接受对应任务；此处不会开始偷窃")
 
 
 func get_interaction_target_id() -> String:
@@ -178,6 +201,8 @@ func get_interaction_target_id() -> String:
 
 func _choose_interaction_target() -> Dictionary:
 	var candidates: Array[Dictionary] = []
+	if floor_number == 5 and player.global_position.distance_to(exit_point.global_position) <= 70.0:
+		candidates.append({"id": "EXIT_5F", "kind": "EXIT", "priority": 2, "distance": player.global_position.distance_to(exit_point.global_position)})
 	if floor_number == 3 and has_node("Interactions/RescuePoint") and absf(player.global_position.x - $Interactions/RescuePoint.global_position.x) <= 70.0:
 		candidates.append({"id": "RESCUE_309", "kind": "RESCUE_GATE", "priority": 1, "distance": absf(player.global_position.x - $Interactions/RescuePoint.global_position.x)})
 	for work: CleaningSpot in _works:
@@ -204,7 +229,7 @@ func _choose_interaction_target() -> Dictionary:
 			continue
 		var stair: Marker2D = return_point if destination < floor_number else exit_point
 		var distance: float = absf(player.global_position.x - stair.global_position.x)
-		if distance <= 70.0:
+		if distance <= GameManager.STAIR_INTERACTION_RADIUS:
 			candidates.append({"id": "STAIRS_%s_%dF" % ["DOWN" if destination < floor_number else "UP", floor_number], "kind": "STAIR", "floor": destination, "priority": 2, "distance": distance})
 	candidates.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		if a["priority"] != b["priority"]:
@@ -235,6 +260,9 @@ func _cancel_held_interaction() -> void:
 func _refresh_component_eligibility() -> void:
 	for slot: Node in $StaffRoot.get_children():
 		var staff: Node = slot.get_node("Staff")
+		if staff.reward_type == "TASK_ITEM":
+			var available: bool = not GameManager.get_world_flags().get(GameManager.get_work_flag(staff.target_id), false)
+			if staff.is_reward_available() != available: staff.set_reward_available(available)
 		staff.set_interaction_enabled(GameManager.is_world_input_allowed())
 		staff.set_task_eligible(GameManager.is_interaction_allowed(staff.target_id))
 	for work: CleaningSpot in _works:
@@ -247,7 +275,7 @@ func _refresh_component_eligibility() -> void:
 			work.set_completed(completed)
 		work.visible = not completed if work.interaction_type == "CLEAN" else true
 		work.set_task_active(GameManager.is_interaction_allowed(work.target_id))
-		if work.target_id in ["ROOM_SERVICE_203", "STAIN_204", "PATROL_CABINET_204", "TRANSIT_PICKUP_205", "TRANSIT_REGISTER_205"]:
+		if work.target_id in ["ROOM_SERVICE_203", "STAIN_204", "PATROL_CABINET_204", "TRANSIT_PICKUP_205", "TRANSIT_REGISTER_205", "EXIT_REGISTER_5F"]:
 			work.get_node("Hint").visible = not completed and GameManager.is_world_input_allowed() and _choose_interaction_target().get("id", "") == work.target_id
 
 
@@ -261,8 +289,18 @@ func _on_work_requested(target_id: String, source: CleaningSpot) -> void:
 		return
 	if not GameManager.record_work_result(target_id):
 		source.reset_completion_report()
-	elif GameManager.get_task_definition(GameManager.current_task_id).has("work_steps"):
+	elif GameManager.current_task_id == GameManager.TASK_03_ID:
+		_emit_notice("登记已批准。切为保洁身份，去309按E开门。")
+	elif GameManager.get_task_definition(GameManager.current_task_id).has("work_steps") or GameManager.LATE_TASKS.has(GameManager.current_task_id):
 		_emit_notice(GameManager.get_task_view()["step"])
+	_refresh_component_eligibility()
+
+
+func _on_task_item_stolen(item_id: String, target_id: String, source: Node) -> void:
+	if not is_inside_tree() or floor_number != GameManager.current_floor or not $StaffRoot.is_ancestor_of(source) or source != _held_staff or target_id != source.target_id or source.reward_type != "TASK_ITEM" or item_id != source.reward_id or source.is_reward_available():
+		return
+	if GameManager.record_task_item_result(item_id, target_id):
+		_emit_notice("巡房记录已取得，返回403按E交付；交付前仍会计时。")
 	_refresh_component_eligibility()
 
 
@@ -286,6 +324,11 @@ func _on_state_changed(state: String) -> void:
 func _on_identity_changed(_action: String) -> void:
 	_cancel_held_interaction()
 	_resolve_known_card_encounter()
+	if floor_number == 4 and GameManager.current_task_id == GameManager.TASK_04_ID and absf(player.global_position.x - $DoorRoot/Room403.global_position.x) <= 120.0:
+		if GameManager.task_status == "ACTIVE":
+			_emit_notice("403需要巡房记录；换证不会放行。先取得记录，再回门前按E交付。")
+		elif GameManager.task_status == "READY_TO_SUBMIT":
+			_emit_notice("巡房记录已取得，在403按E交付；不需要切换身份。")
 
 
 func _exit_tree() -> void:
@@ -314,6 +357,12 @@ func _apply_task_route() -> void:
 	if floor_number == 3 and not GameManager.get_completed_task_ids().has(GameManager.TASK_03_ID):
 		if GameManager.current_task_id != GameManager.TASK_03_ID or GameManager.task_status not in ["ACTIVE", "READY_TO_SUBMIT"]:
 			right_bound = minf(right_bound, $DoorRoot/Room302.global_position.x - 112.0)
+	for task_id: String in GameManager.LATE_TASKS:
+		var definition := GameManager.get_task_definition(task_id)
+		if floor_number != definition["offer_floor"] or GameManager.get_completed_task_ids().has(task_id): continue
+		var room: Node2D = get_node("DoorRoot/Room" + definition["room_id"])
+		var accepted := GameManager.current_task_id == task_id and GameManager.task_status in ["ACTIVE", "READY_TO_SUBMIT"]
+		right_bound = minf(right_bound, room.global_position.x - (24.0 if accepted else 112.0))
 	player.set_walk_bounds(64.0, right_bound)
 	if has_node("Interactions/Task01Barrier"):
 		$Interactions/Task01Barrier.visible = not GameManager.get_world_flags().get("passage_201_unlocked", false)
@@ -323,7 +372,7 @@ func _apply_task_route() -> void:
 		if door.door_mode == "STORY":
 			door.set_story_state("COMPLETED" if GameManager.get_completed_task_ids().has(door.task_id) else GameManager.task_status if GameManager.current_task_id == door.task_id else "NONE")
 	if floor_number == 3 and has_node("Interactions/RescuePoint/TaskHint"):
-		$Interactions/RescuePoint/TaskHint.text = "帕希卡已同行" if GameManager.has_friend else "309 · 当前保洁身份 · E 开门" if GameManager.get_world_flags().get("registration_309_approved", false) else "309 · 先取得管理批准"
+		$Interactions/RescuePoint/TaskHint.text = "Terese已同行" if GameManager.has_friend else "309 · 当前保洁身份 · E 开门" if GameManager.get_world_flags().get("registration_309_approved", false) else "309 · 先取得管理批准"
 	if floor_number == 2 and is_instance_valid(_door_scheduler): _door_scheduler.sync_tutorial_visuals()
 	queue_redraw()
 
@@ -345,7 +394,10 @@ func get_task_checkpoint_position(task_id: String) -> Dictionary:
 	var marker_path: String = "Interactions/Task03AcceptSafe" if task_id == GameManager.TASK_03_ID else "Interactions/Task01AcceptSafe" if task_id == GameManager.TASK_01_ID else "Interactions/Task02AcceptSafe"
 	if task_id in [GameManager.TUTORIAL_03_ID, GameManager.TUTORIAL_04_ID, GameManager.TUTORIAL_05_ID]:
 		marker_path = "Interactions/Task%sAcceptSafe" % GameManager.get_task_definition(task_id)["room_id"]
-	var marker: Node2D = get_node(marker_path)
+	if GameManager.get_task_definition(task_id).has("checkpoint_marker"):
+		marker_path = "Interactions/" + GameManager.get_task_definition(task_id)["checkpoint_marker"]
+	var marker: Node2D = get_node_or_null(marker_path)
+	if marker == null: return {}
 	var room: Node2D = get_node("DoorRoot/Room" + GameManager.get_task_definition(task_id)["room_id"])
 	var destination: Vector2 = marker.global_position
 	if destination.x < 64.0 or destination.x > room.global_position.x - 120.0 or not is_equal_approx(destination.y, player.global_position.y):
@@ -373,6 +425,12 @@ func _setup_doors() -> void:
 			door.door_mode = "STORY" # Later independent309 task, never a second first tutorial.
 			door.task_id = GameManager.TASK_03_ID
 			door.monster_type = "HAT"
+		for task_id: String in GameManager.LATE_TASKS:
+			var definition := GameManager.get_task_definition(task_id)
+			if room == definition["room_id"]:
+				door.door_mode = "STORY"
+				door.task_id = task_id
+				door.monster_type = definition["monster"]
 		# Coordinated production floors; old standalone component adapters keep their API.
 		door.managed_cycle = true
 		slot.set_meta("monster_type",door.monster_type)
@@ -411,7 +469,7 @@ func _on_monster_encounter(context: Dictionary) -> void:
 				var side := -1.0 if door._last_managed_x <= door.global_position.x else 1.0
 				if (player.global_position.x - door.global_position.x) * side < 16.0:
 					player.global_position.x = door.global_position.x + side * 16.0
-			if door.task_id in [GameManager.TASK_02_ID, GameManager.TASK_03_ID]:
+			if door.task_id in [GameManager.TASK_02_ID, GameManager.TASK_03_ID] or GameManager.LATE_TASKS.has(door.task_id):
 				_try_offer_followup(door.task_id)
 			else:
 				GameManager.offer_task(door.task_id)
@@ -471,6 +529,18 @@ func _try_offer_followup(task_id: String) -> void:
 		GameManager.offer_task(task_id) # Explicit core adapter; F5 uses real task dialogue.
 
 
+func _try_offer_late_tasks() -> void:
+	if not GameManager.is_world_input_allowed(): return
+	for task_id: String in GameManager.LATE_TASKS:
+		if not GameManager.can_offer_task(task_id): continue
+		var definition := GameManager.get_task_definition(task_id)
+		var room: Node2D = get_node_or_null("DoorRoot/Room" + definition["room_id"])
+		if room == null or absf(player.global_position.x - room.global_position.x) > 120.0: continue
+		if GameManager.get_pending_monster_encounter().is_empty():
+			GameManager.request_monster_encounter(definition["room_id"], definition["monster"], "STORY_TASK")
+		_try_offer_followup(task_id)
+
+
 func _resolve_known_card_encounter() -> void:
 	if floor_number < 2 or not GameManager.is_world_input_allowed():
 		return
@@ -496,7 +566,7 @@ func _resolve_known_card_encounter() -> void:
 func _on_story_intercept(task_id: String, _room_id: String, door: Node2D) -> void:
 	if not GameManager.is_world_input_allowed():
 		return
-	if task_id in [GameManager.TASK_02_ID, GameManager.TASK_03_ID]:
+	if task_id in [GameManager.TASK_02_ID, GameManager.TASK_03_ID] or GameManager.LATE_TASKS.has(task_id):
 		_try_offer_followup(task_id)
 		return
 	GameManager.offer_task(task_id)
@@ -515,6 +585,9 @@ func _on_task_submit(task_id: String, door: Node2D) -> void:
 
 
 func _on_story_progress(task_id: String) -> void:
+	if GameManager.LATE_TASKS.has(task_id):
+		_emit_notice(GameManager.get_task_view()["step"])
+		return
 	if task_id in [GameManager.TUTORIAL_03_ID, GameManager.TUTORIAL_04_ID, GameManager.TUTORIAL_05_ID]:
 		_emit_notice("工作完成后返回%s按E交付；未完成时按E询问进度。", [GameManager.get_task_definition(task_id)["room_id"]])
 		return
@@ -529,6 +602,10 @@ func _on_story_progress(task_id: String) -> void:
 
 func _on_door_violation(reason: String, approach_side: int, door: Node2D) -> void:
 	GameManager.request_safe_return(door, reason, approach_side)
+	if GameManager.game_state == "SAFE_RETURN":
+		var guide: Dictionary = GameManager.get_monster_guide(door.monster_type)
+		var explanations := {"WRONG_CARD": "当前身份不符", "MOVED_NEAR_EAR": "开门时仍在移动", "SWITCHED_NEAR_CHECKER": "在核验区换证"}
+		_emit_notice("已退回本层楼梯。%s：%s。%s", [guide.get("name", ""), explanations.get(reason, reason), guide.get("text", "")])
 
 
 func get_safe_return_position(door: Node2D, approach_side: int) -> Dictionary:
@@ -559,17 +636,19 @@ func _notification(what: int) -> void:
 func _refresh_exit_hint() -> void:
 	return_hint.text = tr("靠近后按 E → %dF") % (floor_number - 1) if floor_number > 1 and GameManager.get_available_floors().has(floor_number - 1) else ""
 	if floor_number == 5:
-		exit_hint.text = "EXIT · 终点接入位\n通关功能待 A-10"
+		exit_hint.text = "EXIT · 按E与Terese一起逃离" if GameManager.get_world_flags().get("exit_form_delivered", false) else "EXIT · 先完成501离店单交付"
 	elif floor_number == 1 and not GameManager.get_available_floors().has(2):
 		exit_hint.text = "先完成经理初次对白，再上 2F"
 	elif floor_number == 2 and not GameManager.get_available_floors().has(3):
 		exit_hint.text = "完成201—205五项任务并逐一交付后开放3F"
 	elif floor_number == 3 and not GameManager.has_friend:
-		exit_hint.text = "先进入 309 找到帕希卡，再前往五楼出口"
+		exit_hint.text = "先进入 309 找到Terese，再前往五楼出口"
 	elif not GameManager.get_available_floors().has(floor_number + 1):
 		exit_hint.text = "下一层尚未开放"
 	else:
 		exit_hint.text = tr("靠近后按 E → %dF") % (floor_number + 1)
+	return_hint.visible = not return_hint.text.is_empty() and GameManager.is_world_input_allowed() and absf(player.global_position.x - return_point.global_position.x) <= GameManager.STAIR_INTERACTION_RADIUS
+	exit_hint.visible = GameManager.is_world_input_allowed() and absf(player.global_position.x - exit_point.global_position.x) <= GameManager.STAIR_INTERACTION_RADIUS
 
 
 func _on_card_stolen(card_id: String) -> void:
@@ -590,7 +669,10 @@ func _refresh_staff_captions() -> void:
 		var staff: Node = slot.get_node("Staff")
 		var label: Label = slot.get_node("Caption")
 		var role_name := tr(CARD_NAMES[staff.card_id])
-		if _can_talk_to_manager(staff):
+		label.position.y = -260 if staff.is_task_eligible() and staff.is_reward_available() else -225
+		if staff.reward_type == "TASK_ITEM":
+			label.text = "巡房记录已取得 · 返回403交付" if not staff.is_reward_available() else "巡房员工 · 身后站定长按E 0.8秒" if staff.is_task_eligible() else "巡房员工 · 先在403接受任务"
+		elif _can_talk_to_manager(staff):
 			label.text = "经理 · 按 E 查看去向" if GameManager.has_completed_manager_intro() else "经理 · 按 E 交谈（任意一侧）"
 		elif CardManager.has_card(staff.card_id):
 			label.text = tr("%s · ID 已取得") % role_name
@@ -600,7 +682,7 @@ func _refresh_staff_captions() -> void:
 			if not GameManager.is_interaction_allowed(staff.target_id):
 				label.text = tr("%s · 先接受对应任务") % role_name
 			else:
-				label.text = tr("%s · 身后按住 E 0.8 秒") % role_name if staff.is_player_behind() else tr("%s · 当前在正面\n请绕到背后") % role_name
+				label.text = tr("%s · 背后站定\n按住E直到进度完成") % role_name if staff.is_player_behind() else tr("%s · 正面会被发现\n站到背后标记，再按住E") % role_name
 		else:
 			label.text = tr("%s · 朝%s") % [role_name, tr("右 →") if staff.facing_direction > 0 else tr("左 ←")]
 
@@ -608,6 +690,9 @@ func _refresh_staff_captions() -> void:
 func _add_caption(slot: Node2D, caption: String, top: float) -> void:
 	var label := Label.new()
 	label.name = "Caption"
+	label.z_index = 5
+	label.add_theme_color_override("font_outline_color", Color("211c17"))
+	label.add_theme_constant_override("outline_size", 4)
 	label.position = Vector2(-160, top)
 	label.size = Vector2(320, 64)
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER

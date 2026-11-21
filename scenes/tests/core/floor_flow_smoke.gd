@@ -83,6 +83,8 @@ func _run() -> void:
 	game.call("go_to_floor", 4)
 	game.call("go_to_floor", 5)
 	_expect(game.get("current_floor") == 4, "Unfinished task 04 blocks 5F")
+	# Explicit later-floor travel fixture; real04 delivery is covered by the main flow.
+	game.get("_completed_task_ids").append("TASK_04_PATROL")
 	game.call("preview_floor", 5)
 	await process_frame
 	_check_floor(host, 5)

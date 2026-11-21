@@ -72,9 +72,9 @@ func _process(delta: float) -> void:
 		_phase += distance/cycle_distance if _walking else delta*0.6
 	queue_redraw()
 
-func _draw() -> void:
+func get_render_pose() -> Dictionary:
 	if _atlas == null:
-		return
+		return {}
 	var frame := -1
 	if character_id == "an" and cleaning_active:
 		frame = 8
@@ -97,7 +97,12 @@ func _draw() -> void:
 				frame = 6+int(_phase*3.0)%3
 	if frame < 0:
 		var ratio := (200.0 if character_id == "security" else 190.0)/_master_rect.size.y
-		draw_texture_rect_region(_master,Rect2(-Vector2(_master_rect.get_center().x,_master_rect.end.y)*ratio,_master.get_size()*ratio),Rect2(Vector2.ZERO,_master.get_size()))
-	else:
-		var source := Rect2(Vector2(frame%3,frame/3)*_cell,_cell)
-		draw_texture_rect_region(_atlas,Rect2(-_origins[frame]*_cycle_ratio,_cell*_cycle_ratio),source)
+		return {"frame":frame,"texture":_master,"source":Rect2(Vector2.ZERO,_master.get_size()),"destination":Rect2(-Vector2(_master_rect.get_center().x,_master_rect.end.y)*ratio,_master.get_size()*ratio)}
+	var source := Rect2(Vector2(frame%3,frame/3)*_cell,_cell)
+	return {"frame":frame,"texture":_atlas,"source":source,"destination":Rect2(-_origins[frame]*_cycle_ratio,_cell*_cycle_ratio)}
+
+
+func _draw() -> void:
+	var pose := get_render_pose()
+	if pose.is_empty(): return
+	draw_texture_rect_region(pose["texture"],pose["destination"],pose["source"])

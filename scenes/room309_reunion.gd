@@ -54,7 +54,7 @@ func _finished() -> void:
 	GameManager.set_modal_open(MODAL, false)
 	var succeeded := GameManager.rescue_friend()
 	cancel()
-	get_parent()._show_notice("帕希卡已同行，前往五楼消防出口。" if succeeded else "救援未结算：请确认309前置与其他模态状态。")
+	get_parent()._show_notice(GameManager.get_story_objective() if succeeded else "救援未结算：请确认309前置与其他模态状态。")
 	get_viewport().set_input_as_handled()
 
 func _sync_follower() -> void:
@@ -75,6 +75,9 @@ func cancel() -> void:
 
 func _state_changed(state: String) -> void:
 	if state in ["MENU", "LOADING", "FAILED", "RESTORING", "WON"]: cancel()
+	if state == "MENU" and is_instance_valid(_floor):
+		var follower := _floor.get_node_or_null("Persica")
+		if follower != null: follower.queue_free()
 
 func _exit_tree() -> void:
 	cancel()

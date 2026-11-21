@@ -1,0 +1,68 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+[   0% ] [90m[1mfirst_scan_filesystem[22m | Started 项目初始化 (5 steps)[39m[0m
+[   0% ] [90m[1mfirst_scan_filesystem[22m | 正在扫描文件结构……[39m[0m
+[  16% ] [90m[1mfirst_scan_filesystem[22m | 正在加载全局类名……[39m[0m
+[  33% ] [90m[1mfirst_scan_filesystem[22m | 正在校验 GDExtension……[39m[0m
+[  50% ] [90m[1mfirst_scan_filesystem[22m | 正在创建自动加载脚本……[39m[0m
+SCRIPT ERROR: Parse Error: Preload file "res://assets/final/player/identity_outfits/cleaner_headscarf.png" has no resource loaders (unrecognized file extension).
+          at: GDScript::reload (res://scenes/player/player_identity_outfit.gd:3)
+SCRIPT ERROR: Parse Error: Preload file "res://assets/final/player/identity_outfits/security_cap.png" has no resource loaders (unrecognized file extension).
+          at: GDScript::reload (res://scenes/player/player_identity_outfit.gd:3)
+SCRIPT ERROR: Parse Error: Function "set_draw_transform()" not found in base self.
+          at: GDScript::reload (res://scenes/player/player_identity_outfit.gd:80)
+SCRIPT ERROR: Parse Error: Function "set_draw_transform()" not found in base self.
+          at: GDScript::reload (res://scenes/player/player_identity_outfit.gd:82)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scenes/player/player.gd:0)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/game_manager.gd:0)
+ERROR: Failed to load script "res://scripts/game_manager.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+[  66% ] [90m[1mfirst_scan_filesystem[22m | 正在初始化插件……[39m[0m
+[  83% ] [90m[1mfirst_scan_filesystem[22m | 正在启动文件扫描……[39m[0m
+[92m[ DONE ][39m [1mfirst_scan_filesystem[22m
+[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | Started 正在注册全局类…… (4 steps)[39m[0m
+[   0% ] [90m[1mupdate_scripts_classes[22m | HotelPlayer[39m[0m
+[  20% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  40% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[  60% ] [90m[1mupdate_scripts_classes[22m | [39m[0m
+[92m[ DONE ][39m [1mupdate_scripts_classes[22m
+[0m
+[   0% ] [90m[1m_update_scan_actions[22m | Started 正在扫描动作…… (7 steps)[39m[0m
+[   0% ] [90m[1m_update_scan_actions[22m | headwear_approved_preview.png[39m[0m
+[  12% ] [90m[1m_update_scan_actions[22m | manager_upper_body_approved_preview.png[39m[0m
+[  25% ] [90m[1m_update_scan_actions[22m | cleaner_headscarf.png[39m[0m
+[  37% ] [90m[1m_update_scan_actions[22m | security_cap.png[39m[0m
+[  50% ] [90m[1m_update_scan_actions[22m | 怪兽旅馆小组合作项目-任务清单v1.csv[39m[0m
+[  62% ] [90m[1m_update_scan_actions[22m | 怪兽旅馆小组合作项目-功能状态v1.csv[39m[0m
+[  75% ] [90m[1m_update_scan_actions[22m | 怪兽旅馆小组合作项目-问题与待办v1.csv[39m[0m
+[92m[ DONE ][39m [1m_update_scan_actions[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started 正在导入或重新导入资产 (4 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  20% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  40% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[  60% ] [90m[1mreimport[22m | 正在准备重新导入文件……[39m[0m
+[   0% ] [90m[1mreimport[22m | 正在执行重新导入的前置操作……[39m[0m
+[   0% ] [90m[1mreimport[22m | headwear_approved_preview.png[39m[0m
+[  20% ] [90m[1mreimport[22m | manager_upper_body_approved_preview.png[39m[0m
+[  40% ] [90m[1mreimport[22m | cleaner_headscarf.png[39m[0m
+[  60% ] [90m[1mreimport[22m | security_cap.png[39m[0m
+[  80% ] [90m[1mreimport[22m | 正在结束资产导入……[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mreimport[22m | Started 正在导入或重新导入资产 (4 steps)[39m[0m
+[   0% ] [90m[1mreimport[22m | 正在执行重新导入的后置操作……[39m[0m
+[92m[ DONE ][39m [1mreimport[22m
+[0m
+[   0% ] [90m[1mloading_editor_layout[22m | Started 正在加载编辑器 (5 steps)[39m[0m
+[   0% ] [90m[1mloading_editor_layout[22m | 正在加载编辑器布局……[39m[0m
+[  16% ] [90m[1mloading_editor_layout[22m | 正在加载停靠面板……[39m[0m
+[  33% ] [90m[1mloading_editor_layout[22m | 正在重新打开场景……[39m[0m
+[  50% ] [90m[1mloading_editor_layout[22m | 正在加载中央编辑器布局……[39m[0m
+[  66% ] [90m[1mloading_editor_layout[22m | 正在加载插件窗口布局……[39m[0m
+[  83% ] [90m[1mloading_editor_layout[22m | 编辑器布局就绪。[39m[0m
+[92m[ DONE ][39m [1mloading_editor_layout[22m
+[0m

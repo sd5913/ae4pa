@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=4 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_base.tscn" id="1_base"]
 [ext_resource type="PackedScene" path="res://scenes/levels/floor_5_art.tscn" id="art"]
+[ext_resource type="PackedScene" path="res://scenes/work/exit_register_5f.tscn" id="register"]
 
 [node name="Floor5" instance=ExtResource("1_base")]
 floor_number = 5
@@ -11,6 +12,13 @@ visible = false
 
 [node name="Player" parent="." index="2"]
 z_index = 1
+
+[node name="ExitRegister5F" parent="Interactions" instance=ExtResource("register")]
+position = Vector2(760, 560)
+z_index = 1
+
+[node name="Task501AcceptSafe" type="Marker2D" parent="Interactions"]
+position = Vector2(900, 560)
 
 [node name="Room501" type="Marker2D" parent="DoorRoot" index="0"]
 position = Vector2(1087.5, 560)

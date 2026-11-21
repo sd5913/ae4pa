@@ -1,0 +1,20 @@
+{
+  "scenes/levels/floor.gd": "094114d38cfa4c27d78739d5235a1209334a2a35637f05e4b71bce83bcfcd847",
+  "scenes/levels/floor_4.tscn": "b7ad85569d0b1bfb8ee1422e4c0ce0a91a1b3ce9e61da90867da0e4385afdd20",
+  "scenes/levels/floor_5.tscn": "96911043e1c4ee60f7b7fffc2d19feda22dc7f3aca1a7dc81fc6b19bc8041044",
+  "scenes/main.gd": "3023d2ed57bb8e3499a11df200856b288d733d5bc5b4e8f9a321de684ba9e0fd",
+  "scenes/room309_reunion.gd": "d15099e43d28aa4dc5f4e048c25644d21c8c54c44ab1dc1cd878ed8a20b2123f",
+  "scenes/task_hud.gd": "1c53f70311a7d3f0b1493789898e7319c1ee63414ac2de8f06b39eafe0ecff51",
+  "scenes/task_ui.gd": "815532aea648b60b14ac9373d15776cca3a634e7e01da88c4784c23247be80be",
+  "scenes/tests/core/floor_flow_smoke.gd": "4807db07b5eb2b500c1f0c1696fafba8fe6b1c38442a31063765465a93b54749",
+  "scenes/tests/core/safe_return_smoke.gd": "3022960789b160b56b38162c22aaadd2898fd3b3c7e0f560104d70392b5a5bb5",
+  "scenes/tests/doors/floor_4_layout_smoke.gd": "693225de7edbff54b57db32236553e17e973243cbda958ab7bb857ddd96c6a16",
+  "scenes/tests/doors/floor_5_layout_smoke.gd": "a50132360f769ffe2962f770a60ba3e75dafd94e24fe647cdeaf188e5fa985e9",
+  "scenes/ui/hud.gd": "248764611c152c93b34fe0025cf1d70608668e5db6fe1c9fa66bffc1ff3c52c5",
+  "scripts/game_manager.gd": "a7b47d76ce068a8f268bc9575fcc9f6edc0d5ce324b00d72438f4b60581eac9a",
+  "scripts/task_definitions.gd": "755d7c975a36dbbdd137bc52868424a045c35fb946f4ed5f6d42a11e261bb8a0",
+  "scenes/late_mainline.gd": "beebf0764edc28e1be232703272ab3136e7f2383d57050ed06ece1038cf95f2a",
+  "scenes/tests/core/late_mainline_core_smoke.gd": "844607117ffb60fbde94ece99694220991e721f2f937b44c5e2cfb66115eff9b",
+  "scenes/tests/core/late_mainline_main_flow_smoke.gd": "19db4be3b6cfadc774f039d65c754bed60c303fe9c9c2150bac8fe2a281286d3",
+  "scenes/tests/core/full_mainline_escape_smoke.gd": "6f34b1699f295c115658be053d2bc2c35d50f92dd6f53f1dc20321cf2f1944f2"
+}

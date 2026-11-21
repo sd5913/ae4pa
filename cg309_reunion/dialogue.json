@@ -1,250 +1,250 @@
 [
   {
-    "speaker": "帕希卡",
-    "text": "安……？",
+    "speaker": "Terese",
+    "text": "Carol……？",
     "frame": "approach",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "是我。小点声，外面还有——",
     "frame": "approach",
     "narration": false
   },
   {
     "speaker": "旁白",
-    "text": "她没等安说完，便扑过来，紧紧抱住了她。",
+    "text": "她没等Carol说完，便扑过来，紧紧抱住了她。",
     "frame": "hug",
     "narration": true
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "你真的来了……",
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "喂……你先松一点，我快喘不过气了。",
     "frame": "hug",
     "narration": false
   },
   {
     "speaker": "旁白",
-    "text": "安的手在半空停了一下，还是落在她背上，轻轻拍了两下。",
+    "text": "Carol的手在半空停了一下，还是落在她背上，轻轻拍了两下。",
     "frame": "hug",
     "narration": true
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "对不起，让你跑到这种地方来。",
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "可我真的好高兴。听见开门声的时候，我还以为又是他们。",
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "都敢给我发求救消息了，现在还说这些。",
     "frame": "hug",
     "narration": false
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "谢谢你来找我。",
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "我一直在想，只要能再见到你，我一定要告诉你——",
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "你对我很重要。我真的很珍惜你，不只是今天。",
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "……突然说这么认真干什么。",
     "frame": "hug",
     "narration": false
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "因为我怕以后没机会说。",
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "别胡说。",
     "frame": "hug",
     "narration": false
   },
   {
     "speaker": "旁白",
-    "text": "安抱着她的手收紧了一瞬。",
+    "text": "Carol抱着她的手收紧了一瞬。",
     "frame": "hug",
     "narration": true
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "我都找到这里了，就会带你出去。",
     "frame": "hug",
     "narration": false
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "嗯。我相信你。",
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
     "speaker": "旁白",
-    "text": "帕希卡终于松开手。安把手递到她面前，等她握住。",
+    "text": "Terese终于松开手。Carol把手递到她面前，等她握住。",
     "frame": "leave",
     "narration": true
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "还能走吗？有没有哪里受伤？",
     "frame": "leave",
     "narration": false
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "能走。没受伤，就是有点怕。",
     "frame": "leave",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "那就跟在我后面，别乱跑，也别松手。",
     "frame": "leave",
     "narration": false
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "好。你去哪儿，我就跟到哪儿。",
     "frame": "leave",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "……现在倒是听话了。",
     "frame": "leave",
     "narration": false
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "楼下的路还能走吗？",
     "frame": "leave",
     "narration": false
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "他们把下面的员工通道锁上了。不过五楼有消防出口，我听夜班的人说过。",
     "frame": "leave",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "那就上五楼。",
     "frame": "leave",
     "narration": false
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "这次换我帮你认路。",
     "frame": "leave",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "行。看见不对劲就告诉我，别自己往前冲。",
     "frame": "leave",
     "narration": false
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "知道啦。等出去了，我请你吃饭。",
     "frame": "leave",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "一顿可不够。",
     "frame": "leave",
     "narration": false
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "那就很多顿。以后你需要我，我也一定会来。",
     "frame": "leave",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "先把自己照顾好。",
     "frame": "leave",
     "narration": false
   },
   {
     "speaker": "旁白",
-    "text": "安把她往身后带了带，先一步望向门外。",
+    "text": "Carol把她往身后带了带，先一步望向门外。",
     "frame": "leave",
     "narration": true
   },
   {
-    "speaker": "安",
+    "speaker": "Carol",
     "text": "走了。我带你出去。",
     "frame": "leave",
     "narration": false
   },
   {
-    "speaker": "帕希卡",
+    "speaker": "Terese",
     "text": "嗯，跟着你。",
     "frame": "leave",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Persica"
+    "speaker_en": "Terese"
   }
 ]
