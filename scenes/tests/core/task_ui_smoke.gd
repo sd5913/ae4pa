@@ -29,9 +29,13 @@ func _run() -> void:
 	root.add_child(main)
 	var menu: Control = main.get_node("MenuLayer/MainMenu")
 	var notebook: Control = main.get_node("MenuLayer/Notebook")
+	var codex_test_path := "user://task_ui_codex_%d.cfg" % OS.get_process_id()
+	notebook.set_codex_path_for_test(codex_test_path)
 	var bag: Control = main.get_node("MenuLayer/Bag")
 	_expect(menu.visible and game.get("game_state") == "MENU" and not dialogue.visible, "F5 opens the real D menu before the prologue")
-	menu.get_node("%HelpButton").pressed.emit()
+	_expect(menu.get_node_or_null("%HelpButton") == null, "Cover keeps help in the in-game handbook, not as a third menu action")
+	await _action("open_help", true)
+	await _action("open_help", false)
 	for reverse: bool in [false, true]:
 		for step: int in range(6):
 			var tab := InputEventKey.new()
@@ -44,8 +48,10 @@ func _run() -> void:
 			var focused: Control = main.get_viewport().gui_get_focus_owner()
 			_expect(focused != null and notebook.is_ancestor_of(focused), "Tab and Shift-Tab stay inside the visible notebook")
 	_expect(notebook.visible and game.get("game_state") == "MENU", "Menu help opens controls without starting the game")
-	notebook.get_node("%NextButton").pressed.emit()
-	_expect(notebook.get_node("%MonsterPage/NoseRule").text == "尚未取得线索。", "Menu notebook keeps undiscovered monster rules unknown")
+	notebook.call("_show_page", 6)
+	_expect(notebook.get_node("%PageTitle").text == "未知住客"
+		and notebook.get_node("%MonsterPage").get_child(1).text.begins_with("尚未遇见"),
+		"Menu handbook hides monster identity and rules until a real encounter")
 	await _action("open_help", true)
 	await _action("open_help", false)
 	menu.get_node("%StartButton").pressed.emit()
@@ -65,8 +71,9 @@ func _run() -> void:
 	_expect(game.call("has_completed_manager_intro"), "Real manager dialogue unlocks task route")
 	await _action("open_help", true)
 	await _action("open_help", false)
-	notebook.get_node("%NextButton").pressed.emit()
-	_expect(notebook.get_node("%MonsterPage/NoseRule").text == "有些住客对气味敏感。", "Actual manager completion exposes only the vague nose clue")
+	notebook.call("_show_page", 6)
+	_expect(notebook.get_node("%PageTitle").text == "未知住客",
+		"A manager's vague clue does not reveal an unencountered monster")
 	await _action("open_help", true)
 	await _action("open_help", false)
 	await _check_denied_stair()
@@ -200,8 +207,15 @@ func _run() -> void:
 	await _drain_monster()
 	await _action("open_help", true)
 	await _action("open_help", false)
-	notebook.get_node("%NextButton").pressed.emit()
-	_expect("保洁" in notebook.get_node("%MonsterPage/NoseRule").text and notebook.get_node("%MonsterPage/HatId").text == "未知 · 未知住客", "Delivered 201 reveals only its earned rule in H")
+	notebook.call("_show_page", 6)
+	_expect(notebook.get_node("%PageTitle").text == "长鼻客"
+		and notebook.get_node("%MonsterPage").get_child(1).text.contains("CLEANER")
+		and notebook.get_node("%MonsterPage").get_child(0).modulate.r > 0.9,
+		"A real 201 encounter unlocks its monster silhouette and verified identity rule")
+	notebook.call("_show_page", 7)
+	_expect(notebook.get_node("%PageTitle").text == "未知住客"
+		and notebook.get_node("%MonsterPage").get_child(1).text.begins_with("尚未遇见"),
+		"Unencountered monster pages remain locked after the 201 delivery")
 	await _action("open_help", true)
 	await _action("open_help", false)
 	var ordinary: Node = _floor().get_node("DoorRoot/Room202/Door")
@@ -236,6 +250,7 @@ func _run() -> void:
 	await _reach_offer(dialogue)
 	_expect(board.visible and not board.get("_retry_button").visible, "A new game's acceptance view has no stale failure control")
 	_expect(not game.call("is_world_input_allowed"), "Teardown precondition has a real open offer modal")
+	notebook.reset_codex_file_for_test()
 	main.queue_free()
 	await process_frame
 	_expect(game.call("is_world_input_allowed"), "Unloading F5 with an open offer releases its modal")

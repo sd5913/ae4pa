@@ -91,6 +91,7 @@ var _transition_in_progress := false
 var _skip_transitions := false
 var _pointer := preload("res://scenes/ui/story_pointer.gd").new()
 var _portrait_cache: Dictionary = {}
+var _phone_waiting_for_open := false
 var _phone_tween: Tween
 
 @onready var _background: TextureRect = %Background
@@ -102,6 +103,7 @@ var _phone_tween: Tween
 @onready var _cue: Label = %StageCue
 @onready var _skip_button: Button = %SkipButton
 @onready var _sms_panel: Control = %SMSPanel
+@onready var _phone_screen: Control = %PhoneScreen
 @onready var _phone_chat: VBoxContainer = %PhoneChat
 @onready var _phone_notification: PanelContainer = %PhoneNotification
 @onready var _vibration_marks: TextureRect = %VibrationMarks
@@ -164,7 +166,7 @@ func _input(event: InputEvent) -> void:
 			return
 	var surfaces: Array[Rect2] = []
 	if _sms_panel.visible:
-		surfaces.append(_sms_scroll.get_global_rect())
+		surfaces.append(_phone_screen.get_global_rect() if _phone_waiting_for_open else _sms_scroll.get_global_rect())
 	elif _frame.visible:
 		surfaces.append(_frame.get_global_rect())
 		if _portrait.visible:
@@ -363,13 +365,14 @@ func _animate_phone_notification() -> void:
 	_vibration_marks.show()
 	_sms_panel.rotation_degrees = 9
 	_phone_tween = create_tween()
-	for angle: float in [13.0, 7.0, 12.0, 6.0, 10.0, 5.0]:
-		_phone_tween.tween_property(_sms_panel, "rotation_degrees", angle, 0.075)
+	for angle: float in [13.0, -12.0, 11.0, -10.0, 9.0, -8.0, 7.0, -6.0, 5.0, -4.0, 3.0, -2.0]:
+		_phone_tween.tween_property(_sms_panel, "rotation_degrees", angle, 0.105)
 	_phone_tween.tween_callback(_vibration_marks.hide)
 	_phone_tween.tween_property(_sms_panel, "rotation_degrees", 0.0, 0.22).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	_phone_tween.finished.connect(func() -> void:
 		_phone_tween = null
-		_finish_phone_animation()
+		_phone_waiting_for_open = true
+		_vibration_marks.hide()
 	, CONNECT_ONE_SHOT)
 
 
@@ -380,6 +383,7 @@ func _finish_phone_animation() -> void:
 	_vibration_marks.hide()
 	_sms_panel.rotation_degrees = 0.0
 	_phone_notification.hide()
+	_phone_waiting_for_open = false
 	_phone_chat.show()
 
 
@@ -507,6 +511,12 @@ func _advance() -> void:
 	if _dialogue_id.is_empty() or _transition_in_progress:
 		return
 	if _phone_tween != null:
+		return
+	if _phone_waiting_for_open:
+		_phone_waiting_for_open = false
+		_phone_notification.hide()
+		_phone_chat.show()
+		_scroll_sms_to_message(_sms_history.get_child(-1))
 		return
 	if not _beats.is_empty():
 		if _line_index + 1 < _beats.size():

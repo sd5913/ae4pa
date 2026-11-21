@@ -38,14 +38,19 @@ func run() -> void:
 	check(menu.get("_ready_for_input"), "cover opening finishes with interactive buttons")
 	await shot("menu")
 	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
-	await create_timer(0.9).timeout
-	dialogue.set_skip_transitions_for_test(true)
+	await create_timer(1.7).timeout
 	check(dialogue.visible and dialogue.get("_line_index") == 0, "normal start enters real SMS with no auto advance")
 	check(dialogue.get_node_or_null("%ContinueButton") == null, "continue button and its focus target removed")
 	check(not dialogue.get_node("%SkipButton").visible, "first reading cannot skip")
 	click(Vector2(30, 300))
 	click(dialogue.get_node("SMSPanel/PhoneFrame").get_global_rect().position + Vector2(10, 200))
 	check(dialogue.get("_line_index") == 0, "room and phone frame clicks do not advance")
+	check(dialogue.get("_phone_waiting_for_open") and dialogue.get_node("%PhoneNotification").visible
+		and not dialogue.get_node("%PhoneChat").visible, "notification stays until the player explicitly opens the phone")
+	click(dialogue.get_node("%PhoneScreen").get_global_rect().get_center())
+	check(dialogue.get("_line_index") == 0 and dialogue.get_node("%PhoneChat").visible,
+		"phone screen click opens chat without skipping its first message")
+	await settle()
 	var chat: Rect2 = dialogue.get_node("%SMSScroll").get_global_rect()
 	var point := chat.get_center()
 	mouse(point, true)
@@ -78,6 +83,7 @@ func run() -> void:
 	emulated.pressed = false
 	dialogue._input(emulated)
 	check(dialogue.get("_line_index") == 2, "touch and emulated mouse advance once together")
+	dialogue.set_skip_transitions_for_test(true)
 	for i in range(12): dialogue._advance()
 	await shot("phone")
 	for viewport_size in [Vector2i(1280,720), Vector2i(1920,1080), Vector2i(960,540)]:

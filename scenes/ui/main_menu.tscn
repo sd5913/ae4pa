@@ -3,10 +3,9 @@
 [ext_resource type="Script" path="res://scenes/ui/main_menu.gd" id="1_script"]
 [ext_resource type="Theme" path="res://scenes/ui/staff_ui_theme.tres" id="2_theme"]
 [ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/hotel_cover_background.png" id="3_cover"]
-[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/title_bilingual.png" id="4_title"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/title_monster_hotel_en.png" id="4_title"]
 
 [ext_resource type="Script" path="res://scenes/ui/language_selector.gd" id="5_language"]
-[ext_resource type="Script" path="res://scenes/ui/localized_title.gd" id="6_localized_title"]
 
 [node name="MainMenu" type="Control"]
 process_mode = 3
@@ -66,11 +65,11 @@ mouse_filter = 2
 layout_mode = 2
 custom_minimum_size = Vector2(700, 0)
 mouse_filter = 2
-theme_override_constants/separation = 32
+theme_override_constants/separation = 24
 
 [node name="TitleSlot" type="Control" parent="Center/Content"]
 layout_mode = 2
-custom_minimum_size = Vector2(0, 170)
+custom_minimum_size = Vector2(0, 150)
 mouse_filter = 2
 
 [node name="Title" type="TextureRect" parent="Center/Content/TitleSlot"]
@@ -81,39 +80,28 @@ mouse_filter = 2
 texture = ExtResource("4_title")
 expand_mode = 1
 stretch_mode = 5
-script = ExtResource("6_localized_title")
 
 [node name="Actions" type="VBoxContainer" parent="Center/Content"]
 layout_mode = 2
 size_flags_horizontal = 4
-custom_minimum_size = Vector2(300, 0)
+custom_minimum_size = Vector2(280, 0)
 theme_override_constants/separation = 14
 mouse_filter = 2
 
 [node name="StartButton" type="Button" parent="Center/Content/Actions"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 66)
+custom_minimum_size = Vector2(0, 56)
 layout_mode = 2
-theme_type_variation = &"PrimaryButton"
-focus_neighbor_bottom = NodePath("../HelpButton")
+focus_neighbor_bottom = NodePath("../LanguageSelector")
 focus_neighbor_top = NodePath("../LanguageSelector")
 text = "开始游戏"
 
-[node name="HelpButton" type="Button" parent="Center/Content/Actions"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 66)
-layout_mode = 2
-focus_neighbor_top = NodePath("../StartButton")
-focus_neighbor_bottom = NodePath("../LanguageSelector")
-text = "操作说明"
-
 [node name="LanguageSelector" type="OptionButton" parent="Center/Content/Actions"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
+custom_minimum_size = Vector2(0, 42)
 layout_mode = 2
-focus_neighbor_top = NodePath("../HelpButton")
+focus_neighbor_top = NodePath("../StartButton")
 focus_neighbor_bottom = NodePath("../StartButton")
 script = ExtResource("5_language")
 
 [connection signal="pressed" from="Center/Content/Actions/StartButton" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Center/Content/Actions/HelpButton" to="." method="_on_help_pressed"]

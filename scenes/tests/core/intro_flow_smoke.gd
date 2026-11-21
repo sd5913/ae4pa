@@ -23,9 +23,13 @@ func _run() -> void:
 	dialogue.set_progress_file_path_for_test(OS.get_environment("TEMP").path_join("ae4pa-intro-flow-%d.cfg" % OS.get_process_id()))
 	dialogue.set_skip_transitions_for_test(true)
 	root.add_child(main)
-	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
+	var start_button: Button = main.get_node("MenuLayer/MainMenu/%StartButton")
+	# The actual opening is checked in the graphical run; keep this flow test focused on story routing.
+	main.get_node("MenuLayer/MainMenu").call("_finish_opening")
+	_expect(not start_button.disabled, "Opening sequence eventually enables the real start button")
+	start_button.pressed.emit()
 	# D owns fades; use its existing test setting after _ready initializes it.
-	await create_timer(0.6).timeout
+	await process_frame
 	dialogue.set_skip_transitions_for_test(true)
 	await process_frame
 	var player: Node2D = main.get_node("World").get_child(0).get_node("Player")
