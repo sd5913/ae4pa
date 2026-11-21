@@ -1,0 +1,18 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+SCRIPT ERROR: Parse Error: Function "set_draw_transform()" not found in base self.
+          at: GDScript::reload (res://scenes/player/player_identity_outfit.gd:80)
+SCRIPT ERROR: Parse Error: Function "set_draw_transform()" not found in base self.
+          at: GDScript::reload (res://scenes/player/player_identity_outfit.gd:82)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scenes/player/player.gd:0)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+          at: GDScript::reload (res://scripts/game_manager.gd:0)
+ERROR: Failed to load script "res://scripts/game_manager.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+SCRIPT ERROR: Invalid call. Nonexistent function 'new' in base 'GDScript'.
+          at: HotelPlayer._ready (res://scenes/player/player.gd:17)
+          GDScript backtrace (most recent call first):
+              [0] _ready (res://scenes/player/player.gd:17)
+              [1] run (res://scenes/tests/core/player_identity_outfit_smoke.gd:45)
+FAIL: Actual player has the approved role-specific outfit component

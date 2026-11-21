@@ -66,7 +66,9 @@ const TASKS: Dictionary = {
 	"TASK_04_PATROL": {
 		"name": "夜班巡房记录", "location": "4F · 403", "offer_floor": 4, "room_id": "403",
 		"prerequisites": ["HAS_FRIEND"], "time_limit": 180.0,
-		"required_card": "", "staff_target_id": "STAFF_PATROL_4F",
+		"required_card": "", "required_cards": [], "staff_target_id": "STAFF_PATROL_4F",
+		"checkpoint_marker": "Task403AcceptSafe", "monster": "EAR",
+		"instructions": "到本层巡房员工身后站定，长按E偷取巡房记录，再返回403按E交付。文件不是工作证，不要求特定身份；交付后才开放5F。",
 		"target_id": "STAFF_PATROL_4F", "reward_id": "PATROL_RECORD", "work_type": "STEAL_FILE", "work_floor": 4,
 		"steps": ["STEAL_PATROL_RECORD", "RETURN_TO_403"],
 		"work_flag": "patrol_collected", "completion_flags": ["patrol_delivered", "passage_403_unlocked"],
@@ -75,7 +77,9 @@ const TASKS: Dictionary = {
 	"TASK_05_EXIT": {
 		"name": "最后的离店许可", "location": "5F · 501", "offer_floor": 5, "room_id": "501",
 		"prerequisites": ["TASK_04_PATROL", "HAS_FRIEND"], "time_limit": 180.0,
-		"required_card": "MANAGER", "staff_target_id": "",
+		"required_card": "MANAGER", "required_cards": ["MANAGER"], "staff_target_id": "",
+		"checkpoint_marker": "Task501AcceptSafe", "monster": "CHECKER",
+		"instructions": "在安全登记台旁I装备／Q切当前经理，按E批准离店单，再返回501按E交付。批准不等于交付；交付后到右端消防出口按E，与Terese一起逃离。",
 		"target_id": "EXIT_REGISTER_5F", "reward_id": "EXIT_FORM", "work_type": "AUTHORIZE", "work_floor": 5,
 		"steps": ["AUTHORIZE_EXIT_FORM", "RETURN_TO_501"],
 		"work_flag": "exit_form_approved", "completion_flags": ["exit_form_delivered"],

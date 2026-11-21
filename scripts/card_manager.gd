@@ -92,10 +92,12 @@ func restore_snapshot(snapshot: Dictionary) -> bool:
 func collect_card(card_id: String) -> bool:
 	if not VALID_CARDS.has(card_id) or has_card(card_id):
 		return false
+	var first_card: bool = _owned_cards.is_empty()
 	_owned_cards.append(card_id)
 	for slot_index: int in range(_equipped_cards.size()):
 		if _equipped_cards[slot_index] == "NONE":
 			_equipped_cards[slot_index] = card_id
+			if first_card: _active_slot = slot_index
 			break
 	cards_changed.emit()
 	return true

@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+TRACE front: ACTIVE { "LATE_TASK_STORY": true }  DISABLED
+TRACE after front: PLAYING ACTIVE {  }
+FAIL: Real front theft fails403
+FAIL: 403 retry returns to untimed offer
+FAIL: Real task board opens

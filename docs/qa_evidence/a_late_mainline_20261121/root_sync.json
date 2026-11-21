@@ -1,0 +1,10 @@
+{
+  "source_files": 18,
+  "source_hashes_match": true,
+  "user_project_config_preserved": true,
+  "local_branch": "work/member-A-late-mainline-local-20261121",
+  "extra_root_runtime_check": "not_executed: automatic approval review usage limit",
+  "isolated_matrix_pass": 51,
+  "full_new_game_escape": "PASS",
+  "native_late_flow": "PASS"
+}

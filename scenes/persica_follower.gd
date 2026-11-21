@@ -14,13 +14,17 @@ func _ready() -> void:
 	sprite.position.y = -90
 	add_child(sprite)
 	var label := Label.new()
-	label.text = "Persica" if TranslationServer.get_locale().begins_with("en") else "帕希卡"
+	label.text = "Terese"
 	label.position = Vector2(-60, -210)
 	label.size.x = 120
 	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	add_child(label)
+	GameManager.safe_return_started.connect(snap_to_player.unbind(1))
 func setup(target: Node2D) -> void:
 	player = target
+	snap_to_player()
+func snap_to_player() -> void:
+	if not is_instance_valid(player): return
 	global_position = player.global_position + Vector2(-72, 0)
 func _physics_process(delta: float) -> void:
 	if not is_instance_valid(player) or not GameManager.is_world_input_allowed(): return

@@ -23,7 +23,7 @@ const BACKGROUNDS := {
 const AN_AVATAR := preload("res://assets/final/ui/hotel_interface/avatar_an.png")
 const FRIEND_AVATAR := preload("res://assets/final/ui/hotel_interface/avatar_friend.png")
 const FRIEND_SHEET := preload("res://assets/final/ui/visual_novel/friend_expressions.png")
-const PORTRAIT_ROLES := {"女主": "an", "安": "an", "保洁": "cleaner", "保安": "security", "经理": "manager"}
+const PORTRAIT_ROLES := {"女主": "an", "安": "an", "Carol": "an", "保洁": "cleaner", "保安": "security", "经理": "manager"}
 const EXPRESSION_ALIASES := {
 	"calm": "neutral", "pensive": "neutral", "curious": "neutral",
 	"happy": "smile", "teasing": "smile", "relieved": "smile",
@@ -178,7 +178,7 @@ func show_dialogue(dialogue_id: String) -> void:
 			_show_line()
 		"RESCUE_309":
 			_lines = RESCUE_309_LINES.duplicate()
-			_speaker.text = tr("帕希卡")
+			_speaker.text = tr("Terese")
 			_set_scene("lobby", false)
 			_show_line()
 		V4_INTRO_ID:
@@ -311,7 +311,7 @@ func _show_story_beat() -> void:
 	var mode: String = beat.mode
 	_speaker.visible = mode == "dialogue"
 	_line.visible = mode == "dialogue"
-	_speaker.text = "安" if beat.speaker == "女主" else tr("帕希卡") if beat.speaker in ["闺蜜", "帕希卡", "Persica", "friend"] else beat.speaker
+	_speaker.text = "Carol" if beat.speaker in ["女主", "安", "Carol"] else tr("Terese") if beat.speaker in ["闺蜜", "Terese", "Persica", "friend"] else beat.speaker
 	_line.text = beat.text
 	_cue.hide()
 	_story_title.hide()
@@ -367,7 +367,7 @@ func _finish_phone_animation() -> void:
 
 
 func _add_sms_message(speaker: String, text: String) -> void:
-	var is_friend := speaker in ["闺蜜", "帕希卡", "Persica", "friend"]
+	var is_friend := speaker in ["闺蜜", "Terese", "Persica", "friend"]
 	var row := HBoxContainer.new()
 	row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	row.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -428,7 +428,7 @@ func _scroll_sms_to_message(row: Control) -> void:
 
 
 func _display_portrait(speaker: String, expression: String) -> void:
-	if speaker in ["闺蜜", "帕希卡", "Persica", "friend"]:
+	if speaker in ["闺蜜", "Terese", "Persica", "friend"]:
 		var index := int(FACE_INDEX.get(expression, 0))
 		_portrait.texture = _atlas_cell(FRIEND_SHEET, index)
 	else:

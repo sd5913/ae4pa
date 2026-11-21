@@ -74,7 +74,7 @@ func _show_floors(message: String) -> void:
 	for child in _choices.get_children():
 		_choices.remove_child(child)
 		child.queue_free()
-	for floor_number: int in GameManager.get_available_floors():
+	for floor_number: int in GameManager.get_stair_destinations():
 		var button := Button.new()
 		button.text = "%dF" % floor_number
 		button.pressed.connect(_request_floor.bind(floor_number))

@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+TRACE front: ACTIVE {  } STAFF_PATROL_4F FRONT
+TRACE after front: FAILED FAILED { "failure": true, "TASK_FAILURE": true }
+PASS: late_mainline_main_flow

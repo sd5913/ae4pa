@@ -31,6 +31,9 @@ func run() -> void:
 		game.current_task_id = "TASK_03_AUTHORIZE"
 		game.task_status = "ACTIVE"
 		game._completed_task_ids.assign(["TASK_01_CLEAN", "TASK_02_PARCEL"])
+		# Unlocked later-floor fixture: test ordinary returns beyond the new story gates.
+		if number >= 4: game._completed_task_ids.append("TASK_04_PATROL")
+		if number == 5: game._completed_task_ids.append("TASK_05_EXIT")
 		game._world_flags = {"passage_201_unlocked": true, "passage_202_unlocked": true}
 		game._pending_monster_encounter.clear()
 		game._seen_monsters = {"NOSE": true, "EYE": true, "HAT": true, "EAR": true, "CHECKER": true}

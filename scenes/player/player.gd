@@ -13,6 +13,12 @@ var _movement_locked: bool = false
 @onready var _artwork = $Visual/Artwork
 
 
+func _ready() -> void:
+	var outfit := preload("res://scenes/player/player_identity_outfit.gd").new()
+	outfit.name = "IdentityOutfit"
+	_artwork.add_child(outfit)
+
+
 func _physics_process(delta: float) -> void:
 	var direction: float = 0.0
 	if not _movement_locked and GameManager.game_state == "PLAYING":

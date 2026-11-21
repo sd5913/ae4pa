@@ -36,6 +36,7 @@ func _player() -> Node2D:
 	return _floor().get_node("Player")
 
 func _run() -> void:
+	root.get_node("Localization").set_language("zh_CN") # This smoke checks Chinese notice text.
 	game = root.get_node("GameManager")
 	game.safe_return_started.connect(func(reason: String): safe_returns.append(reason))
 	cards = root.get_node("CardManager")
