@@ -1,10 +1,10 @@
 # Monster Staff Access — quick start
 
-An heads to the Night Shift Hotel to find her missing friend. The playable preview includes the prologue, the manager conversation, and the Room 201 cleaning task on the first two floors.
+Carol enters a five-floor monster hotel to rescue her friend Terese. The main branch includes the route from the prologue to the fifth-floor exit.
 
 ## Launch and choose a language
 
-1. Open `project.godot` in the Godot 4.x standard editor and wait for the initial import. The project is configured for the Compatibility renderer.
+1. Open `project.godot` in Godot 4.7.2 Standard and wait for the initial import. The project uses the Compatibility renderer.
 2. Press **F5** to open the main menu. Use the dropdown below **How to Play** to select **English**. On a fresh install it displays **简体中文**.
 3. Choose **Start Game**. During gameplay, press **Esc** and use the same dropdown in the pause menu. The game remembers your choice when you close it.
 
@@ -30,4 +30,8 @@ You can also use the mouse to advance the prologue. The task timer pauses while 
 4. Return to 2F and hold **E** at the stain near the broom to clean it. Press **E** at Room 201 to turn in the task.
 5. If you run out of time or get caught stealing, choose **Retry Task** to return to before you accepted the job. IDs and work completed during that attempt are undone.
 
-Tasks after Room 201, the Room 309 rescue, and the ending are still in development.
+## After Room 201
+
+Complete the guest tasks in Rooms 202–205 and turn in each one. On 3F, take the Room 302 task, approve the registration as the manager, then use the housekeeping ID to enter Room 309. After the rescue, turn in the patrol file at Room 403. Approve the departure form as the manager, turn it in at Room 501, and interact with the fifth-floor EXIT.
+
+Some dialogue is still in Chinese. See the [project home](../README.md) for the testing workbook and current acceptance status.
