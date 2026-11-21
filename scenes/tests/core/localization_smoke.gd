@@ -36,6 +36,14 @@ func _run() -> void:
 	_choose(selector, 1)
 	_check(TranslationServer.get_locale() == "en" and main == current_scene and menu.visible,
 		"Main-menu switch updates the locale in place")
+	_check(tr("返回%s按E交付") % "403" == "Return to Room 403 and press E to deliver.",
+		"Late-task delivery template is translated and formatted")
+	_check(tr("403已交付；前往5F501办理并交付离店单。") ==
+		"Room 403 is complete. Go to Room 501 on 5F to approve and deliver the exit form.",
+		"Late-task story objective is translated")
+	_check(tr("巡房记录已取得，返回403按E交付；交付前仍会计时。") ==
+		"Record collected. Return to Room 403 to deliver.",
+		"403 live HUD notice is translated")
 	_check(menu.get_node("%StartButton").atr("开始游戏") == "Start Game", "Godot translates scene text")
 	_check(tr("剩余时间：%d:%02d · %s") % [3, 5, tr("进行中")] == "Time left: 3:05 · In progress",
 		"Formatted strings preserve arguments and padding")
@@ -51,6 +59,7 @@ func _run() -> void:
 	_choose(selector, 0)
 	_check(tr("开始游戏") == "开始游戏", "Switching back returns the original source text")
 
+	menu.call("_finish_opening") # This test covers locale changes; menu motion has its own smoke.
 	menu.get_node("%StartButton").pressed.emit()
 	var dialogue: Control = main.get_node("StoryLayer/Dialogue")
 	var story_progress_path := "user://localization_smoke_progress.cfg"
@@ -66,7 +75,7 @@ func _run() -> void:
 	for _beat in range(80):
 		if not dialogue.visible:
 			break
-		dialogue.call("_on_continue_pressed")
+		dialogue.call("_advance")
 	_check(not dialogue.visible, "Prologue ends normally after live switching")
 
 	var game := root.get_node("GameManager")
@@ -74,7 +83,7 @@ func _run() -> void:
 	for _beat in range(65):
 		if not dialogue.visible:
 			break
-		dialogue.call("_on_continue_pressed")
+		dialogue.call("_advance")
 	_check(game.has_completed_manager_intro(), "The actual manager scene unlocks the next floor")
 	var story_progress := FileAccess.get_file_as_bytes(story_progress_path)
 	_check(not story_progress.is_empty(), "Completed dialogue writes to the separate story file")

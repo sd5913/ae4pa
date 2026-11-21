@@ -1560,3 +1560,324 @@ msgstr "Cleaning and Patrol Record"
 
 msgid "二楼通行备案"
 msgstr "2F Passage Registration"
+
+msgid "在%s接受任务，接受后限时180秒。"
+msgstr "Accept the task in Room %s. The 180-second timer starts after acceptance."
+
+msgid "重新挑战后回%s接受，救援和前序成果保留。"
+msgstr "After retrying, return to Room %s and accept again. The rescue and earlier progress are kept."
+
+msgid "在巡房员工身后站定，长按E偷取巡房记录。"
+msgstr "Stand behind the patrol staff member and hold E to take the patrol log."
+
+msgid "返回%s按E交付"
+msgstr "Return to Room %s and press E to deliver."
+
+msgid "403已交付；从右端楼梯上5F，在501接离店任务。"
+msgstr "Room 403 is complete. Take the stairs at the right end to 5F and accept the exit task in Room 501."
+
+msgid "切为当前经理身份，在五楼离店登记台按E批准。"
+msgstr "Activate the Manager ID, then press E at the 5F exit register to approve the form."
+
+msgid "Terese已同行；前往4F403取得并交付巡房记录。"
+msgstr "Terese is with you. Go to Room 403 on 4F, collect the patrol log, and deliver it."
+
+msgid "403已交付；前往5F501办理并交付离店单。"
+msgstr "Room 403 is complete. Go to Room 501 on 5F to approve and deliver the exit form."
+
+msgid "离店单已交付；前往五楼消防出口按E逃离。"
+msgstr "The exit form is delivered. Go to the 5F fire exit and press E to escape."
+
+msgid "巡房记录已取得，返回403按E交付；交付前仍会计时。"
+msgstr "Record collected. Return to Room 403 to deliver."
+
+msgid "巡房记录已取得，在403按E交付；不需要切换身份。"
+msgstr "Patrol record collected. Press E at Room 403 to deliver; no ID change is needed."
+
+msgid "独眼客"
+msgstr "One-Eyed Guest"
+
+msgid "礼帽客"
+msgstr "Top-Hat Guest"
+
+msgid "大耳客"
+msgstr "Big-Eared Guest"
+
+msgid "核验客"
+msgstr "Verifier"
+
+msgid "停、停！别再往前踩了。"
+msgstr "Stop, stop! Don't take another step."
+
+msgid "怎么了？"
+msgstr "What's wrong?"
+
+msgid "这股味道……你没闻见？地毯都脏成这样了！"
+msgstr "That smell... Can't you smell it? This carpet is filthy!"
+
+msgid "我只是来找人的。"
+msgstr "I'm just looking for someone."
+
+msgid "找人也不能踩着脏东西到处走。让负责清洁的人来。"
+msgstr "Then don't track dirt everywhere. Bring someone who cleans."
+
+msgid "清理干净，你就让我过去？"
+msgstr "If I clean it, will you let me through?"
+
+msgid "先打扫，再回来让我闻闻。别拿工作证晃一下就想走。"
+msgstr "Clean first. Then come back so I can smell. Waving an ID won't do."
+
+msgid "清洁的人呢？这股味道，我一刻都受不了了。"
+msgstr "Where's the cleaner? I can't stand this smell another moment."
+
+msgid "得先拿到保洁员的工作证。"
+msgstr "I need to get the housekeeper's ID first."
+
+msgid "证是有了，地毯可还脏着。"
+msgstr "You have the ID. The carpet is still dirty."
+
+msgid "去打扫。鼻子可不会看错。"
+msgstr "Go clean it. My nose doesn't lie."
+
+msgid "污渍已清理，返回 201 向长鼻客交付。"
+msgstr "Stain cleaned. Return to Room 201 to deliver the work."
+
+msgid "已经清理干净了。"
+msgstr "I've cleaned it."
+
+msgid "嗯……等等。"
+msgstr "Hmm... Wait."
+
+msgid "没有了。那股难闻的味道，总算没有了。"
+msgstr "Gone. That awful smell is finally gone."
+
+msgid "现在可以过去了吗？"
+msgstr "Can I go through now?"
+
+msgid "走吧，走吧。鞋底也注意一点。"
+msgstr "Go on. Watch your shoes, too."
+
+msgid "刚打扫好的，别再弄脏。"
+msgstr "It's freshly cleaned. Don't dirty it again."
+
+msgid "站住。你从保管柜那边过来的？"
+msgstr "Stop. Did you come from the storage cabinet?"
+
+msgid "没有，我刚上来。"
+msgstr "No. I just got here."
+
+msgid "我的包裹还在里面。替我拿来。"
+msgstr "My parcel is in there. Bring it to me."
+
+msgid "为什么不自己去？"
+msgstr "Why not get it yourself?"
+
+msgid "柜子只认保安权限。你去想办法。"
+msgstr "The cabinet requires security clearance. Work it out."
+
+msgid "拿来以后，你就让我过去？"
+msgstr "Bring it back, and you'll let me through?"
+
+msgid "东西完整地送到我手上，再谈。"
+msgstr "Bring it to me intact. Then we'll talk."
+
+msgid "没权限，柜子就不会开。还有什么不明白的？"
+msgstr "No clearance, no access. What's unclear?"
+
+msgid "工作证我看见了。包裹呢？"
+msgstr "I see the ID. Where's the parcel?"
+
+msgid "已取得包裹，返回 202 交付。"
+msgstr "Parcel collected. Return to Room 202 to deliver it."
+
+msgid "你的包裹。"
+msgstr "Your parcel."
+
+msgid "放这儿。让我看看。"
+msgstr "Put it here. Let me see."
+
+msgid "封条没动，编号也对。"
+msgstr "Seal intact. Number matches."
+
+msgid "检查完了？"
+msgstr "Finished checking?"
+
+msgid "完了。你可以走了。"
+msgstr "Yes. You can go."
+
+msgid "东西收到了。别再碰那个柜子。"
+msgstr "Received. Leave that cabinet alone."
+
+msgid "请稍候。我的房务申请，似乎还没有得到答复。"
+msgstr "One moment, please. My room-service request is still unanswered."
+
+msgid "我不是来处理房务的。"
+msgstr "I'm not here to handle room service."
+
+msgid "那真遗憾。这条通道，目前恐怕不便开放。"
+msgstr "How unfortunate. I'm afraid this passage cannot open yet."
+
+msgid "要怎样你才肯让我过去？"
+msgstr "What will it take to let me through?"
+
+msgid "请找一位有管理权限的人，到二楼登记台批准申请。"
+msgstr "Please find someone with management clearance to approve it at the 2F desk."
+
+msgid "然后回来告诉你？"
+msgstr "Then come back and tell you?"
+
+msgid "劳烦您了。手续齐全，大家都方便。"
+msgstr "Much obliged. Proper paperwork makes everything easier."
+
+msgid "恐怕还需要经理的权限。普通员工无法代签。"
+msgstr "I'm afraid manager clearance is required. Other staff cannot sign."
+
+msgid "身份没有问题。不过，申请仍在等待批准。"
+msgstr "Your clearance is sufficient. The request still awaits approval."
+
+msgid "房务申请已批准，返回 203 回复礼帽客。"
+msgstr "Request approved. Return to Room 203 to report back."
+
+msgid "你的申请已经批准了。"
+msgstr "Your request has been approved."
+
+msgid "如此甚好。让我确认一下。"
+msgstr "Excellent. Allow me to confirm."
+
+msgid "手续齐全，多谢您费心。"
+msgstr "All in order. Thank you for your trouble."
+
+msgid "那这条路……"
+msgstr "Then the passage..."
+
+msgid "自然。请便。"
+msgstr "Of course. Please proceed."
+
+msgid "事情办得很妥当。祝您今晚顺利。"
+msgstr "Very well handled. May your evening go smoothly."
+
+msgid "嘘。先别走。"
+msgstr "Shh. Don't go yet."
+
+msgid "你听见什么了？"
+msgstr "What did you hear?"
+
+msgid "鞋底拖过脏地毯的声音。来回，来回……一直不停。"
+msgstr "Soles dragging over dirty carpet. Back and forth. It never stops."
+
+msgid "你想让我打扫？"
+msgstr "You want me to clean it?"
+
+msgid "把那一处清理掉。还有，拿今晚的巡房记录来。"
+msgstr "Clean that spot. And bring tonight's patrol log."
+
+msgid "巡房记录在哪里？"
+msgstr "Where is the patrol log?"
+
+msgid "二楼的资料柜。保安才能领。"
+msgstr "The 2F records cabinet. Only security can collect it."
+
+msgid "先打扫，再去拿记录。对吗？"
+msgstr "Clean first, then collect the log. Right?"
+
+msgid "对。回来时，轻一点。"
+msgstr "Yes. Be quiet on your way back."
+
+msgid "本任务需要保洁和保安两种身份，请在背包中准备对应的两个装备槽。"
+msgstr "Prepare Housekeeper and Security IDs in the two equipped slots."
+
+msgid "那一处还没干净。脚步经过，我听得见。"
+msgstr "That spot is still dirty. I hear every footstep over it."
+
+msgid "走廊安静些了。"
+msgstr "The corridor is quieter."
+
+msgid "巡房记录呢？我要知道，今晚还有谁会经过。"
+msgstr "The patrol log? I need to know who will pass tonight."
+
+msgid "记录先拿好。走廊那一处，还没处理完。"
+msgstr "Keep the log safe. That spot still needs cleaning."
+
+msgid "清理与取件均已完成，返回 204 交付巡房记录。"
+msgstr "Both jobs are done. Return to Room 204 to deliver the patrol log."
+
+msgid "清理好了。巡房记录也拿来了。"
+msgstr "It's clean. I brought the patrol log, too."
+
+msgid "纸放下。慢一点。"
+msgstr "Put the paper down. Slowly."
+
+msgid "嗯……今晚的安排，都在这里。"
+msgstr "Hmm... Tonight's schedule. It's all here."
+
+msgid "我可以过去了？"
+msgstr "Can I go through?"
+
+msgid "可以。门开着的时候，记得停下脚步。"
+msgstr "Yes. Remember to stand still when the door is open."
+
+msgid "我听得见。轻一点就好。"
+msgstr "I can hear you. Just be gentle."
+
+msgid "停止通行。备案未完成。"
+msgstr "Stop. Transit registration incomplete."
+
+msgid "还需要什么？"
+msgstr "What else is required?"
+
+msgid "两项。领取通行单，完成管理批准。"
+msgstr "Two items. Collect the form. Obtain management approval."
+
+msgid "去哪里领？"
+msgstr "Where do I collect it?"
+
+msgid "二楼值班资料点。领取需要保安权限。"
+msgstr "The 2F duty records point. Security clearance required."
+
+msgid "批准要用经理身份？"
+msgstr "Manager identity for approval?"
+
+msgid "正确。办理完毕后，返回核验。"
+msgstr "Correct. Return for verification when complete."
+
+msgid "明白了。"
+msgstr "Understood."
+
+msgid "证件提前准备。核验期间，不得更换。"
+msgstr "Prepare your IDs in advance. No switching during verification."
+
+msgid "本任务需要保安和经理两种身份，请调整两个装备槽。"
+msgstr "Prepare Security and Manager IDs in the two equipped slots."
+
+msgid "第一项未完成。请先领取通行单。"
+msgstr "Item one incomplete. Collect the transit form first."
+
+msgid "文件已领取。"
+msgstr "Document collected."
+
+msgid "管理批准缺失。请前往登记台。"
+msgstr "Management approval missing. Proceed to the registration desk."
+
+msgid "批准通行单需要当前生效身份为经理。"
+msgstr "Approving the form requires Manager as the active identity."
+
+msgid "通行单已批准，返回 205 交付核验。"
+msgstr "Transit form approved. Return to Room 205 for verification."
+
+msgid "这是批准后的通行单。"
+msgstr "Here is the approved form."
+
+msgid "文件编号一致。"
+msgstr "Document number matches."
+
+msgid "管理批准有效。"
+msgstr "Management approval valid."
+
+msgid "备案完成，允许通行。"
+msgstr "Registration complete. Passage allowed."
+
+msgid "总算能继续往三楼走了。"
+msgstr "At last. I can continue toward the third floor."
+
+msgid "已完成核验，无须重复提交。"
+msgstr "Verification complete. Do not submit again."

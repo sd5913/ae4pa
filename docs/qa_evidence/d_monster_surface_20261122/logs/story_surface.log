@@ -1,0 +1,49 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Godot_v4.7.2-stable_win64_console.exe : ERROR: Failed to read the root certificate store.
+所在位置 行:2 字符: 477
++ ... | Out-Null; & $godot @godotArgs *> (Join-Path $ev ('logs/'+$label+'.l ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR: Failed t...tificate store.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+PASS: normal main opening starts with input disabled
+PASS: cover opening finishes with interactive buttons
+PASS: normal start enters real SMS with no auto advance
+PASS: continue button and its focus target removed
+PASS: first reading cannot skip
+PASS: room and phone frame clicks do not advance
+PASS: notification stays until the player explicitly opens the phone
+PASS: phone screen click opens chat without skipping its first message
+PASS: drag and wheel do not advance SMS
+PASS: chat click release advances exactly once
+PASS: held E echo is consumed
+PASS: touch and emulated mouse advance once together
+PASS: 24px skip margins (1280, 720)
+PASS: visible portrait bottom aligned (1280, 720)
+PASS: text inside panel (1280, 720)
+PASS: dialogue background does not advance
+PASS: panel click advances one beat
+PASS: 24px skip margins (1920, 1080)
+PASS: visible portrait bottom aligned (1920, 1080)
+PASS: text inside panel (1920, 1080)
+PASS: dialogue background does not advance
+PASS: panel click advances one beat
+PASS: 24px skip margins (960, 540)
+PASS: visible portrait bottom aligned (960, 540)
+PASS: text inside panel (960, 540)
+PASS: dialogue background does not advance
+PASS: panel click advances one beat
+PASS: interrupted intro still unread
+PASS: configured physical E advances once despite legacy device binding
+PASS: manager completion emitted once and saves read state
+PASS: extra advance cannot repeat completion
+PASS: read replay offers skip
+PASS: skip pointer cannot advance underlying SMS
+PASS: skip emits only one completion
+PASS: narration blank click advances one beat
+PASS: return to menu restarts one opening tween
+PASS: return menu restores buttons
+PASS: return menu has no title drift
+STORY_SURFACES: PASS

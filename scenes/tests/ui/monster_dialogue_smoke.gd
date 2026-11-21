@@ -11,12 +11,16 @@ func drain(screen: Control) -> void:
 		screen.advance()
 	check(false, "dialogue terminates")
 func run() -> void:
+	if "--english" in OS.get_cmdline_user_args():
+		root.size = Vector2i(960, 540)
+		root.get_node("Localization").set_language("en")
 	var game: Node = root.get_node("GameManager")
 	var cards: Node = root.get_node("CardManager")
 	var main: Node = load("res://scenes/main.tscn").instantiate()
 	root.add_child(main)
 	await process_frame
 	await process_frame
+	main.get_node("MenuLayer/MainMenu").call("_finish_opening")
 	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
 	main.dialogue.hide()
 	main._on_dialogue_finished("V4_INTRO")
@@ -35,6 +39,10 @@ func run() -> void:
 		await physics_frame
 	check(game.get_task_view().get("task_id") == "TASK_01_CLEAN" and game.get_task_view().get("status") == "AVAILABLE", "real encounter produces the 201 offer")
 	check(screen.visible and not board.visible and not game.is_world_input_allowed(), "201 introduction is shown before task board with world locked")
+	check(screen.get("_panel").get_theme_stylebox("panel") == main.dialogue.get_node("%DialogueFrame").get_theme_stylebox("panel"), "monster uses the actual standard story panel resource")
+	check(not screen.get("_surface").get_node("%SkipButton").visible, "monster dialogue has no intro skip")
+	check(main.get_node("TaskLayer/HUD").modulate.a == 0.0, "HUD hides during resident dialogue")
+	check(screen.get("_surface").get_node("%Portrait").texture == null, "missing formal monster portrait never substitutes scene sprite")
 	await capture("201-introduction")
 	var completed: Array[String] = []
 	screen.dialogue_finished.connect(func(id: String) -> void: completed.append(id))
@@ -43,6 +51,8 @@ func run() -> void:
 	event.pressed = true
 	screen._input(event)
 	check(screen.get("_index") == 1, "E advances exactly one line")
+	check(screen.get("_surface").get_node("%Portrait").visible, "Carol uses original story portrait slot")
+	await capture("carol")
 	var echo := InputEventKey.new()
 	echo.physical_keycode = KEY_E
 	echo.pressed = true
@@ -60,6 +70,7 @@ func run() -> void:
 	game.set_modal_open("OTHER_PAGE", true)
 	drain(screen)
 	screen.advance()
+	check(main.get_node("TaskLayer/HUD").modulate.a == 1.0, "HUD restores after resident dialogue")
 	check(completed == ["NOSE:INTRO"] and board.visible and not game.is_world_input_allowed(), "intro finishes once and hands off atomically to task panel")
 	check(game.get_pending_monster_encounter().get("room_id") == "201", "closing intro leaves pending encounter unresolved")
 	board.hide()
@@ -90,6 +101,10 @@ func run() -> void:
 	for monster: String in all:
 		for phase: String in all[monster]:
 			check(screen.preview_dialogue(monster + ":" + phase), "explicit preview " + monster + ":" + phase)
+			check(not screen.get("_surface").get_node("%SkipButton").visible, "no intro skip in " + monster + ":" + phase)
+			if "--english" in OS.get_cmdline_user_args():
+				for row: Array in all[monster][phase]:
+					check(tr(row[1]) != row[1], "English monster text: " + monster + ":" + phase)
 			drain(screen)
 	check(game.get_world_flags().get("passage_201_unlocked", false) and not game.has_friend, "previews do not change rescue facts")
 	main._show_story_dialogue("TASK_02_INTRO")

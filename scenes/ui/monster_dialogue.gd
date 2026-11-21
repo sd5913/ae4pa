@@ -8,37 +8,21 @@ var _id := ""
 var _index := 0
 var _lines: Array = []
 var _preview := false
-var _speaker := Label.new()
-var _body := Label.new()
-var _panel: PanelContainer
+var _speaker: Label
+var _body: Label
+var _panel: Panel
 var _pointer := preload("res://scenes/ui/story_pointer.gd").new()
-var _caption := Label.new()
+var _surface: Control
+const DialogueRoles = preload("res://scenes/ui/dialogue_roles.gd")
 
 func _ready() -> void:
 	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	theme = preload("res://scenes/ui/staff_ui_theme.tres")
-	var panel := PanelContainer.new()
-	_panel = panel
-	add_child(panel)
-	panel.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
-	panel.anchor_left = 0.1
-	panel.anchor_right = 0.9
-	panel.offset_top = -290
-	panel.offset_bottom = -20
-	panel.grow_vertical = Control.GROW_DIRECTION_BEGIN
-	var content := VBoxContainer.new()
-	panel.add_child(content)
-	content.add_theme_constant_override("separation", 8)
-	content.add_child(_caption)
-	_caption.add_theme_font_size_override("font_size", 14)
-	content.add_child(_speaker)
-	_speaker.add_theme_color_override("font_color", Color("e9bd6b"))
-	content.add_child(_body)
-	_body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_body.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_body.custom_minimum_size.y = 72
-	_body.add_theme_font_size_override("font_size", 22)
+	_surface = preload("res://scenes/ui/dialogue.tscn").instantiate()
+	add_child(_surface)
+	_panel = _surface.get_node("%DialogueFrame")
+	_speaker = _surface.get_node("%Speaker")
+	_body = _surface.get_node("%Line")
 	hide()
 
 func data() -> Dictionary:
@@ -94,15 +78,16 @@ func _open(dialogue_id: String, preview: bool) -> bool:
 	_lines = rows
 	_index = 0
 	_preview = preview
-	_caption.text = "独立文案预览 · 尚未接入该任务" if preview else "住客交谈"
 	GameManager.set_modal_open(MODAL_ID, true)
+	_pointer.reset()
+	_surface.mute_world_prompts()
 	show()
 	_render()
 	return true
 
 func _render() -> void:
-	_speaker.text = _lines[_index][0]
-	_body.text = _lines[_index][1]
+	var role := DialogueRoles.from_speaker(str(_lines[_index][0]))
+	_surface.present_character_beat(role, str(_lines[_index][1]))
 
 func advance() -> void:
 	if _id.is_empty() or not visible: return
@@ -112,6 +97,7 @@ func advance() -> void:
 		return
 	var finished := _id
 	_id = ""
+	_surface.restore_world_prompts()
 	hide()
 	# Consumer registers the next modal synchronously before this one is released.
 	dialogue_finished.emit(finished)
@@ -129,8 +115,10 @@ func _input(event: InputEvent) -> void:
 
 func cancel_dialogue() -> void:
 	_id = ""
+	_surface.restore_world_prompts()
 	hide()
 	GameManager.set_modal_open(MODAL_ID, false)
 
 func _exit_tree() -> void:
+	if is_instance_valid(_surface): _surface.restore_world_prompts()
 	GameManager.set_modal_open(MODAL_ID, false)

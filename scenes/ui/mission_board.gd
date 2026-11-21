@@ -1,5 +1,6 @@
 extends Control
 
+const TaskUiText = preload("res://scenes/ui/task_ui_text.gd")
 const MODAL_ID := "mission_board"
 
 signal task_accepted(task_id: String)
@@ -13,6 +14,7 @@ var _floor_buttons: Array[Button] = []
 var _status: Label
 var _hint: Label
 var _title: Label
+var _panel: PanelContainer
 
 
 func _ready() -> void:
@@ -26,7 +28,8 @@ func _ready() -> void:
 	center.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	add_child(center)
 	var panel := PanelContainer.new()
-	panel.custom_minimum_size = Vector2(760, 0)
+	_panel = panel
+	panel.custom_minimum_size = Vector2(_panel_width(), 0)
 	panel.theme = load("res://scenes/ui/staff_ui_theme.tres")
 	center.add_child(panel)
 	var content := VBoxContainer.new()
@@ -71,6 +74,7 @@ func _ready() -> void:
 	close_button.text = "关闭"
 	content.add_child(close_button)
 	close_button.pressed.connect(hide)
+	get_viewport().size_changed.connect(_on_viewport_size_changed)
 	if GameManager.has_signal("task_updated"):
 		GameManager.connect("task_updated", refresh_from_game_manager)
 	if GameManager.has_signal("task_offered"):
@@ -144,8 +148,19 @@ func refresh_from_game_manager(_unused: Variant = null) -> void:
 		button.text = "%dF%s" % [floor_number, tr(" · 可前往") if not button.disabled else ""]
 	var remaining: float = float(task_view.get("remaining_time", 0.0))
 	var target_id: String = str(task_view.get("target_id", ""))
-	var step: String = str(task_view.get("step", ""))
-	_hint.text = tr("目标：%s · 步骤：%s · 剩余：%s") % [tr(target_id), tr(step), _format_time(remaining)] if not target_id.is_empty() else "任务目标与剩余时间由 GameManager 提供。"
+	var step: String = TaskUiText.step_for_view(task_view)
+	if step.is_empty():
+		step = tr(str(task_view.get("step", "")))
+	_hint.text = tr("目标：%s · 步骤：%s · 剩余：%s") % [tr(target_id), step, _format_time(remaining)] if not target_id.is_empty() else tr("任务目标与剩余时间由 GameManager 提供。")
+
+
+func _panel_width() -> float:
+	return maxf(280.0, minf(760.0, get_viewport_rect().size.x - 48.0))
+
+
+func _on_viewport_size_changed() -> void:
+	if is_instance_valid(_panel):
+		_panel.custom_minimum_size.x = _panel_width()
 
 
 func show_warning(message: String) -> void:

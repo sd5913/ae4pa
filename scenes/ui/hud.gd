@@ -6,6 +6,7 @@ signal pause_requested()
 signal task_details_requested()
 
 const CardDisplay = preload("res://scenes/ui/card_display.gd")
+const TaskUiText = preload("res://scenes/ui/task_ui_text.gd")
 const ACTIVE_SLOT_FRAME := preload("res://assets/final/ui/hotel_interface/card_slot_active.png")
 const INACTIVE_SLOT_FRAME := preload("res://assets/final/ui/hotel_interface/card_slot_inactive.png")
 const ACTIVE_COLOR := Color(0.97, 0.72, 0.39)
@@ -96,6 +97,9 @@ func _refresh_task_display() -> void:
 	# The task title has its own label; keep the target readable independently.
 	var step_names := {"GET_CLEANER":"取得保洁工作证", "CLEAN_STAIN":"使用保洁身份清理污渍", "RETURN_TO_201":"返回 201 交付", "GET_SECURITY":"取得保安工作证", "PICKUP_PARCEL":"使用保安身份领取包裹", "RETURN_TO_202":"返回 202 交付包裹", "GET_MANAGER":"取得经理工作证", "EQUIP_MANAGER":"装备经理工作证", "AUTHORIZE_309":"使用经理身份批准 309 登记"}
 	var objective := tr("当前无任务") if task_name.is_empty() else tr(step_names.get(step, "打开任务详情查看目标"))
+	var late_step := TaskUiText.step_for_view(task_view)
+	if not late_step.is_empty():
+		objective = late_step
 	_apply_task_view(task_view, objective)
 
 
@@ -119,7 +123,7 @@ func _apply_task_view(view: Dictionary, objective: String) -> void:
 
 func _next_objective(completed_id: String) -> String:
 	if GameManager.has_friend:
-		return GameManager.get_story_objective()
+		return tr(GameManager.get_story_objective())
 	if completed_id == GameManager.TASK_03_ID: return tr("309登记已批准；切为保洁身份进入309，寻找Terese。")
 	# Read the real catalog and prerequisites. UI never opens or offers a task.
 	var catalog: Dictionary = preload("res://scripts/task_definitions.gd").TASKS
@@ -139,6 +143,7 @@ func _next_objective(completed_id: String) -> String:
 
 
 func set_notice(message: String) -> void:
+	message = TaskUiText.notice_for_display(message)
 	var view: Dictionary = GameManager.get_task_view()
 	var cache_key := message + str(view.get("status")) + str(view.get("step")) + CardManager.active_card
 	if cache_key == _last_notice: return
