@@ -6,6 +6,8 @@ signal steal_attempted(card_id: String, succeeded: bool)
 signal task_failure_requested(reason: String, target_id: String)
 signal interaction_state_changed(target_id: String, state: Dictionary)
 
+const ROLE_NAMES := {"CLEANER": "保洁", "SECURITY": "保安", "MANAGER": "经理", "NONE": "无身份"}
+
 @export_enum("SECURITY", "CLEANER", "MANAGER") var card_id: String = "SECURITY"
 @export var target_id: String = ""
 @export_enum("CARD", "TASK_ITEM") var reward_type: String = "CARD"
@@ -24,6 +26,7 @@ signal interaction_state_changed(target_id: String, state: Dictionary)
 var _player: HotelPlayer
 var _player_in_range: bool = false
 var _is_stealing: bool = false
+var _card_feedback_active: bool = false
 var _steal_elapsed: float = 0.0
 var _steal_player_position: Vector2
 var _task_eligible: bool = false
@@ -83,7 +86,7 @@ func setup(player: HotelPlayer) -> void:
 func set_task_eligible(eligible: bool) -> void:
 	_task_eligible = eligible
 	if not is_task_eligible():
-		cancel_steal()
+		_cancel_steal("INELIGIBLE")
 	_update_card_marker()
 	_emit_interaction_state()
 
@@ -95,7 +98,7 @@ func is_task_eligible() -> bool:
 func set_interaction_enabled(enabled: bool) -> void:
 	_interaction_enabled = enabled
 	if not enabled:
-		cancel_steal()
+		_cancel_steal("DISABLED")
 	_emit_interaction_state()
 
 
@@ -111,6 +114,9 @@ func show_caught_alert() -> void:
 	_end_suspicion(false)
 	_is_alerted = true
 	cancel_steal()
+	_card_feedback_active = false
+	feedback_label.hide()
+	feedback_timer.stop()
 	turn_timer.stop()
 	turn_warning_timer.stop()
 	behavior_timer.stop()
@@ -191,10 +197,23 @@ func begin_steal() -> bool:
 
 
 func cancel_steal() -> void:
+	_cancel_steal(get_interaction_block_reason())
+
+
+func _cancel_steal(reason: String) -> void:
 	if not _is_stealing:
 		return
 	_is_stealing = false
 	_steal_elapsed = 0.0
+	if not _is_alerted and GameManager.is_world_input_allowed():
+		var messages := {
+			"PLAYER_MOVING": "已取消偷取：先停下再重试",
+			"STAFF_MOVING": "已取消偷取：等员工停下再试",
+			"OUT_OF_RANGE": "已取消偷取：已离开范围",
+			"INELIGIBLE": "已取消偷取：当前任务不允许",
+			"DISABLED": "已取消偷取：当前无法操作",
+		}
+		_show_feedback(tr(messages.get(reason, "已取消偷取：需持续按住 E")), false)
 	steal_attempted.emit(card_id, false)
 	_emit_interaction_state("CANCELLED")
 
@@ -239,6 +258,10 @@ func get_interaction_block_reason() -> String:
 
 func set_reward_available(available: bool) -> void:
 	_task_item_available = available
+	if available:
+		_card_feedback_active = false
+		feedback_label.hide()
+		feedback_timer.stop()
 	if not _is_reward_available():
 		cancel_steal()
 	_update_card_marker()
@@ -253,7 +276,6 @@ func _complete_steal() -> bool:
 	_is_stealing = false
 	_steal_elapsed = 0.0
 	var succeeded: bool = false
-	var completed_reward_id: String = card_id if reward_type == "CARD" else reward_id
 	if reward_type == "CARD":
 		succeeded = CardManager.collect_card(card_id)
 	elif reward_type == "TASK_ITEM" and _task_item_available and not reward_id.is_empty():
@@ -263,9 +285,8 @@ func _complete_steal() -> bool:
 	if succeeded:
 		_end_suspicion(true)
 		turn_warning.visible = false
-		feedback_label.text = "GOT %s" % tr(completed_reward_id)
-		feedback_label.visible = true
-		feedback_timer.start()
+		_card_feedback_active = reward_type == "CARD"
+		_show_feedback(_card_feedback_text() if _card_feedback_active else tr("已取得巡房文件") if reward_id == "PATROL_RECORD" else tr("已取得任务文件"))
 		_update_card_marker()
 		if reward_type == "CARD":
 			card_stolen.emit(card_id)
@@ -273,6 +294,19 @@ func _complete_steal() -> bool:
 			task_item_stolen.emit(reward_id, target_id)
 		_emit_interaction_state("COMPLETED", 1.0, steal_hold_time)
 	return succeeded
+
+
+func _card_feedback_text() -> String:
+	var slot: int = CardManager.get_equipped_cards().find(card_id)
+	var equipment: String = tr("未装备；按 I 选择 A/B 槽") if slot < 0 else tr("已装备%s槽") % ("A" if slot == 0 else "B")
+	return tr("已收藏：%s证 · %s\n当前生效：%s") % [tr(ROLE_NAMES[card_id]), equipment, tr(ROLE_NAMES[CardManager.active_card])]
+
+
+func _show_feedback(message: String, success: bool = true) -> void:
+	feedback_label.text = message
+	feedback_label.add_theme_color_override("font_color", Color(0.4, 1, 0.55, 1) if success else Color(1, 0.8, 0.4, 1))
+	feedback_label.show()
+	feedback_timer.start()
 
 
 func is_player_in_range() -> bool:
@@ -309,7 +343,7 @@ func _process(delta: float) -> void:
 		cancel_steal()
 		return
 	if _is_player_movement_input_active() or not _player.global_position.is_equal_approx(_steal_player_position):
-		cancel_steal()
+		_cancel_steal("PLAYER_MOVING")
 		return
 	if not is_player_behind():
 		cancel_steal()
@@ -331,7 +365,7 @@ func _on_steal_area_body_entered(body: Node2D) -> void:
 func _on_steal_area_body_exited(body: Node2D) -> void:
 	if body == _player:
 		_player_in_range = false
-		cancel_steal()
+		_cancel_steal("OUT_OF_RANGE")
 		_emit_interaction_state()
 
 
@@ -366,10 +400,18 @@ func _show_turn_preview() -> void:
 
 
 func _on_feedback_timer_timeout() -> void:
+	_card_feedback_active = false
 	feedback_label.visible = false
 
 
 func _on_cards_changed() -> void:
+	if _card_feedback_active:
+		if CardManager.has_card(card_id):
+			feedback_label.text = _card_feedback_text()
+		else:
+			_card_feedback_active = false
+			feedback_label.hide()
+			feedback_timer.stop()
 	_update_card_marker()
 	if _is_player_recognized():
 		_end_suspicion(true)
@@ -487,7 +529,7 @@ func _set_cleaner_state(next_state: String) -> void:
 
 
 func _prepare_cleaner_walk(to_cart: bool) -> void:
-	cancel_steal()
+	_cancel_steal("STAFF_MOVING")
 	turn_timer.stop()
 	turn_warning_timer.stop()
 	_show_turn_preview()
