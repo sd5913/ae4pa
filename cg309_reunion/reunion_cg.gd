@@ -24,6 +24,7 @@ var _transition_tween: Tween
 var _camera_tween: Tween
 var _textures: Dictionary = {}
 var _run_token := 0
+var _pointer := preload("res://scenes/ui/story_pointer.gd").new()
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -94,6 +95,7 @@ func _new_frame() -> TextureRect:
 	return node
 
 func play() -> void:
+	_pointer.reset()
 	_stop_tweens()
 	_run_token += 1
 	_index = -1
@@ -132,11 +134,7 @@ func _show_next() -> void:
 	_speaker.text = " " if narrative else str(beat.get("speaker_en", beat["speaker"])) if TranslationServer.get_locale().begins_with("en") else str(beat["speaker"])
 	_line.text = str(beat["text"])
 	_line.add_theme_color_override("font_color", Color("#d3c5ad") if narrative else Color("#f8f0df"))
-	var key := "未绑定"
-	for input in InputMap.action_get_events("interact"):
-		if input is InputEventKey:
-			key = OS.get_keycode_string(input.physical_keycode if input.physical_keycode != 0 else input.keycode)
-	_hint.text = key + (" / 鼠标左键 · 结束" if _index == _beats.size() - 1 else " / 鼠标左键 · 继续") + "    %d / %d" % [_index + 1, _beats.size()]
+	_hint.text = "%d / %d" % [_index + 1, _beats.size()]
 	var next_id := str(beat["frame"])
 	if next_id != _frame_id:
 		_change_frame(next_id)
@@ -187,13 +185,12 @@ func cancel() -> void:
 func _input(event: InputEvent) -> void:
 	if not _playing or not visible:
 		return
-	var pressed := false
-	pressed = event.is_action_pressed("interact") and not event.is_echo()
-	if event is InputEventMouseButton:
-		pressed = event.pressed and event.button_index == MOUSE_BUTTON_LEFT
-	if pressed:
-		get_viewport().set_input_as_handled()
+	var surfaces: Array[Rect2] = [_panel.get_global_rect()]
+	var result: int = _pointer.feed(event, surfaces, _transitioning)
+	if result == _pointer.ADVANCE:
 		advance()
+	if result != _pointer.IGNORE:
+		get_viewport().set_input_as_handled()
 
 func _exit_tree() -> void:
 	_run_token += 1

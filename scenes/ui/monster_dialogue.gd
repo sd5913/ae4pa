@@ -10,7 +10,8 @@ var _lines: Array = []
 var _preview := false
 var _speaker := Label.new()
 var _body := Label.new()
-var _next := Button.new()
+var _panel: PanelContainer
+var _pointer := preload("res://scenes/ui/story_pointer.gd").new()
 var _caption := Label.new()
 
 func _ready() -> void:
@@ -18,6 +19,7 @@ func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	theme = preload("res://scenes/ui/staff_ui_theme.tres")
 	var panel := PanelContainer.new()
+	_panel = panel
 	add_child(panel)
 	panel.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
 	panel.anchor_left = 0.1
@@ -37,9 +39,6 @@ func _ready() -> void:
 	_body.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	_body.custom_minimum_size.y = 72
 	_body.add_theme_font_size_override("font_size", 22)
-	content.add_child(_next)
-	_next.text = "继续 · E"
-	_next.pressed.connect(advance)
 	hide()
 
 func data() -> Dictionary:
@@ -99,7 +98,6 @@ func _open(dialogue_id: String, preview: bool) -> bool:
 	GameManager.set_modal_open(MODAL_ID, true)
 	show()
 	_render()
-	_next.grab_focus()
 	return true
 
 func _render() -> void:
@@ -120,11 +118,13 @@ func advance() -> void:
 	GameManager.set_modal_open(MODAL_ID, false)
 	get_viewport().set_input_as_handled()
 
-func _unhandled_input(event: InputEvent) -> void:
-	if not visible or _id.is_empty() or event.is_echo(): return
-	var mouse: bool = event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed
-	if event.is_action_pressed("interact") or mouse:
+func _input(event: InputEvent) -> void:
+	if not visible or _id.is_empty(): return
+	var surfaces: Array[Rect2] = [_panel.get_global_rect()]
+	var result: int = _pointer.feed(event, surfaces)
+	if result == _pointer.ADVANCE:
 		advance()
+	if result != _pointer.IGNORE:
 		get_viewport().set_input_as_handled()
 
 func cancel_dialogue() -> void:

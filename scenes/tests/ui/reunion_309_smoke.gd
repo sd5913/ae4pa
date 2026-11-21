@@ -17,6 +17,7 @@ func tap(mouse: bool = false) -> void:
 	if mouse:
 		var click := InputEventMouseButton.new()
 		click.button_index = MOUSE_BUTTON_LEFT
+		click.position = root.get_final_transform() * main.get_node("Room309Reunion").cg.get("_panel").get_global_rect().get_center()
 		click.pressed = true
 		event = click
 	else:
@@ -26,10 +27,9 @@ func tap(mouse: bool = false) -> void:
 		event = action
 	Input.parse_input_event(event)
 	await settle()
-	if not mouse:
-		event.pressed = false
-		Input.parse_input_event(event)
-		await settle()
+	event.pressed = false
+	Input.parse_input_event(event)
+	await settle()
 func drain_monster() -> void:
 	var screen = main.get_node("TaskLayer/MonsterDialogue")
 	for i in range(80):

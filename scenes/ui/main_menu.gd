@@ -1,6 +1,7 @@
 extends Control
 
 signal start_requested()
+## Kept for the main-scene hookup; the cover no longer has a Help button.
 signal help_requested()
 
 var _opening: Tween
@@ -26,11 +27,11 @@ func _ready() -> void:
 func _resize_layout() -> void:
 	_bolt.scale = size / Vector2(1280, 720)
 	_content.custom_minimum_size.x = minf(size.x * 0.76, 700.0)
-	$Center/Content/TitleSlot.custom_minimum_size.y = clampf(size.y * 0.24, 100.0, 180.0)
+	$Center/Content/TitleSlot.custom_minimum_size.y = clampf(size.y * 0.27, 100.0, 220.0)
 
 func _set_interactive(enabled: bool) -> void:
 	_ready_for_input = enabled
-	for button: Button in [%StartButton, %HelpButton, %LanguageSelector]:
+	for button: Button in [%StartButton, %LanguageSelector]:
 		button.disabled = not enabled
 		button.focus_mode = Control.FOCUS_ALL if enabled else Control.FOCUS_NONE
 
@@ -42,7 +43,7 @@ func _play_opening() -> void:
 	_title.modulate.a = 0.0
 	_title.offset_top = 72
 	_title.offset_bottom = 72
-	for button: Button in [%StartButton, %HelpButton, %LanguageSelector]:
+	for button: Button in [%StartButton, %LanguageSelector]:
 		button.modulate.a = 0.0
 		button.scale = Vector2.ONE
 	_blackout.color.a = 1.0
@@ -63,7 +64,6 @@ func _play_opening() -> void:
 	_opening.parallel().tween_property(_title, "offset_bottom", 0.0, 0.7).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	_opening.parallel().tween_property(_title, "modulate:a", 1.0, 0.6)
 	_opening.tween_property(%StartButton, "modulate:a", 1.0, 0.25)
-	_opening.tween_property(%HelpButton, "modulate:a", 1.0, 0.25)
 	_opening.tween_property(%LanguageSelector, "modulate:a", 1.0, 0.2)
 	_opening.finished.connect(_finish_opening, CONNECT_ONE_SHOT)
 
@@ -80,7 +80,7 @@ func _finish_opening() -> void:
 	_title.offset_top = 0.0
 	_title.offset_bottom = 0.0
 	_title.modulate.a = 1.0
-	for button: Button in [%StartButton, %HelpButton, %LanguageSelector]:
+	for button: Button in [%StartButton, %LanguageSelector]:
 		button.modulate.a = 1.0
 	_set_interactive(true)
 	if visible:
@@ -107,7 +107,3 @@ func _on_start_pressed() -> void:
 	_starting = true
 	_set_interactive(false)
 	start_requested.emit()
-
-func _on_help_pressed() -> void:
-	if _ready_for_input and not _starting:
-		help_requested.emit()

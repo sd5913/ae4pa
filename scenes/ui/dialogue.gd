@@ -89,6 +89,9 @@ var _progress_path := DEFAULT_PROGRESS_PATH
 var _current_scene := ""
 var _transition_in_progress := false
 var _skip_transitions := false
+var _pointer := preload("res://scenes/ui/story_pointer.gd").new()
+var _portrait_cache: Dictionary = {}
+var _phone_waiting_for_open := false
 var _phone_tween: Tween
 
 @onready var _background: TextureRect = %Background
@@ -98,9 +101,9 @@ var _phone_tween: Tween
 @onready var _speaker: Label = %Speaker
 @onready var _line: Label = %Line
 @onready var _cue: Label = %StageCue
-@onready var _continue_button: Button = %ContinueButton
 @onready var _skip_button: Button = %SkipButton
 @onready var _sms_panel: Control = %SMSPanel
+@onready var _phone_screen: Control = %PhoneScreen
 @onready var _phone_chat: VBoxContainer = %PhoneChat
 @onready var _phone_notification: PanelContainer = %PhoneNotification
 @onready var _vibration_marks: TextureRect = %VibrationMarks
@@ -112,7 +115,6 @@ var _phone_tween: Tween
 func _ready() -> void:
 	visible = false
 	_skip_transitions = "--ui-smoke" in OS.get_cmdline_user_args()
-	_continue_button.grab_focus()
 	resized.connect(_fit_dialogue_text.call_deferred)
 	_line.resized.connect(_fit_dialogue_text.call_deferred)
 
@@ -132,33 +134,54 @@ func _notification(what: int) -> void:
 func _fit_dialogue_text() -> void:
 	if not is_node_ready() or not _line.visible or not _frame.visible:
 		return
-	# Grow upward for translated paragraphs, leaving the fixed action row clear.
-	var text_bottom := _continue_button.position.y - 16.0
-	var text_top := minf(size.y * _line.anchor_top, text_bottom - _line.get_minimum_size().y)
-	_line.offset_top = text_top - size.y * _line.anchor_top
-	_line.offset_bottom = text_bottom - size.y * _line.anchor_bottom
-	_speaker.offset_top = text_top - 60.0 - size.y * _speaker.anchor_top
-	_speaker.offset_bottom = text_top - 8.0 - size.y * _speaker.anchor_bottom
-	_frame.offset_top = text_top - 32.0 - size.y * _frame.anchor_top
+	# Grow paragraphs within the panel, independent of the removed action button.
+	var bottom := minf(size.y * 0.91, _skip_button.position.y - 16.0) if _skip_button.visible else size.y * 0.91
+	var top := minf(size.y * 0.763, bottom - _line.get_minimum_size().y)
+	_line.offset_top = top - size.y * _line.anchor_top
+	_line.offset_bottom = bottom - size.y * _line.anchor_bottom
+	_frame.offset_top = minf(0.0, top - 32.0 - size.y * _frame.anchor_top)
+	_speaker.offset_top = _frame.position.y - 28.0 - size.y * _speaker.anchor_top
+	_speaker.offset_bottom = _frame.position.y + 24.0 - size.y * _speaker.anchor_bottom
+	if _portrait.texture != null:
+		var height := minf(size.y * 0.52, size.x * 0.265 / _portrait.texture.get_width() * _portrait.texture.get_height())
+		var width := height * _portrait.texture.get_width() / _portrait.texture.get_height()
+		_portrait.offset_right = size.x * _portrait.anchor_left + width - size.x * _portrait.anchor_right
+		_portrait.offset_top = size.y * 0.95 - height - size.y * _portrait.anchor_top
+		var name_left := maxf(size.x * 0.25, _portrait.position.x + width + 20.0)
+		_speaker.offset_left = name_left - size.x * _speaker.anchor_left
+		_speaker.offset_right = name_left + maxf(128.0, _speaker.get_minimum_size().x + 24.0) - size.x * _speaker.anchor_right
 
 
 func _refresh_stage_cue() -> void:
 	_cue.text = tr("（%s）") % tr(_beats[_line_index].text)
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if not visible or _dialogue_id.is_empty() or _transition_in_progress:
+func _input(event: InputEvent) -> void:
+	if not visible or _dialogue_id.is_empty():
 		return
-	var mouse_advance: bool = false
-	if event is InputEventMouseButton:
-		mouse_advance = event.button_index == MOUSE_BUTTON_LEFT and event.pressed
-	var key_advance: bool = event.is_action_pressed("interact") and not event.is_echo()
-	if mouse_advance or key_advance:
+	# Skip owns its gesture and must not also advance the story underneath.
+	if event is InputEventMouse or event is InputEventScreenTouch or event is InputEventScreenDrag:
+		if _skip_button.visible and _skip_button.get_global_rect().has_point(event.position):
+			_pointer.reset()
+			return
+	var surfaces: Array[Rect2] = []
+	if _sms_panel.visible:
+		surfaces.append(_phone_screen.get_global_rect() if _phone_waiting_for_open else _sms_scroll.get_global_rect())
+	elif _frame.visible:
+		surfaces.append(_frame.get_global_rect())
+		if _portrait.visible:
+			surfaces.append(_portrait.get_global_rect())
+	else:
+		surfaces.append(get_global_rect())
+	var result: int = _pointer.feed(event, surfaces, _transition_in_progress or _phone_tween != null)
+	if result == _pointer.ADVANCE:
 		_advance()
+	if result != _pointer.IGNORE:
 		get_viewport().set_input_as_handled()
 
 
 func show_dialogue(dialogue_id: String) -> void:
+	_pointer.reset()
 	_finish_phone_animation()
 	var old_scene := _current_scene
 	_dialogue_id = dialogue_id
@@ -205,9 +228,7 @@ func show_dialogue(dialogue_id: String) -> void:
 		_skip_button.text = "跳过已读对白"
 	else:
 		_skip_button.text = "跳过"
-	_continue_button.text = "继续"
 	show()
-	_continue_button.grab_focus()
 
 
 ## Shared task adapter: A owns when to offer/start a task; D only presents these lines.
@@ -223,9 +244,7 @@ func show_task_dialogue(dialogue_id: String, speaker: String, lines: Array[Strin
 	_set_scene("lobby", false)
 	_show_line()
 	_skip_button.hide()
-	_continue_button.text = "继续"
 	show()
-	_continue_button.grab_focus()
 	return true
 
 
@@ -346,13 +365,14 @@ func _animate_phone_notification() -> void:
 	_vibration_marks.show()
 	_sms_panel.rotation_degrees = 9
 	_phone_tween = create_tween()
-	for angle: float in [13.0, 7.0, 12.0, 6.0, 10.0, 5.0]:
-		_phone_tween.tween_property(_sms_panel, "rotation_degrees", angle, 0.075)
+	for angle: float in [13.0, -12.0, 11.0, -10.0, 9.0, -8.0, 7.0, -6.0, 5.0, -4.0, 3.0, -2.0, 1.5, -1.0]:
+		_phone_tween.tween_property(_sms_panel, "rotation_degrees", angle, 0.105)
 	_phone_tween.tween_callback(_vibration_marks.hide)
 	_phone_tween.tween_property(_sms_panel, "rotation_degrees", 0.0, 0.22).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	_phone_tween.finished.connect(func() -> void:
 		_phone_tween = null
-		_finish_phone_animation()
+		_phone_waiting_for_open = true
+		_vibration_marks.hide()
 	, CONNECT_ONE_SHOT)
 
 
@@ -363,6 +383,7 @@ func _finish_phone_animation() -> void:
 	_vibration_marks.hide()
 	_sms_panel.rotation_degrees = 0.0
 	_phone_notification.hide()
+	_phone_waiting_for_open = false
 	_phone_chat.show()
 
 
@@ -394,7 +415,7 @@ func _add_sms_message(speaker: String, text: String) -> void:
 	body.text = text
 	body.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	body.add_theme_color_override("font_color", Color("fff4dc") if is_friend else Color("3c2920"))
-	body.add_theme_font_size_override("font_size", 17)
+	body.add_theme_font_size_override("font_size", 18)
 	body.name = "Body"
 	bubble.add_child(body)
 	var spacer := Control.new()
@@ -415,7 +436,7 @@ func _add_sms_message(speaker: String, text: String) -> void:
 
 func _size_sms_body(body: Label) -> void:
 	var font := body.get_theme_font("font")
-	body.custom_minimum_size.x = minf(146.0, ceilf(font.get_string_size(
+	body.custom_minimum_size.x = minf(maxf(100.0, _sms_scroll.size.x * 0.76 - 20.0), ceilf(font.get_string_size(
 		tr(body.text), HORIZONTAL_ALIGNMENT_LEFT, -1, body.get_theme_font_size("font_size")
 	).x))
 
@@ -439,7 +460,23 @@ func _display_portrait(speaker: String, expression: String) -> void:
 		var portraits: Dictionary = ROLE_PORTRAITS[role]
 		var key: String = EXPRESSION_ALIASES.get(expression, expression)
 		_portrait.texture = portraits.get(key, portraits["neutral"])
+	_portrait.texture = _trim_portrait(_portrait.texture)
 	_portrait.show()
+	_fit_dialogue_text.call_deferred()
+
+
+func _trim_portrait(texture: Texture2D) -> Texture2D:
+	if _portrait_cache.has(texture):
+		return _portrait_cache[texture]
+	var image := texture.get_image()
+	if image == null:
+		return texture
+	var region := image.get_used_rect()
+	if region.size == Vector2i.ZERO:
+		return texture
+	var cropped := ImageTexture.create_from_image(image.get_region(region))
+	_portrait_cache[texture] = cropped
+	return cropped
 
 
 func _atlas_cell(sheet: Texture2D, face_index: int) -> AtlasTexture:
@@ -474,7 +511,12 @@ func _advance() -> void:
 	if _dialogue_id.is_empty() or _transition_in_progress:
 		return
 	if _phone_tween != null:
-		_finish_phone_animation()
+		return
+	if _phone_waiting_for_open:
+		_phone_waiting_for_open = false
+		_phone_notification.hide()
+		_phone_chat.show()
+		_scroll_sms_to_message(_sms_history.get_child(-1))
 		return
 	if not _beats.is_empty():
 		if _line_index + 1 < _beats.size():
@@ -514,10 +556,6 @@ func _save_intro_read() -> void:
 	var error := config.save(_progress_path)
 	if error != OK:
 		push_error("Unable to save completed intro state: " + error_string(error))
-
-
-func _on_continue_pressed() -> void:
-	_advance()
 
 
 func _on_skip_pressed() -> void:

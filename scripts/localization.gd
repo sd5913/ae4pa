@@ -40,4 +40,4 @@ func _register_font_fallback() -> void:
 
 func _apply_locale(locale: String) -> void:
 	TranslationServer.set_locale(locale)
-	get_tree().root.title = tr("怪物员工通道 Monster Staff Access")
+	get_tree().root.title = "Monster Hotel"
