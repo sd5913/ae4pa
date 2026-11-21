@@ -335,3 +335,11 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 - TC-01—11、TC-20 的多人同提交联合执行、两名组员八任务实际用时／暂停时间、人工试玩、导出平台验证和真实1—3分钟演示本轮均未完成；不填写推测数据。保留 PR #57 更新后的 `outputs/game-test-20261121/游戏测试.xlsx` 原记录，后续由 A/B/C 在同一可执行提交上补录实测环境、结果和证据。截图为自动化脚本在正式主场景中的运行画面，不作为真人或导出构建证据。
 
 - 本轮已验证的代码／测试／证据提交：`044aa35b1dbdb1772fa2c3dde34193569a2180ab`；该提交内容即上述测试所用代码树，随后仅补记本 QA 提交号。
+
+### 2026-11-22 D：合入 main 后的后段交付复测
+
+- 工作区 `ae4pa-d-delivery-closeout`、分支 `work/member-D-delivery-closeout`。用户提供 main `ea717f562b110b74bab4b54fdfad32f8e867dccb` 与本机缓存 `origin/main` 一致；`git fetch origin` 和 `git ls-remote origin refs/heads/main` 均因无法连接 `github.com:443` 失败，远端未能独立刷新。本地从匹配该 SHA 的缓存引用合入，提交 `6fde88e940b9eb61920c6ff4457c90f50db37f10`，无冲突；测试均在该合并提交上运行。此前314个未跟踪条目未清理或覆盖。
+- Godot `4.7.2.stable.official.ed1daf0bf`（Windows，本地 console 可执行文件）；隔离临时用户配置。`--headless --editor --path . --import` 退出0；`localization_smoke.gd` 退出0；`late_mainline_main_flow_smoke.gd` 中文、英文各退出0；图形 `hud_layout_smoke.gd --after` 退出0，覆盖无任务、任务中、完成、长文本、卡槽、背包、暂停、对白，以及 1280×720、1920×1080、960×540 布局。Godot 根证书读取错误未阻断这些通过结果。正式场景截图和逐项日志见[本轮证据](qa_evidence/d_delivery_closeout_20261122/README.md)。一次 `--quit-after 5` 导入试运行中止扫描线程，不作为通过记录。
+- `task_ui_smoke.gd` 退出3：空 OwnedCards 列表导致 `get_item_icon`／`select` 越界，随后当前 floor 找不到 `Interactions/Stain201Slot/CleaningSpot`。`full_mainline_escape_smoke.gd` 退出1：最终“八任务／309／EXIT”断言失败；日志同时显示 `ROOM_SERVICE_203`、`TRANSIT_REGISTER_205` 状态为 `TASK_INACTIVE`。两者均不计PASS，待相关测试夹具／A 任务配置定位。
+- 403 巡房界面仍有文字靠近员工与房门区域。A 的 `scenes/levels/floor.gd` 生成“巡房记录已取得／返回403交付”世界提示；B 的 `scenes/staff/staff.gd`／`patrol_staff_4f.tscn` 生成员工取件反馈。本轮未改 A/B 模块：A 调整并本地化楼层提示，B 调整员工反馈标签。
+- TC-11、TC-14 人工路线、多成员同提交和两位组员八任务真实耗时／暂停时间、导出平台验证、真实演示及署名仍待执行。保留工作簿原记录；未填写推测数据。A 验证入口为正式 `scenes/main.tscn`，后段自动检查为 `scenes/tests/core/late_mainline_main_flow_smoke.gd`；自动化结果不替代人工新局通关。
