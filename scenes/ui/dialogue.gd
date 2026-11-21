@@ -91,6 +91,9 @@ var _transition_in_progress := false
 var _skip_transitions := false
 var _pointer := preload("res://scenes/ui/story_pointer.gd").new()
 var _portrait_cache: Dictionary = {}
+const DialogueRoles = preload("res://scenes/ui/dialogue_roles.gd")
+var _task_character := ""
+var _muted_surfaces: Array[Dictionary] = []
 var _phone_waiting_for_open := false
 var _phone_tween: Tween
 
@@ -115,6 +118,7 @@ var _phone_tween: Tween
 func _ready() -> void:
 	visible = false
 	_skip_transitions = "--ui-smoke" in OS.get_cmdline_user_args()
+	visibility_changed.connect(_restore_hidden_surface)
 	resized.connect(_fit_dialogue_text.call_deferred)
 	_line.resized.connect(_fit_dialogue_text.call_deferred)
 
@@ -147,9 +151,10 @@ func _fit_dialogue_text() -> void:
 		var width := height * _portrait.texture.get_width() / _portrait.texture.get_height()
 		_portrait.offset_right = size.x * _portrait.anchor_left + width - size.x * _portrait.anchor_right
 		_portrait.offset_top = size.y * 0.95 - height - size.y * _portrait.anchor_top
-		var name_left := maxf(size.x * 0.25, _portrait.position.x + width + 20.0)
-		_speaker.offset_left = name_left - size.x * _speaker.anchor_left
-		_speaker.offset_right = name_left + maxf(128.0, _speaker.get_minimum_size().x + 24.0) - size.x * _speaker.anchor_right
+	# One stable nameplate baseline for every character, including missing portraits.
+	var name_left := size.x * 0.34
+	_speaker.offset_left = name_left - size.x * _speaker.anchor_left
+	_speaker.offset_right = name_left + maxf(160.0, _speaker.get_minimum_size().x + 24.0) - size.x * _speaker.anchor_right
 
 
 func _refresh_stage_cue() -> void:
@@ -240,13 +245,59 @@ func show_task_dialogue(dialogue_id: String, speaker: String, lines: Array[Strin
 	_line_index = 0
 	_lines.assign(lines)
 	_beats.clear()
-	_speaker.text = speaker
+	_speaker.text = tr(speaker)
+	_task_character = DialogueRoles.TASK_ROLES.get(dialogue_id, "")
 	_set_scene("lobby", false)
 	_show_line()
 	_skip_button.hide()
+	if not _task_character.is_empty():
+		_background.hide()
+		$Tint.hide()
+		mute_world_prompts()
 	show()
 	return true
 
+
+## Passive reuse of the same story scene; the adapter owns input, modal and completion.
+func present_character_beat(character_id: String, text: String) -> void:
+	_background.hide()
+	$Tint.hide()
+	_sms_panel.hide()
+	_cue.hide()
+	_story_title.hide()
+	_skip_button.hide()
+	_frame.show()
+	_speaker.show()
+	_line.show()
+	_speaker.text = DialogueRoles.display_name(character_id)
+	_line.text = tr(text)
+	_portrait.texture = DialogueRoles.portrait(character_id)
+	if _portrait.texture != null:
+		_portrait.texture = _trim_portrait(_portrait.texture)
+	_portrait.visible = _portrait.texture != null
+	_fit_dialogue_text.call_deferred()
+	show()
+
+func mute_world_prompts() -> void:
+	if not _muted_surfaces.is_empty(): return
+	var main: Node = self
+	while main != null and not main.has_node("World"):
+		main = main.get_parent()
+	if main == null: return
+	for node: Node in main.find_children("*", "", true, false):
+		if node is CanvasItem and node.name in ["HUD", "DeveloperOverlay", "MonsterIdle", "InteractionGuide", "InteractionOnboarding", "GuidePanel", "InteractionMarkers", "Caption"]:
+			_muted_surfaces.append({"node": node, "modulate": node.modulate})
+			node.modulate.a = 0.0
+
+func _restore_hidden_surface() -> void:
+	if not is_visible_in_tree():
+		restore_world_prompts()
+		_task_character = ""
+
+func restore_world_prompts() -> void:
+	for entry: Dictionary in _muted_surfaces:
+		if is_instance_valid(entry.node): entry.node.modulate = entry.modulate
+	_muted_surfaces.clear()
 
 func has_completed_intro() -> bool:
 	var config := ConfigFile.new()
@@ -320,6 +371,8 @@ func _show_line() -> void:
 	else:
 		_portrait.hide()
 	_story_title.hide()
+	if not _task_character.is_empty():
+		present_character_beat(_task_character, _lines[_line_index])
 	_fit_dialogue_text.call_deferred()
 
 
@@ -540,6 +593,8 @@ func _finish() -> void:
 	if _dialogue_id.is_empty():
 		return
 	_finish_phone_animation()
+	restore_world_prompts()
+	_task_character = ""
 	var finished_id := _dialogue_id
 	_dialogue_id = ""
 	if finished_id == V4_MANAGER_ID:

@@ -1,0 +1,123 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 546.92 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3070 Laptop GPU
+
+Godot_v4.7.2-stable_win64_console.exe : ERROR: Failed to read the root certificate store.
+所在位置 行:2 字符: 477
++ ... | Out-Null; & $godot @godotArgs *> (Join-Path $ev ('logs/'+$label+'.l ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR: Failed t...tificate store.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+PASS: real manager gate permits 2F
+PASS: real pending encounter request
+PASS: a pending request alone never skips the first warning
+PASS: real encounter produces the 201 offer
+PASS: 201 introduction is shown before task board with world locked
+PASS: monster uses the actual standard story panel resource
+PASS: monster dialogue has no intro skip
+PASS: HUD hides during resident dialogue
+PASS: missing formal monster portrait never substitutes scene sprite
+PASS: capture 201-introduction
+PASS: E advances exactly one line
+PASS: Carol uses original story portrait slot
+PASS: capture carol
+PASS: keyboard echo cannot advance dialogue
+PASS: left click advances exactly one line
+PASS: HUD restores after resident dialogue
+PASS: intro finishes once and hands off atomically to task panel
+PASS: closing intro leaves pending encounter unresolved
+PASS: dialogue does not release another page modal
+PASS: accept actual 201 task
+PASS: no card or work cannot submit
+PASS: card and active identity alone cannot settle
+PASS: two cards and a Q switch do not complete work
+PASS: success dialogue rejects unearned settlement
+PASS: real cleaning report
+PASS: work finished still requires return and delivery
+PASS: authoritative delivery succeeds
+PASS: success dialogue appears only after real settlement
+PASS: capture 201-delivered
+PASS: each completion signal emitted once
+PASS: repeat interaction cannot settle again
+PASS: unfinished dual-card task contracts cannot claim runtime success
+PASS: explicit preview NOSE:INTRO
+PASS: no intro skip in NOSE:INTRO
+PASS: explicit preview NOSE:MISSING_CARD
+PASS: no intro skip in NOSE:MISSING_CARD
+PASS: explicit preview NOSE:WORK_PENDING
+PASS: no intro skip in NOSE:WORK_PENDING
+PASS: explicit preview NOSE:RETURN
+PASS: no intro skip in NOSE:RETURN
+PASS: explicit preview NOSE:DELIVERED
+PASS: no intro skip in NOSE:DELIVERED
+PASS: explicit preview NOSE:COMPLETED
+PASS: no intro skip in NOSE:COMPLETED
+PASS: explicit preview EYE:INTRO
+PASS: no intro skip in EYE:INTRO
+PASS: explicit preview EYE:MISSING_CARD
+PASS: no intro skip in EYE:MISSING_CARD
+PASS: explicit preview EYE:WORK_PENDING
+PASS: no intro skip in EYE:WORK_PENDING
+PASS: explicit preview EYE:RETURN
+PASS: no intro skip in EYE:RETURN
+PASS: explicit preview EYE:DELIVERED
+PASS: no intro skip in EYE:DELIVERED
+PASS: explicit preview EYE:COMPLETED
+PASS: no intro skip in EYE:COMPLETED
+PASS: explicit preview HAT:INTRO
+PASS: no intro skip in HAT:INTRO
+PASS: explicit preview HAT:MISSING_CARD
+PASS: no intro skip in HAT:MISSING_CARD
+PASS: explicit preview HAT:WORK_PENDING
+PASS: no intro skip in HAT:WORK_PENDING
+PASS: explicit preview HAT:RETURN
+PASS: no intro skip in HAT:RETURN
+PASS: explicit preview HAT:DELIVERED
+PASS: no intro skip in HAT:DELIVERED
+PASS: explicit preview HAT:COMPLETED
+PASS: no intro skip in HAT:COMPLETED
+PASS: explicit preview EAR:INTRO
+PASS: no intro skip in EAR:INTRO
+PASS: explicit preview EAR:MISSING_CARD
+PASS: no intro skip in EAR:MISSING_CARD
+PASS: explicit preview EAR:WORK_PENDING
+PASS: no intro skip in EAR:WORK_PENDING
+PASS: explicit preview EAR:CLEAN_ONLY
+PASS: no intro skip in EAR:CLEAN_ONLY
+PASS: explicit preview EAR:RECORD_ONLY
+PASS: no intro skip in EAR:RECORD_ONLY
+PASS: explicit preview EAR:RETURN
+PASS: no intro skip in EAR:RETURN
+PASS: explicit preview EAR:DELIVERED
+PASS: no intro skip in EAR:DELIVERED
+PASS: explicit preview EAR:COMPLETED
+PASS: no intro skip in EAR:COMPLETED
+PASS: explicit preview CHECKER:INTRO
+PASS: no intro skip in CHECKER:INTRO
+PASS: explicit preview CHECKER:MISSING_CARD
+PASS: no intro skip in CHECKER:MISSING_CARD
+PASS: explicit preview CHECKER:WORK_PENDING
+PASS: no intro skip in CHECKER:WORK_PENDING
+PASS: explicit preview CHECKER:PICKUP_ONLY
+PASS: no intro skip in CHECKER:PICKUP_ONLY
+PASS: explicit preview CHECKER:WRONG_IDENTITY
+PASS: no intro skip in CHECKER:WRONG_IDENTITY
+PASS: explicit preview CHECKER:RETURN
+PASS: no intro skip in CHECKER:RETURN
+PASS: explicit preview CHECKER:DELIVERED
+PASS: no intro skip in CHECKER:DELIVERED
+PASS: explicit preview CHECKER:COMPLETED
+PASS: no intro skip in CHECKER:COMPLETED
+PASS: previews do not change rescue facts
+PASS: A task02 entry shows on-site per-speaker eye dialogue
+PASS: capture 202-introduction
+PASS: eye intro hands back to A real offer atomically
+PASS: real parcel task accepts
+PASS: security card without parcel cannot submit
+PASS: actual security identity records parcel pickup
+PASS: pickup alone does not open passage
+PASS: real parcel delivery succeeds
+PASS: eye confirmation follows real delivery
+PASS: capture 202-delivered
+PASS: preview UI never replaces parcel settlement
