@@ -33,7 +33,10 @@ func run() -> void:
 	root.add_child(main)
 	await process_frame
 	await process_frame
-	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
+	var menu: Control = main.get_node("MenuLayer/MainMenu")
+	menu.call("_finish_opening") # This smoke covers HUD layout; menu animation is covered by story_surface_smoke.
+	var start_button: Button = menu.get_node("%StartButton")
+	start_button.pressed.emit()
 	main.dialogue.hide()
 	main._on_dialogue_finished("V4_INTRO")
 	main._show_story_dialogue("V4_MANAGER_TALK")

@@ -1560,3 +1560,36 @@ msgstr "Cleaning and Patrol Record"
 
 msgid "二楼通行备案"
 msgstr "2F Passage Registration"
+
+msgid "在%s接受任务，接受后限时180秒。"
+msgstr "Accept the task in Room %s. The 180-second timer starts after acceptance."
+
+msgid "重新挑战后回%s接受，救援和前序成果保留。"
+msgstr "After retrying, return to Room %s and accept again. The rescue and earlier progress are kept."
+
+msgid "在巡房员工身后站定，长按E偷取巡房记录。"
+msgstr "Stand behind the patrol staff member and hold E to take the patrol log."
+
+msgid "返回%s按E交付"
+msgstr "Return to Room %s and press E to deliver."
+
+msgid "403已交付；从右端楼梯上5F，在501接离店任务。"
+msgstr "Room 403 is complete. Take the stairs at the right end to 5F and accept the exit task in Room 501."
+
+msgid "切为当前经理身份，在五楼离店登记台按E批准。"
+msgstr "Activate the Manager ID, then press E at the 5F exit register to approve the form."
+
+msgid "Terese已同行；前往4F403取得并交付巡房记录。"
+msgstr "Terese is with you. Go to Room 403 on 4F, collect the patrol log, and deliver it."
+
+msgid "403已交付；前往5F501办理并交付离店单。"
+msgstr "Room 403 is complete. Go to Room 501 on 5F to approve and deliver the exit form."
+
+msgid "离店单已交付；前往五楼消防出口按E逃离。"
+msgstr "The exit form is delivered. Go to the 5F fire exit and press E to escape."
+
+msgid "巡房记录已取得，返回403按E交付；交付前仍会计时。"
+msgstr "Record collected. Return to Room 403 to deliver."
+
+msgid "巡房记录已取得，在403按E交付；不需要切换身份。"
+msgstr "Patrol record collected. Press E at Room 403 to deliver; no ID change is needed."

@@ -13,10 +13,14 @@ func _refresh_task_display() -> void:
 	var objective: String = "前往前台与经理交谈"
 	if GameManager.get_task_definition(view["task_id"]).has("work_steps") or GameManager.LATE_TASKS.has(view["task_id"]):
 		var room: String = GameManager.get_task_definition(view["task_id"])["room_id"]
-		match status:
-			"AVAILABLE": objective = "在%s接受当前任务" % room
-			"ACTIVE", "READY_TO_SUBMIT", "COMPLETED": objective = view["step"]
-			"FAILED": objective = "重新挑战后回%s接受任务" % room
+		var localized_late_step := TaskUiText.step_for_view(view)
+		if not localized_late_step.is_empty():
+			objective = localized_late_step
+		else:
+			match status:
+				"AVAILABLE": objective = "在%s接受当前任务" % room
+				"ACTIVE", "READY_TO_SUBMIT", "COMPLETED": objective = view["step"]
+				"FAILED": objective = "重新挑战后回%s接受任务" % room
 	elif view["task_id"] == GameManager.TASK_03_ID:
 		match status:
 			"AVAILABLE": objective = "在302接受240秒授权任务"

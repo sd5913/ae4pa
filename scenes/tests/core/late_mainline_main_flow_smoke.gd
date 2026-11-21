@@ -60,18 +60,24 @@ func _capture(name: String) -> void:
 	if "--capture" not in OS.get_cmdline_user_args(): return
 	await process_frame
 	await RenderingServer.frame_post_draw
-	var path := "res://docs/qa_evidence/a_late_mainline_20261121/screenshots"
+	var path := OS.get_environment("AE4PA_DELIVERY_EVIDENCE")
+	if path.is_empty(): path = "res://docs/qa_evidence/a_late_mainline_20261121/screenshots"
 	DirAccess.make_dir_recursive_absolute(path)
 	root.get_texture().get_image().save_png(path + "/" + name + ".png")
 
 func _run() -> void:
+	var english := "--english" in OS.get_cmdline_user_args()
+	if english:
+		root.size = Vector2i(960, 540)
+	root.get_node("Localization").set_language("en" if english else "zh_CN")
 	game = root.get_node("GameManager")
 	cards = root.get_node("CardManager")
-	root.get_node("Localization").set_language("zh_CN")
 	main = load("res://scenes/main.tscn").instantiate()
 	root.add_child(main)
 	await _settle()
-	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
+	var menu: Control = main.get_node("MenuLayer/MainMenu")
+	menu.call("_finish_opening") # This flow smoke starts at gameplay; cover motion has a separate test.
+	menu.get_node("%StartButton").pressed.emit()
 	main.dialogue._finish()
 	game.complete_manager_intro()
 	game.set_process(false)
@@ -90,6 +96,9 @@ func _run() -> void:
 	_expect("403" in main._task_03_objective(), "Rescue objective points to403 before EXIT")
 	prior_cards = cards.export_snapshot()
 	await _travel(4)
+	await _settle()
+	var route_objective: String = main.get_node("TaskLayer/HUD").get_node("%Objective").text
+	_expect(("Room 403" in route_objective and "patrol log" in route_objective.to_lower()) if english else ("4F403" in route_objective and "巡房记录" in route_objective), "After the309 rescue, the live story objective points to403")
 	var staff: Node = _floor().get_node_or_null("StaffRoot/PatrolSlot/Staff")
 	_expect(staff != null, "4F contains actual B patrol component")
 	_expect(_floor().get_node("StaffRoot").z_index > _floor().get_node("Floor4Art").z_index, "Patrol staff and its prompts render above opaque floor art")
@@ -107,6 +116,9 @@ func _run() -> void:
 	_expect(game.task_status == "AVAILABLE" and game.remaining_time == 0, "Intro and closing do not start task clock")
 	await _accept()
 	_expect(game.task_status == "ACTIVE" and game.remaining_time == 180 and game.get("_task_checkpoint").get("floor") == 4, "403 accepts with real checkpoint")
+	await _settle()
+	var hud_objective: Label = main.get_node("TaskLayer/HUD").get_node("%Objective")
+	_expect(hud_objective.text == ("Stand behind the patrol staff member and hold E to take the patrol log." if english else "在巡房员工身后站定，长按E偷取巡房记录。"), "403 HUD shows the live patrol objective in the selected language")
 	staff = _patrol()
 	var forged: Node = load("res://scenes/staff/patrol_staff_4f.tscn").instantiate()
 	_floor()._on_task_item_stolen("PATROL_RECORD", "STAFF_PATROL_4F", forged)
@@ -128,6 +140,9 @@ func _run() -> void:
 	await create_timer(0.9).timeout
 	await _key("interact", false)
 	_expect(game.task_status == "READY_TO_SUBMIT" and game.get_world_flags().get("patrol_collected", false), "Real rear hold steals task file")
+	await _settle()
+	hud_objective = main.get_node("TaskLayer/HUD").get_node("%Objective")
+	_expect("403" in hud_objective.text and ("deliver" in hud_objective.text.to_lower() if english else "交付" in hud_objective.text), "403 HUD directs Carol back to Room 403 for delivery")
 	_expect(cards.export_snapshot() == prior_cards and not game.get_available_floors().has(5), "File is not a card and no5F before delivery")
 	await _capture("patrol_ready")
 	game._process(180)
@@ -154,6 +169,9 @@ func _run() -> void:
 	await _settle()
 	await _tap()
 	_expect(game.get_completed_task_ids().has(game.TASK_04_ID) and game.get_available_floors().has(5), "Actual403 E delivery unlocks5F")
+	await _settle()
+	route_objective = main.get_node("TaskLayer/HUD").get_node("%Objective").text
+	_expect(("Room 501" in route_objective and "exit form" in route_objective.to_lower()) if english else ("5F501" in route_objective and "离店单" in route_objective), "After403 delivery, the live story objective points to501")
 	await _read_story()
 	await _travel(5)
 	var register: Node = _floor().get_node_or_null("Interactions/ExitRegister5F")
@@ -167,6 +185,9 @@ func _run() -> void:
 	await _read_story()
 	await _accept()
 	_expect(game.current_task_id == game.TASK_05_ID and game.remaining_time == 180, "Actual501 offer starts180 seconds")
+	await _settle()
+	hud_objective = main.get_node("TaskLayer/HUD").get_node("%Objective")
+	_expect("Manager" in hud_objective.text if english else "经理" in hud_objective.text, "501 HUD presents the live manager authorization step")
 	_player().global_position = register.global_position
 	await _settle()
 	await _tap()
@@ -186,7 +207,11 @@ func _run() -> void:
 	await _tap("switch_id")
 	await _tap()
 	_expect(game.task_status == "READY_TO_SUBMIT" and register.is_completed(), "Actual manager approval needs return501")
-	_expect("返回501" in main.notice_label.text, "Successful approval replaces stale wrong-identity notice with return501")
+	var hud_notice: Label = main.get_node("TaskLayer/HUD").get_node("%Notice")
+	_expect(("Room 501" in hud_notice.text) if english else "返回501" in hud_notice.text, "Successful approval replaces stale wrong-identity notice with return501")
+	await _settle()
+	hud_objective = main.get_node("TaskLayer/HUD").get_node("%Objective")
+	_expect("501" in hud_objective.text and ("deliver" in hud_objective.text.to_lower() if english else "交付" in hud_objective.text), "501 HUD directs Carol back to Room 501 before the exit")
 	_expect(not game.request_escape(), "Approval alone cannot escape")
 	await _capture("exit_approved")
 	game._process(180)
@@ -206,6 +231,9 @@ func _run() -> void:
 	await _tap()
 	await _read_story()
 	_expect(game.get_world_flags().get("exit_form_delivered", false), "Actual501 E delivers final form")
+	await _settle()
+	route_objective = main.get_node("TaskLayer/HUD").get_node("%Objective").text
+	_expect(("fire exit" in route_objective.to_lower()) if english else ("消防出口" in route_objective), "After501 delivery, the live story objective points to the fire exit")
 	_expect(not game.request_escape(), "Far from EXIT cannot win")
 	_player().global_position = _floor().exit_point.global_position
 	await _settle()
