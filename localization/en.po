@@ -1881,3 +1881,9 @@ msgstr "At last. I can continue toward the third floor."
 
 msgid "已完成核验，无须重复提交。"
 msgstr "Verification complete. Do not submit again."
+
+msgid "EXIT · 先完成501离店单交付"
+msgstr "EXIT · Deliver the Room 501 exit form first."
+
+msgid "EXIT · 按E与Terese一起逃离"
+msgstr "EXIT · Press E to escape with Terese."

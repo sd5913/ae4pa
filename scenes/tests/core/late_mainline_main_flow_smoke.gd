@@ -188,6 +188,10 @@ func _run() -> void:
 	await _settle()
 	hud_objective = main.get_node("TaskLayer/HUD").get_node("%Objective")
 	_expect("Manager" in hud_objective.text if english else "经理" in hud_objective.text, "501 HUD presents the live manager authorization step")
+	if english:
+		var locked_hint: Label = _floor().exit_hint
+		var hint_text := locked_hint.atr(locked_hint.text)
+		_expect("501" in hint_text and "deliver" in hint_text.to_lower(), "English EXIT sign explains the outstanding Room 501 delivery")
 	_player().global_position = register.global_position
 	await _settle()
 	await _tap()
@@ -237,6 +241,9 @@ func _run() -> void:
 	_expect(not game.request_escape(), "Far from EXIT cannot win")
 	_player().global_position = _floor().exit_point.global_position
 	await _settle()
+	if english:
+		var ready_hint: Label = _floor().exit_hint
+		_expect(ready_hint.is_visible_in_tree() and "press e" in ready_hint.atr(ready_hint.text).to_lower() and "Terese" in ready_hint.atr(ready_hint.text), "English EXIT sign explains the escape input after delivery")
 	game.set_modal_open("TEST_MODAL", true)
 	_expect(not game.request_escape(), "Open modal cannot escape")
 	game.set_modal_open("TEST_MODAL", false)
