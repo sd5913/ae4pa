@@ -39,10 +39,24 @@ var _codex_path := DEFAULT_CODEX_PATH
 
 func _ready() -> void:
 	visibility_changed.connect(_sync_modal_state)
+	resized.connect(_layout_book)
+	_layout_book()
 	GameManager.monster_encounter_requested.connect(_on_monster_encounter)
 	_show_page(0)
 	_sync_modal_state()
 
+
+func _layout_book() -> void:
+	if not is_node_ready(): return
+	var width := minf(900.0, maxf(320.0, size.x - 48.0))
+	$Center/Panel.custom_minimum_size.x = width
+	$Center/Panel/Content/Scroll.custom_minimum_size.y = minf(350.0, maxf(160.0, size.y - 240.0))
+	$Center/Panel/Content/Scroll/Pages.custom_minimum_size.x = width - 80.0
+
+func _input(event: InputEvent) -> void:
+	if visible and not event.is_echo() and (event.is_action_pressed("pause") or event.is_action_pressed("open_help")):
+		close_help()
+		get_viewport().set_input_as_handled()
 
 func _sync_modal_state() -> void:
 	if GameManager.has_method("set_modal_open"):
@@ -181,6 +195,7 @@ func _show_text_page(container: GridContainer, lines: Array[String]) -> void:
 		var line := Label.new()
 		line.text = line_text
 		line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		line.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 		line.add_theme_font_size_override("font_size", 22)
 		line.add_theme_color_override("font_color", Color("493827"))
 		container.add_child(line)
@@ -193,6 +208,7 @@ func _show_card_page(card: Dictionary) -> void:
 	var row := HBoxContainer.new()
 	row.add_theme_constant_override("separation", 34)
 	row.alignment = BoxContainer.ALIGNMENT_CENTER
+	row.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	var icon := TextureRect.new()
 	icon.texture = CardDisplay.art_for(str(card.id))
 	icon.custom_minimum_size = Vector2(300, 220)
@@ -202,6 +218,7 @@ func _show_card_page(card: Dictionary) -> void:
 	row.add_child(icon)
 	var description := VBoxContainer.new()
 	description.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	description.custom_minimum_size.x = 360
 	description.add_theme_constant_override("separation", 18)
 	var identity := Label.new()
 	identity.text = str(card.id)
@@ -211,6 +228,7 @@ func _show_card_page(card: Dictionary) -> void:
 	var rule := Label.new()
 	rule.text = str(card.rule)
 	rule.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	rule.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	rule.add_theme_font_size_override("font_size", 22)
 	rule.add_theme_color_override("font_color", Color("493827"))
 	description.add_child(rule)

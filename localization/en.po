@@ -1881,3 +1881,15 @@ msgstr "At last. I can continue toward the third floor."
 
 msgid "已完成核验，无须重复提交。"
 msgstr "Verification complete. Do not submit again."
+
+msgid "背包"
+msgstr "Bag"
+
+msgid "笔记"
+msgstr "Notes"
+
+msgid "暂停"
+msgstr "Pause"
+
+msgid "任务"
+msgstr "Tasks"
