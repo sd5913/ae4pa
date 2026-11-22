@@ -1228,3 +1228,9 @@
 - 只改D显示和输入适配，不改任务／发卡／结算。暂时降低HUD、独立怪物视觉和引导提示透明度，关闭后恢复。已有任务守卫、原子模态交接、完成事件单次触发与预览不改状态断言保留。
 - 五种怪物正式高清半身立绘均缺失，未放大362×543场景帧。Carol沿用标准人物槽；怪物半身尺寸／头肩对齐未验收。部分小剪影已烘焙在门OPEN图内，需素材负责人提供干净门图；没有修改A/C门行为。
 - Godot 4.7.2 Windows：资源导入退出0；中文1280×720／英文960×540正式场景怪物回归各退出0；intro_flow、story_surface、localization、late_mainline、HUD图形布局均退出0。英文台词覆盖和单次输入、HUD恢复断言通过。未进行人工新局完整八任务通关。实际截图、映射和日志见[证据](qa_evidence/d_monster_surface_20261122/README.md)。
+
+### 2026-11-22 CI：Windows 试玩包
+
+- 在 `main@cc52b6d` 增加 Godot 4.7.2 Windows x64 导出配置、GitHub Actions 和 README 下载入口。Actions 浅检出并校验 LFS 对象；该基线没有 LFS 指针。
+- Linux 本地用同版官方模板验证导入、本地化和 Windows 导出。解压测试包后确认 EXE、PCK、提交 SHA 文件齐全；同版 Linux 运行模板可从解压后的 PCK 启动。删除导出包含规则后，即使仍生成 EXE 和 PCK，独立检查也会因缺少序章 TSV 而失败。
+- Actions 中另设 Windows 无界面启动检查和完整通关检查。基线完整通关检查复现 `ROOM_SERVICE_203`、`TRANSIT_REGISTER_205` 的 `TASK_INACTIVE` 和最终通关断言失败；该结果单独记录。图形、输入和人工通关待 Windows VM 验收。
