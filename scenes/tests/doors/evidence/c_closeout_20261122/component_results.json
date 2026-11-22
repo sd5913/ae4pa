@@ -1,0 +1,31 @@
+{
+  "baseline": "569b5d0941aaef73a327eaa19def1b0b95bcb798",
+  "mode": "automated standalone (F6 equivalent), not manual play",
+  "checks": [
+    {
+      "test": "doors/tutorial_catalog_smoke",
+      "exit": 0,
+      "pass": true
+    },
+    {
+      "test": "doors/tutorial_lifecycle_smoke",
+      "exit": 0,
+      "pass": true
+    },
+    {
+      "test": "doors/v4_doors_smoke",
+      "exit": 0,
+      "pass": true
+    },
+    {
+      "test": "doors/v4_identity_smoke",
+      "exit": 0,
+      "pass": true
+    },
+    {
+      "test": "doors/known_monster_rules_smoke",
+      "exit": 0,
+      "pass": true
+    }
+  ]
+}
