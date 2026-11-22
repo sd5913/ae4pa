@@ -30,6 +30,7 @@
 ### 当前自动回归待调查
 
 - `core/full_mainline_escape_smoke.gd` 在 `main@dca61f7` 的 macOS 审查中两次退出 1，均失败在最终 EXIT／成功页断言。记录 501 交付标记、开放模态、E 交互目标、出口资格、`WON` 和成功页状态，再判断是夹具还是正式流程问题。早期通过记录和 Windows 失败保留其各自范围。
+- 2026-11-22，macOS／Godot `4.7.2.stable.official.ed1daf0bf`，使用与 `main@bf00cde` 相同的游戏源码做临时诊断。501 已交付、出口资格通过、E 目标为 `EXIT_5F`，且没有打开的模态，但楼层仍在等待 E 释放（`_needs_e_release = true`），实际按键状态已是释放。首次模拟按 E 被跳过，释放后再次按 E 进入 `WON` 并显示成功页。第二次按键只用于诊断。原 smoke 及其断言保留，仍需查清 501 交付后为何残留该状态，以及真人输入是否会触发。
 - `core/task_ui_smoke.gd -- --ui-smoke` 在同一基线退出 0。省略参数时退出 3，失败时当前楼层缺少夹具预期的 `Interactions/Stain201Slot/CleaningSpot`。保留两种结果，待复核开场和换层等待条件。
 
 ## 如何记录测试
