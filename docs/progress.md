@@ -1228,3 +1228,8 @@
 - 只改D显示和输入适配，不改任务／发卡／结算。暂时降低HUD、独立怪物视觉和引导提示透明度，关闭后恢复。已有任务守卫、原子模态交接、完成事件单次触发与预览不改状态断言保留。
 - 五种怪物正式高清半身立绘均缺失，未放大362×543场景帧。Carol沿用标准人物槽；怪物半身尺寸／头肩对齐未验收。部分小剪影已烘焙在门OPEN图内，需素材负责人提供干净门图；没有修改A/C门行为。
 - Godot 4.7.2 Windows：资源导入退出0；中文1280×720／英文960×540正式场景怪物回归各退出0；intro_flow、story_surface、localization、late_mainline、HUD图形布局均退出0。英文台词覆盖和单次输入、HUD恢复断言通过。未进行人工新局完整八任务通关。实际截图、映射和日志见[证据](qa_evidence/d_monster_surface_20261122/README.md)。
+### 2026-11-22 C：五怪独立透明半身立绘发布
+
+- 用户选择前面单独生成的五张Alpha透明底PNG，并明确忽略后来的横向画风确认图；授权推送个人分支、合入main。资产路径assets/final/monster_dialogue_portraits_v1，分别为nose/eye/hat/ear/checker_halfbody.png，保留原始文件字节，不重新绘制或转码。
+- 五张均为1024×1536 RGBA，Alpha范围0—254，含真实全透明像素；逐张SHA256与生成时validation.json一致。art_sources/monster_dialogue_portraits_v1保留内置imagegen原始提示词和Alpha校验报告，素材README说明透明混合和隐藏RGB。
+- 本次仅发布五张独立素材及必要说明、提示词／校验，不包含横向合图、不替换运行时对白或怪物动画。fetch后main仍cc52b6d，选择性暂存及git diff --check；不为纯素材新增玩法测试或声称游戏对白已接入。

@@ -1,0 +1,87 @@
+[
+  {
+    "name": "nose",
+    "label": "长鼻怪",
+    "file": "nose_halfbody.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 843796,
+    "visible_pixels": 729068,
+    "sha256": "a0acddb6c486e665de2bdbef8a23c9ed35ca0f8dd147cfa5c7d9ddd21487a098"
+  },
+  {
+    "name": "eye",
+    "label": "独眼怪",
+    "file": "eye_halfbody.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 561962,
+    "visible_pixels": 1010902,
+    "sha256": "1dc2969e9c882a789ef39f45c9aa1762cf505d030049bb70a22fb56f5e775764"
+  },
+  {
+    "name": "hat",
+    "label": "礼帽怪",
+    "file": "hat_halfbody.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 711208,
+    "visible_pixels": 861656,
+    "sha256": "ee089bd9587e8702948ce6195fd74a5a5786ccff46a960648ad33ba369e670c7"
+  },
+  {
+    "name": "ear",
+    "label": "大耳怪",
+    "file": "ear_halfbody.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 912716,
+    "visible_pixels": 660148,
+    "sha256": "9c4e1b89d6d778cfeffccffa358cb177c2c3ac29fef43b6e685fc53e65abc069"
+  },
+  {
+    "name": "checker",
+    "label": "核验客",
+    "file": "checker_halfbody.png",
+    "size": [
+      1024,
+      1536
+    ],
+    "mode": "RGBA",
+    "alpha_range": [
+      0,
+      254
+    ],
+    "fully_transparent_pixels": 737144,
+    "visible_pixels": 835720,
+    "sha256": "ce55407434294ba1813e10a77418523ef773f08d421a911b628886d1c50e73a1"
+  }
+]
