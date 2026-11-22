@@ -17,10 +17,13 @@ func configure(value: String, height_scale: float = 1.0) -> void:
 		if value == "NOSE":
 			# Approved sniff cycle: linger at idle and inhale; keep other guests unchanged.
 			duration = [2.52,0.78,0.9,1.32,2.1,0.9,0.9,1.8][i]
+		elif value == "CHECKER":
+			# Approved inspection loop; keep complete cells and a planted-foot anchor.
+			duration = [2.4,0.9,1.02,1.38,0.96,1.08,1.08,2.1][i]
 		frames.add_frame("idle",atlas,duration)
 	sprite_frames = frames
 	centered = false
-	var baselines := {"EYE":487.0,"NOSE":504.0,"HAT":507.0,"EAR":455.0,"CHECKER":512.0}
+	var baselines := {"EYE":487.0,"NOSE":504.0,"HAT":507.0,"EAR":455.0,"CHECKER":494.0}
 	offset = Vector2(-181,-baselines[value])
 	scale = Vector2.ONE*height_scale
 	play("idle")

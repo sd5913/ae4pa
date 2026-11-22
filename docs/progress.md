@@ -1233,3 +1233,10 @@
 - 用户选择前面单独生成的五张Alpha透明底PNG，并明确忽略后来的横向画风确认图；授权推送个人分支、合入main。资产路径assets/final/monster_dialogue_portraits_v1，分别为nose/eye/hat/ear/checker_halfbody.png，保留原始文件字节，不重新绘制或转码。
 - 五张均为1024×1536 RGBA，Alpha范围0—254，含真实全透明像素；逐张SHA256与生成时validation.json一致。art_sources/monster_dialogue_portraits_v1保留内置imagegen原始提示词和Alpha校验报告，素材README说明透明混合和隐藏RGB。
 - 本次仅发布五张独立素材及必要说明、提示词／校验，不包含横向合图、不替换运行时对白或怪物动画。fetch后main仍cc52b6d，选择性暂存及git diff --check；不为纯素材新增玩法测试或声称游戏对白已接入。
+
+### 2026-11-22 C：新版核验怪站姿动画替换与发布
+
+- 用户确认浅暖棕头发描边的新版核验怪及8帧待机图，并授权替换游戏、推送GitHub和合入main。基于main@569b5d0建立独立动画发布分支，避免把尚待A验证的PR65复核提交一起合并。
+- 无损替换assets/final/monster_idle/checker_idle_sheet.png，1448×1086／4×2／单格362×543，Alpha0—255；SHA256 19fff3637b7c010ae3266ed037bbe97546831b03e2a7885c72f5ef978e00d98e。其他四怪PNG逐一核对与manifest原hash一致。源母版、浅发边修改提示词、动画原始提示词与8帧边界保留在art_sources/monster_idle/checker_v2。
+- 共用动画适配器只调整CHECKER脚底锚点512→494及8帧时长400/150/170/230/160/180/180/350ms。保持完整格切片、原有角色缩放、开门显示/关门隐藏/模态冻结，不修改门判定、任务、UI或移动。
+- 实际Compatibility图形夹具在真实floor2/5门205/501检查8帧区域、脚底锚点、开关门显示、暂停与恢复，退出0并查看4张开关门截图；显式全任务已完成的美术夹具，不代记完整主线通关。tutorial_lifecycle、known_monster_rules、floor_5_layout、checker_safe_bag四项回归PASS；导入退出0，无脚本解析错误，git diff --check通过。截图和临时检查脚本位于本次会话outputs/checker_v2_in_game及work，未纳入运行时资源。
