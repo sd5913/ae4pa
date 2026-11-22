@@ -99,6 +99,18 @@
       362,
       543
     ],
-    "sha256": "563dd1f23203b7179fd65e24fabe0fe176969f92fb7080740346a75fdd5fc1ce"
+    "sha256": "19fff3637b7c010ae3266ed037bbe97546831b03e2a7885c72f5ef978e00d98e",
+    "version": "2026-11-22 approved bold-outline redesign with light hair outline",
+    "baseline": 494,
+    "durations_ms": [
+      400,
+      150,
+      170,
+      230,
+      160,
+      180,
+      180,
+      350
+    ]
   }
 ]
