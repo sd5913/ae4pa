@@ -87,13 +87,17 @@ func run() -> void:
 	check(game.get_completed_task_ids() == facts, "portrait review never settles tasks")
 	var notebook: Control = main.get_node("MenuLayer/Notebook")
 	for cycle in range(10):
-		notebook.open_help()
+		var open_key := InputEventKey.new()
+		open_key.physical_keycode = KEY_H
+		open_key.pressed = true
+		notebook._input(open_key)
+		check(notebook.visible, "notebook physical mapped open " + str(cycle))
 		notebook.call("_show_page", 1 if cycle % 2 == 0 else 6)
 		await settle()
 		var panel: Control = notebook.get_node("Center/Panel")
 		check(notebook.get_global_rect().encloses(panel.get_global_rect()), "notebook inside viewport " + str(cycle))
-		var e := InputEventAction.new()
-		e.action = "pause" if cycle % 2 == 0 else "open_help"
+		var e := InputEventKey.new()
+		e.physical_keycode = KEY_ESCAPE if cycle % 2 == 0 else KEY_H
 		e.pressed = true
 		notebook._input(e)
 		check(not notebook.visible, "notebook key close " + str(cycle))

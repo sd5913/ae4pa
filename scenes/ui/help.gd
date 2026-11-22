@@ -53,9 +53,24 @@ func _layout_book() -> void:
 	$Center/Panel/Content/Scroll.custom_minimum_size.y = minf(350.0, maxf(160.0, size.y - 240.0))
 	$Center/Panel/Content/Scroll/Pages.custom_minimum_size.x = width - 80.0
 
+func _mapped_press(event: InputEvent, action: StringName) -> bool:
+	if not event.is_pressed() or event.is_echo(): return false
+	if event.is_action_pressed(action): return true
+	if event is InputEventKey:
+		for binding in InputMap.action_get_events(action):
+			if binding is InputEventKey:
+				var configured: int = binding.physical_keycode if binding.physical_keycode != 0 else binding.keycode
+				var actual: int = event.physical_keycode if event.physical_keycode != 0 else event.keycode
+				if actual == configured and event.ctrl_pressed == binding.ctrl_pressed and event.alt_pressed == binding.alt_pressed and event.shift_pressed == binding.shift_pressed: return true
+	return false
+
 func _input(event: InputEvent) -> void:
-	if visible and not event.is_echo() and (event.is_action_pressed("pause") or event.is_action_pressed("open_help")):
+	var help_pressed := _mapped_press(event, &"open_help")
+	if visible and (_mapped_press(event, &"pause") or help_pressed):
 		close_help()
+		get_viewport().set_input_as_handled()
+	elif not visible and help_pressed and (GameManager.game_state == "MENU" or GameManager.is_world_input_allowed()):
+		open_help()
 		get_viewport().set_input_as_handled()
 
 func _sync_modal_state() -> void:
