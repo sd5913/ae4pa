@@ -155,7 +155,7 @@ func _on_game_failed(reason: String) -> void:
 func _begin_pending_theft_failure() -> void:
 	var staff_id := _pending_staff_role
 	_pending_staff_role = ""
-	if staff_id.is_empty() or not play_theft_failure(staff_id):
+	if (staff_id.is_empty() or not play_theft_failure(staff_id)) and not visible:
 		# Missing identity, image, or dialogue safely falls back to the existing menu.
 		show_failure("STAFF_CAUGHT")
 
@@ -168,6 +168,9 @@ func _on_theft_fade_in_finished() -> void:
 	if _theft_phase == TheftPhase.HOLDING:
 		_theft_phase = TheftPhase.WAIT_FIRST
 		_prompt.text = tr("点击对话框或按 E")
+		_speaker.get_parent().hide()
+		_line.text = ""
+		_dialogue_frame.show()
 		_prompt.show()
 
 
@@ -204,7 +207,7 @@ func _advance_theft_dialogue() -> void:
 	if _theft_phase == TheftPhase.WAIT_FIRST:
 		_theft_line_index = 0
 		_theft_phase = TheftPhase.READING
-		_dialogue_frame.show()
+		_speaker.get_parent().show()
 		_prompt.show()
 		_update_theft_line()
 		return
@@ -242,7 +245,8 @@ func _on_theft_fade_out_finished() -> void:
 	_theft_overlay.hide()
 	_theft_phase = TheftPhase.IDLE
 	_center.show()
-	show_failure("STAFF_CAUGHT")
+	var action: Button = %MenuButton if %RetryButton.disabled else %RetryButton
+	action.grab_focus()
 	presentation_finished.emit(finished_role)
 
 
@@ -259,7 +263,7 @@ func _cancel_theft_presentation() -> void:
 		_theft_tween.kill()
 	_theft_phase = TheftPhase.IDLE
 	_theft_role = ""
-	_theft_lines.clear()
+	_theft_lines = []
 	_theft_line_index = -1
 	_theft_overlay.hide()
 	_dialogue_frame.hide()
