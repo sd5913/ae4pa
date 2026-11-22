@@ -1,0 +1,152 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "size": [
+    1448,
+    1086
+  ],
+  "layout": [
+    4,
+    2
+  ],
+  "frame_size": [
+    362,
+    543
+  ],
+  "alpha_range": [
+    0,
+    255
+  ],
+  "order": "left to right, top row then bottom row",
+  "sha256": "19fff3637b7c010ae3266ed037bbe97546831b03e2a7885c72f5ef978e00d98e",
+  "frames": [
+    {
+      "index": 0,
+      "region": [
+        0,
+        0,
+        362,
+        543
+      ],
+      "visible_bbox_local": [
+        72,
+        13,
+        309,
+        494
+      ],
+      "duration_ms": 400
+    },
+    {
+      "index": 1,
+      "region": [
+        362,
+        0,
+        724,
+        543
+      ],
+      "visible_bbox_local": [
+        75,
+        13,
+        306,
+        494
+      ],
+      "duration_ms": 150
+    },
+    {
+      "index": 2,
+      "region": [
+        724,
+        0,
+        1086,
+        543
+      ],
+      "visible_bbox_local": [
+        78,
+        15,
+        296,
+        494
+      ],
+      "duration_ms": 170
+    },
+    {
+      "index": 3,
+      "region": [
+        1086,
+        0,
+        1448,
+        543
+      ],
+      "visible_bbox_local": [
+        78,
+        25,
+        286,
+        494
+      ],
+      "duration_ms": 230
+    },
+    {
+      "index": 4,
+      "region": [
+        0,
+        543,
+        362,
+        1086
+      ],
+      "visible_bbox_local": [
+        79,
+        26,
+        288,
+        493
+      ],
+      "duration_ms": 160
+    },
+    {
+      "index": 5,
+      "region": [
+        362,
+        543,
+        724,
+        1086
+      ],
+      "visible_bbox_local": [
+        71,
+        18,
+        300,
+        494
+      ],
+      "duration_ms": 180
+    },
+    {
+      "index": 6,
+      "region": [
+        724,
+        543,
+        1086,
+        1086
+      ],
+      "visible_bbox_local": [
+        71,
+        16,
+        309,
+        493
+      ],
+      "duration_ms": 180
+    },
+    {
+      "index": 7,
+      "region": [
+        1086,
+        543,
+        1448,
+        1086
+      ],
+      "visible_bbox_local": [
+        70,
+        15,
+        309,
+        493
+      ],
+      "duration_ms": 350
+    }
+  ],
+  "prompt": "Use case: identity-preserve animated 2D game sprite sheet. Use the input APPROVED redesigned CHECKER hotel inspector as the ONLY character and rendering master. Produce ONE genuine transparent PNG sprite sheet, EXACTLY EIGHT full-body consecutive idle frames in a STRICT UNIFORM GRID of FOUR COLUMNS and TWO ROWS. Read order: top row left to right then bottom row left to right. Target canvas2048x1536 (4:3), each equal cell512x768; if another native resolution is used it MUST retain4:3 whole-sheet aspect and exactly4x2 equal cells. No printed grid, dividers, titles or numbers.\nABSOLUTE MODEL LOCK: exactly this approved compact approx3-head body, pale warm skin, angular pointed nose, high swept-back pale cream/blond spiky hair, black thick round spectacles, dark angled brows and skeptical eyes. Preserve LIGHT WARM TAUPE/BROWN hair outline (~#99745B), NOT the dark-brown body outline! The hair silhouette and its colors must remain the SAME throughout all8frames, do not darken hair outline. Same deep chocolate overcoat, muted teal/sage high collar and cuffs, cream cravat, dark cropped trousers, broad brown shoes. Same enlarged head/hands/shoes and same simplification as approved figure: clean bold dark-brown external contours and thinner internal strokes, broad flat cel-color shapes, only2–3 shade levels, absolutely no added paper grain, cloth filigree or painterly texture. No new accessory or costume feature.\nPOSE LOCK: RIGHT-facing three-quarter standing in place, both shoe soles planted, same body center and camera scale in every cell. Left image-side hand holds the SAME tan clipboard with brass clip steadily against abdomen. Right image-side hand holds the SAME round brass magnifier next to face. Maintain recognizably the same head/coat volumes. No walking, no leg steps, no squashing into shorter character, no backward-facing frames, no duplicated fingers or extra arms.\nANIMATION is a smooth restrained inspection/breathing loop, returning to its initial pose:\n1(top-left): approved standing pose, skeptical half-lidded eyes, magnifier beside face at the approved height.\n2: very small inhale, eyebrows lift slightly, right wrist starts raising magnifier a little.\n3: magnifier rises slightly closer to eye, head inclines forward a few degrees; clipboard remains stable.\n4(top-right): peak inspection, magnifier slightly in front of the right eye, one eye narrows, focused brow; do not cover entire face or change lens size.\n5(bottom-left): gentle brief blink/eyes closed at the peak, right hand and lens stay near the same point, body remains planted.\n6: eyes reopen, head begins straightening, wrist lowers the magnifier gradually.\n7: nearly original neutral skeptical expression, magnifier returns toward approved position.\n8(bottom-right): original standing pose close to frame1 for a seamless loop; tiny breathing difference only.\nREGISTRATION AND SPACING: exact same LOCAL ground baseline around92% of each cell. Every frame fits fully within its cell, including ALL hair spikes, hand-held magnifier, coat and shoes, with generous transparent margins. Character no larger than82% cell height and78% cell width. No overlap between frames, no missing shoes/head, no cross-cell props, no varying crops or zoom. Keep head/hair/coat sizes stable even when leaning. All body centers aligned, clipboard remains on same side in all frames.\nBACKGROUND: actual alpha-zero between and around characters; not a black or white painted background, no floor shadow, glow, smoke, cartoon action symbols, checkerboard, typography or scene. Character fills are opaque. Output ONLY this single complete8-frame transparent sprite sheet, not8separate images and not a model sheet."
+}

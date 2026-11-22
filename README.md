@@ -14,11 +14,9 @@
 
 用 **A／D** 或方向键移动，**E** 交互，**Q** 切换当前身份，**I** 打开背包，**H** 查看笔记，**Esc** 暂停。查看[中文玩家指南](docs/player-guide.md)或 [English quick start](docs/quick_start_en.md)。
 
-## 当前版本
+## 当前项目状态
 
-`main` 已接通从新局到结局的主线。完成二楼 **201–205 五怪教学**后，在三楼办登记并营救 **309** 的 Terese，随后完成 **403 巡房文件**和 **501 离店许可**，从五楼 **EXIT** 离开。任务失败后可回到当前任务接取前的检查点。详见[主线交接](docs/late_mainline_handoff_20261121.md)和 [PR #55](https://github.com/sd5913/ae4pa/pull/55)。
-
-正式场景已有从新局到 EXIT 的自动化验证。已有真人记录覆盖当时版本的 201 验收，以及 202 通关与超时。新版完整主线、Windows 完整通关和目标平台导出仍待人工验收。见[既有真人记录](docs/acceptance_status_20261117.md)与[本轮验证证据](docs/qa_evidence/a_late_mainline_20261121/README.md)。
+从[当前项目状态](docs/CURRENT_STATUS.md)查看已接通的主线、自动验证结果、真人待验项和下一项负责人。
 
 ## 组员入口
 
