@@ -1,0 +1,81 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Godot_v4.7.2-stable_win64_console.exe : ERROR: Failed to read the root certificate store.
+所在位置 行:2 字符: 992
++ ... =$check[1]; & $godot @args *> (Join-Path $tmp ($name+'.log')); $code= ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR: Failed t...tificate store.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+PASS: unknown staff identity falls back without starting a CG
+PASS: SECURITY selects its matching real CG and starts once
+PASS: duplicate theft signal cannot stack a second presentation
+PASS: SECURITY input during fade-in cannot advance the script
+PASS: SECURITY CG texture loads
+PASS: SECURITY CG has a valid image
+PASS: SECURITY CG remains in its reveal/hold phase before 0.8 seconds
+PASS: SECURITY CG is fully held before first dialogue input
+PASS: SECURITY first click shows only the first line
+PASS: SECURITY speaker name follows the active locale
+PASS: SECURITY line one uses the active translation
+PASS: SECURITY key echo does not advance
+PASS: SECURITY one E press advances one line
+PASS: SECURITY advances exactly one line per action
+PASS: SECURITY advances exactly one line per action
+PASS: SECURITY beat 1 matches supplied localized script
+PASS: SECURITY beat 2 matches supplied localized script
+PASS: SECURITY beat 3 matches supplied localized script
+PASS: SECURITY beat 4 matches supplied localized script
+PASS: SECURITY displays four ordered dialogue beats
+PASS: SECURITY needs a final separate action to end the dialogue
+PASS: SECURITY fades out and reveals the existing failure menu
+PASS: SECURITY retains the retry/menu controls
+PASS: SECURITY completion signal fires exactly once
+PASS: CLEANER selects its matching real CG and starts once
+PASS: duplicate theft signal cannot stack a second presentation
+PASS: CLEANER input during fade-in cannot advance the script
+PASS: CLEANER CG texture loads
+PASS: CLEANER CG has a valid image
+PASS: CLEANER CG remains in its reveal/hold phase before 0.8 seconds
+PASS: CLEANER CG is fully held before first dialogue input
+PASS: CLEANER first click shows only the first line
+PASS: CLEANER speaker name follows the active locale
+PASS: CLEANER line one uses the active translation
+PASS: CLEANER key echo does not advance
+PASS: CLEANER one E press advances one line
+PASS: CLEANER advances exactly one line per action
+PASS: CLEANER advances exactly one line per action
+PASS: CLEANER beat 1 matches supplied localized script
+PASS: CLEANER beat 2 matches supplied localized script
+PASS: CLEANER beat 3 matches supplied localized script
+PASS: CLEANER beat 4 matches supplied localized script
+PASS: CLEANER displays four ordered dialogue beats
+PASS: CLEANER needs a final separate action to end the dialogue
+PASS: CLEANER fades out and reveals the existing failure menu
+PASS: CLEANER retains the retry/menu controls
+PASS: CLEANER completion signal fires exactly once
+PASS: MANAGER selects its matching real CG and starts once
+PASS: duplicate theft signal cannot stack a second presentation
+PASS: MANAGER input during fade-in cannot advance the script
+PASS: MANAGER CG texture loads
+PASS: MANAGER CG has a valid image
+PASS: MANAGER CG remains in its reveal/hold phase before 0.8 seconds
+PASS: MANAGER CG is fully held before first dialogue input
+PASS: MANAGER first click shows only the first line
+PASS: MANAGER speaker name follows the active locale
+PASS: MANAGER line one uses the active translation
+PASS: MANAGER key echo does not advance
+PASS: MANAGER one E press advances one line
+PASS: MANAGER advances exactly one line per action
+PASS: MANAGER advances exactly one line per action
+PASS: MANAGER beat 1 matches supplied localized script
+PASS: MANAGER beat 2 matches supplied localized script
+PASS: MANAGER beat 3 matches supplied localized script
+PASS: MANAGER beat 4 matches supplied localized script
+PASS: MANAGER displays four ordered dialogue beats
+PASS: MANAGER needs a final separate action to end the dialogue
+PASS: MANAGER fades out and reveals the existing failure menu
+PASS: MANAGER retains the retry/menu controls
+PASS: MANAGER completion signal fires exactly once
+THEFT_FAILURE_SMOKE: PASS
