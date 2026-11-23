@@ -1269,4 +1269,11 @@
 ### 2026-11-22 A：接入 Linux Godot CI
 
 - 从 `main@bf00cde` 建立独立工作区。[阶段 B PR](https://github.com/sd5913/ae4pa/pull/68) 接入 Linux Godot 4.7.2 的干净项目导入和八项定向 smoke。每项使用独立用户数据目录，执行日志随 GitHub Actions 运行留存。
-- 临时诊断定位到 501 交付后的 E 释放等待，详情见 [QA](qa.md#当前自动回归待调查)。完整主线测试保留原断言，暂未接入首版 CI。游戏源码、场景和素材未改动。
+- 临时诊断定位到旧基线 501 交付后的 E 释放等待，详情见 [QA 历史记录](qa.md#历史自动回归失败与诊断)。当时完整主线测试保留原断言，尚未接入首版 CI。游戏源码、场景和素材未改动。
+
+### 2026-11-23 A：同步项目状态与主线 CI 证据
+
+- 当前 GitHub `main@cac0214d9845a2bae8c6dcb7a55000755e10e19c` 已合并阶段 A 文档 PR #67、阶段 B Linux CI PR #68 与 Windows 构建 PR #60，以及阶段 C 项目技能 PR #69。
+- 主线 [Linux Godot CI](https://github.com/sd5913/ae4pa/actions/runs/45100701304) 干净导入和八项 smoke 通过；[Windows workflow](https://github.com/sd5913/ae4pa/actions/runs/45100701293) 导入、本地化、Windows x64 导出／包检查和 runner 无界面启动通过。其非阻断 full-mainline 步骤从正常新局报告八项真实任务及 309 CG 路线 PASS，同时保留 203／205 `TASK_INACTIVE` 诊断输出。
+- `main@dca61f7` 的两次 EXIT 断言失败继续作为历史证据；不再列为当前 main 的复现失败。新 CI 不代替画面、实机键鼠、真人及同 SHA 跨平台验收。
+- 本轮只同步 Markdown 状态、流程与 QA，不改 Godot 脚本、场景、素材或工作流。
