@@ -52,6 +52,9 @@ func _ready() -> void:
 	if GameManager.has_signal("task_failed"):
 		GameManager.connect("task_failed", _refresh_task_display.unbind(2))
 	visibility_changed.connect(_on_visibility_changed)
+	var stack := %NoticeRow.get_parent()
+	stack.move_child(stack.get_node("TaskPlate"), 0)
+	stack.move_child(%NoticeRow, stack.get_child_count() - 1)
 	_refresh()
 
 
@@ -68,6 +71,7 @@ func _process(_delta: float) -> void:
 	var interacting := false
 	for child in %InteractionArea.get_children():
 		interacting = interacting or child.visible
+	%InteractionArea.visible = interacting
 	%NoticeRow.visible = not interacting and not _notice.text.is_empty()
 	%SwitchHint.visible = interacting or _notice_key.text.is_empty()
 
@@ -148,6 +152,9 @@ func set_notice(message: String) -> void:
 	var cache_key := message + str(view.get("status")) + str(view.get("step")) + CardManager.active_card
 	if cache_key == _last_notice: return
 	_last_notice = cache_key
+	# Preserve A's source, suppress only the duplicate story/target display.
+	if message == tr(GameManager.get_story_objective()) or message == _objective.text or message in [tr("到前台找经理"), tr("前往前台与经理交谈")]:
+		message = ""
 	_notice.tooltip_text = message
 	_notice_key.text = ""
 	var normal_identity := RegEx.new()
