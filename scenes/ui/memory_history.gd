@@ -1,5 +1,6 @@
 extends RefCounted
 ## Session-only displayed dialogue. Disk persistence must be included in A's save transaction.
+const Roles = preload("res://scenes/ui/dialogue_roles.gd")
 static var entries: Array[Dictionary] = []
 static var _seen: Dictionary = {}
 static var generation := 0
@@ -20,6 +21,7 @@ static func text(entry: Dictionary) -> String:
 	return value
 
 static func name_for(id: String) -> String:
+	if Roles.ROLES.has(id): return Roles.display_name(id)
 	if id in ["女主", "安", "CAROL", "Carol"]: return "Carol"
 	if id in ["闺蜜", "friend", "Terese", "Persica"]: return "Terese"
 	return TranslationServer.translate({"SECURITY":"保安", "CLEANER":"保洁", "MANAGER":"经理"}.get(id,id))

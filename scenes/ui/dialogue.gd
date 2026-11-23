@@ -83,6 +83,7 @@ const FACE_INDEX := {
 
 const MemoryHistory = preload("res://scenes/ui/memory_history.gd")
 var _history_serial := 0
+var _history_speaker := ""
 var _memory_rail: VBoxContainer
 var _dialogue_id := ""
 var _lines: Array[String] = []
@@ -214,11 +215,13 @@ func show_dialogue(dialogue_id: String) -> void:
 	match dialogue_id:
 		"INTRO":
 			_lines = INTRO_LINES.duplicate()
+			_history_speaker = "手机消息"
 			_speaker.text = "手机消息"
 			_set_scene("bedroom", false)
 			_show_line()
 		"RESCUE_309":
 			_lines = RESCUE_309_LINES.duplicate()
+			_history_speaker = "Terese"
 			_speaker.text = tr("Terese")
 			_set_scene("lobby", false)
 			_show_line()
@@ -254,6 +257,7 @@ func show_task_dialogue(dialogue_id: String, speaker: String, lines: Array[Strin
 	if lines.is_empty() or not _dialogue_id.is_empty():
 		return false
 	_history_serial += 1
+	_history_speaker = speaker
 	_finish_phone_animation()
 	_dialogue_id = dialogue_id
 	_line_index = 0
@@ -685,7 +689,7 @@ func _build_memory_rail() -> void:
 func _record_history(index: int, serial: int) -> void:
 	if preload("res://scenes/ui/memory_ui.gd").is_open(): return
 	if not is_visible_in_tree() or _line_index != index or _history_serial != serial or _dialogue_id.is_empty(): return
-	var who := _speaker.text
+	var who := _history_speaker
 	var source := ""
 	if not _beats.is_empty():
 		var beat: Dictionary = _beats[index]

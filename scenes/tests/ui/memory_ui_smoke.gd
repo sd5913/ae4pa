@@ -15,6 +15,7 @@ func shot(name: String) -> void:
 func run() -> void:
 	root.size = Vector2i(960,540) if "--english" in OS.get_cmdline_user_args() else Vector2i(1920,1080) if "--large" in OS.get_cmdline_user_args() else Vector2i(1280,720)
 	root.get_node("Localization").set_language("en" if "--english" in OS.get_cmdline_user_args() else "zh_CN")
+	check(History.name_for("NOSE") != "NOSE" and History.name_for("CAROL") == "Carol", "history resolves stable monster/player IDs through existing localized role names")
 	var main: Node = load("res://scenes/main.tscn").instantiate()
 	root.add_child(main)
 	current_scene = main
