@@ -141,7 +141,7 @@ func _fit_dialogue_text() -> void:
 	if not is_node_ready() or not _line.visible or not _frame.visible:
 		return
 	# Grow paragraphs within the panel, independent of the removed action button.
-	var bottom := minf(size.y * 0.91, _skip_button.position.y - 16.0) if _skip_button.visible else size.y * 0.91
+	var bottom := size.y * 0.91
 	var top := minf(size.y * 0.763, bottom - _line.get_minimum_size().y)
 	_line.offset_top = top - size.y * _line.anchor_top
 	_line.offset_bottom = bottom - size.y * _line.anchor_bottom
@@ -161,7 +161,7 @@ func _fit_dialogue_text() -> void:
 
 
 func _refresh_stage_cue() -> void:
-	_cue.text = tr("（%s）") % tr(_beats[_line_index].text)
+	_cue.text = tr(_beats[_line_index].text)
 
 
 func _input(event: InputEvent) -> void:

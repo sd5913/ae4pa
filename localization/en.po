@@ -1932,3 +1932,48 @@ msgstr "You wouldn't believe me if I said it was a mistake... would you?"
 
 msgid "正确。偷窃者不在我们的接待范围内。请立即离开，否则我会请保安送你出去。"
 msgstr "Correct. We do not accommodate thieves. Leave now, or security will escort you out."
+
+msgid "Carol又拨了一次，电话里依然只有“对方暂时无法接听”的提示。她退出通话，翻出几天前收到的兼职录取通知。"
+msgstr "Carol calls again, but the same message answers: “The person you are calling is unavailable.” She ends the call and opens the part-time job offer she received a few days ago."
+
+msgid "几天前的傍晚，咖啡馆里。两杯饮料摆在桌上，Terese把手机递给Carol。"
+msgstr "A few evenings earlier, at a cafe. Two drinks sit on the table as Terese hands her phone to Carol."
+
+msgid "Terese笑着靠回卡座。录取通知上的那行小字，却让Carol放不下心。"
+msgstr "Terese leans back with a smile. But the small print on the job offer still worries Carol."
+
+msgid "Carol翻出聊天记录里的地址，拿起外套和钥匙。"
+msgstr "Carol finds the address in their chat history and picks up her coat and keys."
+
+msgid "雨幕中，旅馆的大门透出一片暖黄的灯光。"
+msgstr "Through the rain, warm amber light spills from the hotel entrance."
+
+msgid "楼上传来一声关门声。Carol转头望向楼梯。"
+msgstr "A door shuts upstairs. Carol turns toward the stairs."
+
+msgid "身上只能同时挂两张证……倒是挺会限制人的。"
+msgstr "Only two IDs at a time... Of course there's a limit."
+
+msgid "背包里还有位置，以后再拿到的证，就先收在那里。"
+msgstr "There's still room in my bag. Any extra IDs can go there."
+
+msgid "要换成别的身份，就打开背包，把要用的证换到装备栏里。"
+msgstr "If I need a different identity, I'll open the bag and swap it into an equipment slot."
+
+msgid "身上这两张倒不用来回摘。按{switch_key}就能切换，亮着的那张才算数。行，记住了。"
+msgstr "For these two, I can just press {switch_key}. The highlighted ID is the active one. Fine. Got it."
+
+msgid "……时间到了？啧，还是慢了一步。"
+msgstr "...Time's up? Tch. A little too slow."
+
+msgid "事情还没办完……得先把路线理清楚，不能再乱跑了。"
+msgstr "The job isn't finished... I need a clear route. No more running around."
+
+msgid "明明已经做完了，却没赶上交付。下次得把回去的时间也算进去。"
+msgstr "I finished the job, but missed the hand-in. Next time, I'll leave enough time to get back."
+
+msgid "不行，不能就这么算了。再来一次，这回得把路线记牢。"
+msgstr "No. I'm not giving up here. One more try. This time, I'll remember the route."
+
+msgid "多拿到的工作证可以收在背包里，要用时再换上。"
+msgstr "The extra IDs stay in my bag. I can swap them in when I need them."

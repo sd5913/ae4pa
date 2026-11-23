@@ -152,6 +152,11 @@ func set_notice(message: String) -> void:
 	var cache_key := message + str(view.get("status")) + str(view.get("step")) + CardManager.active_card
 	if cache_key == _last_notice: return
 	_last_notice = cache_key
+	# Preserve errors and interaction feedback; suppress task broadcasts already in the plate.
+	if message.begins_with("到前台找经理") or message.contains("任务进行中") or message.contains("经理交谈完成") or message.begins_with("Task in progress"):
+		message = ""
+	for broadcast: String in ["到前台找经理，靠近后按 E 交谈", "202任务进行中：取得保安证，切为当前身份，再去保管柜领取包裹。", "当前任务进行中，请完成清理后返回", "任务已接受：回一楼在保安身后取证，Q切保安身份，返回二楼保管柜领取，再回202交付。", "任务已接受：回 1F 取得保洁工作证，再到 2F 扫帚旁清理，最后回 201 交付。"]:
+		if message == tr(broadcast): message = ""
 	# Preserve A's source, suppress only the duplicate story/target display.
 	if message == tr(GameManager.get_story_objective()) or message == _objective.text or message in [tr("到前台找经理"), tr("前往前台与经理交谈")]:
 		message = ""

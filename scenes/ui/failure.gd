@@ -242,7 +242,8 @@ func _on_theft_fade_out_finished() -> void:
 	_theft_overlay.hide()
 	_theft_phase = TheftPhase.IDLE
 	_center.show()
-	show_failure("STAFF_CAUGHT")
+	# A has already configured the genuine failure title and checkpoint buttons.
+	show()
 	presentation_finished.emit(finished_role)
 
 

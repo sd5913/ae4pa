@@ -1,40 +1,24 @@
-extends OptionButton
-
-var _caption: Label
-
+extends MenuButton
 const LOCALES := [Localization.CHINESE, Localization.ENGLISH]
-
-
+var selected := 0
 func _ready() -> void:
 	alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_caption = Label.new()
-	_caption.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	_caption.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	_caption.offset_left = 32
-	_caption.offset_right = -32
-	_caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_caption.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	_caption.add_theme_font_size_override("font_size", 20)
-	add_child(_caption)
-	for state in ["font_color", "font_hover_color", "font_pressed_color", "font_focus_color", "font_disabled_color"]:
-		add_theme_color_override(state, Color.TRANSPARENT)
-	add_theme_font_size_override("font_size", 20)
 	tooltip_text = "Language / 语言"
-	add_item("简体中文")
-	add_item("English")
-	item_selected.connect(_select_language)
+	get_popup().add_radio_check_item("简体中文", 0)
+	get_popup().add_radio_check_item("English", 1)
+	get_popup().id_pressed.connect(_select_language)
 	_sync_selection()
-
-
 func _notification(what: int) -> void:
-	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready():
-		_sync_selection()
-
-
+	if what == NOTIFICATION_TRANSLATION_CHANGED and is_node_ready(): _sync_selection()
 func _select_language(index: int) -> void:
 	Localization.set_language(LOCALES[index])
-
-
+func select(index: int) -> void:
+	selected = maxi(0,index)
+	text = get_popup().get_item_text(selected)
+	for i in range(2): get_popup().set_item_checked(i, i == selected)
+	queue_redraw()
 func _sync_selection() -> void:
 	select(LOCALES.find(TranslationServer.get_locale()))
-	if is_instance_valid(_caption): _caption.text = get_item_text(selected)
+func _draw() -> void:
+	var c := Vector2(size.x - 20, size.y * 0.5)
+	draw_polyline(PackedVector2Array([c+Vector2(-4,-2),c+Vector2(0,2),c+Vector2(4,-2)]), Color("ecd4a1"), 2.0, true)

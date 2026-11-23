@@ -4,7 +4,6 @@ signal return_to_menu_requested()
 
 const FLOOR_MODAL := "FLOOR_SELECT"
 const PAUSE_MODAL := "PAUSE"
-const LanguageSelector = preload("res://scenes/ui/language_selector.gd")
 
 var _modal_id := ""
 var _title: Label
@@ -13,7 +12,7 @@ var _choices: VBoxContainer
 var _close: Button
 var _menu: Button
 
-var _language: OptionButton
+
 
 
 func _ready() -> void:
@@ -32,19 +31,18 @@ func _ready() -> void:
 	var content := VBoxContainer.new()
 	content.add_theme_constant_override("separation", 10)
 	panel.add_child(content)
+	content.add_theme_constant_override("separation", 16)
 	_title = Label.new()
 	_title.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	content.add_child(_title)
 	_message = Label.new()
+	_message.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_message.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	content.add_child(_message)
 	_choices = VBoxContainer.new()
 	content.add_child(_choices)
 	_menu = Button.new()
 	_menu.text = "返回菜单"
-	_menu.icon = preload("res://assets/final/ui/hotel_interface/icon_exit.png")
-	_menu.expand_icon = true
-	_menu.add_theme_constant_override("icon_max_width", 24)
 	_menu.hide()
 	content.add_child(_menu)
 	_menu.pressed.connect(func() -> void:
@@ -52,10 +50,6 @@ func _ready() -> void:
 		return_to_menu_requested.emit()
 	)
 
-	_language = LanguageSelector.new()
-	_language.name = "LanguageSelector"
-	_language.hide()
-	content.add_child(_language)
 	_close = Button.new()
 	_close.theme_type_variation = &"PrimaryButton"
 	content.add_child(_close)
@@ -108,7 +102,6 @@ func toggle_pause() -> void:
 
 func _open_page(modal_id: String, title: String, close_text: String) -> void:
 	_modal_id = modal_id
-	_language.visible = modal_id == PAUSE_MODAL
 	_title.text = title
 	_close.text = close_text
 	GameManager.set_modal_open(modal_id, true)

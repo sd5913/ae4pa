@@ -19,7 +19,7 @@ func run() -> void:
 	await create_timer(4.2).timeout
 	var menu: Control = main.get_node("MenuLayer/MainMenu")
 	var start: Button = menu.get_node("%StartButton")
-	var selector: OptionButton = menu.get_node("%LanguageSelector")
+	var selector: MenuButton = menu.get_node("%LanguageSelector")
 	check(start.size.is_equal_approx(Vector2(280,56)) and selector.size == start.size, "cover controls both 280x56 logical pixels")
 	check(is_equal_approx(selector.position.y - start.position.y - start.size.y, 14), "cover spacing 14")
 	for i in range(12):

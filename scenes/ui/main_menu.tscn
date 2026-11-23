@@ -96,7 +96,7 @@ focus_neighbor_bottom = NodePath("../LanguageSelector")
 focus_neighbor_top = NodePath("../LanguageSelector")
 text = "开始游戏"
 
-[node name="LanguageSelector" type="OptionButton" parent="Center/Content/Actions"]
+[node name="LanguageSelector" type="MenuButton" parent="Center/Content/Actions"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(280, 56)
 layout_mode = 2
