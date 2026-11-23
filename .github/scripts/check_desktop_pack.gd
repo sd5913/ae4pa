@@ -9,7 +9,7 @@ const DIALOGUE_FILES := [
 func _initialize() -> void:
 	var args := OS.get_cmdline_user_args()
 	if args.size() != 2 or not ProjectSettings.load_resource_pack(args[0]):
-		push_error("Usage: -- <Windows PCK path> <source project directory>")
+		push_error("Usage: -- <desktop PCK path> <source project directory>")
 		quit(1)
 		return
 
@@ -26,5 +26,5 @@ func _initialize() -> void:
 			valid = false
 
 	if valid:
-		print("Windows PCK contains the main scene, English localization, and all three dialogue files.")
+		print("The PCK contains the main scene, English localization, and all three dialogue files.")
 	quit(0 if valid else 1)

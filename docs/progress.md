@@ -1277,3 +1277,9 @@
 - 主线 [Linux Godot CI](https://github.com/sd5913/ae4pa/actions/runs/45100701304) 干净导入和八项 smoke 通过；[Windows workflow](https://github.com/sd5913/ae4pa/actions/runs/45100701293) 导入、本地化、Windows x64 导出／包检查和 runner 无界面启动通过。其非阻断 full-mainline 步骤从正常新局报告八项真实任务及 309 CG 路线 PASS，同时保留 203／205 `TASK_INACTIVE` 诊断输出。
 - `main@dca61f7` 的两次 EXIT 断言失败继续作为历史证据；不再列为当前 main 的复现失败。新 CI 不代替画面、实机键鼠、真人及同 SHA 跨平台验收。
 - 本轮只同步 Markdown 状态、流程与 QA，不改 Godot 脚本、场景、素材或工作流。
+
+### 2026-11-23 Linux／macOS 桌面打包交接
+
+- 基于 GitHub `main@ac58302b29499a4243dd302876a8f24e84be013a` 新增 Linux x86-64 与 macOS Universal 2 预览。沿用 Windows 的资源包校验和 Godot 4.7.2；启用 arm64 导出所需的 ETC2／ASTC 导入。
+- [打包与发版说明](desktop-release.md)记录预览验证、签名环境与密钥格式、受保护主线版本标签及学生发布流程。macOS 预览仅使用临时签名；GitHub 发版草稿必须通过 Developer ID 签名、公证、装订及验证。
+- Linux 上使用匹配的 Godot 4.7.2 验证了 ZIP 解压启动、中国简体与英语配置、本地化检查及三平台 PCK。macOS Universal 2 通过 Linux 交叉导出与 Mach-O 检查。详见 [桌面打包分支验证](qa.md#桌面打包分支验证2026-11-23)。
