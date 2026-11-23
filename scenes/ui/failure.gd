@@ -21,6 +21,7 @@ const REASON_TEXT := {
 
 var _theft_sequences: Dictionary = {}
 var _theft_phase: TheftPhase = TheftPhase.IDLE
+var _history_serial := 0
 var _theft_role := ""
 var _theft_lines: Array = []
 var _theft_line_index := -1
@@ -83,6 +84,7 @@ func play_theft_failure(staff_id: String) -> bool:
 	for beat: Variant in lines:
 		if not beat is Dictionary or str(beat.get("zh", "")).is_empty() or str(beat.get("en", "")).is_empty():
 			return false
+	_history_serial += 1
 	_theft_role = staff_id
 	_theft_lines = lines
 	_theft_line_index = -1
@@ -191,6 +193,7 @@ func _on_theft_overlay_gui_input(event: InputEvent) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if preload("res://scenes/ui/memory_ui.gd").is_open(): return
 	if _theft_phase == TheftPhase.IDLE:
 		return
 	if event is InputEventKey and event.pressed and not event.echo:
@@ -221,6 +224,7 @@ func _update_theft_line() -> void:
 	var beat: Dictionary = _theft_lines[_theft_line_index]
 	var speaker_id := str(beat.get("speaker", ""))
 	var display_name: String = "Carol" if speaker_id == "Carol" else TranslationServer.translate(str(STAFF_NAMES.get(speaker_id, speaker_id)))
+	_record_history.call_deferred(_theft_line_index,_history_serial)
 	_speaker.text = display_name
 	_line.text = tr(str(beat.get("zh", "")))
 	_prompt.text = tr("点击对话框或按 E")
@@ -301,3 +305,8 @@ func _exit_tree() -> void:
 				staff.disconnect("task_failure_requested", callback)
 	if GameManager.has_method("set_modal_open"):
 		GameManager.call("set_modal_open", MODAL_ID, false)
+
+func _record_history(index: int, serial: int) -> void:
+	if _theft_phase != TheftPhase.READING or _theft_line_index != index or _history_serial != serial: return
+	var beat: Dictionary = _theft_lines[index]
+	preload("res://scenes/ui/memory_history.gd").record("theft:%d:%d:%d" % [get_instance_id(),serial,index],str(beat.speaker),str(beat.zh),"STAFF_CAUGHT")

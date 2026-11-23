@@ -21,7 +21,8 @@ func run() -> void:
 	var start: Button = menu.get_node("%StartButton")
 	var selector: MenuButton = menu.get_node("%LanguageSelector")
 	check(start.size.is_equal_approx(Vector2(280,56)) and selector.size == start.size, "cover controls both 280x56 logical pixels")
-	check(is_equal_approx(selector.position.y - start.position.y - start.size.y, 14), "cover spacing 14")
+	var load_memory: Button = menu.get_node("%LoadMemory")
+	check(load_memory.size == start.size and is_equal_approx(load_memory.position.y - start.position.y - start.size.y,14) and is_equal_approx(selector.position.y-load_memory.position.y-load_memory.size.y,14), "three cover controls use equal sizes and 14px spacing")
 	for i in range(12):
 		start.mouse_entered.emit()
 		start.button_down.emit()

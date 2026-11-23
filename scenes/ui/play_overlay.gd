@@ -11,6 +11,7 @@ var _message: Label
 var _choices: VBoxContainer
 var _close: Button
 var _menu: Button
+var _memory_buttons: Array[Button] = []
 
 
 
@@ -50,6 +51,13 @@ func _ready() -> void:
 		return_to_menu_requested.emit()
 	)
 
+	for mode: String in ["save","load","history"]:
+		var memory := Button.new()
+		memory.text = {"save":"保存记忆","load":"读取记忆","history":"历史回忆"}[mode]
+		memory.custom_minimum_size.y = 44
+		memory.pressed.connect(func() -> void: preload("res://scenes/ui/memory_ui.gd").open_page(mode))
+		content.add_child(memory)
+		_memory_buttons.append(memory)
 	_close = Button.new()
 	_close.theme_type_variation = &"PrimaryButton"
 	content.add_child(_close)
@@ -104,6 +112,7 @@ func _open_page(modal_id: String, title: String, close_text: String) -> void:
 	_modal_id = modal_id
 	_title.text = title
 	_close.text = close_text
+	for button in _memory_buttons: button.visible = modal_id == PAUSE_MODAL
 	GameManager.set_modal_open(modal_id, true)
 	show()
 	_close.grab_focus()
@@ -119,6 +128,7 @@ func close_page() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if preload("res://scenes/ui/memory_ui.gd").is_open(): return
 	if not visible or event.is_echo():
 		return
 	if event.is_action_pressed("pause"):

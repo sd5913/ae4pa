@@ -17,6 +17,7 @@ var _surface: Control
 var _shade: ColorRect
 var _pointer := Pointer.new()
 var _lines: Array[String] = []
+var _history_serial := 0
 var _index := 0
 var _mode := ""
 var _tutorial_seen := false
@@ -92,6 +93,7 @@ func _start_timeout() -> void:
 	_main.get_node("TaskLayer/MissionBoard").hide()
 
 func _start(mode: String, lines: Array) -> void:
+	_history_serial += 1
 	_mode = mode
 	_lines.assign(lines)
 	if mode == "equipment" and CardManager.get_owned_cards().size() >= 3:
@@ -112,8 +114,11 @@ func _show_beat() -> void:
 			break
 	_surface.present_character_beat("CAROL", text.replace("{switch_key}",key))
 	_surface.mute_world_prompts()
+	_record_history.call_deferred(_index,_history_serial,key)
 
 func _input(event: InputEvent) -> void:
+	if preload("res://scenes/ui/memory_ui.gd").is_open(): return
+	if is_instance_valid(_surface) and _surface.memory_controls_own_event(event): return
 	if _mode.is_empty(): return
 	var result: int = _pointer.feed(event, [_surface.get_node("%DialogueFrame").get_global_rect()], Time.get_ticks_msec() < _hold_until)
 	if result == _pointer.ADVANCE:
@@ -145,3 +150,16 @@ func _state_changed(state: String) -> void:
 
 func _exit_tree() -> void:
 	GameManager.set_modal_open(MODAL, false)
+
+func capture_memory_ui_state() -> Dictionary:
+	return {"version":1, "tutorial_seen":_tutorial_seen}
+
+func restore_memory_ui_state(value: Dictionary) -> bool:
+	if not _mode.is_empty() or value.get("version") != 1 or not value.get("tutorial_seen") is bool: return false
+	_tutorial_seen = value.tutorial_seen
+	_pending_equipment = false
+	return true
+
+func _record_history(index: int, serial: int, key: String) -> void:
+	if _mode.is_empty() or _index != index or serial != _history_serial: return
+	preload("res://scenes/ui/memory_history.gd").record("carol:%d:%d:%d" % [get_instance_id(),serial,index],"Carol",_lines[index],_mode,{"switch_key":key})
