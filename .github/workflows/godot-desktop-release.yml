@@ -108,14 +108,29 @@ jobs:
         run: |
           printf '[Download %s (%s)](%s)\n\nSource: `%s`\n' \
             "$ARTIFACT_NAME" "$PACKAGE_CHANNEL" "$ARTIFACT_URL" "$(git rev-parse HEAD)" >> "$GITHUB_STEP_SUMMARY"
+
+  linux-smoke:
+    name: Launch the uploaded Linux ZIP
+    needs: package
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+    env:
+      PACKAGE_CHANNEL: ${{ github.event_name == 'push' && 'release-input' || 'preview' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: .github/scripts
       - name: Download the Linux ZIP from Actions
-        if: matrix.platform == 'linux'
         uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
-          name: ${{ matrix.artifact }}-${{ env.PACKAGE_CHANNEL }}
+          github-token: ${{ github.token }}
+          name: monster-hotel-linux-x86_64-${{ env.PACKAGE_CHANNEL }}
           path: ${{ runner.temp }}/linux
       - name: Verify executable mode, extract and launch both language profiles
-        if: matrix.platform == 'linux'
         run: bash .github/scripts/smoke_linux_package.sh "$RUNNER_TEMP/linux/monster-hotel-linux-x86_64.zip"
 
   sign-macos:
@@ -159,7 +174,7 @@ jobs:
   draft-release:
     name: Prepare GitHub Release draft
     if: github.repository == 'sd5913/ae4pa' && github.event_name == 'push' && github.ref_type == 'tag'
-    needs: [source, package, sign-macos]
+    needs: [source, linux-smoke, sign-macos]
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
