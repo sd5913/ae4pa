@@ -386,7 +386,15 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 
 ### 2026-11-22 D：偷窃被发现 CG 与对白 UI
 
+<!-- Newer button/HUD evidence is appended below; existing CG evidence is preserved. -->
+
 - 从用户提供的 `Theft_Failure_CG_Pack.zip` 选择性导入 SECURITY、CLEANER、MANAGER 三张 CG 与 `story_cn_en.json`；对白只读展示，不发卡、不更改任务状态。失败 UI 通过 B 员工发出的 `task_failure_requested(reason, target_id)` 读取实际发信员工的 `card_id`，再按该身份选 CG；普通失败原因不会进入偷窃演出。未修改 A 的管理器／主场景或 B 员工逻辑。
 - Godot `4.7.2.stable.official.ed1daf0bf`（Windows，隔离临时用户配置）：编辑器资源导入退出 0；偷窃 UI smoke 中文退出 0、英文退出 0；`localization_smoke.gd` 退出 0；现有 `ui_test.tscn -- --ui-smoke` 退出 0；`git diff --check` 退出 0。日志记录了 Windows 根证书读取错误，但没有阻断检查。无窗口 smoke 与图形 smoke 均覆盖三身份映射、资源加载、四拍中英文本、0.8 秒展示阶段、单次推进／忽略键盘回显、单次完成信号及返回已有失败菜单。
 - 图形 smoke 已在中文 1280×720 和英文 960×540 捕获各身份对白截图；135 帧 Movie Maker 文件展示自动化的 CG→对白→失败菜单场景。这些是独立 UI smoke 证据，不是正式主场景真实偷窃路线或人工操作录像。证据、日志说明和未验证项见[偷窃失败 UI 证据](qa_evidence/d_theft_failure_20261122/README.md)。
 - 正式主场景中分别触发三种员工的真实偷窃失败、完整流程只结算一次、快速物理输入，以及检查点恢复／返回菜单尚未人工验收。`GameManager.can_retry_current_task()` 和 `retry_current_task()` 已存在；当前 main 未连接 `Failure.retry_requested()`／`return_to_menu_requested()`，按钮端到端流程需 A 接线。独立 UI smoke 不代替此项验收。
+
+### 2026-11-23 D：封面按钮、HUD与工作人员待机
+
+- 实测代码 `1e817cc0e33e7f9263d49be9dc0914d583b99d1c`，含独立共享视觉修复 `e36e3cc`；当前分支 work/member-D-ui-polish-v4。封面两项统一280×56／14px间距，语言文字独立居中；按钮反馈改0.12秒颜色；HUD图标换28px矢量，任务牌上移24px并去除重复目标。共享视觉脚本只固定保安／经理普通站姿，不改行走、警觉、碰撞、速度或任务规则，交A/B审查。
+- Windows / Godot 4.7.2：导入、中文1280与英文960图形main场景检查、现有HUD布局、foundation、final_visual_integration、员工core／cleaner、localization与ui_test最终均退出0；git diff --check通过。最初错误入口／配置及移动夹具断言失败留日志，并已按真实入口／新配置重跑。
+- 实际main场景截图、前后来源、16.8秒静止与启停录屏及限制见[本轮证据](qa_evidence/d_button_idle_20261123/README.md)。截图已目视检查；录屏供A/B审看，未代记物理键盘人工或导出验收。保留所有原未跟踪文件，不合并main。
