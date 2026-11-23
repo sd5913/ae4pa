@@ -22,6 +22,7 @@ func run() -> void:
 	var memory: Node = main.get_node("MenuLayer/MainMenu/MemoryUI")
 	check(memory != null and memory.backend == null, "no invented persistence backend is attached")
 	check(main.get_node("MenuLayer/MainMenu/%LoadMemory").disabled, "cover load is disabled without a real readable save")
+	check(not main.get_node("MenuLayer/MainMenu/%LanguageSelector").flat, "language control retains the same visible button surface")
 	await shot("cover")
 	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
 	var story: Control = main.get_node("StoryLayer/Dialogue")

@@ -2,6 +2,7 @@ extends MenuButton
 const LOCALES := [Localization.CHINESE, Localization.ENGLISH]
 var selected := 0
 func _ready() -> void:
+	flat = false
 	alignment = HORIZONTAL_ALIGNMENT_CENTER
 	tooltip_text = "Language / 语言"
 	get_popup().add_radio_check_item("简体中文", 0)

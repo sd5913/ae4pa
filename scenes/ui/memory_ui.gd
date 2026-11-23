@@ -38,7 +38,12 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(_root)
 	_root.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	_root.theme = preload("res://scenes/ui/staff_ui_theme.tres")
+	var page_theme: Theme = preload("res://scenes/ui/staff_ui_theme.tres").duplicate()
+	var body_font := SystemFont.new()
+	body_font.font_names = PackedStringArray(["Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC"])
+	body_font.fallbacks = [preload("res://assets/final/fonts/hotel_staff_cjk.otf")]
+	page_theme.default_font = body_font
+	_root.theme = page_theme
 	var shade := ColorRect.new()
 	shade.color = Color(0.015,0.025,0.02,0.84)
 	_root.add_child(shade)
