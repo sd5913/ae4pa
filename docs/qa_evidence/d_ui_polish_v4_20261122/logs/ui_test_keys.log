@@ -1,0 +1,42 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+Godot_v4.7.2-stable_win64_console.exe : ERROR: Failed to read the root certificate store.
+所在位置 行:2 字符: 505
++ ... STEXITCODE";& $godot --headless --path . res://scenes/tests/ui/ui_tes ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ERROR: Failed t...tificate store.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+   at: get_system_ca_certificates (platform/windows/os_windows.cpp:2582)
+PASS: Mission board reads the task ID from GameManager.get_task_view()
+PASS: Mission board displays the status from the real task view
+PASS: Floor choices mirror GameManager.get_available_floors()
+PASS: Floor choices mirror GameManager.get_available_floors()
+PASS: Floor choices mirror GameManager.get_available_floors()
+PASS: Floor choices mirror GameManager.get_available_floors()
+PASS: Floor choices mirror GameManager.get_available_floors()
+PASS: HUD reads the current floor from GameManager
+PASS: HUD displays the task name from the live task view
+PASS: Inactive HUD does not claim a running countdown
+PASS: HUD does not create or advance a private timer
+PASS: Opening the mission board registers a modal with GameManager
+PASS: A denied floor request restores the board without changing floors
+PASS: A denied floor request restores modal registration
+PASS: Closing the board releases its modal registration
+PASS: Unavailable tasks cannot be accepted
+PASS: Unavailable task sends no accepted signal
+PASS: Ordinary warning stays separate from task failure
+PASS: Task failure uses its own display
+PASS: Retry stays disabled because main has no checkpoint restore API
+PASS: Failure page shows the real reason text
+PASS: Failure page retry remains disabled without checkpoint restoration
+PASS: Win screen starts hidden
+PASS: Win screen displays the ending
+PASS: Win screen does not fabricate statistics
+PASS: Win screen focuses the restart button
+PASS: Win restart emits only its request
+PASS: Win return emits only its request
+PASS: mission board reads the live task view and floor list; guarded accept uses GameManager's real API.
+PASS: HUD reads the live floor, task and remaining time without a private timer.
+PASS: floor request uses GameManager, modal registration is released/restored correctly, ordinary warning and task failure remain distinct.
+PASS: fatal failure text and disabled retry without a checkpoint API.

@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=9 format=3]
 [ext_resource type="Script" path="res://scenes/ui/hud.gd" id="1"]
 [ext_resource type="Theme" path="res://scenes/ui/hud_theme.tres" id="2"]
 [ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_bag.png" id="bag"]
 [ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_journal.png" id="journal"]
 [ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_pause.png" id="pause"]
 [ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/icon_hourglass.png" id="task"]
+[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/status_plaque.png" id="floor_art"]
 [sub_resource type="StyleBoxEmpty" id="Empty"]
 [node name="HUD" type="PanelContainer"]
 anchors_preset = 10
@@ -86,6 +87,55 @@ layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 8
 mouse_filter = 2
+[node name="Toolbar" type="HBoxContainer" parent="Margin/Groups/Right"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="BagButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(94, 44)
+size_flags_horizontal = 3
+expand_icon = true
+theme_override_font_sizes/font_size = 16
+theme_override_constants/icon_max_width = 16
+text = "背包"
+icon = ExtResource("bag")
+
+[node name="NotebookButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(94, 44)
+size_flags_horizontal = 3
+expand_icon = true
+theme_override_font_sizes/font_size = 16
+theme_override_constants/icon_max_width = 16
+text = "笔记"
+icon = ExtResource("journal")
+
+[node name="PauseButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(94, 44)
+size_flags_horizontal = 3
+expand_icon = true
+theme_override_font_sizes/font_size = 16
+theme_override_constants/icon_max_width = 16
+text = "暂停"
+icon = ExtResource("pause")
+
+[node name="TaskButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
+unique_name_in_owner = true
+layout_mode = 2
+custom_minimum_size = Vector2(94, 44)
+size_flags_horizontal = 3
+expand_icon = true
+theme_override_font_sizes/font_size = 16
+theme_override_constants/icon_max_width = 16
+text = "任务"
+icon = ExtResource("task")
+
 [node name="Readout" type="HBoxContainer" parent="Margin/Groups/Right"]
 layout_mode = 2
 theme_override_constants/separation = 16
@@ -97,8 +147,14 @@ theme_override_constants/separation = 8
 custom_minimum_size = Vector2(176, 96)
 layout_mode = 2
 size_flags_vertical = 0
-theme_type_variation = &"HudFloorPlate"
+theme_override_styles/panel = SubResource("Empty")
 mouse_filter = 2
+[node name="Art" type="TextureRect" parent="Margin/Groups/Right/Readout/FloorColumn/Identity"]
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("floor_art")
+expand_mode = 1
+stretch_mode = 5
 [node name="Details" type="VBoxContainer" parent="Margin/Groups/Right/Readout/FloorColumn/Identity"]
 layout_mode = 2
 alignment = 1
@@ -207,40 +263,3 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_type_variation = &"HudHint"
 horizontal_alignment = 1
-
-[node name="Toolbar" type="HBoxContainer" parent="Margin/Groups/Right"]
-layout_mode = 2
-theme_override_constants/separation = 8
-alignment = 2
-
-[node name="BagButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-theme_override_constants/icon_max_width = 16
-text = "背包"
-icon = ExtResource("bag")
-
-[node name="NotebookButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-theme_override_constants/icon_max_width = 16
-text = "笔记"
-icon = ExtResource("journal")
-
-[node name="PauseButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-theme_override_constants/icon_max_width = 16
-text = "暂停"
-icon = ExtResource("pause")
-
-[node name="TaskButton" type="Button" parent="Margin/Groups/Right/Toolbar"]
-unique_name_in_owner = true
-layout_mode = 2
-theme_override_font_sizes/font_size = 14
-theme_override_constants/icon_max_width = 16
-text = "任务"
-icon = ExtResource("task")

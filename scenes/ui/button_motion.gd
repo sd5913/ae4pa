@@ -17,6 +17,9 @@ func _bind_button(button: Button) -> void:
 		return
 	_buttons.append(button)
 	button.theme = UI_THEME
+	button.alignment = HORIZONTAL_ALIGNMENT_CENTER
+	button.text_overrun_behavior = TextServer.OVERRUN_NO_TRIMMING
+	button.clip_text = false
 	button.resized.connect(func() -> void: button.pivot_offset = button.size * 0.5)
 	button.pivot_offset = button.size * 0.5
 	for event: StringName in [&"mouse_entered", &"mouse_exited", &"focus_entered", &"focus_exited", &"button_down", &"button_up", &"visibility_changed"]:

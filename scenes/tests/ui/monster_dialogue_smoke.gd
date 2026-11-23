@@ -42,7 +42,7 @@ func run() -> void:
 	check(screen.get("_panel").get_theme_stylebox("panel") == main.dialogue.get_node("%DialogueFrame").get_theme_stylebox("panel"), "monster uses the actual standard story panel resource")
 	check(not screen.get("_surface").get_node("%SkipButton").visible, "monster dialogue has no intro skip")
 	check(main.get_node("TaskLayer/HUD").modulate.a == 0.0, "HUD hides during resident dialogue")
-	check(screen.get("_surface").get_node("%Portrait").texture == null, "missing formal monster portrait never substitutes scene sprite")
+	check(screen.get("_surface").get_node("%Portrait").texture != null, "approved formal monster portrait is connected")
 	await capture("201-introduction")
 	var completed: Array[String] = []
 	screen.dialogue_finished.connect(func(id: String) -> void: completed.append(id))

@@ -1234,6 +1234,14 @@
 - 五张均为1024×1536 RGBA，Alpha范围0—254，含真实全透明像素；逐张SHA256与生成时validation.json一致。art_sources/monster_dialogue_portraits_v1保留内置imagegen原始提示词和Alpha校验报告，素材README说明透明混合和隐藏RGB。
 - 本次仅发布五张独立素材及必要说明、提示词／校验，不包含横向合图、不替换运行时对白或怪物动画。fetch后main仍cc52b6d，选择性暂存及git diff --check；不为纯素材新增玩法测试或声称游戏对白已接入。
 
+### 2026-11-22 D：UI polish v4 与五怪正式半身
+
+- 从最新main 569b5d0建立 work/member-D-ui-polish-v4，代码／测试提交35b2400245cfb3bce6e4183dae7c71e9a76d3bcd。用户微信ZIP与main五张PNG哈希完全一致，复用assets/final/monster_dialogue_portraits_v1，不复制第二套资源。
+- 接入五怪固定Atlas裁切；标准人物槽底部／姓名牌／正文统一，Carol、Terese和员工按整套表情共同轮廓固定裁切；修复短信布局后最终滚动和旧滚动请求；按钮改为黄铜矢量状态；正式HUD四按钮上移，楼层／双槽在下且楼层底图等比；笔记增加宽度与滚动区、关闭键和模态恢复。未改任务、主场景、卡片或门规则。
+- Godot4.7.2 Windows：资源导入、手册、剧情输入、本地化、ui_test、怪物对白、HUD布局全部自动退出0；真实five_monster正常新局201—205自动退出0。新定向main场景中文1280、英文960、1920布局与笔记10次开关／菜单重入均退出0。英文初次断言逻辑坐标与物理宽混比的失败保留，修复坐标系后通过；没有去掉检查。
+- 已生成实际截图与20.1秒Godot录屏，区分真实五怪任务与主场景review；人工完整八任务／后段路线未代记。物理H启动页未观察到打开，InputEventAction关闭／暂停模态已自动通过，物理键人工复核仍待联调。原门图烘焙小剪影和原图轻微暖边保留，未改A/C模块。详见[本轮证据](qa_evidence/d_ui_polish_v4_20261122/README.md)。
+- 补充快捷键代码提交36a4a77：按InputMap匹配真实InputEventKey，H／Esc十次开关、help_keys和ui_test_keys自动退出0；桌面注入键未观察到响应，鼠标点开始正常，硬件键盘人工复核未代记通过。
+
 ### 2026-11-22 C：新版核验怪站姿动画替换与发布
 
 - 用户确认浅暖棕头发描边的新版核验怪及8帧待机图，并授权替换游戏、推送GitHub和合入main。基于main@569b5d0建立独立动画发布分支，避免把尚待A验证的PR65复核提交一起合并。

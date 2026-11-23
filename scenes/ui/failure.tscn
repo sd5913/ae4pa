@@ -1,7 +1,35 @@
-[gd_scene load_steps=3 format=3]
+[gd_scene load_steps=5 format=3]
 
 [ext_resource type="Script" path="res://scenes/ui/failure.gd" id="1_script"]
 [ext_resource type="Theme" path="res://scenes/ui/staff_ui_theme.tres" id="2_theme"]
+
+[sub_resource type="StyleBoxFlat" id="TheftDialogueStyle"]
+bg_color = Color(0.98, 0.91, 0.77, 0.98)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.78, 0.55, 0.22, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+content_margin_left = 24.0
+content_margin_top = 22.0
+content_margin_right = 24.0
+content_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="TheftNameplateStyle"]
+bg_color = Color(0.85, 0.64, 0.34, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.56, 0.34, 0.11, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
 
 [node name="Failure" type="Control"]
 visible = false
@@ -26,6 +54,7 @@ mouse_filter = 2
 color = Color(0.07, 0.035, 0.04, 0.92)
 
 [node name="Center" type="CenterContainer" parent="."]
+unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -79,6 +108,118 @@ custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
 focus_neighbor_top = NodePath("../RetryButton")
 text = "返回菜单"
+
+[node name="TheftOverlay" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+
+[node name="CGBackdrop" type="ColorRect" parent="TheftOverlay"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.08, 0.025, 0.025, 1)
+
+[node name="TheftCG" type="TextureRect" parent="TheftOverlay"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CGDim" type="ColorRect" parent="TheftOverlay"]
+layout_mode = 1
+anchor_top = 0.58
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color(0.07, 0.035, 0.04, 0.5)
+
+[node name="TheftDialogueFrame" type="Panel" parent="TheftOverlay"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchor_left = 0.035
+anchor_top = 0.705
+anchor_right = 0.965
+anchor_bottom = 0.965
+mouse_filter = 1
+theme_override_styles/panel = SubResource("TheftDialogueStyle")
+
+[node name="TheftNameplate" type="Panel" parent="TheftOverlay/TheftDialogueFrame"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = -26.0
+offset_right = 224.0
+offset_bottom = 16.0
+theme_override_styles/panel = SubResource("TheftNameplateStyle")
+
+[node name="TheftSpeaker" type="Label" parent="TheftOverlay/TheftDialogueFrame/TheftNameplate"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+offset_left = 8.0
+offset_top = 2.0
+offset_right = -8.0
+offset_bottom = -2.0
+theme_override_colors/font_color = Color(0.22, 0.13, 0.07, 1)
+theme_override_font_sizes/font_size = 19
+horizontal_alignment = 1
+vertical_alignment = 1
+text = "保安"
+
+[node name="TheftLine" type="Label" parent="TheftOverlay/TheftDialogueFrame"]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+offset_left = 28.0
+offset_top = 25.0
+offset_right = -28.0
+offset_bottom = -42.0
+theme_override_colors/font_color = Color(0.16, 0.12, 0.09, 1)
+theme_override_font_sizes/font_size = 23
+autowrap_mode = 2
+vertical_alignment = 1
+text = ""
+
+[node name="TheftPrompt" type="Label" parent="TheftOverlay/TheftDialogueFrame"]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+offset_left = 28.0
+offset_top = -34.0
+offset_right = -28.0
+offset_bottom = -8.0
+theme_override_colors/font_color = Color(0.37, 0.28, 0.15, 1)
+theme_override_font_sizes/font_size = 14
+horizontal_alignment = 2
+vertical_alignment = 1
+text = "点击对话框或按 E"
 
 [connection signal="pressed" from="Center/Panel/Content/RetryButton" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="Center/Panel/Content/MenuButton" to="." method="_on_return_to_menu_pressed"]

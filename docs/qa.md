@@ -377,3 +377,17 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 - `task_ui_smoke.gd` 退出3：空 OwnedCards 列表导致 `get_item_icon`／`select` 越界，随后当前 floor 找不到 `Interactions/Stain201Slot/CleaningSpot`。`full_mainline_escape_smoke.gd` 退出1：最终“八任务／309／EXIT”断言失败；日志同时显示 `ROOM_SERVICE_203`、`TRANSIT_REGISTER_205` 状态为 `TASK_INACTIVE`。两者均不计PASS，待相关测试夹具／A 任务配置定位。
 - 403 巡房界面仍有文字靠近员工与房门区域。A 的 `scenes/levels/floor.gd` 生成“巡房记录已取得／返回403交付”世界提示；B 的 `scenes/staff/staff.gd`／`patrol_staff_4f.tscn` 生成员工取件反馈。本轮未改 A/B 模块：A 调整并本地化楼层提示，B 调整员工反馈标签。
 - TC-11、TC-14 人工路线、多成员同提交和两位组员八任务真实耗时／暂停时间、导出平台验证、真实演示及署名仍待执行。保留工作簿原记录；未填写推测数据。A 验证入口为正式 `scenes/main.tscn`，后段自动检查为 `scenes/tests/core/late_mainline_main_flow_smoke.gd`；自动化结果不替代人工新局通关。
+### 2026-11-22 D：五怪半身与UI排版 v4
+
+- 最新main569b5d0基础的新分支work/member-D-ui-polish-v4；UI代码35b2400，补充快捷键代码／测试36a4a77。用户ZIP五张图与main已有PNG哈希一致，复用原正式目录。新固定裁切／标准基线、整套表情公共裁切、奶油剧情框保留。
+- 按钮改黄铜矢量状态；短信容器完成布局后最终滚底，旧请求自动失效；正式HUD改工具栏在上、楼层／双槽在下；笔记正文宽度与滚动边界固定，翻页／关闭在外，按原模态释放。未改A/B/C任务或管理器。
+- Godot4.7.2 Windows自动：import、help_refinement、story_surface、localization、ui_test、monster_dialogue、HUD布局、真实正常新局five_monster均退出0；定向main场景1280中文、960英文、1920图形检查退出0。笔记10次物理InputEventKey H／Esc开关与菜单重入通过；补充help_keys与ui_test_keys均退出0。英文第一次边界断言使用错坐标系的失败日志保留，按逻辑坐标完整包围检查后退出0。
+- 目视已检查截图中的五怪、两种女主／同伴表情、短信、HUD、笔记中文和英文；窗口启动与鼠标点开始进入手机通知已操作。桌面键盘注入H／E未观察到响应，不代记硬件键盘人工通过；待真实键盘复核。门图烘焙剪影、原图轻微暖边保留。真实后段八任务通关／导出／多人计时仍按原QA待验收，不用本次五怪或review替代。
+- 正式201—205入口截图、其他显示review来源、20.1秒Godot Movie Maker录像、具体命令和限制见[UI polish v4证据](qa_evidence/d_ui_polish_v4_20261122/README.md)。本次交A审查，不合并main。
+
+### 2026-11-22 D：偷窃被发现 CG 与对白 UI
+
+- 从用户提供的 `Theft_Failure_CG_Pack.zip` 选择性导入 SECURITY、CLEANER、MANAGER 三张 CG 与 `story_cn_en.json`；对白只读展示，不发卡、不更改任务状态。失败 UI 通过 B 员工发出的 `task_failure_requested(reason, target_id)` 读取实际发信员工的 `card_id`，再按该身份选 CG；普通失败原因不会进入偷窃演出。未修改 A 的管理器／主场景或 B 员工逻辑。
+- Godot `4.7.2.stable.official.ed1daf0bf`（Windows，隔离临时用户配置）：编辑器资源导入退出 0；偷窃 UI smoke 中文退出 0、英文退出 0；`localization_smoke.gd` 退出 0；现有 `ui_test.tscn -- --ui-smoke` 退出 0；`git diff --check` 退出 0。日志记录了 Windows 根证书读取错误，但没有阻断检查。无窗口 smoke 与图形 smoke 均覆盖三身份映射、资源加载、四拍中英文本、0.8 秒展示阶段、单次推进／忽略键盘回显、单次完成信号及返回已有失败菜单。
+- 图形 smoke 已在中文 1280×720 和英文 960×540 捕获各身份对白截图；135 帧 Movie Maker 文件展示自动化的 CG→对白→失败菜单场景。这些是独立 UI smoke 证据，不是正式主场景真实偷窃路线或人工操作录像。证据、日志说明和未验证项见[偷窃失败 UI 证据](qa_evidence/d_theft_failure_20261122/README.md)。
+- 正式主场景中分别触发三种员工的真实偷窃失败、快速物理输入，以及检查点恢复／返回菜单尚未人工验收。主场景已有 `Failure.retry_requested()`／`return_to_menu_requested()` 接线。中英文 UI smoke 覆盖演出结束后保留检查点重试、继续提示可见和取消后同角色可重播。

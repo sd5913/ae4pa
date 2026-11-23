@@ -1882,6 +1882,57 @@ msgstr "At last. I can continue toward the third floor."
 msgid "已完成核验，无须重复提交。"
 msgstr "Verification complete. Do not submit again."
 
+msgid "背包"
+msgstr "Bag"
+
+msgid "笔记"
+msgstr "Notes"
+
+msgid "暂停"
+msgstr "Pause"
+
+msgid "任务"
+msgstr "Tasks"
+
+msgid "点击对话框或按 E"
+msgstr "Click the dialogue box or press E"
+
+msgid "站住！你的手刚才伸到哪儿去了？"
+msgstr "Stop! Where do you think that hand was going?"
+
+msgid "偷工作证？我看得清清楚楚，别想蒙混过去！"
+msgstr "Stealing a staff ID? I saw that. Don't try to talk your way out!"
+
+msgid "糟了……偏偏这时候看过来！"
+msgstr "Great... You had to look over right then!"
+
+msgid "还想跑？把手放好，跟我去门口。你得离开这家旅馆！"
+msgstr "Trying to run? Hands where I can see them. To the door. You're leaving this hotel!"
+
+msgid "哎！你往我口袋里摸什么呢？！"
+msgstr "Hey! What are you doing with your hand in my pocket?!"
+
+msgid "我忙着收拾房间，你倒忙着顺走我的工作证？"
+msgstr "I'm busy cleaning rooms, and you're busy pinching my staff ID?"
+
+msgid "不是，我……啧，被看见了。"
+msgstr "No, I... Tch. Caught me."
+
+msgid "少来这套！门在那边，赶紧出去，别等我叫保安！"
+msgstr "Save it! The door's over there. Out, before I call security!"
+
+msgid "……把手拿开。那是我的工作证。"
+msgstr "...Hands off. That is my staff ID."
+
+msgid "我原以为你是来办理手续的。看来，是我高估了你的礼貌。"
+msgstr "I thought you were here for the paperwork. I seem to have overestimated your manners."
+
+msgid "如果我说拿错了……你也不会信吧。"
+msgstr "You wouldn't believe me if I said it was a mistake... would you?"
+
+msgid "正确。偷窃者不在我们的接待范围内。请立即离开，否则我会请保安送你出去。"
+msgstr "Correct. We do not accommodate thieves. Leave now, or security will escort you out."
+
 msgid "EXIT · 先完成501离店单交付"
 msgstr "EXIT · Deliver the Room 501 exit form first."
 
