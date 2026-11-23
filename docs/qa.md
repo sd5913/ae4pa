@@ -8,6 +8,15 @@
 
 从正式 F5 菜单开始。按[玩家指南](player-guide.md)执行，下表给出当前路线与 PDF 附录的差异。沿用原用例编号追溯需求，并在工作簿注明真正执行的步骤和提交。
 
+### 最新主线 GitHub Actions（2026-11-23）
+
+验证基线：`main@cac0214d9845a2bae8c6dcb7a55000755e10e19c`，Godot `4.7.2.stable.official.ed1daf0bf`。
+
+- [Linux Godot CI](https://github.com/sd5913/ae4pa/actions/runs/45100701304) 通过：干净导入及 `foundation`、`task_checkpoint`、`staff_core`、`work_items`、`known_monster_rules`、`task_door_lifecycle`、`localization`、`late_mainline` 八项 smoke 均通过。
+- [Windows 构建工作流](https://github.com/sd5913/ae4pa/actions/runs/45100701293) 通过：干净导入、本地化检查、Windows 导出包内容检查及 Windows 无界面启动均通过。工作流内的非阻断 `full_mainline_escape_smoke` 从正常新局报告 PASS，覆盖八项真实任务与 309 CG。
+- 完整路线日志同时记录 203／205 工作点尝试返回 `TASK_INACTIVE`。这些诊断没有导致本次 smoke 失败；不据此删除旧失败记录，也不将自动化结果记作图形或真人验收。
+- 本证据只对应上述 SHA 和 GitHub runner。Compatibility 窗口、键鼠人工操作、同提交 macOS、目标系统完整导出验收仍需分别执行。
+
 | 用例 | 当前操作和预期 |
 | --- | --- |
 | V4-T05／T06 | 202 接取后回 1F 从保安取证，切为当前 SECURITY 后在 2F 取包裹并返 202 交付。202 开放二楼后段。按 203–205 教学验证第三卡入收藏、双槽组合和当前身份，205 交付后才可上 3F。 |
@@ -27,10 +36,11 @@
 
 用户确认已完整通关，未发现问题。试玩提交、平台和 Godot 版本待补录，专项用例与跨平台结果分别登记。
 
-### 当前自动回归待调查
+### 历史自动回归失败与诊断
 
-- `core/full_mainline_escape_smoke.gd` 在 `main@dca61f7` 的 macOS 审查中两次退出 1，均失败在最终 EXIT／成功页断言。记录 501 交付标记、开放模态、E 交互目标、出口资格、`WON` 和成功页状态，再判断是夹具还是正式流程问题。早期通过记录和 Windows 失败保留其各自范围。
-- `core/task_ui_smoke.gd -- --ui-smoke` 在同一基线退出 0。省略参数时退出 3，失败时当前楼层缺少夹具预期的 `Interactions/Stain201Slot/CleaningSpot`。保留两种结果，待复核开场和换层等待条件。
+- `core/full_mainline_escape_smoke.gd` 在 `main@dca61f7` 的 macOS 审查中两次退出 1，均失败在最终 EXIT／成功页断言。该基线的状态快照、早期通过记录和 Windows 失败范围继续保留；2026-11-23 的新 main CI 另有一次完整路线 PASS，见上方最新证据。
+- 2026-11-22，macOS／Godot `4.7.2.stable.official.ed1daf0bf`，使用与 `main@bf00cde` 相同的游戏源码做临时诊断。501 已交付、出口资格通过、E 目标为 `EXIT_5F`，且没有打开的模态，但楼层仍在等待 E 释放（`_needs_e_release = true`），实际按键状态已是释放。首次模拟按 E 被跳过，释放后再次按 E 进入 `WON` 并显示成功页。此记录描述旧基线的诊断过程；新 CI 的 headless PASS 不证明硬件键盘／窗口输入已人工复核。
+- `core/task_ui_smoke.gd -- --ui-smoke` 在旧基线退出 0。省略参数时退出 3，失败时当前楼层缺少夹具预期的 `Interactions/Stain201Slot/CleaningSpot`。此历史结果未在 `main@cac0214` 上以省略参数重跑，不作为当前失败结论。
 
 ## 如何记录测试
 
@@ -391,7 +401,7 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 - 从用户提供的 `Theft_Failure_CG_Pack.zip` 选择性导入 SECURITY、CLEANER、MANAGER 三张 CG 与 `story_cn_en.json`；对白只读展示，不发卡、不更改任务状态。失败 UI 通过 B 员工发出的 `task_failure_requested(reason, target_id)` 读取实际发信员工的 `card_id`，再按该身份选 CG；普通失败原因不会进入偷窃演出。未修改 A 的管理器／主场景或 B 员工逻辑。
 - Godot `4.7.2.stable.official.ed1daf0bf`（Windows，隔离临时用户配置）：编辑器资源导入退出 0；偷窃 UI smoke 中文退出 0、英文退出 0；`localization_smoke.gd` 退出 0；现有 `ui_test.tscn -- --ui-smoke` 退出 0；`git diff --check` 退出 0。日志记录了 Windows 根证书读取错误，但没有阻断检查。无窗口 smoke 与图形 smoke 均覆盖三身份映射、资源加载、四拍中英文本、0.8 秒展示阶段、单次推进／忽略键盘回显、单次完成信号及返回已有失败菜单。
 - 图形 smoke 已在中文 1280×720 和英文 960×540 捕获各身份对白截图；135 帧 Movie Maker 文件展示自动化的 CG→对白→失败菜单场景。这些是独立 UI smoke 证据，不是正式主场景真实偷窃路线或人工操作录像。证据、日志说明和未验证项见[偷窃失败 UI 证据](qa_evidence/d_theft_failure_20261122/README.md)。
-- 正式主场景中分别触发三种员工的真实偷窃失败、完整流程只结算一次、快速物理输入，以及检查点恢复／返回菜单尚未人工验收。`GameManager.can_retry_current_task()` 和 `retry_current_task()` 已存在；当前 main 未连接 `Failure.retry_requested()`／`return_to_menu_requested()`，按钮端到端流程需 A 接线。独立 UI smoke 不代替此项验收。
+- 正式主场景中分别触发三种员工的真实偷窃失败、快速物理输入，以及检查点恢复／返回菜单尚未人工验收。主场景已有 `Failure.retry_requested()`／`return_to_menu_requested()` 接线。中英文 UI smoke 覆盖演出结束后保留检查点重试、继续提示可见和取消后同角色可重播。
 
 ### 2026-11-23 D：封面按钮、HUD与工作人员待机
 

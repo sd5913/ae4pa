@@ -28,6 +28,8 @@ func _run() -> void:
 	screen.presentation_finished.connect(func(role: String) -> void: finished.append(role))
 	_check(not screen.play_theft_failure("NOT_A_STAFF_ID"), "unknown staff identity falls back without starting a CG")
 	for role: String in ROLES:
+		screen.show_failure("STAFF_CAUGHT")
+		screen.configure_retry(true, "")
 		_check(screen.play_theft_failure(role), role + " selects its matching real CG and starts once")
 		_check(not screen.play_theft_failure(role), "duplicate theft signal cannot stack a second presentation")
 		screen._advance_theft_dialogue()
@@ -41,6 +43,7 @@ func _run() -> void:
 		_check(screen._theft_phase != FailureScreen.TheftPhase.WAIT_FIRST, role + " CG remains in its reveal/hold phase before 0.8 seconds")
 		await get_tree().create_timer(0.75, true).timeout
 		_check(screen._theft_phase == FailureScreen.TheftPhase.WAIT_FIRST, role + " CG is fully held before first dialogue input")
+		_check(screen.get_node("%TheftPrompt").is_visible_in_tree(), role + " shows the first input prompt")
 		screen._advance_theft_dialogue()
 		_check(screen._theft_phase == FailureScreen.TheftPhase.READING and screen._theft_line_index == 0, role + " first click shows only the first line")
 		var is_english := TranslationServer.get_locale().begins_with("en")
@@ -91,11 +94,18 @@ func _run() -> void:
 		_check(screen._theft_phase == FailureScreen.TheftPhase.IDLE and not screen.get_node("%TheftOverlay").visible,
 			role + " fades out and reveals the existing failure menu")
 		_check(screen.get_node("%Center").visible, role + " retains the retry/menu controls")
+		_check(not screen.get_node("%RetryButton").disabled, role + " preserves configured checkpoint retry")
 		_check(finished == [role], role + " completion signal fires exactly once")
 		if role != ROLES.back():
 			screen.hide()
 			await get_tree().process_frame
 			finished.clear()
+	screen._begin_pending_theft_failure()
+	_check(not screen.get_node("%RetryButton").disabled, "missing staff presentation preserves configured checkpoint retry")
+	_check(screen.play_theft_failure("SECURITY"), "theft presentation starts before cancellation")
+	screen._cancel_theft_presentation()
+	_check(screen.play_theft_failure("SECURITY"), "the same staff presentation can restart after cancellation")
+	screen._cancel_theft_presentation()
 	if failures.is_empty():
 		print("THEFT_FAILURE_SMOKE: PASS")
 		get_tree().quit(0)

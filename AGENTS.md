@@ -24,12 +24,17 @@ A 统一接入主场景和项目设置。跨模块修改须在本次授权范围
 
 CardManager 管理证件数据。GameManager 管理楼层、任务、计时、检查点和世界剧情。B 的员工和工作点报告动作结果，C 的房门报告剧情请求和规则违规，D 的 UI 读取状态并发送请求。变更前核对信号、参数和输入归属，每个动作由明确的入口处理一次。
 
+## 项目技能
+
+任务符合触发条件时，读取并遵循对应项目技能：Godot 验证用 `.agents/skills/godot-verification/SKILL.md`，PR 风险审查用 `.agents/skills/pr-risk-review/SKILL.md`，游戏 UI 实际画面检查用 `.agents/skills/game-ui-review/SKILL.md`。技能补充工作方法，不替代当前状态、QA 证据或本文件中的 Git 授权规则。
+
 ## 验证与交接
 
 - 文档改动检查事实、相对链接、锚点和 `git diff --check`，新增未跟踪文件也单独检查。
 - 场景及功能先独立运行，再覆盖成功、失败和边界，最后检查 F5 主入口 `scenes/main.tscn`。修改 Player、管理器或底座时先完成资源导入，再运行 `godot --headless --path . --script res://scenes/tests/core/foundation_smoke.gd`，并跑相关模块检查。
 - 保留旧测试仍有效的检测覆盖。用当前实现和已确认规则核对旧验收预期，在 [QA](docs/qa.md) 记录命令、提交、平台、实际结果和限制。自动化、图形复测和真人／跨机器结果分别记录。
 - 在 [进度记录](docs/progress.md) 追加交接。主线、验收结果或阻塞变化时同步更新 [当前项目状态](docs/CURRENT_STATUS.md)。
+- 合并 CI／技能等工作流变更，或新的主线检查改变通过／失败结论时，在同一交接中更新 `PLANS.md`、QA 和当前状态页；旧提交的失败证据保留在历史记录，不继续标成当前基线。
 
 ## Git 与资源
 

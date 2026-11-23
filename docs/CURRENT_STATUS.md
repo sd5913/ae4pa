@@ -1,6 +1,6 @@
 # 当前项目状态
 
-核对日期为 2026-11-22（香港时间），基线为 GitHub [`main@dca61f7`](https://github.com/sd5913/ae4pa/commit/dca61f7b7fd5091aa1c830e83e5ad79ece4cfc91)。团队按主线、验收结果或阻塞变化更新本页。阶段目标、接口签名和历史证据分别见[执行清单](../PLANS.md)、[公共接口](interfaces.md)和[进度记录](progress.md)。
+核对日期：2026-11-23（香港时间）。当前基线：GitHub [`main@cac0214`](https://github.com/sd5913/ae4pa/commit/cac0214d9845a2bae8c6dcb7a55000755e10e19c)。阶段 A 文档、阶段 B Linux／Windows CI、阶段 C 项目 Skills 已合并，见[执行清单](../PLANS.md#开发工作流升级)。此页记录当前实现、可复核的自动化结果和仍待完成的验收；历史证据保留在 [QA](qa.md) 与[进度记录](progress.md)。
 
 ## 已实现
 
@@ -10,14 +10,18 @@
 | 员工取证、三证双槽、Q 切换当前身份、I 或 HUD 打开背包、任务工作与返房交付。A 管理任务、计时、检查点和楼层许可，B 维护证件及工作组件，D 显示状态并发送请求。 | [CardManager](../scripts/card_manager.gd) · [GameManager](../scripts/game_manager.gd) · [主场景接线](../scenes/main.gd) |
 | 普通门违规警告并退回本层左侧楼梯，保留任务成果。任务超时或员工发现触发失败，可回到接取前的检查点。救援完成后开启同行和后段路线。 | [楼层交互](../scenes/levels/floor.gd) · [GameManager](../scripts/game_manager.gd) · [后段主线交接](late_mainline_handoff_20261121.md) |
 
-## 自动化验证
+## 最新自动化验证
 
-- **当前基线，macOS，Godot `4.7.2.stable.official.ed1daf0bf`。** 干净副本 headless 导入退出 0，日志有系统证书、FreeType 和编辑器设置写入诊断。基础、检查点、员工与卡片、工作点、普通门规则、任务门生命周期、本地化、英文 UI 布局断言，以及中英文后段定向用例均退出 0。后段用例准备了已救援等前置状态。具体命令与记录口径见 [QA](qa.md#现行主线验收口径)。
-- **任务 UI。** `task_ui_smoke.gd -- --ui-smoke` 退出 0，覆盖任务面板、工作、失败和重试。省略参数退出 3，失败时所在楼层没有夹具预期的 `CleaningSpot`，开场和换层等待条件仍待 A/D 核对。
-- **完整新局。** 当前基线的 `full_mainline_escape_smoke.gd` 两次退出 1，均在最终 EXIT／成功页断言失败，首个阻断条件待定位。保留早期 A 分支整链通过，以及 D 在较早 Windows 提交上的定向通过与整链失败记录。 [早期 A 证据](qa_evidence/a_late_mainline_20261121/README.md) · [Windows 定向与整链复测](qa_evidence/d_delivery_closeout_20261122/README.md)
+基线为 `main@cac0214d9845a2bae8c6dcb7a55000755e10e19c`，Godot `4.7.2.stable.official.ed1daf0bf`。两条 GitHub Actions 工作流均通过：
+
+- [Linux Godot CI](https://github.com/sd5913/ae4pa/actions/runs/45100701304)：干净导入及八项 smoke（foundation、task checkpoint、staff、work items、door rules、door lifecycle、localization、late mainline）通过。
+- [Windows Godot build](https://github.com/sd5913/ae4pa/actions/runs/45100701293)：干净导入、本地化 smoke、Windows x64 导出与包内容检查、Windows runner 无界面启动均通过。非阻断的完整路线 smoke 从正常新局报告八项真实任务及 309 CG 路线 PASS。
+- 完整路线日志还记录了 203／205 工作点请求被 `TASK_INACTIVE` 阻止；这没有导致本次 smoke 失败。`main@dca61f7` 上两次 EXIT 断言失败仍作为旧基线证据保留，详见 [QA 历史记录](qa.md#历史自动回归失败与诊断)。
+
+这些是指定 SHA 上的自动化结果，不代表 Compatibility 画面、实际键鼠操作、真人完整通关或 Windows／macOS 同提交验收均已通过。
 
 ## 下一项与待验收
 
-1. **最高优先级：定位完整新局 EXIT 断言失败。** A 牵头复跑并记录 501 交付标记、E 交互目标、出口资格及 `WON`／成功页状态。C 协查门和交互条件，D 协查模态与成功页。调查结果记入 QA。
-2. **真人试玩。** 用户已确认完整通关，未发现问题。该次试玩的提交和平台待补录。专项验收继续覆盖核验区 I／Q、真实超时和检查点、309 同行，以及中英文实际游玩可读性。至少两名组员按八项任务记录实际用时与暂停时间，由 D 汇总。早期 201 成功／恢复和 202 通关／超时记录保留在其原版本。 [既有真人记录](acceptance_status_20261117.md) · [游戏测试工作簿](../outputs/game-test-20261121/游戏测试.xlsx)
-3. **跨平台及导出。** Windows／macOS 同一提交的源码运行和完整通关待联合验收。目标系统、导出包启动及完整流程待确认和实测。 [平台交付清单](../PLANS.md#v4-08-平台与交付)
+1. **补全既有真人通关信息。** 用户确认已完整通关且未发现问题；该次试玩的提交 SHA、平台和 Godot 版本仍待补录。至少两名组员按八项任务记录实际耗时与暂停时间，由 D 汇总。 [真人通关记录](qa.md#已记录的真人通关) · [游戏测试工作簿](../outputs/game-test-20261121/游戏测试.xlsx)
+2. **完成同提交跨平台与目标设备验收。** Windows／macOS 实机分别检查源码运行、导出包、画面、真实输入、失败恢复和完整路线；记录系统、Godot 版本和提交 SHA。Windows CI 无界面启动不能替代此项。见 [V4-08](../PLANS.md#v4-08-平台与交付)。
+3. **完成剩余交互专项。** 复核普通门双向退回、核验区 I／Q、309 同行与换层、八项任务计时及失败恢复；只记录实际覆盖的路径。见 [V4-04—07](../PLANS.md#v4-04-身份工作与五怪)。

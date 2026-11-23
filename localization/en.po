@@ -2051,3 +2051,9 @@ msgstr "Confirm"
 
 msgid "取消"
 msgstr "Cancel"
+
+msgid "EXIT · 先完成501离店单交付"
+msgstr "EXIT · Deliver the Room 501 exit form first."
+
+msgid "EXIT · 按E与Terese一起逃离"
+msgstr "EXIT · Press E to escape with Terese."

@@ -1,0 +1,180 @@
+name: Godot Windows build
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: godot-build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  export:
+    name: Import, validate and export
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    env:
+      GODOT_VERSION: '4.7.2'
+      GODOT_EDITOR_SHA512: 9aa00f7a605200940bce3027a567b782f49bd8e940dd06ae9e987bd65aee1b1467edd56ed84fcdcbdd44354bf613bdbb4e5d2913e925850368e150c59ed54c65
+      GODOT_TEMPLATES_SHA512: ca4d71c4d7b81dfc15d1a98baa07534aa95b03fdda78a0075b06672e1648d2e5f40980c9adc28d23e1b92e732ee7bf3461997aa804af74ec2fcd7a93ccb84079
+    defaults:
+      run:
+        shell: bash
+    outputs:
+      artifact-name: ${{ steps.package.outputs.name }}
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          fetch-depth: 1
+          lfs: true
+          persist-credentials: false
+
+      - name: Verify Git LFS objects and pointers
+        run: git lfs fsck --objects --pointers HEAD
+
+      - name: Cache official Godot archives
+        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4.2.3
+        with:
+          path: ${{ runner.temp }}/godot-downloads
+          key: godot-linux-x64-${{ env.GODOT_VERSION }}-${{ env.GODOT_TEMPLATES_SHA512 }}
+
+      - name: Install verified editor and templates
+        run: |
+          release="Godot_v${GODOT_VERSION}-stable"
+          editor="${release}_linux.x86_64"
+          templates="${release}_export_templates.tpz"
+          base="https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}-stable"
+          mkdir -p "$RUNNER_TEMP/godot-downloads"
+          cd "$RUNNER_TEMP/godot-downloads"
+
+          download_verified() {
+            local asset="$1" checksum="$2"
+            if [[ ! -f "$asset" ]]; then
+              curl --fail --location --silent --show-error --retry 3 "$base/$asset" --output "$asset"
+            fi
+            printf '%s  %s\n' "$checksum" "$asset" | sha512sum --check --strict
+          }
+
+          download_verified "$editor.zip" "$GODOT_EDITOR_SHA512"
+          download_verified "$templates" "$GODOT_TEMPLATES_SHA512"
+
+          tool_dir="$RUNNER_TEMP/godot"
+          godot_data="$RUNNER_TEMP/godot-data"
+          template_dir="$godot_data/godot/export_templates/$GODOT_VERSION.stable"
+          mkdir -p "$tool_dir" "$template_dir"
+          unzip -q "$editor.zip" -d "$tool_dir"
+          mv "$tool_dir/$editor" "$tool_dir/godot"
+          unzip -j "$templates" templates/version.txt templates/windows_release_x86_64.exe \
+            templates/icudt_godot.dat -d "$template_dir"
+          test "$(cat "$template_dir/version.txt")" = "$GODOT_VERSION.stable"
+          test "$("$tool_dir/godot" --headless --version)" = "$GODOT_VERSION.stable.official.ed1daf0bf"
+          echo "$tool_dir" >> "$GITHUB_PATH"
+          echo "XDG_DATA_HOME=$godot_data" >> "$GITHUB_ENV"
+
+      - name: Import from a clean checkout
+        run: |
+          godot --headless --path . --import 2>&1 | tee "$RUNNER_TEMP/import.log"
+          if grep -E '^(SCRIPT )?ERROR:' "$RUNNER_TEMP/import.log"; then
+            exit 1
+          fi
+
+      - name: Validate game entry and localization
+        run: |
+          godot --headless --path . --script res://scenes/tests/core/localization_smoke.gd \
+            2>&1 | tee "$RUNNER_TEMP/localization.log"
+          grep -Fx 'LOCALIZATION_SMOKE: PASS' "$RUNNER_TEMP/localization.log"
+          if grep -E '^(SCRIPT )?ERROR:' "$RUNNER_TEMP/localization.log"; then
+            exit 1
+          fi
+
+      - name: Export and verify Windows package
+        id: package
+        run: |
+          output="$RUNNER_TEMP/windows-build"
+          mkdir -p "$output"
+          godot --headless --path . --export-release "Windows Desktop" "$output/MonsterHotel.exe" \
+            2>&1 | tee "$RUNNER_TEMP/export.log"
+          if grep -E '^(SCRIPT )?ERROR:' "$RUNNER_TEMP/export.log"; then
+            exit 1
+          fi
+          test -s "$output/MonsterHotel.exe"
+          test -s "$output/MonsterHotel.pck"
+
+          # Mount the PCK in an empty project so missing files cannot fall back to the checkout.
+          verifier="$RUNNER_TEMP/pack-check"
+          mkdir -p "$verifier"
+          printf 'config_version=5\n' > "$verifier/project.godot"
+          cp .github/scripts/check_windows_pack.gd "$verifier/"
+          godot --headless --path "$verifier" --script res://check_windows_pack.gd \
+            -- "$output/MonsterHotel.pck" "$GITHUB_WORKSPACE"
+
+          commit="$(git rev-parse HEAD)"
+          test "$commit" = "$GITHUB_SHA"
+          printf '%s\n' "$commit" > "$output/commit.txt"
+          echo "name=monster-hotel-windows-x64-$commit" >> "$GITHUB_OUTPUT"
+
+      - name: Upload Windows build
+        id: upload
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ${{ steps.package.outputs.name }}
+          path: ${{ runner.temp }}/windows-build/
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Link the Windows download
+        env:
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+        run: printf '[Download the Windows x64 build](%s)\n\nBuilt commit \x60%s\x60.\n' "$ARTIFACT_URL" "$GITHUB_SHA" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: "Gameplay QA: full playthrough (non-blocking)"
+        continue-on-error: true
+        run: |
+          result=0
+          timeout 4m godot --headless --path . --max-fps 120 \
+            --script res://scenes/tests/core/full_mainline_escape_smoke.gd || result=$?
+          if (( result != 0 )); then
+            echo "::warning title=Full playthrough failed::Gameplay QA exited $result. See the full playthrough step log."
+          fi
+          printf '\nFull playthrough QA exit code: **%s** (see the separate gameplay step log).\n' \
+            "$result" >> "$GITHUB_STEP_SUMMARY"
+          exit "$result"
+
+  windows-smoke:
+    name: Launch the uploaded build on Windows
+    needs: export
+    runs-on: windows-2022
+    timeout-minutes: 10
+    steps:
+      - name: Download the Windows package
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
+        with:
+          name: ${{ needs.export.outputs.artifact-name }}
+          path: ${{ runner.temp }}/windows-build
+
+      - name: Start the exported game headlessly
+        shell: pwsh
+        run: |
+          $package = Join-Path $env:RUNNER_TEMP 'windows-build'
+          foreach ($file in 'MonsterHotel.exe', 'MonsterHotel.pck', 'commit.txt') {
+            if ((Get-Item -LiteralPath (Join-Path $package $file)).Length -eq 0) {
+              throw "Empty artifact file: $file"
+            }
+          }
+          if ((Get-Content -Raw (Join-Path $package 'commit.txt')).Trim() -ne $env:GITHUB_SHA) {
+            throw 'The artifact commit does not match the workflow commit.'
+          }
+          $log = Join-Path $env:RUNNER_TEMP 'windows-launch.log'
+          $game = Start-Process -FilePath (Join-Path $package 'MonsterHotel.exe') -WorkingDirectory $package `
+            -ArgumentList "--headless --quit-after 60 --log-file `"$log`"" -PassThru -Wait
+          $lines = Get-Content -LiteralPath $log
+          $lines | Write-Output
+          if ($game.ExitCode -ne 0 -or ($lines -match '^(SCRIPT )?ERROR:') -or
+              -not ($lines -match '^Godot Engine v4\.7\.2\.stable\.official\.ed1daf0bf')) {
+            throw "Exported game startup failed (exit $($game.ExitCode))."
+          }
