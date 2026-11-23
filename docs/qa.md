@@ -8,6 +8,15 @@
 
 从正式 F5 菜单开始。按[玩家指南](player-guide.md)执行，下表给出当前路线与 PDF 附录的差异。沿用原用例编号追溯需求，并在工作簿注明真正执行的步骤和提交。
 
+### 最新主线 GitHub Actions（2026-11-23）
+
+验证基线：`main@cac0214d9845a2bae8c6dcb7a55000755e10e19c`，Godot `4.7.2.stable.official.ed1daf0bf`。
+
+- [Linux Godot CI](https://github.com/sd5913/ae4pa/actions/runs/45100701304) 通过：干净导入及 `foundation`、`task_checkpoint`、`staff_core`、`work_items`、`known_monster_rules`、`task_door_lifecycle`、`localization`、`late_mainline` 八项 smoke 均通过。
+- [Windows 构建工作流](https://github.com/sd5913/ae4pa/actions/runs/45100701293) 通过：干净导入、本地化检查、Windows 导出包内容检查及 Windows 无界面启动均通过。工作流内的非阻断 `full_mainline_escape_smoke` 从正常新局报告 PASS，覆盖八项真实任务与 309 CG。
+- 完整路线日志同时记录 203／205 工作点尝试返回 `TASK_INACTIVE`。这些诊断没有导致本次 smoke 失败；不据此删除旧失败记录，也不将自动化结果记作图形或真人验收。
+- 本证据只对应上述 SHA 和 GitHub runner。Compatibility 窗口、键鼠人工操作、同提交 macOS、目标系统完整导出验收仍需分别执行。
+
 | 用例 | 当前操作和预期 |
 | --- | --- |
 | V4-T05／T06 | 202 接取后回 1F 从保安取证，切为当前 SECURITY 后在 2F 取包裹并返 202 交付。202 开放二楼后段。按 203–205 教学验证第三卡入收藏、双槽组合和当前身份，205 交付后才可上 3F。 |
@@ -27,11 +36,11 @@
 
 用户确认已完整通关，未发现问题。试玩提交、平台和 Godot 版本待补录，专项用例与跨平台结果分别登记。
 
-### 当前自动回归待调查
+### 历史自动回归失败与诊断
 
-- `core/full_mainline_escape_smoke.gd` 在 `main@dca61f7` 的 macOS 审查中两次退出 1，均失败在最终 EXIT／成功页断言。记录 501 交付标记、开放模态、E 交互目标、出口资格、`WON` 和成功页状态，再判断是夹具还是正式流程问题。早期通过记录和 Windows 失败保留其各自范围。
-- 2026-11-22，macOS／Godot `4.7.2.stable.official.ed1daf0bf`，使用与 `main@bf00cde` 相同的游戏源码做临时诊断。501 已交付、出口资格通过、E 目标为 `EXIT_5F`，且没有打开的模态，但楼层仍在等待 E 释放（`_needs_e_release = true`），实际按键状态已是释放。首次模拟按 E 被跳过，释放后再次按 E 进入 `WON` 并显示成功页。第二次按键只用于诊断。原 smoke 及其断言保留，仍需查清 501 交付后为何残留该状态，以及真人输入是否会触发。
-- `core/task_ui_smoke.gd -- --ui-smoke` 在同一基线退出 0。省略参数时退出 3，失败时当前楼层缺少夹具预期的 `Interactions/Stain201Slot/CleaningSpot`。保留两种结果，待复核开场和换层等待条件。
+- `core/full_mainline_escape_smoke.gd` 在 `main@dca61f7` 的 macOS 审查中两次退出 1，均失败在最终 EXIT／成功页断言。该基线的状态快照、早期通过记录和 Windows 失败范围继续保留；2026-11-23 的新 main CI 另有一次完整路线 PASS，见上方最新证据。
+- 2026-11-22，macOS／Godot `4.7.2.stable.official.ed1daf0bf`，使用与 `main@bf00cde` 相同的游戏源码做临时诊断。501 已交付、出口资格通过、E 目标为 `EXIT_5F`，且没有打开的模态，但楼层仍在等待 E 释放（`_needs_e_release = true`），实际按键状态已是释放。首次模拟按 E 被跳过，释放后再次按 E 进入 `WON` 并显示成功页。此记录描述旧基线的诊断过程；新 CI 的 headless PASS 不证明硬件键盘／窗口输入已人工复核。
+- `core/task_ui_smoke.gd -- --ui-smoke` 在旧基线退出 0。省略参数时退出 3，失败时当前楼层缺少夹具预期的 `Interactions/Stain201Slot/CleaningSpot`。此历史结果未在 `main@cac0214` 上以省略参数重跑，不作为当前失败结论。
 
 ## 如何记录测试
 
