@@ -3,12 +3,15 @@ extends Node
 
 signal cards_changed()
 signal identity_changed(action: String)
+signal identity_change_blocked(reason: String)
 
 const VALID_CARDS: Array[String] = ["SECURITY", "CLEANER", "MANAGER"]
 
 var _owned_cards: Array[String] = []
 var _equipped_cards: Array[String] = ["NONE", "NONE"]
 var _active_slot: int = 0
+var _identity_change_guard: Callable
+var last_identity_change_block_reason := ""
 
 var active_slot: int:
 	get:
@@ -23,6 +26,7 @@ func reset_for_new_game() -> void:
 	_owned_cards.clear()
 	_equipped_cards = ["NONE", "NONE"]
 	_active_slot = 0
+	last_identity_change_block_reason = ""
 	cards_changed.emit()
 
 
@@ -40,6 +44,27 @@ func has_card(card_id: String) -> bool:
 
 func has_all_cards() -> bool:
 	return has_card("SECURITY") and has_card("CLEANER") and has_card("MANAGER")
+
+
+func set_identity_change_guard(guard: Callable) -> void:
+	_identity_change_guard = guard
+
+
+func clear_identity_change_guard(guard_owner: Object) -> void:
+	if _identity_change_guard.is_valid() and _identity_change_guard.get_object() == guard_owner:
+		_identity_change_guard = Callable()
+
+
+func _identity_change_is_blocked() -> bool:
+	last_identity_change_block_reason = ""
+	if not _identity_change_guard.is_valid():
+		return false
+	last_identity_change_block_reason = str(_identity_change_guard.call())
+	if last_identity_change_block_reason.is_empty():
+		return false
+	if last_identity_change_block_reason != "CHECKER_PENALTY":
+		identity_change_blocked.emit(last_identity_change_block_reason)
+	return true
 
 
 func export_snapshot() -> Dictionary:
@@ -92,18 +117,14 @@ func restore_snapshot(snapshot: Dictionary) -> bool:
 func collect_card(card_id: String) -> bool:
 	if not VALID_CARDS.has(card_id) or has_card(card_id):
 		return false
-	var first_card: bool = _owned_cards.is_empty()
 	_owned_cards.append(card_id)
-	for slot_index: int in range(_equipped_cards.size()):
-		if _equipped_cards[slot_index] == "NONE":
-			_equipped_cards[slot_index] = card_id
-			if first_card: _active_slot = slot_index
-			break
 	cards_changed.emit()
 	return true
 
 
 func switch_active() -> bool:
+	if _identity_change_is_blocked():
+		return false
 	_active_slot = 1 - _active_slot
 	cards_changed.emit()
 	identity_changed.emit("SWITCH_ACTIVE")
@@ -111,11 +132,14 @@ func switch_active() -> bool:
 
 
 func equip_card(card_id: String, slot_index: int) -> bool:
+	last_identity_change_block_reason = ""
 	if slot_index < 0 or slot_index >= _equipped_cards.size():
 		return false
 	if card_id != "NONE" and (not VALID_CARDS.has(card_id) or not has_card(card_id)):
 		return false
 	if _equipped_cards[slot_index] == card_id:
+		return false
+	if _identity_change_is_blocked():
 		return false
 
 	if card_id != "NONE":

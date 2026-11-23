@@ -6,6 +6,33 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "有人正在看着你，不能在这里更换身份。先离开对方视线。"
+msgstr "Someone is watching. You cannot change identities here. Move out of sight first."
+
+msgid "获得工作证：%s\n这张魔法工作证可以帮你伪装成酒店员工。\n先离开工作人员附近，再按 I 打开背包。"
+msgstr "Work ID acquired: %s\nThis magic ID can disguise you as hotel staff.\nMove away from staff, then press I to open your bag."
+
+msgid "现在安全了，可以尝试装备工作证。按 I 打开背包。"
+msgstr "You are safe now. Try equipping the work ID. Press I to open your bag."
+
+msgid "把工作证放入装备槽，就能使用对应的岗位身份。"
+msgstr "Put the ID in an equipment slot to use that staff identity."
+
+msgid "把新工作证放入装备槽A，就能使用对应的岗位身份。"
+msgstr "Put the new ID in Slot A to use that staff identity."
+
+msgid "把新工作证装备到这个槽"
+msgstr "Equip the new ID in this slot"
+
+msgid "工作证已装备。关闭背包后按 Q 启用对应身份。"
+msgstr "The ID is equipped. Close your bag and press Q to activate it."
+
+msgid "伪装成功！怪物现在会把你认作酒店员工。"
+msgstr "Disguise complete! Monsters now recognize you as hotel staff."
+
+msgid "不同身份可以执行不同工作，也能应对不同怪物检查。\n注意：不要在工作人员或怪物注视下切换身份。"
+msgstr "Different identities qualify you for different jobs and monster checks.\nDo not switch while staff or a monster is watching."
+
 msgid "打扫走廊"
 msgstr "Clean the Hallway"
 

@@ -22,10 +22,14 @@ func _run() -> void:
 	var main = load("res://scenes/main.tscn").instantiate()
 	root.add_child(main)
 	await process_frame
-	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
+	main._start_session()
 	main.dialogue._finish()
 	game.complete_manager_intro()
+	game.set_modal_open("STORY_DIALOGUE", false)
 	game.set_process(false)
+	var safe_floor: Node = main.get_node("World").get_child(0)
+	safe_floor.player.global_position.x = 2000
+	for i in 4: await physics_frame
 	# Exercise reward presentation only; theft timing is covered separately.
 	var floor_node: Node = main.get_node("World").get_child(0)
 	var staff_members: Array[Node] = []
@@ -34,19 +38,24 @@ func _run() -> void:
 		staff_members.append(staff)
 		_expect(staff._complete_steal(), "Reward presentation fixture grants one real card")
 		_expect("已收藏" in staff.feedback_label.text, "Reward feedback must distinguish collection")
-		_expect("当前生效：保洁" in staff.feedback_label.text, "Reward feedback must read the actual active identity")
-	_expect("已装备A槽" in staff_members[0].feedback_label.text, "First reward identifies its equipped slot")
-	_expect("已装备B槽" in staff_members[1].feedback_label.text, "Second reward is equipped but does not activate itself")
+		_expect("当前生效：无身份" in staff.feedback_label.text, "Collecting an ID must preserve the actual NONE identity")
+	_expect("未装备" in staff_members[0].feedback_label.text, "First reward remains unequipped")
+	_expect("未装备" in staff_members[1].feedback_label.text, "Second reward remains unequipped")
 	_expect("未装备" in staff_members[2].feedback_label.text and "I" in staff_members[2].feedback_label.text, "Third reward explains collection without equipment")
 	_expect(cards.get_owned_cards().size() == 3 and cards.get_equipped_cards().size() == 2,"Three owned / exactly two slots")
-	_expect(not cards.get_equipped_cards().has("MANAGER"),"Third card remains unequipped until UI action")
-	await _tap("open_bag")
-	await process_frame
+	_expect(cards.get_equipped_cards() == ["NONE", "NONE"] and cards.active_card == "NONE", "All stolen cards remain collected only")
 	var bag = main.get_node("MenuLayer/Bag")
+	bag.open_bag()
+	await process_frame
 	_expect(bag.visible and bag.get("_owned_cards").item_count == 3,"I opens all three owned cards")
+	var owned_list: ItemList = bag.get_node("%OwnedCards")
+	for index in owned_list.item_count:
+		if owned_list.get_item_metadata(index) == "MANAGER":
+			owned_list.select(index)
+			owned_list.item_selected.emit(index)
 	_expect(bag._selected_card_id() == "MANAGER","Unequipped manager is clearly selected")
 	bag.get("_equip_slot_b").pressed.emit()
-	_expect(cards.get_equipped_cards() == ["CLEANER","MANAGER"] and cards.has_card("SECURITY"),"UI B replaces without losing security")
+	_expect(cards.get_equipped_cards() == ["NONE","MANAGER"] and cards.has_card("SECURITY"),"UI B equips only the selected slot without losing collected IDs")
 	bag.close_bag()
 	await _tap("switch_id")
 	await process_frame
@@ -62,7 +71,7 @@ func _run() -> void:
 			bag.get("_owned_cards").select(index)
 			bag.get("_owned_cards").item_selected.emit(index)
 	bag.get("_equip_slot_a").pressed.emit()
-	_expect(cards.get_equipped_cards() == ["SECURITY","MANAGER"] and cards.has_card("CLEANER"),"UI A replacement preserves cleaner")
+	_expect(cards.get_equipped_cards() == ["SECURITY","MANAGER"] and cards.has_card("CLEANER"),"UI A equips a second ID without losing collected cleaner")
 	bag.close_bag()
 	await _tap("switch_id")
 	bag.open_bag()

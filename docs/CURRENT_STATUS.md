@@ -2,6 +2,16 @@
 
 核对日期：2026-11-23（香港时间）。当前基线：GitHub [`main@cac0214`](https://github.com/sd5913/ae4pa/commit/cac0214d9845a2bae8c6dcb7a55000755e10e19c)。阶段 A 文档、阶段 B Linux／Windows CI、阶段 C 项目 Skills 已合并，见[执行清单](../PLANS.md#开发工作流升级)。此页记录当前实现、可复核的自动化结果和仍待完成的验收；历史证据保留在 [QA](qa.md) 与[进度记录](progress.md)。
 
+## 本地工作分支附加验证（2026-11-24）
+
+以下是独立工作分支 `work/member-A-disguise-onboarding` 对 `main@ac58302b29499a4243dd302876a8f24e84be013a` 的分支改动验证；这些修改尚未进入 GitHub `main`。成功偷取工作证现在只增加收藏；第一次装备与激活由玩家在安全位置手动完成，NPC 正在观察时会阻止 Q 换身份和背包装备。新增逐步引导及对应英文文本。
+
+- Godot `4.7.2.stable.official.ed1daf0bf`：`foundation_smoke`、`staff_core_smoke`、`work_items_smoke`、`known_monster_rules_smoke`、`task_door_lifecycle_smoke`、`late_mainline_main_flow_smoke -- --ui-smoke`、首次身份引导、三卡背包、身份服装、游戏操作回归、检查点回归、`v4_identity_smoke`、`checker_safe_bag_smoke`、`player_identity_outfit_smoke` 及 `full_mainline_escape_smoke` 均退出 0。完整主线本次从正式新局通过 201–205、302、309 救援、403、501 到 EXIT 成功页。
+- `localization_smoke` 在当前沙箱未能完成：测试无法向 Godot `user://` 写入对白进度文件（`Unable to save completed intro state: Can't open file`），因此不能将该项标记为通过；翻译断言之后的流程未由该次运行完整验证。
+- 正式主场景通过 Godot MCP 在本机以 Compatibility 渲染器启动；启动日志未见运行时脚本错误。本次没有人工操作窗口或目视评估教学提示和布局；日志仍有原项目其他脚本的整数除法、类型等警告。
+- `full_mainline_escape_smoke` 在 `main@dca61f7` 上的两次 EXIT 断言失败仍是历史记录；本分支的完整路线已有新的退出 0 证据，不覆盖旧记录。先前最新 main CI 的 203／205 `TASK_INACTIVE` 诊断也保留为历史日志；本次完整路线仅出现测试预期的错误身份交互诊断。
+- 真人试玩、原生画面与真实鼠标拖放、Windows／macOS 同提交验收及目标系统导出仍未在本分支验证。用户此前确认另一轮真人完整通关且未发现问题，但该轮 SHA 和平台待补录，不能记作本分支或跨平台验收。
+
 ## 已实现
 
 | 功能 | 依据 |

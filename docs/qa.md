@@ -19,7 +19,7 @@
 
 | 用例 | 当前操作和预期 |
 | --- | --- |
-| V4-T05／T06 | 202 接取后回 1F 从保安取证，切为当前 SECURITY 后在 2F 取包裹并返 202 交付。202 开放二楼后段。按 203–205 教学验证第三卡入收藏、双槽组合和当前身份，205 交付后才可上 3F。 |
+| V4-T05／T06 | 202 接取后回 1F 从保安取证；新证只进收藏，玩家需在安全位置手动装备并激活 SECURITY，再在 2F 取包裹并返 202 交付。202 开放二楼后段。按 203–205 教学验证后续证件只进收藏、双槽组合和当前身份；205 交付后才可上 3F。 |
 | V4-T07／E06 | 从两侧触发普通门违规均应警告并退回本层左侧楼梯。检查单次处理、落点在危险区外，以及卡片、任务成果和倒计时均未被重置。 |
 | V4-E02 | 205 核验范围内用 I 和 HUD 背包入口，确认被阻止。验证范围内 Q 换证的违规反馈，以及安全工作区正常切换或替换。三楼以上普通核验门、打开模态后装备及快照恢复另测。 |
 | V4-T10／T11 | 302 接取登记，使用 203 教学取得的经理证批准 309 登记。切保洁后进入 309，完成重逢流程，检查同行、后段开放及低楼层限制。 |
@@ -35,6 +35,18 @@
 ### 已记录的真人通关
 
 用户确认已完整通关，未发现问题。试玩提交、平台和 Godot 版本待补录，专项用例与跨平台结果分别登记。
+
+### 2026-11-24 本地工作分支：手动伪装与观察限制
+
+工作分支 `work/member-A-disguise-onboarding` 基于 `main@ac58302b29499a4243dd302876a8f24e84be013a`，验证来自 Godot `4.7.2.stable.official.ed1daf0bf`，所有结果均来自该分支源码。游戏代码不包含场景、项目设置或素材修改，也尚未合入 main。
+
+- PASS／退出 0：`foundation_smoke.gd`、`staff_core_smoke.tscn`、`work_items_smoke.tscn`、`known_monster_rules_smoke.gd`、`task_door_lifecycle_smoke.gd`、`late_mainline_main_flow_smoke.gd -- --ui-smoke`、`interaction_onboarding_smoke.gd`、`third_card_bag_smoke.gd`、`player_outfit_main_smoke.gd`、`playtest_bugfix_smoke.gd`、`task_checkpoint_smoke.gd`、`v4_identity_smoke.gd`、`checker_safe_bag_smoke.gd`、`player_identity_outfit_smoke.gd`。
+- PASS／退出 0：`full_mainline_escape_smoke.gd` 从正式新局完成五项二楼任务、302／309 救援、403、501 和 EXIT 成功页；没有删除或绕过通关断言。
+- 沙箱限制／未完成：`localization_smoke.gd` 的可见翻译断言有执行，但该进程不能写入 Godot `user://` 下的对白进度文件，最终断言“Completed dialogue writes to the separate story file”失败。因此该 smoke 整体未通过，须在可写用户数据目录的环境重跑。
+- 历史保留：`main@dca61f7` 的完整主线 EXIT 断言两次失败，以及旧 CI 的 `TASK_INACTIVE` 诊断仍保留在原记录。本分支新完整主线 PASS 是不同 SHA 的后续证据，不重写历史失败。
+- 待真人／图形验收：首次偷证后默认外观、逐步提示时序、原生背包拖放／按钮、观察范围边界和实际反馈可读性；以真实键鼠走完任务与倒计时；Windows、macOS 同提交运行和目标系统导出。此前用户确认的完整通关属另一轮试玩，SHA／平台仍待补录，不代替本分支验收。
+
+新增或更新的自动化覆盖：首次／后续证件仅收藏、Q／拖放／按钮装备在员工观察时被拒且有提示、进入安全位置后手动装备、首次教程面对提前 Q/I 与关闭背包、身份与服装同步、三卡双槽、检查点恢复及完整新局主线。关闭普通门不构成门目击，已有核验怪检查继续执行原违规处理。
 
 ### 历史自动回归失败与诊断
 
