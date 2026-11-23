@@ -14,10 +14,7 @@ func _ready() -> void:
 	_english_title.add_theme_color_override("font_color", Color("f2d7a1"))
 	_english_title.add_theme_color_override("font_outline_color", Color("271b16"))
 	_english_title.add_theme_constant_override("outline_size", 8)
-	var title_font := SystemFont.new()
-	title_font.font_names = PackedStringArray(["Georgia", "Noto Serif", "Liberation Serif"])
-	title_font.font_weight = 700
-	_english_title.add_theme_font_override("font", title_font)
+	_english_title.add_theme_font_override("font", load("res://assets/final/fonts/hotel_staff_cjk.otf"))
 	add_child(_english_title)
 	_english_title.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	_refresh_language()

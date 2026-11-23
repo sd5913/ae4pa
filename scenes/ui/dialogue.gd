@@ -365,7 +365,7 @@ func _load_story_beats(start_scene: String, end_scene: String) -> void:
 func _show_line() -> void:
 	_speaker.show()
 	_line.show()
-	_line.text = _lines[_line_index]
+	_line.text = tr(_lines[_line_index])
 	_sms_panel.hide()
 	_frame.show()
 	_cue.hide()

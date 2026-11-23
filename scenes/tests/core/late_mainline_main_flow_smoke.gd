@@ -112,6 +112,8 @@ func _run() -> void:
 	_player().position.x = room.position.x - 116
 	await _settle()
 	_expect(main.dialogue.visible and "403" in main.dialogue.get("_dialogue_id"), "403 formal intercept opens actual dialogue")
+	var intro_403 := tr(main.dialogue.get("_lines")[1])
+	_expect(intro_403.contains("route through 4F") and intro_403.contains("not an exit permit") if english else intro_403.contains("巡房记录") and intro_403.contains("离店许可"), "403 intro explains the log's purpose and distinguishes it from the exit permit")
 	await _read_story()
 	_expect(game.task_status == "AVAILABLE" and game.remaining_time == 0, "Intro and closing do not start task clock")
 	await _accept()
@@ -182,6 +184,8 @@ func _run() -> void:
 		return
 	_player().position.x = _floor().get_node("DoorRoot/Room501").position.x - 116
 	await _settle()
+	var intro_501 := tr(main.dialogue.get("_lines")[1])
+	_expect(intro_501.contains("active Manager ID") and intro_501.contains("return to Room 501") if english else intro_501.contains("当前经理身份") and intro_501.contains("返回501"), "501 intro separates approval from returning to deliver the form")
 	await _read_story()
 	await _accept()
 	_expect(game.current_task_id == game.TASK_05_ID and game.remaining_time == 180, "Actual501 offer starts180 seconds")

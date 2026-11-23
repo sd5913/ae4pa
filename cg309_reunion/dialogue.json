@@ -5,19 +5,22 @@
     "frame": "approach",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "Carol...?"
   },
   {
     "speaker": "Carol",
     "text": "是我。小点声，外面还有——",
     "frame": "approach",
-    "narration": false
+    "narration": false,
+    "text_en": "It's me. Keep your voice down. There's still—"
   },
   {
     "speaker": "旁白",
     "text": "她没等Carol说完，便扑过来，紧紧抱住了她。",
     "frame": "hug",
-    "narration": true
+    "narration": true,
+    "text_en": "Before Carol could finish, Terese rushed over and hugged her tightly."
   },
   {
     "speaker": "Terese",
@@ -25,19 +28,22 @@
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "You really came..."
   },
   {
     "speaker": "Carol",
     "text": "喂……你先松一点，我快喘不过气了。",
     "frame": "hug",
-    "narration": false
+    "narration": false,
+    "text_en": "Hey... loosen up a little. I can barely breathe."
   },
   {
     "speaker": "旁白",
     "text": "Carol的手在半空停了一下，还是落在她背上，轻轻拍了两下。",
     "frame": "hug",
-    "narration": true
+    "narration": true,
+    "text_en": "Carol's hand paused in midair, then settled on her back and gently patted her twice."
   },
   {
     "speaker": "Terese",
@@ -45,7 +51,8 @@
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "I'm sorry you had to come all the way here."
   },
   {
     "speaker": "Terese",
@@ -53,13 +60,15 @@
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "But I'm so glad. When I heard the door, I thought it was them again."
   },
   {
     "speaker": "Carol",
     "text": "都敢给我发求救消息了，现在还说这些。",
     "frame": "hug",
-    "narration": false
+    "narration": false,
+    "text_en": "You sent me a distress message, and now you say that?"
   },
   {
     "speaker": "Terese",
@@ -67,7 +76,8 @@
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "Thank you for coming for me."
   },
   {
     "speaker": "Terese",
@@ -75,7 +85,8 @@
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "I kept thinking, if I saw you again, I would tell you—"
   },
   {
     "speaker": "Terese",
@@ -83,13 +94,15 @@
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "You mean a lot to me. I cherish you, not just today."
   },
   {
     "speaker": "Carol",
     "text": "……突然说这么认真干什么。",
     "frame": "hug",
-    "narration": false
+    "narration": false,
+    "text_en": "...Why are you getting so serious all of a sudden?"
   },
   {
     "speaker": "Terese",
@@ -97,25 +110,29 @@
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "Because I was afraid I might never get the chance."
   },
   {
     "speaker": "Carol",
     "text": "别胡说。",
     "frame": "hug",
-    "narration": false
+    "narration": false,
+    "text_en": "Don't say that."
   },
   {
     "speaker": "旁白",
     "text": "Carol抱着她的手收紧了一瞬。",
     "frame": "hug",
-    "narration": true
+    "narration": true,
+    "text_en": "Carol's arms tightened around her for a moment."
   },
   {
     "speaker": "Carol",
     "text": "我都找到这里了，就会带你出去。",
     "frame": "hug",
-    "narration": false
+    "narration": false,
+    "text_en": "I found you. I'll get you out of here."
   },
   {
     "speaker": "Terese",
@@ -123,19 +140,22 @@
     "frame": "hug",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "Mm. I trust you."
   },
   {
     "speaker": "旁白",
     "text": "Terese终于松开手。Carol把手递到她面前，等她握住。",
     "frame": "leave",
-    "narration": true
+    "narration": true,
+    "text_en": "Terese finally let go. Carol held out her hand and waited for her to take it."
   },
   {
     "speaker": "Carol",
     "text": "还能走吗？有没有哪里受伤？",
     "frame": "leave",
-    "narration": false
+    "narration": false,
+    "text_en": "Can you walk? Are you hurt anywhere?"
   },
   {
     "speaker": "Terese",
@@ -143,13 +163,15 @@
     "frame": "leave",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "I can walk. I'm not hurt, just a little scared."
   },
   {
     "speaker": "Carol",
     "text": "那就跟在我后面，别乱跑，也别松手。",
     "frame": "leave",
-    "narration": false
+    "narration": false,
+    "text_en": "Stay behind me. Don't run off, and don't let go."
   },
   {
     "speaker": "Terese",
@@ -157,33 +179,38 @@
     "frame": "leave",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "Okay. I'll go wherever you go."
   },
   {
     "speaker": "Carol",
     "text": "……现在倒是听话了。",
     "frame": "leave",
-    "narration": false
+    "narration": false,
+    "text_en": "...You're obedient now, at least."
   },
   {
     "speaker": "Carol",
     "text": "楼下的路还能走吗？",
     "frame": "leave",
-    "narration": false
+    "narration": false,
+    "text_en": "Can we still use the way downstairs?"
   },
   {
     "speaker": "Terese",
-    "text": "他们把下面的员工通道锁上了。不过五楼有消防出口，我听夜班的人说过。",
+    "text": "他们把下面的员工通道锁上了。309也得先经302登记，再用保洁身份开门；我没有员工证，没法自己离开。不过五楼有消防出口，我听夜班的人说过。",
     "frame": "leave",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "They locked the staff passage below. Room 309 also needed approval at Room 302 and an active Cleaner ID to open; I have no staff ID, so I couldn't leave on my own. But there's a fire exit on the fifth floor; I heard the night staff talk about it."
   },
   {
     "speaker": "Carol",
     "text": "那就上五楼。",
     "frame": "leave",
-    "narration": false
+    "narration": false,
+    "text_en": "Then we go to the fifth floor."
   },
   {
     "speaker": "Terese",
@@ -191,13 +218,15 @@
     "frame": "leave",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "This time, I'll help you find the way."
   },
   {
     "speaker": "Carol",
     "text": "行。看见不对劲就告诉我，别自己往前冲。",
     "frame": "leave",
-    "narration": false
+    "narration": false,
+    "text_en": "All right. If anything feels wrong, tell me. Don't rush ahead on your own."
   },
   {
     "speaker": "Terese",
@@ -205,13 +234,15 @@
     "frame": "leave",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "I know. When we get out, dinner is on me."
   },
   {
     "speaker": "Carol",
     "text": "一顿可不够。",
     "frame": "leave",
-    "narration": false
+    "narration": false,
+    "text_en": "One dinner won't be enough."
   },
   {
     "speaker": "Terese",
@@ -219,25 +250,29 @@
     "frame": "leave",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "Then lots of dinners. If you need me later, I'll come for you too."
   },
   {
     "speaker": "Carol",
     "text": "先把自己照顾好。",
     "frame": "leave",
-    "narration": false
+    "narration": false,
+    "text_en": "Take care of yourself first."
   },
   {
     "speaker": "旁白",
     "text": "Carol把她往身后带了带，先一步望向门外。",
     "frame": "leave",
-    "narration": true
+    "narration": true,
+    "text_en": "Carol drew her behind her and looked out the door first."
   },
   {
     "speaker": "Carol",
     "text": "走了。我带你出去。",
     "frame": "leave",
-    "narration": false
+    "narration": false,
+    "text_en": "Let's go. I'll get you out."
   },
   {
     "speaker": "Terese",
@@ -245,6 +280,7 @@
     "frame": "leave",
     "narration": false,
     "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_en": "Terese",
+    "text_en": "Mm. I'll follow you."
   }
 ]

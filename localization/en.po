@@ -1938,3 +1938,93 @@ msgstr "EXIT · Deliver the Room 501 exit form first."
 
 msgid "EXIT · 按E与Terese一起逃离"
 msgstr "EXIT · Press E to escape with Terese."
+
+msgid "旅馆要求客房通行先登记授权。为取得309进入许可，先在302接任务，再用当前经理身份批准入住；之后还要切为保洁身份开门救出Terese。"
+msgstr "The hotel requires guest-room access to be registered. Accept the task at Room 302 and use your active Manager ID to approve Room 309; then switch to the Cleaner ID to open the door and rescue Terese."
+
+msgid "接受后限时%d秒；完成工作后返回本房按E交付。"
+msgstr "You have %d seconds after accepting. Finish the work, then return here and press E to deliver it."
+
+msgid "我们要带Terese离开旅馆，先取得夜班巡房记录，确认并备案四楼可走的路线。取到记录后返回403按E交付，交付后才开放5F。巡房记录不是离店许可；上楼后还要由经理批准离店单。文件不是工作证，不要求特定身份。"
+msgstr "To get Terese out of the hotel, first collect the night patrol log and register the route through 4F. Return to Room 403 and press E to deliver it; only then does 5F open. The log is not an exit permit. A manager must still approve the exit form upstairs. The log is not an ID, so no particular identity is required."
+
+msgid "403巡房记录只完成四楼通行备案，不能代替离店许可。到501用当前经理身份批准离店单；批准后必须返回501按E交付登记，手续完成后才能带Terese前往五楼消防出口。"
+msgstr "The Room 403 patrol log registers the route through 4F; it is not permission to leave. At Room 501, use your active Manager ID to approve the exit form. Then return to Room 501 and press E to submit it. Only after delivery can you take Terese to the 5F fire exit."
+
+msgid "巡房记录已登记，四楼路线已开放。它不等于离店许可；带Terese上五楼，由经理批准并交付离店单。"
+msgstr "The patrol log is registered and the 4F route is open. It is not an exit permit. Take Terese to 5F for a manager to approve and receive the exit form."
+
+msgid "离店单已批准并交付。现在可以带Terese去五楼消防出口。"
+msgstr "The exit form has been approved and delivered. Take Terese to the fire exit on 5F."
+
+msgid "请先到当前任务房间接受任务，再按任务提示操作。"
+msgstr "Accept the current task at its room, then follow the task instructions."
+
+msgid "缺少%s工作证：先按任务目标取得证件，再回来操作。"
+msgstr "Missing the %s ID. Follow the task objective to obtain it, then return here."
+
+msgid "已持有%s工作证但尚未装备：按I放入A／B槽，再按Q切换当前身份。"
+msgstr "You have the %s ID, but it is not equipped. Press I to place it in slot A or B, then press Q to make it active."
+
+msgid "此工作需要当前%s身份；按Q切换后再按E。"
+msgstr "This work requires your active %s identity. Press Q to switch, then press E."
+
+msgid "当前任务还未到这一步，请按任务目标继续。"
+msgstr "This is not the current task step. Follow the task objective."
+
+msgid "已持有%s工作证但未装备：按I放入A／B槽，再回来交付。"
+msgstr "You have the %s ID, but it is not equipped. Press I to place it in slot A or B, then return to deliver the task."
+
+msgid "当前身份不是%s：按Q切换为当前身份后再交付。"
+msgstr "Your active identity is not %s. Press Q to switch to it, then deliver the task."
+
+msgid "当前条件未满足；按HUD任务目标继续。"
+msgstr "The delivery conditions are not met. Follow the task objective in the HUD."
+
+msgid "核验客附近换证被阻止。先离开核验范围，再准备证件并回来交付。"
+msgstr "Changing IDs near the Inspector was blocked. Leave the inspection area, prepare your ID, then return to deliver the task."
+
+msgid "当前任务不匹配；请按HUD显示的任务目标继续。"
+msgstr "This room does not match the current task. Follow the objective in the HUD."
+
+msgid "此任务当前不能交付；请先在任务房间接受或重新接受任务。"
+msgstr "This task cannot be delivered yet. Accept or retry it at its room first."
+
+msgid "普通门违规：%s。已退回本层楼梯。%s"
+msgstr "Ordinary door violation: %s. Returned to this floor's stairs. %s"
+
+msgid "Terese还在309：先到302接受登记任务，再用当前经理身份批准309。"
+msgstr "Terese is still in Room 309. Accept the registration task at Room 302, then approve Room 309 with your active Manager ID."
+
+msgid "309登记已批准；按I装备保洁证、按Q切为当前保洁身份，再进入309救出Terese。"
+msgstr "Room 309 is approved. Press I to equip the Cleaner ID, Q to make it active, then enter Room 309 to rescue Terese."
+
+msgid "带Terese前往4F403取得巡房记录并返回交付，之后才能上5F。"
+msgstr "Take Terese to Room 403 on 4F, collect the patrol log, and return to deliver it before going to 5F."
+
+msgid "前往5F501，用当前经理身份批准离店单。"
+msgstr "Go to Room 501 on 5F and approve the exit form with your active Manager ID."
+
+msgid "离店单已批准；返回501按E交付登记，再前往消防出口。"
+msgstr "The exit form is approved. Return to Room 501 and press E to deliver it, then go to the fire exit."
+
+msgid "出口尚未开放；确认五楼消防出口附近没有其他模态界面。"
+msgstr "The exit is not available yet. Close any open screen near the 5F fire exit and try again."
+
+msgid "任务时间到；重试会恢复到接取任务前的检查点"
+msgstr "Time ran out. Retrying restores the checkpoint from before you accepted this task."
+
+msgid "309必须先获登记许可。先在302用当前经理身份批准，再切为保洁身份进309救出Terese。"
+msgstr "Room 309 needs approval. Use your active Manager ID at Room 302, then enter with the Cleaner ID to rescue Terese."
+
+msgid "普通门违规"
+msgstr "Ordinary door violation"
+
+msgid "已退回本层楼梯"
+msgstr "Returned to this floor's stairs"
+
+msgid "巡房记录已交付；它不是离店许可，带Terese去五楼501办理并交付离店单。"
+msgstr "The patrol log has been delivered, but it is not an exit permit. Take Terese to Room 501 on 5F to approve and deliver the exit form."
+
+msgid "离店单已批准并交付；带Terese前往五楼消防出口。"
+msgstr "The exit form has been approved and delivered. Take Terese to the 5F fire exit."

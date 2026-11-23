@@ -132,7 +132,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	_needs_e_release = true
 	if target["kind"] == "EXIT":
 		if not GameManager.request_escape():
-			_emit_notice("消防出口尚未获准：先救出Terese，并完成403巡房与501离店单交付。")
+			_emit_notice(GameManager.get_escape_block_message())
 	elif target["kind"] == "STAIR":
 		if floor_selection_requested.has_connections():
 			floor_selection_requested.emit()
@@ -168,15 +168,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if work.interaction_type == "CLEAN":
 				GameManager.record_work_started(work.target_id)
 		else:
-			var reason: String = work.get_interaction_block_reason()
-			if reason == "PLAYER_MOVING":
-				_emit_notice("先停下，再重新按E操作。")
-			elif not GameManager.has_required_equipment(GameManager.current_task_id):
-				_emit_notice("按I装备本任务所需工作证，再按Q切换当前工作身份。")
-			elif reason == "WRONG_IDENTITY":
-				_emit_notice("此工作需要当前%s身份；在工作台旁按Q切换。", [CARD_NAMES[work.required_card]])
-			else:
-				_emit_notice("先完成当前任务步骤，再操作这里。")
+			_emit_notice(_work_block_message(work, work.get_interaction_block_reason()))
 	elif GameManager.is_interaction_allowed(target["id"]):
 		var staff: Node = target["node"]
 		if staff.begin_steal():
@@ -577,11 +569,70 @@ func _on_task_submit(task_id: String, door: Node2D) -> void:
 	if GameManager.is_world_input_allowed() and absf(player.global_position.x - door.global_position.x) <= door.story_radius:
 		_door_scheduler.prepare_delivery(door)
 		if not GameManager.submit_task(task_id):
-			if GameManager.get_pending_monster_encounter().get("reason", "") == "SWITCHED_NEAR_CHECKER":
-				_emit_notice("先退到门外安全区准备证件，再回来交付核验。")
-			else:
-				_emit_notice("交付时请切为当前%s身份，并保留本任务所需装备。", [CARD_NAMES.get(GameManager.get_submission_card(task_id), "工作")])
+			_emit_notice(_submission_block_message(task_id))
 	door.set_story_state(GameManager.task_status if GameManager.current_task_id == task_id else "NONE")
+
+
+func _work_block_message(work: CleaningSpot, block_reason: String) -> String:
+	if block_reason == "PLAYER_MOVING":
+		return "先停下，再重新按E操作。"
+	var task_id: String = GameManager.current_task_id
+	if task_id.is_empty() or GameManager.task_status not in ["ACTIVE", "READY_TO_SUBMIT"]:
+		return "请先到当前任务房间接受任务，再按任务提示操作。"
+	var definition: Dictionary = GameManager.get_task_definition(task_id)
+	var required: Array = definition.get("required_cards", [definition.get("required_card", "")])
+	required = required.filter(func(card: String) -> bool: return not card.is_empty())
+	var missing: Array[String] = []
+	var unequipped: Array[String] = []
+	for card: String in required:
+		if not CardManager.has_card(card):
+			missing.append(card)
+		elif not CardManager.get_equipped_cards().has(card):
+			unequipped.append(card)
+	if not missing.is_empty():
+		return "缺少%s工作证：先按任务目标取得证件，再回来操作。" % _card_names(missing)
+	if not unequipped.is_empty():
+		return "已持有%s工作证但尚未装备：按I放入A／B槽，再按Q切换当前身份。" % _card_names(unequipped)
+	if block_reason == "WRONG_IDENTITY":
+		return "此工作需要当前%s身份；按Q切换后再按E。" % tr(CARD_NAMES.get(work.required_card, "工作"))
+	var step: String = GameManager.get_task_view().get("step", "")
+	return step if not step.is_empty() else "当前任务还未到这一步，请按任务目标继续。"
+
+
+func _submission_block_message(task_id: String) -> String:
+	if GameManager.get_pending_monster_encounter().get("reason", "") == "SWITCHED_NEAR_CHECKER":
+		return "核验客附近换证被阻止。先离开核验范围，再准备证件并回来交付。"
+	if task_id != GameManager.current_task_id:
+		return "当前任务不匹配；请按HUD显示的任务目标继续。"
+	var definition: Dictionary = GameManager.get_task_definition(task_id)
+	var required: Array = definition.get("required_cards", [definition.get("required_card", "")])
+	required = required.filter(func(card: String) -> bool: return not card.is_empty())
+	var missing: Array[String] = []
+	var unequipped: Array[String] = []
+	for card: String in required:
+		if not CardManager.has_card(card):
+			missing.append(card)
+		elif not CardManager.get_equipped_cards().has(card):
+			unequipped.append(card)
+	if not missing.is_empty():
+		return "缺少%s工作证：先按任务目标取得证件，再回来交付。" % _card_names(missing)
+	if not unequipped.is_empty():
+		return "已持有%s工作证但未装备：按I放入A／B槽，再回来交付。" % _card_names(unequipped)
+	if GameManager.task_status == "ACTIVE":
+		return GameManager.get_task_view().get("step", "工作尚未完成；请按当前任务目标继续。")
+	if GameManager.task_status != "READY_TO_SUBMIT":
+		return "此任务当前不能交付；请先在任务房间接受或重新接受任务。"
+	var submission_card: String = GameManager.get_submission_card(task_id)
+	if not submission_card.is_empty() and CardManager.active_card != submission_card:
+		return "当前身份不是%s：按Q切换为当前身份后再交付。" % tr(CARD_NAMES.get(submission_card, "工作"))
+	return GameManager.get_task_view().get("step", "当前条件未满足；按HUD任务目标继续。")
+
+
+func _card_names(cards: Array[String]) -> String:
+	var names: Array[String] = []
+	for card: String in cards:
+		names.append(tr(CARD_NAMES.get(card, card)))
+	return "、".join(names)
 
 
 func _on_story_progress(task_id: String) -> void:
@@ -605,7 +656,7 @@ func _on_door_violation(reason: String, approach_side: int, door: Node2D) -> voi
 	if GameManager.game_state == "SAFE_RETURN":
 		var guide: Dictionary = GameManager.get_monster_guide(door.monster_type)
 		var explanations := {"WRONG_CARD": "当前身份不符", "MOVED_NEAR_EAR": "开门时仍在移动", "SWITCHED_NEAR_CHECKER": "在核验区换证"}
-		_emit_notice("已退回本层楼梯。%s：%s。%s", [guide.get("name", ""), explanations.get(reason, reason), guide.get("text", "")])
+		_emit_notice("普通门违规：%s。已退回本层楼梯。%s", [explanations.get(reason, tr(reason)), guide.get("text", "")])
 
 
 func get_safe_return_position(door: Node2D, approach_side: int) -> Dictionary:

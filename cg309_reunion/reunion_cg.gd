@@ -81,9 +81,7 @@ func _build_ui() -> void:
 	_hint.add_theme_font_size_override("font_size", 16)
 	_hint.add_theme_color_override("font_color", Color("#c4bda8"))
 	box.add_child(_hint)
-	var font := SystemFont.new()
-	font.font_names = PackedStringArray(["Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", "sans-serif"])
-	_panel.add_theme_font_override("font", font)
+	_panel.add_theme_font_override("font", load("res://assets/final/fonts/hotel_staff_cjk.otf"))
 
 func _new_frame() -> TextureRect:
 	var node := TextureRect.new()
@@ -132,12 +130,18 @@ func _show_next() -> void:
 	var beat: Dictionary = _beats[_index]
 	var narrative := bool(beat.get("narration", false))
 	_speaker.text = " " if narrative else str(beat.get("speaker_en", beat["speaker"])) if TranslationServer.get_locale().begins_with("en") else str(beat["speaker"])
-	_line.text = str(beat["text"])
+	_line.text = line_text_for_locale(beat)
 	_line.add_theme_color_override("font_color", Color("#d3c5ad") if narrative else Color("#f8f0df"))
 	_hint.text = "%d / %d" % [_index + 1, _beats.size()]
 	var next_id := str(beat["frame"])
 	if next_id != _frame_id:
 		_change_frame(next_id)
+
+
+func line_text_for_locale(beat: Dictionary) -> String:
+	if TranslationServer.get_locale().begins_with("en"):
+		return str(beat.get("text_en", beat.get("text", "")))
+	return str(beat.get("text", ""))
 
 func _change_frame(next_id: String) -> void:
 	if not FRAME_PATHS.has(next_id):

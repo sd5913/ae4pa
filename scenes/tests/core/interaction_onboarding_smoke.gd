@@ -258,7 +258,7 @@ func run() -> void:
 	door._physics_process(0)
 	await settle()
 	check(f.player.position == f.return_point.position, "Ordinary wrong identity retains actual floor-stair return")
-	check(main.notice_label.text.begins_with(tr("已退回本层楼梯。%s：%s。%s").get_slice("%s",0)), "Return notice names the floor-stair result before its actual monster cause")
+	check(main.notice_label.text.contains(tr("普通门违规")) and main.notice_label.text.contains(tr("已退回本层楼梯")), "Ordinary-door feedback names the cause and return without task failure")
 	check(main.get_node("TaskLayer/HUD/%Notice").text.contains(tr("当前身份不符")), "Visible HUD retains actual violation cause rather than only its source label")
 	await capture("ordinary_door_return")
 	if failures.is_empty(): print("PASS: interaction_onboarding_smoke")

@@ -30,8 +30,6 @@ func _ready() -> void:
 	GameManager.state_changed.connect(_on_state_changed)
 	CardManager.cards_changed.connect(_on_cards_changed)
 	GameManager.floor_changed.connect(_on_floor_changed)
-	GameManager.game_failed.connect(_on_game_failed)
-	GameManager.safe_return_started.connect(_on_safe_return_started)
 	GameManager.modal_changed.connect(_sync_story_controls)
 	GameManager.task_offered.connect(_on_task_offered)
 	GameManager.task_completed.connect(_on_tutorial_completed)
@@ -146,7 +144,7 @@ func _show_story_dialogue(dialogue_id: String) -> void:
 			GameManager.set_modal_open(STORY_MODAL, false)
 	elif dialogue_id == TASK_03_INTRO:
 		var lines: Array[String] = [
-			"309还未登记。用经理工作证，到本层登记台批准入住。",
+			"309必须先获登记许可。先在302用当前经理身份批准，再切为保洁身份进309救出Terese。",
 			"接受后限时240秒；批准即完成，不用回302交付。",
 		]
 		if not dialogue.show_task_dialogue(dialogue_id, "309登记 · 302", lines):
@@ -338,16 +336,6 @@ func _refresh_notice() -> void:
 	notice_label.text = tr(_notice_template) % arguments
 	$TaskLayer/HUD.show_notice(notice_label.text)
 
-
-func _on_game_failed(reason: String) -> void:
-	if reason == "STAFF_CAUGHT":
-		_show_notice("偷窃被发现 · 可重新挑战本任务")
-	else:
-		_show_notice("失败：%s", [reason])
-
-
-func _on_safe_return_started(reason: String) -> void:
-	_show_notice("普通门警告：%s · 已退回本层左侧楼梯，请观察后重试", [reason])
 
 func _open_bag_from_toolbar() -> void:
 	if not GameManager.is_world_input_allowed(): return

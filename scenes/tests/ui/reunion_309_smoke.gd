@@ -97,6 +97,16 @@ func run() -> void:
 	if not is_instance_valid(host.cg): quit(1); return
 	var cg: Control = host.cg
 	check(cg.get("_beats").size() == 36,"36 original Chinese beats")
+	var original_locale: String = TranslationServer.get_locale()
+	for locale: String in ["zh_CN", "en"]:
+		TranslationServer.set_locale(locale)
+		for beat: Dictionary in cg.get("_beats"):
+			var rendered: String = cg.call("line_text_for_locale", beat)
+			var expected: String = beat["text"] if locale == "zh_CN" else str(beat.get("text_en", ""))
+			check(not expected.is_empty() and rendered == expected, "309 beat has complete " + locale + " text")
+	TranslationServer.set_locale(original_locale)
+	check(cg.get("_beats")[25]["text"].contains("302") and cg.get("_beats")[25]["text"].contains("保洁身份") and cg.get("_beats")[25]["text"].contains("没法自己离开"), "309 rescue dialogue explains approval and cleaner access prevent self-exit")
+	check(cg.get("_beats")[25]["text_en"].contains("Room 302") and cg.get("_beats")[25]["text_en"].contains("Cleaner ID") and cg.get("_beats")[25]["text_en"].contains("couldn't leave on my own"), "English rescue dialogue preserves the same access cause")
 	check(not game.has_friend and not game.get_available_floors().has(4),"opening CG does not rescue or open4F")
 	check(not game.is_world_input_allowed() and not main.get_node("TaskLayer").visible,"CG hides HUD and locks world")
 	await shot("approach")

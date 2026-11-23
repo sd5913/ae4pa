@@ -20,7 +20,8 @@ func _ready() -> void:
 func open_task_intro(task_id: String) -> void:
 	if not GameManager.can_offer_task(task_id): return
 	var definition := GameManager.get_task_definition(task_id)
-	var lines: Array[String] = [definition["name"], definition["instructions"], "接受后限时180秒；工作完成仍需返回本房交付。"]
+	var time_limit_line := tr("接受后限时%d秒；完成工作后返回本房按E交付。") % int(definition["time_limit"])
+	var lines: Array[String] = [definition["name"], definition["instructions"], time_limit_line]
 	_open("INTRO_" + definition["room_id"], task_id, lines, task_id)
 
 func show_reminder(task_id: String) -> void:
@@ -29,13 +30,13 @@ func show_reminder(task_id: String) -> void:
 	if not completed and GameManager.current_task_id != task_id: return
 	var line: String = GameManager.get_task_view()["step"]
 	if completed:
-		line = "巡房记录已交付，去五楼501办理离店。" if task_id == GameManager.TASK_04_ID else "离店单已交付，带Terese去右端消防出口。"
+		line = "巡房记录已交付；它不是离店许可，带Terese去五楼501办理并交付离店单。" if task_id == GameManager.TASK_04_ID else "离店单已批准并交付；带Terese前往五楼消防出口。"
 	_open("REMINDER_" + definition["room_id"], task_id, [line])
 
 func _completed(task_id: String) -> void:
 	if not GameManager.LATE_TASKS.has(task_id): return
 	var definition := GameManager.get_task_definition(task_id)
-	var line := "巡房记录已收到。4F通路已开放，可以上五楼办理离店。" if task_id == GameManager.TASK_04_ID else "离店手续已交付。现在可以带Terese去消防出口。"
+	var line := "巡房记录已登记，四楼路线已开放。它不等于离店许可；带Terese上五楼，由经理批准并交付离店单。" if task_id == GameManager.TASK_04_ID else "离店单已批准并交付。现在可以带Terese去五楼消防出口。"
 	_open("DELIVERED_" + definition["room_id"], task_id, [line])
 
 func _open(id: String, task_id: String, lines: Array[String], offer_after: String = "") -> void:

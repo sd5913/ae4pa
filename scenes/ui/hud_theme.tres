@@ -1,11 +1,8 @@
-[gd_resource type="Theme" load_steps=7 format=3]
+[gd_resource type="Theme" load_steps=6 format=3]
 [ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/status_plaque.png" id="1"]
 [ext_resource type="FontFile" path="res://assets/final/fonts/hotel_staff_cjk.otf" id="2"]
-[sub_resource type="SystemFont" id="BodyFont"]
-font_names = PackedStringArray("Microsoft YaHei UI", "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC")
-fallbacks = Array[Font]([ExtResource("2")])
 [sub_resource type="FontVariation" id="TitleFont"]
-base_font = SubResource("BodyFont")
+base_font = ExtResource("2")
 variation_embolden = 0.4
 [sub_resource type="StyleBoxTexture" id="TaskPlate"]
 texture = ExtResource("1")
@@ -28,7 +25,7 @@ content_margin_right = 60.0
 content_margin_top = 16.0
 content_margin_bottom = 16.0
 [resource]
-default_font = SubResource("BodyFont")
+default_font = ExtResource("2")
 default_font_size = 18
 Label/colors/font_color = Color(0.96, 0.94, 0.87, 1)
 Label/colors/font_shadow_color = Color(0.04, 0.05, 0.05, 0.65)

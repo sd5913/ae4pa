@@ -210,7 +210,8 @@ func _select_floor(floor_number: int) -> void:
 
 func _on_task_failed(task_id: String, reason: String) -> void:
 	refresh_from_game_manager()
-	show_task_failure("%s：%s" % [task_id, tr(reason)])
+	# The dedicated Failure layer owns the only failure dialog and retry control.
+	hide()
 
 
 func _on_retry_pressed() -> void:

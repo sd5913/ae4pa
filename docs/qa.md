@@ -17,6 +17,16 @@
 - 完整路线日志同时记录 203／205 工作点尝试返回 `TASK_INACTIVE`。这些诊断没有导致本次 smoke 失败；不据此删除旧失败记录，也不将自动化结果记作图形或真人验收。
 - 本证据只对应上述 SHA 和 GitHub runner。Compatibility 窗口、键鼠人工操作、同提交 macOS、目标系统完整导出验收仍需分别执行。
 
+### 2026-11-24 macOS 本地发布前复测
+
+代码基线：GitHub `main@ac58302b29499a4243dd302876a8f24e84be013a`；实际被测树包含未提交修改，分支 `work/member-A-release-quality-20261123`。环境：macOS、Godot `4.7.2.stable.official.ed1daf0bf`。这不是该 SHA 的 CI 结果，也未生成新提交。
+
+- 退出 0：`--headless --editor --path . --import`；`core/foundation_smoke.gd`、`core/task_definitions_smoke.gd`、`core/task_checkpoint_smoke.gd`、`staff/staff_core_smoke.tscn`、`staff/work_items_smoke.tscn`、`doors/known_monster_rules_smoke.gd`、`doors/task_door_lifecycle_smoke.gd`、`core/interaction_onboarding_smoke.gd`、`core/late_mainline_main_flow_smoke.gd` 中文和英文，以及 `core/full_mainline_escape_smoke.gd`。完整主线 smoke 从正常新局完成八项真实任务及 309 CG，并通过实际 EXIT／成功页断言；203／205 `TASK_INACTIVE` 工作点诊断仍出现在日志，不删断言或伪造结果。
+- 退出 0：`ui/english_layout_smoke.gd`。309对白 JSON 的结构检查确认 36 段全部有英文文本；新剧情烟测已增加双语断言，但现有 `ui/reunion_309_smoke.gd` 在到达这些断言前，预置夹具的楼层旅行失败并找不到 `Interactions/RescuePoint`，所以新增的实际 CG 显示断言未执行。
+- 未通过／未完成：`core/localization_smoke.gd` 退出 1，因为宿主限制阻止写入 `user://localization_smoke_progress.cfg`；Godot 同时无法写用户级日志／编辑器设置。`core/task_ui_smoke.gd` 退出 3，任务 UI 夹具在 2F 找不到已移除的 `Interactions/Stain201Slot/CleaningSpot`，该失败发生在回归面板断言之前。`core/task_03_main_flow_smoke.gd` 也在测试夹具访问不存在的 `DoorRoot/Room301/Door` 时出错。`ui/hud_layout_smoke.gd` 需要图形帧；无窗口 headless 环境卡在 `frame_post_draw`，非 headless 启动退出 134，因此 960×540／1280×720／1920×1080 正式主场景截图及视觉检查待有显示设备时执行。
+- 多个 smoke 的日志包含 Mac 根证书读取错误 `get_system_ca_certificates ... ret != noErr`；它不改变以上退出码或 PASS 断言。受限 `user://` 写入产生的记录保存错误已单独说明，不作为产品通过证据。
+- 本机关键命令形式：`Godot --headless --path . --script res://scenes/tests/core/late_mainline_main_flow_smoke.gd -- --english`；完整新局使用 `Godot --headless --path . --script res://scenes/tests/core/full_mainline_escape_smoke.gd`。日志在执行环境 `/private/tmp/` 的 `release-*`／`final-*` 文件中，不作为仓库交付材料。
+
 | 用例 | 当前操作和预期 |
 | --- | --- |
 | V4-T05／T06 | 202 接取后回 1F 从保安取证，切为当前 SECURITY 后在 2F 取包裹并返 202 交付。202 开放二楼后段。按 203–205 教学验证第三卡入收藏、双槽组合和当前身份，205 交付后才可上 3F。 |

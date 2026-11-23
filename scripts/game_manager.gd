@@ -626,6 +626,20 @@ func get_story_objective() -> String:
 	return "离店单已交付；前往五楼消防出口按E逃离。"
 
 
+func get_escape_block_message() -> String:
+	if not _completed_task_ids.has(TASK_03_ID) or not _world_flags.get("registration_309_approved", false):
+		return "Terese还在309：先到302接受登记任务，再用当前经理身份批准309。"
+	if not has_friend or not _world_flags.get("rescue_309_completed", false):
+		return "309登记已批准；按I装备保洁证、按Q切为当前保洁身份，再进入309救出Terese。"
+	if not _completed_task_ids.has(TASK_04_ID) or not _world_flags.get("patrol_delivered", false):
+		return "带Terese前往4F403取得巡房记录并返回交付，之后才能上5F。"
+	if not _world_flags.get("exit_form_approved", false):
+		return "前往5F501，用当前经理身份批准离店单。"
+	if not _world_flags.get("exit_form_delivered", false):
+		return "离店单已批准；返回501按E交付登记，再前往消防出口。"
+	return "出口尚未开放；确认五楼消防出口附近没有其他模态界面。"
+
+
 func request_escape() -> bool:
 	if not can_escape(): return false
 	remaining_time = 0.0

@@ -101,6 +101,10 @@ func run() -> void:
 		hud._apply_task_view(view,"前往二楼保管柜领取完整包裹并确认封条，完成后返回 202 房间向独眼客交付。")
 		hud.set_process(false)
 		await capture("long-fixture")
+		root.get_node("Localization").set_language("en")
+		for dimensions: Vector2i in [Vector2i(960,540), Vector2i(1280,720), Vector2i(1920,1080)]:
+			await capture("en-long-%dx%d" % [dimensions.x, dimensions.y], dimensions)
+		root.get_node("Localization").set_language("zh_CN")
 	main.queue_free()
 	await process_frame
 	quit(0 if failures.is_empty() else 1)
