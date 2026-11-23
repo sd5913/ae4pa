@@ -23,8 +23,7 @@ func tap(action: String = "interact") -> void:
 func drain_story() -> void:
 	for i in range(100):
 		if not main.dialogue.visible: return
-		main.dialogue._advance()
-		await process_frame
+		await tap()
 func drain() -> void:
 	for i in range(50):
 		if not screen.visible: return

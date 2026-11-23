@@ -94,6 +94,8 @@ var _portrait_cache: Dictionary = {}
 const DialogueRoles = preload("res://scenes/ui/dialogue_roles.gd")
 var _task_character := ""
 var _muted_surfaces: Array[Dictionary] = []
+var _sms_scroll_generation := 0
+var _portrait_region_cache: Dictionary = {}
 var _phone_waiting_for_open := false
 var _phone_tween: Tween
 
@@ -149,7 +151,8 @@ func _fit_dialogue_text() -> void:
 	if _portrait.texture != null:
 		var height := minf(size.y * 0.52, size.x * 0.265 / _portrait.texture.get_width() * _portrait.texture.get_height())
 		var width := height * _portrait.texture.get_width() / _portrait.texture.get_height()
-		_portrait.offset_right = size.x * _portrait.anchor_left + width - size.x * _portrait.anchor_right
+		_portrait.offset_left = size.x * 0.325 - width - size.x * _portrait.anchor_left
+		_portrait.offset_right = size.x * 0.325 - size.x * _portrait.anchor_right
 		_portrait.offset_top = size.y * 0.95 - height - size.y * _portrait.anchor_top
 	# One stable nameplate baseline for every character, including missing portraits.
 	var name_left := size.x * 0.34
@@ -272,8 +275,8 @@ func present_character_beat(character_id: String, text: String) -> void:
 	_speaker.text = DialogueRoles.display_name(character_id)
 	_line.text = tr(text)
 	_portrait.texture = DialogueRoles.portrait(character_id)
-	if _portrait.texture != null:
-		_portrait.texture = _trim_portrait(_portrait.texture)
+	if character_id == "CAROL":
+		_portrait.texture = _trim_role_portrait(_portrait.texture, "an")
 	_portrait.visible = _portrait.texture != null
 	_fit_dialogue_text.call_deferred()
 	show()
@@ -495,10 +498,15 @@ func _size_sms_body(body: Label) -> void:
 
 
 func _scroll_sms_to_message(row: Control) -> void:
-	# Wait for container layout to update the scroll range for the new bubble.
-	await get_tree().process_frame
-	if is_instance_valid(row) and row.is_inside_tree():
-		_sms_scroll.ensure_control_visible(row)
+	_sms_scroll_generation += 1
+	var generation := _sms_scroll_generation
+	# Settle nested HBox/Panel/Label minimum sizes before reading the final range.
+	for tick in range(4):
+		await get_tree().process_frame
+		if generation != _sms_scroll_generation or not is_instance_valid(row): return
+	if row.is_inside_tree():
+		_sms_scroll.scroll_vertical = int(_sms_scroll.get_v_scroll_bar().max_value)
+
 
 
 func _display_portrait(speaker: String, expression: String) -> void:
@@ -513,10 +521,27 @@ func _display_portrait(speaker: String, expression: String) -> void:
 		var portraits: Dictionary = ROLE_PORTRAITS[role]
 		var key: String = EXPRESSION_ALIASES.get(expression, expression)
 		_portrait.texture = portraits.get(key, portraits["neutral"])
-	_portrait.texture = _trim_portrait(_portrait.texture)
+	_portrait.texture = _trim_role_portrait(_portrait.texture, "friend" if speaker in ["闺蜜", "Terese", "Persica", "friend"] else PORTRAIT_ROLES.get(speaker, "an"))
 	_portrait.show()
 	_fit_dialogue_text.call_deferred()
 
+
+func _trim_role_portrait(texture: Texture2D, role: String) -> Texture2D:
+	if not _portrait_region_cache.has(role):
+		var region := Rect2i()
+		var variants: Array = []
+		if role == "friend":
+			for face in range(6): variants.append(_atlas_cell(FRIEND_SHEET, face))
+		else:
+			variants = ROLE_PORTRAITS.get(role, ROLE_PORTRAITS["an"]).values()
+		for variant: Texture2D in variants:
+			var bounds := variant.get_image().get_used_rect()
+			region = bounds if region.size == Vector2i.ZERO else region.merge(bounds)
+		_portrait_region_cache[role] = region
+	var atlas := AtlasTexture.new()
+	atlas.atlas = texture
+	atlas.region = Rect2(_portrait_region_cache[role])
+	return atlas
 
 func _trim_portrait(texture: Texture2D) -> Texture2D:
 	if _portrait_cache.has(texture):
