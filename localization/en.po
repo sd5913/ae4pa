@@ -1932,3 +1932,9 @@ msgstr "You wouldn't believe me if I said it was a mistake... would you?"
 
 msgid "正确。偷窃者不在我们的接待范围内。请立即离开，否则我会请保安送你出去。"
 msgstr "Correct. We do not accommodate thieves. Leave now, or security will escort you out."
+
+msgid "EXIT · 先完成501离店单交付"
+msgstr "EXIT · Deliver the Room 501 exit form first."
+
+msgid "EXIT · 按E与Terese一起逃离"
+msgstr "EXIT · Press E to escape with Terese."
