@@ -144,6 +144,7 @@ func open(mode: String) -> void:
 	_selected = 0
 	_root.show()
 	refresh()
+	_tabs[mode].grab_focus()
 
 func refresh() -> void:
 	if not is_node_ready(): return
@@ -172,6 +173,24 @@ func refresh() -> void:
 		_render_history()
 	else: _render_slots()
 	_layout()
+	_bind_page_focus()
+
+func _bind_page_focus() -> void:
+	var controls: Array[Control] = []
+	for node: Node in _board.find_children("*", "Control", true, false):
+		if node.focus_mode != Control.FOCUS_ALL or not node.is_visible_in_tree(): continue
+		if node is BaseButton and node.disabled: continue
+		controls.append(node)
+	for i in controls.size():
+		var control := controls[i]
+		var previous := control.get_path_to(controls[(i-1+controls.size()) % controls.size()])
+		var next := control.get_path_to(controls[(i+1) % controls.size()])
+		control.focus_previous = previous
+		control.focus_next = next
+		control.focus_neighbor_left = previous
+		control.focus_neighbor_top = previous
+		control.focus_neighbor_right = next
+		control.focus_neighbor_bottom = next
 
 func _slot(id: int) -> Dictionary:
 	for slot: Dictionary in _slots:

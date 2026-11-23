@@ -44,6 +44,7 @@ func run() -> void:
 		root.push_input(mouse, true)
 		await process_frame
 	check(memory._root.visible and memory._mode == "history", "dialogue rail receives a real GUI click without advancing underneath")
+	check(memory._board.is_ancestor_of(root.gui_get_focus_owner()), "opening a page transfers keyboard focus away from the underlying story")
 	await shot("history")
 	check(root.get_node("GameManager").has_method("set_modal_open") and not root.get_node("GameManager").is_world_input_allowed(), "memory page preserves the underlying story modal")
 	var e := InputEventKey.new()
