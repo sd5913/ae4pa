@@ -2,6 +2,8 @@
 
 [返回项目首页](../README.md) · [下载《游戏测试.xlsx》](https://github.com/sd5913/ae4pa/raw/refs/heads/main/outputs/game-test-20261121/%E6%B8%B8%E6%88%8F%E6%B5%8B%E8%AF%95.xlsx) · [在 GitHub 查看工作簿](../outputs/game-test-20261121/游戏测试.xlsx)
 
+[当前项目状态](CURRENT_STATUS.md)汇总本轮主线、验证证据和下一项负责人。
+
 ## 试玩与验收
 
 | 文档 | 用途 |

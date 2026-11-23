@@ -14,11 +14,17 @@
 
 用 **A／D** 或方向键移动，**E** 交互，**Q** 切换当前身份，**I** 打开背包，**H** 查看笔记，**Esc** 暂停。查看[中文玩家指南](docs/player-guide.md)或 [English quick start](docs/quick_start_en.md)。
 
-## 当前版本
+### Windows VM download
 
-`main` 已接通从新局到结局的主线。完成二楼 **201–205 五怪教学**后，在三楼办登记并营救 **309** 的 Terese，随后完成 **403 巡房文件**和 **501 离店许可**，从五楼 **EXIT** 离开。任务失败后可回到当前任务接取前的检查点。详见[主线交接](docs/late_mainline_handoff_20261121.md)和 [PR #55](https://github.com/sd5913/ae4pa/pull/55)。
+1. Sign in to GitHub and open the [Godot Windows build workflow](https://github.com/sd5913/ae4pa/actions/workflows/godot-build.yml). Choose the run for the branch or pull request you want to test.
+2. Download the `monster-hotel-windows-x64-<commit>` artifact from the run summary. Artifacts are retained for 14 days.
+3. In an x64 Windows VM, extract the entire ZIP to one folder. Keep `MonsterHotel.exe` and `MonsterHotel.pck` together, then double-click `MonsterHotel.exe` and choose Start Game. Godot does not need to be installed. Record the SHA in `commit.txt` with your test results.
 
-正式场景已有从新局到 EXIT 的自动化验证。已有真人记录覆盖当时版本的 201 验收，以及 202 通关与超时。新版完整主线、Windows 完整通关和目标平台导出仍待人工验收。见[既有真人记录](docs/acceptance_status_20261117.md)与[本轮验证证据](docs/qa_evidence/a_late_mainline_20261121/README.md)。
+The workflow checks the package and starts the downloaded executable headlessly on a hosted Windows runner. Test graphics, input, and the full route in the VM. The full-playthrough automation runs as a separate, non-blocking check and reports its own result in the run summary. The [recorded gameplay failure](docs/qa_evidence/d_delivery_closeout_20261122/README.md) is tracked separately.
+
+## 当前项目状态
+
+从[当前项目状态](docs/CURRENT_STATUS.md)查看已接通的主线、自动验证结果、真人待验项和下一项负责人。
 
 ## 组员入口
 

@@ -1,11 +1,18 @@
 extends RefCounted
-## Empty portraits are intentional: scene sprites are not formal portraits.
+## Approved ZIP matches main assets byte-for-byte. Fixed per-character crop, no scene sprites.
+const CROPS := {
+	"NOSE": Rect2(100, 90, 825, 1374),
+	"EYE": Rect2(20, 120, 984, 1340),
+	"HAT": Rect2(60, 20, 900, 1490),
+	"EAR": Rect2(35, 260, 954, 1040),
+	"CHECKER": Rect2(55, 45, 910, 1455),
+}
 const ROLES := {
-	"NOSE": {"name": "长鼻客", "portrait": ""},
-	"EYE": {"name": "独眼客", "portrait": ""},
-	"HAT": {"name": "礼帽客", "portrait": ""},
-	"EAR": {"name": "大耳客", "portrait": ""},
-	"CHECKER": {"name": "核验客", "portrait": ""},
+	"NOSE": {"name": "长鼻客", "portrait": "res://assets/final/monster_dialogue_portraits_v1/nose_halfbody.png"},
+	"EYE": {"name": "独眼客", "portrait": "res://assets/final/monster_dialogue_portraits_v1/eye_halfbody.png"},
+	"HAT": {"name": "礼帽客", "portrait": "res://assets/final/monster_dialogue_portraits_v1/hat_halfbody.png"},
+	"EAR": {"name": "大耳客", "portrait": "res://assets/final/monster_dialogue_portraits_v1/ear_halfbody.png"},
+	"CHECKER": {"name": "核验客", "portrait": "res://assets/final/monster_dialogue_portraits_v1/checker_halfbody.png"},
 	"SYSTEM": {"name": "任务提示", "portrait": ""},
 	"CAROL": {"name": "Carol", "portrait": "res://assets/final/ui/dialogue_portraits/an/an_neutral.png"},
 }
@@ -25,4 +32,10 @@ static func display_name(id: String) -> String:
 	return TranslationServer.translate(ROLES.get(id, {}).get("name", id))
 static func portrait(id: String) -> Texture2D:
 	var path: String = ROLES.get(id, {}).get("portrait", "")
-	return load(path) if not path.is_empty() else null
+	if path.is_empty(): return null
+	var texture: Texture2D = load(path)
+	if not CROPS.has(id): return texture
+	var atlas := AtlasTexture.new()
+	atlas.atlas = texture
+	atlas.region = CROPS[id]
+	return atlas

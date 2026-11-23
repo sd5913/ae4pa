@@ -1,31 +1,28 @@
 # 怪物员工通道公共接口与 V4 迁移提案
 
+本页由 A 组织维护，B/C/D 核对各自接口。以下索引按 [`main@dca61f7`](https://github.com/sd5913/ae4pa/commit/dca61f7b7fd5091aa1c830e83e5ad79ece4cfc91) 的调用方和实现核对。当前整合进展与验收证据见[当前项目状态](CURRENT_STATUS.md)。改动签名、信号或数据标识时同步检查调用方和对应验收。
+
+## 现行接口索引
+
+| 归属／实现 | 主要接口 | 正式调用与责任边界 |
+| --- | --- | --- |
+| A · [GameManager](../scripts/game_manager.gd) | `get_task_view() -> Dictionary`、`accept_task(task_id: String) -> bool`、`retry_current_task() -> bool`、`get_available_floors() -> Array[int]`、`request_floor_travel(floor_number: int) -> bool` | A 的任务 UI 接线及 D 的显示／楼梯组件读取任务和许可。A 管理计时、楼层、世界和接取前检查点。 |
+| A · [后段接线](../scenes/late_mainline.gd)与 [GameManager](../scripts/game_manager.gd) | `record_task_item_result(item_id: String, target_id: String) -> bool`、`can_escape() -> bool`、`request_escape() -> bool`、`game_won()` | A 楼层接真实巡房文件事件，并将 5F 交互转给出口资格检查。成功后由 A 通知 D 显示成功页。 |
+| B · [CardManager](../scripts/card_manager.gd)、[员工](../scenes/staff/staff.gd)及[工作点](../scenes/work/) | `equip_card(card_id: String, slot_index: int) -> bool`、`switch_active() -> bool`、`cards_changed()`、`export_snapshot() -> Dictionary`、`validate_snapshot(snapshot: Dictionary) -> bool`、`restore_snapshot(snapshot: Dictionary) -> bool`、`task_item_stolen(item_id: String, target_id: String)` | B 维护已持有、装备槽和当前卡。A 在重试时调用 B 的快照接口；A 楼层接 B 的员工／工作结果后更新任务。 |
+| C · [房门](../scenes/doors/monster_door.gd)与 A · [楼层接线](../scenes/levels/floor.gd) | `rule_violated(reason: String, approach_side: int)`、A 的 `request_safe_return(door: Node2D, reason: String, approach_side: int) -> void` | C 报告违规及来侧，A 校验请求并从任一侧退回本层左梯。固定任务门的接取和交付按 A 的任务阶段处理。 |
+| D · [HUD](../scenes/ui/hud.gd)、[任务面板](../scenes/ui/mission_board.gd)和[失败页](../scenes/ui/failure.gd) | `bag_requested()`、`configure_task_details(details: String, title_text: String = "") -> void`、`configure_retry(available: bool, message: String) -> void`、`retry_requested()` | HUD 背包信号和 I 进入 A 的同一限制检查。D 读取卡片和任务状态、发送请求，任务结算和恢复归 A。 |
+
+E 的世界目标由 A 楼层路由，Q 的卡槽切换由 B 的 CardManager 处理，D 的界面模态交由 A 的流程登记。B/C/D 维护各自实现，具体签名和允许值以对应源码为准。
+
+## 历史接入记录导读
+
+下文保留从 V3 约定、V4 提案到正式接入的原有编号和锚点。各节中的待接入、未提交及验收状态适用于当时提交。202 接入期间，A 的临时基线是 `main@c89c88c` 加本地接线，见[当时交接](task_02_handoff_20261119.md)。后段小节标题中的「本地未提交」也是当时记录，后续接线已随 [PR #55](https://github.com/sd5913/ae4pa/pull/55) 合入。
+
 > 2026-11-21 Carol身份外观：Player在`Visual/Artwork/IdentityOutfit`只读active_card，监听cards_changed以覆盖Q／装备／快照／新局；原胸前证件图标移除。公共人物绘制新增只读`get_render_pose()`（frame／texture／source／destination），原帧选择与绘制几何不变，普通员工不加换装材质。见[接入与验证](player_identity_outfits_handoff_20261121.md)。
 
 > 2026-11-21 本地交互教学：A新增只读`GameManager.get_monster_guide(kind) -> Dictionary`（`name`／`text`），笔记与普通门复习共用；`STAIR_INTERACTION_RADIUS=70.0`统一楼梯渲染与既有许可检查。`bag_adapter.gd`在D原ItemList／槽位上转发Godot拖放，仍调用CardManager.equip_card和既有核验区限制。员工与门的对外签名不变；轻量饰品与标记不参与任务结算。[本轮交接](interaction_onboarding_handoff_20261121.md)。
 
 > 2026-11-20 新增实际合同：`TASK_T03_ROOM_SERVICE`、`TASK_T04_DUAL_WORK`、`TASK_T05_TRANSIT`及五工作点已接；`get_task_view()`新增`required_cards`／`target_label`，目标随真实步骤变化，完成后指向下一房／3F。`get_work_flag(target_id)`供楼层镜像B组件，`has_required_equipment(task_id)`校验指定卡组。现有方法签名不变；具体ID、坐标、阶段、恢复与后续边界见[五怪接线交接](five_monster_tutorial_handoff_20261120.md)。下方旧接线历史不代替当前配置。
-
-当前工作区基线为 `main@c89c88c` 加本轮202未提交接入；第25节及[202交接](task_02_handoff_20261119.md)优先于旧“仅任务01／02未开放”描述。201真人六项用户ok保留原f18e4ce范围，202已有自动检查但未代记真人通过。历史发布／接线记录保留，不能把新教学／双卡提案当现成API。
-
-本文件按《Monster Staff Access Godot三周逐步分工 共享美术版 V2》第 01—03 部分的职责起草，供 A/B/C/D 在同一 Godot 项目中接入模块。它对应手册中建议的“接口约定.txt”，统一使用本 Markdown 文件维护，不再创建第二份接口清单。
-
-**阅读顺序：先读下列当前表和第 21 节布局，再读第 19 节菜单／笔记、第 18 节 UI 和第 17 节检查点。第 1—12 节保留 V3 兼容基线，第 13—16 节保留早期提案与开发证据。下文“本地未提交”“待同步 C”“缺快照／清理／重试”“D 页面未接”均须结合日期阅读；旧候选描述不覆盖当前表。新增接口实际实现后才能接正式按钮。** 第 18 节的临时私有字段适配现已由 `MissionBoard.configure_task_details`／`Failure.configure_retry` 替代；楼梯／暂停由 `scenes/ui/play_overlay.gd` 管理自己的 `FLOOR_SELECT`／`PAUSE` 模态，仍调用 A 的合法楼梯请求。该说明不构成新一轮发布授权。
-
-现行产品规则见 [项目主策划](game-design.md)，人员任务及交付顺序见 [ABCD 分工 2.0](team-plan.md)。本文专门维护接口及其实现状态，本次文档整合不改变已有函数或信号。
-
-函数表示“调用另一个模块做事”，信号表示“通知其他模块某事已经发生”。调用者按本文约定使用接口，模块内部实现由对应负责人决定。
-
-**当前状态：正式201／202及302任务03批准流程已接，分别有检查点／重试。** 201真人、202成功／超时已有用户记录；03真人、正式309救援／跟随、04／05、完整五怪教学及双卡门仍待完成。B继续维护员工／卡片／工作真值，A只组装和组织流程。
-
-| 模块 | 当前真实可用 | 尚待实现 |
-|---|---|---|
-| GameManager／A 楼层 | 任务01／02、五任务定义、1F↔2F↔3F许可、唯一E、真实清理／取件／交付、分别检查点／重试 | 完整教学／双卡配置、任务03—05、救援及结局 |
-| CardManager | 查询／重置、收集／切卡／装备、真实 Q／I、卡变化信号；`export_snapshot`／`validate_snapshot`／`restore_snapshot` | 三卡教学、完整核验门／背包主线联调 |
-| HotelPlayer | 水平移动、朝向、边界、移动锁、相机；任务 01 员工／门／剧情接入 | 后续楼层与跟随接入 |
-| 员工／工作 | 任务门控、保洁转向／好奇、正面／回头失败、清理、只读进度；PICKUP／AUTHORIZE 和 TASK_ITEM 巡房奖励组件已有 | 后续工作／文件的 A 主线接线；组件存在不等于任务已启用 |
-| 房门 | 五怪组件、STORY／NORMAL、普通退回、身份核验上下文与目录；201／202 已接 F5 | 后续任务门与检测组装；203—205 当前仅三态美术展示 |
-| 正式 UI | 菜单、序章／经理、任务面板／HUD／失败、真实重试、I／H／Esc、楼梯列表、交互进度 | 后续剧情／救援／结局的 A 流程接入与真人视觉验收 |
 
 ## 1 负责人和依赖
 

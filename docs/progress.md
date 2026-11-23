@@ -1,6 +1,6 @@
 # 怪物员工通道开发进度记录
 
-本文件保存实际工作、观察证据、决定及限制。任务顺序与当前状态以 [PLANS.md](../PLANS.md) 为准；玩法以 [游戏规则](game-design.md) 为准，测试用例以 [QA](qa.md) 为准。
+本文件保存实际工作、观察证据、决定及限制。任务顺序见[执行清单](../PLANS.md)，当期状态和下一项见[当前项目状态](CURRENT_STATUS.md)。玩法以 [游戏规则](game-design.md) 为准，测试用例以 [QA](qa.md) 为准。
 
 已发生记录按时间追加；发现错误时追加更正并引用原记录。计划、文件存在和真实运行通过分别记录。
 
@@ -1140,7 +1140,7 @@
 
 ### 2026-11-21 A：403／501／EXIT 接线准备
 
-- 用户指定首要目标为接通403、501、EXIT并统一解锁／检查点。已核对实际定义、GameManager前置／快照、楼层唯一E、B巡房奖励／离店批准、C固定任务门、D成功页，新增[接线设计](superpowers/specs/2026-11-21-late-mainline-design.md)，独立只读builder核对未发现重要规则缺口。
+- 用户指定首要目标为接通403、501、EXIT并统一解锁／检查点。已核对实际定义、GameManager前置／快照、楼层唯一E、B巡房奖励／离店批准、C固定任务门、D成功页，当时新增接线设计稿，独立只读builder核对未发现重要规则缺口。原设计稿未收录于 main，后续实现见[后段主线交接](late_mainline_handoff_20261121.md)。
 - 关键缺口：HAS_FRIEND当前被当作完成任务ID检查；巡房文件不是证件，不能套用空required_card的取证／工作身份判定；403／501未加入启用列表，正式场景未实例化工作源和安全标记；EXIT没有正式结算接线。
 - 当前按brainstorming技能的明确设计确认门槛等待用户确认，尚未改产品代码、创建开发分支或提交／推送。后续按设计生成实施计划，先建立失败用例再逐项接线。
 - 基线：PATH无godot，实际使用Downloads/Godot.app的4.7.2。首次foundation因未导入的新资源失败；随后headless editor --import --quit退出0（仍有FreeType字体及编辑器设置保存权限错误），重跑foundation退出1，五条失败为左右移动、左右边界、FAILED状态防绕过，另有FreeType错误。日志保留/private/tmp/ae4pa-late-mainline-{import,baseline-recheck}.stdout.log。本轮不记基线通过；文档git diff --check通过。源代码和原有未提交修改保留。
@@ -1228,11 +1228,25 @@
 - 只改D显示和输入适配，不改任务／发卡／结算。暂时降低HUD、独立怪物视觉和引导提示透明度，关闭后恢复。已有任务守卫、原子模态交接、完成事件单次触发与预览不改状态断言保留。
 - 五种怪物正式高清半身立绘均缺失，未放大362×543场景帧。Carol沿用标准人物槽；怪物半身尺寸／头肩对齐未验收。部分小剪影已烘焙在门OPEN图内，需素材负责人提供干净门图；没有修改A/C门行为。
 - Godot 4.7.2 Windows：资源导入退出0；中文1280×720／英文960×540正式场景怪物回归各退出0；intro_flow、story_surface、localization、late_mainline、HUD图形布局均退出0。英文台词覆盖和单次输入、HUD恢复断言通过。未进行人工新局完整八任务通关。实际截图、映射和日志见[证据](qa_evidence/d_monster_surface_20261122/README.md)。
+### 2026-11-22 CI：Windows 试玩包
+
+- 基于 `main@cc52b6d` 增加 Godot 4.7.2 Windows x64 导出配置、GitHub Actions 和 README 下载入口。Actions 浅检出并校验 LFS 对象；该基线没有 LFS 指针。
+- Linux 本地用同版官方模板验证导入、本地化和 Windows 导出。解压测试包后确认 EXE、PCK、提交 SHA 文件齐全；同版 Linux 运行模板可从解压后的 PCK 启动。删除导出包含规则后，即使仍生成 EXE 和 PCK，独立检查也会因缺少序章 TSV 而失败。
+- Actions 中另设 Windows 无界面启动检查和完整通关检查。基线完整通关检查复现 `ROOM_SERVICE_203`、`TRANSIT_REGISTER_205` 的 `TASK_INACTIVE` 和最终通关断言失败；该结果单独记录。图形、输入和人工通关待 Windows VM 验收。
+
 ### 2026-11-22 C：五怪独立透明半身立绘发布
 
 - 用户选择前面单独生成的五张Alpha透明底PNG，并明确忽略后来的横向画风确认图；授权推送个人分支、合入main。资产路径assets/final/monster_dialogue_portraits_v1，分别为nose/eye/hat/ear/checker_halfbody.png，保留原始文件字节，不重新绘制或转码。
 - 五张均为1024×1536 RGBA，Alpha范围0—254，含真实全透明像素；逐张SHA256与生成时validation.json一致。art_sources/monster_dialogue_portraits_v1保留内置imagegen原始提示词和Alpha校验报告，素材README说明透明混合和隐藏RGB。
 - 本次仅发布五张独立素材及必要说明、提示词／校验，不包含横向合图、不替换运行时对白或怪物动画。fetch后main仍cc52b6d，选择性暂存及git diff --check；不为纯素材新增玩法测试或声称游戏对白已接入。
+
+### 2026-11-22 D：UI polish v4 与五怪正式半身
+
+- 从最新main 569b5d0建立 work/member-D-ui-polish-v4，代码／测试提交35b2400245cfb3bce6e4183dae7c71e9a76d3bcd。用户微信ZIP与main五张PNG哈希完全一致，复用assets/final/monster_dialogue_portraits_v1，不复制第二套资源。
+- 接入五怪固定Atlas裁切；标准人物槽底部／姓名牌／正文统一，Carol、Terese和员工按整套表情共同轮廓固定裁切；修复短信布局后最终滚动和旧滚动请求；按钮改为黄铜矢量状态；正式HUD四按钮上移，楼层／双槽在下且楼层底图等比；笔记增加宽度与滚动区、关闭键和模态恢复。未改任务、主场景、卡片或门规则。
+- Godot4.7.2 Windows：资源导入、手册、剧情输入、本地化、ui_test、怪物对白、HUD布局全部自动退出0；真实five_monster正常新局201—205自动退出0。新定向main场景中文1280、英文960、1920布局与笔记10次开关／菜单重入均退出0。英文初次断言逻辑坐标与物理宽混比的失败保留，修复坐标系后通过；没有去掉检查。
+- 已生成实际截图与20.1秒Godot录屏，区分真实五怪任务与主场景review；人工完整八任务／后段路线未代记。物理H启动页未观察到打开，InputEventAction关闭／暂停模态已自动通过，物理键人工复核仍待联调。原门图烘焙小剪影和原图轻微暖边保留，未改A/C模块。详见[本轮证据](qa_evidence/d_ui_polish_v4_20261122/README.md)。
+- 补充快捷键代码提交36a4a77：按InputMap匹配真实InputEventKey，H／Esc十次开关、help_keys和ui_test_keys自动退出0；桌面注入键未观察到响应，鼠标点开始正常，硬件键盘人工复核未代记通过。
 
 ### 2026-11-22 C：新版核验怪站姿动画替换与发布
 
@@ -1240,3 +1254,26 @@
 - 无损替换assets/final/monster_idle/checker_idle_sheet.png，1448×1086／4×2／单格362×543，Alpha0—255；SHA256 19fff3637b7c010ae3266ed037bbe97546831b03e2a7885c72f5ef978e00d98e。其他四怪PNG逐一核对与manifest原hash一致。源母版、浅发边修改提示词、动画原始提示词与8帧边界保留在art_sources/monster_idle/checker_v2。
 - 共用动画适配器只调整CHECKER脚底锚点512→494及8帧时长400/150/170/230/160/180/180/350ms。保持完整格切片、原有角色缩放、开门显示/关门隐藏/模态冻结，不修改门判定、任务、UI或移动。
 - 实际Compatibility图形夹具在真实floor2/5门205/501检查8帧区域、脚底锚点、开关门显示、暂停与恢复，退出0并查看4张开关门截图；显式全任务已完成的美术夹具，不代记完整主线通关。tutorial_lifecycle、known_monster_rules、floor_5_layout、checker_safe_bag四项回归PASS；导入退出0，无脚本解析错误，git diff --check通过。截图和临时检查脚本位于本次会话outputs/checker_v2_in_game及work，未纳入运行时资源。
+
+### 2026-11-22 A：整理项目上下文文档
+
+- 从 GitHub 核实的 `main@dca61f7` 建立独立工作区。[当前项目状态](CURRENT_STATUS.md)集中记录实现、自动化和真人待验；同步项目首页、文档目录、开发规则、里程碑、接口和 QA，并保留早期记录的范围。
+- 审查基线中的 macOS 定向通过、整链两次失败和 Windows 历史证据分别记录。文档实施阶段沿用该审查证据，未重跑 Godot。
+- 验证：八份 Markdown 的相对链接和锚点检查通过，跟踪文件及新增状态页的空白检查通过。独立工作区只包含文档改动。
+- 下次入口：[当前项目状态](CURRENT_STATUS.md)的首项复测，由 A 牵头核对完整新局的 EXIT 阻断条件，C/D 按模块协查。真人、同提交跨平台与导出继续待验。
+
+### 2026-11-22 A：补录真人完整通关
+
+- 用户确认已完整通关，未发现问题。已同步[当前项目状态](CURRENT_STATUS.md)、[执行清单](../PLANS.md)和[QA](qa.md#已记录的真人通关)。试玩提交、平台和 Godot 版本待补录。自动化结果沿用原记录。
+
+### 2026-11-22 A：接入 Linux Godot CI
+
+- 从 `main@bf00cde` 建立独立工作区。[阶段 B PR](https://github.com/sd5913/ae4pa/pull/68) 接入 Linux Godot 4.7.2 的干净项目导入和八项定向 smoke。每项使用独立用户数据目录，执行日志随 GitHub Actions 运行留存。
+- 临时诊断定位到旧基线 501 交付后的 E 释放等待，详情见 [QA 历史记录](qa.md#历史自动回归失败与诊断)。当时完整主线测试保留原断言，尚未接入首版 CI。游戏源码、场景和素材未改动。
+
+### 2026-11-23 A：同步项目状态与主线 CI 证据
+
+- 当前 GitHub `main@cac0214d9845a2bae8c6dcb7a55000755e10e19c` 已合并阶段 A 文档 PR #67、阶段 B Linux CI PR #68 与 Windows 构建 PR #60，以及阶段 C 项目技能 PR #69。
+- 主线 [Linux Godot CI](https://github.com/sd5913/ae4pa/actions/runs/45100701304) 干净导入和八项 smoke 通过；[Windows workflow](https://github.com/sd5913/ae4pa/actions/runs/45100701293) 导入、本地化、Windows x64 导出／包检查和 runner 无界面启动通过。其非阻断 full-mainline 步骤从正常新局报告八项真实任务及 309 CG 路线 PASS，同时保留 203／205 `TASK_INACTIVE` 诊断输出。
+- `main@dca61f7` 的两次 EXIT 断言失败继续作为历史证据；不再列为当前 main 的复现失败。新 CI 不代替画面、实机键鼠、真人及同 SHA 跨平台验收。
+- 本轮只同步 Markdown 状态、流程与 QA，不改 Godot 脚本、场景、素材或工作流。

@@ -1,0 +1,39 @@
+{
+  "schema": "theft_failure_presentation_v1",
+  "note": "Presentation data only. Staff IDs must be mapped to real failure events by the project. Artwork does not grant a card.",
+  "sequences": [
+    {
+      "id": "theft_caught_security",
+      "staff_role": "SECURITY",
+      "cg": "assets/theft_caught_security.png",
+      "lines": [
+        {"speaker": "SECURITY", "zh": "站住！你的手刚才伸到哪儿去了？", "en": "Stop! Where do you think that hand was going?"},
+        {"speaker": "SECURITY", "zh": "偷工作证？我看得清清楚楚，别想蒙混过去！", "en": "Stealing a staff ID? I saw that. Don't try to talk your way out!"},
+        {"speaker": "Carol", "zh": "糟了……偏偏这时候看过来！", "en": "Great... You had to look over right then!"},
+        {"speaker": "SECURITY", "zh": "还想跑？把手放好，跟我去门口。你得离开这家旅馆！", "en": "Trying to run? Hands where I can see them. To the door. You're leaving this hotel!"}
+      ]
+    },
+    {
+      "id": "theft_caught_cleaner",
+      "staff_role": "CLEANER",
+      "cg": "assets/theft_caught_cleaner.png",
+      "lines": [
+        {"speaker": "CLEANER", "zh": "哎！你往我口袋里摸什么呢？！", "en": "Hey! What are you doing with your hand in my pocket?!"},
+        {"speaker": "CLEANER", "zh": "我忙着收拾房间，你倒忙着顺走我的工作证？", "en": "I'm busy cleaning rooms, and you're busy pinching my staff ID?"},
+        {"speaker": "Carol", "zh": "不是，我……啧，被看见了。", "en": "No, I... Tch. Caught me."},
+        {"speaker": "CLEANER", "zh": "少来这套！门在那边，赶紧出去，别等我叫保安！", "en": "Save it! The door's over there. Out, before I call security!"}
+      ]
+    },
+    {
+      "id": "theft_caught_manager",
+      "staff_role": "MANAGER",
+      "cg": "assets/theft_caught_manager.png",
+      "lines": [
+        {"speaker": "MANAGER", "zh": "……把手拿开。那是我的工作证。", "en": "...Hands off. That is my staff ID."},
+        {"speaker": "MANAGER", "zh": "我原以为你是来办理手续的。看来，是我高估了你的礼貌。", "en": "I thought you were here for the paperwork. I seem to have overestimated your manners."},
+        {"speaker": "Carol", "zh": "如果我说拿错了……你也不会信吧。", "en": "You wouldn't believe me if I said it was a mistake... would you?"},
+        {"speaker": "MANAGER", "zh": "正确。偷窃者不在我们的接待范围内。请立即离开，否则我会请保安送你出去。", "en": "Correct. We do not accommodate thieves. Leave now, or security will escort you out."}
+      ]
+    }
+  ]
+}
