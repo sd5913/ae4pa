@@ -1265,3 +1265,8 @@
 - 实测代码 `1e817cc0e33e7f9263d49be9dc0914d583b99d1c`，含独立共享视觉修复 `e36e3cc`；当前分支 work/member-D-ui-polish-v4。封面两项统一280×56／14px间距，语言文字独立居中；按钮反馈改0.12秒颜色；HUD图标换28px矢量，任务牌上移24px并去除重复目标。共享视觉脚本只固定保安／经理普通站姿，不改行走、警觉、碰撞、速度或任务规则，交A/B审查。
 - Windows / Godot 4.7.2：导入、中文1280与英文960图形main场景检查、现有HUD布局、foundation、final_visual_integration、员工core／cleaner、localization与ui_test最终均退出0；git diff --check通过。最初错误入口／配置及移动夹具断言失败留日志，并已按真实入口／新配置重跑。
 - 实际main场景截图、前后来源、16.8秒静止与启停录屏及限制见[本轮证据](qa_evidence/d_button_idle_20261123/README.md)。截图已目视检查；录屏供A/B审看，未代记物理键盘人工或导出验收。保留所有原未跟踪文件，不合并main。
+### 2026-11-23 D：剧情UI润色、双装备教学与超时演出
+
+- 实测代码81c5451abeed7c8f75c88d5b16ce045bce0bd9aa，work/member-D-ui-polish-v4。唯一语言文字层、箭头内移、跳过置顶、六条中英旁白、背包圆形关闭、弹窗留白与精简暂停；D标准对白组件增加真实2/2教学与两类超时第二拍。任务、卡片、失败事实与检查点规则不变。A task_ui现有请求接线已复用，无需新接口。
+- Windows Godot4.7.2：导入、本地化、intro_flow、story_surface、ui_test、三卡双槽（--ui-smoke）、checkpoint、theft最终退出0；新增main图形中文1280／英文960、两种超时与重试、单次教学／通知、菜单清理、楼梯／任务详情和右上跳过检查退出0；git diff --check通过。历史测试入口／类型／旧布局预期失败记录保留。
+- [正式场景截图、15.97秒自动录屏、文案对照、日志及限制](qa_evidence/d_ui_narrative_20261123/README.md)。任务前置用公开API，A时钟加速触发超时；不是人工等待完整时限或人工全通。截图已目视核对，物理操作／跨机器／导出仍待验收。未生成CG、不替换Carol、不合并main。原无关未跟踪文件保留。
