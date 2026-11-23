@@ -1,6 +1,6 @@
 # 当前项目状态
 
-核对日期：2026-11-24（香港时间）。当前 GitHub 基线：[`main@ac58302`](https://github.com/sd5913/ae4pa/commit/ac58302b29499a4243dd302876a8f24e84be013a)。本轮质量修复在隔离分支 `work/member-A-release-quality-20261123` 上进行，尚未提交；本页同时区分远端基线证据与本地未提交改动的测试结果。阶段 A 文档、阶段 B Linux／Windows CI、阶段 C 项目 Skills 已合并，见[执行清单](../PLANS.md#开发工作流升级)。历史证据保留在 [QA](qa.md) 与[进度记录](progress.md)。
+核对日期：2026-11-24（香港时间）。当前 GitHub 基线：[`main@ac58302`](https://github.com/sd5913/ae4pa/commit/ac58302b29499a4243dd302876a8f24e84be013a)。本轮质量修复位于隔离分支 `work/member-A-release-quality-20261123`，提交 [`b313ef7`](https://github.com/sd5913/ae4pa/commit/b313ef77d756a4082864caf7a3cc6a8b7104c0d7)，并在[草稿 PR #72](https://github.com/sd5913/ae4pa/pull/72)等待团队审核。本页同时区分远端基线证据与本轮代码验证结果。阶段 A 文档、阶段 B Linux／Windows CI、阶段 C 项目 Skills 已合并，见[执行清单](../PLANS.md#开发工作流升级)。历史证据保留在 [QA](qa.md) 与[进度记录](progress.md)。
 
 ## 已实现
 
@@ -17,7 +17,7 @@
 - [Linux Godot CI](https://github.com/sd5913/ae4pa/actions/runs/45100701304)：干净导入及八项 smoke（foundation、task checkpoint、staff、work items、door rules、door lifecycle、localization、late mainline）通过。
 - [Windows Godot build](https://github.com/sd5913/ae4pa/actions/runs/45100701293)：干净导入、本地化 smoke、Windows x64 导出与包内容检查、Windows runner 无界面启动均通过。非阻断的完整路线 smoke 从正常新局报告八项真实任务及 309 CG 路线 PASS。
 - 完整路线日志还记录了 203／205 工作点请求被 `TASK_INACTIVE` 阻止；这没有导致本次 smoke 失败。`main@dca61f7` 上两次 EXIT 断言失败仍作为旧基线证据保留，详见 [QA 历史记录](qa.md#历史自动回归失败与诊断)。
-- 2026-11-24 本机 macOS 对基于 `main@ac58302` 的未提交工作树重跑：基础系统、任务定义／检查点、员工与工作点、门规则／生命周期、交互引导、403/501 中文与英文正式主线及完整新局到 EXIT 自动 smoke 通过。完整命令和限制见 [QA 本地复测](qa.md#2026-11-24-macos-本地发布前复测)。这些结果针对未提交改动，不是 GitHub Actions 对 `ac58302` 的检查。
+- 2026-11-24 本机 macOS 对基于 `main@ac58302` 的代码修改运行：基础系统、任务定义／检查点、员工与工作点、门规则／生命周期、交互引导、403/501 中文与英文正式主线及完整新局到 EXIT 自动 smoke 通过。该代码已提交为 `b313ef7`；具体命令和限制见 [QA 本地复测](qa.md#2026-11-24-macos-本地发布前复测)。这些结果不是 GitHub Actions 对 `ac58302` 或 `b313ef7` 的检查。
 - `localization_smoke` 和默认 `task_ui_smoke` 本轮没有通过：前者无法写入 `user://` 测试进度文件，后者依赖当前楼层不存在的旧 `CleaningSpot` 夹具。309 UI smoke 也在新增剧情断言之前就因其预置旅行失败而中止。Compatibility 图形布局 smoke 因本机执行环境没有可用显示窗口未完成；详情见 QA，均未标成通过。
 
 这些是指定 SHA 上的自动化结果，不代表 Compatibility 画面、实际键鼠操作、真人完整通关或 Windows／macOS 同提交验收均已通过。

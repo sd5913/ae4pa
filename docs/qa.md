@@ -19,7 +19,7 @@
 
 ### 2026-11-24 macOS 本地发布前复测
 
-代码基线：GitHub `main@ac58302b29499a4243dd302876a8f24e84be013a`；实际被测树包含未提交修改，分支 `work/member-A-release-quality-20261123`。环境：macOS、Godot `4.7.2.stable.official.ed1daf0bf`。这不是该 SHA 的 CI 结果，也未生成新提交。
+代码基线：GitHub `main@ac58302b29499a4243dd302876a8f24e84be013a`；环境：macOS、Godot `4.7.2.stable.official.ed1daf0bf`。被测代码随后提交为 [`b313ef7`](https://github.com/sd5913/ae4pa/commit/b313ef77d756a4082864caf7a3cc6a8b7104c0d7) 并推送到草稿 [PR #72](https://github.com/sd5913/ae4pa/pull/72)；Godot 测试运行于提交前工作树，提交包含相同游戏代码及 QA 文档。该 SHA 尚无 GitHub Actions 结果。
 
 - 退出 0：`--headless --editor --path . --import`；`core/foundation_smoke.gd`、`core/task_definitions_smoke.gd`、`core/task_checkpoint_smoke.gd`、`staff/staff_core_smoke.tscn`、`staff/work_items_smoke.tscn`、`doors/known_monster_rules_smoke.gd`、`doors/task_door_lifecycle_smoke.gd`、`core/interaction_onboarding_smoke.gd`、`core/late_mainline_main_flow_smoke.gd` 中文和英文，以及 `core/full_mainline_escape_smoke.gd`。完整主线 smoke 从正常新局完成八项真实任务及 309 CG，并通过实际 EXIT／成功页断言；203／205 `TASK_INACTIVE` 工作点诊断仍出现在日志，不删断言或伪造结果。
 - 退出 0：`ui/english_layout_smoke.gd`。309对白 JSON 的结构检查确认 36 段全部有英文文本；新剧情烟测已增加双语断言，但现有 `ui/reunion_309_smoke.gd` 在到达这些断言前，预置夹具的楼层旅行失败并找不到 `Interactions/RescuePoint`，所以新增的实际 CG 显示断言未执行。
