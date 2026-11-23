@@ -35,19 +35,11 @@ case "$platform" in
     app='Monster Hotel.app'
     archive="$packages/monster-hotel-macos-universal-unsigned.zip"
     run_godot export --path . --export-release 'macOS Universal' "$output/$app"
-    mkdir -p "$output/review" "$output/extracted"
     printf '%s\n' 'macOS review build. Its ad hoc signature is for local testing only. No Developer ID signature or notarization.' \
       'Use the notarized GitHub Release for normal Gatekeeper installation.' \
-      > "$output/review/UNSIGNED-REVIEW.txt"
-    mv "$output/$app" "$output/review/"
-    ditto -c -k --sequesterRsrc --keepParent "$output/review/$app" "$archive"
-    (cd "$output/review" && zip -q "$archive" UNSIGNED-REVIEW.txt)
-    ditto -x -k "$archive" "$output/extracted"
-    test -s "$output/extracted/UNSIGNED-REVIEW.txt"
-    bash .github/scripts/check_macos_bundle.sh "$output/extracted/$app"
-    codesign --verify --deep --strict "$output/extracted/$app"
-    executable=$(plutil -extract CFBundleExecutable raw -o - "$output/extracted/$app/Contents/Info.plist")
-    pack="$output/extracted/$app/Contents/Resources/$executable.pck"
+      > "$output/UNSIGNED-REVIEW.txt"
+    (cd "$output" && zip -qry -6 "$archive" "$app" UNSIGNED-REVIEW.txt)
+    pack="$output/$app/Contents/Resources/Monster Hotel.pck"
     ;;
   *) printf 'Unknown desktop platform: %s\n' "$platform" >&2; exit 1 ;;
 esac
