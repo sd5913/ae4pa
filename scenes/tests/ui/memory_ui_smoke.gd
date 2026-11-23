@@ -63,7 +63,12 @@ func run() -> void:
 	memory.refresh()
 	check(History.export_ui_history() == before, "locale switch leaves source keys and reading order intact")
 	root.get_node("Localization").set_language("en" if "--english" in OS.get_cmdline_user_args() else "zh_CN")
-	memory.close_page()
+	var escape := InputEventKey.new()
+	escape.physical_keycode = KEY_ESCAPE
+	escape.pressed = true
+	root.push_input(escape, true)
+	await process_frame
+	check(not memory._root.visible, "physical Escape closes memory despite legacy keyboard device binding")
 	check(story._line_index == original_index, "close returns to the same story beat")
 	check(not root.get_node("GameManager").is_world_input_allowed(), "close releases only MEMORY_UI, not the active story modal")
 	for mode in ["save","load"]:

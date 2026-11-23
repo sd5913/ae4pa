@@ -300,14 +300,26 @@ func _layout() -> void:
 
 func _input(event: InputEvent) -> void:
 	if not _root.visible: return
-	if not event.is_echo() and event.is_action_pressed("pause") and not _confirm.visible:
+	if not event.is_echo() and event.is_pressed() and _matches_action(event, "pause") and not _confirm.visible:
 		close_page()
 		get_viewport().set_input_as_handled()
 		return
 	# Stop the same physical event before the underlying story's _input.
 	if event is InputEventMouse or event is InputEventScreenTouch or event is InputEventScreenDrag: return
-	if event.is_action("interact") or event.is_action("switch_id") or event.is_action("open_bag") or event.is_action("open_help"):
-		get_viewport().set_input_as_handled()
+	for action in ["interact", "switch_id", "open_bag", "open_help"]:
+		if _matches_action(event, action): get_viewport().set_input_as_handled()
+
+func _matches_action(event: InputEvent, action: StringName) -> bool:
+	if event.is_action(action): return true
+	# Match the actual configured key, as StoryPointer does, despite legacy device=16 bindings.
+	if event is InputEventKey:
+		for binding in InputMap.action_get_events(action):
+			if not binding is InputEventKey: continue
+			var expected: int = binding.physical_keycode if binding.physical_keycode != 0 else binding.keycode
+			var actual: int = event.physical_keycode if event.physical_keycode != 0 else event.keycode
+			if actual == expected and event.ctrl_pressed == binding.ctrl_pressed and event.alt_pressed == binding.alt_pressed and event.shift_pressed == binding.shift_pressed and event.meta_pressed == binding.meta_pressed:
+				return true
+	return false
 
 func close_page() -> void:
 	_confirm.hide()
