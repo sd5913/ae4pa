@@ -1,0 +1,70 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+FAIL: actual stair travel 2
+ERROR: Node not found: "DoorRoot/Room202/Door" (relative to "/root/Main/World/Floor1").
+   at: get_node (scene/main/node.cpp:1975)
+   GDScript backtrace (most recent call first):
+       [0] steal (res://scenes/tests/core/five_monster_main_flow_smoke.gd:79)
+       [1] travel (res://scenes/tests/core/five_monster_main_flow_smoke.gd:37)
+       [2] settle (res://scenes/tests/core/five_monster_main_flow_smoke.gd:17)
+SCRIPT ERROR: Invalid access to property or key 'door_state' on a base object of type 'null instance'.
+   at: steal (res://scenes/tests/core/five_monster_main_flow_smoke.gd:79)
+   GDScript backtrace (most recent call first):
+       [0] steal (res://scenes/tests/core/five_monster_main_flow_smoke.gd:79)
+       [1] travel (res://scenes/tests/core/five_monster_main_flow_smoke.gd:37)
+       [2] settle (res://scenes/tests/core/five_monster_main_flow_smoke.gd:17)
+ERROR: Node not found: "Interactions/ParcelCabinet2F" (relative to "/root/Main/World/Floor1").
+   at: get_node (scene/main/node.cpp:1975)
+   GDScript backtrace (most recent call first):
+       [0] work (res://scenes/tests/core/five_monster_main_flow_smoke.gd:103)
+       [1] run (res://scenes/tests/core/five_monster_main_flow_smoke.gd:175)
+       [2] equip (res://scenes/tests/core/five_monster_main_flow_smoke.gd:50)
+       [3] tap (res://scenes/tests/core/five_monster_main_flow_smoke.gd:22)
+       [4] key (res://scenes/tests/core/five_monster_main_flow_smoke.gd:20)
+       [5] settle (res://scenes/tests/core/five_monster_main_flow_smoke.gd:17)
+SCRIPT ERROR: Invalid access to property or key 'global_position' on a base object of type 'null instance'.
+   at: work (res://scenes/tests/core/five_monster_main_flow_smoke.gd:107)
+   GDScript backtrace (most recent call first):
+       [0] work (res://scenes/tests/core/five_monster_main_flow_smoke.gd:107)
+       [1] run (res://scenes/tests/core/five_monster_main_flow_smoke.gd:175)
+       [2] equip (res://scenes/tests/core/five_monster_main_flow_smoke.gd:50)
+       [3] tap (res://scenes/tests/core/five_monster_main_flow_smoke.gd:22)
+       [4] key (res://scenes/tests/core/five_monster_main_flow_smoke.gd:20)
+       [5] settle (res://scenes/tests/core/five_monster_main_flow_smoke.gd:17)
+FAIL: 202 ready only after real work
+ERROR: Node not found: "DoorRoot/Room202" (relative to "/root/Main/World/Floor1").
+   at: get_node (scene/main/node.cpp:1975)
+   GDScript backtrace (most recent call first):
+       [0] deliver (res://scenes/tests/core/five_monster_main_flow_smoke.gd:121)
+       [1] run (res://scenes/tests/core/five_monster_main_flow_smoke.gd:176)
+       [2] equip (res://scenes/tests/core/five_monster_main_flow_smoke.gd:50)
+       [3] tap (res://scenes/tests/core/five_monster_main_flow_smoke.gd:22)
+       [4] key (res://scenes/tests/core/five_monster_main_flow_smoke.gd:20)
+       [5] settle (res://scenes/tests/core/five_monster_main_flow_smoke.gd:17)
+SCRIPT ERROR: Invalid access to property or key 'position' on a base object of type 'null instance'.
+   at: deliver (res://scenes/tests/core/five_monster_main_flow_smoke.gd:121)
+   GDScript backtrace (most recent call first):
+       [0] deliver (res://scenes/tests/core/five_monster_main_flow_smoke.gd:121)
+       [1] run (res://scenes/tests/core/five_monster_main_flow_smoke.gd:176)
+       [2] equip (res://scenes/tests/core/five_monster_main_flow_smoke.gd:50)
+       [3] tap (res://scenes/tests/core/five_monster_main_flow_smoke.gd:22)
+       [4] key (res://scenes/tests/core/five_monster_main_flow_smoke.gd:20)
+       [5] settle (res://scenes/tests/core/five_monster_main_flow_smoke.gd:17)
+ERROR: Node not found: "DoorRoot/Room203" (relative to "/root/Main/World/Floor1").
+   at: get_node (scene/main/node.cpp:1975)
+   GDScript backtrace (most recent call first):
+       [0] offer (res://scenes/tests/core/five_monster_main_flow_smoke.gd:81)
+       [1] run (res://scenes/tests/core/five_monster_main_flow_smoke.gd:177)
+       [2] equip (res://scenes/tests/core/five_monster_main_flow_smoke.gd:50)
+       [3] tap (res://scenes/tests/core/five_monster_main_flow_smoke.gd:22)
+       [4] key (res://scenes/tests/core/five_monster_main_flow_smoke.gd:20)
+       [5] settle (res://scenes/tests/core/five_monster_main_flow_smoke.gd:17)
+SCRIPT ERROR: Invalid access to property or key 'position' on a base object of type 'null instance'.
+   at: offer (res://scenes/tests/core/five_monster_main_flow_smoke.gd:81)
+   GDScript backtrace (most recent call first):
+       [0] offer (res://scenes/tests/core/five_monster_main_flow_smoke.gd:81)
+       [1] run (res://scenes/tests/core/five_monster_main_flow_smoke.gd:177)
+       [2] equip (res://scenes/tests/core/five_monster_main_flow_smoke.gd:50)
+       [3] tap (res://scenes/tests/core/five_monster_main_flow_smoke.gd:22)
+       [4] key (res://scenes/tests/core/five_monster_main_flow_smoke.gd:20)
+       [5] settle (res://scenes/tests/core/five_monster_main_flow_smoke.gd:17)

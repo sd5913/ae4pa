@@ -1,0 +1,12 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 546.92 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3070 Laptop GPU
+
+Movie Maker mode enabled, recording movie in 1280×720 @ 30 FPS...
+WALK_480_SECONDS: 4.913
+RUN_480_SECONDS: 3.552
+PASS: exhaustion falls back to walking
+PASS: exhaustion never forces player stationary
+PASS: recovery leaves run off
+PASS: explicit toggle restarts run in last requested direction
+PASS: modal freezes drain and recovery
+RUN_STAMINA_REVIEW: PASS

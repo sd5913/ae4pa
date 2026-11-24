@@ -1,0 +1,40 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: idle does not drain at 30 fps
+PASS: three second exhaustion at 30 fps
+PASS: toggle spam cannot bypass exhaustion
+PASS: one second recovery delay
+PASS: recovery never restarts run
+PASS: explicit toggle after threshold runs
+PASS: old payload defaults to full walk
+PASS: idle does not drain at 60 fps
+PASS: three second exhaustion at 60 fps
+PASS: toggle spam cannot bypass exhaustion
+PASS: one second recovery delay
+PASS: recovery never restarts run
+PASS: explicit toggle after threshold runs
+PASS: old payload defaults to full walk
+PASS: idle does not drain at 120 fps
+PASS: three second exhaustion at 120 fps
+PASS: toggle spam cannot bypass exhaustion
+PASS: one second recovery delay
+PASS: recovery never restarts run
+PASS: explicit toggle after threshold runs
+PASS: old payload defaults to full walk
+PASS: modal freezes stamina and disables running
+PASS: key echo does not toggle
+PASS: held interaction cannot enable running
+PASS: independent InputMap action exists
+PASS: actual player distance consistent at 30 fps
+PASS: actual player exhausts at 30 fps
+PASS: actual player distance consistent at 60 fps
+PASS: actual player exhausts at 60 fps
+PASS: actual player distance consistent at 120 fps
+PASS: actual player exhausts at 120 fps
+PASS: floor rebuild preserves stamina and defaults to walk
+PASS: offer actual checkpoint task
+PASS: accept actual checkpoint task
+PASS: restore actual task checkpoint
+PASS: retry restores acceptance stamina rather than refilling
+PASS: new game refills stamina
+RUN_STAMINA: PASS
