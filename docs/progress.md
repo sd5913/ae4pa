@@ -1297,3 +1297,11 @@
 - Windows Godot 4.7.2 Compatibility：3f29723 的记忆 UI 中文1280、英文960、中文1920三次图形回归均退出0，含真实GUI点击及跨设备物理Esc事件；a57fdeb干净副本导入、本地化、intro_flow、三卡双槽、checkpoint、ui_test、theft、正常story_surface及narrative图形回归均退出0。失败的早期入口/跳动画参数运行日志保留，未修改断言掩盖。详细命令、SHA、环境和截图见[本轮QA](qa_evidence/d_memory_ui_20261123/README.md)。
 - 正常正式窗口鼠标验证了未读历史为空、打开首条短信后只记该条、关闭仍停原句；键盘注入曾受 InputMap device=16 影响，最终 D 按键匹配修复已用 Godot raw events 验证，真实硬件验收仍待做。
 - 完整磁盘存储、原子覆盖/备份/坏档、跨进程卡片/计时/任务/309单跟随者/EXIT恢复、309全屏CG历史事件及保存→退出→重启录屏均未完成。请 A 按[状态归属及接口清单](memory_ui_handoff_20261123.md)接入；D页面禁用保存/读取并明确提示缺少服务。先审查，不合并main。未清理任何原未跟踪文件。
+
+
+### 2026-11-24 PR #74 合并前检查
+
+- 按用户最新指令拉取并准备合并；远端 main@ac58302，功能分支此前15a1a79。PR #74 无冲突，但旧 Linux CI 的 late_mainline 失败，日志见 https://github.com/sd5913/ae4pa/actions/runs/45362472145 。其他七项 smoke 和导入已通过。
+- 定位为独立夹具未读完新增双装备教学就换层、超时对白尚未结束就点隐藏重试，以及旧断言要求任务框外重复返回501目标。本次只改独立测试：真实输入读完演出，确认失败菜单可见后重试；清除旧错误反馈的断言改为文本及tooltip均空，同时保留任务牌内501交付目标断言。没有关闭教学/超时、改任务规则或跳过断言。
+- 测试代码481cd5c15aad150033ecfc86663b3c26c94d8716：Windows / Godot4.7.2.stable.official.ed1daf0bf，隔离APPDATA，headless late_mainline_main_flow_smoke.gd -- --ui-smoke（中文）及 -- --ui-smoke --english 均退出0。覆盖403/501工作、交付、超时恢复、真实EXIT及成功页重启/菜单；前六任务和救援由公开/既有夹具准备，不是人工新局通关。旧失败日志保留于[合并复测证据](qa_evidence/pr74_merge_20261124/README.md)。最新云端CI须以本次推送后的运行结果为准。
+- 完整记忆磁盘保存/恢复仍待A接入，未将本次后段回归记为跨进程存档通过。所有原未跟踪文件保留。
