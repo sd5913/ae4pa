@@ -62,5 +62,26 @@ func run() -> void:
   Input.action_release("move_right")
   check(absf(player.position.x-648.0)<1.0,"actual player distance consistent at %d fps"%fps)
   check(not player.stamina.running,"actual player exhausts at %d fps"%fps)
+ player.restore_stamina_state({"value":55})
+ game._load_floor(2) # Explicit floor fixture, not a claim of legal stair navigation.
+ for i in 6: await process_frame
+ player = main.get_node("World").get_child(0).get_node("Player")
+ check(is_equal_approx(player.stamina.value,55) and not player.stamina.running,"floor rebuild preserves stamina and defaults to walk")
+ check(game.offer_task("TASK_01_CLEAN"),"offer actual checkpoint task")
+ var monster: Node = main.get_node("TaskLayer/MonsterDialogue")
+ for i in 50:
+  if not monster.visible: break
+  monster.advance()
+ main.get_node("TaskLayer/MissionBoard").hide()
+ check(game.accept_task("TASK_01_CLEAN"),"accept actual checkpoint task")
+ var accepted: float = player.stamina.value
+ player.restore_stamina_state({"value":2,"exhausted":true})
+ game.request_task_failure("WRONG_CARD")
+ check(game.retry_current_task(),"restore actual task checkpoint")
+ player = main.get_node("World").get_child(0).get_node("Player")
+ check(is_equal_approx(player.stamina.value,accepted) and not player.stamina.running,"retry restores acceptance stamina rather than refilling")
+ game.start_game()
+ player = main.get_node("World").get_child(0).get_node("Player")
+ check(player.stamina.value==100 and not player.stamina.running,"new game refills stamina")
  print("RUN_STAMINA: ","PASS" if failures==0 else "FAIL")
  quit(0 if failures==0 else 1)

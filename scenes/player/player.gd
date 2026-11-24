@@ -78,7 +78,7 @@ func _modal_changed() -> void:
 
 func _state_changed(state: String) -> void:
 	stamina.running = false
-	if state == "LOADING" and _last_state in ["MENU","WON"]:
+	if state == "LOADING" and (_last_state in ["MENU","WON"] or (GameManager.current_task_id == "NONE" and not GameManager.has_completed_manager_intro())):
 		stamina.restore({})
 		_checkpoint_stamina.clear()
 		_last_status = "NONE"
