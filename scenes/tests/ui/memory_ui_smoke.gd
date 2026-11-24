@@ -14,7 +14,7 @@ func shot(name: String) -> void:
 	if not folder.is_empty(): root.get_texture().get_image().save_png(folder.path_join(name+".png"))
 func run() -> void:
 	root.size = Vector2i(960,540) if "--english" in OS.get_cmdline_user_args() else Vector2i(1920,1080) if "--large" in OS.get_cmdline_user_args() else Vector2i(1280,720)
-	root.get_node("Localization").set_language("en" if "--english" in OS.get_cmdline_user_args() else "zh_CN")
+	TranslationServer.set_locale("en" if "--english" in OS.get_cmdline_user_args() else "zh_CN")
 	check(History.name_for("NOSE") != "NOSE" and History.name_for("CAROL") == "Carol", "history resolves stable monster/player IDs through existing localized role names")
 	History.reset_session()
 	History.record("stable:beat:1", "NOSE", "first displayed line", "309")
@@ -26,9 +26,10 @@ func run() -> void:
 	var main: Node = load("res://scenes/main.tscn").instantiate()
 	root.add_child(main)
 	current_scene = main
+	main.get_node("MemoryService").storage_root = "user://memory_ui_smoke_%d" % Time.get_ticks_usec()
 	await create_timer(4.5).timeout
 	var memory: Node = main.get_node("MenuLayer/MainMenu/MemoryUI")
-	check(memory != null and memory.backend == null, "no invented persistence backend is attached")
+	check(memory.backend == main.get_node("MemoryService"), "formal memory UI uses the real persistence service")
 	check(main.get_node("MenuLayer/MainMenu/%LoadMemory").disabled, "cover load is disabled without a real readable save")
 	check(not main.get_node("MenuLayer/MainMenu/%LanguageSelector").flat, "language control retains the same visible button surface")
 	await shot("cover")
@@ -66,10 +67,10 @@ func run() -> void:
 	memory.refresh()
 	check(History.entries.size() == original_count, "history rerender does not create entries")
 	var before := History.export_ui_history()
-	root.get_node("Localization").set_language("en")
+	TranslationServer.set_locale("en")
 	memory.refresh()
 	check(History.export_ui_history() == before, "locale switch leaves source keys and reading order intact")
-	root.get_node("Localization").set_language("en" if "--english" in OS.get_cmdline_user_args() else "zh_CN")
+	TranslationServer.set_locale("en" if "--english" in OS.get_cmdline_user_args() else "zh_CN")
 	var escape := InputEventKey.new()
 	escape.physical_keycode = KEY_ESCAPE
 	escape.pressed = true
@@ -82,7 +83,7 @@ func run() -> void:
 		memory.open(mode)
 		await shot(mode)
 		check(memory._grid.get_child_count() == 6, mode+" shows six manual slots")
-		check(memory._action.disabled, mode+" cannot claim success without A's full-state service")
+		check(memory._action.disabled, mode+" is unavailable during dialogue or with an empty slot")
 		var state: Dictionary = root.get_node("CardManager").export_snapshot()
 		memory._request_action()
 		check(root.get_node("CardManager").export_snapshot() == state, mode+" does not alter real card state")
@@ -102,6 +103,5 @@ func run() -> void:
 	main.get_node("MenuLayer/MainMenu")._finish_opening()
 	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
 	check(History.entries.is_empty(), "new game clears only session history")
-	print("CROSS_PROCESS_GAME_STATE: BLOCKED - no A full-state disk save/validation/restore implementation")
 	print("MEMORY_UI_SMOKE: ", "PASS" if failures.is_empty() else "FAIL")
 	quit(0 if failures.is_empty() else 1)
