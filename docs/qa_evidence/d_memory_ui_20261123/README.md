@@ -51,3 +51,5 @@ Also launched normal `scenes/main.tscn` from the same work directory with **no t
 All real save/overwrite/write-failure/corrupt-file/autosave/full-world-load cases, offline timer restoration, card permissions after restart, 309/one follower/403/501/EXIT restore, A-owned 309 history events, and save/restart recording. Export and cross-machine checks were not run. Manual task routes/multiplayer timing from earlier QA remain pending.
 
 See [A integration contract and field ownership](../../memory_ui_handoff_20261123.md). Full-state serialization is an A dependency; D UI does not substitute private task or card state.
+
+QA log copies have trailing whitespace removed for Git hygiene; original unmodified logs remain under hotel/outputs/memory_ui_user_20261123. No result lines were removed.
