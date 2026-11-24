@@ -225,7 +225,7 @@ func _run() -> void:
 	await _tap()
 	_expect(game.task_status == "READY_TO_SUBMIT" and register.is_completed(), "Actual manager approval needs return501")
 	var hud_notice: Label = main.get_node("TaskLayer/HUD").get_node("%Notice")
-	_expect(("Room 501" in hud_notice.text) if english else "返回501" in hud_notice.text, "Successful approval replaces stale wrong-identity notice with return501")
+	_expect(hud_notice.text.is_empty() and hud_notice.tooltip_text.is_empty(), "Successful approval clears stale wrong-identity feedback without duplicating the task objective")
 	await _settle()
 	hud_objective = main.get_node("TaskLayer/HUD").get_node("%Objective")
 	_expect("501" in hud_objective.text and ("deliver" in hud_objective.text.to_lower() if english else "交付" in hud_objective.text), "501 HUD directs Carol back to Room 501 before the exit")
