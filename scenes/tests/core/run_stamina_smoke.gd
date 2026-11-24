@@ -51,5 +51,16 @@ func run() -> void:
  check(not player.stamina.running,"held interaction cannot enable running")
  Input.action_release("interact")
  check(InputMap.has_action("toggle_run"),"independent InputMap action exists")
+ player.set_physics_process(false)
+ player.set_walk_bounds(-10000,10000)
+ for fps in [30,60,120]:
+  player.position.x = 0
+  player.restore_stamina_state({})
+  player.stamina.toggle()
+  Input.action_press("move_right")
+  for i in fps*3: player._physics_process(1.0/fps)
+  Input.action_release("move_right")
+  check(absf(player.position.x-648.0)<1.0,"actual player distance consistent at %d fps"%fps)
+  check(not player.stamina.running,"actual player exhausts at %d fps"%fps)
  print("RUN_STAMINA: ","PASS" if failures==0 else "FAIL")
  quit(0 if failures==0 else 1)
