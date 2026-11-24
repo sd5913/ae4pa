@@ -5,6 +5,7 @@ const STORY_MODAL: String = "STORY_DIALOGUE"
 const TASK_02_INTRO: String = "TASK_02_INTRO"
 const TASK_03_INTRO: String = "TASK_03_INTRO"
 var _active_dialogue_id: String = ""
+var _autosave_pending := false
 var _notice_template := ""
 var _notice_arguments: Array = []
 
@@ -52,7 +53,93 @@ func _ready() -> void:
 	GameManager.set_floor_host($World)
 	GameManager.start_game()
 	_show_menu()
+	_attach_memory_service()
 	_bind_monster_visuals.call_deferred()
+
+
+func _attach_memory_service() -> void:
+	var service := preload("res://scripts/memory_service.gd").new()
+	service.name = "MemoryService"
+	service.configure_host(self)
+	add_child(service)
+	var memory_ui: Node = get_node_or_null("MenuLayer/MainMenu/MemoryUI")
+	if memory_ui != null:
+		memory_ui.configure_backend(service)
+		menu.refresh_memory_entry()
+	GameManager.memory_stable_point.connect(_on_memory_stable_point)
+
+
+func _on_memory_stable_point(_reason: String) -> void:
+	_autosave_pending = true
+
+
+func _process(_delta: float) -> void:
+	if not _autosave_pending or not GameManager.get_open_modals().is_empty() or not can_save_memory().allowed:
+		return
+	_autosave_pending = false
+	$MemoryService.save_automatic_memory()
+
+
+func can_save_memory() -> Dictionary:
+	if GameManager.game_state != "PLAYING":
+		return {"allowed": false, "reason": "只有在进行游戏时才能保存"}
+	for modal_id: String in GameManager.get_open_modals():
+		if modal_id not in ["MEMORY_UI", "PAUSE"]:
+			return {"allowed": false, "reason": "这段演出结束后可以保存"}
+	var reunion: Node = get_node_or_null("Room309Reunion")
+	if is_instance_valid(reunion.cg) or get_tree().get_nodes_in_group("memory_dialogue_surface").any(func(node: Node): return node.is_visible_in_tree()):
+		return {"allowed": false, "reason": "这段演出结束后可以保存"}
+	if $World.get_child_count() != 1 or not $World.get_child(0).can_capture_memory_state():
+		return {"allowed": false, "reason": "请完成当前交互并松开 E 后保存"}
+	return {"allowed": true, "reason": ""}
+
+
+func capture_memory_document_state() -> Dictionary:
+	if not can_save_memory().allowed: return {}
+	var carol_flow: Node = get_node_or_null("MenuLayer/Bag/CarolUIFlow")
+	return {
+		"version": 1,
+		"game": GameManager.capture_memory_state(),
+		"cards": CardManager.export_snapshot(),
+		"history": preload("res://scenes/ui/memory_history.gd").export_ui_history(),
+		"carol_ui": carol_flow.capture_memory_ui_state() if carol_flow != null else {"version":1,"tutorial_seen":false},
+	}
+
+
+func validate_memory_document_state(value: Dictionary) -> bool:
+	if value.get("version") != 1 or not value.get("game") is Dictionary or not value.get("cards") is Dictionary: return false
+	if not GameManager.validate_memory_state(value.game) or not CardManager.validate_snapshot(value.cards): return false
+	var history_script: Script = preload("res://scenes/ui/memory_history.gd")
+	if not value.get("history") is Dictionary or not history_script.validate_ui_history(value.history): return false
+	var flow_script: Script = preload("res://scenes/ui/carol_ui_flow.gd")
+	if not value.get("carol_ui") is Dictionary or not flow_script.validate_memory_ui_state(value.carol_ui): return false
+	if value.game.has_friend and not value.game.world_flags.get("rescue_309_completed", false): return false
+	return true
+
+
+func restore_memory_document(document: Dictionary) -> bool:
+	var state: Variant = document.get("state")
+	if not state is Dictionary or not validate_memory_document_state(state): return false
+	var carol_flow: Node = get_node_or_null("MenuLayer/Bag/CarolUIFlow")
+	var reunion: Node = get_node_or_null("Room309Reunion")
+	var memory_ui: Node = get_node_or_null("MenuLayer/MainMenu/MemoryUI")
+	if memory_ui != null: memory_ui.close_page(false)
+	if reunion != null: reunion.cancel()
+	var monster: Node = get_node_or_null("TaskLayer/MonsterDialogue")
+	if monster != null: monster.cancel_dialogue()
+	dialogue.cancel_presentation()
+	_active_dialogue_id = ""
+	notebook.close_help()
+	bag.close_bag()
+	$TaskLayer.close_views()
+	if not GameManager.restore_memory_state(state.game): return false
+	if not CardManager.restore_snapshot(state.cards): return false
+	var history_script: Script = preload("res://scenes/ui/memory_history.gd")
+	if not history_script.restore_ui_history(state.history): return false
+	if carol_flow != null and not carol_flow.restore_memory_ui_state(state.carol_ui): return false
+	menu.hide()
+	$TaskLayer.show()
+	return GameManager.game_state == "PLAYING" and GameManager.current_floor == state.game.current_floor
 
 
 func _bind_monster_visuals() -> void:
@@ -82,7 +169,7 @@ func _notification(what: int) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if event.is_echo():
+	if preload("res://scenes/ui/memory_ui.gd").is_open() or event.is_echo():
 		return
 	if event.is_action_pressed("open_help"):
 		if notebook.visible:
@@ -118,6 +205,7 @@ func _show_menu() -> void:
 
 
 func _start_session() -> void:
+	preload("res://scenes/ui/memory_history.gd").reset_session()
 	# Every new-session entry, including Win/retry menus, clears D's session caches.
 	GameManager.return_to_menu()
 	menu.hide()
@@ -186,6 +274,7 @@ func _exit_tree() -> void:
 
 
 func _on_state_changed(new_state: String) -> void:
+	if new_state != "PLAYING": _autosave_pending = false
 	if new_state in ["FAILED", "RESTORING", "LOADING", "MENU", "WON"]:
 		notebook.close_help()
 		bag.close_bag()

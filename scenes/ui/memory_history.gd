@@ -22,6 +22,8 @@ static func text(entry: Dictionary) -> String:
 
 static func name_for(id: String) -> String:
 	if Roles.ROLES.has(id): return Roles.display_name(id)
+	if id == "TERESE": return TranslationServer.translate("Terese")
+	if id == "NARRATOR": return TranslationServer.translate("旁白")
 	if id in ["女主", "安", "CAROL", "Carol"]: return "Carol"
 	if id in ["闺蜜", "friend", "Terese", "Persica"]: return "Terese"
 	return TranslationServer.translate({"SECURITY":"保安", "CLEANER":"保洁", "MANAGER":"经理"}.get(id,id))

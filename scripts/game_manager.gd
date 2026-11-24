@@ -13,16 +13,20 @@ signal safe_return_started(reason: String)
 signal notebook_changed()
 signal friend_rescued()
 signal game_won()
+signal memory_stable_point(reason: String)
 ## D/A consume this request; the pending encounter is not a completed task.
 signal monster_encounter_requested(context: Dictionary)
 var _room_monsters: Dictionary = {}
 var _seen_monsters: Dictionary = {}
 var _pending_monster_encounter: Dictionary = {}
 
+func _room_monster_pool(room: String) -> Array:
+	var fixed := {"302": "HAT", "403": "EAR", "501": "CHECKER"}
+	return [fixed[room]] if fixed.has(room) else preload("res://scenes/doors/v4_door_catalog.gd").pool(room)
+
 func get_room_monster(room: String) -> String:
 	if not _room_monsters.has(room):
-		var fixed := {"302": "HAT", "403": "EAR", "501": "CHECKER"}
-		var choices: Array = [fixed[room]] if fixed.has(room) else preload("res://scenes/doors/v4_door_catalog.gd").pool(room)
+		var choices := _room_monster_pool(room)
 		if choices.is_empty():
 			return ""
 		_room_monsters[room] = choices.pick_random()
@@ -74,6 +78,7 @@ var fail_reason: String = ""
 var current_task_id: String = "NONE"
 var task_status: String = "NONE"
 var remaining_time: float = 0.0
+var play_time_seconds: float = 0.0
 var _floor_host: Node2D
 var _preview_enabled: bool = false
 var _manager_intro_finished: bool = false
@@ -87,6 +92,8 @@ var _task_checkpoint: Dictionary = {}
 
 
 func _process(delta: float) -> void:
+	if game_state == "PLAYING" and _open_modals.is_empty():
+		play_time_seconds += delta
 	if game_state != "PLAYING" or task_status not in ["ACTIVE", "READY_TO_SUBMIT"] or not _open_modals.is_empty():
 		return
 	remaining_time = maxf(0.0, remaining_time - delta)
@@ -113,6 +120,7 @@ func start_game() -> void:
 	current_task_id = "NONE"
 	task_status = "NONE"
 	remaining_time = 0.0
+	play_time_seconds = 0.0
 	_manager_intro_finished = false
 	_completed_task_ids.clear()
 	_world_flags.clear()
@@ -251,6 +259,184 @@ func get_completed_task_ids() -> Array[String]:
 func get_world_flags() -> Dictionary:
 	return _world_flags.duplicate(true)
 
+func get_open_modals() -> Array[String]:
+	var ids: Array[String] = []
+	for modal_id: String in _open_modals.keys(): ids.append(modal_id)
+	ids.sort()
+	return ids
+
+func capture_memory_state() -> Dictionary:
+	if not _has_floor_host() or _floor_host.get_child_count() != 1:
+		return {}
+	var floor_node: Node = _floor_host.get_child(0)
+	var player: Node2D = floor_node.get_node_or_null("Player")
+	if player == null or not floor_node.has_method("capture_memory_state"):
+		return {}
+	var checkpoint := _encode_task_checkpoint(_task_checkpoint)
+	return {
+		"version": 1,
+		"game_state": game_state,
+		"current_floor": current_floor,
+		"has_friend": has_friend,
+		"fail_reason": fail_reason,
+		"current_task_id": current_task_id,
+		"task_status": task_status,
+		"remaining_time": remaining_time,
+		"play_time_seconds": play_time_seconds,
+		"manager_intro_finished": _manager_intro_finished,
+		"completed_task_ids": _completed_task_ids.duplicate(),
+		"world_flags": _world_flags.duplicate(true),
+		"visited_floors": _visited_floors.duplicate(),
+		"room_monsters": _room_monsters.duplicate(true),
+		"seen_monsters": _seen_monsters.duplicate(true),
+		"pending_encounter": _pending_monster_encounter.duplicate(true),
+		"retry_checkpoint": checkpoint,
+		"player": {"position": [player.global_position.x, player.global_position.y], "facing_direction": player.facing_direction},
+		"floor": floor_node.capture_memory_state(),
+	}
+
+func validate_memory_state(value: Dictionary) -> bool:
+	if value.get("version") != 1 or value.get("game_state") != "PLAYING": return false
+	if not (value.get("current_floor") is int or value.get("current_floor") is float) or not is_finite(float(value.current_floor)) or float(value.current_floor) != floorf(float(value.current_floor)) or value.current_floor < 1 or value.current_floor > 5: return false
+	if not value.get("has_friend") is bool or not value.get("manager_intro_finished") is bool: return false
+	if not value.get("current_task_id") is String or not value.get("task_status") is String: return false
+	var task_id: String = value.current_task_id
+	var status: String = value.task_status
+	if task_id != "NONE" and not ENABLED_TASKS.has(task_id): return false
+	if status not in ["NONE", "AVAILABLE", "ACTIVE", "READY_TO_SUBMIT", "COMPLETED"]: return false
+	if (task_id == "NONE") != (status == "NONE"): return false
+	if not value.get("fail_reason") is String: return false
+	if not value.get("remaining_time") is float or not is_finite(value.remaining_time) or value.remaining_time < 0.0: return false
+	if not value.get("play_time_seconds") is float or not is_finite(value.play_time_seconds) or value.play_time_seconds < 0.0: return false
+	if status in ["ACTIVE", "READY_TO_SUBMIT"] and value.remaining_time <= 0.0: return false
+	if status in ["NONE", "AVAILABLE", "COMPLETED"] and not is_zero_approx(value.remaining_time): return false
+	if not value.get("completed_task_ids") is Array or not value.get("world_flags") is Dictionary: return false
+	var completed: Array = value.completed_task_ids
+	var unique_completed: Dictionary = {}
+	for id: Variant in completed:
+		if not id is String or not ENABLED_TASKS.has(id) or unique_completed.has(id): return false
+		unique_completed[id] = true
+	if (status == "COMPLETED") != unique_completed.has(task_id): return false
+	if value.has_friend != value.world_flags.get("rescue_309_completed", false): return false
+	if value.has_friend and (value.current_floor < 3 or not unique_completed.has(TASK_03_ID) or not value.world_flags.get("registration_309_approved", false)): return false
+	if status in ["ACTIVE", "READY_TO_SUBMIT"] and value.remaining_time > float(get_task_definition(task_id).time_limit): return false
+	for flag: Variant in value.world_flags:
+		if not flag is String or not value.world_flags[flag] is bool: return false
+	if not value.get("visited_floors") is Array or not value.visited_floors.has(value.current_floor): return false
+	var visited: Dictionary = {}
+	for floor_number: Variant in value.visited_floors:
+		if not (floor_number is int or floor_number is float) or not is_finite(float(floor_number)) or float(floor_number) != floorf(float(floor_number)) or floor_number < 1 or floor_number > 5 or visited.has(floor_number): return false
+		visited[floor_number] = true
+	if not value.get("room_monsters") is Dictionary or not value.get("seen_monsters") is Dictionary or not value.get("pending_encounter") is Dictionary: return false
+	for room: Variant in value.room_monsters:
+		if not room is String or not _room_monster_pool(room).has(value.room_monsters[room]): return false
+	for kind: Variant in value.seen_monsters:
+		if not ["NOSE", "EYE", "HAT", "EAR", "CHECKER"].has(kind) or value.seen_monsters[kind] != true: return false
+	if not value.pending_encounter.is_empty() and not _validate_pending_encounter(value.pending_encounter): return false
+	if not value.get("player") is Dictionary or not value.player.get("position") is Array or value.player.position.size() != 2: return false
+	if not (value.player.position[0] is float or value.player.position[0] is int) or not (value.player.position[1] is float or value.player.position[1] is int): return false
+	if not (value.player.get("facing_direction") is int or value.player.get("facing_direction") is float) or absf(float(value.player.facing_direction)) != 1.0: return false
+	for coordinate: Variant in value.player.position:
+		if not is_finite(float(coordinate)): return false
+	if not preload("res://scenes/levels/floor.gd").is_memory_position_on_corridor(value.player.position): return false
+	if not value.get("floor") is Dictionary or value.floor.get("floor_number") != value.current_floor or not preload("res://scenes/levels/floor.gd").validate_memory_state(value.floor): return false
+	if not value.get("retry_checkpoint") is Dictionary or not _validate_encoded_task_checkpoint(value.retry_checkpoint): return false
+	if status in ["ACTIVE", "READY_TO_SUBMIT"] and value.retry_checkpoint.get("task_id") != task_id: return false
+	return true
+
+func restore_memory_state(value: Dictionary) -> bool:
+	if not validate_memory_state(value) or not _has_floor_host(): return false
+	var scene: PackedScene = load("res://scenes/levels/floor_%d.tscn" % value.current_floor)
+	if scene == null: return false
+	var floor_node: Node = scene.instantiate()
+	if floor_node == null: return false
+	var previous_state := game_state
+	_set_state("RESTORING")
+	_open_modals.clear()
+	modal_changed.emit()
+	var old_room_monsters := _room_monsters
+	_room_monsters = value.room_monsters.duplicate(true)
+	_floor_host.add_child(floor_node)
+	var player: HotelPlayer = floor_node.get_node("Player")
+	player.global_position = Vector2(float(value.player.position[0]), float(value.player.position[1]))
+	if not floor_node.restore_memory_state(value.floor):
+		_room_monsters = old_room_monsters
+		_floor_host.remove_child(floor_node)
+		floor_node.queue_free()
+		_set_state(previous_state)
+		return false
+	player.facing_direction = int(value.player.facing_direction)
+	player.visual.scale.x = float(player.facing_direction)
+	player.get_node("Camera2D").reset_smoothing()
+	# All fallible payload/floor validation has completed. Commit the A-owned facts now.
+	current_floor = int(value.current_floor)
+	has_friend = value.has_friend
+	fail_reason = str(value.get("fail_reason", ""))
+	current_task_id = value.current_task_id
+	task_status = value.task_status
+	remaining_time = value.remaining_time
+	play_time_seconds = value.play_time_seconds
+	_manager_intro_finished = value.manager_intro_finished
+	_completed_task_ids.assign(value.completed_task_ids)
+	_world_flags = value.world_flags.duplicate(true)
+	_visited_floors.assign(value.visited_floors.map(func(item: Variant): return int(item)))
+	_seen_monsters = value.seen_monsters.duplicate(true)
+	_pending_monster_encounter = value.pending_encounter.duplicate(true)
+	_task_checkpoint = _decode_task_checkpoint(value.retry_checkpoint)
+	for previous: Node in _floor_host.get_children():
+		if previous != floor_node:
+			_floor_host.remove_child(previous)
+			previous.queue_free()
+	_safe_return_in_progress = false
+	_last_safe_return_frame = -1
+	_open_modals.clear()
+	modal_changed.emit()
+	task_updated.emit()
+	notebook_changed.emit()
+	_set_state("PLAYING")
+	player.set_movement_locked(false)
+	floor_changed.emit(current_floor)
+	return true
+
+func _validate_pending_encounter(value: Dictionary) -> bool:
+	return value.has_all(["room_id", "monster_type", "first_encounter", "reason", "task_id"]) \
+		and value.room_id is String and value.monster_type in ["NOSE", "EYE", "HAT", "EAR", "CHECKER"] \
+		and value.first_encounter is bool and value.reason is String and value.task_id is String
+
+func _validate_task_checkpoint(value: Dictionary) -> bool:
+	if value.is_empty(): return true
+	if not value.has_all(["task_id", "floor", "position", "cards", "world_flags", "completed", "visited", "manager_intro", "has_friend", "room_monsters", "seen_monsters", "pending_encounter"]): return false
+	if not value.task_id is String or not ENABLED_TASKS.has(value.task_id): return false
+	if not (value.floor is int or value.floor is float) or float(value.floor) != floorf(float(value.floor)) or value.floor < 1 or value.floor > 5: return false
+	if value.floor != get_task_definition(value.task_id).get("offer_floor", 0): return false
+	if not value.position is Vector2 or not is_finite(value.position.x) or not is_finite(value.position.y): return false
+	return value.cards is Dictionary and CardManager.validate_snapshot(value.cards) and value.world_flags is Dictionary and value.completed is Array and value.visited is Array and value.manager_intro is bool and value.has_friend is bool and value.room_monsters is Dictionary and value.seen_monsters is Dictionary and value.pending_encounter is Dictionary
+
+func _validate_encoded_task_checkpoint(value: Dictionary) -> bool:
+	if value.is_empty(): return _validate_task_checkpoint(value)
+	if not value.get("position") is Array or value.position.size() != 2: return false
+	for coordinate: Variant in value.position:
+		if not (coordinate is float or coordinate is int) or not is_finite(float(coordinate)): return false
+	var decoded := _decode_task_checkpoint(value)
+	return _validate_task_checkpoint(decoded)
+
+func _encode_task_checkpoint(checkpoint: Dictionary) -> Dictionary:
+	if checkpoint.is_empty(): return {}
+	var result := checkpoint.duplicate(true)
+	var position: Vector2 = checkpoint.get("position", Vector2.ZERO)
+	result["position"] = [position.x, position.y]
+	return result
+
+func _decode_task_checkpoint(checkpoint: Dictionary) -> Dictionary:
+	if checkpoint.is_empty(): return {}
+	var result := checkpoint.duplicate(true)
+	var position: Variant = checkpoint.get("position")
+	if not position is Array or position.size() != 2: return {}
+	result["position"] = Vector2(float(position[0]), float(position[1]))
+	if result.get("visited") is Array:
+		result["visited"] = result.visited.map(func(item: Variant): return int(item) if item is float and item == floorf(item) else item)
+	return result
+
 
 func is_world_input_allowed() -> bool:
 	return game_state == "PLAYING" and _open_modals.is_empty() and not _safe_return_in_progress
@@ -307,7 +493,7 @@ func request_floor_travel(floor_number: int) -> bool:
 	var stair: Node2D = floor_node.get_node_or_null("Interactions/ExitPoint" if floor_number > current_floor else "Interactions/ReturnPoint")
 	if player == null or stair == null or absf(player.global_position.x - stair.global_position.x) > STAIR_INTERACTION_RADIUS:
 		return false
-	_load_floor(floor_number, floor_number < current_floor)
+	_load_floor(floor_number, floor_number < current_floor, true, true)
 	return true
 
 
@@ -405,6 +591,7 @@ func accept_task(task_id: String) -> bool:
 	task_status = "ACTIVE"
 	remaining_time = get_task_definition(task_id)["time_limit"]
 	task_updated.emit()
+	memory_stable_point.emit("TASK_ACCEPTED")
 	return true
 
 
@@ -517,6 +704,7 @@ func record_work_result(target_id: String) -> bool:
 			if definition["work_steps"].all(func(step: Dictionary): return _world_flags.get(step["flag"], false)):
 				task_status = "READY_TO_SUBMIT"
 			task_updated.emit()
+			memory_stable_point.emit("WORK_STEP_COMPLETED")
 			return true
 		return false
 	if not ENABLED_TASKS.has(current_task_id) or target_id != definition["target_id"] or current_floor != definition["work_floor"]:
@@ -530,6 +718,7 @@ func record_work_result(target_id: String) -> bool:
 		return true
 	task_status = "READY_TO_SUBMIT"
 	task_updated.emit()
+	memory_stable_point.emit("WORK_COMPLETED")
 	return true
 
 
@@ -541,6 +730,7 @@ func record_task_item_result(item_id: String, target_id: String) -> bool:
 	_world_flags[definition["work_flag"]] = true
 	task_status = "READY_TO_SUBMIT"
 	task_updated.emit()
+	memory_stable_point.emit("WORK_COMPLETED")
 	return true
 
 
@@ -592,6 +782,7 @@ func _complete_task(definition: Dictionary) -> void:
 	notebook_changed.emit()
 	task_completed.emit(current_task_id)
 	task_updated.emit()
+	memory_stable_point.emit("TASK_HANDED_IN")
 
 
 ## Only the completed real309 CG callback settles rescue in the main scene.
@@ -603,6 +794,7 @@ func rescue_friend() -> bool:
 	friend_rescued.emit()
 	notebook_changed.emit()
 	task_updated.emit()
+	memory_stable_point.emit("RESCUE_SETTLED")
 	return true
 
 
@@ -713,7 +905,7 @@ func _has_floor_host() -> bool:
 	return is_instance_valid(_floor_host) and _floor_host.is_inside_tree()
 
 
-func _load_floor(floor_number: int, arrive_from_above: bool = false, record_visit: bool = true) -> void:
+func _load_floor(floor_number: int, arrive_from_above: bool = false, record_visit: bool = true, autosave_after_load: bool = false) -> void:
 	var scene: PackedScene = load("res://scenes/levels/floor_%d.tscn" % floor_number)
 	if scene == null:
 		return
@@ -733,6 +925,7 @@ func _load_floor(floor_number: int, arrive_from_above: bool = false, record_visi
 		_visited_floors.append(floor_number)
 	_set_state("PLAYING")
 	floor_changed.emit(current_floor)
+	if autosave_after_load: memory_stable_point.emit("FLOOR_LOADED")
 
 
 func fail(reason: String) -> void:

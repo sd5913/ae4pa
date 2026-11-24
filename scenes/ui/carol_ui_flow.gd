@@ -154,8 +154,11 @@ func _exit_tree() -> void:
 func capture_memory_ui_state() -> Dictionary:
 	return {"version":1, "tutorial_seen":_tutorial_seen}
 
+static func validate_memory_ui_state(value: Dictionary) -> bool:
+	return value.get("version") == 1 and value.get("tutorial_seen") is bool
+
 func restore_memory_ui_state(value: Dictionary) -> bool:
-	if not _mode.is_empty() or value.get("version") != 1 or not value.get("tutorial_seen") is bool: return false
+	if not _mode.is_empty() or not validate_memory_ui_state(value): return false
 	_tutorial_seen = value.tutorial_seen
 	_pending_equipment = false
 	return true

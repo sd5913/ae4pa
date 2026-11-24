@@ -295,6 +295,31 @@ func set_managed_state(value: String) -> void:
 		door_state = value
 		_refresh_visuals()
 
+func capture_memory_state() -> Dictionary:
+	return {"room_id": room_id, "door_state": door_state, "cycle_time": _cycle_time}
+
+static func validate_memory_state(value: Dictionary) -> bool:
+	return value.get("room_id") is String and not str(value.room_id).is_empty() \
+		and value.get("door_state") in ["CLOSED", "WARNING", "OPEN"] \
+		and (value.get("cycle_time") is float or value.get("cycle_time") is int) \
+		and is_finite(float(value.get("cycle_time", -1.0))) and float(value.cycle_time) >= 0.0
+
+func restore_memory_state(value: Dictionary) -> bool:
+	if not validate_memory_state(value) or value.room_id != room_id:
+		return false
+	_cycle_time = float(value.cycle_time)
+	set_managed_state(str(value.door_state))
+	_identity_inspection.clear()
+	_outside_side = 0
+	_entry_side = 0
+	_inside = false
+	_violation_pending = false
+	_story_inside = false
+	_story_requested = false
+	_submit_pending = false
+	_last_managed_x = _player.global_position.x if is_instance_valid(_player) else global_position.x
+	return true
+
 func _check_managed_encounter() -> void:
 	if not GameManager.is_world_input_allowed():
 		return

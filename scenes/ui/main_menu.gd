@@ -5,7 +5,6 @@ signal start_requested()
 signal help_requested()
 
 const MemoryUI = preload("res://scenes/ui/memory_ui.gd")
-const History = preload("res://scenes/ui/memory_history.gd")
 
 var _opening: Tween
 var _ready_for_input := false
@@ -112,11 +111,10 @@ func _on_visibility_changed() -> void:
 func _on_start_pressed() -> void:
 	if not _ready_for_input or _starting:
 		return
-	History.reset_session()
 	_starting = true
 	_set_interactive(false)
 	start_requested.emit()
-func _process(_delta: float) -> void:
+func refresh_memory_entry() -> void:
 	if is_instance_valid(MemoryUI.active):
 		%LoadMemory.disabled = not _ready_for_input or not MemoryUI.active.has_loadable_memory()
-		%LoadMemory.tooltip_text = tr("尚未留下记忆") if not is_instance_valid(MemoryUI.active.backend) else ""
+		%LoadMemory.tooltip_text = tr("尚未留下记忆") if %LoadMemory.disabled else ""
