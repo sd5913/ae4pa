@@ -38,6 +38,18 @@ func run() -> void:
  player._physics_process(2)
  check(player.stamina.value==60 and not player.stamina.running,"modal freezes stamina and disables running")
  game.set_modal_open("RUN_TEST",false)
+ var shift := InputEventKey.new()
+ shift.physical_keycode = KEY_SHIFT
+ shift.location = KEY_LOCATION_LEFT
+ shift.pressed = true
+ shift.echo = true
+ player._input(shift)
+ check(not player.stamina.running,"key echo does not toggle")
+ shift.echo = false
+ Input.action_press("interact")
+ player._input(shift)
+ check(not player.stamina.running,"held interaction cannot enable running")
+ Input.action_release("interact")
  check(InputMap.has_action("toggle_run"),"independent InputMap action exists")
  print("RUN_STAMINA: ","PASS" if failures==0 else "FAIL")
  quit(0 if failures==0 else 1)

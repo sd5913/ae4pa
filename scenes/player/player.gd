@@ -69,7 +69,7 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		for binding in InputMap.action_get_events("toggle_run"):
 			if binding is InputEventKey and event.physical_keycode == binding.physical_keycode and (binding.location == 0 or event.location == binding.location): matched = true
-	if matched and GameManager.is_world_input_allowed() and not _movement_locked:
+	if matched and GameManager.is_world_input_allowed() and not _movement_locked and not Input.is_action_pressed("interact"):
 		stamina.toggle()
 		get_viewport().set_input_as_handled()
 
