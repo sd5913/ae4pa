@@ -7,16 +7,21 @@ fallbacks = Array[Font]([ExtResource("2")])
 [sub_resource type="FontVariation" id="TitleFont"]
 base_font = SubResource("BodyFont")
 variation_embolden = 0.4
-[sub_resource type="StyleBoxTexture" id="TaskPlate"]
-texture = ExtResource("1")
-texture_margin_left = 80.0
-texture_margin_right = 80.0
-texture_margin_top = 40.0
-texture_margin_bottom = 40.0
-content_margin_left = 96.0
-content_margin_right = 96.0
-content_margin_top = 32.0
-content_margin_bottom = 32.0
+[sub_resource type="StyleBoxFlat" id="TaskPlate"]
+bg_color = Color(0.10, 0.14, 0.13, 0.97)
+border_width_left = 2
+border_width_right = 2
+border_width_top = 2
+border_width_bottom = 2
+border_color = Color(0.72, 0.55, 0.28, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_left = 12
+corner_radius_bottom_right = 12
+content_margin_left = 24.0
+content_margin_right = 24.0
+content_margin_top = 16.0
+content_margin_bottom = 16.0
 [sub_resource type="StyleBoxTexture" id="FloorPlate"]
 texture = ExtResource("1")
 texture_margin_left = 60.0

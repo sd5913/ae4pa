@@ -396,7 +396,29 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 
 ### 2026-11-22 D：偷窃被发现 CG 与对白 UI
 
+<!-- Newer button/HUD evidence is appended below; existing CG evidence is preserved. -->
+
 - 从用户提供的 `Theft_Failure_CG_Pack.zip` 选择性导入 SECURITY、CLEANER、MANAGER 三张 CG 与 `story_cn_en.json`；对白只读展示，不发卡、不更改任务状态。失败 UI 通过 B 员工发出的 `task_failure_requested(reason, target_id)` 读取实际发信员工的 `card_id`，再按该身份选 CG；普通失败原因不会进入偷窃演出。未修改 A 的管理器／主场景或 B 员工逻辑。
 - Godot `4.7.2.stable.official.ed1daf0bf`（Windows，隔离临时用户配置）：编辑器资源导入退出 0；偷窃 UI smoke 中文退出 0、英文退出 0；`localization_smoke.gd` 退出 0；现有 `ui_test.tscn -- --ui-smoke` 退出 0；`git diff --check` 退出 0。日志记录了 Windows 根证书读取错误，但没有阻断检查。无窗口 smoke 与图形 smoke 均覆盖三身份映射、资源加载、四拍中英文本、0.8 秒展示阶段、单次推进／忽略键盘回显、单次完成信号及返回已有失败菜单。
 - 图形 smoke 已在中文 1280×720 和英文 960×540 捕获各身份对白截图；135 帧 Movie Maker 文件展示自动化的 CG→对白→失败菜单场景。这些是独立 UI smoke 证据，不是正式主场景真实偷窃路线或人工操作录像。证据、日志说明和未验证项见[偷窃失败 UI 证据](qa_evidence/d_theft_failure_20261122/README.md)。
 - 正式主场景中分别触发三种员工的真实偷窃失败、快速物理输入，以及检查点恢复／返回菜单尚未人工验收。主场景已有 `Failure.retry_requested()`／`return_to_menu_requested()` 接线。中英文 UI smoke 覆盖演出结束后保留检查点重试、继续提示可见和取消后同角色可重播。
+
+### 2026-11-23 D：封面按钮、HUD与工作人员待机
+
+- 实测代码 `1e817cc0e33e7f9263d49be9dc0914d583b99d1c`，含独立共享视觉修复 `e36e3cc`；当前分支 work/member-D-ui-polish-v4。封面两项统一280×56／14px间距，语言文字独立居中；按钮反馈改0.12秒颜色；HUD图标换28px矢量，任务牌上移24px并去除重复目标。共享视觉脚本只固定保安／经理普通站姿，不改行走、警觉、碰撞、速度或任务规则，交A/B审查。
+- Windows / Godot 4.7.2：导入、中文1280与英文960图形main场景检查、现有HUD布局、foundation、final_visual_integration、员工core／cleaner、localization与ui_test最终均退出0；git diff --check通过。最初错误入口／配置及移动夹具断言失败留日志，并已按真实入口／新配置重跑。
+- 实际main场景截图、前后来源、16.8秒静止与启停录屏及限制见[本轮证据](qa_evidence/d_button_idle_20261123/README.md)。截图已目视检查；录屏供A/B审看，未代记物理键盘人工或导出验收。保留所有原未跟踪文件，不合并main。
+### 2026-11-23 D：剧情UI润色、双装备教学与超时演出
+
+- 实测代码81c5451abeed7c8f75c88d5b16ce045bce0bd9aa，work/member-D-ui-polish-v4。唯一语言文字层、箭头内移、跳过置顶、六条中英旁白、背包圆形关闭、弹窗留白与精简暂停；D标准对白组件增加真实2/2教学与两类超时第二拍。任务、卡片、失败事实与检查点规则不变。A task_ui现有请求接线已复用，无需新接口。
+- Windows Godot4.7.2：导入、本地化、intro_flow、story_surface、ui_test、三卡双槽（--ui-smoke）、checkpoint、theft最终退出0；新增main图形中文1280／英文960、两种超时与重试、单次教学／通知、菜单清理、楼梯／任务详情和右上跳过检查退出0；git diff --check通过。历史测试入口／类型／旧布局预期失败记录保留。
+- [正式场景截图、15.97秒自动录屏、文案对照、日志及限制](qa_evidence/d_ui_narrative_20261123/README.md)。任务前置用公开API，A时钟加速触发超时；不是人工等待完整时限或人工全通。截图已目视核对，物理操作／跨机器／导出仍待验收。未生成CG、不替换Carol、不合并main。原无关未跟踪文件保留。
+
+
+### 2026-11-24 D：记忆界面与已读历史交付（完整存档待 A）
+
+- 保留原工作并在 work/member-D-memory-ui-review 交付；已合入 origin/main@ac58302，合并提交 a57fdeb。旧 PR #64 已合并，本轮使用新审查分支。本轮代码 3f2972359338f00d427f8a9c2e0c606feffd300b；记录整理未修改运行代码。
+- 已安全读取 Downloads/Memory_UI_Pack_v1.zip 的完整 prompt、HTML 和三页图，选择性导入背景及七个 SVG；正式封面新增禁用态读取入口，剧情/暂停提供三页入口，六手动槽和独立自动槽、确认请求、模态焦点隔离与会话已读历史。移除旧2/2矩形提示来源，保留 Carol 教学。没有创建假存档或复制 HTML 示例状态。
+- Windows Godot 4.7.2 Compatibility：3f29723 的记忆 UI 中文1280、英文960、中文1920三次图形回归均退出0，含真实GUI点击及跨设备物理Esc事件；a57fdeb干净副本导入、本地化、intro_flow、三卡双槽、checkpoint、ui_test、theft、正常story_surface及narrative图形回归均退出0。失败的早期入口/跳动画参数运行日志保留，未修改断言掩盖。详细命令、SHA、环境和截图见[本轮QA](qa_evidence/d_memory_ui_20261123/README.md)。
+- 正常正式窗口鼠标验证了未读历史为空、打开首条短信后只记该条、关闭仍停原句；键盘注入曾受 InputMap device=16 影响，最终 D 按键匹配修复已用 Godot raw events 验证，真实硬件验收仍待做。
+- 完整磁盘存储、原子覆盖/备份/坏档、跨进程卡片/计时/任务/309单跟随者/EXIT恢复、309全屏CG历史事件及保存→退出→重启录屏均未完成。请 A 按[状态归属及接口清单](memory_ui_handoff_20261123.md)接入；D页面禁用保存/读取并明确提示缺少服务。先审查，不合并main。未清理任何原未跟踪文件。

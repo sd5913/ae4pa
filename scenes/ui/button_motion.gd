@@ -39,15 +39,13 @@ func _refresh(button: Button) -> void:
 	button.remove_meta("hover_tween") if button.has_meta("hover_tween") else null
 	if not button.is_visible_in_tree() or button.disabled:
 		button.scale = Vector2.ONE
+		button.self_modulate = Color.WHITE
 		return
-	var target := Vector2.ONE
-	if button.is_pressed():
-		target = Vector2(0.98, 0.98)
-	elif button.is_hovered():
-		target = Vector2(1.025, 1.025)
-	elif button.has_focus():
-		target = Vector2(1.015, 1.015)
+	# Color feedback keeps geometry and hit rectangles stationary.
+	button.scale = Vector2.ONE
+	var target := Color(1.035, 1.025, 1.01) if button.is_hovered() else Color.WHITE
+	if button.is_pressed(): target = Color(0.96, 0.95, 0.93)
 	var tween := button.create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	tween.tween_property(button, "scale", target, 0.1).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	tween.tween_property(button, "self_modulate", target, 0.12)
 	button.set_meta("hover_tween", tween)
