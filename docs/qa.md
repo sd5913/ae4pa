@@ -413,3 +413,12 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 - 实测代码81c5451abeed7c8f75c88d5b16ce045bce0bd9aa，work/member-D-ui-polish-v4。唯一语言文字层、箭头内移、跳过置顶、六条中英旁白、背包圆形关闭、弹窗留白与精简暂停；D标准对白组件增加真实2/2教学与两类超时第二拍。任务、卡片、失败事实与检查点规则不变。A task_ui现有请求接线已复用，无需新接口。
 - Windows Godot4.7.2：导入、本地化、intro_flow、story_surface、ui_test、三卡双槽（--ui-smoke）、checkpoint、theft最终退出0；新增main图形中文1280／英文960、两种超时与重试、单次教学／通知、菜单清理、楼梯／任务详情和右上跳过检查退出0；git diff --check通过。历史测试入口／类型／旧布局预期失败记录保留。
 - [正式场景截图、15.97秒自动录屏、文案对照、日志及限制](qa_evidence/d_ui_narrative_20261123/README.md)。任务前置用公开API，A时钟加速触发超时；不是人工等待完整时限或人工全通。截图已目视核对，物理操作／跨机器／导出仍待验收。未生成CG、不替换Carol、不合并main。原无关未跟踪文件保留。
+
+
+### 2026-11-24 D：记忆界面与已读历史交付（完整存档待 A）
+
+- 保留原工作并在 work/member-D-memory-ui-review 交付；已合入 origin/main@ac58302，合并提交 a57fdeb。旧 PR #64 已合并，本轮使用新审查分支。本轮代码 3f2972359338f00d427f8a9c2e0c606feffd300b；记录整理未修改运行代码。
+- 已安全读取 Downloads/Memory_UI_Pack_v1.zip 的完整 prompt、HTML 和三页图，选择性导入背景及七个 SVG；正式封面新增禁用态读取入口，剧情/暂停提供三页入口，六手动槽和独立自动槽、确认请求、模态焦点隔离与会话已读历史。移除旧2/2矩形提示来源，保留 Carol 教学。没有创建假存档或复制 HTML 示例状态。
+- Windows Godot 4.7.2 Compatibility：3f29723 的记忆 UI 中文1280、英文960、中文1920三次图形回归均退出0，含真实GUI点击及跨设备物理Esc事件；a57fdeb干净副本导入、本地化、intro_flow、三卡双槽、checkpoint、ui_test、theft、正常story_surface及narrative图形回归均退出0。失败的早期入口/跳动画参数运行日志保留，未修改断言掩盖。详细命令、SHA、环境和截图见[本轮QA](qa_evidence/d_memory_ui_20261123/README.md)。
+- 正常正式窗口鼠标验证了未读历史为空、打开首条短信后只记该条、关闭仍停原句；键盘注入曾受 InputMap device=16 影响，最终 D 按键匹配修复已用 Godot raw events 验证，真实硬件验收仍待做。
+- 完整磁盘存储、原子覆盖/备份/坏档、跨进程卡片/计时/任务/309单跟随者/EXIT恢复、309全屏CG历史事件及保存→退出→重启录屏均未完成。请 A 按[状态归属及接口清单](memory_ui_handoff_20261123.md)接入；D页面禁用保存/读取并明确提示缺少服务。先审查，不合并main。未清理任何原未跟踪文件。
