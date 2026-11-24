@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 546.92 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3070 Laptop GPU
+
+SCRIPT ERROR: Compile Error: Identifier not found: GameManager
+   at: GDScript::reload (res://scenes/tests/ui/memory_ui_smoke.gd:39)
+ERROR: Failed to load script "res://scenes/tests/ui/memory_ui_smoke.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)

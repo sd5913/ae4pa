@@ -31,7 +31,7 @@ func _run() -> void:
 	current_scene = main
 	await process_frame
 	var menu := main.get_node("MenuLayer/MainMenu")
-	var selector: OptionButton = menu.get_node("%LanguageSelector")
+	var selector: MenuButton = menu.get_node("%LanguageSelector")
 	_check(TranslationServer.get_locale() == "zh_CN", "A fresh profile defaults to Simplified Chinese")
 	_choose(selector, 1)
 	_check(TranslationServer.get_locale() == "en" and main == current_scene and menu.visible,
@@ -106,7 +106,7 @@ func _run() -> void:
 	event.pressed = true
 	Input.parse_input_event(event)
 	await process_frame
-	var pause_selector: OptionButton = pause.find_child("LanguageSelector", true, false)
+	_check(pause.find_child("LanguageSelector", true, false) == null, "Language selection is only on the main menu")
 	var active_floor: Node = main.get_node("World").get_child(0)
 	var player: Node2D = active_floor.get_node("Player")
 	var position := player.global_position
@@ -123,13 +123,13 @@ func _run() -> void:
 	active_floor.formatted_notice_requested.emit("获得%s ID", ["保洁"])
 	_check(pause.visible and not game.is_world_input_allowed() and not checkpoint.is_empty(),
 		"Pause holds the world and a real checkpoint exists")
-	_choose(pause_selector, 1)
+	_choose(selector, 1)
 	await process_frame
 	_check(task_layer.get_node("HUD").get_node("%RemainingTime").text.contains("Time left"),
 		"Already visible HUD updates behind the pause menu")
 	_check(main.notice_label.text == "Collected the Housekeeper's ID",
 		"The current formatted notice updates in English")
-	_choose(pause_selector, 0)
+	_choose(selector, 0)
 	await process_frame
 	_check(main.notice_label.text == "获得保洁 ID", "The current formatted notice returns to Chinese")
 	_check(pause.visible and not game.is_world_input_allowed()
@@ -137,9 +137,9 @@ func _run() -> void:
 		and game.get("_task_checkpoint") == checkpoint and game.get_world_flags() == flags
 		and cards.export_snapshot() == card_state
 		and main.get_node("World").get_child(0) == active_floor and player.global_position == position,
-		"Both pause-menu switches preserve the floor, player, task, checkpoint, cards and paused clock")
+		"Locale switches during pause preserve the floor, player, task, checkpoint, cards and paused clock")
 	if "--write-english" in args:
-		_choose(pause_selector, 1)
+		_choose(selector, 1)
 	_check(FileAccess.get_file_as_bytes(story_progress_path) == story_progress,
 		"Locale changes leave the story progress file intact")
 	DirAccess.remove_absolute(story_progress_path)
@@ -172,9 +172,9 @@ func _tokens(matches: Array[RegExMatch]) -> Array[String]:
 	return tokens
 
 
-func _choose(selector: OptionButton, index: int) -> void:
+func _choose(selector: MenuButton, index: int) -> void:
 	selector.select(index)
-	selector.item_selected.emit(index)
+	selector.get_popup().id_pressed.emit(index)
 
 
 func _check(condition: bool, description: String) -> void:

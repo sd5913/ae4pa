@@ -1,0 +1,7 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+FAIL: I opens all three owned cards
+FAIL: Q reaches manager after equipment
+FAIL: Reward feedback follows subsequent slot replacement and Q
+FAIL: HUD reads manager in active B
+THIRD_CARD_BAG: FAIL
