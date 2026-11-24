@@ -30,6 +30,7 @@ var _last_task_display := ""
 
 
 func _ready() -> void:
+	add_child(preload("res://scenes/ui/stamina_display.gd").new())
 	%BagButton.pressed.connect(func() -> void: bag_requested.emit())
 	%NotebookButton.pressed.connect(func() -> void: notebook_requested.emit())
 	%PauseButton.pressed.connect(func() -> void: pause_requested.emit())

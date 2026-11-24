@@ -2057,3 +2057,9 @@ msgstr "EXIT · Deliver the Room 501 exit form first."
 
 msgid "EXIT · 按E与Terese一起逃离"
 msgstr "EXIT · Press E to escape with Terese."
+
+msgid "体力"
+msgstr "Stamina"
+
+msgid "体力不足"
+msgstr "Not enough stamina"
