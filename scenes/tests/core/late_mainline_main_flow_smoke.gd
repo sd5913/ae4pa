@@ -42,6 +42,12 @@ func _accept() -> void:
 	await _settle()
 	_expect(game.get("_open_modals").is_empty(), "Accepting does not auto-open a second reminder dialogue")
 func _retry() -> void:
+	# Timeout dialogue deliberately precedes the original retry menu.
+	var presentation: Node = main.get_node("MenuLayer/Bag/CarolUIFlow")
+	for i in range(40):
+		if presentation.get("_mode") == "": break
+		await _tap()
+	_expect(presentation.get("_mode") == "" and main.get_node("TaskLayer/Failure").visible, "Failure dialogue finishes before clicking the visible retry menu")
 	main.get_node("TaskLayer/Failure/%RetryButton").pressed.emit()
 	await _settle()
 	_quiet_doors()
@@ -90,6 +96,13 @@ func _run() -> void:
 	for card in ["CLEANER", "SECURITY", "MANAGER"]: cards.collect_card(card)
 	game._load_floor(3)
 	await _settle()
+	# Collecting the fixture IDs really equips two slots and opens Carol's tutorial.
+	# Read it through the normal input path before attempting stair travel.
+	var equipment_dialogue: Node = main.get_node("MenuLayer/Bag/CarolUIFlow")
+	for i in range(40):
+		if equipment_dialogue.get("_mode") != "equipment": break
+		await _tap()
+	_expect(equipment_dialogue.get("_mode") == "" and equipment_dialogue.get("_tutorial_seen"), "Fixture reads the real two-slot tutorial before stair travel")
 	_quiet_doors()
 	_expect(not game.get_available_floors().has(4), "Registration alone cannot reach4F")
 	_expect(game.rescue_friend(), "Explicit completed-rescue callback fixture")
