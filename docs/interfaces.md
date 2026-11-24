@@ -795,3 +795,17 @@ D新工具栏bag_requested与I键进入同一A入口，均检查floor.get_identi
 - 任务定义`checkpoint_marker`供403／501读取；仍复用现有接受前快照和`retry_current_task()`，不是第二套存档。A监听B `task_item_stolen(item_id,target_id)`，按快照刷新`set_reward_available`。
 - A新增相邻`scenes/late_mainline.gd`适配D现有Dialogue和Win；无新UI真值。每个新局统一经过MENU清理D对白缓存，返回菜单移除同行。
 - 最新51项矩阵、新局八任务／309／EXIT整链、原生Compatibility通过；位置／朝向／时钟控制和人工边界见[证据](qa_evidence/a_late_mainline_20261121/README.md)。
+## 26 记忆存档接入边界（2026-11-24，#74 A 集成）
+
+| 数据 | 唯一真值／现有接口 | 存档集成要求 |
+|---|---|---|
+| 任务、子步骤、已完成／待交付、批准、遇怪、笔记、309与EXIT | `GameManager`：`current_task_id`、`task_status`、`remaining_time`、`get_completed_task_ids()`、`get_world_flags()`、`get_pending_monster_encounter()`、`_room_monsters`／`_seen_monsters`；笔记从经理介绍和已完成任务派生。 | A 增加版本化纯数据快照、完整字段校验和正式恢复；不能只保存 HUD 镜像。活动接取检查点和磁盘记忆是两份独立状态。 |
+| 收藏证件、双槽、当前身份 | B `CardManager.export_snapshot()`、`validate_snapshot(Dictionary)`、`restore_snapshot(Dictionary)`。 | 先调用 B 的验证；恢复只调用 CardManager，D 不直接发卡或改装备。 |
+| 工作点／巡逻员工 | B 的 `CleaningSpot.is_completed()`／`set_completed(bool)` 与员工 `is_reward_available()`／`set_reward_available(bool)`；正式可玩事实由 GameManager 工作标记驱动，巡逻文件不进入 CardManager。 | 从 GameManager 恢复工作／奖励状态后由 floor 刷新 B 组件；不保存交互长按中的临时状态，且该状态期间禁止保存。 |
+| 房门状态 | C `MonsterDoor.door_state`、`set_managed_state(String)`；普通循环的 `_cycle_time`、floor scheduler 的活动门／剩余相位目前没有存档接口。 | C 增加按稳定 `room_id` 键控的导出、完整预检及应用 API；先验证所有门 ID 和相位，再恢复楼层。任务门从 A 的正式任务事实重新计算，不由 UI 强行开放。 |
+| 楼层、位置、朝向 | A `GameManager.current_floor`、`floor.get_task_checkpoint_position()`；`HotelPlayer` 提供移动锁和 `global_position`，方向保留在 Player 的实际 facing 字段。 | A 校验 floor 场景与安全点范围；恢复在对应地板建立后设置位置／朝向，不使用任务失败检查点替代存档位置。 |
+| 309 CG／同行者 | A `GameManager.rescue_friend()`、`has_friend`、`rescue_309_completed`；`Room309Reunion._sync_follower()` 按 `has_friend` 创建 `Persica`。 | CG 中途不存。读档先 cancel CG、tween 和旧楼层；settled rescue 才创建最多一个 follower。失败预检不得调用 rescue 或清除现世界。 |
+| D 历史／教学 | D `MemoryHistory.export_ui_history()`／`restore_ui_history(Dictionary)`；`CarolUIFlow.capture_memory_ui_state()`／`restore_memory_ui_state(Dictionary)`。 | 增加不改动当前数据的纯校验接口；Restore 仅在 presentation 关闭时运行。历史行带稳定 token，重载后恢复去重集合。 |
+| 有效游戏用时 | 当前没有唯一计时字段／API。 | A 新增只累计实际 PLAYING 且无模态的 `play_time_seconds`，并在存档、恢复、列表元数据共用；不使用系统时钟差值。 |
+
+D 的适配合同是实际节点 `MenuLayer/MainMenu/MemoryUI.configure_backend(service)`，数据方法为 `list_memory_slots()`、`can_save_memory()`、`save_memory(slot_id)`、`load_memory(slot_id)`。返回成功代表完整原子磁盘提交或整世界恢复已经完成；未配置服务、预检失败、CG／模态中或任何子模块不支持该版本时禁止成功。自动保存只从任务接受提交、任务交付、楼层载入完成、309 救援与唯一 follower 建立后的稳定事件触发。
