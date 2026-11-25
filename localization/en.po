@@ -2055,6 +2055,7 @@ msgstr "EXIT · Deliver the Room 501 exit form first."
 msgid "EXIT · 按E与Terese一起逃离"
 msgstr "EXIT · Press E to escape with Terese."
 
+
 msgid "%s已在槽%s，无需重复装备。"
 msgstr "%s is already in slot %s; no change needed."
 
@@ -2201,3 +2202,9 @@ msgstr "Room 302 authorization complete: Room 309 is approved. Use the Housekeep
 
 msgid "302授权已完成。切为保洁身份进入309，寻找Terese。"
 msgstr "Room 302 authorization complete. Use the Housekeeper identity to enter Room 309 and find Terese."
+
+msgid "体力"
+msgstr "Stamina"
+
+msgid "体力不足"
+msgstr "Not enough stamina"

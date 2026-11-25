@@ -100,6 +100,7 @@ func set_floor_host(host: Node2D, enable_preview: bool = false) -> void:
 
 
 func start_game() -> void:
+	HotelPlayer.reset_stamina()
 	_safe_return_in_progress = false
 	_last_safe_return_frame = -1
 	_task_checkpoint.clear()
@@ -416,7 +417,9 @@ func _capture_task_checkpoint() -> Dictionary:
 	var safe: Dictionary = floor_node.get_task_checkpoint_position(current_task_id)
 	if safe.is_empty():
 		return {}
+	var player: HotelPlayer = floor_node.get_node("Player")
 	return {
+		"stamina": player.capture_stamina_state(),
 		"task_id": current_task_id, "floor": current_floor, "position": safe["position"],
 		"cards": CardManager.export_snapshot(), "world_flags": _world_flags.duplicate(true),
 		"completed": _completed_task_ids.duplicate(), "visited": _visited_floors.duplicate(),
@@ -474,6 +477,7 @@ func retry_current_task() -> bool:
 	task_updated.emit() # Rebuild work, route and C's mirror from restored A truth.
 	notebook_changed.emit()
 	var player: HotelPlayer = floor_node.get_node("Player")
+	player.restore_stamina_state(checkpoint.get("stamina", {}))
 	player.set_movement_locked(true)
 	player.global_position = safe["position"]
 	player.get_node("Camera2D").reset_smoothing()
