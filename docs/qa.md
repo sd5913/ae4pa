@@ -454,3 +454,5 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 - Godot 4.7.2.stable.official.ed1daf0bf / macOS Apple M1 Pro：本轮自动PASS：third_card_bag、interaction_feedback_batch、tutorial_workpoints、final_visual_integration、localization、memory_ui、full_mainline_escape（正常新游戏→八任务→309→EXIT，含失败恢复）。
 - 两个旧主线/反馈测试适配D正式教学/超时对白的真实E输入后再请求上楼和重试；未绕过弹窗/任务规则、未削弱断言。203/205错误资格TASK_INACTIVE为预期拒绝。
 - 自动测试不等于真人视觉验收；整合后F5窗口供玩家复测。首次受限沙箱字体/日志错误不计为有效PASS；有效测试使用正常本机权限。
+
+- CI联调补充：首轮Linux仅late_mainline旧断言（审批后HUD为空）失败；已改为精确验证501审批成功/交付文案及组件成功反馈，中英文定向PASS，保留全部任务/失败恢复断言。远端CI待追加提交重跑，不能把首轮记作通过。
