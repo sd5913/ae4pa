@@ -2203,6 +2203,13 @@ msgstr "Room 302 authorization complete: Room 309 is approved. Use the Housekeep
 msgid "302授权已完成。切为保洁身份进入309，寻找Terese。"
 msgstr "Room 302 authorization complete. Use the Housekeeper identity to enter Room 309 and find Terese."
 
+
+msgid "体力"
+msgstr "Stamina"
+
+msgid "体力不足"
+msgstr "Not enough stamina"
+
 msgid "旁白"
 msgstr "Narrator"
 

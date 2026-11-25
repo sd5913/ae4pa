@@ -4,6 +4,15 @@
 
 用[游戏测试工作簿](../outputs/game-test-20261121/游戏测试.xlsx)填写真人结果并跟踪问题。[当前项目状态](CURRENT_STATUS.md)汇总当前基线、通过范围和未完成项。早期 201、202 真人结果保留在其原版本。 [既有真人验收](acceptance_status_20261117.md)
 
+## 桌面打包分支验证（2026-11-23）
+
+基于 `main@ac58302b29499a4243dd302876a8f24e84be013a` 的打包改动在 Linux x86-64 上使用 Godot `4.7.2.stable.official.ed1daf0bf` 验证。
+
+- `bash .github/scripts/package_desktop.sh linux` 和 `bash .github/scripts/smoke_linux_package.sh <Linux ZIP>` 均退出 0。解压后保留执行权限，分别用全新中文和已保存英文的用户目录无界面启动。
+- 源项目的 `godot --headless --path . --script res://scenes/tests/core/localization_smoke.gd` 和追加 `-- --expect-chinese` 的持久化检查均报告 PASS。
+- Linux 交叉导出的 `macOS Universal` 包经 ZIP 解压后核对了 `.app`、两种 Mach-O 架构及执行权限。Linux、macOS 与 Windows 的 PCK 均通过 `check_desktop_pack.gd` 校验。
+- CI 上传下载、macOS 原生签名与公证、实机 Gatekeeper 启动及 Windows 实机验收分别记录。发版入口见 [Linux／macOS 打包与发版](desktop-release.md)。
+
 ## 现行主线验收口径
 
 从正式 F5 菜单开始。按[玩家指南](player-guide.md)执行，下表给出当前路线与 PDF 附录的差异。沿用原用例编号追溯需求，并在工作簿注明真正执行的步骤和提交。
@@ -456,3 +465,10 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 - 自动测试不等于真人视觉验收；整合后F5窗口供玩家复测。首次受限沙箱字体/日志错误不计为有效PASS；有效测试使用正常本机权限。
 
 - CI联调补充：首轮Linux仅late_mainline旧断言（审批后HUD为空）失败；已改为精确验证501审批成功/交付文案及组件成功反馈，中英文定向PASS，保留全部任务/失败恢复断言。远端CI待追加提交重跑，不能把首轮记作通过。
+
+### 2026-11-24 D：切换跑步与体力（待A审查）
+
+- work/member-D-run-stamina，代码786a254。新增左Shift独立动作、玩家单一体力模型、1.35倍普通位移与底部探索HUD；不改工作/偷证耗时、权限、怪物或门规则。跨楼层/检查点/新局体力适配在玩家侧，需A审查状态边界。
+- 模型/真实玩家30/60/120 delta、模态冻结、阈值/回显/交互持键、切层/接受/重试/新局检查退出0；既有foundation、staff、checkpoint、UI退出0。中文1280/英文960正式场景脚本检查退出0。
+- 1F480px非录制实测走路3.018秒、跑步2.231秒；不是完整任务路线测时。全新局--ui-smoke本轮和a57旧基线均在二楼节点访问失败，保留FAIL。物理输入、真实楼梯/墙/全任务跑步难度与导出仍待验收；磁盘存档未接通。
+- [参数、来源、全部结果/限制与录屏](qa_evidence/run_stamina_20261124/README.md)。初始导入/新局检查失败记录保留；最终针对性检查通过，不合并main。

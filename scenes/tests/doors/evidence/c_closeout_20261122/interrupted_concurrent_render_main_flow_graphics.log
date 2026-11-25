@@ -1,0 +1,26 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 546.30 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3070 Laptop GPU
+
+AUDIT_CHECK PASS animated menu becomes ready
+AUDIT_CHECK PASS normal new game real manager conversation
+AUDIT_CHECK PASS actual stair travel 2
+AUDIT_CHECK PASS 201 first contact has visible warning before dialogue
+AUDIT_CHECK PASS saved native evidence 201_warning
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots_final/201_warning.png
+AUDIT_CHECK PASS 201 D intro before acceptance
+AUDIT_CHECK PASS 201 real artwork monster appears in intro
+AUDIT_CHECK PASS saved native evidence 201_intro
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots_final/201_intro.png
+AUDIT_CHECK PASS 201 actual intercept offers correct task
+AUDIT_CHECK PASS 201 dialogue ends without accepting or releasing
+AUDIT_CHECK PASS 201 actual accept
+AUDIT_CHECK PASS 201 real E reminder MISSING_CARD
+AUDIT_CHECK PASS actual stair travel 1
+AUDIT_CHECK PASS real theft obtained CLEANER
+AUDIT_CHECK PASS actual stair travel 2
+AUDIT_CHECK PASS unfinished monster is already at door after returning from1F
+AUDIT_CHECK PASS 201 ready only after real work
+AUDIT_CHECK PASS 201 work alone leaves barrier
+AUDIT_CHECK PASS 201 real E settlement before success dialogue
+AUDIT_CHECK PASS 201 monster is visible during real delivery dialogue
+AUDIT_CHECK PASS 201 real artwork monster appears in delivery

@@ -1,0 +1,526 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 546.30 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3070 Laptop GPU
+
+PASS: Room301 artwork matches CLOSED
+PASS: Room301 resident visible only when open
+PASS: Room301 resident identity matches detector
+PASS: Room301 closed/warning safe
+PASS: Room301 artwork matches WARNING
+PASS: Room301 resident visible only when open
+PASS: Room301 resident identity matches detector
+PASS: Room301 closed/warning safe
+PASS: Room301 artwork matches OPEN
+PASS: Room301 resident visible only when open
+PASS: Room301 resident identity matches detector
+PASS: Room301 uniform positive door scale
+PASS: Room301 valid rule permits side -1
+PASS: Room301 violation returns to left stairs from side -1
+PASS: Room301 return resumes without story interception
+PASS: Room301 valid rule permits side 1
+PASS: Room301 violation returns to left stairs from side 1
+PASS: Room301 return resumes without story interception
+PASS: Room303 artwork matches CLOSED
+PASS: Room303 resident visible only when open
+PASS: Room303 resident identity matches detector
+PASS: Room303 closed/warning safe
+PASS: Room303 artwork matches WARNING
+PASS: Room303 resident visible only when open
+PASS: Room303 resident identity matches detector
+PASS: Room303 closed/warning safe
+PASS: Room303 artwork matches OPEN
+PASS: Room303 resident visible only when open
+PASS: Room303 resident identity matches detector
+PASS: Room303 uniform positive door scale
+PASS: Room303 valid rule permits side -1
+PASS: Room303 violation returns to left stairs from side -1
+PASS: Room303 return resumes without story interception
+PASS: Room303 valid rule permits side 1
+PASS: Room303 violation returns to left stairs from side 1
+PASS: Room303 return resumes without story interception
+PASS: Room304 artwork matches CLOSED
+PASS: Room304 resident visible only when open
+PASS: Room304 resident identity matches detector
+PASS: Room304 closed/warning safe
+PASS: Room304 artwork matches WARNING
+PASS: Room304 resident visible only when open
+PASS: Room304 resident identity matches detector
+PASS: Room304 closed/warning safe
+PASS: Room304 artwork matches OPEN
+PASS: Room304 resident visible only when open
+PASS: Room304 resident identity matches detector
+PASS: Room304 uniform positive door scale
+PASS: Room304 valid rule permits side -1
+PASS: Room304 violation returns to left stairs from side -1
+PASS: Room304 return resumes without story interception
+PASS: Room304 valid rule permits side 1
+PASS: Room304 violation returns to left stairs from side 1
+PASS: Room304 return resumes without story interception
+PASS: Room301 same-session revisit stable
+PASS: Room302 same-session revisit stable
+PASS: Room303 same-session revisit stable
+PASS: Room304 same-session revisit stable
+PASS: Room401 artwork matches CLOSED
+PASS: Room401 resident visible only when open
+PASS: Room401 resident identity matches detector
+PASS: Room401 closed/warning safe
+PASS: Room401 artwork matches WARNING
+PASS: Room401 resident visible only when open
+PASS: Room401 resident identity matches detector
+PASS: Room401 closed/warning safe
+PASS: Room401 artwork matches OPEN
+PASS: Room401 resident visible only when open
+PASS: Room401 resident identity matches detector
+PASS: Room401 uniform positive door scale
+PASS: Room401 valid rule permits side -1
+PASS: Room401 violation returns to left stairs from side -1
+PASS: Room401 return resumes without story interception
+PASS: Room401 valid rule permits side 1
+PASS: Room401 violation returns to left stairs from side 1
+PASS: Room401 return resumes without story interception
+PASS: Room402 artwork matches CLOSED
+PASS: Room402 resident visible only when open
+PASS: Room402 resident identity matches detector
+PASS: Room402 closed/warning safe
+PASS: Room402 artwork matches WARNING
+PASS: Room402 resident visible only when open
+PASS: Room402 resident identity matches detector
+PASS: Room402 closed/warning safe
+PASS: Room402 artwork matches OPEN
+PASS: Room402 resident visible only when open
+PASS: Room402 resident identity matches detector
+PASS: Room402 uniform positive door scale
+PASS: Room402 valid rule permits side -1
+PASS: Room402 violation returns to left stairs from side -1
+PASS: Room402 return resumes without story interception
+PASS: Room402 valid rule permits side 1
+PASS: Room402 violation returns to left stairs from side 1
+PASS: Room402 return resumes without story interception
+PASS: Room404 artwork matches CLOSED
+PASS: Room404 resident visible only when open
+PASS: Room404 resident identity matches detector
+PASS: Room404 closed/warning safe
+PASS: Room404 artwork matches WARNING
+PASS: Room404 resident visible only when open
+PASS: Room404 resident identity matches detector
+PASS: Room404 closed/warning safe
+PASS: Room404 artwork matches OPEN
+PASS: Room404 resident visible only when open
+PASS: Room404 resident identity matches detector
+PASS: Room404 uniform positive door scale
+PASS: Room404 valid rule permits side -1
+PASS: Room404 violation returns to left stairs from side -1
+PASS: Room404 return resumes without story interception
+PASS: Room404 valid rule permits side 1
+PASS: Room404 violation returns to left stairs from side 1
+PASS: Room404 return resumes without story interception
+PASS: Room405 artwork matches CLOSED
+PASS: Room405 resident visible only when open
+PASS: Room405 resident identity matches detector
+PASS: Room405 closed/warning safe
+PASS: Room405 artwork matches WARNING
+PASS: Room405 resident visible only when open
+PASS: Room405 resident identity matches detector
+PASS: Room405 closed/warning safe
+PASS: Room405 artwork matches OPEN
+PASS: Room405 resident visible only when open
+PASS: Room405 resident identity matches detector
+PASS: Room405 uniform positive door scale
+PASS: Room405 valid rule permits side -1
+PASS: Room405 violation returns to left stairs from side -1
+PASS: Room405 return resumes without story interception
+PASS: Room405 valid rule permits side 1
+PASS: Room405 violation returns to left stairs from side 1
+PASS: Room405 return resumes without story interception
+PASS: Room401 same-session revisit stable
+PASS: Room402 same-session revisit stable
+PASS: Room403 same-session revisit stable
+PASS: Room404 same-session revisit stable
+PASS: Room405 same-session revisit stable
+PASS: Room502 artwork matches CLOSED
+PASS: Room502 resident visible only when open
+PASS: Room502 resident identity matches detector
+PASS: Room502 closed/warning safe
+PASS: Room502 artwork matches WARNING
+PASS: Room502 resident visible only when open
+PASS: Room502 resident identity matches detector
+PASS: Room502 closed/warning safe
+PASS: Room502 artwork matches OPEN
+PASS: Room502 resident visible only when open
+PASS: Room502 resident identity matches detector
+PASS: Room502 uniform positive door scale
+PASS: Room502 valid rule permits side -1
+PASS: Room502 violation returns to left stairs from side -1
+PASS: Room502 return resumes without story interception
+PASS: Room502 valid rule permits side 1
+PASS: Room502 violation returns to left stairs from side 1
+PASS: Room502 return resumes without story interception
+PASS: Room503 artwork matches CLOSED
+PASS: Room503 resident visible only when open
+PASS: Room503 resident identity matches detector
+PASS: Room503 closed/warning safe
+PASS: Room503 artwork matches WARNING
+PASS: Room503 resident visible only when open
+PASS: Room503 resident identity matches detector
+PASS: Room503 closed/warning safe
+PASS: Room503 artwork matches OPEN
+PASS: Room503 resident visible only when open
+PASS: Room503 resident identity matches detector
+PASS: Room503 uniform positive door scale
+PASS: Room503 valid rule permits side -1
+PASS: Room503 violation returns to left stairs from side -1
+PASS: Room503 return resumes without story interception
+PASS: Room503 valid rule permits side 1
+PASS: Room503 violation returns to left stairs from side 1
+PASS: Room503 return resumes without story interception
+PASS: Room501 same-session revisit stable
+PASS: Room502 same-session revisit stable
+PASS: Room503 same-session revisit stable
+PASS: Room301 artwork matches CLOSED
+PASS: Room301 resident visible only when open
+PASS: Room301 resident identity matches detector
+PASS: Room301 closed/warning safe
+PASS: Room301 artwork matches WARNING
+PASS: Room301 resident visible only when open
+PASS: Room301 resident identity matches detector
+PASS: Room301 closed/warning safe
+PASS: Room301 artwork matches OPEN
+PASS: Room301 resident visible only when open
+PASS: Room301 resident identity matches detector
+PASS: Room301 uniform positive door scale
+PASS: Room301 valid rule permits side -1
+PASS: Room301 violation returns to left stairs from side -1
+PASS: Room301 return resumes without story interception
+PASS: Room301 valid rule permits side 1
+PASS: Room301 violation returns to left stairs from side 1
+PASS: Room301 return resumes without story interception
+PASS: Room303 artwork matches CLOSED
+PASS: Room303 resident visible only when open
+PASS: Room303 resident identity matches detector
+PASS: Room303 closed/warning safe
+PASS: Room303 artwork matches WARNING
+PASS: Room303 resident visible only when open
+PASS: Room303 resident identity matches detector
+PASS: Room303 closed/warning safe
+PASS: Room303 artwork matches OPEN
+PASS: Room303 resident visible only when open
+PASS: Room303 resident identity matches detector
+PASS: Room303 uniform positive door scale
+PASS: Room303 valid rule permits side -1
+PASS: Room303 violation returns to left stairs from side -1
+PASS: Room303 return resumes without story interception
+PASS: Room303 valid rule permits side 1
+PASS: Room303 violation returns to left stairs from side 1
+PASS: Room303 return resumes without story interception
+PASS: Room304 artwork matches CLOSED
+PASS: Room304 resident visible only when open
+PASS: Room304 resident identity matches detector
+PASS: Room304 closed/warning safe
+PASS: Room304 artwork matches WARNING
+PASS: Room304 resident visible only when open
+PASS: Room304 resident identity matches detector
+PASS: Room304 closed/warning safe
+PASS: Room304 artwork matches OPEN
+PASS: Room304 resident visible only when open
+PASS: Room304 resident identity matches detector
+PASS: Room304 uniform positive door scale
+PASS: Room304 valid rule permits side -1
+PASS: Room304 violation returns to left stairs from side -1
+PASS: Room304 return resumes without story interception
+PASS: Room304 valid rule permits side 1
+PASS: Room304 violation returns to left stairs from side 1
+PASS: Room304 return resumes without story interception
+PASS: Room301 same-session revisit stable
+PASS: Room302 same-session revisit stable
+PASS: Room303 same-session revisit stable
+PASS: Room304 same-session revisit stable
+PASS: Room401 artwork matches CLOSED
+PASS: Room401 resident visible only when open
+PASS: Room401 resident identity matches detector
+PASS: Room401 closed/warning safe
+PASS: Room401 artwork matches WARNING
+PASS: Room401 resident visible only when open
+PASS: Room401 resident identity matches detector
+PASS: Room401 closed/warning safe
+PASS: Room401 artwork matches OPEN
+PASS: Room401 resident visible only when open
+PASS: Room401 resident identity matches detector
+PASS: Room401 uniform positive door scale
+PASS: Room401 valid rule permits side -1
+PASS: Room401 violation returns to left stairs from side -1
+PASS: Room401 return resumes without story interception
+PASS: Room401 valid rule permits side 1
+PASS: Room401 violation returns to left stairs from side 1
+PASS: Room401 return resumes without story interception
+PASS: Room402 artwork matches CLOSED
+PASS: Room402 resident visible only when open
+PASS: Room402 resident identity matches detector
+PASS: Room402 closed/warning safe
+PASS: Room402 artwork matches WARNING
+PASS: Room402 resident visible only when open
+PASS: Room402 resident identity matches detector
+PASS: Room402 closed/warning safe
+PASS: Room402 artwork matches OPEN
+PASS: Room402 resident visible only when open
+PASS: Room402 resident identity matches detector
+PASS: Room402 uniform positive door scale
+PASS: Room402 valid rule permits side -1
+PASS: Room402 violation returns to left stairs from side -1
+PASS: Room402 return resumes without story interception
+PASS: Room402 valid rule permits side 1
+PASS: Room402 violation returns to left stairs from side 1
+PASS: Room402 return resumes without story interception
+PASS: Room404 artwork matches CLOSED
+PASS: Room404 resident visible only when open
+PASS: Room404 resident identity matches detector
+PASS: Room404 closed/warning safe
+PASS: Room404 artwork matches WARNING
+PASS: Room404 resident visible only when open
+PASS: Room404 resident identity matches detector
+PASS: Room404 closed/warning safe
+PASS: Room404 artwork matches OPEN
+PASS: Room404 resident visible only when open
+PASS: Room404 resident identity matches detector
+PASS: Room404 uniform positive door scale
+PASS: Room404 valid rule permits side -1
+PASS: Room404 violation returns to left stairs from side -1
+PASS: Room404 return resumes without story interception
+PASS: Room404 valid rule permits side 1
+PASS: Room404 violation returns to left stairs from side 1
+PASS: Room404 return resumes without story interception
+PASS: Room405 artwork matches CLOSED
+PASS: Room405 resident visible only when open
+PASS: Room405 resident identity matches detector
+PASS: Room405 closed/warning safe
+PASS: Room405 artwork matches WARNING
+PASS: Room405 resident visible only when open
+PASS: Room405 resident identity matches detector
+PASS: Room405 closed/warning safe
+PASS: Room405 artwork matches OPEN
+PASS: Room405 resident visible only when open
+PASS: Room405 resident identity matches detector
+PASS: Room405 uniform positive door scale
+PASS: Room405 valid rule permits side -1
+PASS: Room405 violation returns to left stairs from side -1
+PASS: Room405 return resumes without story interception
+PASS: Room405 valid rule permits side 1
+PASS: Room405 violation returns to left stairs from side 1
+PASS: Room405 return resumes without story interception
+PASS: Room401 same-session revisit stable
+PASS: Room402 same-session revisit stable
+PASS: Room403 same-session revisit stable
+PASS: Room404 same-session revisit stable
+PASS: Room405 same-session revisit stable
+PASS: Room502 artwork matches CLOSED
+PASS: Room502 resident visible only when open
+PASS: Room502 resident identity matches detector
+PASS: Room502 closed/warning safe
+PASS: Room502 artwork matches WARNING
+PASS: Room502 resident visible only when open
+PASS: Room502 resident identity matches detector
+PASS: Room502 closed/warning safe
+PASS: Room502 artwork matches OPEN
+PASS: Room502 resident visible only when open
+PASS: Room502 resident identity matches detector
+PASS: Room502 uniform positive door scale
+PASS: Room502 valid rule permits side -1
+PASS: Room502 violation returns to left stairs from side -1
+PASS: Room502 return resumes without story interception
+PASS: Room502 valid rule permits side 1
+PASS: Room502 violation returns to left stairs from side 1
+PASS: Room502 return resumes without story interception
+PASS: Room503 artwork matches CLOSED
+PASS: Room503 resident visible only when open
+PASS: Room503 resident identity matches detector
+PASS: Room503 closed/warning safe
+PASS: Room503 artwork matches WARNING
+PASS: Room503 resident visible only when open
+PASS: Room503 resident identity matches detector
+PASS: Room503 closed/warning safe
+PASS: Room503 artwork matches OPEN
+PASS: Room503 resident visible only when open
+PASS: Room503 resident identity matches detector
+PASS: Room503 uniform positive door scale
+PASS: Room503 valid rule permits side -1
+PASS: Room503 violation returns to left stairs from side -1
+PASS: Room503 return resumes without story interception
+PASS: Room503 valid rule permits side 1
+PASS: Room503 violation returns to left stairs from side 1
+PASS: Room503 return resumes without story interception
+PASS: Room501 same-session revisit stable
+PASS: Room502 same-session revisit stable
+PASS: Room503 same-session revisit stable
+PASS: Room301 artwork matches CLOSED
+PASS: Room301 resident visible only when open
+PASS: Room301 resident identity matches detector
+PASS: Room301 closed/warning safe
+PASS: Room301 artwork matches WARNING
+PASS: Room301 resident visible only when open
+PASS: Room301 resident identity matches detector
+PASS: Room301 closed/warning safe
+PASS: Room301 artwork matches OPEN
+PASS: Room301 resident visible only when open
+PASS: Room301 resident identity matches detector
+PASS: Room301 uniform positive door scale
+PASS: Room301 valid rule permits side -1
+PASS: Room301 violation returns to left stairs from side -1
+PASS: Room301 return resumes without story interception
+PASS: Room301 valid rule permits side 1
+PASS: Room301 violation returns to left stairs from side 1
+PASS: Room301 return resumes without story interception
+PASS: Room303 artwork matches CLOSED
+PASS: Room303 resident visible only when open
+PASS: Room303 resident identity matches detector
+PASS: Room303 closed/warning safe
+PASS: Room303 artwork matches WARNING
+PASS: Room303 resident visible only when open
+PASS: Room303 resident identity matches detector
+PASS: Room303 closed/warning safe
+PASS: Room303 artwork matches OPEN
+PASS: Room303 resident visible only when open
+PASS: Room303 resident identity matches detector
+PASS: Room303 uniform positive door scale
+PASS: Room303 valid rule permits side -1
+PASS: Room303 violation returns to left stairs from side -1
+PASS: Room303 return resumes without story interception
+PASS: Room303 valid rule permits side 1
+PASS: Room303 violation returns to left stairs from side 1
+PASS: Room303 return resumes without story interception
+PASS: Room304 artwork matches CLOSED
+PASS: Room304 resident visible only when open
+PASS: Room304 resident identity matches detector
+PASS: Room304 closed/warning safe
+PASS: Room304 artwork matches WARNING
+PASS: Room304 resident visible only when open
+PASS: Room304 resident identity matches detector
+PASS: Room304 closed/warning safe
+PASS: Room304 artwork matches OPEN
+PASS: Room304 resident visible only when open
+PASS: Room304 resident identity matches detector
+PASS: Room304 uniform positive door scale
+PASS: Room304 valid rule permits side -1
+PASS: Room304 violation returns to left stairs from side -1
+PASS: Room304 return resumes without story interception
+PASS: Room304 valid rule permits side 1
+PASS: Room304 violation returns to left stairs from side 1
+PASS: Room304 return resumes without story interception
+PASS: Room301 same-session revisit stable
+PASS: Room302 same-session revisit stable
+PASS: Room303 same-session revisit stable
+PASS: Room304 same-session revisit stable
+PASS: Room401 artwork matches CLOSED
+PASS: Room401 resident visible only when open
+PASS: Room401 resident identity matches detector
+PASS: Room401 closed/warning safe
+PASS: Room401 artwork matches WARNING
+PASS: Room401 resident visible only when open
+PASS: Room401 resident identity matches detector
+PASS: Room401 closed/warning safe
+PASS: Room401 artwork matches OPEN
+PASS: Room401 resident visible only when open
+PASS: Room401 resident identity matches detector
+PASS: Room401 uniform positive door scale
+PASS: Room401 valid rule permits side -1
+PASS: Room401 violation returns to left stairs from side -1
+PASS: Room401 return resumes without story interception
+PASS: Room401 valid rule permits side 1
+PASS: Room401 violation returns to left stairs from side 1
+PASS: Room401 return resumes without story interception
+PASS: Room402 artwork matches CLOSED
+PASS: Room402 resident visible only when open
+PASS: Room402 resident identity matches detector
+PASS: Room402 closed/warning safe
+PASS: Room402 artwork matches WARNING
+PASS: Room402 resident visible only when open
+PASS: Room402 resident identity matches detector
+PASS: Room402 closed/warning safe
+PASS: Room402 artwork matches OPEN
+PASS: Room402 resident visible only when open
+PASS: Room402 resident identity matches detector
+PASS: Room402 uniform positive door scale
+PASS: Room402 valid rule permits side -1
+PASS: Room402 violation returns to left stairs from side -1
+PASS: Room402 return resumes without story interception
+PASS: Room402 valid rule permits side 1
+PASS: Room402 violation returns to left stairs from side 1
+PASS: Room402 return resumes without story interception
+PASS: Room404 artwork matches CLOSED
+PASS: Room404 resident visible only when open
+PASS: Room404 resident identity matches detector
+PASS: Room404 closed/warning safe
+PASS: Room404 artwork matches WARNING
+PASS: Room404 resident visible only when open
+PASS: Room404 resident identity matches detector
+PASS: Room404 closed/warning safe
+PASS: Room404 artwork matches OPEN
+PASS: Room404 resident visible only when open
+PASS: Room404 resident identity matches detector
+PASS: Room404 uniform positive door scale
+PASS: Room404 valid rule permits side -1
+PASS: Room404 violation returns to left stairs from side -1
+PASS: Room404 return resumes without story interception
+PASS: Room404 valid rule permits side 1
+PASS: Room404 violation returns to left stairs from side 1
+PASS: Room404 return resumes without story interception
+PASS: Room405 artwork matches CLOSED
+PASS: Room405 resident visible only when open
+PASS: Room405 resident identity matches detector
+PASS: Room405 closed/warning safe
+PASS: Room405 artwork matches WARNING
+PASS: Room405 resident visible only when open
+PASS: Room405 resident identity matches detector
+PASS: Room405 closed/warning safe
+PASS: Room405 artwork matches OPEN
+PASS: Room405 resident visible only when open
+PASS: Room405 resident identity matches detector
+PASS: Room405 uniform positive door scale
+PASS: Room405 valid rule permits side -1
+PASS: Room405 violation returns to left stairs from side -1
+PASS: Room405 return resumes without story interception
+PASS: Room405 valid rule permits side 1
+PASS: Room405 violation returns to left stairs from side 1
+PASS: Room405 return resumes without story interception
+PASS: Room401 same-session revisit stable
+PASS: Room402 same-session revisit stable
+PASS: Room403 same-session revisit stable
+PASS: Room404 same-session revisit stable
+PASS: Room405 same-session revisit stable
+PASS: Room502 artwork matches CLOSED
+PASS: Room502 resident visible only when open
+PASS: Room502 resident identity matches detector
+PASS: Room502 closed/warning safe
+PASS: Room502 artwork matches WARNING
+PASS: Room502 resident visible only when open
+PASS: Room502 resident identity matches detector
+PASS: Room502 closed/warning safe
+PASS: Room502 artwork matches OPEN
+PASS: Room502 resident visible only when open
+PASS: Room502 resident identity matches detector
+PASS: Room502 uniform positive door scale
+PASS: Room502 valid rule permits side -1
+PASS: Room502 violation returns to left stairs from side -1
+PASS: Room502 return resumes without story interception
+PASS: Room502 valid rule permits side 1
+PASS: Room502 violation returns to left stairs from side 1
+PASS: Room502 return resumes without story interception
+PASS: Room503 artwork matches CLOSED
+PASS: Room503 resident visible only when open
+PASS: Room503 resident identity matches detector
+PASS: Room503 closed/warning safe
+PASS: Room503 artwork matches WARNING
+PASS: Room503 resident visible only when open
+PASS: Room503 resident identity matches detector
+PASS: Room503 closed/warning safe
+PASS: Room503 artwork matches OPEN
+PASS: Room503 resident visible only when open
+PASS: Room503 resident identity matches detector
+PASS: Room503 uniform positive door scale
+PASS: Room503 valid rule permits side -1
+PASS: Room503 violation returns to left stairs from side -1
+PASS: Room503 return resumes without story interception
+PASS: Room503 valid rule permits side 1
+PASS: Room503 violation returns to left stairs from side 1
+PASS: Room503 return resumes without story interception
+PASS: Room501 same-session revisit stable
+PASS: Room502 same-session revisit stable
+PASS: Room503 same-session revisit stable
+C_ORDINARY_AUDIT: PASS
