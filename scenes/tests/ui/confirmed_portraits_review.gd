@@ -1,11 +1,16 @@
 extends SceneTree
 const Portraits = preload("res://scenes/ui/confirmed_character_portraits.gd")
+const TeamArt = preload("res://scenes/ui/character_art_v2.gd")
 var failures := 0
 func _initialize() -> void: run.call_deferred()
 func run() -> void:
 	var folder := OS.get_environment("AE4PA_PORTRAIT_EVIDENCE")
 	if folder.is_empty(): folder = "user://confirmed_portraits_review"
 	DirAccess.make_dir_recursive_absolute(folder)
+	var portraits := Portraits.PORTRAITS.duplicate(true)
+	portraits["carol"] = {}
+	for expression in TeamArt.EXPRESSIONS:
+		portraits["carol"][expression] = TeamArt.portrait("an", expression)
 	var main = load("res://scenes/main.tscn").instantiate()
 	root.add_child(main)
 	current_scene = main
@@ -21,8 +26,8 @@ func run() -> void:
 		for resolution in [Vector2i(960,540), Vector2i(1280,720), Vector2i(1920,1080)]:
 			root.size = resolution
 			DisplayServer.window_set_size(resolution)
-			for role in Portraits.PORTRAITS:
-				for expression in Portraits.PORTRAITS[role]:
+			for role in portraits:
+				for expression in portraits[role]:
 					dialogue.get("_beats").assign([{"scene":"cafe","speaker":"Carol" if role=="carol" else "Terese" if role=="terese" else "经理","expression":expression,"mode":"dialogue","text":"恐怖电影里的人要是都像你一样谨慎，电影十分钟就结束了。"}])
 					dialogue.set("_line_index", 0)
 					dialogue.call("_set_scene", "cafe", false)
@@ -31,7 +36,7 @@ func run() -> void:
 					for tick in range(5): await process_frame
 					var portrait: TextureRect = dialogue.get_node("%Portrait")
 					var rect := portrait.get_global_rect()
-					if not portrait.is_visible_in_tree() or portrait.texture != Portraits.PORTRAITS[role][expression]:
+					if not portrait.is_visible_in_tree() or portrait.texture != portraits[role][expression]:
 						failures += 1
 						push_error("Portrait not displayed " + role + ":" + expression)
 					if not dialogue.get_global_rect().grow(1).encloses(rect):

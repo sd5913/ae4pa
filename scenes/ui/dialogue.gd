@@ -276,7 +276,7 @@ func present_character_beat(character_id: String, text: String) -> void:
 	_line.text = tr(text)
 	_portrait.texture = DialogueRoles.portrait(character_id)
 	if character_id == "CAROL":
-		_portrait.texture = ConfirmedPortraits.portrait("Carol", "neutral")
+		_portrait.texture = _trim_role_portrait(_portrait.texture, "an")
 	_portrait.visible = _portrait.texture != null
 	_fit_dialogue_text.call_deferred()
 	show()
