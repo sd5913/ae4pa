@@ -1,0 +1,1202 @@
+{
+  "baseline": "569b5d0941aaef73a327eaa19def1b0b95bcb798",
+  "failures": [],
+  "fixture": "unlocked tasks and learned residents; actual room draws; scheduler paused for each phase",
+  "rows": [
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "NOSE",
+      "origin": [
+        1099.0625,
+        560.0
+      ],
+      "pending": {},
+      "room": "301",
+      "session_seed": 20261122,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "NOSE",
+      "origin": [
+        1179.0625,
+        560.0
+      ],
+      "pending": {},
+      "room": "301",
+      "session_seed": 20261122,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "HAT",
+      "origin": [
+        1839.6875,
+        560.0
+      ],
+      "pending": {},
+      "room": "303",
+      "session_seed": 20261122,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "HAT",
+      "origin": [
+        1919.6875,
+        560.0
+      ],
+      "pending": {},
+      "room": "303",
+      "session_seed": 20261122,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "HAT",
+      "origin": [
+        2270.9375,
+        560.0
+      ],
+      "pending": {},
+      "room": "304",
+      "session_seed": 20261122,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "HAT",
+      "origin": [
+        2350.9375,
+        560.0
+      ],
+      "pending": {},
+      "room": "304",
+      "session_seed": 20261122,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "CHECKER",
+      "origin": [
+        676.25,
+        560.0
+      ],
+      "pending": {},
+      "room": "401",
+      "session_seed": 20261122,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "CHECKER",
+      "origin": [
+        756.25,
+        560.0
+      ],
+      "pending": {},
+      "room": "401",
+      "session_seed": 20261122,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EYE",
+      "origin": [
+        1252.8125,
+        560.0
+      ],
+      "pending": {},
+      "room": "402",
+      "session_seed": 20261122,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EYE",
+      "origin": [
+        1332.8125,
+        560.0
+      ],
+      "pending": {},
+      "room": "402",
+      "session_seed": 20261122,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        2388.125,
+        560.0
+      ],
+      "pending": {},
+      "room": "404",
+      "session_seed": 20261122,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        2468.125,
+        560.0
+      ],
+      "pending": {},
+      "room": "404",
+      "session_seed": 20261122,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "NOSE",
+      "origin": [
+        3009.6875,
+        560.0
+      ],
+      "pending": {},
+      "room": "405",
+      "session_seed": 20261122,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "NOSE",
+      "origin": [
+        3089.6875,
+        560.0
+      ],
+      "pending": {},
+      "room": "405",
+      "session_seed": 20261122,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "NOSE",
+      "origin": [
+        1656.875,
+        560.0
+      ],
+      "pending": {},
+      "room": "502",
+      "session_seed": 20261122,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "NOSE",
+      "origin": [
+        1736.875,
+        560.0
+      ],
+      "pending": {},
+      "room": "502",
+      "session_seed": 20261122,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "HAT",
+      "origin": [
+        2570.9375,
+        560.0
+      ],
+      "pending": {},
+      "room": "503",
+      "session_seed": 20261122,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "HAT",
+      "origin": [
+        2650.9375,
+        560.0
+      ],
+      "pending": {},
+      "room": "503",
+      "session_seed": 20261122,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "NOSE",
+      "origin": [
+        1099.0625,
+        560.0
+      ],
+      "pending": {},
+      "room": "301",
+      "session_seed": 20261123,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "NOSE",
+      "origin": [
+        1179.0625,
+        560.0
+      ],
+      "pending": {},
+      "room": "301",
+      "session_seed": 20261123,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "CHECKER",
+      "origin": [
+        1839.6875,
+        560.0
+      ],
+      "pending": {},
+      "room": "303",
+      "session_seed": 20261123,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "CHECKER",
+      "origin": [
+        1919.6875,
+        560.0
+      ],
+      "pending": {},
+      "room": "303",
+      "session_seed": 20261123,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "HAT",
+      "origin": [
+        2270.9375,
+        560.0
+      ],
+      "pending": {},
+      "room": "304",
+      "session_seed": 20261123,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "HAT",
+      "origin": [
+        2350.9375,
+        560.0
+      ],
+      "pending": {},
+      "room": "304",
+      "session_seed": 20261123,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        676.25,
+        560.0
+      ],
+      "pending": {},
+      "room": "401",
+      "session_seed": 20261123,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        756.25,
+        560.0
+      ],
+      "pending": {},
+      "room": "401",
+      "session_seed": 20261123,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        1252.8125,
+        560.0
+      ],
+      "pending": {},
+      "room": "402",
+      "session_seed": 20261123,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        1332.8125,
+        560.0
+      ],
+      "pending": {},
+      "room": "402",
+      "session_seed": 20261123,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        2388.125,
+        560.0
+      ],
+      "pending": {},
+      "room": "404",
+      "session_seed": 20261123,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        2468.125,
+        560.0
+      ],
+      "pending": {},
+      "room": "404",
+      "session_seed": 20261123,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "CHECKER",
+      "origin": [
+        3009.6875,
+        560.0
+      ],
+      "pending": {},
+      "room": "405",
+      "session_seed": 20261123,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "CHECKER",
+      "origin": [
+        3089.6875,
+        560.0
+      ],
+      "pending": {},
+      "room": "405",
+      "session_seed": 20261123,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EYE",
+      "origin": [
+        1656.875,
+        560.0
+      ],
+      "pending": {},
+      "room": "502",
+      "session_seed": 20261123,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EYE",
+      "origin": [
+        1736.875,
+        560.0
+      ],
+      "pending": {},
+      "room": "502",
+      "session_seed": 20261123,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        2570.9375,
+        560.0
+      ],
+      "pending": {},
+      "room": "503",
+      "session_seed": 20261123,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        2650.9375,
+        560.0
+      ],
+      "pending": {},
+      "room": "503",
+      "session_seed": 20261123,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "NOSE",
+      "origin": [
+        1099.0625,
+        560.0
+      ],
+      "pending": {},
+      "room": "301",
+      "session_seed": 20261124,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "NOSE",
+      "origin": [
+        1179.0625,
+        560.0
+      ],
+      "pending": {},
+      "room": "301",
+      "session_seed": 20261124,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "HAT",
+      "origin": [
+        1839.6875,
+        560.0
+      ],
+      "pending": {},
+      "room": "303",
+      "session_seed": 20261124,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "HAT",
+      "origin": [
+        1919.6875,
+        560.0
+      ],
+      "pending": {},
+      "room": "303",
+      "session_seed": 20261124,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        2270.9375,
+        560.0
+      ],
+      "pending": {},
+      "room": "304",
+      "session_seed": 20261124,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        2350.9375,
+        560.0
+      ],
+      "pending": {},
+      "room": "304",
+      "session_seed": 20261124,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EYE",
+      "origin": [
+        676.25,
+        560.0
+      ],
+      "pending": {},
+      "room": "401",
+      "session_seed": 20261124,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EYE",
+      "origin": [
+        756.25,
+        560.0
+      ],
+      "pending": {},
+      "room": "401",
+      "session_seed": 20261124,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "CHECKER",
+      "origin": [
+        1252.8125,
+        560.0
+      ],
+      "pending": {},
+      "room": "402",
+      "session_seed": 20261124,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "CHECKER",
+      "origin": [
+        1332.8125,
+        560.0
+      ],
+      "pending": {},
+      "room": "402",
+      "session_seed": 20261124,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        2388.125,
+        560.0
+      ],
+      "pending": {},
+      "room": "404",
+      "session_seed": 20261124,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        2468.125,
+        560.0
+      ],
+      "pending": {},
+      "room": "404",
+      "session_seed": 20261124,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "CHECKER",
+      "origin": [
+        3009.6875,
+        560.0
+      ],
+      "pending": {},
+      "room": "405",
+      "session_seed": 20261124,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "CHECKER",
+      "origin": [
+        3089.6875,
+        560.0
+      ],
+      "pending": {},
+      "room": "405",
+      "session_seed": 20261124,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EYE",
+      "origin": [
+        1656.875,
+        560.0
+      ],
+      "pending": {},
+      "room": "502",
+      "session_seed": 20261124,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EYE",
+      "origin": [
+        1736.875,
+        560.0
+      ],
+      "pending": {},
+      "room": "502",
+      "session_seed": 20261124,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        2570.9375,
+        560.0
+      ],
+      "pending": {},
+      "room": "503",
+      "session_seed": 20261124,
+      "side": -1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    },
+    {
+      "destination": [
+        192.0,
+        560.0
+      ],
+      "monster": "EAR",
+      "origin": [
+        2650.9375,
+        560.0
+      ],
+      "pending": {},
+      "room": "503",
+      "session_seed": 20261124,
+      "side": 1,
+      "signal": "rule_violated -> floor._on_door_violation -> GameManager.safe_return_started",
+      "state": "OPEN"
+    }
+  ],
+  "safe_return_signals": [
+    {
+      "floor": 3,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "SWITCHED_NEAR_CHECKER",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "SWITCHED_NEAR_CHECKER",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 5,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 5,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 5,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 5,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "SWITCHED_NEAR_CHECKER",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "SWITCHED_NEAR_CHECKER",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "SWITCHED_NEAR_CHECKER",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "SWITCHED_NEAR_CHECKER",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 5,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 5,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 5,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 5,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 3,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "SWITCHED_NEAR_CHECKER",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "SWITCHED_NEAR_CHECKER",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "SWITCHED_NEAR_CHECKER",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 4,
+      "reason": "SWITCHED_NEAR_CHECKER",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 5,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 5,
+      "reason": "WRONG_CARD",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 5,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    },
+    {
+      "floor": 5,
+      "reason": "MOVED_NEAR_EAR",
+      "signal_source": "GameManager.safe_return_started"
+    }
+  ],
+  "seeds": [
+    20261122,
+    20261123,
+    20261124
+  ]
+}

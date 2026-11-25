@@ -1,0 +1,39 @@
+{
+  "date": "2026-11-22 Asia/Shanghai",
+  "runtime_baseline": "569b5d0941aaef73a327eaa19def1b0b95bcb798",
+  "committed_diagnostic_test": "5bbbe6536eb358618325cf5a3d419b24a7097470",
+  "environment": {
+    "os": "Windows NT 10.0.26300.0",
+    "godot": "4.7.2.stable.official.ed1daf0bf",
+    "renderer": "Compatibility / OpenGL 3.3.0 NVIDIA 546.30 / RTX 3070 Laptop GPU",
+    "resolution": [
+      1280,
+      720
+    ]
+  },
+  "sequence": "standalone F6-equivalent checks first, then actual-main F5-equivalent graphical/diagnostic checks; automated, not manual TC certification",
+  "runtime_sha256": {
+    "scenes/doors/monster_door.gd": "4ae3e359b9bbf12643f489d9d6aa4db5b9bd8f43ec258a5f0cdeee2145e3add2",
+    "scenes/doors/door_scheduler.gd": "bb9d9d425360371c4782784219386ff9e89bb70594217c1f5e42334579e1cfe6",
+    "scenes/doors/v4_door_catalog.gd": "6b1784d54c04790cedcb1c38d4b3df73b933abd012ac2d515e6da83e6f468f71",
+    "scenes/levels/floor.gd": "020161abf014b547d5a72c988f601daaf811401adc726567a01b752c1f975a8e",
+    "scripts/game_manager.gd": "f5c96d7dae0acd4df4151cef77791943c1a4dceab23837c6d02cc0a4c81dd9ef",
+    "scenes/ui/dialogue.gd": "fa8d25f417eca109fdb400ca91e9190f4ebd84991ea1ea432faacb7f85353885"
+  },
+  "ordinary_approaches": 54,
+  "ordinary_kinds": [
+    "CHECKER",
+    "EAR",
+    "EYE",
+    "HAT",
+    "NOSE"
+  ],
+  "scheduler_ticks": 3600,
+  "graphical_failures": [
+    "normal new game through all eight tasks/309 to actualEXIT success"
+  ],
+  "committed_diagnostic_failures": [
+    "normal new game through all eight tasks/309 to actualEXIT success"
+  ],
+  "full_TC_original_steps_available": false
+}

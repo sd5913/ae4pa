@@ -1325,6 +1325,13 @@
 
 - CI联调补充：首轮Linux仅late_mainline旧断言（审批后HUD为空）失败；已改为精确验证501审批成功/交付文案及组件成功反馈，中英文定向PASS，保留全部任务/失败恢复断言。远端CI待追加提交重跑，不能把首轮记作通过。
 
+
+### 2026-11-23 Linux／macOS 桌面打包交接
+
+- 基于 GitHub `main@ac58302b29499a4243dd302876a8f24e84be013a` 新增 Linux x86-64 与 macOS Universal 2 预览。沿用 Windows 的资源包校验和 Godot 4.7.2；启用 arm64 导出所需的 ETC2／ASTC 导入。
+- [打包与发版说明](desktop-release.md)记录预览验证、签名环境与密钥格式、受保护主线版本标签及学生发布流程。macOS 预览仅使用临时签名；GitHub 发版草稿必须通过 Developer ID 签名、公证、装订及验证。
+- Linux 上使用匹配的 Godot 4.7.2 验证了 ZIP 解压启动、中国简体与英语配置、本地化检查及三平台 PCK。macOS Universal 2 通过 Linux 交叉导出与 Mach-O 检查。详见 [桌面打包分支验证](qa.md#桌面打包分支验证2026-11-23)。
+
 ### 2026-11-24 D：切换跑步与体力（待A审查）
 
 - work/member-D-run-stamina，代码786a254。新增左Shift独立动作、玩家单一体力模型、1.35倍普通位移与底部探索HUD；不改工作/偷证耗时、权限、怪物或门规则。跨楼层/检查点/新局体力适配在玩家侧，需A审查状态边界。

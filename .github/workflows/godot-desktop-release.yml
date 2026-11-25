@@ -1,0 +1,239 @@
+name: Godot desktop packages
+
+on:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: godot-desktop-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name != 'push' }}
+
+jobs:
+  source:
+    name: Validate release source
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      release-commit: ${{ steps.tag.outputs.commit }}
+      release-ref: ${{ steps.tag.outputs.ref-sha }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        if: github.event_name == 'push'
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Require an existing version tag on main
+        if: github.event_name == 'push'
+        id: tag
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [[ "$GITHUB_REPOSITORY" != sd5913/ae4pa || "$GITHUB_REF_TYPE" != tag ||
+                ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo '::error::A desktop release requires a vMAJOR.MINOR.PATCH tag in sd5913/ae4pa.'
+            exit 1
+          fi
+          if [[ "$(gh api "repos/$GITHUB_REPOSITORY/branches/main" --jq .protected)" != true ]]; then
+            echo '::error::The main branch must be protected before releasing.'
+            exit 1
+          fi
+          ref_sha=$(git rev-parse "refs/tags/$RELEASE_TAG")
+          commit=$(git rev-parse "$ref_sha^{commit}")
+          test "$commit" = "$(git rev-parse "${GITHUB_SHA}^{commit}")"
+          git rev-list --first-parent refs/remotes/origin/main > "$RUNNER_TEMP/main-history"
+          if ! grep -Fxq "$commit" "$RUNNER_TEMP/main-history"; then
+            echo '::error::The release tag must point to a commit on the first-parent history of main.'
+            exit 1
+          fi
+          printf 'commit=%s\nref-sha=%s\n' "$commit" "$ref_sha" >> "$GITHUB_OUTPUT"
+
+  package:
+    name: Export and package Linux and macOS
+    needs: source
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    env:
+      PACKAGE_CHANNEL: ${{ github.event_name == 'push' && 'release-input' || 'preview' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          lfs: true
+          persist-credentials: false
+      - name: Verify Git LFS objects and worktree
+        run: |
+          git lfs fsck --objects --pointers HEAD
+          git lfs checkout
+          lfs_files=$(git lfs ls-files)
+          if grep -E '^[[:xdigit:]]+ - ' <<< "$lfs_files"; then
+            echo '::error::Git LFS pointers remain in the worktree.'
+            exit 1
+          fi
+      - name: Install pinned Godot editor and export templates
+        run: bash .github/scripts/install_desktop_godot.sh
+      - name: Export and verify both PCKs
+        run: |
+          bash .github/scripts/package_desktop.sh linux
+          bash .github/scripts/package_desktop.sh macos
+      - name: Upload the Linux ZIP
+        id: linux
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: monster-hotel-linux-x86_64-${{ env.PACKAGE_CHANNEL }}
+          path: ${{ runner.temp }}/desktop-packages/monster-hotel-linux-x86_64.zip
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+          overwrite: true
+      - name: Upload the macOS unsigned review ZIP
+        id: macos
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: monster-hotel-macos-universal-unsigned-${{ env.PACKAGE_CHANNEL }}
+          path: ${{ runner.temp }}/desktop-packages/monster-hotel-macos-universal-unsigned.zip
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+          overwrite: true
+      - name: Link the packages
+        env:
+          LINUX_URL: ${{ steps.linux.outputs.artifact-url }}
+          MACOS_URL: ${{ steps.macos.outputs.artifact-url }}
+        run: |
+          printf 'Source: `%s`\n\n- [Linux x86-64 %s](%s)\n- [macOS Universal 2 unsigned %s](%s)\n' \
+            "$(git rev-parse HEAD)" "$PACKAGE_CHANNEL" "$LINUX_URL" "$PACKAGE_CHANNEL" "$MACOS_URL" >> "$GITHUB_STEP_SUMMARY"
+
+  linux-smoke:
+    name: Launch the uploaded Linux ZIP
+    needs: package
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+    env:
+      PACKAGE_CHANNEL: ${{ github.event_name == 'push' && 'release-input' || 'preview' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: .github/scripts
+      - name: Download the Linux ZIP from Actions
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          github-token: ${{ github.token }}
+          name: monster-hotel-linux-x86_64-${{ env.PACKAGE_CHANNEL }}
+          path: ${{ runner.temp }}/linux
+      - name: Verify executable mode, extract and launch both language profiles
+        run: bash .github/scripts/smoke_linux_package.sh "$RUNNER_TEMP/linux/monster-hotel-linux-x86_64.zip"
+
+  macos-smoke:
+    name: Inspect the uploaded Universal 2 ZIP on macOS
+    needs: package
+    runs-on: macos-15
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      actions: read
+    env:
+      PACKAGE_CHANNEL: ${{ github.event_name == 'push' && 'release-input' || 'preview' }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+          sparse-checkout: .github/scripts
+      - name: Download the macOS ZIP from Actions
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          github-token: ${{ github.token }}
+          name: monster-hotel-macos-universal-unsigned-${{ env.PACKAGE_CHANNEL }}
+          path: ${{ runner.temp }}/macos
+      - name: Verify the app bundle, both architectures and the ad hoc signature
+        run: |
+          package="$RUNNER_TEMP/macos"
+          ditto -x -k "$package/monster-hotel-macos-universal-unsigned.zip" "$package/extracted"
+          test -s "$package/extracted/UNSIGNED-REVIEW.txt"
+          app="$package/extracted/Monster Hotel.app"
+          bash .github/scripts/check_macos_bundle.sh "$app"
+          codesign --verify --deep --strict "$app"
+
+  sign-macos:
+    name: Sign and notarize macOS Universal
+    if: github.repository == 'sd5913/ae4pa' && github.event_name == 'push' && github.ref_type == 'tag'
+    needs: [source, macos-smoke]
+    runs-on: macos-15
+    timeout-minutes: 45
+    permissions:
+      contents: read
+      actions: read
+    environment: macos-release
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ needs.source.outputs.release-commit }}
+          persist-credentials: false
+          sparse-checkout: .github/scripts
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          github-token: ${{ github.token }}
+          name: monster-hotel-macos-universal-unsigned-release-input
+          path: ${{ runner.temp }}/unsigned
+      - name: Sign, notarize and verify the distributable ZIP
+        env:
+          MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
+          MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+          MACOS_SIGNING_IDENTITY: ${{ secrets.MACOS_SIGNING_IDENTITY }}
+          ASC_API_KEY_P8: ${{ secrets.ASC_API_KEY_P8 }}
+          ASC_API_KEY_ID: ${{ secrets.ASC_API_KEY_ID }}
+          ASC_API_ISSUER_ID: ${{ secrets.ASC_API_ISSUER_ID }}
+        run: |
+          bash .github/scripts/sign_macos_package.sh \
+            "$RUNNER_TEMP/unsigned/monster-hotel-macos-universal-unsigned.zip" \
+            "$RUNNER_TEMP/signed/monster-hotel-macos-universal.zip"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          github-token: ${{ github.token }}
+          name: monster-hotel-macos-universal-notarized
+          path: ${{ runner.temp }}/signed/monster-hotel-macos-universal.zip
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+          overwrite: true
+
+  draft-release:
+    name: Prepare GitHub Release draft
+    if: github.repository == 'sd5913/ae4pa' && github.event_name == 'push' && github.ref_type == 'tag'
+    needs: [source, linux-smoke, sign-macos]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          github-token: ${{ github.token }}
+          name: monster-hotel-linux-x86_64-release-input
+          path: release
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          github-token: ${{ github.token }}
+          name: monster-hotel-macos-universal-notarized
+          path: release
+      - name: Attach the verified packages to a draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+          RELEASE_REF: ${{ needs.source.outputs.release-ref }}
+        run: |
+          test -s release/monster-hotel-linux-x86_64.zip
+          test -s release/monster-hotel-macos-universal.zip
+          test "$(gh api "repos/$GITHUB_REPOSITORY/git/ref/tags/$RELEASE_TAG" --jq .object.sha)" = "$RELEASE_REF"
+          gh release create "$RELEASE_TAG" --repo "$GITHUB_REPOSITORY" --verify-tag --draft --generate-notes \
+            release/monster-hotel-linux-x86_64.zip release/monster-hotel-macos-universal.zip

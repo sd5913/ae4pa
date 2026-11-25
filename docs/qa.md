@@ -4,6 +4,15 @@
 
 用[游戏测试工作簿](../outputs/game-test-20261121/游戏测试.xlsx)填写真人结果并跟踪问题。[当前项目状态](CURRENT_STATUS.md)汇总当前基线、通过范围和未完成项。早期 201、202 真人结果保留在其原版本。 [既有真人验收](acceptance_status_20261117.md)
 
+## 桌面打包分支验证（2026-11-23）
+
+基于 `main@ac58302b29499a4243dd302876a8f24e84be013a` 的打包改动在 Linux x86-64 上使用 Godot `4.7.2.stable.official.ed1daf0bf` 验证。
+
+- `bash .github/scripts/package_desktop.sh linux` 和 `bash .github/scripts/smoke_linux_package.sh <Linux ZIP>` 均退出 0。解压后保留执行权限，分别用全新中文和已保存英文的用户目录无界面启动。
+- 源项目的 `godot --headless --path . --script res://scenes/tests/core/localization_smoke.gd` 和追加 `-- --expect-chinese` 的持久化检查均报告 PASS。
+- Linux 交叉导出的 `macOS Universal` 包经 ZIP 解压后核对了 `.app`、两种 Mach-O 架构及执行权限。Linux、macOS 与 Windows 的 PCK 均通过 `check_desktop_pack.gd` 校验。
+- CI 上传下载、macOS 原生签名与公证、实机 Gatekeeper 启动及 Windows 实机验收分别记录。发版入口见 [Linux／macOS 打包与发版](desktop-release.md)。
+
 ## 现行主线验收口径
 
 从正式 F5 菜单开始。按[玩家指南](player-guide.md)执行，下表给出当前路线与 PDF 附录的差异。沿用原用例编号追溯需求，并在工作簿注明真正执行的步骤和提交。
