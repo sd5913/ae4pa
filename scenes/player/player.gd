@@ -6,9 +6,6 @@ extends CharacterBody2D
 signal stamina_changed(value: float, exhausted: bool)
 const RunState = preload("res://scenes/player/run_stamina.gd")
 static var stamina := RunState.new()
-static var _checkpoint_stamina: Dictionary = {}
-static var _last_status := "NONE"
-static var _last_state := "MENU"
 
 var is_moving: bool = false
 var facing_direction: int = 1
@@ -21,10 +18,8 @@ var _movement_locked: bool = false
 
 
 func _ready() -> void:
-	_state_changed(GameManager.game_state)
 	GameManager.state_changed.connect(_state_changed)
 	GameManager.modal_changed.connect(_modal_changed)
-	GameManager.task_updated.connect(_task_changed)
 
 	var outfit := preload("res://scenes/player/player_identity_outfit.gd").new()
 	outfit.name = "IdentityOutfit"
@@ -76,19 +71,14 @@ func _input(event: InputEvent) -> void:
 func _modal_changed() -> void:
 	if not GameManager.is_world_input_allowed(): stamina.running = false
 
-func _state_changed(state: String) -> void:
+func _state_changed(_state: String) -> void:
 	stamina.running = false
-	if state == "LOADING" and (_last_state in ["MENU","WON"] or (GameManager.current_task_id == "NONE" and not GameManager.has_completed_manager_intro())):
-		stamina.restore({})
-		_checkpoint_stamina.clear()
-		_last_status = "NONE"
-	if state == "RESTORING" and not _checkpoint_stamina.is_empty(): stamina.restore(_checkpoint_stamina)
-	_last_state = state
 
-func _task_changed() -> void:
-	var status: String = GameManager.get_task_view().status
-	if status == "ACTIVE" and _last_status == "AVAILABLE": _checkpoint_stamina = stamina.capture()
-	_last_status = status
+static func reset_stamina() -> void:
+	stamina.restore({})
+
+static func validate_stamina_state(data: Dictionary) -> bool:
+	return RunState.validate_snapshot(data)
 
 func capture_stamina_state() -> Dictionary:
 	return stamina.capture()

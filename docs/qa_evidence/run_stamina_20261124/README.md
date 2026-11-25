@@ -33,3 +33,9 @@ Windows / Godot4.7.2.stable.official.ed1daf0bf / Compatibility NVIDIA RTX3070. A
 run-cycle.avi: Godot Movie Maker,389frames/30fps (~12.97s), actual main fixture, scripted walking/running/exhaustion/recovery/restart. hud-zh.png and hud-en.png show scoped bottom-left160×10 bar without covering task/toolbar. No manual full-route claim.
 
 Pending A review/manual acceptance: exact walls/stair-trigger approaches with running, physical left/right Shift/device testing, all task work/theft interactions while holding inputs, long task-route walk/run timing and difficulty sign-off, 309/CG real interruption and exported/cross-machine display. Task checkpoint API integration is reviewed above; full disk save/load is an upstream dependency. No merge authorized in this task.
+
+## A 合并复测
+
+任务接受时的体力现在随 GameManager 的任务检查点捕获，重试从对应检查点恢复。新局由 GameManager 明确补满，换层保留当前体力。磁盘读档可用独立的当前体力与检查点体力字段，不再依赖玩家侦听通用恢复状态。
+
+macOS / Godot 4.7.2，`run_stamina_smoke.gd -- --ui-smoke` 输出 `RUN_STAMINA: PASS`，退出 0。覆盖 30／60／120 FPS、模态、跨层、接受与重试、新局。
