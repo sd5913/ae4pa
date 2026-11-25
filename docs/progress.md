@@ -1338,3 +1338,7 @@
 - 模型/真实玩家30/60/120 delta、模态冻结、阈值/回显/交互持键、切层/接受/重试/新局检查退出0；既有foundation、staff、checkpoint、UI退出0。中文1280/英文960正式场景脚本检查退出0。
 - 1F480px非录制实测走路3.018秒、跑步2.231秒；不是完整任务路线测时。全新局--ui-smoke本轮和a57旧基线均在二楼节点访问失败，保留FAIL。物理输入、真实楼梯/墙/全任务跑步难度与导出仍待验收；磁盘存档未接通。
 - [参数、来源、全部结果/限制与录屏](qa_evidence/run_stamina_20261124/README.md)。初始导入/新局检查失败记录保留；最终针对性检查通过，不合并main。
+
+## 2026-11-25 C confirmed character assets
+Added 27 approved PNGs under art_sources/confirmed_characters_20261125 with SHA-256 manifest; verified image decoding and dimensions. Dialogue portraits, expressions, review sheets and chibi animation atlases only; runtime integration follows in a separate commit. No existing working-tree changes included.
+
