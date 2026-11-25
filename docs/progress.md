@@ -1299,6 +1299,18 @@
 - [正式场景截图、15.97秒自动录屏、文案对照、日志及限制](qa_evidence/d_ui_narrative_20261123/README.md)。任务前置用公开API，A时钟加速触发超时；不是人工等待完整时限或人工全通。截图已目视核对，物理操作／跨机器／导出仍待验收。未生成CG、不替换Carol、不合并main。原无关未跟踪文件保留。
 
 
+### 2026-11-24 A：首次工作证手动伪装与观察限制
+
+- 基线与范围：独立分支 `work/member-A-disguise-onboarding`，基于 `main@ac58302b29499a4243dd302876a8f24e84be013a`。只改 GDScript、英文翻译和测试／文档；未改 `.tscn`、`project.godot`、素材或玩法参数。
+- 实现：CardManager 偷证仅记入收藏，不再自动装备／激活；通过正式背包手动装备并仍以 Q 激活。楼层向 CardManager 提供身份变更守卫：处于实际观察状态的员工、处于开启且覆盖玩家范围内的房门会阻止换证；205 核验怪沿用既有违规处罚，背包拖放只做无副作用预检。提示说明阻止原因。
+- 教学：首次获得唯一证件后按获得、等待安全、开背包、高亮卡片和槽 A、手动装备、首次启用、伪装成功／观察规则的顺序渐进展示。覆盖提前按 Q／I、关闭背包、按钮装备和后续卡片只收藏；英文目录增加对应提示。
+- 测试夹具：更新收卡、身份服装、背包与检查点预期为手动装备。完整主线测试初跑因装备助手将玩家留在楼层左侧而无法走到 205 工作点；修正夹具在安全位置操作后返回原位置，不改角色行为或有效断言。
+- PASS／退出 0：Godot `4.7.2.stable.official.ed1daf0bf` 下 foundation、staff core、work items、known monster rules、task door lifecycle、late mainline UI smoke、interaction onboarding、third card bag、player outfit、playtest bugfix、task checkpoint、`v4_identity_smoke.gd`、`checker_safe_bag_smoke.gd`、`player_identity_outfit_smoke.gd` 和 `full_mainline_escape_smoke.gd`。完整路线从正常新局经过 201–205、302、309 实际 CG、403、501 到 EXIT 成功页。执行日志在 `/private/tmp/ae4pa-suite-<name>.log`、`/private/tmp/ae4pa-suite-full_mainline_escape-rerun.log` 和 `/private/tmp/ae4pa-<name>-final.log`。
+- 未通过／环境阻断：`localization_smoke.gd` 退出 1；测试无法写 Godot `user://logs/` 和对白进度文件，出现 `Unable to save completed intro state: Can't open file`，随后独立进度文件断言失败。翻译断言已执行但整个 smoke 不记通过，需在有可写用户数据目录的环境重跑。headless 日志另有 macOS 根证书读取与 FreeType 错误输出，不能称日志零错误。
+- 历史与限制：`main@dca61f7` 的 EXIT 失败记录不删；本次新 SHA 的完整主线结果另列为 PASS。Godot MCP 已用 Compatibility 渲染器启动正式主场景且未报告运行时脚本错误，但没有进行人工窗口操作或目视评估。鼠标真实拖放、真人操作、Windows／macOS 同提交及目标平台导出验收未完成；用户此前确认的另一轮真人通关因 SHA 与平台未记录，不当作本分支验收。
+- 下一步：在可写用户数据目录重跑 localization smoke；原生 Compatibility 窗口检查首次教学、服装、拖放与观察提示；真人走一次 201–205 与后段并记录本分支 SHA／平台，再做 Windows／macOS 同提交与导出验收。
+- PR #73 复核补丁：卡片快照撤回首张证件时清理伪装引导与槽位高亮；重新取得同一卡可重复引导，沿用原手动装备和身份规则。macOS Godot 4.7.2：补充断言先复现失败，修复后首次引导、检查点、底座三项无窗口检查退出 0；真人和 Windows 检查未在此补丁上重跑。
+
 ### 2026-11-24 D：记忆界面与已读历史交付（完整存档待 A）
 
 - 保留原工作并在 work/member-D-memory-ui-review 交付；已合入 origin/main@ac58302，合并提交 a57fdeb。旧 PR #64 已合并，本轮使用新审查分支。本轮代码 3f2972359338f00d427f8a9c2e0c606feffd300b；记录整理未修改运行代码。
@@ -1325,14 +1337,9 @@
 
 - CI联调补充：首轮Linux仅late_mainline旧断言（审批后HUD为空）失败；已改为精确验证501审批成功/交付文案及组件成功反馈，中英文定向PASS，保留全部任务/失败恢复断言。远端CI待追加提交重跑，不能把首轮记作通过。
 
-### 2026-11-24 A：首次工作证手动伪装与观察限制
 
-- 基线与范围：独立分支 `work/member-A-disguise-onboarding`，基于 `main@ac58302b29499a4243dd302876a8f24e84be013a`。只改 GDScript、英文翻译和测试／文档；未改 `.tscn`、`project.godot`、素材或玩法参数。
-- 实现：CardManager 偷证仅记入收藏，不再自动装备／激活；通过正式背包手动装备并仍以 Q 激活。楼层向 CardManager 提供身份变更守卫：处于实际观察状态的员工、处于开启且覆盖玩家范围内的房门会阻止换证；205 核验怪沿用既有违规处罚，背包拖放只做无副作用预检。提示说明阻止原因。
-- 教学：首次获得唯一证件后按获得、等待安全、开背包、高亮卡片和槽 A、手动装备、首次启用、伪装成功／观察规则的顺序渐进展示。覆盖提前按 Q／I、关闭背包、按钮装备和后续卡片只收藏；英文目录增加对应提示。
-- 测试夹具：更新收卡、身份服装、背包与检查点预期为手动装备。完整主线测试初跑因装备助手将玩家留在楼层左侧而无法走到 205 工作点；修正夹具在安全位置操作后返回原位置，不改角色行为或有效断言。
-- PASS／退出 0：Godot `4.7.2.stable.official.ed1daf0bf` 下 foundation、staff core、work items、known monster rules、task door lifecycle、late mainline UI smoke、interaction onboarding、third card bag、player outfit、playtest bugfix、task checkpoint、`v4_identity_smoke.gd`、`checker_safe_bag_smoke.gd`、`player_identity_outfit_smoke.gd` 和 `full_mainline_escape_smoke.gd`。完整路线从正常新局经过 201–205、302、309 实际 CG、403、501 到 EXIT 成功页。执行日志在 `/private/tmp/ae4pa-suite-<name>.log`、`/private/tmp/ae4pa-suite-full_mainline_escape-rerun.log` 和 `/private/tmp/ae4pa-<name>-final.log`。
-- 未通过／环境阻断：`localization_smoke.gd` 退出 1；测试无法写 Godot `user://logs/` 和对白进度文件，出现 `Unable to save completed intro state: Can't open file`，随后独立进度文件断言失败。翻译断言已执行但整个 smoke 不记通过，需在有可写用户数据目录的环境重跑。headless 日志另有 macOS 根证书读取与 FreeType 错误输出，不能称日志零错误。
-- 历史与限制：`main@dca61f7` 的 EXIT 失败记录不删；本次新 SHA 的完整主线结果另列为 PASS。Godot MCP 已用 Compatibility 渲染器启动正式主场景且未报告运行时脚本错误，但没有进行人工窗口操作或目视评估。鼠标真实拖放、真人操作、Windows／macOS 同提交及目标平台导出验收未完成；用户此前确认的另一轮真人通关因 SHA 与平台未记录，不当作本分支验收。
-- 下一步：在可写用户数据目录重跑 localization smoke；原生 Compatibility 窗口检查首次教学、服装、拖放与观察提示；真人走一次 201–205 与后段并记录本分支 SHA／平台，再做 Windows／macOS 同提交与导出验收。
-- PR #73 复核补丁：卡片快照撤回首张证件时清理伪装引导与槽位高亮；重新取得同一卡可重复引导，沿用原手动装备和身份规则。macOS Godot 4.7.2：补充断言先复现失败，修复后首次引导、检查点、底座三项无窗口检查退出 0；真人和 Windows 检查未在此补丁上重跑。
+### 2026-11-23 Linux／macOS 桌面打包交接
+
+- 基于 GitHub `main@ac58302b29499a4243dd302876a8f24e84be013a` 新增 Linux x86-64 与 macOS Universal 2 预览。沿用 Windows 的资源包校验和 Godot 4.7.2；启用 arm64 导出所需的 ETC2／ASTC 导入。
+- [打包与发版说明](desktop-release.md)记录预览验证、签名环境与密钥格式、受保护主线版本标签及学生发布流程。macOS 预览仅使用临时签名；GitHub 发版草稿必须通过 Developer ID 签名、公证、装订及验证。
+- Linux 上使用匹配的 Godot 4.7.2 验证了 ZIP 解压启动、中国简体与英语配置、本地化检查及三平台 PCK。macOS Universal 2 通过 Linux 交叉导出与 Mach-O 检查。详见 [桌面打包分支验证](qa.md#桌面打包分支验证2026-11-23)。

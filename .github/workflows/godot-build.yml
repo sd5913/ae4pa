@@ -109,8 +109,8 @@ jobs:
           verifier="$RUNNER_TEMP/pack-check"
           mkdir -p "$verifier"
           printf 'config_version=5\n' > "$verifier/project.godot"
-          cp .github/scripts/check_windows_pack.gd "$verifier/"
-          godot --headless --path "$verifier" --script res://check_windows_pack.gd \
+          cp .github/scripts/check_desktop_pack.gd "$verifier/"
+          godot --headless --path "$verifier" --script res://check_desktop_pack.gd \
             -- "$output/MonsterHotel.pck" "$GITHUB_WORKSPACE"
 
           commit="$(git rev-parse HEAD)"

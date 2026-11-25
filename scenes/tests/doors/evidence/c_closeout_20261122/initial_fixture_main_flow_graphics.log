@@ -1,0 +1,175 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 546.30 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3070 Laptop GPU
+
+AUDIT_CHECK PASS animated menu becomes ready
+AUDIT_CHECK PASS normal new game real manager conversation
+AUDIT_CHECK PASS actual stair travel 2
+AUDIT_CHECK PASS 201 first contact has visible warning before dialogue
+AUDIT_CHECK PASS saved native evidence 201_warning
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/201_warning.png
+AUDIT_CHECK PASS 201 D intro before acceptance
+AUDIT_CHECK PASS 201 real artwork monster appears in intro
+AUDIT_CHECK PASS saved native evidence 201_intro
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/201_intro.png
+AUDIT_CHECK PASS 201 actual intercept offers correct task
+AUDIT_CHECK PASS 201 dialogue ends without accepting or releasing
+AUDIT_CHECK PASS 201 actual accept
+AUDIT_CHECK PASS 201 real E reminder MISSING_CARD
+AUDIT_CHECK PASS actual stair travel 1
+AUDIT_CHECK PASS real theft obtained CLEANER
+AUDIT_CHECK PASS actual stair travel 2
+AUDIT_CHECK PASS unfinished monster is already at door after returning from1F
+AUDIT_CHECK PASS 201 ready only after real work
+AUDIT_CHECK PASS 201 work alone leaves barrier
+AUDIT_CHECK PASS 201 real E settlement before success dialogue
+AUDIT_CHECK PASS 201 monster is visible during real delivery dialogue
+AUDIT_CHECK PASS 201 real artwork monster appears in delivery
+AUDIT_CHECK PASS saved native evidence 201_delivered
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/201_delivered.png
+AUDIT_CHECK PASS 201 real E reminder COMPLETED
+AUDIT_CHECK PASS 202 first contact has visible warning before dialogue
+AUDIT_CHECK PASS saved native evidence 202_warning
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/202_warning.png
+AUDIT_CHECK PASS 202 D intro before acceptance
+AUDIT_CHECK PASS 202 real artwork monster appears in intro
+AUDIT_CHECK PASS saved native evidence 202_intro
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/202_intro.png
+AUDIT_CHECK PASS 202 dialogue ends without accepting or releasing
+AUDIT_CHECK PASS 202 actual accept
+AUDIT_CHECK PASS 202 real E reminder MISSING_CARD
+AUDIT_CHECK PASS actual stair travel 1
+AUDIT_CHECK PASS real theft obtained SECURITY
+AUDIT_CHECK PASS actual stair travel 2
+AUDIT_CHECK PASS unfinished monster is already at door after returning from1F
+AUDIT_CHECK PASS 202 ready only after real work
+AUDIT_CHECK PASS 202 work alone leaves barrier
+AUDIT_CHECK PASS 202 real E settlement before success dialogue
+AUDIT_CHECK PASS 202 monster is visible during real delivery dialogue
+AUDIT_CHECK PASS 202 real artwork monster appears in delivery
+AUDIT_CHECK PASS saved native evidence 202_delivered
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/202_delivered.png
+AUDIT_CHECK PASS 202 real E reminder COMPLETED
+AUDIT_CHECK PASS 203 first contact has visible warning before dialogue
+AUDIT_CHECK PASS saved native evidence 203_warning
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/203_warning.png
+AUDIT_CHECK PASS 203 D intro before acceptance
+AUDIT_CHECK PASS 203 actual HUD has no201 fallback
+AUDIT_CHECK PASS 203 real artwork monster appears in intro
+AUDIT_CHECK PASS saved native evidence 203_intro
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/203_intro.png
+AUDIT_CHECK PASS 203 actual intercept offers correct task
+AUDIT_CHECK PASS 203 dialogue ends without accepting or releasing
+AUDIT_CHECK PASS 203 actual accept
+AUDIT_CHECK PASS 203 cannot physically pass before work and delivery
+AUDIT_CHECK PASS 203 real E reminder MISSING_CARD
+AUDIT_CHECK PASS actual stair travel 1
+AUDIT_CHECK PASS 203 real manager-front catch
+AUDIT_CHECK PASS 203 own checkpoint keeps201/202 but no unearned manager
+AUDIT_CHECK PASS actual stair travel 1
+AUDIT_CHECK PASS real theft obtained MANAGER
+AUDIT_CHECK PASS actual stair travel 2
+AUDIT_CHECK PASS unfinished monster is already at door after returning from1F
+WORK_DIAGNOSTIC RoomService203 { "target_id": "ROOM_SERVICE_203", "interaction_type": "AUTHORIZE", "status": "BLOCKED", "progress": 0.0, "elapsed": 0.0, "required_time": 0.0, "block_reason": "TASK_INACTIVE" } selected=ROOM_SERVICE_203
+AUDIT_CHECK PASS 203 owned manager but wrong active cannot approve
+AUDIT_CHECK PASS actual I/Q prepares requested identities
+AUDIT_CHECK PASS 203 real E reminder WORK_PENDING
+AUDIT_CHECK PASS 203 cannot unlock309
+AUDIT_CHECK PASS 203 ready only after real work
+AUDIT_CHECK PASS 203 work alone leaves barrier
+AUDIT_CHECK PASS 203 real E settlement before success dialogue
+AUDIT_CHECK PASS 203 monster is visible during real delivery dialogue
+AUDIT_CHECK PASS 203 real artwork monster appears in delivery
+AUDIT_CHECK PASS saved native evidence 203_delivered
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/203_delivered.png
+AUDIT_CHECK PASS 203 real E reminder COMPLETED
+AUDIT_CHECK PASS 204 first contact has visible warning before dialogue
+AUDIT_CHECK PASS saved native evidence 204_warning
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/204_warning.png
+AUDIT_CHECK PASS 204 D intro before acceptance
+AUDIT_CHECK PASS 204 actual HUD has no201 fallback
+AUDIT_CHECK PASS 204 real artwork monster appears in intro
+AUDIT_CHECK PASS saved native evidence 204_intro
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/204_intro.png
+AUDIT_CHECK PASS 204 actual intercept offers correct task
+AUDIT_CHECK PASS 204 dialogue ends without accepting or releasing
+AUDIT_CHECK PASS 204 actual accept
+AUDIT_CHECK PASS 204 cannot physically pass before work and delivery
+AUDIT_CHECK PASS 204 real E reminder MISSING_CARD
+AUDIT_CHECK PASS actual I/Q prepares requested identities
+AUDIT_CHECK PASS 204 Q twice does not do work
+AUDIT_CHECK PASS 204 only clean cannot submit
+AUDIT_CHECK PASS 204 real E reminder CLEAN_ONLY
+AUDIT_CHECK PASS 204 timeout retry available
+AUDIT_CHECK PASS 204 retry returns own checkpoint without clock
+AUDIT_CHECK PASS 204 preserves earlier tasks and cards
+AUDIT_CHECK PASS 204 retry own board
+AUDIT_CHECK PASS 204 retry resets own stain only
+AUDIT_CHECK PASS actual I/Q prepares requested identities
+AUDIT_CHECK PASS 204 ready only after real work
+AUDIT_CHECK PASS 204 work alone leaves barrier
+AUDIT_CHECK PASS 204 real E settlement before success dialogue
+AUDIT_CHECK PASS 204 monster is visible during real delivery dialogue
+AUDIT_CHECK PASS 204 real artwork monster appears in delivery
+AUDIT_CHECK PASS saved native evidence 204_delivered
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/204_delivered.png
+AUDIT_CHECK PASS 204 real E reminder COMPLETED
+AUDIT_CHECK PASS 205 first contact has visible warning before dialogue
+AUDIT_CHECK PASS saved native evidence 205_warning
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/205_warning.png
+AUDIT_CHECK PASS 205 D intro before acceptance
+AUDIT_CHECK PASS 205 actual HUD has no201 fallback
+AUDIT_CHECK PASS 205 real artwork monster appears in intro
+AUDIT_CHECK PASS saved native evidence 205_intro
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/205_intro.png
+AUDIT_CHECK PASS 205 actual intercept offers correct task
+AUDIT_CHECK PASS 205 dialogue ends without accepting or releasing
+AUDIT_CHECK PASS 205 actual accept
+AUDIT_CHECK PASS 205 cannot physically pass before work and delivery
+AUDIT_CHECK PASS 205 actual in-range Q rejected
+AUDIT_CHECK PASS 205 actual in-range I rejected
+AUDIT_CHECK PASS saved native evidence 205_restricted
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/205_restricted.png
+AUDIT_CHECK PASS 205 outside-range Q succeeds and can restore identity
+FAIL: 205 safe-area I opens bag
+AUDIT_CHECK FAIL 205 safe-area I opens bag
+AUDIT_CHECK PASS 205 directs equipment preparation away from inspection range
+AUDIT_CHECK PASS real walking reaches work point
+AUDIT_CHECK PASS actual I/Q prepares requested identities
+AUDIT_CHECK PASS real walking reaches work point
+AUDIT_CHECK PASS 205 targets its visible workstation
+WORK_DIAGNOSTIC TransitRegister205 { "target_id": "TRANSIT_REGISTER_205", "interaction_type": "AUTHORIZE", "status": "BLOCKED", "progress": 0.0, "elapsed": 0.0, "required_time": 0.0, "block_reason": "TASK_INACTIVE" } selected=TRANSIT_REGISTER_205
+AUDIT_CHECK PASS 205 approval before pickup rejected
+AUDIT_CHECK PASS real walking reaches work point
+AUDIT_CHECK PASS 205 targets its visible workstation
+AUDIT_CHECK PASS saved native evidence 205_work_TransitPickup205
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/205_work_TransitPickup205.png
+AUDIT_CHECK PASS 205 real E reminder WRONG_IDENTITY
+AUDIT_CHECK PASS 205 timeout retry available
+AUDIT_CHECK PASS 205 retry returns own checkpoint without clock
+AUDIT_CHECK PASS 205 preserves earlier tasks and cards
+AUDIT_CHECK PASS 205 retry own board
+AUDIT_CHECK PASS 205 retry resets pickup
+AUDIT_CHECK PASS actual I/Q prepares requested identities
+AUDIT_CHECK PASS real walking reaches work point
+AUDIT_CHECK PASS 205 targets its visible workstation
+AUDIT_CHECK PASS saved native evidence 205_work_TransitPickup205
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/205_work_TransitPickup205.png
+AUDIT_CHECK PASS 205 real E reminder PICKUP_ONLY
+AUDIT_CHECK PASS real walking reaches work point
+AUDIT_CHECK PASS 205 targets its visible workstation
+AUDIT_CHECK PASS saved native evidence 205_work_TransitRegister205
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/205_work_TransitRegister205.png
+AUDIT_CHECK PASS 205 work before delivery cannot go3F
+AUDIT_CHECK PASS 205 ready only after real work
+AUDIT_CHECK PASS 205 work alone leaves barrier
+AUDIT_CHECK PASS 205 real E settlement before success dialogue
+AUDIT_CHECK PASS 205 monster is visible during real delivery dialogue
+AUDIT_CHECK PASS 205 real artwork monster appears in delivery
+AUDIT_CHECK PASS saved native evidence 205_delivered
+CAPTURE: F:/software2/Codex/2026-11-05/1-github-desktop-clone-repository-2-2/work/ae4pa/scenes/tests/doors/evidence/c_closeout_20261122/screenshots/205_delivered.png
+AUDIT_CHECK PASS 205 real E reminder COMPLETED
+AUDIT_CHECK PASS all task encounter requests settled
+AUDIT_CHECK PASS five tutorial tasks never fake rescue or EXIT
+AUDIT_CHECK PASS completed205 never cycles or re-inspects passing player
+AUDIT_CHECK PASS actual stair travel 3
+AUDIT_CHECK PASS after all five deliveries reach real3F
