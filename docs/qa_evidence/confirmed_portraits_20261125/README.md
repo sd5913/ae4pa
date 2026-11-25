@@ -81,3 +81,31 @@ attempts are preserved separately from the final logs.
 No physical keyboard/mouse human playthrough, exported build, macOS run, or new
 chibi animation integration was performed. The rendered fixture and automated
 interaction tests are not a claim of human acceptance or complete game QA.
+
+## Integration with newer main (same date)
+
+While PR #81 was being opened, main advanced to `4d86f95` via PRs #73 and #79.
+Merge code `000940b6c53eb3b93dec1eacf5de5dddc4516b0d` retains their onboarding,
+world chibi animation, avatars, cover and CG updates. The overlapping dialogue
+selection uses the user's confirmed Carol/Terese images and manager neutral.
+`DialogueRoles.portrait("CAROL")` also resolves the confirmed portrait.
+
+Repeated import (exit 0, same editor safe-save diagnostic), all four focused
+functional tests (exit 0), and the new main's character_art_v2 test (exit 0).
+Repeated the 60-state Compatibility fixture without focus, positioned offscreen
+so it did not interrupt the user's separately running main game. Exit 0.
+These tests verify the merge code above, not just the original implementation.
+
+Logs: [import](portrait_merge_import.log), [mapping](confirmed_portraits_smoke_merge.log),
+[story](story_surface_smoke_merge.log), [intro](intro_flow_smoke_merge.log),
+[localization](localization_smoke_merge.log), [existing character integration](character_art_v2_smoke_merge.log),
+[60 rendered states](portrait_merge_visual.log).
+
+Representative captures from the merged code:
+[zh 960](merged_zh_CN_960x540_carol_smile.png),
+[zh 1280](merged_zh_CN_1280x720_carol_thinking.png),
+[zh 1920](merged_zh_CN_1920x1080_terese_teasing.png),
+[en 960](merged_en_960x540_terese_playful.png),
+[en 1280](merged_en_1280x720_terese_playful.png),
+[en 1920](merged_en_1920x1080_manager_neutral.png).
+The prior screenshot evidence and failed fixture attempts remain preserved.

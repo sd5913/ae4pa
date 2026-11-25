@@ -1359,3 +1359,5 @@ Added 27 approved PNGs under art_sources/confirmed_characters_20261125 with SHA-
 - 原始 27 张确认 PNG 已在 PR #80 合入 main。运行时代码 `3daaa314976eb4343e327470aa176357e407bf3d` 基于 main@230521d；独立 worktree，原有未提交改动及无关导入描述不纳入。
 - Carol 五表情（关切/好奇→微笑，担忧→沉思）、Terese 四表情及咖啡馆 16 条台词映射已接入正式对白组件和 Carol 教学/任务组件；经理所有表情均显示指定 neutral。10 张透明运行时画布统一为1280×1440，保留确认原图与校验清单。Q版设计/动画仅归档。
 - Windows Godot 4.7.2：导入退出0（保留编辑器 safe-save 提示），立绘映射、story_surface、intro_flow、localization 均退出0；Compatibility 中英×三尺寸×10立绘共60个渲染检查退出0，代表画面已目视检查。[命令、截图、初次夹具失败与限制](qa_evidence/confirmed_portraits_20261125/README.md)。未代记真人、导出或跨平台验收。
+
+- C合并补充：main在提交期间新增PR #73/#79，已在000940b整合main@4d86f95；对白冲突保留本次确认图优先选择，其余新头像、场景Q版、封面、CG和教学保留。合并后四项原功能检查及character_art_v2检查退出0，60状态Compatibility复测退出0，日志与合并后截图见同一证据页。用户再次明确Terese半身按本次确认四张原图。

@@ -490,3 +490,5 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 ## 2026-11-26 C 确认人物半身立绘
 
 代码 `3daaa314976eb4343e327470aa176357e407bf3d`，基线main@230521d；Windows / Godot4.7.2.stable.official.ed1daf0bf。确认原图27/27 SHA-256一致，运行时10图统一透明画布；37份导入描述路径与UID检查通过。导入退出0（编辑器safe-save提示单列），confirmed_portraits、story_surface、intro_flow、localization四项退出0。Compatibility窗口中英×960/1280/1920×10立绘共60个状态检查退出0，六张代表截图与十表情对照已检查。初次夹具与命令调用失败不计为通过，保留原日志。[全部命令、实际截图、结果与限制](qa_evidence/confirmed_portraits_20261125/README.md)。未做真人通关、导出或macOS验证，Q版动画只归档。
+
+C合并复测增量：000940b整合main@4d86f95后，导入退出0（同一编辑器提示），原四项功能检查及character_art_v2新增兼容检查均退出0，60个中英三尺寸Compatibility状态再次退出0。保留A/D已有更新；用户确认半身图优先于D旧表情图集。日志和合并后截图已追加到[同一证据页](qa_evidence/confirmed_portraits_20261125/README.md)。用户试玩窗口单独运行合并前main@4d86f95，未将其记为合并后人工验收。
