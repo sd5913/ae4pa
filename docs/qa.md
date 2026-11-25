@@ -403,6 +403,22 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 - 图形 smoke 已在中文 1280×720 和英文 960×540 捕获各身份对白截图；135 帧 Movie Maker 文件展示自动化的 CG→对白→失败菜单场景。这些是独立 UI smoke 证据，不是正式主场景真实偷窃路线或人工操作录像。证据、日志说明和未验证项见[偷窃失败 UI 证据](qa_evidence/d_theft_failure_20261122/README.md)。
 - 正式主场景中分别触发三种员工的真实偷窃失败、快速物理输入，以及检查点恢复／返回菜单尚未人工验收。主场景已有 `Failure.retry_requested()`／`return_to_menu_requested()` 接线。中英文 UI smoke 覆盖演出结束后保留检查点重试、继续提示可见和取消后同角色可重播。
 
+
+## B 既有交互修复保存／上传检查（2026-11-25）
+
+基于 `ac58302`，Godot `4.7.2.stable.official.ed1daf0bf`、macOS／Apple M1 Pro。本批为此前本地修复交付，不包含 Staff Workroom 的场景、预览或功能迁移。
+
+本次重新执行（退出码均为0）：
+
+- `godot --headless --path . --editor --import --quit`：恢复缺失的已跟踪正式资源后导入通过，未把这些意外删除加入提交。
+- `godot --headless --path . --script res://scenes/tests/staff/third_card_bag_smoke.gd -- --ui-smoke`：三卡收藏／双槽、当前槽立即生效、备用槽提示、HUD与身份外观一致性 PASS。
+- `godot --headless --path . --script res://scenes/tests/core/interaction_feedback_batch_smoke.gd -- --ui-smoke`：任务未接、双卡不足、前置工作、当前身份、403提示去重及既有EXIT松键夹具 PASS。测试含显式前置状态，不代替完整真人通关。
+- `godot --headless --path . --script res://scenes/tests/staff/tutorial_workpoints_smoke.gd -- --ui-smoke`：204／205单卡、双卡、A/B顺序与生效身份矩阵、五工作点原规则 PASS。
+- `godot --headless --path . --script res://scenes/tests/staff/final_visual_integration_smoke.gd -- --ui-smoke`：多个清洁点不互相清除拖把姿态、正式污渍及审批完成／恢复状态 PASS。无界面结果不等于美术验收。
+
+沿用2026-11-24同一批玩法逻辑的 `full_mainline_escape_smoke.gd -- --ui-smoke` 八任务→309→EXIT自动PASS及本地化PASS；本次不重复全路线。原生全路线截图曾停在等待并停止，不能记录为通过。局部二楼Godot渲染截图已观察，审批桌绘制层／纸张摆位的最后实验性微调未加入本次交付，仍待真人确认。所有本批真人验收状态保持待复测，不改原Excel记录。
+
+远端核对：`main@48c0b5c137003beeaf8a4b72472ded0695ba8e00` 已包含D记忆界面等18个后续提交。临时三方文件检查发现 `localization/en.po`、`scenes/interaction_onboarding.gd` 冲突；未合并main或解决队友代码，本分支结果不代表新main整合通过。
 ### 2026-11-23 D：封面按钮、HUD与工作人员待机
 
 - 实测代码 `1e817cc0e33e7f9263d49be9dc0914d583b99d1c`，含独立共享视觉修复 `e36e3cc`；当前分支 work/member-D-ui-polish-v4。封面两项统一280×56／14px间距，语言文字独立居中；按钮反馈改0.12秒颜色；HUD图标换28px矢量，任务牌上移24px并去除重复目标。共享视觉脚本只固定保安／经理普通站姿，不改行走、警觉、碰撞、速度或任务规则，交A/B审查。
@@ -430,3 +446,13 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 - 定位为独立夹具未读完新增双装备教学就换层、超时对白尚未结束就点隐藏重试，以及旧断言要求任务框外重复返回501目标。本次只改独立测试：真实输入读完演出，确认失败菜单可见后重试；清除旧错误反馈的断言改为文本及tooltip均空，同时保留任务牌内501交付目标断言。没有关闭教学/超时、改任务规则或跳过断言。
 - 测试代码481cd5c15aad150033ecfc86663b3c26c94d8716：Windows / Godot4.7.2.stable.official.ed1daf0bf，隔离APPDATA，headless late_mainline_main_flow_smoke.gd -- --ui-smoke（中文）及 -- --ui-smoke --english 均退出0。覆盖403/501工作、交付、超时恢复、真实EXIT及成功页重启/菜单；前六任务和救援由公开/既有夹具准备，不是人工新局通关。旧失败日志保留于[合并复测证据](qa_evidence/pr74_merge_20261124/README.md)。最新云端CI须以本次推送后的运行结果为准。
 - 完整记忆磁盘保存/恢复仍待A接入，未将本次后段回归记为跨进程存档通过。所有原未跟踪文件保留。
+
+
+## 2026-11-25 B e200548 与最新 main 整合验证
+- 基线：B `e200548960e15bab3757f6aca62df08e4bcf3b2d` + main `48c0b5c137003beeaf8a4b72472ded0695ba8e00`，独立 worktree；原未提交布局、工作间、临时字体/预览均未纳入。
+- QA/进度末尾冲突并列保留双方记录；保留D新证件/超时对白及记忆UI，保留B交互优先与全部交付修复；英语重复巡房记录键统一为main较新措辞。
+- Godot 4.7.2.stable.official.ed1daf0bf / macOS Apple M1 Pro：本轮自动PASS：third_card_bag、interaction_feedback_batch、tutorial_workpoints、final_visual_integration、localization、memory_ui、full_mainline_escape（正常新游戏→八任务→309→EXIT，含失败恢复）。
+- 两个旧主线/反馈测试适配D正式教学/超时对白的真实E输入后再请求上楼和重试；未绕过弹窗/任务规则、未削弱断言。203/205错误资格TASK_INACTIVE为预期拒绝。
+- 自动测试不等于真人视觉验收；整合后F5窗口供玩家复测。首次受限沙箱字体/日志错误不计为有效PASS；有效测试使用正常本机权限。
+
+- CI联调补充：首轮Linux仅late_mainline旧断言（审批后HUD为空）失败；已改为精确验证501审批成功/交付文案及组件成功反馈，中英文定向PASS，保留全部任务/失败恢复断言。远端CI待追加提交重跑，不能把首轮记作通过。
