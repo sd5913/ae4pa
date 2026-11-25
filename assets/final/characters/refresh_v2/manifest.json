@@ -1,0 +1,187 @@
+{
+  "date": "2026-11-25",
+  "base_commit": "48c0b5c137003beeaf8a4b72472ded0695ba8e00",
+  "archive_sha256": "3b84c79ad720b16dfd93252ab7892bbf1f87bca18889296d1d584eb12501e807",
+  "expression_grid": {
+    "columns": 3,
+    "rows": 2,
+    "order": [
+      "neutral",
+      "smile",
+      "surprised",
+      "worried",
+      "suspicious",
+      "stern"
+    ]
+  },
+  "files": [
+    {
+      "path": "assets/final/characters/refresh_v2/source/carol_chibi_front_side_aligned_v1.png",
+      "source": "Carol_chibi_front_side_aligned_v1.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "f7b2ed84f24d307144b0b5438a7a6c2792b67eefef60769c9b0ea8569bf3905e"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/carol_halfbody.png",
+      "source": "Carol_halfbody.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "0eef74b042fdd073288325758bc6b93817c1c6d03fe3ef91af9925c4daa2a2d5"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/terese_chibi_front_v1.png",
+      "source": "Terese_chibi_front_v1.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "53fb823125e1499f8bc4fdefe8d21a4e3fd316655c0c23ead3d6bbe5733652fd"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/terese_chibi_side_right_v1.png",
+      "source": "Terese_chibi_side_right_v1.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "231eaf3554d05e18f76334562edd2eb2b9045a5a18c5439262cf67dff0275349"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/terese_halfbody.png",
+      "source": "Terese_halfbody.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "bb73c96881b9a6a184a670a5331fcb606dcfe765155f4ee1a1278490c9ac3b83"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/carol_run_right_8frames_v1.png",
+      "source": "carol_run_right_8frames_v1.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "27bda43921df3642fc550a99905f62cceb126a828607189a6812342d9c7322ff"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/carol_run_stop_turn_r2l_8frames_v1.png",
+      "source": "carol_run_stop_turn_r2l_8frames_v1.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "a66e4880449f19bb0d1729ca6a47066e33082fb5b29ca3a5fd9b948879d7f512"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/carol_walk_right_8frames_v1.png",
+      "source": "carol_walk_right_8frames_v1.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "bf6c963d5273ee3656f3e08d2f9ddd4df14ddcda901aca180d9ad30981fe7612"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/carol_walk_stop_turn_r2l_8frames_v1.png",
+      "source": "carol_walk_stop_turn_r2l_8frames_v1.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "6dfc4c1f5f84edc637d822af5bf682baca76e0e508d91297b1db1d2c9b7e1b05"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/manager_chibi_front_side_aligned_v1.png",
+      "source": "manager_chibi_front_side_aligned_v1.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "d73f38022d978eb23ef9a941e89e37961a4c839b4450586cc31cbf4c7d317758"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/manager_nerd_halfbody.png",
+      "source": "manager_nerd_halfbody.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "169d845ab259248d1cbeb42d493d1b3cb734784938d8d4b3b4d7425ccef892e8"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/manager_walk_right_8frames_v1.png",
+      "source": "manager_walk_right_8frames_v1.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "1956a2abd9263f9fb119b831eb04982b5d41422973b7eda437d567727bf17041"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/manager_walk_stop_turn_r2l_8frames_v1.png",
+      "source": "manager_walk_stop_turn_r2l_8frames_v1.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "9f3ba719877ebec9a0118b4ee6cdbde15abfeeb81258a9c2df250995f40a1268"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/terese_jog_right_8frames_v2.png",
+      "source": "terese_jog_right_8frames_v2.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "8dc50624465d33e85a2178074390db659a7983c97baa5cee02f7a09a53bd25cd"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/terese_jog_stop_turn_r2l_8frames_v1.png",
+      "source": "terese_jog_stop_turn_r2l_8frames_v1.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "77d41a50e3e7743cec4098fb199f7e4ae0b28a9673b37223dab3636d9f090556"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/terese_walk_right_8frames_v1.png",
+      "source": "terese_walk_right_8frames_v1.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "ee5b0fe7e475fb0b59f0fc9306cc5bc2790089b1dac89b0df934e8b2867905e1"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/source/terese_walk_stop_turn_r2l_8frames_v1.png",
+      "source": "terese_walk_stop_turn_r2l_8frames_v1.png",
+      "kind": "user supplied; byte-identical",
+      "sha256": "8330cfa7c51e3b98f14d6d8769797c669a8066a7ef44c0cbbd646301446a26c5"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/portraits/carol_expressions.png",
+      "source": "exec-ebacd69c-52e1-43ee-8737-177ff56a184a.png",
+      "kind": "imagegen; referenced approved uploaded designs",
+      "sha256": "264322fec62e974cc07854adecce4894c829f5f9a51123d5b24d07243dab5666"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/portraits/terese_expressions.png",
+      "source": "exec-b681990f-2e4c-4f75-9838-f27097701769.png",
+      "kind": "imagegen; referenced approved uploaded designs",
+      "sha256": "4ee26894758e008107b688d23b5010e2d0f4b7b4b8702a873cf9c6a34c960024"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/portraits/manager_expressions.png",
+      "source": "exec-64526838-8d39-4076-aeab-e87a61b47194.png",
+      "kind": "imagegen; referenced approved uploaded designs",
+      "sha256": "98da946a9affe851f3cd2962b4f5bf867152ff648e51bf1cbecacabe59ca1976"
+    },
+    {
+      "path": "assets/final/characters/refresh_v2/actions/carol_cleaning.png",
+      "source": "exec-0f3f94e0-fe30-45c8-8d3d-59f245528be3.png",
+      "kind": "imagegen; referenced approved uploaded designs",
+      "sha256": "b69d93966918abc7aff899604ba2406a55fef80d0fabef19a61c5aad04a7f00d"
+    },
+    {
+      "path": "cg309_reunion/assets/cg_01_approach.png",
+      "source": "exec-500f09c7-c14c-48ce-97d9-47fa683daf5d.png",
+      "kind": "imagegen; referenced approved uploaded designs",
+      "sha256": "18278d5ce93573ac81483d98455e03951357e98af5ac1b80f572b8e3dc007d26"
+    },
+    {
+      "path": "cg309_reunion/assets/cg_02_hug.png",
+      "source": "exec-06de2e20-ee9d-4f56-a463-73bdcc0dadd8.png",
+      "kind": "imagegen; referenced approved uploaded designs",
+      "sha256": "bcfc981eb871be59697f480ea7ab35fa7503f72abc5f21af418deeb03b144f9d"
+    },
+    {
+      "path": "cg309_reunion/assets/cg_03_leave.png",
+      "source": "exec-9e18f22c-dba1-462d-9875-e019ad42759e.png",
+      "kind": "imagegen; referenced approved uploaded designs",
+      "sha256": "c36d9123a7ec12804c1736108660a62e8ffe07f4b2b149bd348cb59979830a37"
+    },
+    {
+      "path": "assets/final/ui/theft_failure/assets/theft_caught_security.png",
+      "source": "exec-9566990f-bcf1-4731-89a0-a960efcd45b9.png",
+      "kind": "imagegen; referenced approved uploaded designs",
+      "sha256": "c93b8cf1b3d704dca71bf1ffca8a3611342a03335d5c9e181d3b6d76390ffdcc"
+    },
+    {
+      "path": "assets/final/ui/theft_failure/assets/theft_caught_cleaner.png",
+      "source": "exec-4fc1ebd1-9075-47ae-afa8-aa3a8a5db02f.png",
+      "kind": "imagegen; referenced approved uploaded designs",
+      "sha256": "54ee892c6d616c91d10474226644d7980470cf76740d5455e62652eef03d3af5"
+    },
+    {
+      "path": "assets/final/ui/theft_failure/assets/theft_caught_manager.png",
+      "source": "exec-59450e9e-6685-4fa3-b712-12fc59a363f3.png",
+      "kind": "imagegen; referenced approved uploaded designs",
+      "sha256": "3c0361787068306a4a2146ba58ecbed1a03856c03ae376cdf44c9a8e1230764c"
+    },
+    {
+      "path": "assets/final/ui/hotel_interface/hotel_cover_background.png",
+      "source": "exec-1daec692-c9fa-40fc-9d0b-749bd418cf0e.png",
+      "kind": "imagegen; referenced approved uploaded designs",
+      "sha256": "684d6edb0b01892203feae0fc204e240557466d6e8bf710867588c70328de7cf"
+    }
+  ]
+}
