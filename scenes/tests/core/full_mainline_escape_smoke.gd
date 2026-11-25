@@ -15,6 +15,8 @@ func end() -> void:
 	await equip("MANAGER")
 	await work("Register309")
 	check(g.get_completed_task_ids().has(g.TASK_03_ID), "full run really approves309")
+	check(floor_node().get_node("Interactions/Register309/TaskItemVisual/ResultFeedback").visible, "302 approval has explicit success feedback")
+	check("309" in main.get_node("TaskLayer/HUD/%Objective").text and "Terese" in main.get_node("TaskLayer/HUD/%Objective").text, "302 completion names309 and the rescue objective")
 	await move_to(2850)
 	await equip("CLEANER")
 	await move_to(floor_node().get_node("Interactions/RescuePoint").position.x)
