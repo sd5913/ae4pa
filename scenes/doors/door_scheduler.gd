@@ -9,6 +9,37 @@ var cooldown := 0.0
 var tutorial_mode := false
 var story_dialogue_room := ""
 
+func capture_memory_state() -> Dictionary:
+	return {
+		"active_room_id": active.room_id if is_instance_valid(active) else "",
+		"elapsed": elapsed,
+		"cooldown": cooldown,
+		"tutorial_mode": tutorial_mode,
+		"story_dialogue_room": story_dialogue_room,
+	}
+
+static func validate_memory_state(value: Dictionary) -> bool:
+	if not value.get("active_room_id") is String or not value.get("story_dialogue_room") is String: return false
+	if not (value.get("elapsed") is float or value.get("elapsed") is int): return false
+	if not (value.get("cooldown") is float or value.get("cooldown") is int): return false
+	if not value.get("tutorial_mode") is bool: return false
+	return is_finite(float(value.elapsed)) and value.elapsed >= 0.0 and is_finite(float(value.cooldown)) and value.cooldown >= 0.0
+
+func restore_memory_state(value: Dictionary) -> bool:
+	if not validate_memory_state(value): return false
+	var active_room := str(value.active_room_id)
+	var active_door: Node2D
+	for door: Node2D in doors:
+		if door.room_id == active_room: active_door = door
+	if not active_room.is_empty() and active_door == null: return false
+	active = active_door
+	elapsed = float(value.elapsed)
+	cooldown = float(value.cooldown)
+	tutorial_mode = value.tutorial_mode
+	story_dialogue_room = str(value.story_dialogue_room)
+	if tutorial_mode: sync_tutorial_visuals()
+	return true
+
 func set_story_dialogue_room(room_id: String) -> void:
 	story_dialogue_room = room_id
 	if tutorial_mode: sync_tutorial_visuals()

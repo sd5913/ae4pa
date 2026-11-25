@@ -87,7 +87,7 @@ func validate_snapshot(snapshot: Dictionary) -> bool:
 	var owned: Array = snapshot.owned_cards
 	var equipped: Array = snapshot.equipped_cards
 	var slot: Variant = snapshot.active_slot
-	if not slot is int or slot < 0 or slot > 1 or equipped.size() != 2:
+	if not (slot is int or slot is float) or not is_finite(float(slot)) or not is_equal_approx(float(slot), roundf(float(slot))) or slot < 0 or slot > 1 or equipped.size() != 2:
 		return false
 	var unique_owned: Array[String] = []
 	for card: Variant in owned:
@@ -109,7 +109,7 @@ func restore_snapshot(snapshot: Dictionary) -> bool:
 		return false
 	_owned_cards.assign(snapshot.owned_cards.duplicate(true))
 	_equipped_cards.assign(snapshot.equipped_cards.duplicate(true))
-	_active_slot = snapshot.active_slot
+	_active_slot = int(snapshot.active_slot)
 	cards_changed.emit()
 	return true
 

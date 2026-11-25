@@ -34,6 +34,7 @@ func open_reunion() -> void:
 	cg = load("res://cg309_reunion/reunion_cg.tscn").instantiate()
 	cg.auto_play = false
 	layer.add_child(cg)
+	cg.beat_displayed.connect(_record_displayed_beat)
 	cg.rescue_cg_finished.connect(_finished, CONNECT_ONE_SHOT)
 	var confirmation := Label.new()
 	confirmation.text = "309 · 保洁身份确认\n门锁已打开"
@@ -48,6 +49,9 @@ func open_reunion() -> void:
 			confirmation.queue_free()
 			cg.play()
 	)
+
+func _record_displayed_beat(token: String, speaker: String, source: String, parameters: Dictionary) -> void:
+	preload("res://scenes/ui/memory_history.gd").record(token, speaker, source, "309_REUNION", parameters)
 
 func _finished() -> void:
 	# No frame or input dispatch between releasing our modal and the real API.

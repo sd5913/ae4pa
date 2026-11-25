@@ -1351,6 +1351,7 @@
 - 1F480px非录制实测走路3.018秒、跑步2.231秒；不是完整任务路线测时。全新局--ui-smoke本轮和a57旧基线均在二楼节点访问失败，保留FAIL。物理输入、真实楼梯/墙/全任务跑步难度与导出仍待验收；磁盘存档未接通。
 - [参数、来源、全部结果/限制与录屏](qa_evidence/run_stamina_20261124/README.md)。初始导入/新局检查失败记录保留；最终针对性检查通过，不合并main。
 
+
 ## 2026-11-25 C confirmed character assets
 Added 27 approved PNGs under art_sources/confirmed_characters_20261125 with SHA-256 manifest; verified image decoding and dimensions. Dialogue portraits, expressions, review sheets and chibi animation atlases only; runtime integration follows in a separate commit. No existing working-tree changes included.
 
@@ -1361,3 +1362,15 @@ Added 27 approved PNGs under art_sources/confirmed_characters_20261125 with SHA-
 - Windows Godot 4.7.2：导入退出0（保留编辑器 safe-save 提示），立绘映射、story_surface、intro_flow、localization 均退出0；Compatibility 中英×三尺寸×10立绘共60个渲染检查退出0，代表画面已目视检查。[命令、截图、初次夹具失败与限制](qa_evidence/confirmed_portraits_20261125/README.md)。未代记真人、导出或跨平台验收。
 
 - C合并补充：main在提交期间新增PR #73/#79，已在000940b整合main@4d86f95；对白冲突保留本次确认图优先选择，其余新头像、场景Q版、封面、CG和教学保留。合并后四项原功能检查及character_art_v2检查退出0，60状态Compatibility复测退出0，日志与合并后截图见同一证据页。用户再次明确Terese半身按本次确认四张原图。
+
+### 2026-11-25 A：PR #74 真实存档接入
+
+- 隔离分支 `work/member-A-memory-integration-20261124`，基线包含 PR #74 合并点 `48c0b5c`。实现 `c6b17f2`，历史去重 `63c4cd3`，实测脚本 `079cdb5`。
+- 正式主场景接入独立存储、六手动槽与自动槽、版本预检、临时文件回读、替换和备份。恢复通过 A/B/C/D 原有状态归属重建场景及 309 单跟随者，保留任务检查点语义。309 实际完成显示的拍次入历史，救援仍在 CG 结束后结算。
+- [证据与重跑命令](qa_evidence/a_memory_integration_20261125/README.md)包含中英两组真实保存和独立进程读取、基础回归、覆盖取消／坏档／备份／模拟写入失败、正式截图和两段录屏。资源包导出和独立启动通过。Windows 可执行文件导出因本机缺模板失败，物理键鼠和跨机器未验收。下一入口为 A 集成 PR 审查后执行 Windows 导出试玩。
+
+### 2026-11-25 A：PR #76 存档审查修复
+
+- 新存档写入独立版本文件，保留旧主档与备份。系统覆盖存档只提交新文件，不依赖 Windows 删除旧主档后再改名的行为。
+- 读档预检验证重试快照内的任务、楼层、遇怪记录和关卡标记坐标。双槽已装备且教学未看过时，读档会重新排队播放。
+- macOS / Godot 4.7.2.stable.official.ed1daf0bf：存储专测、独立进程保存与读取、基础回归、任务检查点测试、正式入口无界面启动均退出 0。修复前新增断言在旧覆盖协议、无效嵌套检查点和教学状态处按预期失败。导入在沙箱出现宿主证书、字体及编辑器设置诊断，无脚本导入错误。本轮未做 Windows 实机覆盖、断电或真人验收。

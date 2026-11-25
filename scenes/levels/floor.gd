@@ -14,7 +14,9 @@ const CARD_NAMES: Dictionary = {"SECURITY": "保安", "CLEANER": "保洁", "MANA
 const STAFF_TARGET_IDS: Dictionary = {"CLEANER": "STAFF_CLEANER_1F", "SECURITY": "STAFF_SECURITY_1F", "MANAGER": "STAFF_MANAGER_1F"}
 
 @export_range(1, 5) var floor_number: int = 1
-@export var corridor_width: float = 3600.0
+const DEFAULT_CORRIDOR_WIDTH := 3600.0
+const CORRIDOR_PLAYER_Y := 560.0
+@export var corridor_width: float = DEFAULT_CORRIDOR_WIDTH
 @export var task_01_barrier_x: float = 0.0
 @export var task_02_barrier_x: float = 0.0
 @export_range(1.0, 160.0) var manager_talk_radius: float = 90.0
@@ -373,6 +375,43 @@ func _exit_tree() -> void:
 	_cancel_held_interaction()
 	CardManager.clear_identity_change_guard(self)
 
+func can_capture_memory_state() -> bool:
+	return not is_instance_valid(_held_staff) and not is_instance_valid(_held_work) and not _needs_e_release and not Input.is_action_pressed("interact")
+
+func capture_memory_state() -> Dictionary:
+	var door_states: Array[Dictionary] = []
+	for door: Node2D in _doors:
+		door_states.append(door.capture_memory_state())
+	return {"version": 1, "floor_number": floor_number, "doors": door_states, "scheduler": _door_scheduler.capture_memory_state()}
+
+static func is_memory_position_on_corridor(position: Array) -> bool:
+	return float(position[0]) >= 64.0 and float(position[0]) <= DEFAULT_CORRIDOR_WIDTH - 64.0 and is_equal_approx(float(position[1]), CORRIDOR_PLAYER_Y)
+
+static func validate_memory_state(value: Dictionary) -> bool:
+	if value.get("version") != 1 or not (value.get("floor_number") is int or value.get("floor_number") is float) or not is_equal_approx(float(value.floor_number), roundf(float(value.floor_number))) or value.floor_number < 1 or value.floor_number > 5: return false
+	if not value.get("doors") is Array or not value.get("scheduler") is Dictionary: return false
+	if not preload("res://scenes/doors/door_scheduler.gd").validate_memory_state(value.scheduler): return false
+	var room_ids: Dictionary = {}
+	var expected: Array[String] = []
+	var catalog := preload("res://scenes/doors/v4_door_catalog.gd")
+	for row: Dictionary in catalog.get_rows(int(value.floor_number)):
+		expected.append(row.room)
+	if value.doors.size() != expected.size(): return false
+	for door_state: Variant in value.doors:
+		if not door_state is Dictionary or not preload("res://scenes/doors/monster_door.gd").validate_memory_state(door_state): return false
+		if not expected.has(door_state.room_id) or room_ids.has(door_state.room_id): return false
+		room_ids[door_state.room_id] = true
+	var active_room: String = value.scheduler.active_room_id
+	return (active_room.is_empty() or room_ids.has(active_room)) and value.scheduler.story_dialogue_room.is_empty() and value.scheduler.tutorial_mode == (value.floor_number == 2)
+
+func restore_memory_state(value: Dictionary) -> bool:
+	if not validate_memory_state(value) or int(value.floor_number) != floor_number or value.doors.size() != _doors.size(): return false
+	var by_room: Dictionary = {}
+	for state: Dictionary in value.doors: by_room[state.room_id] = state
+	for door: Node2D in _doors:
+		if not by_room.has(door.room_id) or not door.restore_memory_state(by_room[door.room_id]): return false
+	return _door_scheduler.restore_memory_state(value.scheduler)
+
 
 func _apply_task_route() -> void:
 	_refresh_component_eligibility()
@@ -447,12 +486,7 @@ func get_identity_change_block_reason(apply_checker_penalty: bool = true) -> Str
 func get_task_checkpoint_position(task_id: String) -> Dictionary:
 	if not GameManager.ENABLED_TASKS.has(task_id) or floor_number != GameManager.get_task_definition(task_id)["offer_floor"] or _doors.is_empty():
 		return {}
-	var marker_path: String = "Interactions/Task03AcceptSafe" if task_id == GameManager.TASK_03_ID else "Interactions/Task01AcceptSafe" if task_id == GameManager.TASK_01_ID else "Interactions/Task02AcceptSafe"
-	if task_id in [GameManager.TUTORIAL_03_ID, GameManager.TUTORIAL_04_ID, GameManager.TUTORIAL_05_ID]:
-		marker_path = "Interactions/Task%sAcceptSafe" % GameManager.get_task_definition(task_id)["room_id"]
-	if GameManager.get_task_definition(task_id).has("checkpoint_marker"):
-		marker_path = "Interactions/" + GameManager.get_task_definition(task_id)["checkpoint_marker"]
-	var marker: Node2D = get_node_or_null(marker_path)
+	var marker: Node2D = get_node_or_null(GameManager.get_task_checkpoint_marker_path(task_id))
 	if marker == null: return {}
 	var room: Node2D = get_node("DoorRoot/Room" + GameManager.get_task_definition(task_id)["room_id"])
 	var destination: Vector2 = marker.global_position
