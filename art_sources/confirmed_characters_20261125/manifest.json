@@ -1,0 +1,283 @@
+{
+  "assets": [
+    {
+      "path": "portraits/carol/smile.png",
+      "source_name": "Carol_dialogue_hip_aligned_v1.png",
+      "sha256": "e5b48613e6df3b76c2001417693d28eaf3390fa3afafb75b16c23ea75acad091",
+      "bytes": 1841468,
+      "size": [
+        1280,
+        1440
+      ]
+    },
+    {
+      "path": "review/dialogue_portraits_comparison.png",
+      "source_name": "dialogue_portraits_comparison_v1.png",
+      "sha256": "1bcd7154c048350a38a44158db3c1189ee6b382983f27cecb60d4dc5d044e728",
+      "bytes": 776105,
+      "size": [
+        1356,
+        570
+      ]
+    },
+    {
+      "path": "portraits/manager/neutral.png",
+      "source_name": "Manager_dialogue_hip_aligned_v1.png",
+      "sha256": "0b7a6cdaad92b5454973451e3730a9d3a9e48fdd4f2ca226792c824f3ed17184",
+      "bytes": 1695784,
+      "size": [
+        1280,
+        1440
+      ]
+    },
+    {
+      "path": "portraits/terese/neutral.png",
+      "source_name": "Terese_dialogue_hip_aligned_v1.png",
+      "sha256": "096035e77baec9738d5942139cfccb76cdfa04d637c014b0a23702d37d4220f2",
+      "bytes": 2191234,
+      "size": [
+        1280,
+        1440
+      ]
+    },
+    {
+      "path": "chibi/carol/front_side.png",
+      "source_name": "Carol_chibi_front_side_aligned_v1.png",
+      "sha256": "f7b2ed84f24d307144b0b5438a7a6c2792b67eefef60769c9b0ea8569bf3905e",
+      "bytes": 1410391,
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "review/carol_expressions.png",
+      "source_name": "Carol_confirmed_expressions_labeled_v1.png",
+      "sha256": "ef28e02625b708831414579bba6a7efefa072405ae7c046610e5fb65bb61ec28",
+      "bytes": 2998013,
+      "size": [
+        2400,
+        2020
+      ]
+    },
+    {
+      "path": "portraits/carol/thinking.png",
+      "source_name": "codex-clipboard-4ba9b387-cf63-4325-93cb-3858387cbbf2.png",
+      "sha256": "18d2358ab582ac2b92fcd548e1779bf5ff43f5a63d038bf9fb4d12afc31d79b6",
+      "bytes": 1515012,
+      "size": [
+        1058,
+        1487
+      ]
+    },
+    {
+      "path": "portraits/carol/suspicious.png",
+      "source_name": "codex-clipboard-210842a2-e3ea-4921-aee5-0fdf8e8446f6.png",
+      "sha256": "b326a20d0a3b3e1f3a81067f52f075ad9b1d9818b6578b0fdf74b7e286f0eb02",
+      "bytes": 1508827,
+      "size": [
+        1058,
+        1487
+      ]
+    },
+    {
+      "path": "portraits/carol/surprised.png",
+      "source_name": "codex-clipboard-6bc1d62b-72b4-4759-87d9-99c89988c8f0.png",
+      "sha256": "8662701da6790efb4fe0ed0b83392793235e1082319f5d1ae8e4c240b0e304cf",
+      "bytes": 1613362,
+      "size": [
+        1058,
+        1487
+      ]
+    },
+    {
+      "path": "portraits/carol/determined.png",
+      "source_name": "codex-clipboard-332df543-8872-4938-831b-f9c4f0217953.png",
+      "sha256": "d48a8d0e8b98da205d81faae427e1d2778597c0d24c2a5406b2b8e5c43f56489",
+      "bytes": 1340624,
+      "size": [
+        1182,
+        1330
+      ]
+    },
+    {
+      "path": "chibi/carol_walk_stop_turn_r2l_8frames_v1.png",
+      "source_name": "carol_walk_stop_turn_r2l_8frames_v1.png",
+      "sha256": "6dfc4c1f5f84edc637d822af5bf682baca76e0e508d91297b1db1d2c9b7e1b05",
+      "bytes": 1883901,
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "chibi/carol_run_right_8frames_v1.png",
+      "source_name": "carol_run_right_8frames_v1.png",
+      "sha256": "27bda43921df3642fc550a99905f62cceb126a828607189a6812342d9c7322ff",
+      "bytes": 1877761,
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "chibi/carol_run_stop_turn_r2l_8frames_v1.png",
+      "source_name": "carol_run_stop_turn_r2l_8frames_v1.png",
+      "sha256": "a66e4880449f19bb0d1729ca6a47066e33082fb5b29ca3a5fd9b948879d7f512",
+      "bytes": 1915827,
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "chibi/carol_walk_right_8frames_v1.png",
+      "source_name": "carol_walk_right_8frames_v1.png",
+      "sha256": "bf6c963d5273ee3656f3e08d2f9ddd4df14ddcda901aca180d9ad30981fe7612",
+      "bytes": 1861787,
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "chibi/manager_chibi_front_side_aligned_v1.png",
+      "source_name": "manager_chibi_front_side_aligned_v1.png",
+      "sha256": "d73f38022d978eb23ef9a941e89e37961a4c839b4450586cc31cbf4c7d317758",
+      "bytes": 1398429,
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "chibi/terese_walk_stop_turn_r2l_8frames_v1.png",
+      "source_name": "terese_walk_stop_turn_r2l_8frames_v1.png",
+      "sha256": "8330cfa7c51e3b98f14d6d8769797c669a8066a7ef44c0cbbd646301446a26c5",
+      "bytes": 2037597,
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "chibi/manager_walk_right_8frames_v1.png",
+      "source_name": "manager_walk_right_8frames_v1.png",
+      "sha256": "1956a2abd9263f9fb119b831eb04982b5d41422973b7eda437d567727bf17041",
+      "bytes": 1730650,
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "chibi/manager_walk_stop_turn_r2l_8frames_v1.png",
+      "source_name": "manager_walk_stop_turn_r2l_8frames_v1.png",
+      "sha256": "9f3ba719877ebec9a0118b4ee6cdbde15abfeeb81258a9c2df250995f40a1268",
+      "bytes": 1758924,
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "chibi/terese_chibi_front_v1.png",
+      "source_name": "Terese_chibi_front_v1.png",
+      "sha256": "53fb823125e1499f8bc4fdefe8d21a4e3fd316655c0c23ead3d6bbe5733652fd",
+      "bytes": 841499,
+      "size": [
+        1165,
+        1350
+      ]
+    },
+    {
+      "path": "chibi/terese_chibi_side_right_v1.png",
+      "source_name": "Terese_chibi_side_right_v1.png",
+      "sha256": "231eaf3554d05e18f76334562edd2eb2b9045a5a18c5439262cf67dff0275349",
+      "bytes": 1307971,
+      "size": [
+        1024,
+        1536
+      ]
+    },
+    {
+      "path": "chibi/terese_jog_right_8frames_v2.png",
+      "source_name": "terese_jog_right_8frames_v2.png",
+      "sha256": "8dc50624465d33e85a2178074390db659a7983c97baa5cee02f7a09a53bd25cd",
+      "bytes": 1949419,
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "chibi/terese_jog_stop_turn_r2l_8frames_v1.png",
+      "source_name": "terese_jog_stop_turn_r2l_8frames_v1.png",
+      "sha256": "77d41a50e3e7743cec4098fb199f7e4ae0b28a9673b37223dab3636d9f090556",
+      "bytes": 2004269,
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "chibi/terese_walk_right_8frames_v1.png",
+      "source_name": "terese_walk_right_8frames_v1.png",
+      "sha256": "ee5b0fe7e475fb0b59f0fc9306cc5bc2790089b1dac89b0df934e8b2867905e1",
+      "bytes": 2066537,
+      "size": [
+        1536,
+        1024
+      ]
+    },
+    {
+      "path": "portraits/terese/happy.png",
+      "source_name": "codex-clipboard-df7c09fa-04fc-4039-8ebb-87a41bde90d7.png",
+      "sha256": "12ccb4a59fe3e51beae9ef61b9baf19729be0c0bf0aae9d1dd5a61e306355b40",
+      "bytes": 1868053,
+      "size": [
+        1058,
+        1487
+      ]
+    },
+    {
+      "path": "portraits/terese/teasing.png",
+      "source_name": "codex-clipboard-65f8d5ed-fd89-4a3f-9e54-367e35b6aa48.png",
+      "sha256": "8a868125df8d57dca9140ef09d57801c655dda2468e3e80d1341488c27b90a17",
+      "bytes": 1996131,
+      "size": [
+        1058,
+        1487
+      ]
+    },
+    {
+      "path": "portraits/terese/playful.png",
+      "source_name": "codex-clipboard-d5861501-ca66-4c94-81ea-6dd3e2364430.png",
+      "sha256": "e4ebbc03ce3e8bad4f53234395e2ccbc003ef09359be1e86452faa8ebdec55dc",
+      "bytes": 1948459,
+      "size": [
+        1182,
+        1176
+      ]
+    },
+    {
+      "path": "review/terese_expressions.png",
+      "source_name": "Terese_confirmed_expressions_labeled_v1.png",
+      "sha256": "edcc31d327bf1cb7b806a829a1c13a6d6dee5eb63abfbc0b1713fa53b6a2a18b",
+      "bytes": 2639431,
+      "size": [
+        2000,
+        2160
+      ]
+    }
+  ],
+  "animation_grid": [
+    4,
+    2
+  ],
+  "animation_cell": [
+    384,
+    512
+  ],
+  "frame_order": "row-major"
+}
