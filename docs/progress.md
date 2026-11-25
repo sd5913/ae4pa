@@ -1351,6 +1351,10 @@
 - 1F480px非录制实测走路3.018秒、跑步2.231秒；不是完整任务路线测时。全新局--ui-smoke本轮和a57旧基线均在二楼节点访问失败，保留FAIL。物理输入、真实楼梯/墙/全任务跑步难度与导出仍待验收；磁盘存档未接通。
 - [参数、来源、全部结果/限制与录屏](qa_evidence/run_stamina_20261124/README.md)。初始导入/新局检查失败记录保留；最终针对性检查通过，不合并main。
 
+
+## 2026-11-25 C confirmed character assets
+Added 27 approved PNGs under art_sources/confirmed_characters_20261125 with SHA-256 manifest; verified image decoding and dimensions. Dialogue portraits, expressions, review sheets and chibi animation atlases only; runtime integration follows in a separate commit. No existing working-tree changes included.
+
 ### 2026-11-25 A：PR #74 真实存档接入
 
 - 隔离分支 `work/member-A-memory-integration-20261124`，基线包含 PR #74 合并点 `48c0b5c`。实现 `c6b17f2`，历史去重 `63c4cd3`，实测脚本 `079cdb5`。
