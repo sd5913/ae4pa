@@ -17,10 +17,15 @@ var _is_interacting: bool = false
 var _elapsed: float = 0.0
 var _completion_reported: bool = false
 var _player: HotelPlayer
+var _owns_cleaning_visual := false
+
+const DISPLAY_NAMES := {"STAIN_201":"201走廊污渍", "STAIN_204":"204清洁污渍", "ROOM_SERVICE_203":"203房务审批单", "TRANSIT_PICKUP_205":"205待审通行单", "TRANSIT_REGISTER_205":"205通行审批单", "REGISTER_309":"309入住登记单", "EXIT_REGISTER_5F":"501离店授权单", "PARCEL_CABINET_2F":"202保管柜包裹", "PATROL_CABINET_204":"204巡房记录"}
 
 func _ready() -> void:
-	if target_id in ["STAIN_201","PARCEL_CABINET_2F","EXIT_REGISTER_5F"]:
-		add_child(preload("res://scenes/work/task_item_visual.gd").new())
+	if interaction_type in ["CLEAN", "AUTHORIZE"] or target_id == "PARCEL_CABINET_2F":
+		var visual := preload("res://scenes/work/task_item_visual.gd").new()
+		visual.name = "TaskItemVisual"
+		add_child(visual)
 
 func _exit_tree() -> void:
 	_set_player_cleaning_visual(false)
@@ -28,9 +33,23 @@ func _exit_tree() -> void:
 func _set_player_cleaning_visual(active: bool) -> void:
 	if interaction_type != "CLEAN" or not is_instance_valid(_player):
 		return
+	if not active and not _owns_cleaning_visual:
+		return # An idle work point must never clear another point's active pose.
+	_owns_cleaning_visual = active
 	var visual := _player.get_node_or_null("Visual/Artwork")
 	if visual != null and visual.has_method("set_cleaning_visual"):
 		visual.set_cleaning_visual(active)
+
+
+func get_display_name() -> String:
+	return tr(DISPLAY_NAMES.get(target_id, "清洁点" if interaction_type == "CLEAN" else "审批单"))
+
+
+func show_result_feedback() -> void:
+	# Called only after the floor accepts the existing work result.
+	var visual := get_node_or_null("TaskItemVisual")
+	if _completion_reported and visual != null and visual.has_method("show_result"):
+		visual.show_result()
 
 
 func setup(player: HotelPlayer) -> void:

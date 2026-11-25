@@ -42,6 +42,12 @@ func _accept() -> void:
 	await _settle()
 	_expect(game.get("_open_modals").is_empty(), "Accepting does not auto-open a second reminder dialogue")
 func _retry() -> void:
+	# Timeout dialogue deliberately precedes the original retry menu.
+	var presentation: Node = main.get_node("MenuLayer/Bag/CarolUIFlow")
+	for i in range(40):
+		if presentation.get("_mode") == "": break
+		await _tap()
+	_expect(presentation.get("_mode") == "" and main.get_node("TaskLayer/Failure").visible, "Failure dialogue finishes before clicking the visible retry menu")
 	main.get_node("TaskLayer/Failure/%RetryButton").pressed.emit()
 	await _settle()
 	_quiet_doors()
@@ -90,6 +96,13 @@ func _run() -> void:
 	for card in ["CLEANER", "SECURITY", "MANAGER"]: cards.collect_card(card)
 	game._load_floor(3)
 	await _settle()
+	# Collecting the fixture IDs really equips two slots and opens Carol's tutorial.
+	# Read it through the normal input path before attempting stair travel.
+	var equipment_dialogue: Node = main.get_node("MenuLayer/Bag/CarolUIFlow")
+	for i in range(40):
+		if equipment_dialogue.get("_mode") != "equipment": break
+		await _tap()
+	_expect(equipment_dialogue.get("_mode") == "" and equipment_dialogue.get("_tutorial_seen"), "Fixture reads the real two-slot tutorial before stair travel")
 	_quiet_doors()
 	_expect(not game.get_available_floors().has(4), "Registration alone cannot reach4F")
 	_expect(game.rescue_friend(), "Explicit completed-rescue callback fixture")
@@ -212,7 +225,9 @@ func _run() -> void:
 	await _tap()
 	_expect(game.task_status == "READY_TO_SUBMIT" and register.is_completed(), "Actual manager approval needs return501")
 	var hud_notice: Label = main.get_node("TaskLayer/HUD").get_node("%Notice")
-	_expect(("Room 501" in hud_notice.text) if english else "返回501" in hud_notice.text, "Successful approval replaces stale wrong-identity notice with return501")
+	var approved_notice := tr("%s已批准。请返回任务房间按E交付。") % tr("501离店授权单")
+	_expect(hud_notice.text == approved_notice and hud_notice.tooltip_text == approved_notice, "Successful approval replaces stale wrong-identity feedback with the exact accepted approval/delivery result")
+	_expect(register.get_node("TaskItemVisual/ResultFeedback").visible, "Accepted approval also exposes the component result feedback")
 	await _settle()
 	hud_objective = main.get_node("TaskLayer/HUD").get_node("%Objective")
 	_expect("501" in hud_objective.text and ("deliver" in hud_objective.text.to_lower() if english else "交付" in hud_objective.text), "501 HUD directs Carol back to Room 501 before the exit")

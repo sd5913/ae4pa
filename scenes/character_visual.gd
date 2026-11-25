@@ -94,7 +94,7 @@ func get_render_pose() -> Dictionary:
 			elif character_id == "cleaner" and state == "ORGANIZING":
 				frame = 8
 			elif character_id in ["manager","security"] and state in ["CLEANING","ORGANIZING"]:
-				frame = 6+int(_phase*3.0)%3
+				frame = 6 # Neutral standing pose; frames 7/8 are expressions, not an idle loop.
 	if frame < 0:
 		var ratio := (200.0 if character_id == "security" else 190.0)/_master_rect.size.y
 		return {"frame":frame,"texture":_master,"source":Rect2(Vector2.ZERO,_master.get_size()),"destination":Rect2(-Vector2(_master_rect.get_center().x,_master_rect.end.y)*ratio,_master.get_size()*ratio)}

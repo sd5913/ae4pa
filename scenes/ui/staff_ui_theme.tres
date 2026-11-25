@@ -134,10 +134,10 @@ texture_margin_left = 80.0
 texture_margin_top = 72.0
 texture_margin_right = 80.0
 texture_margin_bottom = 72.0
-content_margin_left = 32.0
+content_margin_left = 56.0
 content_margin_top = 28.0
-content_margin_right = 32.0
-content_margin_bottom = 28.0
+content_margin_right = 56.0
+content_margin_bottom = 40.0
 
 [resource]
 default_font_size = 20

@@ -73,19 +73,32 @@ func _refresh_cards() -> void:
 	_equip_slot_a.disabled = selected.is_empty()
 	_equip_slot_b.disabled = selected.is_empty()
 	if not selected.is_empty():
-		_status.text = tr("已选%s：拖到A／B槽，或点装备按钮；原证保留。") % tr(CardDisplay.name_for(selected))
+		_status.text = _selection_hint(selected)
 	elif not CardManager.get_owned_cards().is_empty():
 		_status.text = tr("收藏保留全部证件。拖到A／B槽，关闭后按Q切当前身份。")
 
+func _selection_hint(id: String) -> String:
+	var slot := CardManager.get_equipped_cards().find(id)
+	if slot < 0:
+		return tr("已收藏%s，尚未装备。\n拖到A／B槽，或点装备按钮；原证保留。") % tr(CardDisplay.name_for(id))
+	return tr("已收藏%s，已装备%s槽；%s。") % [tr(CardDisplay.name_for(id)), "A" if slot == 0 else "B", tr("当前已生效") if CardManager.active_slot == slot else tr("备用，关闭背包后按Q启用")]
+
 func _on_card_selected(index: int) -> void:
 	super._on_card_selected(index)
-	_status.text = tr("已选%s：拖到A／B槽，或点装备按钮；原证保留。") % tr(CardDisplay.name_for(_selected_card_id()))
+	_status.text = _selection_hint(_selected_card_id())
 
 func _equip_selected(slot_index: int) -> void:
 	if not GameManager.get_identity_restriction_room().is_empty():
 		_status.text = tr("核验区内不能调整证件。先退到安全工作台，再按I换证。")
 		return
 	var id := _selected_card_id()
+	if slot_index in [0,1] and not id.is_empty() and CardManager.get_equipped_cards()[slot_index] == id:
+		_status.text = tr("%s已在槽%s，无需重复装备。") % [tr(CardDisplay.name_for(id)), "A" if slot_index == 0 else "B"]
+		return
 	super._equip_selected(slot_index)
 	if slot_index in [0,1] and not id.is_empty() and CardManager.get_equipped_cards()[slot_index] == id:
-		_status.text = tr("已装备%s到槽%s；全部证件仍在收藏。关闭背包后按Q切换身份。") % [tr(CardDisplay.name_for(id)),"A" if slot_index == 0 else "B"]
+		var slot_name := "A" if slot_index == 0 else "B"
+		if CardManager.active_slot == slot_index:
+			_status.text = tr("已装备%s到槽%s，当前已生效。\n全部证件仍在收藏，无需再次切换。") % [tr(CardDisplay.name_for(id)), slot_name]
+		else:
+			_status.text = tr("已装备%s到备用槽%s；当前生效：%s。\n关闭背包后按Q启用该槽；全部证件仍在收藏。") % [tr(CardDisplay.name_for(id)), slot_name, tr(CardDisplay.name_for(CardManager.active_card))]
