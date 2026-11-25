@@ -37,11 +37,13 @@ func set_character(id: String) -> void:
 		_owner_node = get_parent().get_parent() if get_parent().name == "Visual" else get_parent()
 		_previous_x = _owner_node.global_position.x
 		queue_redraw()
-		return
-	var master := (load("res://assets/final/characters/approved_static/%s.png" % id) as Texture2D).get_image()
-	var side := master.get_region(Rect2i(master.get_width()/2,0,master.get_width()/2,master.get_height()))
-	_master = ImageTexture.create_from_image(side)
-	_master_rect = _solid_bounds(side)
+		if id == "an": return
+		# The refreshed manager has idle and walk art. Keep the approved reaction atlas.
+	if _refreshed == null:
+		var master := (load("res://assets/final/characters/approved_static/%s.png" % id) as Texture2D).get_image()
+		var side := master.get_region(Rect2i(master.get_width()/2,0,master.get_width()/2,master.get_height()))
+		_master = ImageTexture.create_from_image(side)
+		_master_rect = _solid_bounds(side)
 	var image := (load("res://assets/final/characters/approved_actions/%s.png" % id) as Texture2D).get_image()
 	_atlas = ImageTexture.create_from_image(image)
 	_cell = Vector2(image.get_width()/3.0,image.get_height()/4.0)
@@ -82,35 +84,33 @@ func _process(delta: float) -> void:
 	queue_redraw()
 
 func get_render_pose() -> Dictionary:
-	if _refreshed != null:
+	var frame := -1 if _walking else _stationary_staff_frame()
+	if _refreshed != null and frame < 9:
 		return _refreshed.pose(_walking, _phase, visible_height, cleaning_active)
 	if _atlas == null:
 		return {}
-	var frame := -1
 	if character_id == "an" and cleaning_active:
 		frame = 8
 	elif _walking:
 		frame = int(_phase*6.0)%6
-	elif is_instance_valid(_owner_node) and _owner_node.has_method("is_alerted"):
-		if _owner_node.is_alerted():
-			frame = 11
-		elif _owner_node.is_suspicious():
-			frame = 10
-		else:
-			var state: String = _owner_node.get_cleaner_behavior_state()
-			if state.begins_with("TURN"):
-				frame = 9
-			elif character_id == "cleaner" and state == "CLEANING":
-				frame = 6+int(_phase*2.0)%2
-			elif character_id == "cleaner" and state == "ORGANIZING":
-				frame = 8
-			elif character_id in ["manager","security"] and state in ["CLEANING","ORGANIZING"]:
-				frame = 6 # Neutral standing pose; frames 7/8 are expressions, not an idle loop.
 	if frame < 0:
 		var ratio := (200.0 if character_id == "security" else 190.0)/_master_rect.size.y
 		return {"frame":frame,"texture":_master,"source":Rect2(Vector2.ZERO,_master.get_size()),"destination":Rect2(-Vector2(_master_rect.get_center().x,_master_rect.end.y)*ratio,_master.get_size()*ratio)}
 	var source := Rect2(Vector2(frame%3,frame/3)*_cell,_cell)
 	return {"frame":frame,"texture":_atlas,"source":source,"destination":Rect2(-_origins[frame]*_cycle_ratio,_cell*_cycle_ratio)}
+
+func _stationary_staff_frame() -> int:
+	if not is_instance_valid(_owner_node) or not _owner_node.has_method("is_alerted"):
+		return -1
+	if _owner_node.is_alerted(): return 11
+	if _owner_node.is_suspicious(): return 10
+	var state: String = _owner_node.get_cleaner_behavior_state()
+	if state.begins_with("TURN"): return 9
+	if character_id == "cleaner" and state == "CLEANING": return 6+int(_phase*2.0)%2
+	if character_id == "cleaner" and state == "ORGANIZING": return 8
+	if character_id in ["manager", "security"] and state in ["CLEANING", "ORGANIZING"]:
+		return 6 # Neutral standing pose.
+	return -1
 
 
 func _draw() -> void:

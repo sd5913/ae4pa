@@ -68,6 +68,7 @@ func run() -> void:
 		if id == "an": check(art.pose(false, 0.0, 190.0, true).texture.resource_path.ends_with("carol_cleaning.png"), "cleaning uses the new Carol pose")
 	game.start_game()
 	dialogue.hide()
+	check_manager_reactions()
 	var player: Node2D = load("res://scenes/player/player.tscn").instantiate()
 	root.add_child(player)
 	await settle()
@@ -90,6 +91,27 @@ func run() -> void:
 		await capture_formal_scenes(english)
 	print("CHARACTER_ART_V2_SMOKE: ", "PASS" if failures.is_empty() else "FAIL")
 	quit(0 if failures.is_empty() else 1)
+
+func check_manager_reactions() -> void:
+	var manager: Node2D = load("res://scenes/staff/staff.tscn").instantiate()
+	manager.card_id = "MANAGER"
+	manager.patrol_enabled = true
+	root.add_child(manager)
+	var artwork: Node = manager.get_node("Artwork")
+	var idle: Dictionary = artwork.get_render_pose()
+	check(idle.get("new_art", false), "manager keeps refreshed idle artwork")
+	manager._set_cleaner_state("TURN_TO_CART")
+	var turning: Dictionary = artwork.get_render_pose()
+	check(turning.frame == 9 and turning.texture != idle.texture, "manager shows its turn pose")
+	manager.set("_is_suspicious", true)
+	var suspicious: Dictionary = artwork.get_render_pose()
+	check(suspicious.frame == 10 and suspicious.source != turning.source, "manager shows its distinct suspicion pose")
+	manager.show_caught_alert()
+	var caught: Dictionary = artwork.get_render_pose()
+	check(caught.frame == 11 and caught.source != suspicious.source, "manager shows its distinct caught pose")
+	manager.reset_caught_alert()
+	check(artwork.get_render_pose().get("new_art", false), "manager returns to refreshed idle after clearing alert")
+	manager.free()
 
 func capture_formal_scenes(english: bool) -> void:
 	# Documented fixture: genuine main scene, intro completion callback, no task wins.

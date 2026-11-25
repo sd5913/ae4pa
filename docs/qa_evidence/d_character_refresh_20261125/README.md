@@ -25,3 +25,9 @@
 更新了Carol、Terese、经理的半身立绘与Q版；补齐三人六表情和Carol清扫姿势；更新309三张CG、三员工抓包三张CG及雨夜封面人物。用户包17张PNG原样保留，见[源图清单](../../../assets/final/characters/refresh_v2/manifest.json)和[美术说明](../../../assets/final/characters/refresh_v2/README.md)。
 
 沿用现有资源路径、节点及信号，不修改卡片数据、任务规则、309结算或EXIT资格。跑步/体力功能本轮未新增；相关原始动作图集保留。审查和实机验收完成后再由A决定是否合并main。
+
+## A 审查修复复测
+
+- 经理保留新版站姿和八帧行走。转身、怀疑、抓包使用原有独立反应帧，状态优先级沿用原规则。
+- macOS Apple M5、Godot `4.7.2.stable.official.ed1daf0bf`：干净导入退出 0，沙箱系统字体诊断不影响以下结果。角色美术测试先确认原分支三个经理反应断言失败，修复后全部通过。
+- `character_art_v2_smoke.gd -- --ui-smoke`、`player_identity_outfit_smoke.gd` 和 `foundation_smoke.gd` 的无界面运行均退出 0。换装测试也在本机 Compatibility 图形模式退出 0，逐帧校验全八帧与清扫姿态的经理外套着色，以及脸部和下装像素不变。此次复测未执行 Windows、导出包或人工试玩。
