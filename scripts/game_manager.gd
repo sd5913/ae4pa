@@ -292,7 +292,11 @@ func capture_memory_state() -> Dictionary:
 		"seen_monsters": _seen_monsters.duplicate(true),
 		"pending_encounter": _pending_monster_encounter.duplicate(true),
 		"retry_checkpoint": checkpoint,
-		"player": {"position": [player.global_position.x, player.global_position.y], "facing_direction": player.facing_direction},
+		"player": {
+			"position": [player.global_position.x, player.global_position.y],
+			"facing_direction": player.facing_direction,
+			"stamina": player.capture_stamina_state(),
+		},
 		"floor": floor_node.capture_memory_state(),
 	}
 
@@ -320,6 +324,7 @@ func validate_memory_state(value: Dictionary) -> bool:
 	if not value.get("player") is Dictionary or not value.player.get("position") is Array or value.player.position.size() != 2: return false
 	if not (value.player.position[0] is float or value.player.position[0] is int) or not (value.player.position[1] is float or value.player.position[1] is int): return false
 	if not (value.player.get("facing_direction") is int or value.player.get("facing_direction") is float) or absf(float(value.player.facing_direction)) != 1.0: return false
+	if value.player.has("stamina") and not _is_valid_saved_stamina(value.player.stamina): return false
 	for coordinate: Variant in value.player.position:
 		if not is_finite(float(coordinate)): return false
 	if not preload("res://scenes/levels/floor.gd").is_memory_position_on_corridor(value.player.position): return false
@@ -351,6 +356,8 @@ func restore_memory_state(value: Dictionary) -> bool:
 		return false
 	player.facing_direction = int(value.player.facing_direction)
 	player.visual.scale.x = float(player.facing_direction)
+	# Older saves predate running. Start them at full stamina, in walk mode.
+	player.restore_stamina_state(value.player.get("stamina", {}))
 	player.get_node("Camera2D").reset_smoothing()
 	# All fallible payload/floor validation has completed. Commit the A-owned facts now.
 	current_floor = int(value.current_floor)
@@ -424,8 +431,12 @@ func _validate_memory_encounters(rooms: Variant, seen: Variant, pending: Variant
 	var task_by_kind: Dictionary = preload("res://scenes/doors/v4_door_catalog.gd").TASKS
 	return pending.get("task_id") == fixed_tasks.get(pending.room_id, task_by_kind.get(pending.monster_type))
 
+func _is_valid_saved_stamina(value: Variant) -> bool:
+	return value is Dictionary and HotelPlayer.validate_stamina_state(value)
+
 func _validate_encoded_task_checkpoint(value: Dictionary) -> bool:
 	if value.is_empty(): return true
+	if value.has("stamina") and not _is_valid_saved_stamina(value.stamina): return false
 	if not value.get("task_id") is String or not ENABLED_TASKS.has(value.task_id): return false
 	var floor_number: int = get_task_definition(value.task_id)["offer_floor"]
 	if value.get("floor") != floor_number: return false

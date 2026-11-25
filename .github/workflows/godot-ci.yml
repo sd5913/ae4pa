@@ -53,7 +53,7 @@ jobs:
           run_smoke() {
             local name="$1"
             shift
-            local test_root="$RUNNER_TEMP/godot-test-data/$name"
+            local test_root="$RUNNER_TEMP/godot-test-data/${GODOT_TEST_DATA_GROUP:-$name}"
             local log="$RUNNER_TEMP/godot-logs/$name.log"
             mkdir -p "$test_root"/{config,data,cache}
             if XDG_CONFIG_HOME="$test_root/config" XDG_DATA_HOME="$test_root/data" \
@@ -75,6 +75,9 @@ jobs:
           run_smoke task_door_lifecycle --script res://scenes/tests/doors/task_door_lifecycle_smoke.gd
           run_smoke localization --script res://scenes/tests/core/localization_smoke.gd
           run_smoke late_mainline --script res://scenes/tests/core/late_mainline_main_flow_smoke.gd -- --ui-smoke
+          run_smoke memory_storage --script res://scenes/tests/core/memory_service_smoke.gd
+          GODOT_TEST_DATA_GROUP=memory-roundtrip run_smoke memory_save --script res://scenes/tests/core/memory_cross_process_smoke.gd -- --ui-smoke
+          GODOT_TEST_DATA_GROUP=memory-roundtrip run_smoke memory_load --script res://scenes/tests/core/memory_cross_process_smoke.gd -- --ui-smoke --load
           exit "$failed"
 
       - name: Upload Godot logs

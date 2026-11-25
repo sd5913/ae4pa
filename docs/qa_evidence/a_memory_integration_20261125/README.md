@@ -37,3 +37,9 @@ godot --path . --resolution 1280x720 --script res://scenes/tests/core/memory_cro
 godot --path . --resolution 1280x720 --script res://scenes/tests/core/memory_cross_process_smoke.gd -- --ui-smoke --load
 godot --headless --path . --script res://scenes/tests/core/memory_service_smoke.gd
 ```
+
+## 合并前复测
+
+已改为写入新的存档代次，覆盖时保留旧主档及旧代次，避免 Windows 的同名重命名先删除主档。读档预检也校验嵌套检查点及其固定安全点，并恢复尚未触发的双槽教学。
+
+合入 #73 的手动装备、#75 的体力和 #79 的角色美术后，macOS / Godot 4.7.2 导入、存储专测及两次独立进程保存／读取均退出 0。临时会话保存 18 点体力、耗尽标志及恢复等待，加载后可再次失败并从原检查点恢复 62 点体力。Linux CI 使用独立测试目录连续运行保存与读取进程。Windows 可执行文件启动和 Windows 实机覆盖存档是不同验收项，后者仍未执行。
