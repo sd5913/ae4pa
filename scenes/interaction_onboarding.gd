@@ -102,6 +102,10 @@ func _process(delta: float) -> void:
 		_panel.hide()
 		_set_highlight("")
 		return
+	if _interaction_has_priority():
+		_panel.hide()
+		_set_highlight("")
+		return
 	_identity_left = maxf(0,_identity_left-delta)
 	_review_left = maxf(0,_review_left-delta)
 	if _review_left > 0:
@@ -130,3 +134,16 @@ func _process(delta: float) -> void:
 func _set_highlight(target: String) -> void:
 	for key in ["BagButton","SwitchHint"]:
 		_hud.get_node("%"+key).modulate = Color("ffe4a1") if target == key else Color.WHITE
+
+func _interaction_has_priority() -> bool:
+	# Keep the optional review panel out of the actual staff/work interaction.
+	var world: Node = get_parent().get_node("World")
+	if world.get_child_count() != 1: return false
+	var floor_node: Node = world.get_child(0)
+	var target: String = floor_node.get_interaction_target_id()
+	if target.begins_with("STAFF_") and GameManager.is_interaction_allowed(target): return true
+	if not floor_node.get_work_interaction_hint(target).is_empty(): return true
+	for slot: Node in floor_node.get_node("StaffRoot").get_children():
+		var staff: Node = slot.get_node("Staff")
+		if staff.is_player_in_range() and staff.get_node("FeedbackLabel").visible: return true
+	return false

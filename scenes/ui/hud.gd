@@ -78,6 +78,7 @@ func _on_visibility_changed() -> void:
 
 
 func _refresh() -> void:
+	%SwitchHint.text = "%s · %s" % [_action_key("switch_id"), tr("切换工作证")]
 	_refresh_floor()
 	_refresh_cards()
 	_refresh_task_display()
@@ -124,7 +125,7 @@ func _apply_task_view(view: Dictionary, objective: String) -> void:
 func _next_objective(completed_id: String) -> String:
 	if GameManager.has_friend:
 		return tr(GameManager.get_story_objective())
-	if completed_id == GameManager.TASK_03_ID: return tr("309登记已批准；切为保洁身份进入309，寻找Terese。")
+	if completed_id == GameManager.TASK_03_ID: return tr("302授权已完成。切为保洁身份进入309，寻找Terese。")
 	# Read the real catalog and prerequisites. UI never opens or offers a task.
 	var catalog: Dictionary = preload("res://scripts/task_definitions.gd").TASKS
 	var completed: Array = GameManager.get_completed_task_ids()

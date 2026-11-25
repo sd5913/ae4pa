@@ -400,3 +400,20 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 - Godot `4.7.2.stable.official.ed1daf0bf`（Windows，隔离临时用户配置）：编辑器资源导入退出 0；偷窃 UI smoke 中文退出 0、英文退出 0；`localization_smoke.gd` 退出 0；现有 `ui_test.tscn -- --ui-smoke` 退出 0；`git diff --check` 退出 0。日志记录了 Windows 根证书读取错误，但没有阻断检查。无窗口 smoke 与图形 smoke 均覆盖三身份映射、资源加载、四拍中英文本、0.8 秒展示阶段、单次推进／忽略键盘回显、单次完成信号及返回已有失败菜单。
 - 图形 smoke 已在中文 1280×720 和英文 960×540 捕获各身份对白截图；135 帧 Movie Maker 文件展示自动化的 CG→对白→失败菜单场景。这些是独立 UI smoke 证据，不是正式主场景真实偷窃路线或人工操作录像。证据、日志说明和未验证项见[偷窃失败 UI 证据](qa_evidence/d_theft_failure_20261122/README.md)。
 - 正式主场景中分别触发三种员工的真实偷窃失败、快速物理输入，以及检查点恢复／返回菜单尚未人工验收。主场景已有 `Failure.retry_requested()`／`return_to_menu_requested()` 接线。中英文 UI smoke 覆盖演出结束后保留检查点重试、继续提示可见和取消后同角色可重播。
+
+
+## B 既有交互修复保存／上传检查（2026-11-25）
+
+基于 `ac58302`，Godot `4.7.2.stable.official.ed1daf0bf`、macOS／Apple M1 Pro。本批为此前本地修复交付，不包含 Staff Workroom 的场景、预览或功能迁移。
+
+本次重新执行（退出码均为0）：
+
+- `godot --headless --path . --editor --import --quit`：恢复缺失的已跟踪正式资源后导入通过，未把这些意外删除加入提交。
+- `godot --headless --path . --script res://scenes/tests/staff/third_card_bag_smoke.gd -- --ui-smoke`：三卡收藏／双槽、当前槽立即生效、备用槽提示、HUD与身份外观一致性 PASS。
+- `godot --headless --path . --script res://scenes/tests/core/interaction_feedback_batch_smoke.gd -- --ui-smoke`：任务未接、双卡不足、前置工作、当前身份、403提示去重及既有EXIT松键夹具 PASS。测试含显式前置状态，不代替完整真人通关。
+- `godot --headless --path . --script res://scenes/tests/staff/tutorial_workpoints_smoke.gd -- --ui-smoke`：204／205单卡、双卡、A/B顺序与生效身份矩阵、五工作点原规则 PASS。
+- `godot --headless --path . --script res://scenes/tests/staff/final_visual_integration_smoke.gd -- --ui-smoke`：多个清洁点不互相清除拖把姿态、正式污渍及审批完成／恢复状态 PASS。无界面结果不等于美术验收。
+
+沿用2026-11-24同一批玩法逻辑的 `full_mainline_escape_smoke.gd -- --ui-smoke` 八任务→309→EXIT自动PASS及本地化PASS；本次不重复全路线。原生全路线截图曾停在等待并停止，不能记录为通过。局部二楼Godot渲染截图已观察，审批桌绘制层／纸张摆位的最后实验性微调未加入本次交付，仍待真人确认。所有本批真人验收状态保持待复测，不改原Excel记录。
+
+远端核对：`main@48c0b5c137003beeaf8a4b72472ded0695ba8e00` 已包含D记忆界面等18个后续提交。临时三方文件检查发现 `localization/en.po`、`scenes/interaction_onboarding.gd` 冲突；未合并main或解决队友代码，本分支结果不代表新main整合通过。

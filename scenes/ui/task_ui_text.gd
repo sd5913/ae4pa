@@ -45,4 +45,7 @@ static func notice_for_display(message: String) -> String:
 	var return_match := RegEx.create_from_string("^返回(\\d{3})按E交付$").search(message)
 	if return_match:
 		return TranslationServer.translate("返回%s按E交付") % return_match.get_string(1)
+	var next_match := RegEx.create_from_string("^前往(\\d{3})继续下一项任务。$").search(message)
+	if next_match:
+		return TranslationServer.translate("前往%s继续下一项任务。") % next_match.get_string(1)
 	return TranslationServer.translate(message)
