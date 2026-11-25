@@ -37,6 +37,7 @@ func _ready() -> void:
 	GameManager.task_completed.connect(_on_tutorial_completed)
 	$TaskLayer/MissionBoard.task_accepted.connect(_on_task_accepted)
 	GameManager.task_updated.connect(_refresh_objective)
+	CardManager.identity_change_blocked.connect(_on_identity_change_blocked)
 	dialogue.dialogue_finished.connect(_on_dialogue_finished)
 	$DeveloperOverlay/Margin/Info/NewGame.pressed.connect(_start_session)
 	$TaskLayer.menu_requested.connect(_show_menu)
@@ -344,6 +345,12 @@ func _on_game_failed(reason: String) -> void:
 		_show_notice("偷窃被发现 · 可重新挑战本任务")
 	else:
 		_show_notice("失败：%s", [reason])
+
+
+func _on_identity_change_blocked(reason: String) -> void:
+	match reason:
+		"NPC_OBSERVATION": _show_notice("有人正在看着你，不能在这里更换身份。先离开对方视线。")
+		"CHECKER_RESTRICTION": _show_notice("核验区内不能调整证件。先退到安全工作台，再按I换证。")
 
 
 func _on_safe_return_started(reason: String) -> void:

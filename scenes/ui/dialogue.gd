@@ -20,10 +20,8 @@ const BACKGROUNDS := {
 	"exterior": preload("res://assets/final/ui/visual_novel/hotel_exterior_rain.png"),
 	"lobby": preload("res://assets/final/ui/visual_novel/hotel_lobby.png"),
 }
-const AN_AVATAR := preload("res://assets/final/ui/hotel_interface/avatar_an.png")
-const FRIEND_AVATAR := preload("res://assets/final/ui/hotel_interface/avatar_friend.png")
 const ConfirmedPortraits = preload("res://scenes/ui/confirmed_character_portraits.gd")
-const FRIEND_SHEET := preload("res://assets/final/ui/visual_novel/friend_expressions.png")
+const CharacterArt = preload("res://scenes/ui/character_art_v2.gd")
 const PORTRAIT_ROLES := {"女主": "an", "安": "an", "Carol": "an", "保洁": "cleaner", "保安": "security", "经理": "manager"}
 const EXPRESSION_ALIASES := {
 	"calm": "neutral", "pensive": "neutral", "curious": "neutral",
@@ -32,14 +30,6 @@ const EXPRESSION_ALIASES := {
 	"determined": "stern",
 }
 const ROLE_PORTRAITS := {
-	"an": {
-		"neutral": preload("res://assets/final/ui/dialogue_portraits/an/an_neutral.png"),
-		"smile": preload("res://assets/final/ui/dialogue_portraits/an/an_smile.png"),
-		"surprised": preload("res://assets/final/ui/dialogue_portraits/an/an_surprised.png"),
-		"worried": preload("res://assets/final/ui/dialogue_portraits/an/an_worried.png"),
-		"suspicious": preload("res://assets/final/ui/dialogue_portraits/an/an_suspicious.png"),
-		"stern": preload("res://assets/final/ui/dialogue_portraits/an/an_stern.png"),
-	},
 	"cleaner": {
 		"neutral": preload("res://assets/final/ui/dialogue_portraits/cleaner/cleaner_neutral.png"),
 		"smile": preload("res://assets/final/ui/dialogue_portraits/cleaner/cleaner_smile.png"),
@@ -56,30 +46,6 @@ const ROLE_PORTRAITS := {
 		"suspicious": preload("res://assets/final/ui/dialogue_portraits/security/security_suspicious.png"),
 		"stern": preload("res://assets/final/ui/dialogue_portraits/security/security_stern.png"),
 	},
-	"manager": {
-		"neutral": preload("res://assets/final/ui/dialogue_portraits/manager/manager_neutral.png"),
-		"smile": preload("res://assets/final/ui/dialogue_portraits/manager/manager_smile.png"),
-		"surprised": preload("res://assets/final/ui/dialogue_portraits/manager/manager_surprised.png"),
-		"worried": preload("res://assets/final/ui/dialogue_portraits/manager/manager_worried.png"),
-		"suspicious": preload("res://assets/final/ui/dialogue_portraits/manager/manager_suspicious.png"),
-		"stern": preload("res://assets/final/ui/dialogue_portraits/manager/manager_stern.png"),
-	},
-}
-const FACE_INDEX := {
-	"pensive": 0,
-	"worried": 1,
-	"surprised": 2,
-	"suspicious": 3,
-	"determined": 4,
-	"relieved": 5,
-	"calm": 0,
-	"happy": 1,
-	"teasing": 2,
-	"anxious": 3,
-	"afraid": 4,
-	"concerned": 1,
-	"curious": 0,
-	"neutral": 0,
 }
 
 const MemoryHistory = preload("res://scenes/ui/memory_history.gd")
@@ -128,6 +94,7 @@ func _ready() -> void:
 	visible = false
 	_skip_transitions = "--ui-smoke" in OS.get_cmdline_user_args()
 	visibility_changed.connect(_restore_hidden_surface)
+	$SMSPanel/PhoneScreen/PhoneNotification/Notice/Avatar.texture = CharacterArt.avatar("friend")
 	resized.connect(_fit_dialogue_text.call_deferred)
 	_line.resized.connect(_fit_dialogue_text.call_deferred)
 
@@ -473,7 +440,7 @@ func _add_sms_message(speaker: String, text: String) -> void:
 	avatar.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	avatar.size_flags_vertical = Control.SIZE_SHRINK_BEGIN
 	avatar.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	avatar.texture = FRIEND_AVATAR if is_friend else AN_AVATAR
+	avatar.texture = CharacterArt.avatar("friend" if is_friend else "an")
 	var bubble := PanelContainer.new()
 	bubble.name = "Bubble"
 	bubble.mouse_filter = Control.MOUSE_FILTER_IGNORE
@@ -533,30 +500,30 @@ func _display_portrait(speaker: String, expression: String) -> void:
 		_portrait.show()
 		_fit_dialogue_text.call_deferred()
 		return
-	if speaker in ["闺蜜", "Terese", "Persica", "friend"]:
-		var index := int(FACE_INDEX.get(expression, 0))
-		_portrait.texture = _atlas_cell(FRIEND_SHEET, index)
-	else:
-		var role: String = PORTRAIT_ROLES.get(speaker, "")
-		if role.is_empty():
-			_portrait.hide()
-			return
-		var portraits: Dictionary = ROLE_PORTRAITS[role]
+	var refreshed_role: String = "friend" if speaker in ["闺蜜", "Terese", "Persica", "friend"] else PORTRAIT_ROLES.get(speaker, "")
+	if CharacterArt.ROLES.has(refreshed_role):
 		var key: String = EXPRESSION_ALIASES.get(expression, expression)
-		_portrait.texture = portraits.get(key, portraits["neutral"])
-	_portrait.texture = _trim_role_portrait(_portrait.texture, "friend" if speaker in ["闺蜜", "Terese", "Persica", "friend"] else PORTRAIT_ROLES.get(speaker, "an"))
+		_portrait.texture = CharacterArt.portrait(refreshed_role, key)
+		_portrait.show()
+		_fit_dialogue_text.call_deferred()
+		return
+	var role: String = PORTRAIT_ROLES.get(speaker, "")
+	if not ROLE_PORTRAITS.has(role):
+		_portrait.hide()
+		return
+	var portraits: Dictionary = ROLE_PORTRAITS[role]
+	var key: String = EXPRESSION_ALIASES.get(expression, expression)
+	_portrait.texture = _trim_role_portrait(portraits.get(key, portraits["neutral"]), role)
 	_portrait.show()
 	_fit_dialogue_text.call_deferred()
 
 
 func _trim_role_portrait(texture: Texture2D, role: String) -> Texture2D:
+	if CharacterArt.ROLES.has(role): return texture
 	if not _portrait_region_cache.has(role):
 		var region := Rect2i()
 		var variants: Array = []
-		if role == "friend":
-			for face in range(6): variants.append(_atlas_cell(FRIEND_SHEET, face))
-		else:
-			variants = ROLE_PORTRAITS.get(role, ROLE_PORTRAITS["an"]).values()
+		variants = ROLE_PORTRAITS[role].values()
 		for variant: Texture2D in variants:
 			var bounds := variant.get_image().get_used_rect()
 			region = bounds if region.size == Vector2i.ZERO else region.merge(bounds)

@@ -12,6 +12,17 @@ func check(ok: bool, message: String) -> void:
 func settle() -> void:
 	for i in range(4): await physics_frame
 	await process_frame
+func tap(action: String) -> void:
+	var event := InputEventAction.new()
+	event.action = action
+	event.pressed = true
+	Input.parse_input_event(event)
+	await settle()
+	event = InputEventAction.new()
+	event.action = action
+	event.pressed = false
+	Input.parse_input_event(event)
+	await settle()
 func floor_node() -> Node: return main.get_node("World").get_child(0)
 func quiet() -> void:
 	floor_node().get("_door_scheduler").set_process(false)
@@ -107,22 +118,98 @@ func run() -> void:
 		await settle()
 		check(guide.get_rear_direction() == 1, "Guide follows real staff turning")
 	await capture("staff_rear")
+	f.player.global_position.x = 2000
+	await settle()
+	await tap("switch_id")
+	check(c.active_card == "NONE", "Early Q with empty slots does not invent an identity")
+	var before_first_card: Dictionary = c.export_snapshot()
 	c.collect_card("CLEANER")
 	await settle()
 	await capture("first_identity")
+	check(c.get_owned_cards() == ["CLEANER"] and c.get_equipped_cards() == ["NONE", "NONE"] and c.active_card == "NONE", "First collected ID stays in collection without equipment or active identity")
+	check(not staff.call("_is_player_recognized"), "Staff cannot recognize an ID that is only collected")
 	if guide != null: check(not guide.visible, "Collected staff guide does not suggest repeat theft")
 	var outfit: Node = f.player.get_node_or_null("Visual/Artwork/IdentityOutfit")
 	check(outfit != null, "Player has identity-specific wearable")
-	if outfit != null: check(outfit.get("card_id") == "CLEANER", "Wearable reads actual first active identity")
+	if outfit != null: check(outfit.get("card_id") == "NONE", "First theft preserves the default outfit")
 	var onboarding: Node = main.get_node_or_null("InteractionOnboarding")
 	check(onboarding != null, "Progressive guide joins actual main scene")
 	if onboarding != null:
-		check(onboarding.get_identity_hint().contains("I") and not onboarding.get_identity_hint().contains("Q"), "Single-card guide avoids switching into empty slot")
+		check(onboarding.get_identity_hint().contains("魔法工作证") and onboarding.get_identity_hint().contains("I"), "First theft explains the magic work ID and safety step")
+		onboarding._process(3.1)
+	f.player.global_position.x = staff.global_position.x + 30
+	staff.facing_direction = 1
+	await settle()
+	check(staff.is_observing_player(), "Staff observation uses current actual facing and proximity")
+	var observed_snapshot: Dictionary = c.export_snapshot()
+	c.switch_active()
+	check(c.export_snapshot() == observed_snapshot, "Q identity change is blocked before mutation while staff is watching")
 	main.bag.open_bag()
+	await settle()
+	var observed_payload := {"source": main.bag.get_instance_id(), "card_id": "CLEANER"}
+	check(not main.bag._can_drop_card(Vector2.ZERO, observed_payload, 0) and main.bag._status.text.contains("有人正在看着你"), "Observed staff blocks drag equipment with a clear reason")
+	main.bag.get_node("%EquipSlotA").pressed.emit()
+	check(c.active_card == "NONE" and c.get_equipped_cards() == ["NONE", "NONE"], "Observed staff blocks bag equipment before any identity change")
 	main.bag.close_bag()
+	f.player.global_position.x = 2000
+	await settle()
+	if onboarding != null: check(onboarding.get("_first_disguise_step") == "READY_FOR_BAG", "Early I and closing do not deadlock first disguise teaching: " + str(onboarding.get("_first_disguise_step")) + " / " + str(f.get_identity_change_block_reason(false)))
+	main.bag.open_bag()
+	await settle()
+	if onboarding != null: check(onboarding.get("_first_disguise_step") == "EQUIP", "Opening the bag from a safe position advances the tutorial")
+	check(main.bag._selected_card_id() == "CLEANER", "First tutorial selects the newly collected cleaner ID")
+	check(main.bag.get_node("%EquipSlotA").modulate == Color("ffe3a1"), "First tutorial highlights equipment slot A")
+	# The real retry path restores this authoritative snapshot before the new attempt.
+	check(c.restore_snapshot(before_first_card), "Pre-theft checkpoint card snapshot restores")
+	if onboarding != null:
+		check(onboarding.get_identity_hint().is_empty(), "Rolled-back first theft removes the disguise hint immediately")
+	check(main.bag.get_node("%EquipSlotA").modulate == Color.WHITE, "Rolled-back first theft clears slot A focus")
+	main.bag.close_bag()
+	check(c.collect_card("CLEANER"), "First ID can be picked up again after retry")
+	if onboarding != null:
+		check(onboarding.get("_first_disguise_step") == "ACQUIRED", "Reacquiring the first ID restarts the collection step")
+		onboarding._process(3.1)
+	main.bag.open_bag()
+	await settle()
+	check(main.bag._selected_card_id() == "CLEANER" and main.bag.get_node("%EquipSlotA").modulate == Color("ffe3a1"), "Reacquired first ID restarts the equipment focus")
+	main.bag.get_node("%EquipSlotA").pressed.emit()
+	main.bag.close_bag()
+	await settle()
+	check(c.active_card == "NONE" and c.get_equipped_cards() == ["CLEANER", "NONE"], "Equipping an inactive slot does not implicitly change the current identity")
+	await tap("switch_id")
+	await settle()
+	check(c.active_card == "CLEANER" and outfit.get("card_id") == "CLEANER", "Manual activation synchronizes identity and outfit")
+	staff.set_cleaner_behavior_enabled(false)
+	staff.facing_direction = 1
+	f.player.global_position.x = staff.global_position.x - 90
+	await settle()
+	Input.action_press("move_right")
+	for i in range(70): await physics_frame
+	Input.action_release("move_right")
+	await settle()
+	check(not staff.is_suspicious() and g.game_state == "PLAYING", "Wearing the matching uniform while passing staff is not theft evidence")
+	f.player.global_position.x = 2000
+	await settle()
+	if onboarding != null:
+		check(onboarding.get_identity_hint().contains("伪装成功"), "First activation shows disguise feedback")
+		onboarding._process(5.0)
+		check(onboarding.get_identity_hint().contains("不要在工作人员或怪物注视下切换"), "First disguise teaching explains the observation restriction")
+		onboarding._process(7.0)
 	c.collect_card("SECURITY")
 	await settle()
-	if onboarding != null: check(onboarding.get_identity_hint().contains("Q"), "Two usable slots teach Q")
+	check(c.get_equipped_cards() == ["CLEANER", "NONE"] and c.active_card == "CLEANER", "Second collected ID does not replace the first identity")
+	if onboarding != null: check(onboarding.get_identity_hint().contains("I"), "Later card teaches the existing bag flow")
+	main.bag.open_bag()
+	await settle()
+	var security_owned: ItemList = main.bag.get_node("%OwnedCards")
+	for i in security_owned.item_count:
+		if security_owned.get_item_metadata(i) == "SECURITY":
+			security_owned.select(i)
+			security_owned.item_selected.emit(i)
+	main.bag.get_node("%EquipSlotB").pressed.emit()
+	main.bag.close_bag()
+	await settle()
+	check(c.get_equipped_cards() == ["CLEANER", "SECURITY"] and c.active_card == "CLEANER", "Manual second equip preserves the active first identity")
 	c.switch_active()
 	await settle()
 	if outfit != null: check(outfit.get("card_id") == "SECURITY", "Wearable follows actual Q identity")
@@ -172,6 +259,13 @@ func run() -> void:
 	quiet()
 	f = floor_node()
 	var checker: Node = f.get_node("DoorRoot/Room205/Door")
+	var ordinary: Node = f.get_node("DoorRoot/Room201/Door")
+	for slot: Node in f.get_node("StaffRoot").get_children():
+		slot.get_node("Staff").set("_player_in_range", false)
+	f.player.position.x = ordinary.global_position.x - 35
+	ordinary.set_managed_state("CLOSED")
+	await settle()
+	check(f.get_identity_change_block_reason(false).is_empty(), "A closed ordinary monster door is not observing the player")
 	checker.set_managed_state("OPEN")
 	f.player.position.x = checker.global_position.x - 35
 	await settle()
@@ -249,7 +343,7 @@ func run() -> void:
 		await settle()
 	if onboarding != null: check(onboarding.get("_monster_kind").is_empty(), "Monster refresher does not follow player away from its actual door")
 	check(g.task_status == "COMPLETED", "Actual manager registration still completes 302 task")
-	check(main.notice_label.text == tr("登记已批准。切为保洁身份，去309按E开门。"), "Cleaner entry instruction appears only after real approval")
+	check(main.notice_label.text == tr("302授权完成：309入住已获准。切为保洁身份去309寻找Terese。"), "Cleaner entry instruction appears after real approval")
 	await capture("309_next_step")
 	# A real ordinary-door violation must still explain both cause and return location.
 	f.player.position.x = door.global_position.x + 60

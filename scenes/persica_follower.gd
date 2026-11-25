@@ -1,18 +1,13 @@
 extends Node2D
 ## Visual companion only; no collisions, task rewards or independent rescue state.
 var player: Node2D
-var sprite := Sprite2D.new()
+var _flip_h := false
+var _art := preload("res://scenes/ui/character_world_art_v2.gd").new()
+var _phase := 0.0
+var _walking := false
 func _ready() -> void:
-	var sheet: Texture2D = preload("res://assets/final/characters/persica/q_views.png")
-	var image := sheet.get_image().get_region(Rect2i(0, 0, sheet.get_width()/3, sheet.get_height()))
-	var bounds := image.get_used_rect()
-	var atlas := AtlasTexture.new()
-	atlas.atlas = sheet
-	atlas.region = Rect2(bounds)
-	sprite.texture = atlas
-	sprite.scale = Vector2.ONE * 180.0 / bounds.size.y
-	sprite.position.y = -90
-	add_child(sprite)
+	_art.setup("terese")
+	queue_redraw()
 	var label := Label.new()
 	label.text = "Terese"
 	label.position = Vector2(-60, -210)
@@ -27,9 +22,25 @@ func snap_to_player() -> void:
 	if not is_instance_valid(player): return
 	global_position = player.global_position + Vector2(-72, 0)
 func _physics_process(delta: float) -> void:
-	if not is_instance_valid(player) or not GameManager.is_world_input_allowed(): return
+	if not is_instance_valid(player) or not GameManager.is_world_input_allowed():
+		_walking = false
+		queue_redraw()
+		return
+	var previous_x := global_position.x
 	var dx := player.global_position.x - global_position.x
 	if absf(dx) > 72:
 		global_position.x = move_toward(global_position.x, player.global_position.x - signf(dx)*72, 180*delta)
-		sprite.flip_h = dx < 0
+		_flip_h = dx < 0
 	global_position.y = player.global_position.y
+	var distance := absf(global_position.x - previous_x)
+	_walking = distance > 0.001
+	_phase += distance / 96.0
+	queue_redraw()
+
+func _draw() -> void:
+	if not is_node_ready(): return
+	var pose := _art.pose(_walking, _phase, 180.0)
+	if _flip_h:
+		draw_set_transform(Vector2.ZERO, 0.0, Vector2(-1, 1))
+	draw_texture_rect_region(pose.texture, pose.destination, pose.source)
+	draw_set_transform(Vector2.ZERO)

@@ -26,6 +26,7 @@ func _run() -> void:
 	game.call("complete_manager_intro")
 	# Inventory/world fixtures represent facts that must survive a later task rollback.
 	cards.call("collect_card", "SECURITY")
+	cards.call("equip_card", "SECURITY", 0)
 	game.set("_world_flags", {"prior_note": true})
 	var before_cards: Dictionary = cards.call("export_snapshot")
 	var before_notes: Dictionary = game.call("get_notebook_view")
@@ -55,6 +56,15 @@ func _run() -> void:
 	_expect(cards.call("has_card", "CLEANER"), "Real rear E theft grants the task card")
 	_expect(cards.get("active_card") == "SECURITY", "New card does not silently change active identity")
 	await _travel(2)
+	var safe_x := -1.0
+	for candidate in range(64, int(_floor().corridor_width) - 64, 64):
+		_player().global_position.x = candidate
+		await _settle()
+		if _floor().get_identity_change_block_reason(false).is_empty():
+			safe_x = candidate
+			break
+	_expect(safe_x >= 0.0, "A safe point exists for manual first-time equipment")
+	_expect(cards.call("equip_card", "CLEANER", 1), "Collected cleaner can be manually equipped in the standby slot")
 	var spot: Node = _floor().get_node_or_null("Interactions/Stain201Slot/CleaningSpot")
 	_expect(spot != null, "2F mounts B's real cleaning point")
 	if spot == null:
@@ -65,9 +75,13 @@ func _run() -> void:
 	await _action("interact", true)
 	await _action("interact", false)
 	_expect(not spot.call("is_interacting"), "Standby CLEANER cannot clean")
+	_player().global_position.x = safe_x
+	await _settle()
 	await _action("switch_id", true)
 	await _action("switch_id", false)
 	_expect(cards.get("active_card") == "CLEANER", "Real Q selects the required identity")
+	_player().global_position.x = _floor().get_node("Interactions/Stain201Slot").global_position.x
+	await _settle()
 	await _action("interact", true)
 	await _action("switch_id", true)
 	await _action("switch_id", false)
@@ -175,6 +189,15 @@ func _run() -> void:
 	game.call("accept_task", "TASK_01_CLEAN")
 	await _steal_cleaner()
 	await _travel(2)
+	safe_x = -1.0
+	for candidate in range(64, int(_floor().corridor_width) - 64, 64):
+		_player().global_position.x = candidate
+		await _settle()
+		if _floor().get_identity_change_block_reason(false).is_empty():
+			safe_x = candidate
+			break
+	_expect(safe_x >= 0.0, "Recovered task has a safe point for identity activation")
+	_expect(cards.call("equip_card", "CLEANER", 1), "Recovered task manually equips the collected cleaner ID")
 	await _action("switch_id", true)
 	await _action("switch_id", false)
 	_player().global_position.x = _floor().get_node("Interactions/Stain201Slot").global_position.x

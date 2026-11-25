@@ -4,6 +4,8 @@ const CardDisplay = preload("res://scenes/ui/card_display.gd")
 const MODAL_ID := "bag"
 
 var _previous_focus: Control
+var _tutorial_card_id := ""
+var _tutorial_slot_index := -1
 
 @onready var _owned_cards: ItemList = %OwnedCards
 @onready var _slot_a: Label = %SlotAValue
@@ -82,6 +84,9 @@ func _refresh_cards() -> void:
 		_owned_cards.set_item_metadata(_owned_cards.item_count - 1, card_id)
 		if card_id == previously_selected:
 			_owned_cards.select(_owned_cards.item_count - 1)
+		if card_id == _tutorial_card_id:
+			_owned_cards.select(_owned_cards.item_count - 1)
+			_owned_cards.ensure_current_is_visible()
 
 	var equipped: Array[String] = CardManager.get_equipped_cards()
 	_owned_heading.text = tr("收藏  %d / %d") % [card_ids.size(), _empty_owned.size()]
@@ -101,6 +106,24 @@ func _refresh_cards() -> void:
 		_status.text = "选择一张工作证，再选择佩戴槽。"
 	_equip_slot_a.disabled = _selected_card_id().is_empty()
 	_equip_slot_b.disabled = _selected_card_id().is_empty()
+	_apply_tutorial_highlight()
+
+
+func set_tutorial_focus(card_id: String, slot_index: int) -> void:
+	if _tutorial_card_id == card_id and _tutorial_slot_index == slot_index:
+		return
+	_tutorial_card_id = card_id
+	_tutorial_slot_index = slot_index
+	if not card_id.is_empty() and slot_index in [0,1]:
+		_status.text = tr("把新工作证放入装备槽A，就能使用对应的岗位身份。") if slot_index == 0 else tr("把新工作证放入装备槽，就能使用对应的岗位身份。")
+	_refresh_cards()
+
+
+func _apply_tutorial_highlight() -> void:
+	_equip_slot_a.modulate = Color("ffe3a1") if _tutorial_slot_index == 0 else Color.WHITE
+	_equip_slot_b.modulate = Color("ffe3a1") if _tutorial_slot_index == 1 else Color.WHITE
+	_equip_slot_a.tooltip_text = tr("把新工作证装备到这个槽") if _tutorial_slot_index == 0 else ""
+	_equip_slot_b.tooltip_text = tr("把新工作证装备到这个槽") if _tutorial_slot_index == 1 else ""
 
 
 func _on_card_selected(_index: int) -> void:
@@ -118,7 +141,12 @@ func _equip_selected(slot_index: int) -> void:
 		_status.text = "无效的佩戴槽"
 		return
 	if not CardManager.equip_card(card_id, slot_index):
-		_status.text = "装备失败：该工作证可能已在目标槽或请求无效"
+		if CardManager.last_identity_change_block_reason == "NPC_OBSERVATION":
+			_status.text = tr("有人正在看着你，不能在这里更换身份。先离开对方视线。")
+		elif CardManager.last_identity_change_block_reason == "CHECKER_RESTRICTION":
+			_status.text = tr("核验区内不能调整证件。先退到安全工作台，再按I换证。")
+		else:
+			_status.text = tr("装备失败：该工作证可能已在目标槽或请求无效")
 		return
 	_status.text = "已装备到槽 A" if slot_index == 0 else "已装备到槽 B"
 	_refresh_cards()

@@ -2,6 +2,7 @@ shader_type canvas_item;
 
 // Applied only to Carol's Artwork; source geometry and lower-body pixels stay intact.
 uniform bool manager_active = false;
+uniform bool refresh_palette = false;
 uniform vec4 coat_rect = vec4(0.0);
 uniform vec4 hem_rect = vec4(0.0);
 uniform vec2 collar_top = vec2(0.0);
@@ -26,16 +27,23 @@ void fragment() {
 		// Original mustard cloth only: excludes skin, red bag, outlines and brown trousers.
 		bool cloth = color.r > 0.4 && color.g > 0.22 && color.b < 0.24
 			&& color.g > color.b * 1.65 && color.r > color.g * 1.03;
+		if (refresh_palette) {
+			// New dusty-mauve cloth; exclude skin, black gloves, hair and outlines.
+			cloth = color.r > 0.26 && color.r < 0.76 && color.g > 0.13
+				&& color.r > color.g * 1.22 && color.b > color.g * 0.75 && color.b < color.g * 1.25 && color.b < color.r * 0.98;
+		}
 		if (upper_body && cloth) {
 			float light = clamp((color.g - 0.22) / 0.64, 0.0, 1.0);
-			color = mix(vec3(0.105, 0.165, 0.175), vec3(0.265, 0.385, 0.395), light);
+			color = refresh_palette
+				? mix(vec3(0.18, 0.16, 0.12), vec3(0.40, 0.36, 0.28), light)
+				: mix(vec3(0.105, 0.165, 0.175), vec3(0.265, 0.385, 0.395), light);
 		}
 		// Keep source outline and skin; turn the existing dark inner blouse ivory.
 		float length_y = max(collar_bottom.y - collar_top.y, 0.01);
 		float t = (sprite_position.y - collar_top.y) / length_y;
 		float center_x = mix(collar_top.x, collar_bottom.x, t);
 		bool inner_blouse = t >= 0.0 && t <= 1.0 && abs(sprite_position.x - center_x) < mix(3.0, 0.5, t);
-		if (inner_blouse && original.r > 0.14 && original.r < 0.40 && original.g > 0.075 && original.b < 0.26) {
+		if (!refresh_palette && inner_blouse && original.r > 0.14 && original.r < 0.40 && original.g > 0.075 && original.b < 0.26) {
 			color = vec3(0.91, 0.84, 0.72);
 		}
 	}
