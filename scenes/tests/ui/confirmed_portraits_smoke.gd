@@ -1,5 +1,7 @@
 extends SceneTree
 const Portraits = preload("res://scenes/ui/confirmed_character_portraits.gd")
+const TeamArt = preload("res://scenes/ui/character_art_v2.gd")
+const DialogueRoles = preload("res://scenes/ui/dialogue_roles.gd")
 var failures: Array[String] = []
 func check(ok: bool, label: String) -> void:
 	print(("PASS " if ok else "FAIL ") + label)
@@ -10,9 +12,8 @@ func run() -> void:
 		for expression in Portraits.PORTRAITS[id]:
 			var texture: Texture2D = Portraits.PORTRAITS[id][expression]
 			check(texture.get_size() == Vector2(1280, 1440), id + ":" + expression + " canvas")
-	check(Portraits.portrait("Carol", "worried") == Portraits.portrait("Carol", "pensive"), "Carol worry maps to thinking")
-	for expression in ["concerned", "curious"]:
-		check(Portraits.portrait("Carol", expression) == Portraits.portrait("Carol", "smile"), expression + " maps to smile")
+	check(Portraits.role("Carol").is_empty(), "Carol bypasses personal portrait overrides")
+	check(DialogueRoles.portrait("CAROL") == TeamArt.portrait("an"), "Carol shared adapter retains team version")
 	for expression in ["neutral", "surprised", "stern", "worried"]:
 		check(Portraits.portrait("经理", expression) == Portraits.portrait("经理", "neutral"), "manager fixed " + expression)
 	check(Portraits.portrait("Terese", "playful") != Portraits.portrait("Terese", "teasing"), "Terese playful distinct from teasing")
@@ -27,7 +28,13 @@ func run() -> void:
 	current_scene = main
 	await process_frame
 	var dialogue = main.get_node("StoryLayer/Dialogue")
-	for speaker in ["Carol", "Terese", "经理"]:
+	for expression in TeamArt.EXPRESSIONS + ["pensive", "concerned", "curious", "determined"]:
+		dialogue.call("_display_portrait", "Carol", expression)
+		var key: String = dialogue.EXPRESSION_ALIASES.get(expression, expression)
+		check(dialogue.get_node("%Portrait").texture == TeamArt.portrait("an", key), "Carol team expression " + expression)
+	dialogue.present_character_beat("CAROL", "先找到 Terese。")
+	check(dialogue.get_node("%Portrait").texture == TeamArt.portrait("an"), "Carol task/tutorial retains team portrait")
+	for speaker in ["Terese", "经理"]:
 		var id := Portraits.role(speaker)
 		for expression in Portraits.PORTRAITS[id]:
 			dialogue.call("_display_portrait", speaker, expression)
