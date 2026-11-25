@@ -56,10 +56,15 @@ func walk_to(x: float) -> void:
 	check(absf(player().position.x-x)<12.0, "real walking reaches work point")
 func equip(card: String, second: String = "") -> void:
 	# Actual I screen, card selection and equipment buttons; no direct slot fixture.
-	if second.is_empty() and c.get_equipped_cards().has(card):
-		if c.active_card != card: await tap("switch_id")
-		return
-	if not floor_node().get_identity_restriction_room().is_empty(): await walk_to(2850)
+	var return_x: float = player().global_position.x
+	var safe_x := -1.0
+	for candidate in range(64, int(floor_node().corridor_width) - 64, 64):
+		player().global_position.x = candidate
+		await settle()
+		if floor_node().get_identity_change_block_reason(false).is_empty():
+			safe_x = candidate
+			break
+	check(safe_x >= 0.0, "identity setup can find an actual safe point")
 	var slot: int = c.active_slot
 	await tap("open_bag")
 	var bag: Control = main.get_node("MenuLayer/Bag")
@@ -72,7 +77,10 @@ func equip(card: String, second: String = "") -> void:
 				bag.get_node("%EquipSlotA" if spec[1]==0 else "%EquipSlotB").pressed.emit()
 				break
 	await tap("open_bag");await settle()
+	if c.active_card != card: await tap("switch_id")
 	check(c.active_card==card and (second.is_empty() or c.get_equipped_cards().has(second)),"actual I/Q prepares requested identities")
+	player().global_position.x = return_x
+	await settle()
 func steal(slot: String, card: String) -> void:
 	await travel(1)
 	var staff: Node = floor_node().get_node("StaffRoot/" + slot + "/Staff")
@@ -185,6 +193,7 @@ func run() -> void:
 	if not await offer("201", "TASK_01_CLEAN"): end(); return
 	await remind("201", "MISSING_CARD")
 	await steal("CleanerSlot", "CLEANER")
+	await equip("CLEANER")
 	await work("Stain201Slot/CleaningSpot", true)
 	await deliver("201", "TASK_01_CLEAN")
 	if not await offer("202", "TASK_02_PARCEL"): end(); return

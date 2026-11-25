@@ -47,7 +47,18 @@ func _card_drag_data(at_position: Vector2) -> Variant:
 	return {"source": get_instance_id(), "card_id": id}
 
 func _can_drop_card(_at_position: Vector2, data: Variant, slot: int) -> bool:
-	return slot in [0,1] and data is Dictionary and data.get("source",0) == get_instance_id() and CardManager.has_card(data.get("card_id","")) and GameManager.get_identity_restriction_room().is_empty()
+	if slot not in [0,1] or not data is Dictionary or data.get("source",0) != get_instance_id() or not CardManager.has_card(data.get("card_id","")):
+		return false
+	var floor_node: Node = get_tree().get_first_node_in_group("current_identity_observer")
+	if floor_node != null:
+		var block_reason: String = floor_node.get_identity_change_block_reason(false)
+		if block_reason == "NPC_OBSERVATION":
+			_status.text = tr("有人正在看着你，不能在这里更换身份。先离开对方视线。")
+			return false
+		if block_reason == "CHECKER_RESTRICTION":
+			_status.text = tr("核验区内不能调整证件。先退到安全工作台，再按I换证。")
+			return false
+	return true
 
 func _drop_card(at_position: Vector2, data: Variant, slot: int) -> void:
 	if not _can_drop_card(at_position,data,slot): return
@@ -85,12 +96,12 @@ func _selection_hint(id: String) -> String:
 
 func _on_card_selected(index: int) -> void:
 	super._on_card_selected(index)
-	_status.text = _selection_hint(_selected_card_id())
+	if not _tutorial_card_id.is_empty() and _selected_card_id() == _tutorial_card_id:
+		_status.text = tr("把新工作证放入装备槽A，就能使用对应的岗位身份。") if _tutorial_slot_index == 0 else tr("把工作证放入装备槽，就能使用对应的岗位身份。")
+	else:
+		_status.text = _selection_hint(_selected_card_id())
 
 func _equip_selected(slot_index: int) -> void:
-	if not GameManager.get_identity_restriction_room().is_empty():
-		_status.text = tr("核验区内不能调整证件。先退到安全工作台，再按I换证。")
-		return
 	var id := _selected_card_id()
 	if slot_index in [0,1] and not id.is_empty() and CardManager.get_equipped_cards()[slot_index] == id:
 		_status.text = tr("%s已在槽%s，无需重复装备。") % [tr(CardDisplay.name_for(id)), "A" if slot_index == 0 else "B"]

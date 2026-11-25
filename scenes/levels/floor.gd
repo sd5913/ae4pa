@@ -35,6 +35,8 @@ var _door_scheduler: Node
 
 
 func _ready() -> void:
+	add_to_group("current_identity_observer")
+	CardManager.set_identity_change_guard(Callable(self, "get_identity_change_block_reason"))
 	var markers := preload("res://scenes/levels/interaction_markers.gd").new()
 	markers.name = "InteractionMarkers"
 	add_child(markers)
@@ -106,14 +108,6 @@ func _process(delta: float) -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("switch_id") and not GameManager.is_world_input_allowed():
 		get_viewport().set_input_as_handled()
-	elif event.is_action_pressed("switch_id") and not event.is_echo():
-		var room := get_identity_restriction_room()
-		var checker: Node = get_node_or_null("DoorRoot/Room" + room + "/Door") if not room.is_empty() else null
-		# Normal doors keep C's existing violation/return rule. A must also guard
-		# story checkers, whose task lifecycle intentionally bypasses normal detection.
-		if checker != null and checker.door_mode == "STORY":
-			_emit_notice("核验区内不能调整证件。先退到安全工作台，再按I换证。")
-			get_viewport().set_input_as_handled()
 	# Observe release even when a UI consumes it before _unhandled_input.
 	if event.is_action_released("interact"):
 		_cancel_held_interaction()
@@ -377,6 +371,7 @@ func _on_identity_changed(_action: String) -> void:
 
 func _exit_tree() -> void:
 	_cancel_held_interaction()
+	CardManager.clear_identity_change_guard(self)
 
 
 func _apply_task_route() -> void:
@@ -429,6 +424,23 @@ func get_identity_restriction_room() -> String:
 	for door: Node2D in _doors:
 		if door.monster_type == "CHECKER" and door.door_state == "OPEN" and absf(player.global_position.x-door.global_position.x) <= door.radius:
 			return door.room_id
+	return ""
+
+
+func get_identity_change_block_reason(apply_checker_penalty: bool = true) -> String:
+	var restricted_room := get_identity_restriction_room()
+	if not restricted_room.is_empty():
+		var checker: Node = get_node_or_null("DoorRoot/Room" + restricted_room + "/Door")
+		if apply_checker_penalty and checker != null and checker.report_blocked_checker_switch():
+			return "CHECKER_PENALTY"
+		return "CHECKER_RESTRICTION"
+	for slot: Node in $StaffRoot.get_children():
+		var staff: Node = slot.get_node("Staff")
+		if staff.has_method("is_observing_player") and staff.is_observing_player():
+			return "NPC_OBSERVATION"
+	for door: Node2D in _doors:
+		if door.has_method("is_observing_player") and door.is_observing_player():
+			return "NPC_OBSERVATION"
 	return ""
 
 
@@ -697,9 +709,7 @@ func _refresh_exit_hint() -> void:
 
 func _on_card_stolen(card_id: String) -> void:
 	_refresh_staff_captions()
-	_emit_notice("获得%s ID", [CARD_NAMES[card_id]])
-	if not CardManager.get_equipped_cards().has(card_id):
-		_emit_notice("已收藏%s工作证：两个装备槽已满。按I打开证件管理，选择此卡并替换槽A或B，再按Q切换。", [CARD_NAMES[card_id]])
+	_emit_notice("获得工作证：%s。已加入收藏，需手动装备。", [CARD_NAMES[card_id]])
 
 
 func _emit_notice(template: String, arguments: Array[String] = []) -> void:

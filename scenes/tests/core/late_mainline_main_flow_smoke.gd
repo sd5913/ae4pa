@@ -96,7 +96,9 @@ func _run() -> void:
 	for card in ["CLEANER", "SECURITY", "MANAGER"]: cards.collect_card(card)
 	game._load_floor(3)
 	await _settle()
-	# Collecting the fixture IDs really equips two slots and opens Carol's tutorial.
+	# Acquisition is collection-only; equip the fixture explicitly at the arrival point.
+	_expect(cards.equip_card("CLEANER", 0) and cards.equip_card("SECURITY", 1), "Fixture manually equips the two tutorial slots")
+	await _settle()
 	# Read it through the normal input path before attempting stair travel.
 	var equipment_dialogue: Node = main.get_node("MenuLayer/Bag/CarolUIFlow")
 	for i in range(40):

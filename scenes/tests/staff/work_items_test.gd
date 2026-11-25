@@ -21,6 +21,8 @@ func _ready() -> void:
 	CardManager.collect_card("SECURITY")
 	CardManager.collect_card("MANAGER")
 	CardManager.collect_card("CLEANER")
+	CardManager.equip_card("SECURITY", 0)
+	CardManager.equip_card("MANAGER", 1)
 	for work: CleaningSpot in [pickup, authorize_309, authorize_exit, stain_201]:
 		work.setup(player)
 		work.set_task_active(true)
