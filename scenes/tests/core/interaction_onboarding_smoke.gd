@@ -122,6 +122,7 @@ func run() -> void:
 	await settle()
 	await tap("switch_id")
 	check(c.active_card == "NONE", "Early Q with empty slots does not invent an identity")
+	var before_first_card: Dictionary = c.export_snapshot()
 	c.collect_card("CLEANER")
 	await settle()
 	await capture("first_identity")
@@ -158,6 +159,19 @@ func run() -> void:
 	if onboarding != null: check(onboarding.get("_first_disguise_step") == "EQUIP", "Opening the bag from a safe position advances the tutorial")
 	check(main.bag._selected_card_id() == "CLEANER", "First tutorial selects the newly collected cleaner ID")
 	check(main.bag.get_node("%EquipSlotA").modulate == Color("ffe3a1"), "First tutorial highlights equipment slot A")
+	# The real retry path restores this authoritative snapshot before the new attempt.
+	check(c.restore_snapshot(before_first_card), "Pre-theft checkpoint card snapshot restores")
+	if onboarding != null:
+		check(onboarding.get_identity_hint().is_empty(), "Rolled-back first theft removes the disguise hint immediately")
+	check(main.bag.get_node("%EquipSlotA").modulate == Color.WHITE, "Rolled-back first theft clears slot A focus")
+	main.bag.close_bag()
+	check(c.collect_card("CLEANER"), "First ID can be picked up again after retry")
+	if onboarding != null:
+		check(onboarding.get("_first_disguise_step") == "ACQUIRED", "Reacquiring the first ID restarts the collection step")
+		onboarding._process(3.1)
+	main.bag.open_bag()
+	await settle()
+	check(main.bag._selected_card_id() == "CLEANER" and main.bag.get_node("%EquipSlotA").modulate == Color("ffe3a1"), "Reacquired first ID restarts the equipment focus")
 	main.bag.get_node("%EquipSlotA").pressed.emit()
 	main.bag.close_bag()
 	await settle()
@@ -329,7 +343,7 @@ func run() -> void:
 		await settle()
 	if onboarding != null: check(onboarding.get("_monster_kind").is_empty(), "Monster refresher does not follow player away from its actual door")
 	check(g.task_status == "COMPLETED", "Actual manager registration still completes 302 task")
-	check(main.notice_label.text == tr("登记已批准。切为保洁身份，去309按E开门。"), "Cleaner entry instruction appears only after real approval")
+	check(main.notice_label.text == tr("302授权完成：309入住已获准。切为保洁身份去309寻找Terese。"), "Cleaner entry instruction appears after real approval")
 	await capture("309_next_step")
 	# A real ordinary-door violation must still explain both cause and return location.
 	f.player.position.x = door.global_position.x + 60

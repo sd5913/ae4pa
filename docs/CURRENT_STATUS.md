@@ -4,7 +4,7 @@
 
 ## 本地工作分支附加验证（2026-11-24）
 
-以下是独立工作分支 `work/member-A-disguise-onboarding` 对 `main@ac58302b29499a4243dd302876a8f24e84be013a` 的分支改动验证；这些修改尚未进入 GitHub `main`。成功偷取工作证现在只增加收藏；第一次装备与激活由玩家在安全位置手动完成，NPC 正在观察时会阻止 Q 换身份和背包装备。新增逐步引导及对应英文文本。
+以下是独立工作分支 `work/member-A-disguise-onboarding` 对 `main@ac58302b29499a4243dd302876a8f24e84be013a` 的分支改动验证；这些修改尚未进入 GitHub `main`。成功偷取工作证现在只增加收藏；第一次装备与激活由玩家在安全位置手动完成，NPC 正在观察时会阻止 Q 换身份和背包装备。新增逐步引导及对应英文文本。如果检查点撤回首张证件，立即清除引导与背包高亮，重新取证后恢复首张证件引导。
 
 - Godot `4.7.2.stable.official.ed1daf0bf`：`foundation_smoke`、`staff_core_smoke`、`work_items_smoke`、`known_monster_rules_smoke`、`task_door_lifecycle_smoke`、`late_mainline_main_flow_smoke -- --ui-smoke`、首次身份引导、三卡背包、身份服装、游戏操作回归、检查点回归、`v4_identity_smoke`、`checker_safe_bag_smoke`、`player_identity_outfit_smoke` 及 `full_mainline_escape_smoke` 均退出 0。完整主线本次从正式新局通过 201–205、302、309 救援、403、501 到 EXIT 成功页。
 - `localization_smoke` 在当前沙箱未能完成：测试无法向 Godot `user://` 写入对白进度文件（`Unable to save completed intro state: Can't open file`），因此不能将该项标记为通过；翻译断言之后的流程未由该次运行完整验证。

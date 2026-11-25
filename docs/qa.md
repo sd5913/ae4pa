@@ -48,6 +48,8 @@
 
 新增或更新的自动化覆盖：首次／后续证件仅收藏、Q／拖放／按钮装备在员工观察时被拒且有提示、进入安全位置后手动装备、首次教程面对提前 Q/I 与关闭背包、身份与服装同步、三卡双槽、检查点恢复及完整新局主线。关闭普通门不构成门目击，已有核验怪检查继续执行原违规处理。
 
+PR #73 的检查点回归：在真实主场景背包高亮时，用 CardManager 恢复首次取证前快照。提示和高亮立即清除，重新取得同一证件会重新引导手动装备。macOS Godot 4.7.2：添加断言后修复前复现失败；修复后的 `interaction_onboarding_smoke.gd`、`task_checkpoint_smoke.gd`、`foundation_smoke.gd` 无窗口运行均退出 0。
+
 ### 历史自动回归失败与诊断
 
 - `core/full_mainline_escape_smoke.gd` 在 `main@dca61f7` 的 macOS 审查中两次退出 1，均失败在最终 EXIT／成功页断言。该基线的状态快照、早期通过记录和 Windows 失败范围继续保留；2026-11-23 的新 main CI 另有一次完整路线 PASS，见上方最新证据。

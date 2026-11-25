@@ -1335,3 +1335,4 @@
 - 未通过／环境阻断：`localization_smoke.gd` 退出 1；测试无法写 Godot `user://logs/` 和对白进度文件，出现 `Unable to save completed intro state: Can't open file`，随后独立进度文件断言失败。翻译断言已执行但整个 smoke 不记通过，需在有可写用户数据目录的环境重跑。headless 日志另有 macOS 根证书读取与 FreeType 错误输出，不能称日志零错误。
 - 历史与限制：`main@dca61f7` 的 EXIT 失败记录不删；本次新 SHA 的完整主线结果另列为 PASS。Godot MCP 已用 Compatibility 渲染器启动正式主场景且未报告运行时脚本错误，但没有进行人工窗口操作或目视评估。鼠标真实拖放、真人操作、Windows／macOS 同提交及目标平台导出验收未完成；用户此前确认的另一轮真人通关因 SHA 与平台未记录，不当作本分支验收。
 - 下一步：在可写用户数据目录重跑 localization smoke；原生 Compatibility 窗口检查首次教学、服装、拖放与观察提示；真人走一次 201–205 与后段并记录本分支 SHA／平台，再做 Windows／macOS 同提交与导出验收。
+- PR #73 复核补丁：卡片快照撤回首张证件时清理伪装引导与槽位高亮；重新取得同一卡可重复引导，沿用原手动装备和身份规则。macOS Godot 4.7.2：补充断言先复现失败，修复后首次引导、检查点、底座三项无窗口检查退出 0；真人和 Windows 检查未在此补丁上重跑。

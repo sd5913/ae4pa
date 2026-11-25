@@ -60,6 +60,8 @@ func _on_identity_changed(action: String) -> void:
 func _on_cards_changed() -> void:
 	var owned: Array[String] = CardManager.get_owned_cards()
 	var equipped: Array[String] = CardManager.get_equipped_cards()
+	if not _first_disguise_card.is_empty() and not owned.has(_first_disguise_card):
+		_reset_first_disguise()
 	var added: Array[String] = []
 	for id in owned:
 		if not _known_cards.has(id): added.append(id)
@@ -70,15 +72,18 @@ func _on_cards_changed() -> void:
 		_first_disguise_left = 3.0
 	if not owned.has(_pending_card) or equipped.has(_pending_card): _pending_card = ""
 	_known_cards.assign(owned)
+func _reset_first_disguise() -> void:
+	_first_disguise_card = ""
+	_first_disguise_step = "NONE"
+	_first_disguise_left = 0.0
+	get_parent().bag.set_tutorial_focus("", -1)
 func _on_state_changed(state: String) -> void:
 	if state == "MENU":
 		_bag_seen = false
 		_switched = false
 		_known_cards.clear()
 		_pending_card = ""
-		_first_disguise_card = ""
-		_first_disguise_step = "NONE"
-		_first_disguise_left = 0
+		_reset_first_disguise()
 		_reviewed.clear()
 		_monster_kind = ""
 		_review_left = 0
