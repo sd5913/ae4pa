@@ -1477,9 +1477,6 @@ msgstr "You cannot change IDs in the inspection area. Move to a safe workstation
 msgid "403需要巡房记录；换证不会放行。先取得记录，再回门前按E交付。"
 msgstr "Room 403 needs the patrol record, not a different ID. Collect the record, then return and press E to deliver it."
 
-msgid "巡房记录已取得，在403按E交付；不需要切换身份。"
-msgstr "Patrol record collected. Press E at Room 403 to deliver it; no ID change is needed."
-
 msgid "礼帽客只认可经理身份。先在安全处切为当前经理，再经过。"
 msgstr "The Top Hat Guest accepts a manager. Select that identity in a safe area before passing."
 
@@ -2057,6 +2054,154 @@ msgstr "EXIT · Deliver the Room 501 exit form first."
 
 msgid "EXIT · 按E与Terese一起逃离"
 msgstr "EXIT · Press E to escape with Terese."
+
+
+msgid "%s已在槽%s，无需重复装备。"
+msgstr "%s is already in slot %s; no change needed."
+
+msgid "已装备%s到槽%s，当前已生效。\n全部证件仍在收藏，无需再次切换。"
+msgstr "Equipped %s in slot %s; active now.\nAll IDs remain collected; no switch needed."
+
+msgid "已装备%s到备用槽%s；当前生效：%s。\n关闭背包后按Q启用该槽；全部证件仍在收藏。"
+msgstr "Equipped %s in reserve slot %s. Active: %s.\nClose the bag, then Q to use it. All IDs are kept."
+
+msgid "返回403交付"
+msgstr "Return to Room 403 to deliver."
+
+msgid "巡房员工\n背后站定，长按E 0.8秒"
+msgstr "Patrol staff\nStand still behind; hold E for 0.8s."
+
+msgid "巡房员工\n先在403接任务"
+msgstr "Patrol staff\nAccept the task in Room 403 first."
+
+msgid "已收藏%s，尚未装备。\n拖到A／B槽，或点装备按钮；原证保留。"
+msgstr "Collected %s; not equipped.\nDrag it to A/B or press Equip. All IDs are kept."
+
+msgid "已收藏%s，已装备%s槽；%s。"
+msgstr "Collected %s; equipped in slot %s. %s."
+
+msgid "当前已生效"
+msgstr "Active now"
+
+msgid "备用，关闭背包后按Q启用"
+msgstr "Reserve; close the bag, then Q to activate"
+
+msgid "此处工作已完成，请返回任务房间交付。"
+msgstr "Work complete. Return to the task room to deliver."
+
+msgid "此工作尚未开放，先在%s接取对应任务。"
+msgstr "Work not available. Accept the task in Room %s first."
+
+msgid "需同时装备%s；收藏中持有不算装备。"
+msgstr "Equip %s together. Collected IDs alone do not count."
+
+msgid "此步骤尚未开放，请先完成上一项工作。"
+msgstr "This step is not available. Complete the previous work first."
+
+msgid "需要当前%s身份；在安全位置按Q切换。"
+msgstr "Use the %s identity. Press Q in a safe place to switch."
+
+msgid "再靠近工作点一点，然后按E。"
+msgstr "Move a little closer to the workstation, then press E."
+
+msgid "长按E清理 · 当前%s身份"
+msgstr "Hold E to clean. Active identity: %s"
+
+msgid "按E领取 · 当前%s身份"
+msgstr "Press E to collect. Active identity: %s"
+
+msgid "按E批准 · 当前%s身份"
+msgstr "Press E to approve. Active identity: %s"
+
+msgid "按住E"
+msgstr "Hold E"
+
+msgid "按E操作"
+msgstr "Press E"
+
+msgid "所需身份：%s · 接受后限时%d秒\n%s"
+msgstr "Required IDs: %s. Time limit after accepting: %d s\n%s"
+
+msgid "无需特定身份"
+msgstr "No specific identity required"
+
+msgid "回到%s接取前，保留前序任务与证件，撤销本任务的工作成果及交付。"
+msgstr "Return to before accepting Room %s. Keep earlier results and IDs; undo only this task."
+
+msgid "在%s接受当前任务"
+msgstr "Accept the current task in Room %s"
+
+msgid "重新挑战后回%s接受任务"
+msgstr "After retrying, accept the task in Room %s"
+
+msgid "前往%s继续下一项任务。"
+msgstr "Go to Room %s for the next task."
+
+msgid "巡房员工"
+msgstr "Patrol staff"
+
+msgid "长按E清理"
+msgstr "Hold E to clean"
+
+msgid "按E领取"
+msgstr "Press E to collect"
+
+msgid "按E批准"
+msgstr "Press E to approve"
+
+msgid "回1F经理身后取证，I替换装备槽、Q切经理 → 二楼房务登记台批准 → 返回203交付。"
+msgstr "Take the manager ID from behind on 1F. Equip it with I and activate it if needed with Q. Approve at the 2F service desk, then deliver to Room 203."
+
+msgid "装备保洁＋保安两槽 → 保洁清理204独立污渍 → Q切保安领取巡房记录 → 返回204交付。"
+msgstr "Equip Housekeeper and Security in the two slots. Clean the Room 204 stain as Housekeeper, switch to Security to collect the log, then deliver to Room 204."
+
+msgid "装备保安＋经理两槽 → 保安领取通行单 → 在安全登记台Q切经理批准 → 返回205交付。不要在核验门前换证；本任务不解锁EXIT。"
+msgstr "Equip Security and Manager. Collect the form as Security; switch to Manager at the safe desk and approve it. Deliver to Room 205. Do not switch near the checker. This task does not unlock EXIT."
+
+msgid "201走廊污渍"
+msgstr "Room 201 corridor stain"
+
+msgid "204清洁污渍"
+msgstr "Room 204 stain"
+
+msgid "203房务审批单"
+msgstr "Room 203 service form"
+
+msgid "205待审通行单"
+msgstr "Room 205 pending transit form"
+
+msgid "205通行审批单"
+msgstr "Room 205 transit approval form"
+
+msgid "309入住登记单"
+msgstr "Room 309 registration form"
+
+msgid "501离店授权单"
+msgstr "Room 501 exit approval form"
+
+msgid "202保管柜包裹"
+msgstr "Room 202 cabinet parcel"
+
+msgid "204巡房记录"
+msgstr "Room 204 patrol log"
+
+msgid "清洁点"
+msgstr "Cleaning spot"
+
+msgid "审批单"
+msgstr "Approval form"
+
+msgid "已批准：%s"
+msgstr "Approved: %s"
+
+msgid "%s已批准。请返回任务房间按E交付。"
+msgstr "%s approved. Return to the task room and press E to deliver."
+
+msgid "302授权完成：309入住已获准。切为保洁身份去309寻找Terese。"
+msgstr "Room 302 authorization complete: Room 309 is approved. Use the Housekeeper identity and enter Room 309 to find Terese."
+
+msgid "302授权已完成。切为保洁身份进入309，寻找Terese。"
+msgstr "Room 302 authorization complete. Use the Housekeeper identity to enter Room 309 and find Terese."
 
 msgid "旁白"
 msgstr "Narrator"

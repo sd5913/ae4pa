@@ -54,6 +54,7 @@ func _run() -> void:
 	_expect(bag._selected_card_id() == "MANAGER","Unequipped manager is clearly selected")
 	bag.get("_equip_slot_b").pressed.emit()
 	_expect(cards.get_equipped_cards() == ["CLEANER","MANAGER"] and cards.has_card("SECURITY"),"UI B replaces without losing security")
+	_expect("备用槽B" in bag.get("_status").text and "当前生效：保洁" in bag.get("_status").text, "Reserve equip prompt reads the actual current identity")
 	bag.close_bag()
 	# If acquisition/equipment happened inside the bag, tutorial intentionally waits for this close.
 	for frame in range(4): await process_frame
@@ -84,6 +85,9 @@ func _run() -> void:
 			bag.get("_owned_cards").item_selected.emit(index)
 	bag.get("_equip_slot_a").pressed.emit()
 	_expect(cards.active_slot == 0 and cards.active_card == "CLEANER", "Replacing the active A slot takes effect without another Q")
+	_expect("当前已生效" in bag.get("_status").text and "按Q" not in bag.get("_status").text, "Active-slot equip must not require Q")
+	bag.get("_equip_slot_a").pressed.emit()
+	_expect("无需重复装备" in bag.get("_status").text, "Already equipped is a no-op, not a failure")
 	_expect(hud.get("_active_card_value").text == "保洁工作证" and outfit.card_id == "CLEANER", "Current-slot replacement immediately updates HUD and outfit")
 	_expect("当前生效：保洁" in staff_members[0].feedback_label.text, "Reward presentation matches direct active-slot replacement")
 	bag.close_bag()

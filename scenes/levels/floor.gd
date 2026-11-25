@@ -170,15 +170,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			if work.interaction_type == "CLEAN":
 				GameManager.record_work_started(work.target_id)
 		else:
-			var reason: String = work.get_interaction_block_reason()
-			if reason == "PLAYER_MOVING":
-				_emit_notice("先停下，再重新按E操作。")
-			elif not GameManager.has_required_equipment(GameManager.current_task_id):
-				_emit_notice("按I装备本任务所需工作证，再按Q切换当前工作身份。")
-			elif reason == "WRONG_IDENTITY":
-				_emit_notice("此工作需要当前%s身份；在工作台旁按Q切换。", [CARD_NAMES[work.required_card]])
-			else:
-				_emit_notice("先完成当前任务步骤，再操作这里。")
+			var notice := _work_interaction_notice(work)
+			_emit_notice(notice["template"], notice["arguments"])
 	elif GameManager.is_interaction_allowed(target["id"]):
 		var staff: Node = target["node"]
 		if staff.begin_steal():
@@ -277,8 +270,55 @@ func _refresh_component_eligibility() -> void:
 			work.set_completed(completed)
 		work.visible = not completed if work.interaction_type == "CLEAN" else true
 		work.set_task_active(GameManager.is_interaction_allowed(work.target_id))
-		if work.target_id in ["ROOM_SERVICE_203", "STAIN_204", "PATROL_CABINET_204", "TRANSIT_PICKUP_205", "TRANSIT_REGISTER_205", "EXIT_REGISTER_5F"]:
-			work.get_node("Hint").visible = not completed and GameManager.is_world_input_allowed() and _choose_interaction_target().get("id", "") == work.target_id
+		var hint: Label = work.get_node("Hint")
+		hint.text = tr("长按E清理" if work.interaction_type == "CLEAN" else "按E领取" if work.interaction_type == "PICKUP" else "按E批准")
+		hint.visible = not completed and work.can_interact() and _choose_interaction_target().get("id", "") == work.target_id
+
+
+func _work_interaction_notice(work: CleaningSpot) -> Dictionary:
+	var message := ""
+	var arguments: Array[String] = []
+	var definition := GameManager.get_task_definition(GameManager.current_task_id)
+	var work_task := ""
+	for task_id: String in GameManager.ENABLED_TASKS:
+		var candidate := GameManager.get_task_definition(task_id)
+		if candidate.get("target_id", "") == work.target_id or candidate.get("work_steps", []).any(func(step: Dictionary): return step["target_id"] == work.target_id):
+			work_task = task_id
+			break
+	if work.is_completed():
+		message = "此处工作已完成，请返回任务房间交付。"
+	elif GameManager.current_task_id != work_task or GameManager.task_status != "ACTIVE":
+		message = "此工作尚未开放，先在%s接取对应任务。"
+		arguments.append(str(GameManager.get_task_definition(work_task).get("room_id", "")))
+	elif not GameManager.has_required_equipment(work_task):
+		message = "需同时装备%s；收藏中持有不算装备。"
+		var names: Array[String] = []
+		for card: String in definition.get("required_cards", []): names.append(tr(CARD_NAMES[card]))
+		arguments.append(" / ".join(names))
+	elif not work.is_task_active():
+		message = "此步骤尚未开放，请先完成上一项工作。"
+	elif work.get_interaction_block_reason() == "PLAYER_MOVING":
+		message = "先停下，再重新按E操作。"
+	elif CardManager.active_card != work.required_card:
+		message = "需要当前%s身份；在安全位置按Q切换。"
+		arguments.append(CARD_NAMES[work.required_card])
+	elif not work.is_player_in_range():
+		message = "再靠近工作点一点，然后按E。"
+	else:
+		message = "长按E清理 · 当前%s身份" if work.interaction_type == "CLEAN" else "按E领取 · 当前%s身份" if work.interaction_type == "PICKUP" else "按E批准 · 当前%s身份"
+		arguments.append(CARD_NAMES[work.required_card])
+	return {"template": message, "arguments": arguments}
+
+
+func get_work_interaction_hint(target_id: String) -> String:
+	# Presentation only: use existing task and component truth; never grant eligibility.
+	for work: CleaningSpot in _works:
+		if work.target_id == target_id:
+			var notice := _work_interaction_notice(work)
+			var arguments: Array = notice["arguments"].map(func(value: String): return tr(value))
+			var hint := tr(notice["template"]) if arguments.is_empty() else tr(notice["template"]) % arguments
+			return tr("%s：%s") % [work.get_display_name(), hint]
+	return ""
 
 
 func _on_staff_failure(reason: String, target_id: String, staff: Node) -> void:
@@ -291,8 +331,12 @@ func _on_work_requested(target_id: String, source: CleaningSpot) -> void:
 		return
 	if not GameManager.record_work_result(target_id):
 		source.reset_completion_report()
-	elif GameManager.current_task_id == GameManager.TASK_03_ID:
-		_emit_notice("登记已批准。切为保洁身份，去309按E开门。")
+	elif source.interaction_type == "AUTHORIZE":
+		source.show_result_feedback()
+		if GameManager.current_task_id == GameManager.TASK_03_ID:
+			_emit_notice("302授权完成：309入住已获准。切为保洁身份去309寻找Terese。")
+		else:
+			_emit_notice("%s已批准。请返回任务房间按E交付。", [source.DISPLAY_NAMES.get(target_id, "审批单")])
 	elif GameManager.get_task_definition(GameManager.current_task_id).has("work_steps") or GameManager.LATE_TASKS.has(GameManager.current_task_id):
 		_emit_notice(GameManager.get_task_view()["step"])
 	_refresh_component_eligibility()
@@ -710,7 +754,15 @@ func _refresh_staff_captions() -> void:
 		var role_name := tr(CARD_NAMES[staff.card_id])
 		label.position.y = -260 if staff.is_task_eligible() and staff.is_reward_available() else -225
 		if staff.reward_type == "TASK_ITEM":
-			label.text = "巡房记录已取得 · 返回403交付" if not staff.is_reward_available() else "巡房员工 · 身后站定长按E 0.8秒" if staff.is_task_eligible() else "巡房员工 · 先在403接受任务"
+			label.position.y = -260
+			if staff.get_node("FeedbackLabel").visible:
+				label.text = "" # The staff feedback already explains success or cancellation.
+			elif not staff.is_reward_available():
+				label.text = tr("返回403交付")
+			elif staff.is_task_eligible():
+				label.text = tr("巡房员工\n背后站定，长按E 0.8秒")
+			else:
+				label.text = tr("巡房员工\n先在403接任务")
 		elif _can_talk_to_manager(staff):
 			label.text = "经理 · 按 E 查看去向" if GameManager.has_completed_manager_intro() else "经理 · 按 E 交谈（任意一侧）"
 		elif CardManager.has_card(staff.card_id):
