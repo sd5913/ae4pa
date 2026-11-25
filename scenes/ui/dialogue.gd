@@ -22,6 +22,7 @@ const BACKGROUNDS := {
 }
 const AN_AVATAR := preload("res://assets/final/ui/hotel_interface/avatar_an.png")
 const FRIEND_AVATAR := preload("res://assets/final/ui/hotel_interface/avatar_friend.png")
+const ConfirmedPortraits = preload("res://scenes/ui/confirmed_character_portraits.gd")
 const FRIEND_SHEET := preload("res://assets/final/ui/visual_novel/friend_expressions.png")
 const PORTRAIT_ROLES := {"女主": "an", "安": "an", "Carol": "an", "保洁": "cleaner", "保安": "security", "经理": "manager"}
 const EXPRESSION_ALIASES := {
@@ -291,7 +292,7 @@ func present_character_beat(character_id: String, text: String) -> void:
 	_line.text = tr(text)
 	_portrait.texture = DialogueRoles.portrait(character_id)
 	if character_id == "CAROL":
-		_portrait.texture = _trim_role_portrait(_portrait.texture, "an")
+		_portrait.texture = ConfirmedPortraits.portrait("Carol", "neutral")
 	_portrait.visible = _portrait.texture != null
 	_fit_dialogue_text.call_deferred()
 	show()
@@ -527,6 +528,11 @@ func _scroll_sms_to_message(row: Control) -> void:
 
 
 func _display_portrait(speaker: String, expression: String) -> void:
+	if not ConfirmedPortraits.role(speaker).is_empty():
+		_portrait.texture = ConfirmedPortraits.portrait(speaker, expression)
+		_portrait.show()
+		_fit_dialogue_text.call_deferred()
+		return
 	if speaker in ["闺蜜", "Terese", "Persica", "friend"]:
 		var index := int(FACE_INDEX.get(expression, 0))
 		_portrait.texture = _atlas_cell(FRIEND_SHEET, index)

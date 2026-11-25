@@ -14,7 +14,7 @@ const ROLES := {
 	"EAR": {"name": "大耳客", "portrait": "res://assets/final/monster_dialogue_portraits_v1/ear_halfbody.png"},
 	"CHECKER": {"name": "核验客", "portrait": "res://assets/final/monster_dialogue_portraits_v1/checker_halfbody.png"},
 	"SYSTEM": {"name": "任务提示", "portrait": ""},
-	"CAROL": {"name": "Carol", "portrait": "res://assets/final/ui/dialogue_portraits/an/an_neutral.png"},
+	"CAROL": {"name": "Carol", "portrait": "res://assets/final/confirmed_characters_20261125/carol/smile.png"},
 }
 # Exact public dialogue IDs, never a room-number guess.
 const TASK_ROLES := {

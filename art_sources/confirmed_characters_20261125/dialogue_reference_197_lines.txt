@@ -1,0 +1,1267 @@
+﻿游戏半身立绘对话台词清单（中文）
+提取版本：main@ac58302b29499a4243dd302876a8f24e84be013a
+提取依据：该提交的正式入口 scenes/main.tscn 及其对白接线；并非策划文档或历史草稿。
+主表共 197 条对话框文本；同一句在不同触发阶段出现时保留。一个条目对应游戏一页对话框，未把同一框内多个句号拆开。
+每条列出：稳定编号、场景、触发阶段、说话人、原文、代码原有表情、来源。
+表情字段是已有脚本配置，不是本次替你新增的游戏表情。五怪及后段任务对白当前使用固定立绘，未逐句指定表情。
+Carol（主角·心想）仍显示主角立绘，但属于内心独白，不是对外说话。
+短信、309重逢CG、偷证失败CG不在半身立绘主表内；附录另列原文供扩展表情参考。
+旧版 RESCUE_309 两句虽然仍存在常量中，但正式入口已使用重逢CG，不计入现行主表。
+动态提醒按可进入对话的 AVAILABLE、ACTIVE、READY_TO_SUBMIT 与已完成分支列出；FAILED 状态不能打开该对话，不计入。
+
+角色统计（主表）
+- Carol（主角）：74 条
+- Terese（闺蜜）：16 条
+- 酒店经理：31 条
+- 长鼻客：11 条
+- Carol（主角·心想）：2 条
+- 独眼客：10 条
+- 礼帽客：12 条
+- 大耳客：21 条
+- 核验客：20 条
+
+
+表情制作建议（本次整理建议，非游戏现有逐句标记）
+
+Carol（主角）：优先：平静／沉思、怀疑、担忧、惊讶、坚定、微笑；关切和好奇当前会映射为平静，若想细分可以新增。
+
+Terese（闺蜜）：半身主表：开心、调侃；若将短信或309 CG改成半身对话，再补害怕、焦虑、惊喜、感动、释然。
+
+酒店经理：建议：礼貌常态／职业微笑、短暂惊讶、意味深长微笑、冷淡警告；当前脚本实际只用 neutral 和 surprised。失败CG另可参考愠怒／驱逐。
+
+长鼻客：建议：嫌恶／抱怨、催促、嗅闻检查、满意／放行。
+
+独眼客：建议：警惕审视、不耐烦、检查包裹、认可／放行。
+
+礼帽客：建议：礼貌常态、礼貌拒绝、催办、满意／放行。
+
+大耳客：建议：凝神倾听、嘘／警告、不满、满意。
+
+核验客：建议：冷静核验、严肃警告、手续不全、确认放行。
+
+
+========================================
+Carol（主角）
+========================================
+
+【序章·卧室】
+D001｜Carol（主角）｜剧情
+台词：那家旅馆……
+原有表情：沉思 [pensive]
+来源：scenes/ui/intro_script.tsv:26
+
+【序章·卧室】
+D002｜Carol（主角）｜剧情
+台词：就是她之前提过的夜班兼职。
+原有表情：沉思 [pensive]
+来源：scenes/ui/intro_script.tsv:27
+
+【序章·咖啡馆回忆】
+D004｜Carol（主角）｜剧情
+台词：你上次也是这么说的。
+原有表情：怀疑 [suspicious]
+来源：scenes/ui/intro_script.tsv:30
+
+【序章·咖啡馆回忆】
+D008｜Carol（主角）｜剧情
+台词：夜班、工作轻松、工资还特别高。
+原有表情：怀疑 [suspicious]
+来源：scenes/ui/intro_script.tsv:34
+
+【序章·咖啡馆回忆】
+D009｜Carol（主角）｜剧情
+台词：这三个词放在一起，通常不像什么好消息。
+原有表情：怀疑 [suspicious]
+来源：scenes/ui/intro_script.tsv:35
+
+【序章·咖啡馆回忆】
+D011｜Carol（主角）｜剧情
+台词：我对你有信心。
+原有表情：关切 [concerned]
+来源：scenes/ui/intro_script.tsv:37
+
+【序章·咖啡馆回忆】
+D012｜Carol（主角）｜剧情
+台词：我对这种连招聘负责人名字都没写的旅馆没信心。
+原有表情：怀疑 [suspicious]
+来源：scenes/ui/intro_script.tsv:38
+
+【序章·咖啡馆回忆】
+D014｜Carol（主角）｜剧情
+台词：传统到没有联系电话？
+原有表情：怀疑 [suspicious]
+来源：scenes/ui/intro_script.tsv:40
+
+【序章·咖啡馆回忆】
+D016｜Carol（主角）｜剧情
+台词：旅馆叫什么？
+原有表情：好奇 [curious]
+来源：scenes/ui/intro_script.tsv:42
+
+【序章·咖啡馆回忆】
+D018｜Carol（主角）｜剧情
+台词：这是名字，还是在提醒你工作时间？
+原有表情：怀疑 [suspicious]
+来源：scenes/ui/intro_script.tsv:44
+
+【序章·咖啡馆回忆】
+D020｜Carol（主角）｜剧情
+台词：挺像恐怖电影开头的。
+原有表情：怀疑 [suspicious]
+来源：scenes/ui/intro_script.tsv:46
+
+【序章·咖啡馆回忆】
+D022｜Carol（主角）｜剧情
+台词：等一下。
+原有表情：担忧 [worried]
+来源：scenes/ui/intro_script.tsv:48
+
+【序章·咖啡馆回忆】
+D023｜Carol（主角）｜剧情
+台词：这里写着“员工离店须经管理部门批准”。
+原有表情：担忧 [worried]
+来源：scenes/ui/intro_script.tsv:49
+
+【序章·咖啡馆回忆】
+D025｜Carol（主角）｜剧情
+台词：正常公司会写“离职流程”，不会写“离店批准”。
+原有表情：怀疑 [suspicious]
+来源：scenes/ui/intro_script.tsv:51
+
+【序章·咖啡馆回忆】
+D028｜Carol（主角）｜剧情
+台词：先把地址发给我。
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:54
+
+【序章·咖啡馆回忆】
+D030｜Carol（主角）｜剧情
+台词：每天结束给我回一条消息。
+原有表情：关切 [concerned]
+来源：scenes/ui/intro_script.tsv:56
+
+【序章·咖啡馆回忆】
+D032｜Carol（主角）｜剧情
+台词：我会先报警。
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:58
+
+【序章·卧室】
+D034｜Carol（主角）｜剧情
+台词：她去上班以后，每天晚上都会给我发消息。
+原有表情：沉思 [pensive]
+来源：scenes/ui/intro_script.tsv:61
+
+【序章·卧室】
+D035｜Carol（主角）｜剧情
+台词：三天前，消息突然停了。
+原有表情：担忧 [worried]
+来源：scenes/ui/intro_script.tsv:62
+
+【序章·卧室】
+D036｜Carol（主角）｜剧情
+台词：没有联系电话，也查不到正常的订房页面。
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:64
+
+【序章·卧室】
+D037｜Carol（主角）｜剧情
+台词：如果她真的被困在里面，我不能继续等。
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:65
+
+【序章·旅馆外】
+D038｜Carol（主角）｜剧情
+台词：三楼，309。
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:67
+
+【序章·旅馆外】
+D039｜Carol（主角）｜剧情
+台词：先找到她，再弄清楚这里发生了什么。
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:68
+
+【一楼·经理交谈】
+D042｜Carol（主角）｜剧情
+台词：我不是来住店的。我来找人。
+原有表情：怀疑 [suspicious]
+来源：scenes/ui/intro_script.tsv:72
+
+【一楼·经理交谈】
+D044｜Carol（主角）｜剧情
+台词：她之前在这里做夜班兼职。
+原有表情：关切 [concerned]
+来源：scenes/ui/intro_script.tsv:74
+
+【一楼·经理交谈】
+D047｜Carol（主角）｜剧情
+台词：她已经三天没有回家了。
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:77
+
+【一楼·经理交谈】
+D049｜Carol（主角）｜剧情
+台词：她刚刚给我发了消息。
+原有表情：担忧 [worried]
+来源：scenes/ui/intro_script.tsv:79
+
+【一楼·经理交谈】
+D050｜Carol（主角）｜剧情
+台词：她说自己在三楼，309号房。
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:80
+
+【一楼·经理交谈】
+D052｜Carol（主角）｜剧情
+台词：你知道那个房间。
+原有表情：怀疑 [suspicious]
+来源：scenes/ui/intro_script.tsv:82
+
+【一楼·经理交谈】
+D054｜Carol（主角）｜剧情
+台词：那她是不是在那里？
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:84
+
+【一楼·经理交谈】
+D057｜Carol（主角）｜剧情
+台词：她不是客人。她是你们招进来的员工。
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:87
+
+【一楼·经理交谈】
+D060｜Carol（主角）｜剧情
+台词：她说有人不让她离开。
+原有表情：担忧 [worried]
+来源：scenes/ui/intro_script.tsv:90
+
+【一楼·经理交谈】
+D062｜Carol（主角）｜剧情
+台词：对被困在里面的人来说，没有区别。
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:92
+
+【一楼·经理交谈】
+D064｜Carol（主角）｜剧情
+台词：我只知道她在向我求救。
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:94
+
+【一楼·经理交谈】
+D066｜Carol（主角）｜剧情
+台词：这是提醒，还是威胁？
+原有表情：怀疑 [suspicious]
+来源：scenes/ui/intro_script.tsv:96
+
+【一楼·经理交谈】
+D069｜Carol（主角）｜剧情
+台词：什么规矩？
+原有表情：好奇 [curious]
+来源：scenes/ui/intro_script.tsv:99
+
+【一楼·经理交谈】
+D072｜Carol（主角）｜剧情
+台词：“产生兴趣”是什么意思？
+原有表情：惊讶 [surprised]
+来源：scenes/ui/intro_script.tsv:102
+
+【一楼·经理交谈】
+D076｜Carol（主角）｜剧情
+台词：楼上住的到底是什么人？
+原有表情：担忧 [worried]
+来源：scenes/ui/intro_script.tsv:106
+
+【一楼·经理交谈】
+D078｜Carol（主角）｜剧情
+台词：你知道我问的不是这个。
+原有表情：怀疑 [suspicious]
+来源：scenes/ui/intro_script.tsv:108
+
+【一楼·经理交谈】
+D080｜Carol（主角）｜剧情
+台词：我要去三楼。
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:111
+
+【一楼·经理交谈】
+D083｜Carol（主角）｜剧情
+台词：然后呢？
+原有表情：好奇 [curious]
+来源：scenes/ui/intro_script.tsv:114
+
+【一楼·经理交谈】
+D085｜Carol（主角）｜剧情
+台词：我不是这里的员工。
+原有表情：怀疑 [suspicious]
+来源：scenes/ui/intro_script.tsv:116
+
+【一楼·经理交谈】
+D087｜Carol（主角）｜剧情
+台词：如果我遇到麻烦呢？
+原有表情：担忧 [worried]
+来源：scenes/ui/intro_script.tsv:118
+
+【一楼·经理交谈】
+D089｜Carol（主角）｜剧情
+台词：包括你吗？
+原有表情：怀疑 [suspicious]
+来源：scenes/ui/intro_script.tsv:120
+
+【一楼·经理交谈】
+D091｜Carol（主角）｜剧情
+台词：我说过，我不是客人。
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:122
+
+【一楼·经理交谈】
+D093｜Carol（主角）｜剧情
+台词：她知道我朋友在309。
+原有表情：沉思 [pensive]
+来源：scenes/ui/intro_script.tsv:125
+
+【一楼·经理交谈】
+D094｜Carol（主角）｜剧情
+台词：她也知道是谁不让她离开。
+原有表情：沉思 [pensive]
+来源：scenes/ui/intro_script.tsv:126
+
+【一楼·经理交谈】
+D095｜Carol（主角）｜剧情
+台词：但在找到她以前，我还不能和这里的人翻脸。
+原有表情：坚定 [determined]
+来源：scenes/ui/intro_script.tsv:127
+
+【二楼·201 长鼻客】
+D097｜Carol（主角）｜初遇／接任务 [NOSE:INTRO]
+台词：怎么了？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·201 长鼻客】
+D099｜Carol（主角）｜初遇／接任务 [NOSE:INTRO]
+台词：我只是来找人的。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·201 长鼻客】
+D101｜Carol（主角）｜初遇／接任务 [NOSE:INTRO]
+台词：清理干净，你就让我过去？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·201 长鼻客】
+D107｜Carol（主角）｜完成交付 [NOSE:DELIVERED]
+台词：已经清理干净了。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·201 长鼻客】
+D110｜Carol（主角）｜完成交付 [NOSE:DELIVERED]
+台词：现在可以过去了吗？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·202 独眼客】
+D114｜Carol（主角）｜初遇／接任务 [EYE:INTRO]
+台词：没有，我刚上来。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·202 独眼客】
+D116｜Carol（主角）｜初遇／接任务 [EYE:INTRO]
+台词：为什么不自己去？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·202 独眼客】
+D118｜Carol（主角）｜初遇／接任务 [EYE:INTRO]
+台词：拿来以后，你就让我过去？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·202 独眼客】
+D122｜Carol（主角）｜完成交付 [EYE:DELIVERED]
+台词：你的包裹。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·202 独眼客】
+D125｜Carol（主角）｜完成交付 [EYE:DELIVERED]
+台词：检查完了？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·203 礼帽客】
+D129｜Carol（主角）｜初遇／接任务 [HAT:INTRO]
+台词：我不是来处理房务的。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·203 礼帽客】
+D131｜Carol（主角）｜初遇／接任务 [HAT:INTRO]
+台词：要怎样你才肯让我过去？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·203 礼帽客】
+D133｜Carol（主角）｜初遇／接任务 [HAT:INTRO]
+台词：然后回来告诉你？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·203 礼帽客】
+D137｜Carol（主角）｜完成交付 [HAT:DELIVERED]
+台词：你的申请已经批准了。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·203 礼帽客】
+D140｜Carol（主角）｜完成交付 [HAT:DELIVERED]
+台词：那这条路……
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D144｜Carol（主角）｜初遇／接任务 [EAR:INTRO]
+台词：你听见什么了？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D146｜Carol（主角）｜初遇／接任务 [EAR:INTRO]
+台词：你想让我打扫？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D148｜Carol（主角）｜初遇／接任务 [EAR:INTRO]
+台词：巡房记录在哪里？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D150｜Carol（主角）｜初遇／接任务 [EAR:INTRO]
+台词：先打扫，再去拿记录。对吗？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D156｜Carol（主角）｜完成交付 [EAR:DELIVERED]
+台词：清理好了。巡房记录也拿来了。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D159｜Carol（主角）｜完成交付 [EAR:DELIVERED]
+台词：我可以过去了？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D163｜Carol（主角）｜初遇／接任务 [CHECKER:INTRO]
+台词：还需要什么？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D165｜Carol（主角）｜初遇／接任务 [CHECKER:INTRO]
+台词：去哪里领？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D167｜Carol（主角）｜初遇／接任务 [CHECKER:INTRO]
+台词：批准要用经理身份？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D169｜Carol（主角）｜初遇／接任务 [CHECKER:INTRO]
+台词：明白了。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D174｜Carol（主角）｜完成交付 [CHECKER:DELIVERED]
+台词：这是批准后的通行单。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+
+========================================
+Terese（闺蜜）
+========================================
+
+【序章·咖啡馆回忆】
+D003｜Terese（闺蜜）｜剧情
+台词：看，我找到兼职了！
+原有表情：开心 [happy]
+来源：scenes/ui/intro_script.tsv:29
+
+【序章·咖啡馆回忆】
+D005｜Terese（闺蜜）｜剧情
+台词：上次那个发传单的不算。这个有正式录取通知。
+原有表情：平常
+来源：scenes/ui/intro_script.tsv:31
+
+【序章·咖啡馆回忆】
+D006｜Terese（闺蜜）｜剧情
+台词：夜班，三天，工作内容写的是协助前台和整理客房。
+原有表情：平常
+来源：scenes/ui/intro_script.tsv:32
+
+【序章·咖啡馆回忆】
+D007｜Terese（闺蜜）｜剧情
+台词：工资比我上个月做的几份兼职加起来还多。
+原有表情：开心 [happy]
+来源：scenes/ui/intro_script.tsv:33
+
+【序章·咖啡馆回忆】
+D010｜Terese（闺蜜）｜剧情
+台词：你能不能偶尔对我的人生有一点信心？
+原有表情：调侃 [teasing]
+来源：scenes/ui/intro_script.tsv:36
+
+【序章·咖啡馆回忆】
+D013｜Terese（闺蜜）｜剧情
+台词：人家可能只是管理比较传统。
+原有表情：调侃 [teasing]
+来源：scenes/ui/intro_script.tsv:39
+
+【序章·咖啡馆回忆】
+D015｜Terese（闺蜜）｜剧情
+台词：有地址就行。我去看看，不对劲就回来。
+原有表情：平常
+来源：scenes/ui/intro_script.tsv:41
+
+【序章·咖啡馆回忆】
+D017｜Terese（闺蜜）｜剧情
+台词：夜班旅馆。
+原有表情：俏皮
+来源：scenes/ui/intro_script.tsv:43
+
+【序章·咖啡馆回忆】
+D019｜Terese（闺蜜）｜剧情
+台词：是不是挺有氛围的？
+原有表情：开心 [happy]
+来源：scenes/ui/intro_script.tsv:45
+
+【序章·咖啡馆回忆】
+D021｜Terese（闺蜜）｜剧情
+台词：恐怖电影里的人要是都像你一样谨慎，电影十分钟就结束了。
+原有表情：调侃 [teasing]
+来源：scenes/ui/intro_script.tsv:47
+
+【序章·咖啡馆回忆】
+D024｜Terese（闺蜜）｜剧情
+台词：大概是夜班不能随便旷工吧。
+原有表情：调侃 [teasing]
+来源：scenes/ui/intro_script.tsv:50
+
+【序章·咖啡馆回忆】
+D026｜Terese（闺蜜）｜剧情
+台词：我就做几天，又不是卖给他们了。
+原有表情：平常
+来源：scenes/ui/intro_script.tsv:52
+
+【序章·咖啡馆回忆】
+D027｜Terese（闺蜜）｜剧情
+台词：等我拿到工资，请你吃顿好的。
+原有表情：开心 [happy]
+来源：scenes/ui/intro_script.tsv:53
+
+【序章·咖啡馆回忆】
+D029｜Terese（闺蜜）｜剧情
+台词：发你了，女侦探。
+原有表情：调侃 [teasing]
+来源：scenes/ui/intro_script.tsv:55
+
+【序章·咖啡馆回忆】
+D031｜Terese（闺蜜）｜剧情
+台词：知道了。我要是少回一条，你是不是准备直接冲进去找我？
+原有表情：俏皮
+来源：scenes/ui/intro_script.tsv:57
+
+【序章·咖啡馆回忆】
+D033｜Terese（闺蜜）｜剧情
+台词：你这人真没情趣。
+原有表情：调侃 [teasing]
+来源：scenes/ui/intro_script.tsv:59
+
+
+========================================
+酒店经理
+========================================
+
+【一楼·经理交谈】
+D040｜酒店经理｜剧情
+台词：晚上好。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:70
+
+【一楼·经理交谈】
+D041｜酒店经理｜剧情
+台词：这个时间很少有客人独自前来。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:71
+
+【一楼·经理交谈】
+D043｜酒店经理｜剧情
+台词：找客人，还是找员工？
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:73
+
+【一楼·经理交谈】
+D045｜酒店经理｜剧情
+台词：这里的夜班人员很多，流动也很快。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:75
+
+【一楼·经理交谈】
+D046｜酒店经理｜剧情
+台词：如果没有名字或者登记编号，我恐怕很难帮你。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:76
+
+【一楼·经理交谈】
+D048｜酒店经理｜剧情
+台词：年轻人临时改变计划，并不罕见。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:78
+
+【一楼·经理交谈】
+D051｜酒店经理｜剧情
+台词：309？
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:81
+
+【一楼·经理交谈】
+D053｜酒店经理｜剧情
+台词：我当然知道旅馆里的房间。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:83
+
+【一楼·经理交谈】
+D055｜酒店经理｜剧情
+台词：309属于客房区域。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:85
+
+【一楼·经理交谈】
+D056｜酒店经理｜剧情
+台词：普通访客最好不要随便进入。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:86
+
+【一楼·经理交谈】
+D058｜酒店经理｜剧情
+台词：员工是否仍在职，需要查看完整登记。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:88
+
+【一楼·经理交谈】
+D059｜酒店经理｜剧情
+台词：可惜，这里的记录没有你想象中那么简单。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:89
+
+【一楼·经理交谈】
+D061｜酒店经理｜剧情
+台词：“不能离开”和“手续尚未完成”，听起来相似，含义却完全不同。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:91
+
+【一楼·经理交谈】
+D063｜酒店经理｜剧情
+台词：你似乎已经认定这里发生了什么。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:93
+
+【一楼·经理交谈】
+D065｜酒店经理｜剧情
+台词：那么你应该更谨慎一些。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:95
+
+【一楼·经理交谈】
+D067｜酒店经理｜剧情
+台词：是建议。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:97
+
+【一楼·经理交谈】
+D068｜酒店经理｜剧情
+台词：楼上的客人有自己的规矩。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:98
+
+【一楼·经理交谈】
+D070｜酒店经理｜剧情
+台词：有些客人不喜欢陌生人。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:100
+
+【一楼·经理交谈】
+D071｜酒店经理｜剧情
+台词：如果你看起来不像这里的工作人员，他们可能会对你产生兴趣。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:101
+
+【一楼·经理交谈】
+D073｜酒店经理｜剧情
+台词：我建议你不要亲自确认。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:103
+
+【一楼·经理交谈】
+D074｜酒店经理｜剧情
+台词：还有些客人对气味非常敏感。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:104
+
+【一楼·经理交谈】
+D075｜酒店经理｜剧情
+台词：他们判断一个人的方式，和我们不太一样。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:105
+
+【一楼·经理交谈】
+D077｜酒店经理｜剧情
+台词：住客。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:107
+
+【一楼·经理交谈】
+D079｜酒店经理｜剧情
+台词：而我能回答的只有这个。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:109
+
+【一楼·经理交谈】
+D081｜酒店经理｜剧情
+台词：你可以先上二楼。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:112
+
+【一楼·经理交谈】
+D082｜酒店经理｜剧情
+台词：如果楼上的客人拦住你，最好听清他们需要什么。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:113
+
+【一楼·经理交谈】
+D084｜酒店经理｜剧情
+台词：完成工作的人，通常更容易得到通行。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:115
+
+【一楼·经理交谈】
+D086｜酒店经理｜剧情
+台词：身份这种东西，在这里主要取决于你佩戴什么。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:117
+
+【一楼·经理交谈】
+D088｜酒店经理｜剧情
+台词：记得找工作人员。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:119
+
+【一楼·经理交谈】
+D090｜酒店经理｜剧情
+台词：前台永远愿意为客人提供帮助。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:121
+
+【一楼·经理交谈】
+D092｜酒店经理｜剧情
+台词：现在还不是。
+原有表情：平静／常态 [neutral]
+来源：scenes/ui/intro_script.tsv:123
+
+
+========================================
+长鼻客
+========================================
+
+【二楼·201 长鼻客】
+D096｜长鼻客｜初遇／接任务 [NOSE:INTRO]
+台词：停、停！别再往前踩了。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·201 长鼻客】
+D098｜长鼻客｜初遇／接任务 [NOSE:INTRO]
+台词：这股味道……你没闻见？地毯都脏成这样了！
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·201 长鼻客】
+D100｜长鼻客｜初遇／接任务 [NOSE:INTRO]
+台词：找人也不能踩着脏东西到处走。让负责清洁的人来。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·201 长鼻客】
+D102｜长鼻客｜初遇／接任务 [NOSE:INTRO]
+台词：先打扫，再回来让我闻闻。别拿工作证晃一下就想走。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·201 长鼻客】
+D103｜长鼻客｜缺少身份／装备 [NOSE:MISSING_CARD]
+台词：清洁的人呢？这股味道，我一刻都受不了了。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·201 长鼻客】
+D105｜长鼻客｜工作未完成 [NOSE:WORK_PENDING]
+台词：证是有了，地毯可还脏着。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·201 长鼻客】
+D106｜长鼻客｜工作未完成 [NOSE:WORK_PENDING]
+台词：去打扫。鼻子可不会看错。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·201 长鼻客】
+D108｜长鼻客｜完成交付 [NOSE:DELIVERED]
+台词：嗯……等等。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·201 长鼻客】
+D109｜长鼻客｜完成交付 [NOSE:DELIVERED]
+台词：没有了。那股难闻的味道，总算没有了。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·201 长鼻客】
+D111｜长鼻客｜完成交付 [NOSE:DELIVERED]
+台词：走吧，走吧。鞋底也注意一点。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·201 长鼻客】
+D112｜长鼻客｜完成后再次交谈 [NOSE:COMPLETED]
+台词：刚打扫好的，别再弄脏。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+
+========================================
+Carol（主角·心想）
+========================================
+
+【二楼·201 长鼻客】
+D104｜Carol（主角·心想）｜缺少身份／装备 [NOSE:MISSING_CARD]
+台词：得先拿到保洁员的工作证。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D178｜Carol（主角·心想）｜完成交付 [CHECKER:DELIVERED]
+台词：总算能继续往三楼走了。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+
+========================================
+独眼客
+========================================
+
+【二楼·202 独眼客】
+D113｜独眼客｜初遇／接任务 [EYE:INTRO]
+台词：站住。你从保管柜那边过来的？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·202 独眼客】
+D115｜独眼客｜初遇／接任务 [EYE:INTRO]
+台词：我的包裹还在里面。替我拿来。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·202 独眼客】
+D117｜独眼客｜初遇／接任务 [EYE:INTRO]
+台词：柜子只认保安权限。你去想办法。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·202 独眼客】
+D119｜独眼客｜初遇／接任务 [EYE:INTRO]
+台词：东西完整地送到我手上，再谈。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·202 独眼客】
+D120｜独眼客｜缺少身份／装备 [EYE:MISSING_CARD]
+台词：没权限，柜子就不会开。还有什么不明白的？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·202 独眼客】
+D121｜独眼客｜工作未完成 [EYE:WORK_PENDING]
+台词：工作证我看见了。包裹呢？
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·202 独眼客】
+D123｜独眼客｜完成交付 [EYE:DELIVERED]
+台词：放这儿。让我看看。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·202 独眼客】
+D124｜独眼客｜完成交付 [EYE:DELIVERED]
+台词：封条没动，编号也对。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·202 独眼客】
+D126｜独眼客｜完成交付 [EYE:DELIVERED]
+台词：完了。你可以走了。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·202 独眼客】
+D127｜独眼客｜完成后再次交谈 [EYE:COMPLETED]
+台词：东西收到了。别再碰那个柜子。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+
+========================================
+礼帽客
+========================================
+
+【二楼·203 礼帽客】
+D128｜礼帽客｜初遇／接任务 [HAT:INTRO]
+台词：请稍候。我的房务申请，似乎还没有得到答复。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·203 礼帽客】
+D130｜礼帽客｜初遇／接任务 [HAT:INTRO]
+台词：那真遗憾。这条通道，目前恐怕不便开放。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·203 礼帽客】
+D132｜礼帽客｜初遇／接任务 [HAT:INTRO]
+台词：请找一位有管理权限的人，到二楼登记台批准申请。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·203 礼帽客】
+D134｜礼帽客｜初遇／接任务 [HAT:INTRO]
+台词：劳烦您了。手续齐全，大家都方便。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·203 礼帽客】
+D135｜礼帽客｜缺少身份／装备 [HAT:MISSING_CARD]
+台词：恐怕还需要经理的权限。普通员工无法代签。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·203 礼帽客】
+D136｜礼帽客｜工作未完成 [HAT:WORK_PENDING]
+台词：身份没有问题。不过，申请仍在等待批准。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·203 礼帽客】
+D138｜礼帽客｜完成交付 [HAT:DELIVERED]
+台词：如此甚好。让我确认一下。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·203 礼帽客】
+D139｜礼帽客｜完成交付 [HAT:DELIVERED]
+台词：手续齐全，多谢您费心。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·203 礼帽客】
+D141｜礼帽客｜完成交付 [HAT:DELIVERED]
+台词：自然。请便。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·203 礼帽客】
+D142｜礼帽客｜完成后再次交谈 [HAT:COMPLETED]
+台词：事情办得很妥当。祝您今晚顺利。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【三楼·302／309 登记】
+D180｜礼帽客｜TASK_03_INTRO
+台词：309还未登记。用经理工作证，到本层登记台批准入住。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/main.gd
+
+【三楼·302／309 登记】
+D181｜礼帽客｜TASK_03_INTRO
+台词：接受后限时240秒；批准即完成，不用回302交付。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/main.gd
+
+
+========================================
+大耳客
+========================================
+
+【二楼·204 大耳客】
+D143｜大耳客｜初遇／接任务 [EAR:INTRO]
+台词：嘘。先别走。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D145｜大耳客｜初遇／接任务 [EAR:INTRO]
+台词：鞋底拖过脏地毯的声音。来回，来回……一直不停。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D147｜大耳客｜初遇／接任务 [EAR:INTRO]
+台词：把那一处清理掉。还有，拿今晚的巡房记录来。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D149｜大耳客｜初遇／接任务 [EAR:INTRO]
+台词：二楼的资料柜。保安才能领。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D151｜大耳客｜初遇／接任务 [EAR:INTRO]
+台词：对。回来时，轻一点。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D152｜大耳客｜工作未完成 [EAR:WORK_PENDING]
+台词：那一处还没干净。脚步经过，我听得见。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D153｜大耳客｜仅完成清理 [EAR:CLEAN_ONLY]
+台词：走廊安静些了。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D154｜大耳客｜仅完成清理 [EAR:CLEAN_ONLY]
+台词：巡房记录呢？我要知道，今晚还有谁会经过。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D155｜大耳客｜仅取得记录 [EAR:RECORD_ONLY]
+台词：记录先拿好。走廊那一处，还没处理完。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D157｜大耳客｜完成交付 [EAR:DELIVERED]
+台词：纸放下。慢一点。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D158｜大耳客｜完成交付 [EAR:DELIVERED]
+台词：嗯……今晚的安排，都在这里。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D160｜大耳客｜完成交付 [EAR:DELIVERED]
+台词：可以。门开着的时候，记得停下脚步。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·204 大耳客】
+D161｜大耳客｜完成后再次交谈 [EAR:COMPLETED]
+台词：我听得见。轻一点就好。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【四楼·403 大耳客】
+D182｜大耳客｜接任务 [LATE_INTRO_403]
+台词：夜班巡房记录
+原有表情：未逐句指定（当前固定立绘）
+来源：scripts/task_definitions.gd + scenes/late_mainline.gd
+
+【四楼·403 大耳客】
+D183｜大耳客｜接任务 [LATE_INTRO_403]
+台词：到本层巡房员工身后站定，长按E偷取巡房记录，再返回403按E交付。文件不是工作证，不要求特定身份；交付后才开放5F。
+原有表情：未逐句指定（当前固定立绘）
+来源：scripts/task_definitions.gd + scenes/late_mainline.gd
+
+【四楼·403 大耳客】
+D184｜大耳客｜接任务 [LATE_INTRO_403]
+台词：接受后限时180秒；工作完成仍需返回本房交付。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/late_mainline.gd
+
+【四楼·403 大耳客】
+D185｜大耳客｜任务中再次询问·AVAILABLE [LATE_REMINDER_403]
+台词：在403接受任务，接受后限时180秒。
+原有表情：未逐句指定（当前固定立绘）
+来源：scripts/game_manager.gd:_get_task_step + scenes/late_mainline.gd
+
+【四楼·403 大耳客】
+D186｜大耳客｜任务中再次询问·ACTIVE [LATE_REMINDER_403]
+台词：在巡房员工身后站定，长按E偷取巡房记录。
+原有表情：未逐句指定（当前固定立绘）
+来源：scripts/game_manager.gd:_get_task_step + scenes/late_mainline.gd
+
+【四楼·403 大耳客】
+D187｜大耳客｜任务中再次询问·READY_TO_SUBMIT [LATE_REMINDER_403]
+台词：返回403按E交付
+原有表情：未逐句指定（当前固定立绘）
+来源：scripts/game_manager.gd:_get_task_step + scenes/late_mainline.gd
+
+【四楼·403 大耳客】
+D188｜大耳客｜交付完成 [LATE_DELIVERED_403]
+台词：巡房记录已收到。4F通路已开放，可以上五楼办理离店。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/late_mainline.gd
+
+【四楼·403 大耳客】
+D189｜大耳客｜完成后再次询问 [LATE_REMINDER_403]
+台词：巡房记录已交付，去五楼501办理离店。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/late_mainline.gd
+
+
+========================================
+核验客
+========================================
+
+【二楼·205 核验客】
+D162｜核验客｜初遇／接任务 [CHECKER:INTRO]
+台词：停止通行。备案未完成。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D164｜核验客｜初遇／接任务 [CHECKER:INTRO]
+台词：两项。领取通行单，完成管理批准。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D166｜核验客｜初遇／接任务 [CHECKER:INTRO]
+台词：二楼值班资料点。领取需要保安权限。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D168｜核验客｜初遇／接任务 [CHECKER:INTRO]
+台词：正确。办理完毕后，返回核验。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D170｜核验客｜初遇／接任务 [CHECKER:INTRO]
+台词：证件提前准备。核验期间，不得更换。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D171｜核验客｜工作未完成 [CHECKER:WORK_PENDING]
+台词：第一项未完成。请先领取通行单。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D172｜核验客｜仅领取通行单 [CHECKER:PICKUP_ONLY]
+台词：文件已领取。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D173｜核验客｜仅领取通行单 [CHECKER:PICKUP_ONLY]
+台词：管理批准缺失。请前往登记台。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D175｜核验客｜完成交付 [CHECKER:DELIVERED]
+台词：文件编号一致。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D176｜核验客｜完成交付 [CHECKER:DELIVERED]
+台词：管理批准有效。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D177｜核验客｜完成交付 [CHECKER:DELIVERED]
+台词：备案完成，允许通行。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【二楼·205 核验客】
+D179｜核验客｜完成后再次交谈 [CHECKER:COMPLETED]
+台词：已完成核验，无须重复提交。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/ui/monster_dialogues.json
+
+【五楼·501 核验客】
+D190｜核验客｜接任务 [LATE_INTRO_501]
+台词：最后的离店许可
+原有表情：未逐句指定（当前固定立绘）
+来源：scripts/task_definitions.gd + scenes/late_mainline.gd
+
+【五楼·501 核验客】
+D191｜核验客｜接任务 [LATE_INTRO_501]
+台词：在安全登记台旁I装备／Q切当前经理，按E批准离店单，再返回501按E交付。批准不等于交付；交付后到右端消防出口按E，与Terese一起逃离。
+原有表情：未逐句指定（当前固定立绘）
+来源：scripts/task_definitions.gd + scenes/late_mainline.gd
+
+【五楼·501 核验客】
+D192｜核验客｜接任务 [LATE_INTRO_501]
+台词：接受后限时180秒；工作完成仍需返回本房交付。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/late_mainline.gd
+
+【五楼·501 核验客】
+D193｜核验客｜任务中再次询问·AVAILABLE [LATE_REMINDER_501]
+台词：在501接受任务，接受后限时180秒。
+原有表情：未逐句指定（当前固定立绘）
+来源：scripts/game_manager.gd:_get_task_step + scenes/late_mainline.gd
+
+【五楼·501 核验客】
+D194｜核验客｜任务中再次询问·ACTIVE [LATE_REMINDER_501]
+台词：切为当前经理身份，在五楼离店登记台按E批准。
+原有表情：未逐句指定（当前固定立绘）
+来源：scripts/game_manager.gd:_get_task_step + scenes/late_mainline.gd
+
+【五楼·501 核验客】
+D195｜核验客｜任务中再次询问·READY_TO_SUBMIT [LATE_REMINDER_501]
+台词：返回501按E交付
+原有表情：未逐句指定（当前固定立绘）
+来源：scripts/game_manager.gd:_get_task_step + scenes/late_mainline.gd
+
+【五楼·501 核验客】
+D196｜核验客｜交付完成 [LATE_DELIVERED_501]
+台词：离店手续已交付。现在可以带Terese去消防出口。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/late_mainline.gd
+
+【五楼·501 核验客】
+D197｜核验客｜完成后再次询问 [LATE_REMINDER_501]
+台词：离店单已交付，带Terese去右端消防出口。
+原有表情：未逐句指定（当前固定立绘）
+来源：scenes/late_mainline.gd
