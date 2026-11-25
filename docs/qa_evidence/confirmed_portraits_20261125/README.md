@@ -1,5 +1,10 @@
 # Confirmed dialogue portraits — 2026-11-26
 
+**Final user selection:** Carol retains the team version seen in the running
+main@4d86f95; Terese uses the user's four originals; manager uses the user's
+neutral. The final selection section below supersedes earlier Carol replacement
+results, which are retained as historical evidence.
+
 Code: `3daaa314976eb4343e327470aa176357e407bf3d`, based on
 `main@230521d96d9d97eb05f1ab142eaa48650f6471c3` (approved source archive PR #80).
 The tests below ran on the same code/assets before the code commit; this evidence
@@ -132,3 +137,37 @@ separate main@4d86f95 checkout. Latest Terese evidence:
 [playful, English 960](latest_terese_playful_en960.png).
 The approved four original Terese images remain the sources, as the user
 reaffirmed during testing. The earlier scope limits continue to apply.
+
+## Final user selection: team Carol + personal Terese/manager
+
+The user explicitly requested the currently running team Carol version. Code
+`01d9f25663dc98d64b7e4a40ab53839568f95d4a` restores the exact main@4d86f95 Carol
+selection paths, expressions and task/tutorial portrait adapter. Terese and
+manager keep the personal portraits. Merge `5160548` also incorporates main's
+PR #81 merge; it does not change these tested source files.
+
+[Import](final_selection_import.log) exits 0 (recorded editor-settings diagnostic).
+[Mixed selection](confirmed_portraits_smoke_selection.log),
+[story](story_surface_smoke_selection.log), [intro](intro_flow_smoke_selection.log),
+[localization](localization_smoke_selection.log) and
+[existing character integration](character_art_v2_smoke_selection.log) all exit 0.
+The mixed selection assertions compare actual Carol textures against the team
+resolver for all six expressions plus original aliases, and test the task/tutorial
+adapter. All five personal Terese/manager textures and 16 cafe assignments pass.
+
+[Final Compatibility fixture](portrait_selection_visual.log) exits 0 and generates
+66 captures: 6 team Carol + 4 personal Terese + 1 personal manager, each in two
+locales at three sizes. It runs offscreen without taking focus. Representative
+views were inspected; 59 of the 60 earlier integration captures had already been
+pixel-identical to their previous baseline, and this final run verifies the changed
+Carol selection explicitly.
+
+Final captures:
+[zh 960 Carol](selection_zh_CN_960x540_carol_neutral.png),
+[zh 1280 Carol](selection_zh_CN_1280x720_carol_neutral.png),
+[zh 1920 Terese](selection_zh_CN_1920x1080_terese_neutral.png),
+[en 960 Terese](selection_en_960x540_terese_playful.png),
+[en 1280 Carol](selection_en_1280x720_carol_smile.png),
+[en 1920 manager](selection_en_1920x1080_manager_neutral.png).
+All originally supplied assets remain archived. No human playthrough or exported
+build is claimed for this final selection.

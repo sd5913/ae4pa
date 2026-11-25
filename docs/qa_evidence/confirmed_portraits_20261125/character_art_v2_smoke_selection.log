@@ -1,0 +1,260 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: an neutral fixed canvas (960, 540)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an smile fixed canvas (960, 540)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an surprised fixed canvas (960, 540)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an worried fixed canvas (960, 540)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an suspicious fixed canvas (960, 540)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an stern fixed canvas (960, 540)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an unknown expression safely falls back to new neutral
+PASS: friend neutral fixed canvas (960, 540)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend smile fixed canvas (960, 540)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend surprised fixed canvas (960, 540)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend worried fixed canvas (960, 540)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend suspicious fixed canvas (960, 540)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend stern fixed canvas (960, 540)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend unknown expression safely falls back to new neutral
+PASS: manager neutral fixed canvas (960, 540)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager smile fixed canvas (960, 540)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager surprised fixed canvas (960, 540)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager worried fixed canvas (960, 540)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager suspicious fixed canvas (960, 540)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager stern fixed canvas (960, 540)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager unknown expression safely falls back to new neutral
+PASS: an neutral fixed canvas (1280, 720)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an smile fixed canvas (1280, 720)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an surprised fixed canvas (1280, 720)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an worried fixed canvas (1280, 720)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an suspicious fixed canvas (1280, 720)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an stern fixed canvas (1280, 720)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an unknown expression safely falls back to new neutral
+PASS: friend neutral fixed canvas (1280, 720)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend smile fixed canvas (1280, 720)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend surprised fixed canvas (1280, 720)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend worried fixed canvas (1280, 720)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend suspicious fixed canvas (1280, 720)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend stern fixed canvas (1280, 720)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend unknown expression safely falls back to new neutral
+PASS: manager neutral fixed canvas (1280, 720)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager smile fixed canvas (1280, 720)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager surprised fixed canvas (1280, 720)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager worried fixed canvas (1280, 720)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager suspicious fixed canvas (1280, 720)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager stern fixed canvas (1280, 720)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager unknown expression safely falls back to new neutral
+PASS: an neutral fixed canvas (1920, 1080)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an smile fixed canvas (1920, 1080)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an surprised fixed canvas (1920, 1080)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an worried fixed canvas (1920, 1080)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an suspicious fixed canvas (1920, 1080)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an stern fixed canvas (1920, 1080)
+PASS: an portrait flush with dialogue bottom
+PASS: an portrait inside viewport
+PASS: an unknown expression safely falls back to new neutral
+PASS: friend neutral fixed canvas (1920, 1080)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend smile fixed canvas (1920, 1080)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend surprised fixed canvas (1920, 1080)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend worried fixed canvas (1920, 1080)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend suspicious fixed canvas (1920, 1080)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend stern fixed canvas (1920, 1080)
+PASS: friend portrait flush with dialogue bottom
+PASS: friend portrait inside viewport
+PASS: friend unknown expression safely falls back to new neutral
+PASS: manager neutral fixed canvas (1920, 1080)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager smile fixed canvas (1920, 1080)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager surprised fixed canvas (1920, 1080)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager worried fixed canvas (1920, 1080)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager suspicious fixed canvas (1920, 1080)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager stern fixed canvas (1920, 1080)
+PASS: manager portrait flush with dialogue bottom
+PASS: manager portrait inside viewport
+PASS: manager unknown expression safely falls back to new neutral
+PASS: an idle does not cycle expression/turn frames
+PASS: an eight-frame atlas cell 0
+PASS: an fixed walk scale
+PASS: an planted foot baseline
+PASS: an eight-frame atlas cell 1
+PASS: an fixed walk scale
+PASS: an planted foot baseline
+PASS: an eight-frame atlas cell 2
+PASS: an fixed walk scale
+PASS: an planted foot baseline
+PASS: an eight-frame atlas cell 3
+PASS: an fixed walk scale
+PASS: an planted foot baseline
+PASS: an eight-frame atlas cell 4
+PASS: an fixed walk scale
+PASS: an planted foot baseline
+PASS: an eight-frame atlas cell 5
+PASS: an fixed walk scale
+PASS: an planted foot baseline
+PASS: an eight-frame atlas cell 6
+PASS: an fixed walk scale
+PASS: an planted foot baseline
+PASS: an eight-frame atlas cell 7
+PASS: an fixed walk scale
+PASS: an planted foot baseline
+PASS: cleaning uses the new Carol pose
+PASS: manager idle does not cycle expression/turn frames
+PASS: manager eight-frame atlas cell 0
+PASS: manager fixed walk scale
+PASS: manager planted foot baseline
+PASS: manager eight-frame atlas cell 1
+PASS: manager fixed walk scale
+PASS: manager planted foot baseline
+PASS: manager eight-frame atlas cell 2
+PASS: manager fixed walk scale
+PASS: manager planted foot baseline
+PASS: manager eight-frame atlas cell 3
+PASS: manager fixed walk scale
+PASS: manager planted foot baseline
+PASS: manager eight-frame atlas cell 4
+PASS: manager fixed walk scale
+PASS: manager planted foot baseline
+PASS: manager eight-frame atlas cell 5
+PASS: manager fixed walk scale
+PASS: manager planted foot baseline
+PASS: manager eight-frame atlas cell 6
+PASS: manager fixed walk scale
+PASS: manager planted foot baseline
+PASS: manager eight-frame atlas cell 7
+PASS: manager fixed walk scale
+PASS: manager planted foot baseline
+PASS: terese idle does not cycle expression/turn frames
+PASS: terese eight-frame atlas cell 0
+PASS: terese fixed walk scale
+PASS: terese planted foot baseline
+PASS: terese eight-frame atlas cell 1
+PASS: terese fixed walk scale
+PASS: terese planted foot baseline
+PASS: terese eight-frame atlas cell 2
+PASS: terese fixed walk scale
+PASS: terese planted foot baseline
+PASS: terese eight-frame atlas cell 3
+PASS: terese fixed walk scale
+PASS: terese planted foot baseline
+PASS: terese eight-frame atlas cell 4
+PASS: terese fixed walk scale
+PASS: terese planted foot baseline
+PASS: terese eight-frame atlas cell 5
+PASS: terese fixed walk scale
+PASS: terese planted foot baseline
+PASS: terese eight-frame atlas cell 6
+PASS: terese fixed walk scale
+PASS: terese planted foot baseline
+PASS: terese eight-frame atlas cell 7
+PASS: terese fixed walk scale
+PASS: terese planted foot baseline
+PASS: manager keeps refreshed idle artwork
+PASS: manager shows its turn pose
+PASS: manager shows its distinct suspicion pose
+PASS: manager shows its distinct caught pose
+PASS: manager returns to refreshed idle after clearing alert
+PASS: production Player uses refreshed artwork
+PASS: existing identity feedback survives new geometry: CLEANER
+PASS: existing identity feedback survives new geometry: SECURITY
+PASS: existing identity feedback survives new geometry: MANAGER
+PASS: 309 follower uses approved blonde Terese
+CHARACTER_ART_V2_SMOKE: PASS
