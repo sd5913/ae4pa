@@ -313,6 +313,15 @@ func is_player_in_range() -> bool:
 	return _player_in_range
 
 
+func is_observing_player() -> bool:
+	if _player == null or not _player_in_range:
+		return false
+	if _is_alerted or _is_suspicious:
+		return true
+	var player_side: float = _player.global_position.x - global_position.x
+	return player_side * facing_direction >= 0.0
+
+
 func is_player_behind() -> bool:
 	if _player == null:
 		return false

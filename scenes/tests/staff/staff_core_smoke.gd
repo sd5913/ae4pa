@@ -137,8 +137,10 @@ func _ready() -> void:
 	GameManager.start_game()
 	for index: int in range(expected_cards.size()):
 		_expect(card_manager.collect_card(expected_cards[index]), "%s setup card could not be restored." % expected_cards[index])
-	_expect(card_manager.get_equipped_cards() == ["SECURITY", "CLEANER"], "First two cards were not auto-equipped.")
-	_expect(card_manager.active_card == "SECURITY", "Initial active identity should be SECURITY.")
+	_expect(card_manager.get_equipped_cards() == ["NONE", "NONE"], "Collected IDs must not auto-equip.")
+	_expect(card_manager.active_card == "NONE", "Collected IDs must not activate an identity.")
+	_expect(card_manager.equip_card("SECURITY", 0), "First ID could not be manually equipped in slot A.")
+	_expect(card_manager.equip_card("CLEANER", 1), "Second ID could not be manually equipped in slot B.")
 
 	_expect(card_manager.equip_card("MANAGER", 1), "MANAGER could not be equipped in slot B.")
 	_expect(card_manager.get_equipped_cards() == ["SECURITY", "MANAGER"], "MANAGER equipment state is incorrect.")
@@ -178,26 +180,28 @@ func _run_card_manager_boundary_tests(card_manager: Node) -> void:
 	_expect(card_manager.collect_card("SECURITY"), "Valid SECURITY collection failed.")
 	_expect(not card_manager.collect_card("SECURITY"), "Duplicate collection should be rejected.")
 	_expect(_cards_changed_count == 2, "Collection or duplicate collection signal count is incorrect.")
+	_expect(card_manager.get_equipped_cards() == ["NONE", "NONE"] and card_manager.active_card == "NONE", "Collection does not auto-equip or activate an ID.")
 
 	var owned_copy: Array[String] = card_manager.get_owned_cards()
 	owned_copy.append("MANAGER")
 	var equipped_copy: Array[String] = card_manager.get_equipped_cards()
 	equipped_copy[0] = "MANAGER"
 	_expect(card_manager.get_owned_cards() == ["SECURITY"], "Owned-card query did not return a copy.")
-	_expect(card_manager.get_equipped_cards() == ["SECURITY", "NONE"], "Equipped-card query did not return a copy.")
+	_expect(card_manager.get_equipped_cards() == ["NONE", "NONE"], "Equipped-card query did not return a copy.")
 
 	_expect(not card_manager.equip_card("SECURITY", -1), "Negative slot should be rejected.")
 	_expect(not card_manager.equip_card("SECURITY", 2), "Out-of-range slot should be rejected.")
 	_expect(not card_manager.equip_card("CLEANER", 1), "Unowned card should not be equipped.")
 	_expect(not card_manager.equip_card("INVALID", 1), "Invalid card should not be equipped.")
+	_expect(card_manager.equip_card("SECURITY", 0), "Owned SECURITY could not be manually equipped.")
 	_expect(not card_manager.equip_card("SECURITY", 0), "Repeated equipment should be rejected.")
-	_expect(_cards_changed_count == 2 and _identity_actions.is_empty(), "Invalid equipment emitted a signal.")
+	_expect(_cards_changed_count == 3 and _identity_actions == ["EQUIP_CARD"], "Manual equipment signals or duplicate rejection are incorrect.")
 
 	_expect(card_manager.collect_card("CLEANER"), "Valid CLEANER collection failed.")
 	_expect(card_manager.equip_card("SECURITY", 1), "Cross-slot equipment failed.")
 	_expect(card_manager.get_equipped_cards() == ["NONE", "SECURITY"], "Cross-slot equipment did not remove the duplicate.")
-	_expect(_cards_changed_count == 4, "Cross-slot equipment cards_changed count is incorrect.")
-	_expect(_identity_actions == ["EQUIP_CARD"], "Cross-slot equipment identity signal is incorrect.")
+	_expect(_cards_changed_count == 5, "Cross-slot equipment cards_changed count is incorrect.")
+	_expect(_identity_actions == ["EQUIP_CARD", "EQUIP_CARD"], "Cross-slot equipment identity signal is incorrect.")
 	_expect(not card_manager.equip_card("SECURITY", 1), "Repeated cross-slot equipment should be rejected.")
 
 	_expect(card_manager.active_slot == 0 and card_manager.active_card == "NONE", "Active empty slot state is incorrect.")
@@ -205,13 +209,13 @@ func _run_card_manager_boundary_tests(card_manager: Node) -> void:
 	_expect(card_manager.active_slot == 1 and card_manager.active_card == "SECURITY", "Empty-slot switch did not select slot B.")
 	_expect(card_manager.switch_active(), "Switching back to the empty slot should remain allowed.")
 	_expect(card_manager.active_slot == 0 and card_manager.active_card == "NONE", "Switch back did not preserve empty-slot behavior.")
-	_expect(_cards_changed_count == 6, "Empty-slot switching cards_changed count is incorrect.")
-	_expect(_identity_actions == ["EQUIP_CARD", "SWITCH_ACTIVE", "SWITCH_ACTIVE"], "Empty-slot switching identity signals are incorrect.")
+	_expect(_cards_changed_count == 7, "Empty-slot switching cards_changed count is incorrect.")
+	_expect(_identity_actions == ["EQUIP_CARD", "EQUIP_CARD", "SWITCH_ACTIVE", "SWITCH_ACTIVE"], "Empty-slot switching identity signals are incorrect.")
 
 	_expect(card_manager.equip_card("NONE", 1), "Clearing an occupied slot failed.")
 	_expect(card_manager.collect_card("MANAGER"), "Valid MANAGER collection failed.")
 	_expect(card_manager.has_all_cards(), "All-card query failed after collecting three cards.")
-	_expect(_cards_changed_count == 8, "Clear/collection cards_changed count is incorrect.")
+	_expect(_cards_changed_count == 9, "Clear/collection cards_changed count is incorrect.")
 	_expect(_identity_actions.back() == "EQUIP_CARD", "Clearing a slot did not emit EQUIP_CARD.")
 
 	var identity_count_before_reset: int = _identity_actions.size()
@@ -219,7 +223,7 @@ func _run_card_manager_boundary_tests(card_manager: Node) -> void:
 	_expect(card_manager.get_owned_cards().is_empty(), "New game did not clear owned cards.")
 	_expect(card_manager.get_equipped_cards() == ["NONE", "NONE"], "New game did not clear both slots.")
 	_expect(card_manager.active_slot == 0 and card_manager.active_card == "NONE", "New game did not restore slot A/NONE.")
-	_expect(_cards_changed_count == 9, "Final reset cards_changed count is incorrect.")
+	_expect(_cards_changed_count == 10, "Final reset cards_changed count is incorrect.")
 	_expect(_identity_actions.size() == identity_count_before_reset, "Reset incorrectly emitted identity_changed.")
 
 

@@ -76,6 +76,20 @@ func _can_check() -> bool:
 		and absf(_player.global_position.x - global_position.x) <= maxf(radius, 0.0))
 
 
+func is_observing_player() -> bool:
+	return door_state == "OPEN" and is_instance_valid(_player) \
+		and GameManager.game_state == "PLAYING" \
+		and absf(_player.global_position.x - global_position.x) <= maxf(radius, 0.0)
+
+
+func report_blocked_checker_switch() -> bool:
+	if monster_type != "CHECKER" or not _can_check() \
+		or _story_status in ["ACTIVE", "READY_TO_SUBMIT", "COMPLETED"]:
+		return false
+	_report_violation("SWITCHED_NEAR_CHECKER")
+	return true
+
+
 func _on_identity_changed(action: String) -> void:
 	if not _identity_inspection.is_empty():
 		if action in ["SWITCH_ACTIVE", "EQUIP_CARD"]:
