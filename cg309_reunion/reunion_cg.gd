@@ -1,6 +1,7 @@
 extends Control
 ## Standalone presentation only; the host owns card validation, modal locks and rescue state.
 signal rescue_cg_finished
+signal beat_displayed(token: String, speaker: String, source: String, parameters: Dictionary)
 
 const DATA_PATH := "res://cg309_reunion/dialogue.json"
 const FRAME_PATHS := {
@@ -25,6 +26,7 @@ var _camera_tween: Tween
 var _textures: Dictionary = {}
 var _run_token := 0
 var _pointer := preload("res://scenes/ui/story_pointer.gd").new()
+var _displayed_index := -1
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -108,6 +110,7 @@ func play() -> void:
 	_back.scale = Vector2.ONE
 	_playing = true
 	_transitioning = false
+	_displayed_index = -1
 	show()
 	if _beats.is_empty():
 		_playing = false
@@ -117,7 +120,7 @@ func play() -> void:
 	_show_next()
 
 func advance() -> void:
-	if not _playing or _transitioning:
+	if not _playing or _transitioning or _displayed_index != _index:
 		return
 	_show_next()
 
@@ -132,12 +135,14 @@ func _show_next() -> void:
 	var beat: Dictionary = _beats[_index]
 	var narrative := bool(beat.get("narration", false))
 	_speaker.text = " " if narrative else str(beat.get("speaker_en", beat["speaker"])) if TranslationServer.get_locale().begins_with("en") else str(beat["speaker"])
-	_line.text = str(beat["text"])
+	_line.text = tr(str(beat["text"])).format(beat.get("parameters", {}))
 	_line.add_theme_color_override("font_color", Color("#d3c5ad") if narrative else Color("#f8f0df"))
 	_hint.text = "%d / %d" % [_index + 1, _beats.size()]
 	var next_id := str(beat["frame"])
 	if next_id != _frame_id:
 		_change_frame(next_id)
+	else:
+		_record_displayed_beat.call_deferred(_run_token, _index)
 
 func _change_frame(next_id: String) -> void:
 	if not FRAME_PATHS.has(next_id):
@@ -162,9 +167,19 @@ func _change_frame(next_id: String) -> void:
 			return
 		_transitioning = false
 		_back.texture = null
+		_record_displayed_beat.call_deferred(token, _index)
 		_camera_tween = create_tween()
 		_camera_tween.tween_property(_front, "scale", Vector2(1.025, 1.025), 5.0).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	, CONNECT_ONE_SHOT)
+
+func _record_displayed_beat(token: int, index: int) -> void:
+	if token != _run_token or not _playing or _transitioning or index != _index or _displayed_index == index: return
+	var beat: Dictionary = _beats[index]
+	var speaker: String = str(beat.get("speaker_id", ""))
+	if speaker.is_empty():
+		speaker = "NARRATOR" if bool(beat.get("narration", false)) else "CAROL" if str(beat.get("speaker", "")) == "Carol" else "TERESE"
+	_displayed_index = index
+	beat_displayed.emit("cg309:reunion:%02d" % (index + 1), speaker, str(beat["text"]), beat.get("parameters", {}))
 
 func _stop_tweens() -> void:
 	if _transition_tween != null:

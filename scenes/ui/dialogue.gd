@@ -68,6 +68,7 @@ var _sms_scroll_generation := 0
 var _portrait_region_cache: Dictionary = {}
 var _phone_waiting_for_open := false
 var _phone_tween: Tween
+var _scene_tween: Tween
 
 @onready var _background: TextureRect = %Background
 @onready var _fade: ColorRect = %Fade
@@ -217,6 +218,22 @@ func show_dialogue(dialogue_id: String) -> void:
 	else:
 		_skip_button.text = "跳过"
 	show()
+
+
+func cancel_presentation() -> void:
+	_history_serial += 1
+	_pointer.reset()
+	_dialogue_id = ""
+	_lines.clear()
+	_beats.clear()
+	_line_index = 0
+	_transition_in_progress = false
+	if _scene_tween != null:
+		_scene_tween.kill()
+		_scene_tween = null
+	_finish_phone_animation()
+	restore_world_prompts()
+	hide()
 
 
 ## Shared task adapter: A owns when to offer/start a task; D only presents these lines.
@@ -559,14 +576,17 @@ func _set_scene(scene_id: String, fade: bool) -> void:
 		return
 	_transition_in_progress = true
 	_fade.color.a = 0.0
-	var tween := create_tween()
-	tween.tween_property(_fade, "color:a", 1.0, 0.22).from(0.0)
-	tween.tween_callback(func() -> void:
+	if _scene_tween != null: _scene_tween.kill()
+	_scene_tween = create_tween()
+	_scene_tween.tween_property(_fade, "color:a", 1.0, 0.22).from(0.0)
+	_scene_tween.tween_callback(func() -> void:
 		_background.texture = BACKGROUNDS[scene_id]
 		var reveal_tween := create_tween()
+		_scene_tween = reveal_tween
 		reveal_tween.tween_property(_fade, "color:a", 0.0, 0.32).from(1.0)
 		reveal_tween.finished.connect(func() -> void:
 			_transition_in_progress = false
+			_scene_tween = null
 			record_current_memory_beat()
 		, CONNECT_ONE_SHOT)
 	)

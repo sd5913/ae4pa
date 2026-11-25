@@ -2230,8 +2230,30 @@ msgstr "Room 302 authorization complete: Room 309 is approved. Use the Housekeep
 msgid "302授权已完成。切为保洁身份进入309，寻找Terese。"
 msgstr "Room 302 authorization complete. Use the Housekeeper identity to enter Room 309 and find Terese."
 
+
 msgid "体力"
 msgstr "Stamina"
 
 msgid "体力不足"
 msgstr "Not enough stamina"
+
+msgid "旁白"
+msgstr "Narrator"
+
+msgid "只有在进行游戏时才能保存"
+msgstr "Start or resume a game to save."
+
+msgid "请完成当前交互并松开 E 后保存"
+msgstr "Finish the current interaction and release E to save."
+
+msgid "完整存档服务尚未就绪"
+msgstr "The save service is not ready."
+
+msgid "记忆数据暂时无法保存"
+msgstr "This game state could not be saved."
+
+msgid "记忆写入失败，请稍后重试"
+msgstr "Could not write the save. Try again."
+
+msgid "此版本无法读取这段记忆"
+msgstr "This game version cannot read this save."

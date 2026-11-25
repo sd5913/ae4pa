@@ -280,7 +280,7 @@ func _execute_action() -> void:
 	if not result.get("ok",false):
 		_status.text = tr(str(result.get("error","记忆暂时无法读取")))
 		return
-	if _mode == "load": close_page()
+	if _mode == "load": close_page(false)
 	else: refresh(); _status.text = tr("记忆已保存")
 
 func _layout() -> void:
@@ -321,12 +321,13 @@ func _matches_action(event: InputEvent, action: StringName) -> bool:
 				return true
 	return false
 
-func close_page() -> void:
+func close_page(record_displayed_beat: bool = true) -> void:
 	_confirm.hide()
 	_root.hide()
 	GameManager.set_modal_open(MODAL,false)
-	for surface: Node in get_tree().get_nodes_in_group("memory_dialogue_surface"):
-		if surface.is_visible_in_tree(): surface.record_current_memory_beat()
+	if record_displayed_beat:
+		for surface: Node in get_tree().get_nodes_in_group("memory_dialogue_surface"):
+			if surface.is_visible_in_tree(): surface.record_current_memory_beat()
 	if is_instance_valid(_previous_focus) and _previous_focus.is_visible_in_tree(): _previous_focus.grab_focus()
 	_previous_focus = null
 

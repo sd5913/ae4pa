@@ -67,8 +67,7 @@ func _observe_stage() -> void:
 		_last_ready = false
 
 func _cards_changed() -> void:
-	if not _tutorial_seen:
-		_pending_equipment = CardManager.get_equipped_cards().filter(func(id): return id != "NONE").size() == 2
+	_pending_equipment = not _tutorial_seen and CardManager.get_equipped_cards().filter(func(id): return id != "NONE").size() == 2
 
 func _process(_delta: float) -> void:
 	if _main == null or _surface == null: return
@@ -154,10 +153,13 @@ func _exit_tree() -> void:
 func capture_memory_ui_state() -> Dictionary:
 	return {"version":1, "tutorial_seen":_tutorial_seen}
 
+static func validate_memory_ui_state(value: Dictionary) -> bool:
+	return value.get("version") == 1 and value.get("tutorial_seen") is bool
+
 func restore_memory_ui_state(value: Dictionary) -> bool:
-	if not _mode.is_empty() or value.get("version") != 1 or not value.get("tutorial_seen") is bool: return false
+	if not _mode.is_empty() or not validate_memory_ui_state(value): return false
 	_tutorial_seen = value.tutorial_seen
-	_pending_equipment = false
+	_cards_changed()
 	return true
 
 func _record_history(index: int, serial: int, key: String) -> void:

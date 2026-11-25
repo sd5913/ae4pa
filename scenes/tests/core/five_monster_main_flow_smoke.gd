@@ -77,6 +77,8 @@ func equip(card: String, second: String = "") -> void:
 				bag.get_node("%EquipSlotA" if spec[1]==0 else "%EquipSlotB").pressed.emit()
 				break
 	await tap("open_bag");await settle()
+	# Manual equipment can trigger the real two-slot lesson on closing the bag.
+	await read_carol()
 	if c.active_card != card: await tap("switch_id")
 	check(c.active_card==card and (second.is_empty() or c.get_equipped_cards().has(second)),"actual I/Q prepares requested identities")
 	player().global_position.x = return_x

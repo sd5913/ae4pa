@@ -1,0 +1,6 @@
+ERROR: Cannot export project with preset "Windows Desktop" due to configuration errors:
+在预期路径处未找到导出模板：
+/Users/xiaxiabao/Library/Application Support/Godot/export_templates/4.7.2.stable/windows_debug_x86_64.exe
+在预期路径处未找到导出模板：
+/Users/xiaxiabao/Library/Application Support/Godot/export_templates/4.7.2.stable/windows_release_x86_64.exe
+ERROR: Project export for preset "Windows Desktop" failed.
