@@ -109,3 +109,26 @@ Representative captures from the merged code:
 [en 1280](merged_en_1280x720_terese_playful.png),
 [en 1920](merged_en_1920x1080_manager_neutral.png).
 The prior screenshot evidence and failed fixture attempts remain preserved.
+
+## Final integration with main@4e6405a
+
+Main also merged PR #76 while this PR was open. Code `3563072f82340c30f111446bcd36047f78c15c4a`
+retains the new persistence integration, dialogue cancellation and tween cleanup;
+the only merge conflict was appended progress documentation, with both entries
+preserved. No confirmed portrait selection or canvas changed.
+
+[Import](portrait_memory_import.log) exits 0, with the same editor-settings diagnostic.
+[Portraits](confirmed_portraits_smoke_memory.log), [story surfaces](story_surface_smoke_memory.log),
+[intro flow](intro_flow_smoke_memory.log), and [localization](localization_smoke_memory.log)
+all exit 0 on this code. [Memory UI in Compatibility](memory_ui_portraits_graphical.log)
+also exits 0. Its first [headless attempt](memory_ui_smoke_memory.log) was stopped:
+that fixture waits for frame_post_draw and requires a renderer. This stopped
+invocation is not a game regression or a passing test.
+
+The final [60-state Compatibility portrait fixture](portrait_memory_visual.log)
+exits 0. It runs without focus and offscreen; the user's game remains on its
+separate main@4d86f95 checkout. Latest Terese evidence:
+[neutral, Chinese 1280](latest_terese_neutral_zh1280.png),
+[playful, English 960](latest_terese_playful_en960.png).
+The approved four original Terese images remain the sources, as the user
+reaffirmed during testing. The earlier scope limits continue to apply.
