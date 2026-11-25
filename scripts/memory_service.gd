@@ -8,15 +8,15 @@ const GAME_BUILD := "1"
 
 var storage_root: String = DEFAULT_STORAGE_ROOT
 var _host: Node
-var _backup_serial := 0
 
 func configure_host(host: Node) -> void:
 	_host = host
 
 func list_memory_slots() -> Array[Dictionary]:
 	var slots: Array[Dictionary] = []
+	var files := _storage_files()
 	for slot_id: int in SLOT_IDS:
-		var result := _read_slot(slot_id)
+		var result := _read_slot(slot_id, files)
 		var slot: Dictionary = {"slot_id": slot_id, "status": result.status}
 		if result.status == "VALID":
 			slot.merge(result.document.metadata, true)
@@ -68,7 +68,7 @@ func _save_slot(slot_id: int, automatic: bool) -> Dictionary:
 func load_memory(slot_id: int) -> Dictionary:
 	if slot_id not in SLOT_IDS:
 		return _failure("记忆暂时无法读取")
-	var result := _read_slot(slot_id)
+	var result := _read_slot(slot_id, _storage_files())
 	if result.status != "VALID":
 		return _failure(str(result.get("error", "记忆暂时无法读取")))
 	if not is_instance_valid(_host) or not _host.has_method("restore_memory_document"):
@@ -99,66 +99,85 @@ func _commit_document(slot_id: int, document: Dictionary) -> bool:
 		return false
 	if _ensure_storage_directory() != OK:
 		return false
-	var target := _slot_path(slot_id)
+	var prefix := _slot_filename(slot_id) + ".gen_"
+	var generation := int(Time.get_unix_time_from_system() * 1000000.0)
+	for filename: String in _storage_files():
+		if _is_generation_file(filename, prefix):
+			# Keep commits ordered even after a clock correction.
+			var previous_generation := int(filename.substr(prefix.length(), 20))
+			generation = maxi(generation, previous_generation + 1)
+			break
+	var nonce := Crypto.new().generate_random_bytes(16).hex_encode()
+	if nonce.length() != 32:
+		return false
+	var target := storage_root.path_join("%s%020d_%s.json" % [prefix, generation, nonce])
 	var temporary := target + ".tmp"
-	var encoded := JSON.stringify(document, "\t")
 	var file := FileAccess.open(temporary, FileAccess.WRITE)
 	if file == null:
 		return false
-	file.store_string(encoded)
+	file.store_string(JSON.stringify(document, "\t"))
 	file.flush()
 	var write_ok := file.get_error() == OK
 	file.close()
-	if not write_ok:
-		return false
-	var temporary_document := _parse_document(temporary)
-	if not temporary_document.ok or not _validate_document(slot_id, temporary_document.document):
-		return false
-	if FileAccess.file_exists(target):
-		_backup_serial += 1
-		var backup := target + ".bak_%020d_%06d" % [int(Time.get_unix_time_from_system() * 1000000.0), _backup_serial]
-		if not _copy_file(target, backup):
-			return false
-		# A damaged or incompatible prior document remains in the backup unchanged.
-	return DirAccess.rename_absolute(ProjectSettings.globalize_path(temporary), ProjectSettings.globalize_path(target)) == OK
+	var candidate := _parse_document(temporary)
+	if write_ok and candidate.ok and _validate_document(slot_id, candidate.document):
+		# Commit to a new name. Windows removes the destination before replacing it,
+		# so existing generations and legacy saves must remain untouched.
+		if not FileAccess.file_exists(target) and DirAccess.rename_absolute(
+			ProjectSettings.globalize_path(temporary), ProjectSettings.globalize_path(target)
+		) == OK:
+			return true
+	DirAccess.remove_absolute(ProjectSettings.globalize_path(temporary))
+	return false
 
-func _read_slot(slot_id: int) -> Dictionary:
+func _storage_files() -> PackedStringArray:
 	if not _valid_storage_root():
-		return {"status": "CORRUPT", "error": "记忆暂时无法读取"}
-	var primary := _slot_path(slot_id)
-	if not FileAccess.file_exists(primary):
-		var backup_only := _read_latest_backup(slot_id)
-		if backup_only.ok:
-			return {"status": "VALID", "document": backup_only.document, "recovered_from_backup": true}
-		if backup_only.get("exists", false):
-			return {"status": backup_only.status, "error": backup_only.error}
-		return {"status": "EMPTY"}
-	var current := _parse_document(primary)
-	if current.ok and _validate_document(slot_id, current.document):
-		return {"status": "VALID", "document": current.document, "recovered_from_backup": false}
-	if current.ok:
-		current = {"status": "CORRUPT", "error": "记忆暂时无法读取"}
-	var backup := _read_latest_backup(slot_id)
-	if backup.ok:
-		return {"status": "VALID", "document": backup.document, "recovered_from_backup": true}
-	return {"status": current.status, "error": current.error}
-
-func _read_latest_backup(slot_id: int) -> Dictionary:
+		return []
 	var directory := DirAccess.open(storage_root)
 	if directory == null:
-		return {"ok": false, "exists": false}
-	var prefix := _slot_filename(slot_id) + ".bak_"
-	var names := directory.get_files()
-	names.sort()
-	names.reverse()
-	var found := false
-	for name: String in names:
-		if not name.begins_with(prefix): continue
-		found = true
-		var parsed := _parse_document(storage_root.path_join(name))
-		if parsed.ok and _validate_document(slot_id, parsed.document):
-			return {"ok": true, "exists": true, "document": parsed.document}
-	return {"ok": false, "exists": found, "status": "CORRUPT", "error": "记忆暂时无法读取"}
+		return []
+	var files := directory.get_files()
+	files.sort()
+	files.reverse()
+	return files
+
+func _is_generation_file(filename: String, prefix: String) -> bool:
+	if not filename.begins_with(prefix) or not filename.ends_with(".json"):
+		return false
+	var parts := filename.trim_prefix(prefix).trim_suffix(".json").split("_")
+	return parts.size() == 2 and parts[0].length() == 20 and parts[0].begins_with("0") \
+		and parts[0] < "09223372036854775807" and parts[0].is_valid_int() \
+		and parts[1].length() == 32 and parts[1].is_valid_hex_number()
+
+func _read_slot(slot_id: int, files: PackedStringArray) -> Dictionary:
+	if not _valid_storage_root():
+		return {"status": "CORRUPT", "error": "记忆暂时无法读取"}
+	var legacy_name := _slot_filename(slot_id)
+	var generation_prefix := legacy_name + ".gen_"
+	var legacy_backup_prefix := legacy_name + ".bak_"
+	var candidates: Array[String] = []
+	for filename: String in files:
+		if _is_generation_file(filename, generation_prefix):
+			candidates.append(filename)
+	if files.has(legacy_name):
+		candidates.append(legacy_name)
+	for filename: String in files:
+		if filename.begins_with(legacy_backup_prefix):
+			candidates.append(filename)
+
+	var first_error := {}
+	for filename: String in candidates:
+		var candidate := _parse_document(storage_root.path_join(filename))
+		if candidate.ok and _validate_document(slot_id, candidate.document):
+			return {
+				"status": "VALID",
+				"document": candidate.document,
+				"recovered_from_backup": not first_error.is_empty() or filename.begins_with(legacy_backup_prefix),
+			}
+		if first_error.is_empty():
+			first_error = {"status": "CORRUPT", "error": "记忆暂时无法读取"} if candidate.ok \
+				else {"status": candidate.status, "error": candidate.error}
+	return {"status": "EMPTY"} if first_error.is_empty() else first_error
 
 func _parse_document(path: String) -> Dictionary:
 	var file := FileAccess.open(path, FileAccess.READ)
@@ -191,19 +210,6 @@ func _validate_document(slot_id: int, document: Dictionary) -> bool:
 		return _host.validate_memory_document_state(document.state)
 	return false
 
-func _copy_file(source: String, destination: String) -> bool:
-	var bytes := FileAccess.get_file_as_bytes(source)
-	if FileAccess.get_open_error() != OK:
-		return false
-	var output := FileAccess.open(destination, FileAccess.WRITE)
-	if output == null:
-		return false
-	output.store_buffer(bytes)
-	output.flush()
-	var ok := output.get_error() == OK
-	output.close()
-	return ok and FileAccess.get_file_as_bytes(destination) == bytes
-
 func _ensure_storage_directory() -> Error:
 	if not _valid_storage_root():
 		return ERR_INVALID_PARAMETER
@@ -218,9 +224,6 @@ func _valid_storage_root() -> bool:
 
 func _slot_filename(slot_id: int) -> String:
 	return "automatic.json" if slot_id == -1 else "manual_%d.json" % slot_id
-
-func _slot_path(slot_id: int) -> String:
-	return storage_root.path_join(_slot_filename(slot_id))
 
 func _failure(reason: String) -> Dictionary:
 	return {"ok": false, "error": reason}

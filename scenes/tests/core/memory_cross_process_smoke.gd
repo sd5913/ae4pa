@@ -1,6 +1,6 @@
 extends SceneTree
 
-const SAVE_ROOT := "user://memory_cross_process_smoke_20261124"
+const DEFAULT_SAVE_ROOT := "user://memory_cross_process_smoke_20261124"
 var _main: Node
 var _game: Node
 var _cards: Node
@@ -8,6 +8,7 @@ var _service: Node
 var _passed := true
 var _history: Script
 var _ui: Node
+var _save_root := OS.get_environment("AE4PA_MEMORY_SAVE_ROOT")
 var _evidence := OS.get_environment("AE4PA_MEMORY_EVIDENCE")
 
 func _initialize() -> void:
@@ -36,6 +37,16 @@ func _save_slot(slot_id: int, label: String) -> void:
 func _load_slot(slot_id: int, label: String) -> void:
 	var result: Dictionary = _service.load_memory(slot_id)
 	_check(result.get("ok", false), "%s loaded: %s" % [label, str(result)])
+
+func _slot_zero_files() -> Dictionary:
+	var snapshot := {}
+	var directory := DirAccess.open(_save_root)
+	if directory == null:
+		return snapshot
+	for filename: String in directory.get_files():
+		if filename == "manual_0.json" or filename.begins_with("manual_0.json.gen_") and filename.ends_with(".json"):
+			snapshot[filename] = FileAccess.get_file_as_string(_save_root.path_join(filename))
+	return snapshot
 
 func _shot(name: String) -> void:
 	if _evidence.is_empty() or DisplayServer.get_name() == "headless": return
@@ -69,7 +80,9 @@ func run() -> void:
 	_game.set_process(false)
 	_ui = _main.get_node("MenuLayer/MainMenu/MemoryUI")
 	_service = _main.get_node("MemoryService")
-	_service.storage_root = SAVE_ROOT
+	if _save_root.is_empty():
+		_save_root = DEFAULT_SAVE_ROOT
+	_service.storage_root = _save_root
 	var load_mode := OS.get_cmdline_user_args().has("--load")
 	if load_mode:
 		await _run_load_phase()
@@ -102,12 +115,12 @@ func _run_save_phase() -> void:
 	_check(_ui._status.text == _ui.tr("记忆已保存"), "real pause UI saved slot 0")
 	await _shot("saved")
 	await _hold_evidence()
-	var original := FileAccess.get_file_as_string(SAVE_ROOT.path_join("manual_0.json"))
+	var original := _slot_zero_files()
 	_ui._request_action()
 	_check(_ui._confirm.visible, "overwrite prompts for confirmation")
 	_ui._confirm.canceled.emit()
 	_ui._confirm.hide()
-	_check(FileAccess.get_file_as_string(SAVE_ROOT.path_join("manual_0.json")) == original, "cancel preserves previous save")
+	_check(_slot_zero_files() == original, "cancel preserves previous save")
 	_ui.close_page()
 	_main.get_node("TaskLayer").play_overlay.close_page()
 	_check(_cards.get_equipped_cards() == ["SECURITY", "CLEANER"] and _cards.active_card == "CLEANER", "two-slot combination is captured")
@@ -170,10 +183,10 @@ func _run_save_phase() -> void:
 	_check(_service.list_memory_slots().any(func(slot): return slot.slot_id == -1 and slot.status == "VALID"), "stable progression writes the automatic slot")
 
 func _run_load_phase() -> void:
-	var before := FileAccess.get_file_as_string(SAVE_ROOT.path_join("manual_0.json"))
+	var before := _slot_zero_files()
 	_main._start_session()
 	await _ready_for_capture()
-	_check(not before.is_empty() and FileAccess.get_file_as_string(SAVE_ROOT.path_join("manual_0.json")) == before, "new game preserves existing slots")
+	_check(not before.is_empty() and _slot_zero_files() == before, "new game preserves existing slots")
 	_main._show_menu()
 	_ui.open("load")
 	await _shot("load")
@@ -183,6 +196,19 @@ func _run_load_phase() -> void:
 	_ui._confirm.confirmed.emit()
 	_ui._confirm.hide()
 	_check(not _ui.is_open() and not _main.menu.visible, "load confirmation returns to the world")
+	var checkpoint: Dictionary = _main.capture_memory_document_state()
+	var bad_completed := checkpoint.duplicate(true)
+	bad_completed.game.retry_checkpoint.completed = [123]
+	_check(not _main.validate_memory_document_state(bad_completed), "invalid completed task in nested checkpoint is rejected")
+	var bad_visits := checkpoint.duplicate(true)
+	bad_visits.game.retry_checkpoint.visited = ["2"]
+	_check(not _main.validate_memory_document_state(bad_visits), "invalid floor in nested checkpoint is rejected")
+	var wrong_marker := checkpoint.duplicate(true)
+	wrong_marker.game.retry_checkpoint.position[0] += 1.0
+	_check(not _main.validate_memory_document_state(wrong_marker), "in-corridor but incorrect checkpoint marker is rejected")
+	var flow: Node = _main.get_node("MenuLayer/Bag/CarolUIFlow")
+	_check(flow.restore_memory_ui_state({"version": 1, "tutorial_seen": false}) and flow.get("_pending_equipment"), "two equipped cards queue unseen tutorial after restore")
+	flow.restore_memory_ui_state({"version": 1, "tutorial_seen": true})
 	var malformed: Dictionary = _main.capture_memory_document_state()
 	malformed.game.floor.doors[0].room_id = "999"
 	var floor_before := _floor()

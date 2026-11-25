@@ -310,29 +310,12 @@ func validate_memory_state(value: Dictionary) -> bool:
 	if not value.get("play_time_seconds") is float or not is_finite(value.play_time_seconds) or value.play_time_seconds < 0.0: return false
 	if status in ["ACTIVE", "READY_TO_SUBMIT"] and value.remaining_time <= 0.0: return false
 	if status in ["NONE", "AVAILABLE", "COMPLETED"] and not is_zero_approx(value.remaining_time): return false
-	if not value.get("completed_task_ids") is Array or not value.get("world_flags") is Dictionary: return false
-	var completed: Array = value.completed_task_ids
-	var unique_completed: Dictionary = {}
-	for id: Variant in completed:
-		if not id is String or not ENABLED_TASKS.has(id) or unique_completed.has(id): return false
-		unique_completed[id] = true
-	if (status == "COMPLETED") != unique_completed.has(task_id): return false
-	if value.has_friend != value.world_flags.get("rescue_309_completed", false): return false
-	if value.has_friend and (value.current_floor < 3 or not unique_completed.has(TASK_03_ID) or not value.world_flags.get("registration_309_approved", false)): return false
+	if not _validate_memory_tasks(value.get("completed_task_ids"), value.get("world_flags")): return false
+	if (status == "COMPLETED") != value.completed_task_ids.has(task_id): return false
+	if not _validate_memory_companion(value.has_friend, int(value.current_floor), value.completed_task_ids, value.world_flags): return false
 	if status in ["ACTIVE", "READY_TO_SUBMIT"] and value.remaining_time > float(get_task_definition(task_id).time_limit): return false
-	for flag: Variant in value.world_flags:
-		if not flag is String or not value.world_flags[flag] is bool: return false
-	if not value.get("visited_floors") is Array or not value.visited_floors.has(value.current_floor): return false
-	var visited: Dictionary = {}
-	for floor_number: Variant in value.visited_floors:
-		if not (floor_number is int or floor_number is float) or not is_finite(float(floor_number)) or float(floor_number) != floorf(float(floor_number)) or floor_number < 1 or floor_number > 5 or visited.has(floor_number): return false
-		visited[floor_number] = true
-	if not value.get("room_monsters") is Dictionary or not value.get("seen_monsters") is Dictionary or not value.get("pending_encounter") is Dictionary: return false
-	for room: Variant in value.room_monsters:
-		if not room is String or not _room_monster_pool(room).has(value.room_monsters[room]): return false
-	for kind: Variant in value.seen_monsters:
-		if not ["NOSE", "EYE", "HAT", "EAR", "CHECKER"].has(kind) or value.seen_monsters[kind] != true: return false
-	if not value.pending_encounter.is_empty() and not _validate_pending_encounter(value.pending_encounter): return false
+	if not _validate_memory_visits(value.get("visited_floors"), int(value.current_floor)): return false
+	if not _validate_memory_encounters(value.get("room_monsters"), value.get("seen_monsters"), value.get("pending_encounter")): return false
 	if not value.get("player") is Dictionary or not value.player.get("position") is Array or value.player.position.size() != 2: return false
 	if not (value.player.position[0] is float or value.player.position[0] is int) or not (value.player.position[1] is float or value.player.position[1] is int): return false
 	if not (value.player.get("facing_direction") is int or value.player.get("facing_direction") is float) or absf(float(value.player.facing_direction)) != 1.0: return false
@@ -398,27 +381,87 @@ func restore_memory_state(value: Dictionary) -> bool:
 	floor_changed.emit(current_floor)
 	return true
 
-func _validate_pending_encounter(value: Dictionary) -> bool:
-	return value.has_all(["room_id", "monster_type", "first_encounter", "reason", "task_id"]) \
-		and value.room_id is String and value.monster_type in ["NOSE", "EYE", "HAT", "EAR", "CHECKER"] \
-		and value.first_encounter is bool and value.reason is String and value.task_id is String
+func _validate_memory_tasks(completed: Variant, flags: Variant) -> bool:
+	if not completed is Array or not flags is Dictionary: return false
+	var seen := {}
+	for id: Variant in completed:
+		if not id is String or not ENABLED_TASKS.has(id) or seen.has(id): return false
+		seen[id] = true
+	for flag: Variant in flags:
+		if not flag is String or not flags[flag] is bool: return false
+	return true
 
-func _validate_task_checkpoint(value: Dictionary) -> bool:
-	if value.is_empty(): return true
-	if not value.has_all(["task_id", "floor", "position", "cards", "world_flags", "completed", "visited", "manager_intro", "has_friend", "room_monsters", "seen_monsters", "pending_encounter"]): return false
-	if not value.task_id is String or not ENABLED_TASKS.has(value.task_id): return false
-	if not (value.floor is int or value.floor is float) or float(value.floor) != floorf(float(value.floor)) or value.floor < 1 or value.floor > 5: return false
-	if value.floor != get_task_definition(value.task_id).get("offer_floor", 0): return false
-	if not value.position is Vector2 or not is_finite(value.position.x) or not is_finite(value.position.y): return false
-	return value.cards is Dictionary and CardManager.validate_snapshot(value.cards) and value.world_flags is Dictionary and value.completed is Array and value.visited is Array and value.manager_intro is bool and value.has_friend is bool and value.room_monsters is Dictionary and value.seen_monsters is Dictionary and value.pending_encounter is Dictionary
+func _validate_memory_companion(companion: bool, floor_number: int, completed: Array, flags: Dictionary) -> bool:
+	if companion != flags.get("rescue_309_completed", false): return false
+	return not companion or (floor_number >= 3 and completed.has(TASK_03_ID) and flags.get("registration_309_approved", false))
+
+func _validate_memory_visits(visited: Variant, floor_number: int) -> bool:
+	if not visited is Array: return false
+	var seen := {}
+	for item: Variant in visited:
+		if not (item is int or item is float) or not is_finite(float(item)) or float(item) != floorf(float(item)) or item < 1 or item > 5:
+			return false
+		var visited_floor := int(item)
+		if seen.has(visited_floor): return false
+		seen[visited_floor] = true
+	return seen.has(floor_number)
+
+func _validate_memory_encounters(rooms: Variant, seen: Variant, pending: Variant) -> bool:
+	if not rooms is Dictionary or not seen is Dictionary or not pending is Dictionary: return false
+	for room: Variant in rooms:
+		if not room is String or not _room_monster_pool(room).has(rooms[room]): return false
+	for kind: Variant in seen:
+		if kind not in ["NOSE", "EYE", "HAT", "EAR", "CHECKER"] or seen[kind] != true: return false
+	if pending.is_empty():
+		return true
+	if not pending.get("room_id") is String or not pending.get("monster_type") is String \
+		or not pending.get("first_encounter") is bool or not pending.get("reason") is String:
+		return false
+	if not _room_monster_pool(pending.room_id).has(pending.monster_type) or not seen.has(pending.monster_type):
+		return false
+	var fixed_tasks := {"302": TASK_03_ID, "403": TASK_04_ID, "501": TASK_05_ID}
+	var task_by_kind: Dictionary = preload("res://scenes/doors/v4_door_catalog.gd").TASKS
+	return pending.get("task_id") == fixed_tasks.get(pending.room_id, task_by_kind.get(pending.monster_type))
 
 func _validate_encoded_task_checkpoint(value: Dictionary) -> bool:
-	if value.is_empty(): return _validate_task_checkpoint(value)
+	if value.is_empty(): return true
+	if not value.get("task_id") is String or not ENABLED_TASKS.has(value.task_id): return false
+	var floor_number: int = get_task_definition(value.task_id)["offer_floor"]
+	if value.get("floor") != floor_number: return false
+	if not value.get("cards") is Dictionary or not CardManager.validate_snapshot(value.cards): return false
+	if not _validate_memory_tasks(value.get("completed"), value.get("world_flags")) or value.completed.has(value.task_id): return false
+	if not value.get("manager_intro") is bool or not value.get("has_friend") is bool: return false
+	if not _validate_memory_companion(value.has_friend, floor_number, value.completed, value.world_flags): return false
+	if not _validate_memory_visits(value.get("visited"), floor_number): return false
+	if not _validate_memory_encounters(value.get("room_monsters"), value.get("seen_monsters"), value.get("pending_encounter")): return false
 	if not value.get("position") is Array or value.position.size() != 2: return false
 	for coordinate: Variant in value.position:
 		if not (coordinate is float or coordinate is int) or not is_finite(float(coordinate)): return false
-	var decoded := _decode_task_checkpoint(value)
-	return _validate_task_checkpoint(decoded)
+	var position := Vector2(float(value.position[0]), float(value.position[1]))
+	if not preload("res://scenes/levels/floor.gd").is_memory_position_on_corridor(value.position): return false
+	return _matches_checkpoint_marker(value.task_id, floor_number, position)
+
+func get_task_checkpoint_marker_path(task_id: String) -> String:
+	var definition := get_task_definition(task_id)
+	if definition.has("checkpoint_marker"):
+		return "Interactions/" + str(definition["checkpoint_marker"])
+	if task_id in [TUTORIAL_03_ID, TUTORIAL_04_ID, TUTORIAL_05_ID]:
+		return "Interactions/Task%sAcceptSafe" % definition["room_id"]
+	return "Interactions/Task03AcceptSafe" if task_id == TASK_03_ID else "Interactions/Task01AcceptSafe" if task_id == TASK_01_ID else "Interactions/Task02AcceptSafe"
+
+func _matches_checkpoint_marker(task_id: String, floor_number: int, position: Vector2) -> bool:
+	var scene := load("res://scenes/levels/floor_%d.tscn" % floor_number) as PackedScene
+	if scene == null: return false
+	# Authored checkpoint markers use corridor coordinates. Read their scenes without running _ready().
+	var state := scene.get_state()
+	var marker_path := get_task_checkpoint_marker_path(task_id)
+	for node_index in state.get_node_count():
+		if str(state.get_node_path(node_index)).trim_prefix("./") != marker_path:
+			continue
+		for property_index in state.get_node_property_count(node_index):
+			if state.get_node_property_name(node_index, property_index) == &"position":
+				return state.get_node_property_value(node_index, property_index) == position
+	return false
 
 func _encode_task_checkpoint(checkpoint: Dictionary) -> Dictionary:
 	if checkpoint.is_empty(): return {}
@@ -433,8 +476,8 @@ func _decode_task_checkpoint(checkpoint: Dictionary) -> Dictionary:
 	var position: Variant = checkpoint.get("position")
 	if not position is Array or position.size() != 2: return {}
 	result["position"] = Vector2(float(position[0]), float(position[1]))
-	if result.get("visited") is Array:
-		result["visited"] = result.visited.map(func(item: Variant): return int(item) if item is float and item == floorf(item) else item)
+	result["floor"] = int(result.floor)
+	result["visited"] = result.visited.map(func(item: Variant): return int(item))
 	return result
 
 

@@ -809,3 +809,5 @@ D新工具栏bag_requested与I键进入同一A入口，均检查floor.get_identi
 | 有效游戏用时 | 当前没有唯一计时字段／API。 | A 新增只累计实际 PLAYING 且无模态的 `play_time_seconds`，并在存档、恢复、列表元数据共用；不使用系统时钟差值。 |
 
 D 的适配合同是实际节点 `MenuLayer/MainMenu/MemoryUI.configure_backend(service)`，数据方法为 `list_memory_slots()`、`can_save_memory()`、`save_memory(slot_id)`、`load_memory(slot_id)`。返回成功代表完整原子磁盘提交或整世界恢复已经完成；未配置服务、预检失败、CG／模态中或任何子模块不支持该版本时禁止成功。自动保存只从任务接受提交、任务交付、楼层载入完成、309 救援与唯一 follower 建立后的稳定事件触发。
+
+存档槽在 `user://memory` 下把通过回读校验的临时文件重命名为未占用的版本文件。以前的主档和备份均保留，读取优先采用最新有效版本，回退时标记 `recovered_from_backup`。临时文件不参与读取。重试检查点同时验证任务、访问楼层、遇怪记录与关卡安全点。双槽已装备且教学未看过时，读档后重新排队播放。

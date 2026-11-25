@@ -474,12 +474,7 @@ func get_identity_restriction_room() -> String:
 func get_task_checkpoint_position(task_id: String) -> Dictionary:
 	if not GameManager.ENABLED_TASKS.has(task_id) or floor_number != GameManager.get_task_definition(task_id)["offer_floor"] or _doors.is_empty():
 		return {}
-	var marker_path: String = "Interactions/Task03AcceptSafe" if task_id == GameManager.TASK_03_ID else "Interactions/Task01AcceptSafe" if task_id == GameManager.TASK_01_ID else "Interactions/Task02AcceptSafe"
-	if task_id in [GameManager.TUTORIAL_03_ID, GameManager.TUTORIAL_04_ID, GameManager.TUTORIAL_05_ID]:
-		marker_path = "Interactions/Task%sAcceptSafe" % GameManager.get_task_definition(task_id)["room_id"]
-	if GameManager.get_task_definition(task_id).has("checkpoint_marker"):
-		marker_path = "Interactions/" + GameManager.get_task_definition(task_id)["checkpoint_marker"]
-	var marker: Node2D = get_node_or_null(marker_path)
+	var marker: Node2D = get_node_or_null(GameManager.get_task_checkpoint_marker_path(task_id))
 	if marker == null: return {}
 	var room: Node2D = get_node("DoorRoot/Room" + GameManager.get_task_definition(task_id)["room_id"])
 	var destination: Vector2 = marker.global_position
