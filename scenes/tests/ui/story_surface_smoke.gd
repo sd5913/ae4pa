@@ -93,7 +93,7 @@ func run() -> void:
 		if DisplayServer.get_name() != "headless": DisplayServer.window_set_size(viewport_size)
 		await settle()
 		var skip: Control = dialogue.get_node("%SkipButton")
-		check(is_equal_approx(dialogue.size.x - skip.get_rect().end.x, 24.0) and is_equal_approx(dialogue.size.y - skip.get_rect().end.y, 24.0), "24px skip margins " + str(viewport_size))
+		check(is_equal_approx(dialogue.size.x - skip.get_rect().end.x, 24.0) and is_equal_approx(skip.get_rect().position.y, 24.0), "24px top/right skip margins " + str(viewport_size))
 		while dialogue.get("_beats")[dialogue.get("_line_index")].mode != "dialogue": dialogue._advance()
 		await settle()
 		var portrait: Control = dialogue.get_node("%Portrait")

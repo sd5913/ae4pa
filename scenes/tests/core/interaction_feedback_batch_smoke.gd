@@ -77,6 +77,14 @@ func _run() -> void:
 func _work_feedback(main: Node, game: Node) -> void:
 	var cards = root.get_node("CardManager")
 	for id in ["CLEANER", "SECURITY", "MANAGER"]: cards.collect_card(id)
+	await _settle()
+	var flow: Node = main.get_node("MenuLayer/Bag/CarolUIFlow")
+	await create_timer(0.2).timeout
+	for beat in range(40):
+		if flow.get("_mode") == "": break
+		await _e(true)
+		await _e(false)
+	_expect(flow.get("_mode") == "", "Real equipment tutorial finishes before work fixture")
 	game.get("_completed_task_ids").assign([game.TASK_01_ID, game.TASK_02_ID, game.TUTORIAL_03_ID])
 	game.get("_world_flags").merge({"passage_201_unlocked": true, "passage_202_unlocked": true, "passage_203_unlocked": true})
 	game.current_task_id = game.TUTORIAL_04_ID

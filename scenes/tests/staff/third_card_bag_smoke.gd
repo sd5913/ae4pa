@@ -40,6 +40,13 @@ func _run() -> void:
 	_expect("未装备" in staff_members[2].feedback_label.text and "I" in staff_members[2].feedback_label.text, "Third reward explains collection without equipment")
 	_expect(cards.get_owned_cards().size() == 3 and cards.get_equipped_cards().size() == 2,"Three owned / exactly two slots")
 	_expect(not cards.get_equipped_cards().has("MANAGER"),"Third card remains unequipped until UI action")
+	# Read the new first-2/2 Carol tutorial before issuing gameplay requests.
+	await process_frame
+	await process_frame
+	var flow: Node = main.get_node("MenuLayer/Bag/CarolUIFlow")
+	if flow.get("_mode") == "equipment":
+		await create_timer(0.2).timeout
+		for beat in range(4): await _tap("interact")
 	await _tap("open_bag")
 	await process_frame
 	var bag = main.get_node("MenuLayer/Bag")
@@ -49,6 +56,11 @@ func _run() -> void:
 	_expect(cards.get_equipped_cards() == ["CLEANER","MANAGER"] and cards.has_card("SECURITY"),"UI B replaces without losing security")
 	_expect("备用槽B" in bag.get("_status").text and "当前生效：保洁" in bag.get("_status").text, "Reserve equip prompt reads the actual current identity")
 	bag.close_bag()
+	# If acquisition/equipment happened inside the bag, tutorial intentionally waits for this close.
+	for frame in range(4): await process_frame
+	if flow.get("_mode") == "equipment":
+		await create_timer(0.2).timeout
+		for beat in range(4): await _tap("interact")
 	await _tap("switch_id")
 	await process_frame
 	_expect(cards.active_card == "MANAGER","Q reaches manager after equipment")

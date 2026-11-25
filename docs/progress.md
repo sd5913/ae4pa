@@ -1287,3 +1287,38 @@
 - 排除工作间预览、临时字体、截图、缓存、本地配置及未确认的审批桌布局微调；这些资料继续在本地／原备份中保留。
 - A/D接力：main已到48c0b5c；翻译与新手提示存在三方冲突，需后续单独对接D记忆/UI改动。本次只保存上传开发分支，不合main、不创建PR。
 - 环境备注：保留4个stash引用，不应用／删除；其中一份旧stash已有两个关联对象缺失，未在本轮擅自修复。原Documents备份部分为云端占位文件，另存一份可本机读取的Codex持久备份。
+### 2026-11-23 D：封面按钮、HUD与工作人员待机
+
+- 实测代码 `1e817cc0e33e7f9263d49be9dc0914d583b99d1c`，含独立共享视觉修复 `e36e3cc`；当前分支 work/member-D-ui-polish-v4。封面两项统一280×56／14px间距，语言文字独立居中；按钮反馈改0.12秒颜色；HUD图标换28px矢量，任务牌上移24px并去除重复目标。共享视觉脚本只固定保安／经理普通站姿，不改行走、警觉、碰撞、速度或任务规则，交A/B审查。
+- Windows / Godot 4.7.2：导入、中文1280与英文960图形main场景检查、现有HUD布局、foundation、final_visual_integration、员工core／cleaner、localization与ui_test最终均退出0；git diff --check通过。最初错误入口／配置及移动夹具断言失败留日志，并已按真实入口／新配置重跑。
+- 实际main场景截图、前后来源、16.8秒静止与启停录屏及限制见[本轮证据](qa_evidence/d_button_idle_20261123/README.md)。截图已目视检查；录屏供A/B审看，未代记物理键盘人工或导出验收。保留所有原未跟踪文件，不合并main。
+### 2026-11-23 D：剧情UI润色、双装备教学与超时演出
+
+- 实测代码81c5451abeed7c8f75c88d5b16ce045bce0bd9aa，work/member-D-ui-polish-v4。唯一语言文字层、箭头内移、跳过置顶、六条中英旁白、背包圆形关闭、弹窗留白与精简暂停；D标准对白组件增加真实2/2教学与两类超时第二拍。任务、卡片、失败事实与检查点规则不变。A task_ui现有请求接线已复用，无需新接口。
+- Windows Godot4.7.2：导入、本地化、intro_flow、story_surface、ui_test、三卡双槽（--ui-smoke）、checkpoint、theft最终退出0；新增main图形中文1280／英文960、两种超时与重试、单次教学／通知、菜单清理、楼梯／任务详情和右上跳过检查退出0；git diff --check通过。历史测试入口／类型／旧布局预期失败记录保留。
+- [正式场景截图、15.97秒自动录屏、文案对照、日志及限制](qa_evidence/d_ui_narrative_20261123/README.md)。任务前置用公开API，A时钟加速触发超时；不是人工等待完整时限或人工全通。截图已目视核对，物理操作／跨机器／导出仍待验收。未生成CG、不替换Carol、不合并main。原无关未跟踪文件保留。
+
+
+### 2026-11-24 D：记忆界面与已读历史交付（完整存档待 A）
+
+- 保留原工作并在 work/member-D-memory-ui-review 交付；已合入 origin/main@ac58302，合并提交 a57fdeb。旧 PR #64 已合并，本轮使用新审查分支。本轮代码 3f2972359338f00d427f8a9c2e0c606feffd300b；记录整理未修改运行代码。
+- 已安全读取 Downloads/Memory_UI_Pack_v1.zip 的完整 prompt、HTML 和三页图，选择性导入背景及七个 SVG；正式封面新增禁用态读取入口，剧情/暂停提供三页入口，六手动槽和独立自动槽、确认请求、模态焦点隔离与会话已读历史。移除旧2/2矩形提示来源，保留 Carol 教学。没有创建假存档或复制 HTML 示例状态。
+- Windows Godot 4.7.2 Compatibility：3f29723 的记忆 UI 中文1280、英文960、中文1920三次图形回归均退出0，含真实GUI点击及跨设备物理Esc事件；a57fdeb干净副本导入、本地化、intro_flow、三卡双槽、checkpoint、ui_test、theft、正常story_surface及narrative图形回归均退出0。失败的早期入口/跳动画参数运行日志保留，未修改断言掩盖。详细命令、SHA、环境和截图见[本轮QA](qa_evidence/d_memory_ui_20261123/README.md)。
+- 正常正式窗口鼠标验证了未读历史为空、打开首条短信后只记该条、关闭仍停原句；键盘注入曾受 InputMap device=16 影响，最终 D 按键匹配修复已用 Godot raw events 验证，真实硬件验收仍待做。
+- 完整磁盘存储、原子覆盖/备份/坏档、跨进程卡片/计时/任务/309单跟随者/EXIT恢复、309全屏CG历史事件及保存→退出→重启录屏均未完成。请 A 按[状态归属及接口清单](memory_ui_handoff_20261123.md)接入；D页面禁用保存/读取并明确提示缺少服务。先审查，不合并main。未清理任何原未跟踪文件。
+
+
+### 2026-11-24 PR #74 合并前检查
+
+- 按用户最新指令拉取并准备合并；远端 main@ac58302，功能分支此前15a1a79。PR #74 无冲突，但旧 Linux CI 的 late_mainline 失败，日志见 https://github.com/sd5913/ae4pa/actions/runs/45362472145 。其他七项 smoke 和导入已通过。
+- 定位为独立夹具未读完新增双装备教学就换层、超时对白尚未结束就点隐藏重试，以及旧断言要求任务框外重复返回501目标。本次只改独立测试：真实输入读完演出，确认失败菜单可见后重试；清除旧错误反馈的断言改为文本及tooltip均空，同时保留任务牌内501交付目标断言。没有关闭教学/超时、改任务规则或跳过断言。
+- 测试代码481cd5c15aad150033ecfc86663b3c26c94d8716：Windows / Godot4.7.2.stable.official.ed1daf0bf，隔离APPDATA，headless late_mainline_main_flow_smoke.gd -- --ui-smoke（中文）及 -- --ui-smoke --english 均退出0。覆盖403/501工作、交付、超时恢复、真实EXIT及成功页重启/菜单；前六任务和救援由公开/既有夹具准备，不是人工新局通关。旧失败日志保留于[合并复测证据](qa_evidence/pr74_merge_20261124/README.md)。最新云端CI须以本次推送后的运行结果为准。
+- 完整记忆磁盘保存/恢复仍待A接入，未将本次后段回归记为跨进程存档通过。所有原未跟踪文件保留。
+
+
+## 2026-11-25 B e200548 与最新 main 整合验证
+- 基线：B `e200548960e15bab3757f6aca62df08e4bcf3b2d` + main `48c0b5c137003beeaf8a4b72472ded0695ba8e00`，独立 worktree；原未提交布局、工作间、临时字体/预览均未纳入。
+- QA/进度末尾冲突并列保留双方记录；保留D新证件/超时对白及记忆UI，保留B交互优先与全部交付修复；英语重复巡房记录键统一为main较新措辞。
+- Godot 4.7.2.stable.official.ed1daf0bf / macOS Apple M1 Pro：本轮自动PASS：third_card_bag、interaction_feedback_batch、tutorial_workpoints、final_visual_integration、localization、memory_ui、full_mainline_escape（正常新游戏→八任务→309→EXIT，含失败恢复）。
+- 两个旧主线/反馈测试适配D正式教学/超时对白的真实E输入后再请求上楼和重试；未绕过弹窗/任务规则、未削弱断言。203/205错误资格TASK_INACTIVE为预期拒绝。
+- 自动测试不等于真人视觉验收；整合后F5窗口供玩家复测。首次受限沙箱字体/日志错误不计为有效PASS；有效测试使用正常本机权限。

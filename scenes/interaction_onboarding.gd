@@ -72,8 +72,6 @@ func get_identity_hint() -> String:
 		return tr("新证件在收藏中。按I打开背包，把它拖到A／B槽；原证件会保留。")
 	if CardManager.active_card == "NONE" and equipped.any(func(id): return id != "NONE"):
 		return tr("当前槽未装备。关闭背包后按Q启用另一槽的工作证。")
-	if not equipped.has("NONE") and not _switched:
-		return tr("两个槽都已装备。关闭背包后按Q切当前身份；亮框表示生效的证件。")
 	if not _bag_seen:
 		return tr("已获得工作证！右上角显示当前身份。按I查看收藏与装备。")
 	return ""

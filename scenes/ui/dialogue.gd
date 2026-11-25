@@ -81,6 +81,10 @@ const FACE_INDEX := {
 	"neutral": 0,
 }
 
+const MemoryHistory = preload("res://scenes/ui/memory_history.gd")
+var _history_serial := 0
+var _history_speaker := ""
+var _memory_rail: VBoxContainer
 var _dialogue_id := ""
 var _lines: Array[String] = []
 var _beats: Array[Dictionary] = []
@@ -118,6 +122,8 @@ var _phone_tween: Tween
 
 
 func _ready() -> void:
+	add_to_group("memory_dialogue_surface")
+	_build_memory_rail()
 	visible = false
 	_skip_transitions = "--ui-smoke" in OS.get_cmdline_user_args()
 	visibility_changed.connect(_restore_hidden_surface)
@@ -141,7 +147,7 @@ func _fit_dialogue_text() -> void:
 	if not is_node_ready() or not _line.visible or not _frame.visible:
 		return
 	# Grow paragraphs within the panel, independent of the removed action button.
-	var bottom := minf(size.y * 0.91, _skip_button.position.y - 16.0) if _skip_button.visible else size.y * 0.91
+	var bottom := size.y * 0.91
 	var top := minf(size.y * 0.763, bottom - _line.get_minimum_size().y)
 	_line.offset_top = top - size.y * _line.anchor_top
 	_line.offset_bottom = bottom - size.y * _line.anchor_bottom
@@ -161,10 +167,14 @@ func _fit_dialogue_text() -> void:
 
 
 func _refresh_stage_cue() -> void:
-	_cue.text = tr("（%s）") % tr(_beats[_line_index].text)
+	_cue.text = tr(_beats[_line_index].text)
 
 
 func _input(event: InputEvent) -> void:
+	if preload("res://scenes/ui/memory_ui.gd").is_open(): return
+	if memory_controls_own_event(event):
+		_pointer.reset()
+		return
 	if not visible or _dialogue_id.is_empty():
 		return
 	# Skip owns its gesture and must not also advance the story underneath.
@@ -189,6 +199,7 @@ func _input(event: InputEvent) -> void:
 
 
 func show_dialogue(dialogue_id: String) -> void:
+	_history_serial += 1
 	_pointer.reset()
 	_finish_phone_animation()
 	var old_scene := _current_scene
@@ -204,11 +215,13 @@ func show_dialogue(dialogue_id: String) -> void:
 	match dialogue_id:
 		"INTRO":
 			_lines = INTRO_LINES.duplicate()
+			_history_speaker = "手机消息"
 			_speaker.text = "手机消息"
 			_set_scene("bedroom", false)
 			_show_line()
 		"RESCUE_309":
 			_lines = RESCUE_309_LINES.duplicate()
+			_history_speaker = "Terese"
 			_speaker.text = tr("Terese")
 			_set_scene("lobby", false)
 			_show_line()
@@ -243,6 +256,8 @@ func show_dialogue(dialogue_id: String) -> void:
 func show_task_dialogue(dialogue_id: String, speaker: String, lines: Array[String]) -> bool:
 	if lines.is_empty() or not _dialogue_id.is_empty():
 		return false
+	_history_serial += 1
+	_history_speaker = speaker
 	_finish_phone_animation()
 	_dialogue_id = dialogue_id
 	_line_index = 0
@@ -366,6 +381,7 @@ func _show_line() -> void:
 	_speaker.show()
 	_line.show()
 	_line.text = _lines[_line_index]
+	_record_history.call_deferred(_line_index, _history_serial)
 	_sms_panel.hide()
 	_frame.show()
 	_cue.hide()
@@ -382,6 +398,7 @@ func _show_line() -> void:
 func _show_story_beat() -> void:
 	if _beats.is_empty() or _line_index >= _beats.size():
 		return
+	_record_history.call_deferred(_line_index, _history_serial)
 	var beat: Dictionary = _beats[_line_index]
 	var mode: String = beat.mode
 	_speaker.visible = mode == "dialogue"
@@ -581,7 +598,10 @@ func _set_scene(scene_id: String, fade: bool) -> void:
 		_background.texture = BACKGROUNDS[scene_id]
 		var reveal_tween := create_tween()
 		reveal_tween.tween_property(_fade, "color:a", 0.0, 0.32).from(1.0)
-		reveal_tween.finished.connect(func() -> void: _transition_in_progress = false, CONNECT_ONE_SHOT)
+		reveal_tween.finished.connect(func() -> void:
+			_transition_in_progress = false
+			record_current_memory_beat()
+		, CONNECT_ONE_SHOT)
 	)
 
 
@@ -594,6 +614,7 @@ func _advance() -> void:
 		_phone_waiting_for_open = false
 		_phone_notification.hide()
 		_phone_chat.show()
+		_record_history.call_deferred(_line_index, _history_serial)
 		_scroll_sms_to_message(_sms_history.get_child(-1))
 		return
 	if not _beats.is_empty():
@@ -642,3 +663,45 @@ func _on_skip_pressed() -> void:
 	if not _can_skip_current_dialogue():
 		return
 	_finish()
+
+func _build_memory_rail() -> void:
+	_memory_rail = VBoxContainer.new()
+	_memory_rail.name = "MemoryRail"
+	_memory_rail.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(_memory_rail)
+	_memory_rail.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+	_memory_rail.offset_left = -248
+	_memory_rail.offset_right = -24
+	_memory_rail.offset_top = 112
+	_memory_rail.add_theme_constant_override("separation",8)
+	for mode: String in ["load","save","history"]:
+		var button := Button.new()
+		button.text = {"save":"保存记忆","load":"读取记忆","history":"历史回忆"}[mode]
+		button.custom_minimum_size = Vector2(224,44)
+		button.add_theme_font_size_override("font_size",17)
+		button.icon = load("res://assets/final/ui/memory/icons/%s.svg" % {"save":"save_memory","load":"load_memory","history":"history_memory"}[mode])
+		button.expand_icon = true
+		button.add_theme_constant_override("icon_max_width",26)
+		button.add_theme_constant_override("h_separation",8)
+		button.pressed.connect(func() -> void: preload("res://scenes/ui/memory_ui.gd").open_page(mode))
+		_memory_rail.add_child(button)
+
+func _record_history(index: int, serial: int) -> void:
+	if preload("res://scenes/ui/memory_ui.gd").is_open(): return
+	if not is_visible_in_tree() or _line_index != index or _history_serial != serial or _dialogue_id.is_empty(): return
+	var who := _history_speaker
+	var source := ""
+	if not _beats.is_empty():
+		var beat: Dictionary = _beats[index]
+		if beat.mode == "sms" and not _phone_chat.visible: return
+		if _phone_tween != null or _transition_in_progress: return
+		who = beat.speaker
+		source = beat.text
+	else: source = _lines[index]
+	MemoryHistory.record("%d:%d:%d" % [get_instance_id(),serial,index], who, source, _dialogue_id)
+
+func record_current_memory_beat() -> void:
+	_record_history.call_deferred(_line_index, _history_serial)
+
+func memory_controls_own_event(event: InputEvent) -> bool:
+	return is_instance_valid(_memory_rail) and _memory_rail.is_visible_in_tree() and (event is InputEventMouse or event is InputEventScreenTouch or event is InputEventScreenDrag) and _memory_rail.get_global_rect().has_point(event.position)

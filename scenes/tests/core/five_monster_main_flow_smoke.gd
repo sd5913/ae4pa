@@ -31,7 +31,18 @@ func drain() -> void:
 	check(false, "monster dialogue terminates")
 func move_to(x: float) -> void:
 	player().position.x = x; await settle()
+func read_carol() -> void:
+	# Read D's real equipment/timeout dialogue before requesting world input.
+	await settle()
+	var flow: Node = main.get_node("MenuLayer/Bag/CarolUIFlow")
+	if flow.get("_mode") == "": return
+	await create_timer(0.2).timeout
+	for beat in range(40):
+		if flow.get("_mode") == "": break
+		await tap()
+	check(flow.get("_mode") == "", "Carol dialogue returns normal input")
 func travel(f: int) -> void:
+	await read_carol()
 	await move_to(3400 if f > g.current_floor else 192)
 	check(g.request_floor_travel(f), "actual stair travel " + str(f))
 	await settle()
@@ -138,7 +149,8 @@ func retry(room: String) -> void:
 	var cards: Dictionary = g.get("_task_checkpoint")["cards"].duplicate(true)
 	g._process(999.0) # Actual timeout path; no claim of wall-clock wait.
 	check(g.game_state == "FAILED" and g.can_retry_current_task(), room + " timeout retry available")
-	main.get_node("TaskLayer/Failure").retry_requested.emit(); await settle()
+	await read_carol()
+	main.get_node("TaskLayer/Failure/%RetryButton").pressed.emit(); await settle()
 	check(g.task_status == "AVAILABLE" and g.remaining_time == 0 and g.current_floor == 2, room + " retry returns own checkpoint without clock")
 	check(g.get_completed_task_ids() == completed and c.export_snapshot() == cards, room + " preserves earlier tasks and cards")
 	check(board.visible, room + " retry own board")
@@ -191,7 +203,8 @@ func run() -> void:
 	await move_to(manager.global_position.x + 35)
 	await tap()
 	check(g.game_state == "FAILED" and g.fail_reason == "STAFF_CAUGHT", "203 real manager-front catch")
-	main.get_node("TaskLayer/Failure").retry_requested.emit(); await settle()
+	await read_carol()
+	main.get_node("TaskLayer/Failure/%RetryButton").pressed.emit(); await settle()
 	check(g.current_floor == 2 and g.task_status == "AVAILABLE" and not c.has_card("MANAGER") and c.has_card("SECURITY"), "203 own checkpoint keeps201/202 but no unearned manager")
 	board.get("_accept_button").pressed.emit(); await settle()
 	await steal("ManagerSlot", "MANAGER")

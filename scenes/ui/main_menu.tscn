@@ -90,17 +90,27 @@ mouse_filter = 2
 
 [node name="StartButton" type="Button" parent="Center/Content/Actions"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 56)
+custom_minimum_size = Vector2(280, 56)
 layout_mode = 2
-focus_neighbor_bottom = NodePath("../LanguageSelector")
+focus_neighbor_bottom = NodePath("../LoadMemory")
 focus_neighbor_top = NodePath("../LanguageSelector")
 text = "开始游戏"
 
-[node name="LanguageSelector" type="OptionButton" parent="Center/Content/Actions"]
+[node name="LoadMemory" type="Button" parent="Center/Content/Actions"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 42)
+custom_minimum_size = Vector2(280, 56)
 layout_mode = 2
+disabled = true
 focus_neighbor_top = NodePath("../StartButton")
+focus_neighbor_bottom = NodePath("../LanguageSelector")
+text = "读取记忆"
+tooltip_text = "尚未留下记忆"
+
+[node name="LanguageSelector" type="MenuButton" parent="Center/Content/Actions"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(280, 56)
+layout_mode = 2
+focus_neighbor_top = NodePath("../LoadMemory")
 focus_neighbor_bottom = NodePath("../StartButton")
 script = ExtResource("5_language")
 
