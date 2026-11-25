@@ -14,7 +14,7 @@ const ROLES := {
 	"EAR": {"name": "大耳客", "portrait": "res://assets/final/monster_dialogue_portraits_v1/ear_halfbody.png"},
 	"CHECKER": {"name": "核验客", "portrait": "res://assets/final/monster_dialogue_portraits_v1/checker_halfbody.png"},
 	"SYSTEM": {"name": "任务提示", "portrait": ""},
-	"CAROL": {"name": "Carol", "portrait": "res://assets/final/ui/dialogue_portraits/an/an_neutral.png"},
+	"CAROL": {"name": "Carol", "portrait": "res://assets/final/confirmed_characters_20261125/carol/smile.png"},
 }
 # Exact public dialogue IDs, never a room-number guess.
 const TASK_ROLES := {
@@ -31,7 +31,6 @@ static func from_speaker(speaker: String) -> String:
 static func display_name(id: String) -> String:
 	return TranslationServer.translate(ROLES.get(id, {}).get("name", id))
 static func portrait(id: String) -> Texture2D:
-	if id == "CAROL": return preload("res://scenes/ui/character_art_v2.gd").portrait("an")
 	var path: String = ROLES.get(id, {}).get("portrait", "")
 	if path.is_empty(): return null
 	var texture: Texture2D = load(path)

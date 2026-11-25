@@ -28,8 +28,8 @@ bedroom	女主	pensive	dialogue	就是她之前提过的夜班兼职。
 cafe	系统	none	cue	几天前的傍晚，咖啡馆里。两杯饮料摆在桌上，Terese把手机递给Carol。
 cafe	闺蜜	happy	dialogue	看，我找到兼职了！
 cafe	女主	suspicious	dialogue	你上次也是这么说的。
-cafe	闺蜜	teasing	dialogue	上次那个发传单的不算。这个有正式录取通知。
-cafe	闺蜜	happy	dialogue	夜班，三天，工作内容写的是协助前台和整理客房。
+cafe	闺蜜	neutral	dialogue	上次那个发传单的不算。这个有正式录取通知。
+cafe	闺蜜	neutral	dialogue	夜班，三天，工作内容写的是协助前台和整理客房。
 cafe	闺蜜	happy	dialogue	工资比我上个月做的几份兼职加起来还多。
 cafe	女主	suspicious	dialogue	夜班、工作轻松、工资还特别高。
 cafe	女主	suspicious	dialogue	这三个词放在一起，通常不像什么好消息。
@@ -38,9 +38,9 @@ cafe	女主	concerned	dialogue	我对你有信心。
 cafe	女主	suspicious	dialogue	我对这种连招聘负责人名字都没写的旅馆没信心。
 cafe	闺蜜	teasing	dialogue	人家可能只是管理比较传统。
 cafe	女主	suspicious	dialogue	传统到没有联系电话？
-cafe	闺蜜	happy	dialogue	有地址就行。我去看看，不对劲就回来。
+cafe	闺蜜	neutral	dialogue	有地址就行。我去看看，不对劲就回来。
 cafe	女主	curious	dialogue	旅馆叫什么？
-cafe	闺蜜	teasing	dialogue	夜班旅馆。
+cafe	闺蜜	playful	dialogue	夜班旅馆。
 cafe	女主	suspicious	dialogue	这是名字，还是在提醒你工作时间？
 cafe	闺蜜	happy	dialogue	是不是挺有氛围的？
 cafe	女主	suspicious	dialogue	挺像恐怖电影开头的。
@@ -49,12 +49,12 @@ cafe	女主	worried	dialogue	等一下。
 cafe	女主	worried	dialogue	这里写着“员工离店须经管理部门批准”。
 cafe	闺蜜	teasing	dialogue	大概是夜班不能随便旷工吧。
 cafe	女主	suspicious	dialogue	正常公司会写“离职流程”，不会写“离店批准”。
-cafe	闺蜜	happy	dialogue	我就做几天，又不是卖给他们了。
+cafe	闺蜜	neutral	dialogue	我就做几天，又不是卖给他们了。
 cafe	闺蜜	happy	dialogue	等我拿到工资，请你吃顿好的。
 cafe	女主	determined	dialogue	先把地址发给我。
 cafe	闺蜜	teasing	dialogue	发你了，女侦探。
 cafe	女主	concerned	dialogue	每天结束给我回一条消息。
-cafe	闺蜜	teasing	dialogue	知道了。我要是少回一条，你是不是准备直接冲进去找我？
+cafe	闺蜜	playful	dialogue	知道了。我要是少回一条，你是不是准备直接冲进去找我？
 cafe	女主	determined	dialogue	我会先报警。
 cafe	闺蜜	teasing	dialogue	你这人真没情趣。
 cafe	系统	none	cue	Terese笑着靠回卡座。录取通知上的那行小字，却让Carol放不下心。

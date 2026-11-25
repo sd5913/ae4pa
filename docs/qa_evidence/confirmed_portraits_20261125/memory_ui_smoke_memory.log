@@ -1,0 +1,8 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS: history resolves stable monster/player IDs through existing localized role names
+PASS: valid history payload restores
+PASS: restored history keeps stable-token duplicate protection
+PASS: formal memory UI uses the real persistence service
+PASS: cover load is disabled without a real readable save
+PASS: language control retains the same visible button surface
