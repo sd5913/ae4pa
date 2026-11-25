@@ -14,6 +14,7 @@ var _walking := false
 var cleaning_active := false
 var _owner_node: Node2D
 var _previous_x := 0.0
+var _refreshed: RefCounted
 
 # AN: 160px/s / 96px per cycle * 6 frames = 10fps (previously 16fps).
 const AN_WALK_CYCLE_DISTANCE := 96.0
@@ -29,6 +30,14 @@ func set_cleaning_visual(active: bool) -> void:
 func set_character(id: String) -> void:
 	character_id = id
 	visible_height = DISPLAY_HEIGHTS[id]
+	_refreshed = null
+	if id in ["an", "manager"]:
+		_refreshed = preload("res://scenes/ui/character_world_art_v2.gd").new()
+		_refreshed.setup(id)
+		_owner_node = get_parent().get_parent() if get_parent().name == "Visual" else get_parent()
+		_previous_x = _owner_node.global_position.x
+		queue_redraw()
+		return
 	var master := (load("res://assets/final/characters/approved_static/%s.png" % id) as Texture2D).get_image()
 	var side := master.get_region(Rect2i(master.get_width()/2,0,master.get_width()/2,master.get_height()))
 	_master = ImageTexture.create_from_image(side)
@@ -73,6 +82,8 @@ func _process(delta: float) -> void:
 	queue_redraw()
 
 func get_render_pose() -> Dictionary:
+	if _refreshed != null:
+		return _refreshed.pose(_walking, _phase, visible_height, cleaning_active)
 	if _atlas == null:
 		return {}
 	var frame := -1

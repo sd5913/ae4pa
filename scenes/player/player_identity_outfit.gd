@@ -17,7 +17,7 @@ func _ready() -> void:
 	_artwork=get_parent()
 	_jacket.shader=JACKET
 	_artwork.material=_jacket
-	_build_geometry()
+	if _artwork.get("_refreshed") == null: _build_geometry()
 	CardManager.cards_changed.connect(_sync)
 	_sync()
 
@@ -55,14 +55,16 @@ func _sync() -> void:
 	var destination: Rect2=_pose["destination"]
 	var source: Rect2=_pose["source"]
 	var ratio: float=destination.size.x/source.size.x
-	var head: Rect2=_heads[frame]
+	var refreshed: bool = _pose.get("new_art", false)
+	var head: Rect2 = _pose["head_source"] if refreshed else _heads[frame]
 	head=Rect2(destination.position+head.position*ratio,head.size*ratio)
-	var coat_source: Rect2=Rect2(202,440,189,307) if frame<0 else COATS[frame]
+	var coat_source: Rect2 = _pose["coat_source"] if refreshed else (Rect2(202,440,189,307) if frame<0 else COATS[frame])
 	var coat:=Rect2(destination.position+coat_source.position*ratio,coat_source.size*ratio)
 	_jacket.set_shader_parameter("manager_active",card_id=="MANAGER")
+	_jacket.set_shader_parameter("refresh_palette",refreshed)
 	_jacket.set_shader_parameter("coat_rect",Vector4(coat.position.x-1,coat.position.y-2,coat.size.x+2,coat.size.y+2))
 	# The bent cleaning pose has a short hem below the main coat; keep the broom untouched.
-	var hem:=Rect2(destination.position+Vector2(141,262)*ratio,Vector2(14,4)*ratio) if frame==8 else Rect2()
+	var hem:=Rect2(destination.position+Vector2(141,262)*ratio,Vector2(14,4)*ratio) if frame==8 and not refreshed else Rect2()
 	_jacket.set_shader_parameter("hem_rect",Vector4(hem.position.x,hem.position.y,hem.size.x,hem.size.y))
 	# The original right-facing V-neck sits toward the leading edge of the shoulder.
 	var neck_x: float=head.end.x-head.size.x*0.36 if frame<6 else coat.position.x+coat.size.x*0.60
@@ -71,6 +73,10 @@ func _sync() -> void:
 	_head_rect=Rect2()
 	_angle=0.12 if frame==8 else 0.0
 	if HEADWEAR.has(card_id):
+		if _accessory_bounds.is_empty():
+			for id: String in HEADWEAR:
+				var accessory_image: Image = HEADWEAR[id].get_image()
+				_accessory_bounds[id] = _solid_bounds(accessory_image, accessory_image.get_height())
 		var bounds: Rect2=_accessory_bounds[card_id]
 		var width: float=head.size.x*(0.96 if card_id=="CLEANER" else 0.94)
 		var height: float=width*bounds.size.y/bounds.size.x
