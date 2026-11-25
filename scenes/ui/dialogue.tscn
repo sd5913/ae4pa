@@ -1,11 +1,10 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="Script" path="res://scenes/ui/dialogue.gd" id="1_script"]
 
 
 [ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/phone_frame.png" id="2_phone"]
 [ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/vibration_marks.png" id="3_marks"]
-[ext_resource type="Texture2D" path="res://assets/final/ui/hotel_interface/avatar_friend.png" id="4_friend"]
 [ext_resource type="Texture2D" path="res://assets/final/ui/title_monster_hotel_en.png" id="5_title"]
 [ext_resource type="Theme" path="res://scenes/ui/staff_ui_theme.tres" id="6_theme"]
 
@@ -178,7 +177,6 @@ custom_minimum_size = Vector2(59, 59)
 layout_mode = 2
 size_flags_horizontal = 4
 mouse_filter = 2
-texture = ExtResource("4_friend")
 expand_mode = 1
 stretch_mode = 5
 
