@@ -1,0 +1,175 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 546.92 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3070 Laptop GPU
+
+Movie Maker mode enabled, recording movie in 1280×720 @ 30 FPS...
+PASS: cover controls both 280x56 logical pixels
+PASS: cover spacing 14
+PASS: repeated hover/press keeps button geometry
+FAIL: no duplicate story objective above task plate
+FAIL: task plate starts at 24px safe margin
+PASS: clear icon size: BagButton
+PASS: clear icon size: NotebookButton
+PASS: clear icon size: PauseButton
+PASS: clear icon size: TaskButton
+PASS: real floor-one security located
+PASS: security neutral face stable 0
+PASS: security neutral face stable 1
+PASS: security neutral face stable 2
+PASS: security neutral face stable 3
+PASS: security neutral face stable 4
+PASS: security neutral face stable 5
+PASS: security neutral face stable 6
+PASS: security neutral face stable 7
+PASS: security neutral face stable 8
+PASS: security neutral face stable 9
+PASS: security neutral face stable 10
+PASS: security neutral face stable 11
+PASS: security neutral face stable 12
+PASS: security neutral face stable 13
+PASS: security neutral face stable 14
+PASS: security neutral face stable 15
+PASS: security neutral face stable 16
+PASS: security neutral face stable 17
+PASS: security neutral face stable 18
+PASS: security neutral face stable 19
+PASS: security neutral face stable 20
+PASS: security neutral face stable 21
+PASS: security neutral face stable 22
+PASS: security neutral face stable 23
+PASS: security neutral face stable 24
+PASS: security neutral face stable 25
+PASS: security neutral face stable 26
+PASS: security neutral face stable 27
+PASS: security neutral face stable 28
+PASS: security neutral face stable 29
+PASS: security neutral face stable 30
+PASS: security neutral face stable 31
+PASS: security neutral face stable 32
+PASS: security neutral face stable 33
+PASS: security neutral face stable 34
+PASS: security neutral face stable 35
+PASS: security neutral face stable 36
+PASS: security neutral face stable 37
+PASS: security neutral face stable 38
+PASS: security neutral face stable 39
+PASS: security neutral face stable 40
+PASS: security neutral face stable 41
+PASS: security neutral face stable 42
+PASS: security neutral face stable 43
+PASS: security neutral face stable 44
+PASS: security neutral face stable 45
+PASS: security neutral face stable 46
+PASS: security neutral face stable 47
+PASS: security neutral face stable 48
+PASS: security neutral face stable 49
+PASS: security neutral face stable 50
+PASS: security neutral face stable 51
+PASS: security neutral face stable 52
+PASS: security neutral face stable 53
+PASS: security neutral face stable 54
+PASS: security neutral face stable 55
+PASS: security neutral face stable 56
+PASS: security neutral face stable 57
+PASS: security neutral face stable 58
+PASS: security neutral face stable 59
+PASS: security neutral face stable 60
+PASS: security neutral face stable 61
+PASS: security neutral face stable 62
+PASS: security neutral face stable 63
+PASS: security neutral face stable 64
+PASS: security neutral face stable 65
+PASS: security neutral face stable 66
+PASS: security neutral face stable 67
+PASS: security neutral face stable 68
+PASS: security neutral face stable 69
+PASS: security neutral face stable 70
+PASS: security neutral face stable 71
+PASS: security neutral face stable 72
+PASS: security neutral face stable 73
+PASS: security neutral face stable 74
+PASS: security neutral face stable 75
+PASS: security neutral face stable 76
+PASS: security neutral face stable 77
+PASS: security neutral face stable 78
+PASS: security neutral face stable 79
+PASS: security neutral face stable 80
+PASS: security neutral face stable 81
+PASS: security neutral face stable 82
+PASS: security neutral face stable 83
+PASS: security neutral face stable 84
+PASS: security neutral face stable 85
+PASS: security neutral face stable 86
+PASS: security neutral face stable 87
+PASS: security neutral face stable 88
+PASS: security neutral face stable 89
+PASS: security neutral face stable 90
+PASS: security neutral face stable 91
+PASS: security neutral face stable 92
+PASS: security neutral face stable 93
+PASS: security neutral face stable 94
+PASS: security neutral face stable 95
+PASS: security neutral face stable 96
+FAIL: security neutral face stable 97
+FAIL: security neutral face stable 98
+FAIL: security neutral face stable 99
+FAIL: security neutral face stable 100
+FAIL: security neutral face stable 101
+FAIL: security neutral face stable 102
+FAIL: security neutral face stable 103
+FAIL: security neutral face stable 104
+FAIL: security neutral face stable 105
+FAIL: security neutral face stable 106
+FAIL: security neutral face stable 107
+FAIL: security neutral face stable 108
+FAIL: security neutral face stable 109
+FAIL: security neutral face stable 110
+FAIL: security neutral face stable 111
+FAIL: security neutral face stable 112
+FAIL: security neutral face stable 113
+FAIL: security neutral face stable 114
+FAIL: security neutral face stable 115
+FAIL: security neutral face stable 116
+FAIL: security neutral face stable 117
+FAIL: security neutral face stable 118
+FAIL: security neutral face stable 119
+FAIL: security neutral face stable 120
+FAIL: security neutral face stable 121
+FAIL: security neutral face stable 122
+FAIL: security neutral face stable 123
+FAIL: security neutral face stable 124
+FAIL: security neutral face stable 125
+FAIL: security neutral face stable 126
+FAIL: security neutral face stable 127
+FAIL: security neutral face stable 128
+FAIL: security neutral face stable 129
+FAIL: security neutral face stable 130
+FAIL: security neutral face stable 131
+FAIL: security neutral face stable 132
+FAIL: security neutral face stable 133
+FAIL: security neutral face stable 134
+FAIL: security neutral face stable 135
+FAIL: security neutral face stable 136
+FAIL: security neutral face stable 137
+FAIL: security neutral face stable 138
+FAIL: security neutral face stable 139
+FAIL: security neutral face stable 140
+FAIL: security neutral face stable 141
+FAIL: security neutral face stable 142
+FAIL: security neutral face stable 143
+FAIL: security neutral face stable 144
+FAIL: security neutral face stable 145
+FAIL: security neutral face stable 146
+FAIL: security neutral face stable 147
+FAIL: security neutral face stable 148
+FAIL: security neutral face stable 149
+PASS: player returns to standing after movement
+PASS: stopped player keeps last left facing
+PASS: movement speed preserved
+BUTTON_IDLE_REVIEW: FAIL
+--------------------------------------------------------------------------------
+Done recording movie at path: C:\Users\lenovo\Documents\ChatGPT\hotel\ae4pa-d-delivery-closeout\docs\qa_evidence\d_button_idle_20261123\idle_start_stop.avi
+505 frames at 30 FPS (movie length: 00:00:16:25), recorded in 00:00:25 (64% of real-time speed).
+CPU render time: 0.43 seconds (average: 0.86 ms/frame)
+GPU render time: 2.03 seconds (average: 4.02 ms/frame)
+Encoding time: 6.26 seconds (average: 12.39 ms/frame)
+--------------------------------------------------------------------------------

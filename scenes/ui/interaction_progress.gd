@@ -120,8 +120,14 @@ func _display(state: Dictionary) -> void:
 		return
 	var kind: String = ACTION_TEXT.get(state["interaction_type"], state["interaction_type"])
 	var reason: String = BLOCK_TEXT.get(state["block_reason"], state["block_reason"])
+	if state["block_reason"] == "READY": reason = "按住E"
+	var work_hint := ""
+	if is_instance_valid(_floor) and _floor.has_method("get_work_interaction_hint"):
+		work_hint = _floor.get_work_interaction_hint(state["target_id"])
 	if float(state["required_time"]) <= 0.0:
-		_details.text = tr("%s · %s\n%s") % [tr(kind), tr(STATUS_TEXT[_status]), "按E操作" if state["block_reason"] == "READY" else tr(reason)]
+		_details.text = tr("%s · %s\n%s") % [tr(kind), tr(STATUS_TEXT[_status]), tr("按E操作") if state["block_reason"] == "READY" else tr(reason)]
+		if not work_hint.is_empty(): _details.text = work_hint
+		_details.theme_type_variation = &"HudPrompt" if _status == "BLOCKED" else &"HudMeta"
 		_progress.hide()
 		show()
 		return
@@ -132,7 +138,7 @@ func _display(state: Dictionary) -> void:
 	_details.tooltip_text = _details.text + " · " + str(state.get("target_id", ""))
 	_details.theme_type_variation = &"HudPrompt" if _status == "BLOCKED" else &"HudMeta"
 	if _status == "BLOCKED":
-		_details.text = tr("%s：%s") % [tr(kind), tr(reason)]
+		_details.text = work_hint if not work_hint.is_empty() else tr("%s：%s") % [tr(kind), tr(reason)]
 	_progress.value = state["progress"]
 	show()
 

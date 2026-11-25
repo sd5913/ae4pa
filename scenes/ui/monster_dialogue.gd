@@ -4,6 +4,7 @@ signal dialogue_finished(dialogue_id: String)
 const DATA_PATH := "res://scenes/ui/monster_dialogues.json"
 const MODAL_ID := "MONSTER_DIALOGUE"
 const TASKS := {"NOSE": "TASK_01_CLEAN", "EYE": "TASK_02_PARCEL", "HAT": "TASK_T03_ROOM_SERVICE", "EAR": "TASK_T04_DUAL_WORK", "CHECKER": "TASK_T05_TRANSIT"}
+var _history_serial := 0
 var _id := ""
 var _index := 0
 var _lines: Array = []
@@ -74,6 +75,7 @@ func _open(dialogue_id: String, preview: bool) -> bool:
 	if parts.size() != 2: return false
 	var rows: Array = data().get(parts[0], {}).get(parts[1], [])
 	if rows.is_empty(): return false
+	_history_serial += 1
 	_id = dialogue_id
 	_lines = rows
 	_index = 0
@@ -88,6 +90,7 @@ func _open(dialogue_id: String, preview: bool) -> bool:
 func _render() -> void:
 	var role := DialogueRoles.from_speaker(str(_lines[_index][0]))
 	_surface.present_character_beat(role, str(_lines[_index][1]))
+	_record_history.call_deferred(_index, _history_serial)
 
 func advance() -> void:
 	if _id.is_empty() or not visible: return
@@ -105,6 +108,8 @@ func advance() -> void:
 	get_viewport().set_input_as_handled()
 
 func _input(event: InputEvent) -> void:
+	if preload("res://scenes/ui/memory_ui.gd").is_open(): return
+	if is_instance_valid(_surface) and _surface.memory_controls_own_event(event): return
 	if not visible or _id.is_empty(): return
 	var surfaces: Array[Rect2] = [_panel.get_global_rect()]
 	var result: int = _pointer.feed(event, surfaces)
@@ -122,3 +127,7 @@ func cancel_dialogue() -> void:
 func _exit_tree() -> void:
 	if is_instance_valid(_surface): _surface.restore_world_prompts()
 	GameManager.set_modal_open(MODAL_ID, false)
+
+func _record_history(index: int, serial: int) -> void:
+	if _preview or not visible or _index != index or serial != _history_serial or _id.is_empty(): return
+	preload("res://scenes/ui/memory_history.gd").record("monster:%d:%d:%d" % [get_instance_id(),serial,index], str(_lines[index][0]), str(_lines[index][1]), _id)

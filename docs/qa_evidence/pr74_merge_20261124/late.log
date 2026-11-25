@@ -1,0 +1,13 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+FAIL: 403 timeout restores stolen file
+FAIL: 403 retry lands at safe marker
+FAIL: Real task board opens
+FAIL: Accepting does not auto-open a second reminder dialogue
+FAIL: Legal stair travel to 3F
+FAIL: Legal stair travel to 4F
+FAIL: Actual403 E delivery unlocks5F
+FAIL: After403 delivery, the live story objective points to501
+FAIL: Legal stair travel to 5F
+FAIL: 5F contains actual B exit register
+FAIL: Exit workstation and hint render above floor art

@@ -1,0 +1,36 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 546.92 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3070 Laptop GPU
+
+PASS: language selector has one native text layer and two popup choices
+PASS: visible narration has no production protagonist alias
+PASS: two-slot tutorial waits while bag is open
+PASS: real two equipped slots trigger Carol dialogue after bag close
+PASS: four tutorial beats finish once
+PASS: opening bag again does not repeat tutorial
+PASS: Esc closes bag and releases its modal
+PASS: pause has no language selector
+PASS: pause menu button has no icon
+PASS: real 2F transition
+PASS: real 201 offer
+PASS: accept real task
+PASS: genuine TASK_TIMEOUT dispatch starts presentation
+PASS: failure menu waits for dialogue
+PASS: timeout second beat matches actual pre-failure task stage
+PASS: repeated failure notification cannot restart the presentation
+PASS: last beat reveals original failure menu
+PASS: A checkpoint remains valid
+PASS: existing retry restores task and cleans presentation
+PASS: retry preserves this-session tutorial completion
+PASS: reaccept after checkpoint restoration
+PASS: public work result prepares ready-to-submit fixture
+PASS: genuine TASK_TIMEOUT dispatch starts presentation
+PASS: failure menu waits for dialogue
+PASS: timeout second beat matches actual pre-failure task stage
+PASS: repeated failure notification cannot restart the presentation
+PASS: last beat reveals original failure menu
+PASS: A checkpoint remains valid
+PASS: existing retry restores task and cleans presentation
+PASS: retry preserves this-session tutorial completion
+PASS: failure settles once per actual timeout
+PASS: menu clears session tutorial and presentation
+NARRATIVE_UI_SMOKE: PASS

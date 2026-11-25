@@ -1,0 +1,172 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 546.92 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3070 Laptop GPU
+
+PASS: cover controls both 280x56 logical pixels
+PASS: cover spacing 14
+PASS: repeated hover/press keeps button geometry
+PASS: no duplicate story objective above task plate
+PASS: task plate starts at 24px safe margin
+PASS: clear icon size: BagButton
+PASS: clear icon size: NotebookButton
+PASS: clear icon size: PauseButton
+PASS: clear icon size: TaskButton
+PASS: real floor-one security located
+POSE 6 role=security state=CLEANING walking=false
+PASS: security neutral or intentional warning pose 0
+PASS: security neutral or intentional warning pose 1
+PASS: security neutral or intentional warning pose 2
+PASS: security neutral or intentional warning pose 3
+PASS: security neutral or intentional warning pose 4
+PASS: security neutral or intentional warning pose 5
+PASS: security neutral or intentional warning pose 6
+PASS: security neutral or intentional warning pose 7
+PASS: security neutral or intentional warning pose 8
+PASS: security neutral or intentional warning pose 9
+PASS: security neutral or intentional warning pose 10
+PASS: security neutral or intentional warning pose 11
+PASS: security neutral or intentional warning pose 12
+PASS: security neutral or intentional warning pose 13
+PASS: security neutral or intentional warning pose 14
+PASS: security neutral or intentional warning pose 15
+PASS: security neutral or intentional warning pose 16
+PASS: security neutral or intentional warning pose 17
+PASS: security neutral or intentional warning pose 18
+PASS: security neutral or intentional warning pose 19
+PASS: security neutral or intentional warning pose 20
+PASS: security neutral or intentional warning pose 21
+PASS: security neutral or intentional warning pose 22
+PASS: security neutral or intentional warning pose 23
+PASS: security neutral or intentional warning pose 24
+PASS: security neutral or intentional warning pose 25
+PASS: security neutral or intentional warning pose 26
+PASS: security neutral or intentional warning pose 27
+PASS: security neutral or intentional warning pose 28
+PASS: security neutral or intentional warning pose 29
+POSE 6 role=security state=CLEANING walking=false
+PASS: security neutral or intentional warning pose 30
+PASS: security neutral or intentional warning pose 31
+PASS: security neutral or intentional warning pose 32
+PASS: security neutral or intentional warning pose 33
+PASS: security neutral or intentional warning pose 34
+PASS: security neutral or intentional warning pose 35
+PASS: security neutral or intentional warning pose 36
+PASS: security neutral or intentional warning pose 37
+PASS: security neutral or intentional warning pose 38
+PASS: security neutral or intentional warning pose 39
+PASS: security neutral or intentional warning pose 40
+PASS: security neutral or intentional warning pose 41
+PASS: security neutral or intentional warning pose 42
+PASS: security neutral or intentional warning pose 43
+PASS: security neutral or intentional warning pose 44
+PASS: security neutral or intentional warning pose 45
+PASS: security neutral or intentional warning pose 46
+PASS: security neutral or intentional warning pose 47
+PASS: security neutral or intentional warning pose 48
+PASS: security neutral or intentional warning pose 49
+PASS: security neutral or intentional warning pose 50
+PASS: security neutral or intentional warning pose 51
+PASS: security neutral or intentional warning pose 52
+PASS: security neutral or intentional warning pose 53
+PASS: security neutral or intentional warning pose 54
+PASS: security neutral or intentional warning pose 55
+PASS: security neutral or intentional warning pose 56
+PASS: security neutral or intentional warning pose 57
+PASS: security neutral or intentional warning pose 58
+PASS: security neutral or intentional warning pose 59
+POSE 6 role=security state=CLEANING walking=false
+PASS: security neutral or intentional warning pose 60
+PASS: security neutral or intentional warning pose 61
+PASS: security neutral or intentional warning pose 62
+PASS: security neutral or intentional warning pose 63
+PASS: security neutral or intentional warning pose 64
+PASS: security neutral or intentional warning pose 65
+PASS: security neutral or intentional warning pose 66
+PASS: security neutral or intentional warning pose 67
+PASS: security neutral or intentional warning pose 68
+PASS: security neutral or intentional warning pose 69
+PASS: security neutral or intentional warning pose 70
+PASS: security neutral or intentional warning pose 71
+PASS: security neutral or intentional warning pose 72
+PASS: security neutral or intentional warning pose 73
+PASS: security neutral or intentional warning pose 74
+PASS: security neutral or intentional warning pose 75
+PASS: security neutral or intentional warning pose 76
+PASS: security neutral or intentional warning pose 77
+PASS: security neutral or intentional warning pose 78
+PASS: security neutral or intentional warning pose 79
+PASS: security neutral or intentional warning pose 80
+PASS: security neutral or intentional warning pose 81
+PASS: security neutral or intentional warning pose 82
+PASS: security neutral or intentional warning pose 83
+PASS: security neutral or intentional warning pose 84
+PASS: security neutral or intentional warning pose 85
+PASS: security neutral or intentional warning pose 86
+PASS: security neutral or intentional warning pose 87
+PASS: security neutral or intentional warning pose 88
+PASS: security neutral or intentional warning pose 89
+POSE 9 role=security state=TURN_TO_CART walking=false
+PASS: security neutral or intentional warning pose 90
+PASS: security neutral or intentional warning pose 91
+FAIL: security neutral or intentional warning pose 92
+FAIL: security neutral or intentional warning pose 93
+FAIL: security neutral or intentional warning pose 94
+FAIL: security neutral or intentional warning pose 95
+FAIL: security neutral or intentional warning pose 96
+FAIL: security neutral or intentional warning pose 97
+FAIL: security neutral or intentional warning pose 98
+FAIL: security neutral or intentional warning pose 99
+FAIL: security neutral or intentional warning pose 100
+FAIL: security neutral or intentional warning pose 101
+FAIL: security neutral or intentional warning pose 102
+FAIL: security neutral or intentional warning pose 103
+FAIL: security neutral or intentional warning pose 104
+FAIL: security neutral or intentional warning pose 105
+FAIL: security neutral or intentional warning pose 106
+FAIL: security neutral or intentional warning pose 107
+FAIL: security neutral or intentional warning pose 108
+FAIL: security neutral or intentional warning pose 109
+FAIL: security neutral or intentional warning pose 110
+FAIL: security neutral or intentional warning pose 111
+FAIL: security neutral or intentional warning pose 112
+FAIL: security neutral or intentional warning pose 113
+FAIL: security neutral or intentional warning pose 114
+FAIL: security neutral or intentional warning pose 115
+FAIL: security neutral or intentional warning pose 116
+FAIL: security neutral or intentional warning pose 117
+FAIL: security neutral or intentional warning pose 118
+FAIL: security neutral or intentional warning pose 119
+POSE 4 role=security state=WALK_TO_CART walking=true
+FAIL: security neutral or intentional warning pose 120
+FAIL: security neutral or intentional warning pose 121
+FAIL: security neutral or intentional warning pose 122
+FAIL: security neutral or intentional warning pose 123
+FAIL: security neutral or intentional warning pose 124
+FAIL: security neutral or intentional warning pose 125
+FAIL: security neutral or intentional warning pose 126
+FAIL: security neutral or intentional warning pose 127
+FAIL: security neutral or intentional warning pose 128
+FAIL: security neutral or intentional warning pose 129
+FAIL: security neutral or intentional warning pose 130
+FAIL: security neutral or intentional warning pose 131
+FAIL: security neutral or intentional warning pose 132
+FAIL: security neutral or intentional warning pose 133
+FAIL: security neutral or intentional warning pose 134
+FAIL: security neutral or intentional warning pose 135
+FAIL: security neutral or intentional warning pose 136
+FAIL: security neutral or intentional warning pose 137
+FAIL: security neutral or intentional warning pose 138
+FAIL: security neutral or intentional warning pose 139
+FAIL: security neutral or intentional warning pose 140
+FAIL: security neutral or intentional warning pose 141
+FAIL: security neutral or intentional warning pose 142
+FAIL: security neutral or intentional warning pose 143
+FAIL: security neutral or intentional warning pose 144
+FAIL: security neutral or intentional warning pose 145
+FAIL: security neutral or intentional warning pose 146
+FAIL: security neutral or intentional warning pose 147
+FAIL: security neutral or intentional warning pose 148
+FAIL: security neutral or intentional warning pose 149
+PASS: player returns to standing after movement
+PASS: stopped player keeps last left facing
+PASS: movement speed preserved
+BUTTON_IDLE_REVIEW: FAIL

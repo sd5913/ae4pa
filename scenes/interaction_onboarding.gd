@@ -99,8 +99,6 @@ func get_identity_hint() -> String:
 		return tr("新证件在收藏中。按I打开背包，把它拖到A／B槽；原证件会保留。")
 	if CardManager.active_card == "NONE" and equipped.any(func(id): return id != "NONE"):
 		return tr("当前槽未装备。关闭背包后按Q启用另一槽的工作证。")
-	if not equipped.has("NONE") and not _switched:
-		return tr("两个槽都已装备。关闭背包后按Q切当前身份；亮框表示生效的证件。")
 	if not _bag_seen:
 		return tr("已获得工作证！右上角显示当前身份。按I查看收藏与装备。")
 	return ""
@@ -160,6 +158,10 @@ func _process(delta: float) -> void:
 		_panel.hide()
 		_set_highlight("")
 		return
+	if _interaction_has_priority():
+		_panel.hide()
+		_set_highlight("")
+		return
 	_identity_left = maxf(0,_identity_left-delta)
 	_review_left = maxf(0,_review_left-delta)
 	if _review_left > 0:
@@ -193,3 +195,16 @@ func _is_safe_to_change_identity() -> bool:
 func _set_highlight(target: String) -> void:
 	for key in ["BagButton","SwitchHint"]:
 		_hud.get_node("%"+key).modulate = Color("ffe4a1") if target == key else Color.WHITE
+
+func _interaction_has_priority() -> bool:
+	# Keep the optional review panel out of the actual staff/work interaction.
+	var world: Node = get_parent().get_node("World")
+	if world.get_child_count() != 1: return false
+	var floor_node: Node = world.get_child(0)
+	var target: String = floor_node.get_interaction_target_id()
+	if target.begins_with("STAFF_") and GameManager.is_interaction_allowed(target): return true
+	if not floor_node.get_work_interaction_hint(target).is_empty(): return true
+	for slot: Node in floor_node.get_node("StaffRoot").get_children():
+		var staff: Node = slot.get_node("Staff")
+		if staff.is_player_in_range() and staff.get_node("FeedbackLabel").visible: return true
+	return false

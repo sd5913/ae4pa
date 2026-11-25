@@ -86,8 +86,8 @@ func _refresh_offer_details() -> void:
 	if GameManager.get_task_definition(view["task_id"]).has("instructions"):
 		var definition := GameManager.get_task_definition(view["task_id"])
 		var names := {"CLEANER": "保洁工作证", "SECURITY": "保安工作证", "MANAGER": "经理工作证"}
-		var cards: Array = definition["required_cards"].map(func(card: String): return names[card])
-		details = "所需身份：%s · 接受后限时%d秒\n%s" % ["＋".join(cards) if not cards.is_empty() else "无需特定身份", int(view["time_limit"]), definition["instructions"]]
+		var cards: Array = definition["required_cards"].map(func(card: String): return tr(names[card]))
+		details = tr("所需身份：%s · 接受后限时%d秒\n%s") % [" / ".join(cards) if not cards.is_empty() else tr("无需特定身份"), int(view["time_limit"]), tr(definition["instructions"])]
 	elif view["task_id"] == GameManager.TASK_03_ID:
 		details = tr("所需身份：%s · 接受后限时 %d 秒\n到本层登记台批准309入住，批准即完成。") % [tr("经理工作证"), int(view["time_limit"])]
 	elif view["task_id"] == GameManager.TASK_02_ID:
@@ -112,14 +112,14 @@ func _show_failure(reason: String) -> void:
 		return
 	board.hide()
 	failure.show_failure(reason)
-	failure.get_node("Center/Panel/Content/Title").text = "任务超时" if reason == "TASK_TIMEOUT" else "偷窃被发现" if reason == "STAFF_CAUGHT" else "任务失败"
+	failure.get_node("Center/Panel/Content/Title").text = tr("任务超时" if reason == "TASK_TIMEOUT" else "偷窃被发现" if reason == "STAFF_CAUGHT" else "任务失败")
 	failure.get_node("Center/Panel/Content/Eyebrow").text = "本次任务"
 	if reason == "TASK_TIMEOUT":
 		failure.get_node("%Reason").text = "任务超时，请回到接取前重新挑战。"
 	var can_retry := GameManager.can_retry_current_task()
 	var retry_message: String = "回到302接取前，保留前序任务和已有证件，仅撤销本次309批准。" if GameManager.current_task_id == GameManager.TASK_03_ID else ""
 	if GameManager.get_task_definition(GameManager.current_task_id).has("instructions"):
-		retry_message = "回到%s接取前，保留前序任务与证件，撤销本任务的工作成果及交付。" % GameManager.get_task_definition(GameManager.current_task_id)["room_id"]
+		retry_message = tr("回到%s接取前，保留前序任务与证件，撤销本任务的工作成果及交付。") % GameManager.get_task_definition(GameManager.current_task_id)["room_id"]
 	failure.configure_retry(can_retry,
 		retry_message if can_retry and not retry_message.is_empty() else
 		("回到202接受前，保留201成果，撤销本任务保安卡与包裹。" if GameManager.current_task_id == GameManager.TASK_02_ID else "回到 201 接受前，撤销本任务获得的卡片与清理结果。") if can_retry else "当前没有可恢复的任务检查点。")

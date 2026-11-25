@@ -18,9 +18,9 @@ func _refresh_task_display() -> void:
 			objective = localized_late_step
 		else:
 			match status:
-				"AVAILABLE": objective = "在%s接受当前任务" % room
-				"ACTIVE", "READY_TO_SUBMIT", "COMPLETED": objective = view["step"]
-				"FAILED": objective = "重新挑战后回%s接受任务" % room
+				"AVAILABLE": objective = tr("在%s接受当前任务") % room
+				"ACTIVE", "READY_TO_SUBMIT", "COMPLETED": objective = TaskUiText.notice_for_display(view["step"])
+				"FAILED": objective = tr("重新挑战后回%s接受任务") % room
 	elif view["task_id"] == GameManager.TASK_03_ID:
 		match status:
 			"AVAILABLE": objective = "在302接受240秒授权任务"

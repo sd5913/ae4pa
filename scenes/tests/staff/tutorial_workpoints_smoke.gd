@@ -11,6 +11,7 @@ func _initialize() -> void:
 
 
 func _run() -> void:
+	await _check_double_card_rules()
 	var cases: Array[Dictionary] = [
 		{"scene": "room_service_203", "target": "ROOM_SERVICE_203", "right": "MANAGER", "wrong": "SECURITY", "type": "AUTHORIZE", "hold": false},
 		{"scene": "stain_204", "target": "STAIN_204", "right": "CLEANER", "wrong": "SECURITY", "type": "CLEAN", "hold": true},
@@ -99,3 +100,41 @@ func _wait_for_range(point: Node, expected: bool) -> void:
 func _expect(condition: bool, message: String) -> void:
 	if not condition:
 		failures.append(message)
+
+
+func _check_double_card_rules() -> void:
+	var game = root.get_node("GameManager")
+	var cards = root.get_node("CardManager")
+	game.start_game()
+	game.current_floor = 2
+	game.task_status = "ACTIVE"
+	game.remaining_time = 200
+	for card in ["CLEANER", "SECURITY", "MANAGER"]: cards.collect_card(card)
+	var player = load("res://scenes/player/player.tscn").instantiate()
+	root.add_child(player)
+	player.position = Vector2(800,560)
+	var cases := [
+		[game.TUTORIAL_04_ID, "stain_204", "CLEANER", "SECURITY", ""],
+		[game.TUTORIAL_04_ID, "patrol_cabinet_204", "SECURITY", "CLEANER", "stain_204_cleaned"],
+		[game.TUTORIAL_05_ID, "transit_pickup_205", "SECURITY", "MANAGER", ""],
+		[game.TUTORIAL_05_ID, "transit_register_205", "MANAGER", "SECURITY", "transit_205_collected"],
+	]
+	for spec in cases:
+		game.current_task_id = spec[0]
+		game.get("_world_flags").clear()
+		if not spec[4].is_empty(): game.get("_world_flags")[spec[4]] = true
+		var point = load("res://scenes/work/%s.tscn" % spec[1]).instantiate()
+		root.add_child(point)
+		point.position = player.position
+		point.setup(player)
+		await _wait_for_range(point,true)
+		for pair in [[spec[2], "NONE"], [spec[2], spec[3]], [spec[3], spec[2]]]:
+			for active in [0,1]:
+				cards.restore_snapshot({"owned_cards":cards.get_owned_cards(), "equipped_cards":pair, "active_slot":active})
+				point.set_task_active(game.is_interaction_allowed(point.target_id))
+				var qualified: bool = pair.has(spec[2]) and pair.has(spec[3])
+				_expect(game.is_interaction_allowed(point.target_id) == qualified, "%s requires both equipped IDs, collection alone is insufficient" % spec[1])
+				_expect(point.can_interact() == (qualified and pair[active] == spec[2]), "%s checks active identity independently of A/B slot order" % spec[1])
+		point.free()
+	player.free()
+	print("DUAL_CARD_MATRIX: 204 CLEANER+SECURITY; 205 SECURITY+MANAGER; active identity follows each step")

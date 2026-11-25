@@ -44,19 +44,32 @@ func _run() -> void:
 	_expect("未装备" in staff_members[2].feedback_label.text and "I" in staff_members[2].feedback_label.text, "Third reward explains collection without equipment")
 	_expect(cards.get_owned_cards().size() == 3 and cards.get_equipped_cards().size() == 2,"Three owned / exactly two slots")
 	_expect(cards.get_equipped_cards() == ["NONE", "NONE"] and cards.active_card == "NONE", "All stolen cards remain collected only")
+	var flow: Node = main.get_node("MenuLayer/Bag/CarolUIFlow")
 	var bag = main.get_node("MenuLayer/Bag")
 	bag.open_bag()
 	await process_frame
 	_expect(bag.visible and bag.get("_owned_cards").item_count == 3,"I opens all three owned cards")
 	var owned_list: ItemList = bag.get_node("%OwnedCards")
 	for index in owned_list.item_count:
+		if owned_list.get_item_metadata(index) == "CLEANER":
+			owned_list.select(index)
+			owned_list.item_selected.emit(index)
+	bag.get("_equip_slot_a").pressed.emit()
+	_expect(cards.get_equipped_cards() == ["CLEANER", "NONE"] and cards.active_card == "CLEANER", "UI A manually equips and activates the first ID")
+	for index in owned_list.item_count:
 		if owned_list.get_item_metadata(index) == "MANAGER":
 			owned_list.select(index)
 			owned_list.item_selected.emit(index)
 	_expect(bag._selected_card_id() == "MANAGER","Unequipped manager is clearly selected")
 	bag.get("_equip_slot_b").pressed.emit()
-	_expect(cards.get_equipped_cards() == ["NONE","MANAGER"] and cards.has_card("SECURITY"),"UI B equips only the selected slot without losing collected IDs")
+	_expect(cards.get_equipped_cards() == ["CLEANER", "MANAGER"] and cards.has_card("SECURITY"), "UI B equips the selected ID without losing collected security")
+	_expect("备用槽B" in bag.get("_status").text and "当前生效：保洁" in bag.get("_status").text, "Reserve equip prompt reads the actual current identity")
 	bag.close_bag()
+	# If acquisition/equipment happened inside the bag, tutorial intentionally waits for this close.
+	for frame in range(4): await process_frame
+	if flow.get("_mode") == "equipment":
+		await create_timer(0.2).timeout
+		for beat in range(4): await _tap("interact")
 	await _tap("switch_id")
 	await process_frame
 	_expect(cards.active_card == "MANAGER","Q reaches manager after equipment")
@@ -81,6 +94,9 @@ func _run() -> void:
 			bag.get("_owned_cards").item_selected.emit(index)
 	bag.get("_equip_slot_a").pressed.emit()
 	_expect(cards.active_slot == 0 and cards.active_card == "CLEANER", "Replacing the active A slot takes effect without another Q")
+	_expect("当前已生效" in bag.get("_status").text and "按Q" not in bag.get("_status").text, "Active-slot equip must not require Q")
+	bag.get("_equip_slot_a").pressed.emit()
+	_expect("无需重复装备" in bag.get("_status").text, "Already equipped is a no-op, not a failure")
 	_expect(hud.get("_active_card_value").text == "保洁工作证" and outfit.card_id == "CLEANER", "Current-slot replacement immediately updates HUD and outfit")
 	_expect("当前生效：保洁" in staff_members[0].feedback_label.text, "Reward presentation matches direct active-slot replacement")
 	bag.close_bag()

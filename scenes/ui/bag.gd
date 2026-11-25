@@ -28,6 +28,9 @@ func _ready() -> void:
 	_equip_slot_b.pressed.connect(_equip_selected.bind(1))
 	_refresh_cards()
 	_sync_modal_state()
+	var flow := preload("res://scenes/ui/carol_ui_flow.gd").new()
+	flow.name = "CarolUIFlow"
+	add_child(flow)
 
 
 func _notification(what: int) -> void:
@@ -48,6 +51,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	else:
 		open_bag()
 	get_viewport().set_input_as_handled()
+
+
+func _input(event: InputEvent) -> void:
+	if visible and not event.is_echo() and event.is_action_pressed("pause"):
+		close_bag()
+		get_viewport().set_input_as_handled()
 
 
 func open_bag() -> void:
