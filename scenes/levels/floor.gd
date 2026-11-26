@@ -747,6 +747,16 @@ func is_player_at_stair(upstairs: bool) -> bool:
 
 func _refresh_exit_hint() -> void:
 	if floor_number == 5:
+		var light := exit_point.get_node_or_null("ExitStatusLight") as ColorRect
+		if light == null:
+			light = ColorRect.new()
+			light.name = "ExitStatusLight"
+			light.position = Vector2(-145, -220)
+			light.size = Vector2(24, 10)
+			light.z_index = 20
+			light.mouse_filter = Control.MOUSE_FILTER_IGNORE
+			exit_point.add_child(light)
+		light.color = Color("62dc8a") if GameManager.get_world_flags().get("exit_form_delivered", false) else Color("d95151")
 		exit_hint.text = "EXIT · 按E与Terese一起逃离" if GameManager.get_world_flags().get("exit_form_delivered", false) else "EXIT · 先完成501离店单交付"
 		exit_hint.visible = GameManager.is_world_input_allowed() and absf(player.global_position.x - exit_point.global_position.x) <= GameManager.STAIR_INTERACTION_RADIUS
 

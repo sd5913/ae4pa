@@ -88,8 +88,7 @@ func _open(dialogue_id: String, preview: bool) -> bool:
 	return true
 
 func _render() -> void:
-	var role := DialogueRoles.from_speaker(str(_lines[_index][0]))
-	_surface.present_character_beat(role, str(_lines[_index][1]))
+	_surface.present_revision_beat(preload("res://scenes/ui/story_revision.gd").monster_beat(_lines[_index]))
 	_record_history.call_deferred(_index, _history_serial)
 
 func advance() -> void:

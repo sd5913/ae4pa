@@ -492,3 +492,13 @@ C 的 201 固定区事件此次实际正常，暂未定位 C 模块新缺陷；�
 代码 `3daaa314976eb4343e327470aa176357e407bf3d`，基线main@230521d；Windows / Godot4.7.2.stable.official.ed1daf0bf。确认原图27/27 SHA-256一致，运行时10图统一透明画布；37份导入描述路径与UID检查通过。导入退出0（编辑器safe-save提示单列），confirmed_portraits、story_surface、intro_flow、localization四项退出0。Compatibility窗口中英×960/1280/1920×10立绘共60个状态检查退出0，六张代表截图与十表情对照已检查。初次夹具与命令调用失败不计为通过，保留原日志。[全部命令、实际截图、结果与限制](qa_evidence/confirmed_portraits_20261125/README.md)。未做真人通关、导出或macOS验证，Q版动画只归档。
 
 C合并复测增量：000940b整合main@4d86f95后，导入退出0（同一编辑器提示），原四项功能检查及character_art_v2新增兼容检查均退出0，60个中英三尺寸Compatibility状态再次退出0。保留A/D已有更新；用户确认半身图优先于D旧表情图集。日志和合并后截图已追加到[同一证据页](qa_evidence/confirmed_portraits_20261125/README.md)。用户试玩窗口单独运行合并前main@4d86f95，未将其记为合并后人工验收。
+
+## 2026-11-26 C 新剧情与空白立绘回归
+
+验证对象为 main@4ae5577 + 本地未提交剧情修改，分支 work/member-C-story-revision-20261126；未推送或合并。Windows Godot 4.7.2.stable.official.ed1daf0bf：149 拍逐字逐序检查、四句精确保留／其余清空立绘、序章输入、本地化、人物版本、309、403／501、完整新局八任务到实际 EXIT 及结尾成功、两进程存读检查均退出 0。Compatibility 中英 960×540、1280×720、1920×1080，共 60 状态截图及 CG 双语三尺寸检查通过。实际游戏状态、输入门控与最终 EXIT 断言保留；新增异说话人对白沿用现有 history 和完成信号。
+
+详细命令、平台、前置夹具、日志、截图、源数据散列及初次失败修正见[独立证据页](qa_evidence/story_revision_20261126/README.md)。导入退出 0，同时保留宿主编辑器 Safe save failed 诊断；完整路线继续出现非阻断的 203／205 TASK_INACTIVE 测试诊断。本次未进行真人完整试玩、另一设备／macOS 实机和二进制导出，不撤回原有历史失败记录。
+
+## 2026-11-26 完整170段对话与确认表情
+
+用户最终清单已替代先前149段、仅四句保留立绘的策略；正式序章恢复卧室→咖啡馆→卧室→旅馆外，23种人物确认表情和五怪固定图接入，309只用整幅CG。Windows Godot4.7.2本地分支工作区的全部针对性功能检查、完整新局八任务到EXIT、两进程存读、106幅Compatibility及中英CG三尺寸检查通过。真实窗口输入/返回菜单通过；真人、macOS、导出未测。基线SHA、工作区哈希、命令、初始夹具失败和最终日志、画面见[完整证据](qa_evidence/complete_dialogue_20261126/README.md)。

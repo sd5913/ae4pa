@@ -4,6 +4,7 @@ const DIALOGUE_FILES := [
 	"cg309_reunion/dialogue.json",
 	"scenes/ui/monster_dialogues.json",
 	"scenes/ui/intro_script.tsv",
+	"scenes/ui/story_revision.json",
 ]
 
 func _initialize() -> void:
@@ -26,5 +27,5 @@ func _initialize() -> void:
 			valid = false
 
 	if valid:
-		print("The PCK contains the main scene, English localization, and all three dialogue files.")
+		print("The PCK contains the main scene, English localization, and all four dialogue files.")
 	quit(0 if valid else 1)

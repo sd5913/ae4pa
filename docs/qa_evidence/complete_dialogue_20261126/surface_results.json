@@ -1,0 +1,11 @@
+[
+  {
+    "test": "story_surface_smoke",
+    "exit": 0,
+    "renderer": "Compatibility"
+  },
+  {
+    "test": "reunion_309_smoke",
+    "exit": 0
+  }
+]

@@ -38,19 +38,31 @@ func run() -> void:
 	check(menu.get("_ready_for_input"), "cover opening finishes with interactive buttons")
 	await shot("menu")
 	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
+	check(dialogue.get("_line_index") == 0 and dialogue.get_node("%Portrait").visible, "complete prologue opens with Carol in the bedroom")
+	# The complete source no longer includes phone messages. Keep reusable SMS
+	# gesture coverage through an explicit fixture, then continue the real intro.
+	dialogue.set_skip_transitions_for_test(false)
+	var fixture: Array[Dictionary] = [{"scene":"bedroom","speaker":"","expression":"none","mode":"cue","text":"手机组件测试"}]
+	for text: String in ["到门口了","照片上看起来没这么旧","你还可以掉头。","来都来了","我先去上班啦，下班跟你说","下班了？","你今天回来吗？","Terese，看到回我一下。"]:
+		fixture.append({"scene":"bedroom","speaker":"Terese","expression":"none","mode":"sms","text":text})
+	fixture.append_array(dialogue.get("_beats"))
+	dialogue._beats.assign(fixture)
+	dialogue._show_story_beat()
+	click(Vector2(30, 300))
+	var first_sms: int = dialogue.get("_line_index")
 	var phone_deadline := Time.get_ticks_msec() + 5000
 	while not dialogue.get("_phone_waiting_for_open") and Time.get_ticks_msec() < phone_deadline:
 		await process_frame
-	check(dialogue.visible and dialogue.get("_line_index") == 0, "normal start enters real SMS with no auto advance")
+	check(dialogue.visible and first_sms == 1, "narration leads to archived SMS with no auto advance")
 	check(dialogue.get_node_or_null("%ContinueButton") == null, "continue button and its focus target removed")
 	check(not dialogue.get_node("%SkipButton").visible, "first reading cannot skip")
 	click(Vector2(30, 300))
 	click(dialogue.get_node("SMSPanel/PhoneFrame").get_global_rect().position + Vector2(10, 200))
-	check(dialogue.get("_line_index") == 0, "room and phone frame clicks do not advance")
+	check(dialogue.get("_line_index") == first_sms, "room and phone frame clicks do not advance")
 	check(dialogue.get("_phone_waiting_for_open") and dialogue.get_node("%PhoneNotification").visible
 		and not dialogue.get_node("%PhoneChat").visible, "notification stays until the player explicitly opens the phone")
 	click(dialogue.get_node("%PhoneScreen").get_global_rect().get_center())
-	check(dialogue.get("_line_index") == 0 and dialogue.get_node("%PhoneChat").visible,
+	check(dialogue.get("_line_index") == first_sms and dialogue.get_node("%PhoneChat").visible,
 		"phone screen click opens chat without skipping its first message")
 	await settle()
 	var chat: Rect2 = dialogue.get_node("%SMSScroll").get_global_rect()
@@ -61,15 +73,15 @@ func run() -> void:
 	dialogue._input(drag)
 	mouse(drag.position, false)
 	mouse(point, true, MOUSE_BUTTON_WHEEL_UP)
-	check(dialogue.get("_line_index") == 0, "drag and wheel do not advance SMS")
+	check(dialogue.get("_line_index") == first_sms, "drag and wheel do not advance SMS")
 	click(point)
-	check(dialogue.get("_line_index") == 1, "chat click release advances exactly once")
+	check(dialogue.get("_line_index") == first_sms + 1, "chat click release advances exactly once")
 	var echo := InputEventKey.new()
 	echo.physical_keycode = KEY_E
 	echo.pressed = true
 	echo.echo = true
 	dialogue._input(echo)
-	check(dialogue.get("_line_index") == 1, "held E echo is consumed")
+	check(dialogue.get("_line_index") == first_sms + 1, "held E echo is consumed")
 	var touch := InputEventScreenTouch.new()
 	touch.position = point
 	touch.pressed = true
@@ -84,9 +96,9 @@ func run() -> void:
 	dialogue._input(emulated)
 	emulated.pressed = false
 	dialogue._input(emulated)
-	check(dialogue.get("_line_index") == 2, "touch and emulated mouse advance once together")
+	check(dialogue.get("_line_index") == first_sms + 2, "touch and emulated mouse advance once together")
 	dialogue.set_skip_transitions_for_test(true)
-	for i in range(12): dialogue._advance()
+	while dialogue.get("_line_index") < 9: dialogue._advance()
 	await shot("phone")
 	for viewport_size in [Vector2i(1280,720), Vector2i(1920,1080), Vector2i(960,540)]:
 		root.size = viewport_size
@@ -131,11 +143,11 @@ func run() -> void:
 	dialogue.get_node("%SkipButton").pressed.emit()
 	check(completed == ["V4_MANAGER_TALK", "V4_INTRO"], "skip emits only one completion")
 	dialogue.show_dialogue("V4_INTRO")
-	while dialogue.get("_beats")[dialogue.get("_line_index")].mode != "cue": dialogue._advance()
+	while dialogue.get("_beats")[dialogue.get("_line_index")].mode != "narration": dialogue._advance()
 	var cue_index: int = dialogue.get("_line_index")
 	await shot("narration")
-	click(Vector2(30,300))
-	check(dialogue.get("_line_index") == cue_index + 1, "narration blank click advances one beat")
+	click(dialogue.get_node("%DialogueFrame").get_global_rect().get_center())
+	check(dialogue.get("_line_index") == cue_index + 1, "full-width narration panel advances one beat")
 	dialogue.reset_progress_file_for_test()
 	main._show_menu()
 	await settle()

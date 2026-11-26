@@ -14,6 +14,7 @@ func end() -> void:
 	await settle()
 	await equip("MANAGER")
 	await work("Register309")
+	await drain_story() # Read the new registration result before returning to world input.
 	check(g.get_completed_task_ids().has(g.TASK_03_ID), "full run really approves309")
 	check(floor_node().get_node("Interactions/Register309/TaskItemVisual/ResultFeedback").visible, "302 approval has explicit success feedback")
 	check("309" in main.get_node("TaskLayer/HUD/%Objective").text and "Terese" in main.get_node("TaskLayer/HUD/%Objective").text, "302 completion names309 and the rescue objective")
@@ -27,10 +28,13 @@ func end() -> void:
 	if not is_instance_valid(host.cg):
 		await _finish_chain()
 		return
-	for i in range(36):
+	for i in range(60):
+		if not is_instance_valid(host.cg): break
 		if host.cg.get("_transitioning"): await create_timer(0.5).timeout
 		await tap()
-	check(g.has_friend and floor_node().has_node("Persica"), "full run actual36-beat rescue enables follower")
+	check(g.has_friend and floor_node().has_node("Persica"), "full run actual revised rescue enables follower")
+	check(main.dialogue.visible and main.dialogue.get("_dialogue_id") == "LATE_ALARM", "rescue hands off to the alarm without leaking world input")
+	await drain_story()
 	await travel(4)
 	await move_to(floor_node().get_node("DoorRoot/Room403").position.x - 116)
 	await drain_story()
@@ -64,6 +68,8 @@ func end() -> void:
 	await tap()
 	await drain_story()
 	await travel_exit()
+	check(g.game_state == "WON" and main.dialogue.get("_dialogue_id") == "LATE_ENDING" and not main.get_node("MenuLayer/Win").visible, "actual EXIT plays the rain ending before showing success")
+	await drain_story()
 	check(g.game_state == "WON" and main.get_node("MenuLayer/Win").visible, "normal new game through all eight tasks/309 to actualEXIT success")
 	await _finish_chain()
 

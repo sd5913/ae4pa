@@ -1,0 +1,22 @@
+[
+  {
+    "test": "foundation_smoke",
+    "exit": 0
+  },
+  {
+    "test": "intro_flow_smoke",
+    "exit": 0
+  },
+  {
+    "test": "localization_smoke",
+    "exit": 0
+  },
+  {
+    "test": "full_mainline_escape_smoke",
+    "exit": 0
+  },
+  {
+    "test": "late_mainline_main_flow_smoke",
+    "exit": 0
+  }
+]

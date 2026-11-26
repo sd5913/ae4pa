@@ -105,6 +105,7 @@ func _show_next() -> void:
 	var speaker := ""
 	if not beat.get("narration", false):
 		speaker = str(beat.get("speaker_en", beat["speaker"])) if TranslationServer.get_locale().begins_with("en") else str(beat["speaker"])
+	# Reunion artwork owns the characters; never overlay half-body portraits.
 	_dialogue.present_caption(speaker, tr(str(beat["text"])).format(beat.get("parameters", {})))
 	var next_id := str(beat["frame"])
 	if next_id != _frame_id:

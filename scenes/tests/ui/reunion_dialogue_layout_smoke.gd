@@ -97,7 +97,7 @@ func _run() -> void:
 		var body_rect := body.get_global_rect()
 		var cafe_rect := reference_frame.get_global_rect()
 		var suffix := "%s_%dx%d" % ["en" if english else "zh", viewport.x, viewport.y]
-		_check(is_equal_approx(frame_rect.position.x, cafe_rect.position.x) and is_equal_approx(frame_rect.size.x, cafe_rect.size.x), "café frame horizontal geometry " + suffix)
+		_check(frame_rect.position.x < cafe_rect.position.x and frame_rect.size.x > cafe_rect.size.x and body_rect.position.x < cafe.get_node("%Line").get_global_rect().position.x, "full-width CG captions reclaim portrait space " + suffix)
 		_check(frame_rect.encloses(body_rect) and name_rect.end.y <= body_rect.position.y, "body inside frame and below nameplate " + suffix)
 		_check(not dialogue.get_node("%Portrait").visible and not dialogue.get_node("%Background").visible, "only the CG artwork and one dialogue surface are visible " + suffix)
 		await _shot("309_dialogue_" + suffix)
@@ -109,14 +109,16 @@ func _run() -> void:
 	await _wait_for_beat(cg)
 	_send_interact()
 	await _wait_for_beat(cg)
-	_check(cg._index == 2 and not speaker.visible and body.visible, "narration keeps the panel without an empty nameplate")
+	_send_interact()
+	await _wait_for_beat(cg)
+	_check(cg._index == 3 and not speaker.visible and body.visible, "narration keeps the panel without an empty nameplate")
 	await _shot("309_narration_" + ("en" if english else "zh"))
 	var longest_index := 0
 	for index in range(cg._beats.size()):
 		if str(cg._beats[index].text).length() > str(cg._beats[longest_index].text).length():
 			longest_index = index
 	await _resize(Vector2i(960, 540))
-	for index in range(2, cg._beats.size()):
+	for index in range(3, cg._beats.size()):
 		_check(cg._index == index and _completion_count == 0, "exactly one progression per beat")
 		await _settle()
 		var body_rect := body.get_global_rect()
@@ -126,10 +128,10 @@ func _run() -> void:
 		_send_interact()
 		if index + 1 < cg._beats.size():
 			await _wait_for_beat(cg)
-	_check(_beats_seen.size() == 36 and _completion_count == 1, "36 recorded beats and a single completion")
+	_check(_beats_seen.size() == 12 and _completion_count == 1, "12 revised recorded beats and a single completion")
 	cg.play()
 	cg.cancel()
 	await _settle()
-	_check(_completion_count == 1 and not cg.visible and _beats_seen.size() == 36, "cancel emits neither completion nor a reading record")
+	_check(_completion_count == 1 and not cg.visible and _beats_seen.size() == 12, "cancel emits neither completion nor a reading record")
 	print("REUNION_DIALOGUE_LAYOUT: ", "PASS" if _failures.is_empty() else "FAIL")
 	quit(0 if _failures.is_empty() else 1)

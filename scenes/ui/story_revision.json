@@ -1,0 +1,1798 @@
+{
+  "intro": [
+    {
+      "speaker": "Carol",
+      "source_id": "B001",
+      "text": "那家旅馆……",
+      "mode": "dialogue",
+      "expression": "沉思",
+      "portrait": true,
+      "scene": "bedroom",
+      "source_line": 10,
+      "beat_id": "complete_001"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "B002",
+      "text": "就是她之前提过的夜班兼职。",
+      "mode": "dialogue",
+      "expression": "沉思",
+      "portrait": true,
+      "scene": "bedroom",
+      "source_line": 14,
+      "beat_id": "complete_002"
+    },
+    {
+      "speaker": "",
+      "text": "几天前，咖啡馆。Terese 把录取通知推过来。浅色长发滑到肩前，墨绿蝴蝶结歪了一点。Carol 闻到一股熟悉的柑橘香。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "cafe",
+      "source_line": 21,
+      "beat_id": "complete_003"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D001",
+      "text": "还是你最喜欢的那瓶？",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 24,
+      "beat_id": "complete_004"
+    },
+    {
+      "speaker": "Terese",
+      "source_id": "D002",
+      "text": "嗯。这味道闻着就高兴。",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 28,
+      "beat_id": "complete_005"
+    },
+    {
+      "speaker": "Terese",
+      "source_id": "D003",
+      "text": "你先看这个，我找到兼职了！",
+      "mode": "dialogue",
+      "expression": "开心",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 32,
+      "beat_id": "complete_006"
+    },
+    {
+      "speaker": "Terese",
+      "source_id": "D004",
+      "text": "工资比我上个月做的几份兼职加起来还多。",
+      "mode": "dialogue",
+      "expression": "开心",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 36,
+      "beat_id": "complete_007"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D005",
+      "text": "夜班、工作轻松、工资还特别高。",
+      "mode": "dialogue",
+      "expression": "沉思",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 40,
+      "beat_id": "complete_008"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D006",
+      "text": "这三个词放在一起，通常不像什么好消息。",
+      "mode": "dialogue",
+      "expression": "怀疑",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 44,
+      "beat_id": "complete_009"
+    },
+    {
+      "speaker": "Terese",
+      "source_id": "D007",
+      "text": "怎么，你挑一个喜欢的词都不行？",
+      "mode": "dialogue",
+      "expression": "调侃",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 48,
+      "beat_id": "complete_010"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D008",
+      "text": "旅馆叫什么？",
+      "mode": "dialogue",
+      "expression": "怀疑",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 52,
+      "beat_id": "complete_011"
+    },
+    {
+      "speaker": "Terese",
+      "source_id": "D009",
+      "text": "维斯佩拉旅馆！",
+      "mode": "dialogue",
+      "expression": "俏皮",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 56,
+      "beat_id": "complete_012"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D018",
+      "text": "这是名字，还是在提醒你工作时间？",
+      "mode": "dialogue",
+      "expression": "扶额无奈",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 60,
+      "beat_id": "complete_013"
+    },
+    {
+      "speaker": "Terese",
+      "source_id": "D019",
+      "text": "是不是挺有氛围的？",
+      "mode": "dialogue",
+      "expression": "调侃",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 64,
+      "beat_id": "complete_014"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D020",
+      "text": "挺像恐怖电影开头的。",
+      "mode": "dialogue",
+      "expression": "气笑了",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 68,
+      "beat_id": "complete_015"
+    },
+    {
+      "speaker": "Terese",
+      "source_id": "D021",
+      "text": "恐怖电影里的人要是都像你一样谨慎，电影十分钟就结束了。",
+      "mode": "dialogue",
+      "expression": "调侃",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 72,
+      "beat_id": "complete_016"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D020",
+      "text": "等一下！我还没读完……",
+      "mode": "dialogue",
+      "expression": "思考",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 76,
+      "beat_id": "complete_017"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D006",
+      "text": "这里写着「员工离店须经管理部门批准」。",
+      "mode": "dialogue",
+      "expression": "怀疑",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 80,
+      "beat_id": "complete_018"
+    },
+    {
+      "speaker": "Terese",
+      "source_id": "D024",
+      "text": "大概是夜班不能随便旷工吧。",
+      "mode": "dialogue",
+      "expression": "开心",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 84,
+      "beat_id": "complete_019"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D025",
+      "text": "正常公司会写“离职流程”，不会写“离店批准”……",
+      "mode": "dialogue",
+      "expression": "怀疑",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 88,
+      "beat_id": "complete_020"
+    },
+    {
+      "speaker": "Terese",
+      "source_id": "D007",
+      "text": "我就做三天，又不是卖给他们了。",
+      "mode": "dialogue",
+      "expression": "调侃",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 92,
+      "beat_id": "complete_021"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D025",
+      "text": "……",
+      "mode": "dialogue",
+      "expression": "气笑了",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 96,
+      "beat_id": "complete_022"
+    },
+    {
+      "speaker": "Terese",
+      "source_id": "D007",
+      "text": "等拿到工资，请你吃顿好的！",
+      "mode": "dialogue",
+      "expression": "俏皮",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 100,
+      "beat_id": "complete_023"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D008",
+      "text": "先把地址发给我。",
+      "mode": "dialogue",
+      "expression": "扶额无奈",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 104,
+      "beat_id": "complete_024"
+    },
+    {
+      "speaker": "Terese",
+      "source_id": "D009",
+      "text": "发你了，女侦探 ~~",
+      "mode": "dialogue",
+      "expression": "开心",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 108,
+      "beat_id": "complete_025"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D008",
+      "text": "每天结束给我回一条消息。",
+      "mode": "dialogue",
+      "expression": "蛊惑",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 112,
+      "beat_id": "complete_026"
+    },
+    {
+      "speaker": "Terese",
+      "source_id": "D009",
+      "text": "我要是少回一条，你是不是准备直接冲进去？",
+      "mode": "dialogue",
+      "expression": "调侃",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 116,
+      "beat_id": "complete_027"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D010",
+      "text": "我会先给你打电话。",
+      "mode": "dialogue",
+      "expression": "慵懒",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 120,
+      "beat_id": "complete_028"
+    },
+    {
+      "speaker": "Terese",
+      "source_id": "D011",
+      "text": "你这人真没情趣。",
+      "mode": "dialogue",
+      "expression": "气鼓鼓",
+      "portrait": true,
+      "scene": "cafe",
+      "source_line": 124,
+      "beat_id": "complete_029"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "B003",
+      "text": "她去上班以后，每天晚上都会给我发消息。",
+      "mode": "dialogue",
+      "expression": "沉思",
+      "portrait": true,
+      "scene": "bedroom",
+      "source_line": 132,
+      "beat_id": "complete_030"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "B004",
+      "text": "三天前，消息突然停了。",
+      "mode": "dialogue",
+      "expression": "沉思",
+      "portrait": true,
+      "scene": "bedroom",
+      "source_line": 136,
+      "beat_id": "complete_031"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "B005",
+      "text": "没有联系电话，也查不到正常的订房页面。",
+      "mode": "dialogue",
+      "expression": "担忧",
+      "portrait": true,
+      "scene": "bedroom",
+      "source_line": 140,
+      "beat_id": "complete_032"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "B006",
+      "text": "如果她真的被困在里面，我不能继续等。",
+      "mode": "dialogue",
+      "expression": "坚定",
+      "portrait": true,
+      "scene": "bedroom",
+      "source_line": 144,
+      "beat_id": "complete_033"
+    },
+    {
+      "speaker": "",
+      "text": "回到雨夜。通知上的最后一班今早就结束了。电话还是没人接。Carol 拿起外套，按录取通知上的地址去了旅馆。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "exterior",
+      "source_line": 151,
+      "beat_id": "complete_034"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "A001",
+      "text": "三楼，309。",
+      "mode": "dialogue",
+      "expression": "坚定",
+      "portrait": true,
+      "scene": "exterior",
+      "source_line": 154,
+      "beat_id": "complete_035"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "A002",
+      "text": "先找到她，再弄清楚这里发生了什么。",
+      "mode": "dialogue",
+      "expression": "坚定",
+      "portrait": true,
+      "scene": "exterior",
+      "source_line": 158,
+      "beat_id": "complete_036"
+    }
+  ],
+  "lobby": [
+    {
+      "speaker": "经理",
+      "source_id": "C001",
+      "text": "晚上好。这个时间很少有客人独自前来。",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 166,
+      "beat_id": "complete_037"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "C001",
+      "text": "我不是来住店的。我来找人。Terese，三天前来做夜班兼职的。",
+      "mode": "dialogue",
+      "expression": "怀疑",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 170,
+      "beat_id": "complete_038"
+    },
+    {
+      "speaker": "",
+      "text": "经理翻开登记簿。手指停在一行字上。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "lobby",
+      "source_line": 173,
+      "beat_id": "complete_039"
+    },
+    {
+      "speaker": "经理",
+      "source_id": "C001",
+      "text": "她今早已经办完手续离开了。",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 176,
+      "beat_id": "complete_040"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "C001",
+      "text": "几点？从哪扇门走的？",
+      "mode": "dialogue",
+      "expression": "怀疑",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 180,
+      "beat_id": "complete_041"
+    },
+    {
+      "speaker": "经理",
+      "source_id": "C001",
+      "text": "您可以直接问她。",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 184,
+      "beat_id": "complete_042"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "C001",
+      "text": "我要是能问到她，就不用站在这里了。",
+      "mode": "dialogue",
+      "expression": "怀疑",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 188,
+      "beat_id": "complete_043"
+    },
+    {
+      "speaker": "",
+      "text": "Carol 向前一步。经理把登记簿合上。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "lobby",
+      "source_line": 191,
+      "beat_id": "complete_044"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "C001",
+      "text": "她的东西呢？也带走了？",
+      "mode": "dialogue",
+      "expression": "气笑了",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 194,
+      "beat_id": "complete_045"
+    },
+    {
+      "speaker": "经理",
+      "source_id": "C001",
+      "text": "离店的员工会自行处理私人物品。",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 198,
+      "beat_id": "complete_046"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "C001",
+      "text": "你们的录取通知上说，员工离店要经理批准。我能看看她那张吗？",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 202,
+      "beat_id": "complete_047"
+    },
+    {
+      "speaker": "经理",
+      "source_id": "C001",
+      "text": "不能。您是她的……？",
+      "mode": "dialogue",
+      "expression": "笑里藏刀",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 206,
+      "beat_id": "complete_048"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "C001",
+      "text": "我是她朋友。",
+      "mode": "dialogue",
+      "expression": "气笑了",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 210,
+      "beat_id": "complete_049"
+    },
+    {
+      "speaker": "经理",
+      "source_id": "C001",
+      "text": "那我只能告诉您，她已经离店了。",
+      "mode": "dialogue",
+      "expression": "笑里藏刀",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 214,
+      "beat_id": "complete_050"
+    },
+    {
+      "speaker": "",
+      "text": "楼上传来一声关门声。Carol 转头望向楼梯。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "lobby",
+      "source_line": 217,
+      "beat_id": "complete_051"
+    },
+    {
+      "speaker": "经理",
+      "source_id": "C001",
+      "text": "楼上的住客有自己的规矩。如果他们拦住您，最好先听清他们需要什么。",
+      "mode": "dialogue",
+      "expression": "阴森",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 220,
+      "beat_id": "complete_052"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "C001",
+      "text": "这是提醒，还是威胁？",
+      "mode": "dialogue",
+      "expression": "猎杀时刻",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 224,
+      "beat_id": "complete_053"
+    },
+    {
+      "speaker": "经理",
+      "source_id": "C001",
+      "text": "是建议。",
+      "mode": "dialogue",
+      "expression": "笑里藏刀",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 228,
+      "beat_id": "complete_054"
+    },
+    {
+      "speaker": "经理",
+      "source_id": "D088",
+      "text": "如果遇到麻烦记得找工作人员。",
+      "mode": "dialogue",
+      "expression": "笑里藏刀",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 232,
+      "beat_id": "complete_055"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D089",
+      "text": "包括你吗？",
+      "mode": "dialogue",
+      "expression": "狐疑",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 236,
+      "beat_id": "complete_056"
+    },
+    {
+      "speaker": "经理",
+      "source_id": "D090",
+      "text": "前台永远愿意为客人提供帮助。",
+      "mode": "dialogue",
+      "expression": "笑里藏刀",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 240,
+      "beat_id": "complete_057"
+    },
+    {
+      "speaker": "Carol",
+      "source_id": "D091",
+      "text": "我说过，我不是客人。",
+      "mode": "dialogue",
+      "expression": "怀疑",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 244,
+      "beat_id": "complete_058"
+    },
+    {
+      "speaker": "经理",
+      "source_id": "D092",
+      "text": "现在还不是……",
+      "mode": "dialogue",
+      "expression": "阴森",
+      "portrait": true,
+      "scene": "lobby",
+      "source_line": 248,
+      "beat_id": "complete_059"
+    }
+  ],
+  "nose_intro": [
+    {
+      "speaker": "",
+      "text": "长鼻客探出门，鼻尖几乎碰到地毯。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 254,
+      "beat_id": "complete_060"
+    },
+    {
+      "speaker": "长鼻客",
+      "text": "唉！唉！",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 256,
+      "beat_id": "complete_061"
+    },
+    {
+      "speaker": "Carol",
+      "text": "！？",
+      "mode": "dialogue",
+      "expression": "惊讶",
+      "portrait": true,
+      "scene": "",
+      "source_line": 258,
+      "beat_id": "complete_062"
+    },
+    {
+      "speaker": "长鼻客",
+      "text": "你是来打扫的？昨天有人喷了香水，臭味还在，现在又多了一股花味。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 261,
+      "beat_id": "complete_063"
+    },
+    {
+      "speaker": "Carol",
+      "text": "你鼻子这么灵，闻得出谁上过楼吗？",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 263,
+      "beat_id": "complete_064"
+    },
+    {
+      "speaker": "长鼻客",
+      "text": "你先把花擦掉。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 266,
+      "beat_id": "complete_065"
+    }
+  ],
+  "nose_delivered": [
+    {
+      "speaker": "",
+      "text": "Carol 回一楼，从保洁身后取得工作证。她在安全处把证装进槽里，切为当前保洁。回到二楼，她清理污渍，再回 201 交付。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 268,
+      "beat_id": "complete_066"
+    },
+    {
+      "speaker": "长鼻客",
+      "text": "这就对了。你袖口都是拖地水的味儿。楼上那些跟我一样的，闻闻就知道你是来做房务的。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 270,
+      "beat_id": "complete_067"
+    },
+    {
+      "speaker": "",
+      "text": "他转头朝楼梯闻了闻。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 272,
+      "beat_id": "complete_068"
+    },
+    {
+      "speaker": "长鼻客",
+      "text": "花味没了。还剩一点湿衣服的味道，还有柑橘香。三天前有个人带着这股味道上楼，这几晚偶尔还能闻见。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 274,
+      "beat_id": "complete_069"
+    },
+    {
+      "speaker": "Carol（心想）",
+      "text": "柑橘香……Terese 最爱喷的就是这个。",
+      "mode": "dialogue",
+      "expression": "沉思",
+      "portrait": true,
+      "scene": "",
+      "source_line": 276,
+      "beat_id": "complete_070"
+    },
+    {
+      "speaker": "长鼻客",
+      "text": "你要找人，去问隔壁。楼梯上掉一根线，他都能看半天。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 279,
+      "beat_id": "complete_071"
+    }
+  ],
+  "eye_intro": [
+    {
+      "speaker": "独眼客",
+      "text": "你是来送东西的？我看着他们把包裹收进柜子，今天还没人取。牛皮纸，右下角是我的房号。拿来的时候封条朝外。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 285,
+      "beat_id": "complete_072"
+    }
+  ],
+  "eye_delivered": [
+    {
+      "speaker": "",
+      "text": "Carol 回一楼取得保安证，切成当前保安。从二楼的保管柜领出包裹后，她带回 202。独眼客沿封条看了一圈，才伸手接。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 287,
+      "beat_id": "complete_073"
+    },
+    {
+      "speaker": "独眼客",
+      "text": "编号对，封条也没动。楼上那几个跟我一样，天天盯着谁动过包裹。看见保安证，才知道来的是管包裹的人。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 289,
+      "beat_id": "complete_074"
+    },
+    {
+      "speaker": "Carol",
+      "text": "三天前有个浅色长发的女生经过。她扎了个墨绿蝴蝶结，你见过吗？",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 291,
+      "beat_id": "complete_075"
+    },
+    {
+      "speaker": "独眼客",
+      "text": "见过。她跟着前台的人上了三楼。格纹外套搭在胳膊上，一边袖口都拖地了。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 294,
+      "beat_id": "complete_076"
+    },
+    {
+      "speaker": "Carol",
+      "text": "后来呢？",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 296,
+      "beat_id": "complete_077"
+    },
+    {
+      "speaker": "独眼客",
+      "text": "没见她下来。倒是送饭的人天天上去。203 盯过那只托盘，你问他。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 299,
+      "beat_id": "complete_078"
+    }
+  ],
+  "hat_intro": [
+    {
+      "speaker": "",
+      "text": "礼帽客把空茶杯摆回杯碟正中。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 305,
+      "beat_id": "complete_079"
+    },
+    {
+      "speaker": "礼帽客",
+      "text": "劳驾。我的晚茶三天没送到了。房务台说申请还在等经理批准。您若见到经理，请让她瞧一眼。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 307,
+      "beat_id": "complete_080"
+    }
+  ],
+  "hat_delivered": [
+    {
+      "speaker": "",
+      "text": "Carol 回一楼取得经理证。在安全处，她把经理证换进装备槽并切为当前身份，再到二楼房务台批准申请，返回 203 交付。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 309,
+      "beat_id": "complete_081"
+    },
+    {
+      "speaker": "礼帽客",
+      "text": "终于有人肯签字了。楼上戴礼帽的几位与我一样，有房务上的事，只同经理谈。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 311,
+      "beat_id": "complete_082"
+    },
+    {
+      "speaker": "Carol",
+      "text": "202 说您见过那个送餐托盘。",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 313,
+      "beat_id": "complete_083"
+    },
+    {
+      "speaker": "礼帽客",
+      "text": "见过。上面放的是我的茶壶。壶盖缺了一角，隔着走廊我也认得。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 316,
+      "beat_id": "complete_084"
+    },
+    {
+      "speaker": "Carol",
+      "text": "他们把您的茶送去了哪里？",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 318,
+      "beat_id": "complete_085"
+    },
+    {
+      "speaker": "礼帽客",
+      "text": "三楼走廊尽头。另有一人份的饭，天天照送。204 为了收盘子的声音，来抱怨过两次。或许他听得更清楚。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 321,
+      "beat_id": "complete_086"
+    }
+  ],
+  "ear_intro": [
+    {
+      "speaker": "",
+      "text": "Carol 的鞋底擦过湿地毯。门里的人闭上眼，等那一声过去。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 327,
+      "beat_id": "complete_087"
+    },
+    {
+      "speaker": "大耳客",
+      "text": "就是这一块。每个人走到这里都要拖一下脚。你把它擦干，再去资料柜看看，今晚最后一趟巡房是几点。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 329,
+      "beat_id": "complete_088"
+    }
+  ],
+  "ear_delivered": [
+    {
+      "speaker": "",
+      "text": "Carol 装上保洁证和保安证。她用保洁身份清理污渍，换成保安身份领取巡房记录，然后回 204 交付。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 331,
+      "beat_id": "complete_089"
+    },
+    {
+      "speaker": "Carol",
+      "text": "地毯不响了。巡房记录也在这儿。",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 333,
+      "beat_id": "complete_090"
+    },
+    {
+      "speaker": "大耳客",
+      "text": "地毯不响，鞋还是会响。楼上那些耳朵跟我一样灵。门一开，你就站着。等门关了再走。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 336,
+      "beat_id": "complete_091"
+    },
+    {
+      "speaker": "Carol",
+      "text": "你听过楼上收盘子的声音？",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 338,
+      "beat_id": "complete_092"
+    },
+    {
+      "speaker": "大耳客",
+      "text": "听过。盘子一响，钥匙就从外面转两圈。送饭的人走了，里头才有人拧把手。头两天还拧，今天没拧。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 341,
+      "beat_id": "complete_093"
+    },
+    {
+      "speaker": "Carol",
+      "text": "所以她出不来。",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 343,
+      "beat_id": "complete_094"
+    },
+    {
+      "speaker": "大耳客",
+      "text": "门是从外面锁的。你要上楼，先过 205。他那扇门要敲三下。第三下隔一会儿。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 346,
+      "beat_id": "complete_095"
+    }
+  ],
+  "checker_intro": [
+    {
+      "speaker": "",
+      "text": "Carol 敲了两下，等了一会儿，再敲第三下。门开了一指宽。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 353,
+      "beat_id": "complete_096"
+    },
+    {
+      "speaker": "门缝客",
+      "text": "这回敲对了。昨晚那个人上来就拧把手，还在我眼前把工牌换了。我跟值班台说过，今晚谁要从这儿上楼，就把通行单办好再来。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 355,
+      "beat_id": "complete_097"
+    },
+    {
+      "speaker": "Carol",
+      "text": "去哪里办？",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 357,
+      "beat_id": "complete_098"
+    },
+    {
+      "speaker": "门缝客",
+      "text": "保安从值班资料点领，经理在登记台批。要换身份，走远了再换。楼上跟我一样爱从门缝看人的，最容易记住这种事。袖口明明还是那个袖口，牌子倒换了。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 360,
+      "beat_id": "complete_099"
+    }
+  ],
+  "checker_delivered": [
+    {
+      "speaker": "",
+      "text": "Carol 以保安身份领到待审通行单，再到安全登记台切为经理批准。通行单下面，压着今夜的送餐记录。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 362,
+      "beat_id": "complete_100"
+    },
+    {
+      "speaker": "",
+      "text": "309 · 夜班临时员工 Terese · 今夜送餐一份 · 离店待批",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 364,
+      "beat_id": "complete_101"
+    },
+    {
+      "speaker": "",
+      "text": "Carol 回到 205，按原来的节奏敲门，把批好的通行单放进门旁的收件夹。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 366,
+      "beat_id": "complete_102"
+    },
+    {
+      "speaker": "Carol",
+      "text": "今晚还要往 309 送饭？",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 368,
+      "beat_id": "complete_103"
+    },
+    {
+      "speaker": "门缝客",
+      "text": "是啊。送饭的人经过我门口，会念一遍房号，怕走错。三楼尽头，309。每晚都一样。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 371,
+      "beat_id": "complete_104"
+    },
+    {
+      "speaker": "Carol",
+      "text": "前台说她今早就离店了。",
+      "mode": "dialogue",
+      "expression": "怀疑",
+      "portrait": true,
+      "scene": "",
+      "source_line": 373,
+      "beat_id": "complete_105"
+    },
+    {
+      "speaker": "门缝客",
+      "text": "那今晚这份饭送给谁？",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 376,
+      "beat_id": "complete_106"
+    },
+    {
+      "speaker": "",
+      "text": "门合上。Carol 朝二楼右端的楼梯走去。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 378,
+      "beat_id": "complete_107"
+    }
+  ],
+  "302_intro": [
+    {
+      "speaker": "",
+      "text": "礼帽客站在门边，手里捏着三张账单。每张都折在同一个地方。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 386,
+      "beat_id": "complete_108"
+    },
+    {
+      "speaker": "礼帽客",
+      "text": "劳驾。您是房务的人吗？这三份晚餐算在我的账上，我一份也没见过。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 388,
+      "beat_id": "complete_109"
+    },
+    {
+      "speaker": "Carol",
+      "text": "您订过晚餐？",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 390,
+      "beat_id": "complete_110"
+    },
+    {
+      "speaker": "礼帽客",
+      "text": "我只订了茶。问了两次，他们才肯在背面写明饭送到了哪里。您瞧。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 393,
+      "beat_id": "complete_111"
+    },
+    {
+      "speaker": "",
+      "text": "Carol 翻过账单。背面写着「309 · 临时安置」。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 395,
+      "beat_id": "complete_112"
+    },
+    {
+      "speaker": "Carol",
+      "text": "为什么 309 的饭会算到您这里？",
+      "mode": "dialogue",
+      "expression": "怀疑",
+      "portrait": true,
+      "scene": "",
+      "source_line": 397,
+      "beat_id": "complete_113"
+    },
+    {
+      "speaker": "礼帽客",
+      "text": "听说那间房没办正式入住，送了餐也没地方记账。于是他们挑了个有账的人。劳烦您到本层登记台，把那间房登上去。下次送饭，请记到那间房头上。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 400,
+      "beat_id": "complete_114"
+    }
+  ],
+  "302_delivered": [
+    {
+      "speaker": "",
+      "text": "Carol 用经理证批准 309 入住。登记台的房务权限随即更新。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 402,
+      "beat_id": "complete_115"
+    },
+    {
+      "speaker": "",
+      "text": "309 已登记。保洁工作证可开启房门。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 404,
+      "beat_id": "complete_116"
+    },
+    {
+      "speaker": "Carol（心想）",
+      "text": "现在刷保洁证，就能开她的门了。",
+      "mode": "dialogue",
+      "expression": "猎杀时刻",
+      "portrait": true,
+      "scene": "",
+      "source_line": 406,
+      "beat_id": "complete_117"
+    }
+  ],
+  "reunion": [
+    {
+      "speaker": "",
+      "text": "Carol 在安全处切回保洁，刷开 309。Terese 扑过来时，Carol 闻见她衣领上还有一点柑橘香。墨绿蝴蝶结已经松了，一缕头发贴在她脸上。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 412,
+      "beat_id": "complete_118"
+    },
+    {
+      "speaker": "Terese",
+      "text": "Carol……？我以为又是他们来收盘子。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": false,
+      "scene": "",
+      "source_line": 414,
+      "beat_id": "complete_119"
+    },
+    {
+      "speaker": "Carol",
+      "text": "是我。你先松一点……我快喘不过气了。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": false,
+      "scene": "",
+      "source_line": 416,
+      "beat_id": "complete_120"
+    },
+    {
+      "speaker": "",
+      "text": "Terese 松开一点，手还是攥着 Carol 的袖口。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 418,
+      "beat_id": "complete_121"
+    },
+    {
+      "speaker": "Carol",
+      "text": "第一天晚上，你说下班给我发消息。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": false,
+      "scene": "",
+      "source_line": 420,
+      "beat_id": "complete_122"
+    },
+    {
+      "speaker": "Terese",
+      "text": "他们上班前把手机收走了。我下班去拿，经理说得做满三天。我说工资也不要了，她就让我到这儿等离店批准。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": false,
+      "scene": "",
+      "source_line": 422,
+      "beat_id": "complete_123"
+    },
+    {
+      "speaker": "Carol",
+      "text": "然后呢？",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": false,
+      "scene": "",
+      "source_line": 424,
+      "beat_id": "complete_124"
+    },
+    {
+      "speaker": "Terese",
+      "text": "她在外面锁了门。第二天我问她批了没有，她说……前台根本没收到过我的申请。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": false,
+      "scene": "",
+      "source_line": 426,
+      "beat_id": "complete_125"
+    },
+    {
+      "speaker": "",
+      "text": "Carol 低头看了一眼桌上那份没动过的饭。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 428,
+      "beat_id": "complete_126"
+    },
+    {
+      "speaker": "Carol",
+      "text": "还能走吗？",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": false,
+      "scene": "",
+      "source_line": 430,
+      "beat_id": "complete_127"
+    },
+    {
+      "speaker": "Terese",
+      "text": "能。楼下员工通道锁了。我听送饭的人说，五楼最右边有个消防出口。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": false,
+      "scene": "",
+      "source_line": 432,
+      "beat_id": "complete_128"
+    },
+    {
+      "speaker": "Carol",
+      "text": "好。你指路，我走前面。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": false,
+      "scene": "",
+      "source_line": 434,
+      "beat_id": "complete_129"
+    }
+  ],
+  "alarm": [
+    {
+      "speaker": "",
+      "text": "两人绕过楼梯转角。送餐员推开 309 的门。片刻后，警铃响了。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 439,
+      "beat_id": "complete_130"
+    },
+    {
+      "speaker": "前台（广播）",
+      "text": "各位住客，请协助值班人员核验。有人看见两名人类走进员工楼梯。若有人从您门前经过，请查看工作证。有情况请拨前台。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": false,
+      "scene": "",
+      "source_line": 441,
+      "beat_id": "complete_131"
+    },
+    {
+      "speaker": "",
+      "text": "经过一扇客房门时，长鼻客探出头，闻了一下，皱起鼻子。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 443,
+      "beat_id": "complete_132"
+    },
+    {
+      "speaker": "长鼻客",
+      "text": "怎么一股柑橘味。你们两个，哪一班的？",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 445,
+      "beat_id": "complete_133"
+    },
+    {
+      "speaker": "",
+      "text": "Carol 亮出当前启用的保洁证。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 447,
+      "beat_id": "complete_134"
+    },
+    {
+      "speaker": "Carol",
+      "text": "夜班保洁。她跟我一组。",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 449,
+      "beat_id": "complete_135"
+    },
+    {
+      "speaker": "长鼻客",
+      "text": "哦。那你跟送东西的人说一声，别再把桶搁我门口了。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 452,
+      "beat_id": "complete_136"
+    },
+    {
+      "speaker": "",
+      "text": "长鼻客缩回去关门。两人走过门口。楼梯下方传来钥匙碰撞的声音。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 454,
+      "beat_id": "complete_137"
+    },
+    {
+      "speaker": "员工（楼下）",
+      "text": "你查楼上，我回 309 看看门锁。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": false,
+      "scene": "",
+      "source_line": 456,
+      "beat_id": "complete_138"
+    }
+  ],
+  "403_intro": [
+    {
+      "speaker": "",
+      "text": "403 开门。Carol 停下，Terese 也收住了脚步。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 463,
+      "beat_id": "complete_139"
+    },
+    {
+      "speaker": "大耳客",
+      "text": "你们两个，谁是来值班的？",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 465,
+      "beat_id": "complete_140"
+    },
+    {
+      "speaker": "Carol",
+      "text": "您需要什么？",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 467,
+      "beat_id": "complete_141"
+    },
+    {
+      "speaker": "大耳客",
+      "text": "以前一晚上就两趟。今晚楼梯响了四遍，我躺下又坐起来，已经三回了。去把巡房记录拿给我。我想知道还得等到几点。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 470,
+      "beat_id": "complete_142"
+    }
+  ],
+  "403_delivered": [
+    {
+      "speaker": "",
+      "text": "巡房员工正拿着记录挨扇门查看。Carol 等他停下，从身后取走记录，再回到 403。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 472,
+      "beat_id": "complete_143"
+    },
+    {
+      "speaker": "Carol",
+      "text": "您要的记录。",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 474,
+      "beat_id": "complete_144"
+    },
+    {
+      "speaker": "",
+      "text": "大耳客把纸展开，用手指沿着一行字慢慢划过去。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 477,
+      "beat_id": "complete_145"
+    },
+    {
+      "speaker": "大耳客",
+      "text": "下一趟先走左边。好。那我右边这会儿总能清静一下。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 479,
+      "beat_id": "complete_146"
+    },
+    {
+      "speaker": "",
+      "text": "他把门关上。Terese 看了一眼右端的楼梯。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 481,
+      "beat_id": "complete_147"
+    },
+    {
+      "speaker": "Terese（低声）",
+      "text": "他说下一趟先走左边。",
+      "mode": "dialogue",
+      "expression": "害怕",
+      "portrait": true,
+      "scene": "",
+      "source_line": 483,
+      "beat_id": "complete_148"
+    },
+    {
+      "speaker": "Carol",
+      "text": "听见了。我们现在上去。",
+      "mode": "dialogue",
+      "expression": "气笑了",
+      "portrait": true,
+      "scene": "",
+      "source_line": 486,
+      "beat_id": "complete_149"
+    }
+  ],
+  "501_intro": [
+    {
+      "speaker": "",
+      "text": "到了五楼，Terese 拉了拉 Carol 的袖口，指向走廊尽头。消防门上方亮着一盏红灯。两名值班员工在那里停下。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 493,
+      "beat_id": "complete_150"
+    },
+    {
+      "speaker": "值班员工",
+      "text": "门锁试过了。红灯还亮着，这边出不去。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": false,
+      "scene": "",
+      "source_line": 495,
+      "beat_id": "complete_151"
+    },
+    {
+      "speaker": "另一名员工",
+      "text": "那就去查楼梯。前台说有人看见那两个人往楼上走。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": false,
+      "scene": "",
+      "source_line": 497,
+      "beat_id": "complete_152"
+    },
+    {
+      "speaker": "",
+      "text": "两人走远了。Carol 刚要往出口去，身旁的门开了一指宽。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 499,
+      "beat_id": "complete_153"
+    },
+    {
+      "speaker": "门缝客",
+      "text": "你们也是来拉那扇门的？今晚已经响三次了。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 501,
+      "beat_id": "complete_154"
+    },
+    {
+      "speaker": "Terese",
+      "text": "平时也这么响吗？",
+      "mode": "dialogue",
+      "expression": "害怕",
+      "portrait": true,
+      "scene": "",
+      "source_line": 503,
+      "beat_id": "complete_155"
+    },
+    {
+      "speaker": "门缝客",
+      "text": "平时不会。每天快天亮，有个人会把一张纸塞进我门边那个口子。纸一落下，尽头就亮绿灯。等他走了，灯又变回红的。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 506,
+      "beat_id": "complete_156"
+    },
+    {
+      "speaker": "Carol",
+      "text": "你见过那张纸吗？",
+      "mode": "dialogue",
+      "expression": "平常",
+      "portrait": true,
+      "scene": "",
+      "source_line": 508,
+      "beat_id": "complete_157"
+    },
+    {
+      "speaker": "门缝客",
+      "text": "只看见一角。折起来的，盖过章。你们值班的自己去看。要是办好了，劳驾把门轻轻带上。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 511,
+      "beat_id": "complete_158"
+    },
+    {
+      "speaker": "",
+      "text": "Carol 俯身看了一眼收件口。投递口上方贴着一张磨旧的标签。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 513,
+      "beat_id": "complete_159"
+    },
+    {
+      "speaker": "",
+      "text": "夜班离店单 · 批准后投递",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 515,
+      "beat_id": "complete_160"
+    },
+    {
+      "speaker": "Terese",
+      "text": "我在 309 等的，就是这张？",
+      "mode": "dialogue",
+      "expression": "惊讶",
+      "portrait": true,
+      "scene": "",
+      "source_line": 517,
+      "beat_id": "complete_161"
+    },
+    {
+      "speaker": "Carol",
+      "text": "嗯。走，我们自己去办。",
+      "mode": "dialogue",
+      "expression": "蛊惑",
+      "portrait": true,
+      "scene": "",
+      "source_line": 520,
+      "beat_id": "complete_162"
+    }
+  ],
+  "501_delivered": [
+    {
+      "speaker": "",
+      "text": "Carol 在安全登记台切为经理，在离店单上写下 Terese 的名字，又在陪同栏填上自己。盖章后，两人回到 501，把单投进收件口。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 523,
+      "beat_id": "complete_163"
+    },
+    {
+      "speaker": "",
+      "text": "纸落下去，轻轻响了一声。走廊尽头的灯变绿了。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "",
+      "source_line": 525,
+      "beat_id": "complete_164"
+    },
+    {
+      "speaker": "门缝客",
+      "text": "对。平时就是这个声音。",
+      "mode": "dialogue",
+      "expression": "neutral",
+      "portrait": true,
+      "scene": "",
+      "source_line": 527,
+      "beat_id": "complete_165"
+    }
+  ],
+  "ending": [
+    {
+      "speaker": "",
+      "text": "Carol 推开消防门。外面是雨声。她等 Terese 跨出去，才把门轻轻带上。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "exterior",
+      "source_line": 532,
+      "beat_id": "complete_166"
+    },
+    {
+      "speaker": "Terese",
+      "text": "那顿饭还算数。",
+      "mode": "dialogue",
+      "expression": "俏皮",
+      "portrait": true,
+      "scene": "exterior",
+      "source_line": 534,
+      "beat_id": "complete_167"
+    },
+    {
+      "speaker": "Carol",
+      "text": "一顿可不够。",
+      "mode": "dialogue",
+      "expression": "慵懒",
+      "portrait": true,
+      "scene": "exterior",
+      "source_line": 537,
+      "beat_id": "complete_168"
+    },
+    {
+      "speaker": "Terese",
+      "text": "行！先吃第一顿！",
+      "mode": "dialogue",
+      "expression": "开心",
+      "portrait": true,
+      "scene": "exterior",
+      "source_line": 540,
+      "beat_id": "complete_169"
+    },
+    {
+      "speaker": "",
+      "text": "两人走进雨里。",
+      "mode": "narration",
+      "expression": "none",
+      "portrait": false,
+      "scene": "exterior",
+      "source_line": 543,
+      "beat_id": "complete_170"
+    }
+  ]
+}

@@ -234,11 +234,7 @@ func _show_story_dialogue(dialogue_id: String) -> void:
 			_active_dialogue_id = ""
 			GameManager.set_modal_open(STORY_MODAL, false)
 	elif dialogue_id == TASK_03_INTRO:
-		var lines: Array[String] = [
-			"309还未登记。用经理工作证，到本层登记台批准入住。",
-			"接受后限时240秒；批准即完成，不用回302交付。",
-		]
-		if not dialogue.show_task_dialogue(dialogue_id, "309登记 · 302", lines):
+		if not dialogue.show_story_sequence(dialogue_id, preload("res://scenes/ui/story_revision.gd").beats("302_intro")):
 			_active_dialogue_id = ""
 			GameManager.set_modal_open(STORY_MODAL, false)
 			$TaskLayer.show()

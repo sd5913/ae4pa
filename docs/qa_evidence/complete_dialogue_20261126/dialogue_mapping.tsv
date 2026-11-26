@@ -1,0 +1,171 @@
+﻿beat_id	section	source_id	source_line	speaker	expression	portrait	text
+complete_001	intro	B001	10	Carol	沉思	True	那家旅馆……
+complete_002	intro	B002	14	Carol	沉思	True	就是她之前提过的夜班兼职。
+complete_003	intro		21		none	False	几天前，咖啡馆。Terese 把录取通知推过来。浅色长发滑到肩前，墨绿蝴蝶结歪了一点。Carol 闻到一股熟悉的柑橘香。
+complete_004	intro	D001	24	Carol	平常	True	还是你最喜欢的那瓶？
+complete_005	intro	D002	28	Terese	平常	True	嗯。这味道闻着就高兴。
+complete_006	intro	D003	32	Terese	开心	True	你先看这个，我找到兼职了！
+complete_007	intro	D004	36	Terese	开心	True	工资比我上个月做的几份兼职加起来还多。
+complete_008	intro	D005	40	Carol	沉思	True	夜班、工作轻松、工资还特别高。
+complete_009	intro	D006	44	Carol	怀疑	True	这三个词放在一起，通常不像什么好消息。
+complete_010	intro	D007	48	Terese	调侃	True	怎么，你挑一个喜欢的词都不行？
+complete_011	intro	D008	52	Carol	怀疑	True	旅馆叫什么？
+complete_012	intro	D009	56	Terese	俏皮	True	维斯佩拉旅馆！
+complete_013	intro	D018	60	Carol	扶额无奈	True	这是名字，还是在提醒你工作时间？
+complete_014	intro	D019	64	Terese	调侃	True	是不是挺有氛围的？
+complete_015	intro	D020	68	Carol	气笑了	True	挺像恐怖电影开头的。
+complete_016	intro	D021	72	Terese	调侃	True	恐怖电影里的人要是都像你一样谨慎，电影十分钟就结束了。
+complete_017	intro	D020	76	Carol	思考	True	等一下！我还没读完……
+complete_018	intro	D006	80	Carol	怀疑	True	这里写着「员工离店须经管理部门批准」。
+complete_019	intro	D024	84	Terese	开心	True	大概是夜班不能随便旷工吧。
+complete_020	intro	D025	88	Carol	怀疑	True	正常公司会写“离职流程”，不会写“离店批准”……
+complete_021	intro	D007	92	Terese	调侃	True	我就做三天，又不是卖给他们了。
+complete_022	intro	D025	96	Carol	气笑了	True	……
+complete_023	intro	D007	100	Terese	俏皮	True	等拿到工资，请你吃顿好的！
+complete_024	intro	D008	104	Carol	扶额无奈	True	先把地址发给我。
+complete_025	intro	D009	108	Terese	开心	True	发你了，女侦探 ~~
+complete_026	intro	D008	112	Carol	蛊惑	True	每天结束给我回一条消息。
+complete_027	intro	D009	116	Terese	调侃	True	我要是少回一条，你是不是准备直接冲进去？
+complete_028	intro	D010	120	Carol	慵懒	True	我会先给你打电话。
+complete_029	intro	D011	124	Terese	气鼓鼓	True	你这人真没情趣。
+complete_030	intro	B003	132	Carol	沉思	True	她去上班以后，每天晚上都会给我发消息。
+complete_031	intro	B004	136	Carol	沉思	True	三天前，消息突然停了。
+complete_032	intro	B005	140	Carol	担忧	True	没有联系电话，也查不到正常的订房页面。
+complete_033	intro	B006	144	Carol	坚定	True	如果她真的被困在里面，我不能继续等。
+complete_034	intro		151		none	False	回到雨夜。通知上的最后一班今早就结束了。电话还是没人接。Carol 拿起外套，按录取通知上的地址去了旅馆。
+complete_035	intro	A001	154	Carol	坚定	True	三楼，309。
+complete_036	intro	A002	158	Carol	坚定	True	先找到她，再弄清楚这里发生了什么。
+complete_037	lobby	C001	166	经理	平常	True	晚上好。这个时间很少有客人独自前来。
+complete_038	lobby	C001	170	Carol	怀疑	True	我不是来住店的。我来找人。Terese，三天前来做夜班兼职的。
+complete_039	lobby		173		none	False	经理翻开登记簿。手指停在一行字上。
+complete_040	lobby	C001	176	经理	平常	True	她今早已经办完手续离开了。
+complete_041	lobby	C001	180	Carol	怀疑	True	几点？从哪扇门走的？
+complete_042	lobby	C001	184	经理	平常	True	您可以直接问她。
+complete_043	lobby	C001	188	Carol	怀疑	True	我要是能问到她，就不用站在这里了。
+complete_044	lobby		191		none	False	Carol 向前一步。经理把登记簿合上。
+complete_045	lobby	C001	194	Carol	气笑了	True	她的东西呢？也带走了？
+complete_046	lobby	C001	198	经理	平常	True	离店的员工会自行处理私人物品。
+complete_047	lobby	C001	202	Carol	平常	True	你们的录取通知上说，员工离店要经理批准。我能看看她那张吗？
+complete_048	lobby	C001	206	经理	笑里藏刀	True	不能。您是她的……？
+complete_049	lobby	C001	210	Carol	气笑了	True	我是她朋友。
+complete_050	lobby	C001	214	经理	笑里藏刀	True	那我只能告诉您，她已经离店了。
+complete_051	lobby		217		none	False	楼上传来一声关门声。Carol 转头望向楼梯。
+complete_052	lobby	C001	220	经理	阴森	True	楼上的住客有自己的规矩。如果他们拦住您，最好先听清他们需要什么。
+complete_053	lobby	C001	224	Carol	猎杀时刻	True	这是提醒，还是威胁？
+complete_054	lobby	C001	228	经理	笑里藏刀	True	是建议。
+complete_055	lobby	D088	232	经理	笑里藏刀	True	如果遇到麻烦记得找工作人员。
+complete_056	lobby	D089	236	Carol	狐疑	True	包括你吗？
+complete_057	lobby	D090	240	经理	笑里藏刀	True	前台永远愿意为客人提供帮助。
+complete_058	lobby	D091	244	Carol	怀疑	True	我说过，我不是客人。
+complete_059	lobby	D092	248	经理	阴森	True	现在还不是……
+complete_060	nose_intro		254		none	False	长鼻客探出门，鼻尖几乎碰到地毯。
+complete_061	nose_intro		256	长鼻客	neutral	True	唉！唉！
+complete_062	nose_intro		258	Carol	惊讶	True	！？
+complete_063	nose_intro		261	长鼻客	neutral	True	你是来打扫的？昨天有人喷了香水，臭味还在，现在又多了一股花味。
+complete_064	nose_intro		263	Carol	平常	True	你鼻子这么灵，闻得出谁上过楼吗？
+complete_065	nose_intro		266	长鼻客	neutral	True	你先把花擦掉。
+complete_066	nose_delivered		268		none	False	Carol 回一楼，从保洁身后取得工作证。她在安全处把证装进槽里，切为当前保洁。回到二楼，她清理污渍，再回 201 交付。
+complete_067	nose_delivered		270	长鼻客	neutral	True	这就对了。你袖口都是拖地水的味儿。楼上那些跟我一样的，闻闻就知道你是来做房务的。
+complete_068	nose_delivered		272		none	False	他转头朝楼梯闻了闻。
+complete_069	nose_delivered		274	长鼻客	neutral	True	花味没了。还剩一点湿衣服的味道，还有柑橘香。三天前有个人带着这股味道上楼，这几晚偶尔还能闻见。
+complete_070	nose_delivered		276	Carol（心想）	沉思	True	柑橘香……Terese 最爱喷的就是这个。
+complete_071	nose_delivered		279	长鼻客	neutral	True	你要找人，去问隔壁。楼梯上掉一根线，他都能看半天。
+complete_072	eye_intro		285	独眼客	neutral	True	你是来送东西的？我看着他们把包裹收进柜子，今天还没人取。牛皮纸，右下角是我的房号。拿来的时候封条朝外。
+complete_073	eye_delivered		287		none	False	Carol 回一楼取得保安证，切成当前保安。从二楼的保管柜领出包裹后，她带回 202。独眼客沿封条看了一圈，才伸手接。
+complete_074	eye_delivered		289	独眼客	neutral	True	编号对，封条也没动。楼上那几个跟我一样，天天盯着谁动过包裹。看见保安证，才知道来的是管包裹的人。
+complete_075	eye_delivered		291	Carol	平常	True	三天前有个浅色长发的女生经过。她扎了个墨绿蝴蝶结，你见过吗？
+complete_076	eye_delivered		294	独眼客	neutral	True	见过。她跟着前台的人上了三楼。格纹外套搭在胳膊上，一边袖口都拖地了。
+complete_077	eye_delivered		296	Carol	平常	True	后来呢？
+complete_078	eye_delivered		299	独眼客	neutral	True	没见她下来。倒是送饭的人天天上去。203 盯过那只托盘，你问他。
+complete_079	hat_intro		305		none	False	礼帽客把空茶杯摆回杯碟正中。
+complete_080	hat_intro		307	礼帽客	neutral	True	劳驾。我的晚茶三天没送到了。房务台说申请还在等经理批准。您若见到经理，请让她瞧一眼。
+complete_081	hat_delivered		309		none	False	Carol 回一楼取得经理证。在安全处，她把经理证换进装备槽并切为当前身份，再到二楼房务台批准申请，返回 203 交付。
+complete_082	hat_delivered		311	礼帽客	neutral	True	终于有人肯签字了。楼上戴礼帽的几位与我一样，有房务上的事，只同经理谈。
+complete_083	hat_delivered		313	Carol	平常	True	202 说您见过那个送餐托盘。
+complete_084	hat_delivered		316	礼帽客	neutral	True	见过。上面放的是我的茶壶。壶盖缺了一角，隔着走廊我也认得。
+complete_085	hat_delivered		318	Carol	平常	True	他们把您的茶送去了哪里？
+complete_086	hat_delivered		321	礼帽客	neutral	True	三楼走廊尽头。另有一人份的饭，天天照送。204 为了收盘子的声音，来抱怨过两次。或许他听得更清楚。
+complete_087	ear_intro		327		none	False	Carol 的鞋底擦过湿地毯。门里的人闭上眼，等那一声过去。
+complete_088	ear_intro		329	大耳客	neutral	True	就是这一块。每个人走到这里都要拖一下脚。你把它擦干，再去资料柜看看，今晚最后一趟巡房是几点。
+complete_089	ear_delivered		331		none	False	Carol 装上保洁证和保安证。她用保洁身份清理污渍，换成保安身份领取巡房记录，然后回 204 交付。
+complete_090	ear_delivered		333	Carol	平常	True	地毯不响了。巡房记录也在这儿。
+complete_091	ear_delivered		336	大耳客	neutral	True	地毯不响，鞋还是会响。楼上那些耳朵跟我一样灵。门一开，你就站着。等门关了再走。
+complete_092	ear_delivered		338	Carol	平常	True	你听过楼上收盘子的声音？
+complete_093	ear_delivered		341	大耳客	neutral	True	听过。盘子一响，钥匙就从外面转两圈。送饭的人走了，里头才有人拧把手。头两天还拧，今天没拧。
+complete_094	ear_delivered		343	Carol	平常	True	所以她出不来。
+complete_095	ear_delivered		346	大耳客	neutral	True	门是从外面锁的。你要上楼，先过 205。他那扇门要敲三下。第三下隔一会儿。
+complete_096	checker_intro		353		none	False	Carol 敲了两下，等了一会儿，再敲第三下。门开了一指宽。
+complete_097	checker_intro		355	门缝客	neutral	True	这回敲对了。昨晚那个人上来就拧把手，还在我眼前把工牌换了。我跟值班台说过，今晚谁要从这儿上楼，就把通行单办好再来。
+complete_098	checker_intro		357	Carol	平常	True	去哪里办？
+complete_099	checker_intro		360	门缝客	neutral	True	保安从值班资料点领，经理在登记台批。要换身份，走远了再换。楼上跟我一样爱从门缝看人的，最容易记住这种事。袖口明明还是那个袖口，牌子倒换了。
+complete_100	checker_delivered		362		none	False	Carol 以保安身份领到待审通行单，再到安全登记台切为经理批准。通行单下面，压着今夜的送餐记录。
+complete_101	checker_delivered		364		none	False	309 · 夜班临时员工 Terese · 今夜送餐一份 · 离店待批
+complete_102	checker_delivered		366		none	False	Carol 回到 205，按原来的节奏敲门，把批好的通行单放进门旁的收件夹。
+complete_103	checker_delivered		368	Carol	平常	True	今晚还要往 309 送饭？
+complete_104	checker_delivered		371	门缝客	neutral	True	是啊。送饭的人经过我门口，会念一遍房号，怕走错。三楼尽头，309。每晚都一样。
+complete_105	checker_delivered		373	Carol	怀疑	True	前台说她今早就离店了。
+complete_106	checker_delivered		376	门缝客	neutral	True	那今晚这份饭送给谁？
+complete_107	checker_delivered		378		none	False	门合上。Carol 朝二楼右端的楼梯走去。
+complete_108	302_intro		386		none	False	礼帽客站在门边，手里捏着三张账单。每张都折在同一个地方。
+complete_109	302_intro		388	礼帽客	neutral	True	劳驾。您是房务的人吗？这三份晚餐算在我的账上，我一份也没见过。
+complete_110	302_intro		390	Carol	平常	True	您订过晚餐？
+complete_111	302_intro		393	礼帽客	neutral	True	我只订了茶。问了两次，他们才肯在背面写明饭送到了哪里。您瞧。
+complete_112	302_intro		395		none	False	Carol 翻过账单。背面写着「309 · 临时安置」。
+complete_113	302_intro		397	Carol	怀疑	True	为什么 309 的饭会算到您这里？
+complete_114	302_intro		400	礼帽客	neutral	True	听说那间房没办正式入住，送了餐也没地方记账。于是他们挑了个有账的人。劳烦您到本层登记台，把那间房登上去。下次送饭，请记到那间房头上。
+complete_115	302_delivered		402		none	False	Carol 用经理证批准 309 入住。登记台的房务权限随即更新。
+complete_116	302_delivered		404		none	False	309 已登记。保洁工作证可开启房门。
+complete_117	302_delivered		406	Carol（心想）	猎杀时刻	True	现在刷保洁证，就能开她的门了。
+complete_118	reunion		412		none	False	Carol 在安全处切回保洁，刷开 309。Terese 扑过来时，Carol 闻见她衣领上还有一点柑橘香。墨绿蝴蝶结已经松了，一缕头发贴在她脸上。
+complete_119	reunion		414	Terese	neutral	False	Carol……？我以为又是他们来收盘子。
+complete_120	reunion		416	Carol	neutral	False	是我。你先松一点……我快喘不过气了。
+complete_121	reunion		418		none	False	Terese 松开一点，手还是攥着 Carol 的袖口。
+complete_122	reunion		420	Carol	neutral	False	第一天晚上，你说下班给我发消息。
+complete_123	reunion		422	Terese	neutral	False	他们上班前把手机收走了。我下班去拿，经理说得做满三天。我说工资也不要了，她就让我到这儿等离店批准。
+complete_124	reunion		424	Carol	neutral	False	然后呢？
+complete_125	reunion		426	Terese	neutral	False	她在外面锁了门。第二天我问她批了没有，她说……前台根本没收到过我的申请。
+complete_126	reunion		428		none	False	Carol 低头看了一眼桌上那份没动过的饭。
+complete_127	reunion		430	Carol	neutral	False	还能走吗？
+complete_128	reunion		432	Terese	neutral	False	能。楼下员工通道锁了。我听送饭的人说，五楼最右边有个消防出口。
+complete_129	reunion		434	Carol	neutral	False	好。你指路，我走前面。
+complete_130	alarm		439		none	False	两人绕过楼梯转角。送餐员推开 309 的门。片刻后，警铃响了。
+complete_131	alarm		441	前台（广播）	neutral	False	各位住客，请协助值班人员核验。有人看见两名人类走进员工楼梯。若有人从您门前经过，请查看工作证。有情况请拨前台。
+complete_132	alarm		443		none	False	经过一扇客房门时，长鼻客探出头，闻了一下，皱起鼻子。
+complete_133	alarm		445	长鼻客	neutral	True	怎么一股柑橘味。你们两个，哪一班的？
+complete_134	alarm		447		none	False	Carol 亮出当前启用的保洁证。
+complete_135	alarm		449	Carol	平常	True	夜班保洁。她跟我一组。
+complete_136	alarm		452	长鼻客	neutral	True	哦。那你跟送东西的人说一声，别再把桶搁我门口了。
+complete_137	alarm		454		none	False	长鼻客缩回去关门。两人走过门口。楼梯下方传来钥匙碰撞的声音。
+complete_138	alarm		456	员工（楼下）	neutral	False	你查楼上，我回 309 看看门锁。
+complete_139	403_intro		463		none	False	403 开门。Carol 停下，Terese 也收住了脚步。
+complete_140	403_intro		465	大耳客	neutral	True	你们两个，谁是来值班的？
+complete_141	403_intro		467	Carol	平常	True	您需要什么？
+complete_142	403_intro		470	大耳客	neutral	True	以前一晚上就两趟。今晚楼梯响了四遍，我躺下又坐起来，已经三回了。去把巡房记录拿给我。我想知道还得等到几点。
+complete_143	403_delivered		472		none	False	巡房员工正拿着记录挨扇门查看。Carol 等他停下，从身后取走记录，再回到 403。
+complete_144	403_delivered		474	Carol	平常	True	您要的记录。
+complete_145	403_delivered		477		none	False	大耳客把纸展开，用手指沿着一行字慢慢划过去。
+complete_146	403_delivered		479	大耳客	neutral	True	下一趟先走左边。好。那我右边这会儿总能清静一下。
+complete_147	403_delivered		481		none	False	他把门关上。Terese 看了一眼右端的楼梯。
+complete_148	403_delivered		483	Terese（低声）	害怕	True	他说下一趟先走左边。
+complete_149	403_delivered		486	Carol	气笑了	True	听见了。我们现在上去。
+complete_150	501_intro		493		none	False	到了五楼，Terese 拉了拉 Carol 的袖口，指向走廊尽头。消防门上方亮着一盏红灯。两名值班员工在那里停下。
+complete_151	501_intro		495	值班员工	neutral	False	门锁试过了。红灯还亮着，这边出不去。
+complete_152	501_intro		497	另一名员工	neutral	False	那就去查楼梯。前台说有人看见那两个人往楼上走。
+complete_153	501_intro		499		none	False	两人走远了。Carol 刚要往出口去，身旁的门开了一指宽。
+complete_154	501_intro		501	门缝客	neutral	True	你们也是来拉那扇门的？今晚已经响三次了。
+complete_155	501_intro		503	Terese	害怕	True	平时也这么响吗？
+complete_156	501_intro		506	门缝客	neutral	True	平时不会。每天快天亮，有个人会把一张纸塞进我门边那个口子。纸一落下，尽头就亮绿灯。等他走了，灯又变回红的。
+complete_157	501_intro		508	Carol	平常	True	你见过那张纸吗？
+complete_158	501_intro		511	门缝客	neutral	True	只看见一角。折起来的，盖过章。你们值班的自己去看。要是办好了，劳驾把门轻轻带上。
+complete_159	501_intro		513		none	False	Carol 俯身看了一眼收件口。投递口上方贴着一张磨旧的标签。
+complete_160	501_intro		515		none	False	夜班离店单 · 批准后投递
+complete_161	501_intro		517	Terese	惊讶	True	我在 309 等的，就是这张？
+complete_162	501_intro		520	Carol	蛊惑	True	嗯。走，我们自己去办。
+complete_163	501_delivered		523		none	False	Carol 在安全登记台切为经理，在离店单上写下 Terese 的名字，又在陪同栏填上自己。盖章后，两人回到 501，把单投进收件口。
+complete_164	501_delivered		525		none	False	纸落下去，轻轻响了一声。走廊尽头的灯变绿了。
+complete_165	501_delivered		527	门缝客	neutral	True	对。平时就是这个声音。
+complete_166	ending		532		none	False	Carol 推开消防门。外面是雨声。她等 Terese 跨出去，才把门轻轻带上。
+complete_167	ending		534	Terese	俏皮	True	那顿饭还算数。
+complete_168	ending		537	Carol	慵懒	True	一顿可不够。
+complete_169	ending		540	Terese	开心	True	行！先吃第一顿！
+complete_170	ending		543		none	False	两人走进雨里。

@@ -12,7 +12,7 @@ const ROLES := {
 	"EYE": {"name": "独眼客", "portrait": "res://assets/final/monster_dialogue_portraits_v1/eye_halfbody.png"},
 	"HAT": {"name": "礼帽客", "portrait": "res://assets/final/monster_dialogue_portraits_v1/hat_halfbody.png"},
 	"EAR": {"name": "大耳客", "portrait": "res://assets/final/monster_dialogue_portraits_v1/ear_halfbody.png"},
-	"CHECKER": {"name": "核验客", "portrait": "res://assets/final/monster_dialogue_portraits_v1/checker_halfbody.png"},
+	"CHECKER": {"name": "门缝客", "portrait": "res://assets/final/monster_dialogue_portraits_v1/checker_halfbody.png"},
 	"SYSTEM": {"name": "任务提示", "portrait": ""},
 	"CAROL": {"name": "Carol", "portrait": "res://assets/final/ui/dialogue_portraits/an/an_neutral.png"},
 }
@@ -23,6 +23,7 @@ const TASK_ROLES := {
 	"LATE_INTRO_501": "CHECKER", "LATE_REMINDER_501": "CHECKER", "LATE_DELIVERED_501": "CHECKER",
 }
 static func from_speaker(speaker: String) -> String:
+	if speaker == "核验客": return "CHECKER"
 	for id: String in ROLES:
 		if speaker == id or speaker == ROLES[id]["name"]: return id
 	if speaker == "Carol（心想）": return "CAROL"
@@ -31,7 +32,7 @@ static func from_speaker(speaker: String) -> String:
 static func display_name(id: String) -> String:
 	return TranslationServer.translate(ROLES.get(id, {}).get("name", id))
 static func portrait(id: String) -> Texture2D:
-	if id == "CAROL": return preload("res://scenes/ui/character_art_v2.gd").portrait("an")
+	if id == "CAROL": return preload("res://scenes/ui/confirmed_character_portraits.gd").portrait("Carol", "neutral")
 	var path: String = ROLES.get(id, {}).get("portrait", "")
 	if path.is_empty(): return null
 	var texture: Texture2D = load(path)

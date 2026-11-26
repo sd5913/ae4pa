@@ -1,6 +1,7 @@
 extends Node
 ## A's thin adapter: reuse D's dialogue and success screens, never store task truth.
 const MODAL := "LATE_TASK_STORY"
+const Story = preload("res://scenes/ui/story_revision.gd")
 var _dialogue_id := ""
 var _offer_after := ""
 var _win: Control
@@ -20,8 +21,7 @@ func _ready() -> void:
 func open_task_intro(task_id: String) -> void:
 	if not GameManager.can_offer_task(task_id): return
 	var definition := GameManager.get_task_definition(task_id)
-	var lines: Array[String] = [definition["name"], definition["instructions"], "接受后限时180秒；工作完成仍需返回本房交付。"]
-	_open("INTRO_" + definition["room_id"], task_id, lines, task_id)
+	_open("INTRO_" + definition["room_id"], task_id, [], task_id)
 
 func show_reminder(task_id: String) -> void:
 	var definition := GameManager.get_task_definition(task_id)
@@ -33,10 +33,12 @@ func show_reminder(task_id: String) -> void:
 	_open("REMINDER_" + definition["room_id"], task_id, [line])
 
 func _completed(task_id: String) -> void:
+	if task_id == GameManager.TASK_03_ID:
+		_open_sequence("REGISTRATION_309", Story.beats("302_delivered"))
+		return
 	if not GameManager.LATE_TASKS.has(task_id): return
 	var definition := GameManager.get_task_definition(task_id)
-	var line := "巡房记录已收到。4F通路已开放，可以上五楼办理离店。" if task_id == GameManager.TASK_04_ID else "离店手续已交付。现在可以带Terese去消防出口。"
-	_open("DELIVERED_" + definition["room_id"], task_id, [line])
+	_open("DELIVERED_" + definition["room_id"], task_id, [])
 
 func _open(id: String, task_id: String, lines: Array[String], offer_after: String = "") -> void:
 	if not _dialogue_id.is_empty() or GameManager.game_state != "PLAYING": return
@@ -53,15 +55,36 @@ func _open(id: String, task_id: String, lines: Array[String], offer_after: Strin
 	_offer_after = offer_after
 	GameManager.set_modal_open(MODAL, true)
 	main.get_node("TaskLayer").hide()
-	if not dialogue.show_task_dialogue(_dialogue_id, room + " · " + GameManager.get_task_definition(task_id)["name"], lines):
+	var section := room + ("_intro" if id.begins_with("INTRO_") else "_delivered")
+	var opened: bool
+	if id.begins_with("REMINDER_"):
+		opened = dialogue.show_task_dialogue(_dialogue_id, room + " · " + GameManager.get_task_definition(task_id)["name"], lines)
+	else:
+		opened = dialogue.show_story_sequence(_dialogue_id, Story.beats(section))
+	if not opened:
 		_clear()
+
+func play_alarm() -> void:
+	_open_sequence("ALARM", Story.beats("alarm"))
+
+func _open_sequence(id: String, rows: Array) -> void:
+	if not _dialogue_id.is_empty(): return
+	var dialogue: Control = main.get_node("StoryLayer/Dialogue")
+	if dialogue.visible: return
+	_dialogue_id = "LATE_" + id
+	GameManager.set_modal_open(MODAL, true)
+	main.get_node("TaskLayer").hide()
+	if not dialogue.show_story_sequence(_dialogue_id, rows, "exterior" if id == "ENDING" else ""): _clear()
 
 func _finished(id: String) -> void:
 	if id != _dialogue_id: return
 	var offer := _offer_after
 	_dialogue_id = ""
 	_offer_after = ""
-	main.get_node("TaskLayer").show()
+	if id == "LATE_ENDING":
+		_win.show_win()
+	else:
+		main.get_node("TaskLayer").show()
 	# Register the offer modal before releasing ours; no input or timer frame leaks.
 	if not offer.is_empty() and GameManager.can_offer_task(offer): GameManager.offer_task(offer)
 	GameManager.set_modal_open(MODAL, false)
@@ -69,7 +92,7 @@ func _finished(id: String) -> void:
 func _won() -> void:
 	main.get_node("TaskLayer").close_views()
 	main.get_node("TaskLayer").hide()
-	_win.show_win()
+	_open_sequence("ENDING", Story.beats("ending"))
 
 func _state_changed(state: String) -> void:
 	if state != "WON": _win.hide()
@@ -77,7 +100,8 @@ func _state_changed(state: String) -> void:
 
 func _clear() -> void:
 	if not _dialogue_id.is_empty():
-		main.get_node("StoryLayer/Dialogue").hide()
+		var dialogue: Control = main.get_node("StoryLayer/Dialogue")
+		if dialogue.get("_dialogue_id") == _dialogue_id: dialogue.cancel_presentation()
 		_dialogue_id = ""
 		_offer_after = ""
 	GameManager.set_modal_open(MODAL, false)
