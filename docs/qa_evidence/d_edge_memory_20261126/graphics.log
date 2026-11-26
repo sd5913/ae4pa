@@ -1,0 +1,96 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:372)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+PASS: floor plaque removed zh_CN_960
+PASS: icon drawer collapsed zh_CN_960
+PASS: equipment enlarged zh_CN_960
+PASS: hover expands without activation zh_CN_960
+PASS: hover does not open bag
+PASS: original bag request still works
+PASS: bag X outside artwork zh_CN_960
+PASS: outside X stays on screen
+PASS: outside X closes bag
+PASS: six aligned slots zh_CN_960
+PASS: equal save card sizes
+PASS: all six cards fit without cutoff zh_CN_960
+PASS: six aligned slots zh_CN_960
+PASS: equal save card sizes
+PASS: all six cards fit without cutoff zh_CN_960
+PASS: floor plaque removed zh_CN_1280
+PASS: icon drawer collapsed zh_CN_1280
+PASS: equipment enlarged zh_CN_1280
+PASS: hover expands without activation zh_CN_1280
+PASS: hover does not open bag
+PASS: original bag request still works
+PASS: bag X outside artwork zh_CN_1280
+PASS: outside X stays on screen
+PASS: outside X closes bag
+PASS: six aligned slots zh_CN_1280
+PASS: equal save card sizes
+PASS: all six cards fit without cutoff zh_CN_1280
+PASS: six aligned slots zh_CN_1280
+PASS: equal save card sizes
+PASS: all six cards fit without cutoff zh_CN_1280
+PASS: floor plaque removed zh_CN_1920
+PASS: icon drawer collapsed zh_CN_1920
+PASS: equipment enlarged zh_CN_1920
+PASS: hover expands without activation zh_CN_1920
+PASS: hover does not open bag
+PASS: original bag request still works
+PASS: bag X outside artwork zh_CN_1920
+PASS: outside X stays on screen
+PASS: outside X closes bag
+PASS: six aligned slots zh_CN_1920
+PASS: equal save card sizes
+PASS: all six cards fit without cutoff zh_CN_1920
+PASS: six aligned slots zh_CN_1920
+PASS: equal save card sizes
+PASS: all six cards fit without cutoff zh_CN_1920
+PASS: floor plaque removed en_960
+PASS: icon drawer collapsed en_960
+PASS: equipment enlarged en_960
+PASS: hover expands without activation en_960
+PASS: hover does not open bag
+PASS: original bag request still works
+PASS: bag X outside artwork en_960
+PASS: outside X stays on screen
+PASS: outside X closes bag
+PASS: six aligned slots en_960
+PASS: equal save card sizes
+PASS: all six cards fit without cutoff en_960
+PASS: six aligned slots en_960
+PASS: equal save card sizes
+PASS: all six cards fit without cutoff en_960
+PASS: floor plaque removed en_1280
+PASS: icon drawer collapsed en_1280
+PASS: equipment enlarged en_1280
+PASS: hover expands without activation en_1280
+PASS: hover does not open bag
+PASS: original bag request still works
+PASS: bag X outside artwork en_1280
+PASS: outside X stays on screen
+PASS: outside X closes bag
+PASS: six aligned slots en_1280
+PASS: equal save card sizes
+PASS: all six cards fit without cutoff en_1280
+PASS: six aligned slots en_1280
+PASS: equal save card sizes
+PASS: all six cards fit without cutoff en_1280
+PASS: floor plaque removed en_1920
+PASS: icon drawer collapsed en_1920
+PASS: equipment enlarged en_1920
+PASS: hover expands without activation en_1920
+PASS: hover does not open bag
+PASS: original bag request still works
+PASS: bag X outside artwork en_1920
+PASS: outside X stays on screen
+PASS: outside X closes bag
+PASS: six aligned slots en_1920
+PASS: equal save card sizes
+PASS: all six cards fit without cutoff en_1920
+PASS: six aligned slots en_1920
+PASS: equal save card sizes
+PASS: all six cards fit without cutoff en_1920
+EDGE_MEMORY_LAYOUT: PASS

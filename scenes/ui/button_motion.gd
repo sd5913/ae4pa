@@ -16,6 +16,9 @@ func _bind_button(button: Button) -> void:
 	if _buttons.has(button):
 		return
 	_buttons.append(button)
+	var binding_key := "button_motion_%d" % get_instance_id()
+	if button.has_meta(binding_key): return
+	button.set_meta(binding_key, true)
 	button.theme = UI_THEME
 	button.alignment = HORIZONTAL_ALIGNMENT_CENTER
 	button.text_overrun_behavior = TextServer.OVERRUN_NO_TRIMMING

@@ -302,10 +302,10 @@ unique_name_in_owner = true
 
 [node name="CloseButton" type="Button" parent="Case"]
 layout_mode = 0
-offset_left = 1008.0
-offset_top = 112.0
-offset_right = 1048.0
-offset_bottom = 152.0
+offset_left = 1128.0
+offset_top = 26.0
+offset_right = 1172.0
+offset_bottom = 70.0
 unique_name_in_owner = true
 script = ExtResource("close_script")
 focus_next = NodePath("../OwnedCards")
