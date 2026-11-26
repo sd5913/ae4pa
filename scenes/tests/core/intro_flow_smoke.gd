@@ -63,7 +63,7 @@ func _run() -> void:
 	await _drain(dialogue)
 	_expect(not dialogue.visible and game.call("is_world_input_allowed"), "Prologue completion returns control to 1F")
 	_expect(game.call("get_available_floors").is_empty(), "Prologue completion alone does not finish manager talk")
-	player.global_position.x = 3400.0
+	player.global_position.x = float(player.get_parent().get_stair_interaction_center(true))
 	_expect(not game.call("request_floor_travel", 2), "Stairs reject travel before actual manager talk")
 	var floor_node: Node = main.get_node("World").get_child(0)
 	var manager: Node2D = floor_node.get_node("StaffRoot/ManagerSlot/Staff")
@@ -89,7 +89,7 @@ func _run() -> void:
 	_expect(not manager.call("is_stealing") and not dialogue.visible, "Closing E cannot also start a world action")
 	await _action("interact", false)
 	_expect(not game.call("complete_manager_intro"), "Manager completion is idempotent")
-	player.global_position.x = 3400.0
+	player.global_position.x = float(player.get_parent().get_stair_interaction_center(true))
 	_expect(game.call("request_floor_travel", 2), "Real dialogue opens 2F without any card")
 	_expect(cards.call("get_owned_cards").is_empty(), "Story integration grants no development cards")
 	main.get_node("DeveloperOverlay/Margin/Info/NewGame").emit_signal("pressed")

@@ -45,7 +45,7 @@ func _run() -> void:
 	game.complete_manager_intro()
 	game.set_process(false)
 	var floor_node: Node = main.get_node("World").get_child(0)
-	floor_node.player.global_position = floor_node.exit_point.global_position
+	floor_node.player.position.x = floor_node.get_stair_interaction_center(true)
 	_expect(game.request_floor_travel(2), "Fixture reaches real2F")
 	await process_frame
 	var board: Control = main.get_node("TaskLayer/MissionBoard")
@@ -72,7 +72,7 @@ func _run() -> void:
 	await process_frame
 	_expect(board.visible and game.current_task_id == game.TASK_02_ID and game.remaining_time == 0, "Translated dialogue still opens202 offer without time")
 	_english(board.get("_hint").text, "202 offer details")
-	_expect("180" in board.get("_hint").text and "202" in board.get("_title").text, "202 offer preserves actual limit and room")
+	_expect("120" in board.get("_hint").text and "202" in board.get("_title").text, "202 offer preserves actual limit and room")
 	_english(board.get("_title").text, "202 offer title")
 	await _switch("zh_CN")
 	_expect("保安" in board.get("_hint").text, "Open offer returns to Chinese")
@@ -95,7 +95,7 @@ func _run() -> void:
 	_expect(game.record_work_result("PARCEL_CABINET_2F"), "Real task API records parcel")
 	await process_frame
 	_english(hud.get_node("%Objective").text, "202 parcel return objective")
-	game._process(180)
+	game._process(120)
 	await process_frame
 	var failure: Control = main.get_node("TaskLayer/Failure")
 	_expect(failure.visible, "202 timeout shows actual failure UI")

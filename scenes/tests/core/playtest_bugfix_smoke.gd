@@ -144,8 +144,7 @@ func run() -> void:
 	g.get("_visited_floors").assign([3, 4, 5])
 	f.player.position = f.return_point.position
 	await settle()
-	check(f.return_hint.visible, "Existing downstairs prompt is visible in the interaction range")
-	check(f.return_hint.z_index > f.get_node("Floor4Art").z_index, "Stair hint renders above the opaque floor art")
+	check(not f.return_hint.visible, "Downstairs keeps its selection without an on-floor hint")
 	await capture("terese_stairs")
 	main.get_node("TaskLayer").open_floor_selection()
 	var overlay: Node = main.get_node("TaskLayer/PlayOverlay")

@@ -33,7 +33,7 @@ func _freeze_doors() -> void:
 		if child.get_script() == load("res://scenes/doors/door_scheduler.gd"): child.set_process(false)
 	for door in _floor().get("_doors"): door.set_managed_state("CLOSED")
 func _travel(floor_number: int) -> void:
-	_player().position.x = 3400 if floor_number > game.current_floor else 192
+	_player().position.x = _floor().get_stair_interaction_center(floor_number > game.current_floor)
 	await _settle()
 	_expect(game.request_floor_travel(floor_number), "Validated stair travel to%dF" % floor_number)
 	await _settle()
@@ -107,7 +107,7 @@ func _run() -> void:
 	for i in range(8):
 		if not main.dialogue.visible: break
 		await _tap()
-	_expect(board.visible and "302" in board.get("_title").text and "240" in board.get("_hint").text and game.remaining_time == 0, "03 panel names302 and240 before clock starts")
+	_expect(board.visible and "302" in board.get("_title").text and "120" in board.get("_hint").text and game.remaining_time == 0, "03 panel names302 and 120 before clock starts")
 	_english(board.get("_hint").text, "03 English task details")
 	await _capture("offer03")
 	_expect(game.remaining_time == 0, "Language switch does not start03 clock")
@@ -115,7 +115,7 @@ func _run() -> void:
 	await _settle()
 	board.get("_accept_button").pressed.emit()
 	await _settle()
-	_expect(game.remaining_time == 240 and game.get("_task_checkpoint").get("floor") == 3, "03 accepts with a real3F checkpoint")
+	_expect(game.remaining_time == 120 and game.get("_task_checkpoint").get("floor") == 3, "03 accepts with a real3F checkpoint")
 	await _travel(1)
 	var manager := _manager()
 	_player().global_position.x = manager.global_position.x + 50
@@ -154,7 +154,7 @@ func _run() -> void:
 	await _settle()
 	await _tap()
 	_expect(game.task_status == "ACTIVE" and not register.is_completed(), "Standby manager is refused by real register")
-	game._process(240)
+	game._process(120)
 	await _settle()
 	main.get_node("TaskLayer/Failure/%RetryButton").pressed.emit()
 	await _settle()

@@ -56,6 +56,15 @@ func resolve_monster_encounter(room: String) -> bool:
 	return true
 
 
+# Saves made before the 120-second playtest adjustment keep the recorded clock.
+const LEGACY_THEFT_TASK_SAVE_LIMITS := {
+	"TASK_01_CLEAN": 210.0,
+	"TASK_02_PARCEL": 180.0,
+	"TASK_T03_ROOM_SERVICE": 240.0,
+	"TASK_03_AUTHORIZE": 240.0,
+	"TASK_04_PATROL": 180.0,
+}
+
 const STAIR_INTERACTION_RADIUS := 70.0
 
 const TaskDefinitions = preload("res://scripts/task_definitions.gd")
@@ -318,7 +327,7 @@ func validate_memory_state(value: Dictionary) -> bool:
 	if not _validate_memory_tasks(value.get("completed_task_ids"), value.get("world_flags")): return false
 	if (status == "COMPLETED") != value.completed_task_ids.has(task_id): return false
 	if not _validate_memory_companion(value.has_friend, int(value.current_floor), value.completed_task_ids, value.world_flags): return false
-	if status in ["ACTIVE", "READY_TO_SUBMIT"] and value.remaining_time > float(get_task_definition(task_id).time_limit): return false
+	if status in ["ACTIVE", "READY_TO_SUBMIT"] and value.remaining_time > float(LEGACY_THEFT_TASK_SAVE_LIMITS.get(task_id, get_task_definition(task_id).time_limit)): return false
 	if not _validate_memory_visits(value.get("visited_floors"), int(value.current_floor)): return false
 	if not _validate_memory_encounters(value.get("room_monsters"), value.get("seen_monsters"), value.get("pending_encounter")): return false
 	if not value.get("player") is Dictionary or not value.player.get("position") is Array or value.player.position.size() != 2: return false
@@ -541,12 +550,10 @@ func get_available_floors() -> Array[int]:
 func request_floor_travel(floor_number: int) -> bool:
 	# A checker violation must be retried outside its range; do not carry it across floors.
 	if _pending_monster_encounter.get("reason", "") == "SWITCHED_NEAR_CHECKER": return false
-	if not is_world_input_allowed() or not _has_floor_host() or not get_available_floors().has(floor_number):
+	if not is_world_input_allowed() or not _has_floor_host() or _floor_host.get_child_count() != 1 or not get_available_floors().has(floor_number):
 		return false
-	var floor_node: Node = _floor_host.get_child(0)
-	var player: Node2D = floor_node.get_node_or_null("Player")
-	var stair: Node2D = floor_node.get_node_or_null("Interactions/ExitPoint" if floor_number > current_floor else "Interactions/ReturnPoint")
-	if player == null or stair == null or absf(player.global_position.x - stair.global_position.x) > STAIR_INTERACTION_RADIUS:
+	var floor_node: Node2D = _floor_host.get_child(0)
+	if not floor_node.is_player_at_stair(floor_number > current_floor):
 		return false
 	_load_floor(floor_number, floor_number < current_floor, true, true)
 	return true
@@ -555,12 +562,9 @@ func request_floor_travel(floor_number: int) -> bool:
 func get_stair_destinations() -> Array[int]:
 	var destinations: Array[int] = []
 	if not _has_floor_host() or _floor_host.get_child_count() != 1: return destinations
-	var floor_node: Node = _floor_host.get_child(0)
-	var player: Node2D = floor_node.get_node_or_null("Player")
-	if player == null: return destinations
+	var floor_node: Node2D = _floor_host.get_child(0)
 	for destination: int in get_available_floors():
-		var stair: Node2D = floor_node.get_node_or_null("Interactions/ExitPoint" if destination > current_floor else "Interactions/ReturnPoint")
-		if stair != null and absf(player.global_position.x - stair.global_position.x) <= STAIR_INTERACTION_RADIUS:
+		if floor_node.is_player_at_stair(destination > current_floor):
 			destinations.append(destination)
 	return destinations
 

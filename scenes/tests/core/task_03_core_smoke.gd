@@ -16,11 +16,13 @@ func _run() -> void:
 	game.offer_task("TASK_01_CLEAN")
 	game.accept_task("TASK_01_CLEAN")
 	cards.collect_card("CLEANER")
+	cards.equip_card("CLEANER", 0)
 	game.record_work_result("STAIN_201")
 	game.submit_task("TASK_01_CLEAN")
 	game.offer_task("TASK_02_PARCEL")
 	game.accept_task("TASK_02_PARCEL")
 	cards.collect_card("SECURITY")
+	cards.equip_card("SECURITY", 1)
 	cards.switch_active()
 	game.record_work_result("PARCEL_CABINET_2F")
 	game.submit_task("TASK_02_PARCEL")
@@ -35,7 +37,7 @@ func _run() -> void:
 	game.current_floor = 1
 	_expect(not game.accept_task("TASK_03_AUTHORIZE"), "Acceptance requires its3F offer location")
 	game.current_floor = 3
-	_expect(game.accept_task("TASK_03_AUTHORIZE") and game.remaining_time == 240, "03 accepts with240 seconds")
+	_expect(game.accept_task("TASK_03_AUTHORIZE") and game.remaining_time == 120, "03 accepts with 120 seconds")
 	_expect(game.is_interaction_allowed("STAFF_MANAGER_1F"), "Only accepted03 enables manager source")
 	_expect(not game.record_work_result("REGISTER_309"), "Security cannot approve309")
 	cards.collect_card("MANAGER")
@@ -50,7 +52,7 @@ func _run() -> void:
 	game.current_floor = 3
 	game.set_modal_open("TEST", true)
 	game._process(20)
-	_expect(game.remaining_time == 240 and not game.record_work_result("REGISTER_309"), "Modal stops clock and approval")
+	_expect(game.remaining_time == 120 and not game.record_work_result("REGISTER_309"), "Modal stops clock and approval")
 	game.set_modal_open("TEST", false)
 	_expect(game.has_method("rescue_friend") and not game.call("rescue_friend"), "Cannot rescue before approval")
 	_expect(game.record_work_result("REGISTER_309"), "Current manager authorizes on3F")

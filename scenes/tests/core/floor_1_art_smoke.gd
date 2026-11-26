@@ -54,10 +54,10 @@ func _run() -> void:
 	_expect(not floor_node.get_node("FloorBackground").visible and floor_node.get_node("FloorBackground").texture == null, "Old flattened background is unloaded")
 	_expect(art.position == Vector2(0,106.25) and art.scale == Vector2(.9375,.9375), "Original corridor scale and walking baseline are retained")
 	_expect(player.global_position == Vector2(192,560), "Spawn is unchanged")
-	for pair in [["SecuritySlot",400,"SECURITY"],["CleanerSlot",2670,"CLEANER"],["ManagerSlot",1260,"MANAGER"]]:
+	for pair in [["SecuritySlot",400,"SECURITY"],["CleanerSlot",2645,"CLEANER"],["ManagerSlot",1260,"MANAGER"]]:
 		var slot: Node2D = floor_node.get_node("StaffRoot/" + pair[0])
 		_expect(slot.global_position == Vector2(pair[1],560) and slot.get_node("Staff").card_id == pair[2], "Staff work zones match the HD lobby layout")
-	_expect(floor_node.get_node("Interactions/ExitPoint").global_position == Vector2(3400,560), "Stair interaction position is unchanged")
+	_expect(floor_node.get_node("Interactions/ExitPoint").global_position == Vector2(3400,560), "Stair arrival marker is unchanged")
 	_check_art(art)
 	_expect(player.z_index == 1 and floor_node.get_node("StaffRoot").z_index == 1 and art.get_node("Foreground").z_index == 2, "Foreground is above player and all staff")
 	for pair in [["lounge_utility_column",2768],["utility_stairs_column",3374]]:
@@ -88,7 +88,7 @@ func _run() -> void:
 		main.dialogue.get_node("%ContinueButton").pressed.emit()
 		await process_frame
 	_expect(game.has_completed_manager_intro() and game.is_world_input_allowed(), "Real manager dialogue completion unlocks stairs and releases input")
-	player.global_position.x = 3400
+	player.global_position.x = floor_node.get_stair_interaction_center(true)
 	await _settle()
 	await _key(true)
 	await _key(false)

@@ -4,6 +4,7 @@ signal rescue_cg_finished
 signal beat_displayed(token: String, speaker: String, source: String, parameters: Dictionary)
 
 const DATA_PATH := "res://cg309_reunion/dialogue.json"
+const DialogueScene := preload("res://scenes/ui/dialogue.tscn")
 const FRAME_PATHS := {
 	"approach": "res://cg309_reunion/assets/cg_01_approach.png",
 	"hug": "res://cg309_reunion/assets/cg_02_hug.png",
@@ -17,10 +18,9 @@ var _transitioning := false
 var _frame_id := ""
 var _front: TextureRect
 var _back: TextureRect
-var _panel: PanelContainer
+var _dialogue: Control
+var _panel: Panel
 var _speaker: Label
-var _line: Label
-var _hint: Label
 var _transition_tween: Tween
 var _camera_tween: Tween
 var _textures: Dictionary = {}
@@ -50,42 +50,11 @@ func _build_ui() -> void:
 	add_child(fill)
 	_back = _new_frame()
 	_front = _new_frame()
-	_panel = PanelContainer.new()
-	_panel.anchor_left = 0.035
-	_panel.anchor_right = 0.965
-	_panel.anchor_top = 0.72
-	_panel.anchor_bottom = 0.965
-	_panel.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	theme = preload("res://scenes/ui/staff_ui_theme.tres")
-	var style: StyleBox = theme.get_stylebox("panel", "PanelContainer").duplicate()
-	style.content_margin_left = 32
-	style.content_margin_right = 32
-	style.content_margin_top = 16
-	style.content_margin_bottom = 16
-	_panel.add_theme_stylebox_override("panel", style)
-	add_child(_panel)
-	var box := VBoxContainer.new()
-	box.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	box.add_theme_constant_override("separation", 7)
-	_panel.add_child(box)
-	_speaker = Label.new()
-	_speaker.add_theme_font_size_override("font_size", 22)
-	_speaker.add_theme_color_override("font_color", Color("#ead19b"))
-	box.add_child(_speaker)
-	_line = Label.new()
-	_line.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-	_line.size_flags_vertical = Control.SIZE_EXPAND_FILL
-	_line.add_theme_font_size_override("font_size", 24)
-	_line.add_theme_color_override("font_color", Color("#f8f0df"))
-	box.add_child(_line)
-	_hint = Label.new()
-	_hint.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	_hint.add_theme_font_size_override("font_size", 16)
-	_hint.add_theme_color_override("font_color", Color("#c4bda8"))
-	box.add_child(_hint)
-	var font := SystemFont.new()
-	font.font_names = PackedStringArray(["Noto Sans CJK SC", "Microsoft YaHei", "PingFang SC", "sans-serif"])
-	_panel.add_theme_font_override("font", font)
+	_dialogue = DialogueScene.instantiate()
+	_dialogue.presentation_only = true
+	add_child(_dialogue)
+	_panel = _dialogue.get_node("%DialogueFrame")
+	_speaker = _dialogue.get_node("%Speaker")
 
 func _new_frame() -> TextureRect:
 	var node := TextureRect.new()
@@ -133,11 +102,10 @@ func _show_next() -> void:
 		rescue_cg_finished.emit()
 		return
 	var beat: Dictionary = _beats[_index]
-	var narrative := bool(beat.get("narration", false))
-	_speaker.text = " " if narrative else str(beat.get("speaker_en", beat["speaker"])) if TranslationServer.get_locale().begins_with("en") else str(beat["speaker"])
-	_line.text = tr(str(beat["text"])).format(beat.get("parameters", {}))
-	_line.add_theme_color_override("font_color", Color("#d3c5ad") if narrative else Color("#f8f0df"))
-	_hint.text = "%d / %d" % [_index + 1, _beats.size()]
+	var speaker := ""
+	if not beat.get("narration", false):
+		speaker = str(beat.get("speaker_en", beat["speaker"])) if TranslationServer.get_locale().begins_with("en") else str(beat["speaker"])
+	_dialogue.present_caption(speaker, tr(str(beat["text"])).format(beat.get("parameters", {})))
 	var next_id := str(beat["frame"])
 	if next_id != _frame_id:
 		_change_frame(next_id)
@@ -201,6 +169,8 @@ func _input(event: InputEvent) -> void:
 	if not _playing or not visible:
 		return
 	var surfaces: Array[Rect2] = [_panel.get_global_rect()]
+	if _speaker.visible:
+		surfaces.append(_speaker.get_global_rect())
 	var result: int = _pointer.feed(event, surfaces, _transitioning)
 	if result == _pointer.ADVANCE:
 		advance()

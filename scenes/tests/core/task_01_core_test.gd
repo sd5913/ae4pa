@@ -39,7 +39,7 @@ func _ready() -> void:
 	_add_button(row2, "Caught", "代发偷窃被抓", func() -> void: GameManager.request_task_failure("STAFF_CAUGHT"))
 	_add_button(row2, "Restart", "开发新局", _restart)
 	var retry := _add_button(row2, "Retry", "开发：检查点重试", func() -> void:
-		_notice.text = "已恢复 201 接取前状态；请重新接受，才开始 210 秒计时。" if GameManager.retry_current_task() else "当前没有可恢复的失败任务。"
+		_notice.text = "已恢复 201 接取前状态；请重新接受，才开始 120 秒计时。" if GameManager.retry_current_task() else "当前没有可恢复的失败任务。"
 	)
 	retry.disabled = true
 	_notice = _add_label(panel, "", 18)

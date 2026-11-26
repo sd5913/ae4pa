@@ -6,8 +6,12 @@ const MODAL_ID := "bag"
 var _previous_focus: Control
 var _tutorial_card_id := ""
 var _tutorial_slot_index := -1
+var _hovered_owned_index := -1
 
 @onready var _owned_cards: ItemList = %OwnedCards
+@onready var _owned_hit_regions: Array[Panel] = [
+	$Case/OwnedHitRegions/First, $Case/OwnedHitRegions/Second, $Case/OwnedHitRegions/Third,
+]
 @onready var _slot_a: Label = %SlotAValue
 @onready var _slot_b: Label = %SlotBValue
 @onready var _close_button: Button = %CloseButton
@@ -24,6 +28,14 @@ func _ready() -> void:
 	visibility_changed.connect(_sync_modal_state)
 	CardManager.cards_changed.connect(_refresh_cards)
 	_owned_cards.item_selected.connect(_on_card_selected)
+	_owned_cards.focus_entered.connect(_refresh_owned_highlights)
+	_owned_cards.focus_exited.connect(_refresh_owned_highlights)
+	_owned_cards.draw.connect(_refresh_owned_highlights)
+	for index in _owned_hit_regions.size():
+		var region := _owned_hit_regions[index]
+		region.gui_input.connect(_on_owned_slot_input.bind(index))
+		region.mouse_entered.connect(_set_hovered_owned_slot.bind(index))
+		region.mouse_exited.connect(_set_hovered_owned_slot.bind(-1))
 	_equip_slot_a.pressed.connect(_equip_selected.bind(0))
 	_equip_slot_b.pressed.connect(_equip_selected.bind(1))
 	_refresh_cards()
@@ -92,6 +104,7 @@ func _refresh_cards() -> void:
 	_owned_heading.text = tr("收藏  %d / %d") % [card_ids.size(), _empty_owned.size()]
 	for index: int in range(_empty_owned.size()):
 		_empty_owned[index].visible = index >= card_ids.size()
+		_owned_hit_regions[index].mouse_filter = Control.MOUSE_FILTER_STOP if index < card_ids.size() else Control.MOUSE_FILTER_IGNORE
 	var equipped_count := 0
 	for index: int in range(_slot_art.size()):
 		_slot_art[index].texture = CardDisplay.art_for(equipped[index])
@@ -107,6 +120,7 @@ func _refresh_cards() -> void:
 	_equip_slot_a.disabled = _selected_card_id().is_empty()
 	_equip_slot_b.disabled = _selected_card_id().is_empty()
 	_apply_tutorial_highlight()
+	_refresh_owned_highlights()
 
 
 func set_tutorial_focus(card_id: String, slot_index: int) -> void:
@@ -130,6 +144,45 @@ func _on_card_selected(_index: int) -> void:
 	_equip_slot_a.disabled = false
 	_equip_slot_b.disabled = false
 	_status.text = "选择佩戴槽后装备工作证"
+	_refresh_owned_highlights()
+
+
+func _on_owned_slot_input(event: InputEvent, index: int) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		_select_owned_card(index)
+
+
+func _select_owned_card(index: int) -> void:
+	if index < 0 or index >= _owned_cards.item_count:
+		return
+	_owned_cards.select(index)
+	_owned_cards.grab_focus()
+	_on_card_selected(index)
+
+
+func _set_hovered_owned_slot(index: int) -> void:
+	_hovered_owned_index = index
+	_refresh_owned_highlights()
+
+
+func _refresh_owned_highlights() -> void:
+	var selected := _owned_cards.get_selected_items()
+	var focused_index := -1
+	if _owned_cards.has_focus() and _owned_cards.item_count > 0:
+		focused_index = 0 if selected.is_empty() else selected[0]
+	for index in _owned_hit_regions.size():
+		var region := _owned_hit_regions[index]
+		var style_name := "empty_slot"
+		if index < _owned_cards.item_count:
+			if index == focused_index:
+				style_name = "focused_slot"
+			elif _owned_cards.is_selected(index):
+				style_name = "selected_slot"
+			elif index == _hovered_owned_index:
+				style_name = "hovered_slot"
+		var style := region.get_theme_stylebox(style_name)
+		if region.get_theme_stylebox("panel") != style:
+			region.add_theme_stylebox_override("panel", style)
 
 
 func _equip_selected(slot_index: int) -> void:

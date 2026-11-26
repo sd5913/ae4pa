@@ -32,7 +32,7 @@ func _run() -> void:
 	await create_timer(0.9).timeout
 	await _action("interact", false)
 	_expect(cards.call("get_owned_cards").is_empty(), "Distant E does not steal a card")
-	player.global_position.x = 3400.0
+	player.global_position.x = floor_node.get_stair_interaction_center(true)
 	await _action("interact", true)
 	await _action("interact", false)
 	_expect(game.get("current_floor") == 1, "Manager introduction gates the real 1F stairs")
@@ -81,7 +81,7 @@ func _run() -> void:
 	await _action("switch_id", false)
 	_expect(cards.get("active_card") == "SECURITY", "One Q switches the active card once")
 	_expect(preview.get_node("DeveloperOverlay/Margin/Info/Status").text.ends_with("当前：SECURITY"), "Development display reflects real Q changes")
-	player.global_position.x = 3400.0
+	player.global_position.x = floor_node.get_stair_interaction_center(true)
 	await _physics_frames(4)
 	for path: String in paths:
 		_expect(not floor_node.get_node(path).call("is_player_in_range"), "Stairs fixture has left every employee detection area")
@@ -128,7 +128,8 @@ func _run() -> void:
 func _accept_task_fixture(preview: Node, game: Node) -> void:
 	# Explicit acceptance fixture; the F5 UI route is checked separately.
 	game.call("complete_manager_intro")
-	preview.get_node("World").get_child(0).get_node("Player").global_position.x = 3400.0
+	var floor_node: Node = preview.get_node("World").get_child(0)
+	floor_node.player.global_position.x = floor_node.get_stair_interaction_center(true)
 	_expect(game.call("request_floor_travel", 2), "Task fixture uses the real 1F stair")
 	_expect(game.call("offer_task", "TASK_01_CLEAN"), "Task fixture offers 201")
 	_expect(game.call("accept_task", "TASK_01_CLEAN"), "Task fixture accepts 201")

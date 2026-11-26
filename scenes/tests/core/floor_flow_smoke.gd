@@ -39,7 +39,7 @@ func _run() -> void:
 		_expect(cards.call("collect_card", card_id), "Real collection accepts " + card_id)
 	cards.call("equip_card", "MANAGER", 1)
 	var equipped: Array = cards.call("get_equipped_cards")
-	host.get_child(0).get_node("Player").global_position.x = 3400.0
+	host.get_child(0).player.global_position.x = host.get_child(0).get_stair_interaction_center(true)
 	game.call("go_to_floor", 2)
 	_expect(game.get("current_floor") == 1, "Three cards alone no longer open 2F")
 	game.call("complete_manager_intro")
@@ -67,7 +67,7 @@ func _run() -> void:
 	host.get_child(0).get_node("Player").global_position.x = 500.0
 	await _press_interact()
 	_expect(game.get("current_floor") == 2, "E away from both stairs cannot change floors")
-	host.get_child(0).get_node("Player").global_position.x = 3400.0
+	host.get_child(0).player.global_position.x = host.get_child(0).get_stair_interaction_center(true)
 	await _press_interact()
 	await process_frame
 	_expect(game.get("current_floor") == 2, "Incomplete 201 and 202 block 3F")
@@ -75,11 +75,11 @@ func _run() -> void:
 	await process_frame
 	_check_floor(host, 3)
 	var third: Node = host.get_child(0)
-	host.get_child(0).get_node("Player").global_position.x = 3400.0
+	host.get_child(0).player.global_position.x = host.get_child(0).get_stair_interaction_center(true)
 	game.call("go_to_floor", 4)
 	_expect(host.get_child(0) == third, "Unrescued story state blocks 3F exit")
 	game.set("has_friend", true) # A-owned story fixture; rescue itself is outside A-07.
-	host.get_child(0).get_node("Player").global_position.x = 3400.0
+	host.get_child(0).player.global_position.x = host.get_child(0).get_stair_interaction_center(true)
 	game.call("go_to_floor", 4)
 	game.call("go_to_floor", 5)
 	_expect(game.get("current_floor") == 4, "Unfinished task 04 blocks 5F")

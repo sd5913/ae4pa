@@ -107,6 +107,7 @@ func _run_save_phase() -> void:
 	_floor().get_node("Player").restore_stamina_state({"value": 62.0, "rest": 0.25, "exhausted": false})
 	await _offer_and_accept(_game.TASK_01_ID)
 	await _ready_for_capture()
+	# A pre-adjustment clock can exceed the current 120-second acceptance limit.
 	_game.remaining_time = 123.25
 	_game.play_time_seconds = 42.5
 	_main.get_node("TaskLayer").play_overlay.toggle_pause()

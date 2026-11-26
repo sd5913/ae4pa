@@ -17,6 +17,9 @@ const STAFF_TARGET_IDS: Dictionary = {"CLEANER": "STAFF_CLEANER_1F", "SECURITY":
 const DEFAULT_CORRIDOR_WIDTH := 3600.0
 const CORRIDOR_PLAYER_Y := 560.0
 @export var corridor_width: float = DEFAULT_CORRIDOR_WIDTH
+# Floor-local foot positions across the first visible step, independent of arrivals.
+@export var downstairs_stair_range := Vector2.ZERO
+@export var upstairs_stair_range := Vector2.ZERO
 @export var task_01_barrier_x: float = 0.0
 @export var task_02_barrier_x: float = 0.0
 @export_range(1.0, 160.0) var manager_talk_radius: float = 90.0
@@ -39,9 +42,6 @@ var _door_scheduler: Node
 func _ready() -> void:
 	add_to_group("current_identity_observer")
 	CardManager.set_identity_change_guard(Callable(self, "get_identity_change_block_reason"))
-	var markers := preload("res://scenes/levels/interaction_markers.gd").new()
-	markers.name = "InteractionMarkers"
-	add_child(markers)
 	player.global_position = $SpawnPoint.global_position
 	player.set_walk_bounds(64.0, corridor_width - 64.0)
 	var camera: Camera2D = player.get_node("Camera2D")
@@ -216,10 +216,10 @@ func _choose_interaction_target() -> Dictionary:
 	for destination: int in [floor_number - 1, floor_number + 1]:
 		if destination < 1 or destination > 5:
 			continue
-		var stair: Marker2D = return_point if destination < floor_number else exit_point
-		var distance: float = absf(player.global_position.x - stair.global_position.x)
-		if distance <= GameManager.STAIR_INTERACTION_RADIUS:
-			candidates.append({"id": "STAIRS_%s_%dF" % ["DOWN" if destination < floor_number else "UP", floor_number], "kind": "STAIR", "floor": destination, "priority": 2, "distance": distance})
+		var upstairs := destination > floor_number
+		if is_player_at_stair(upstairs):
+			var distance := absf(to_local(player.global_position).x - get_stair_interaction_center(upstairs))
+			candidates.append({"id": "STAIRS_%s_%dF" % ["UP" if upstairs else "DOWN", floor_number], "kind": "STAIR", "floor": destination, "priority": 2, "distance": distance})
 	candidates.sort_custom(func(a: Dictionary, b: Dictionary) -> bool:
 		if a["priority"] != b["priority"]:
 			return a["priority"] < b["priority"]
@@ -723,22 +723,32 @@ func _notification(what: int) -> void:
 		_refresh_staff_captions()
 
 
+func get_stair_interaction_range(upstairs: bool) -> Vector2:
+	var artwork_range := upstairs_stair_range if upstairs else downstairs_stair_range
+	if artwork_range != Vector2.ZERO:
+		return artwork_range
+	var stair_x := to_local((exit_point if upstairs else return_point).global_position).x
+	var radius := GameManager.STAIR_INTERACTION_RADIUS
+	return Vector2(stair_x - radius, stair_x + radius)
+
+
+func get_stair_interaction_center(upstairs: bool) -> float:
+	var interaction_range := get_stair_interaction_range(upstairs)
+	return (interaction_range.x + interaction_range.y) * 0.5
+
+
+func is_player_at_stair(upstairs: bool) -> bool:
+	if (upstairs and floor_number == 5) or (not upstairs and floor_number == 1):
+		return false
+	var player_x := to_local(player.global_position).x
+	var interaction_range := get_stair_interaction_range(upstairs)
+	return player_x >= interaction_range.x and player_x <= interaction_range.y
+
+
 func _refresh_exit_hint() -> void:
-	return_hint.text = tr("靠近后按 E → %dF") % (floor_number - 1) if floor_number > 1 and GameManager.get_available_floors().has(floor_number - 1) else ""
 	if floor_number == 5:
 		exit_hint.text = "EXIT · 按E与Terese一起逃离" if GameManager.get_world_flags().get("exit_form_delivered", false) else "EXIT · 先完成501离店单交付"
-	elif floor_number == 1 and not GameManager.get_available_floors().has(2):
-		exit_hint.text = "先完成经理初次对白，再上 2F"
-	elif floor_number == 2 and not GameManager.get_available_floors().has(3):
-		exit_hint.text = "完成201—205五项任务并逐一交付后开放3F"
-	elif floor_number == 3 and not GameManager.has_friend:
-		exit_hint.text = "先进入 309 找到Terese，再前往五楼出口"
-	elif not GameManager.get_available_floors().has(floor_number + 1):
-		exit_hint.text = "下一层尚未开放"
-	else:
-		exit_hint.text = tr("靠近后按 E → %dF") % (floor_number + 1)
-	return_hint.visible = not return_hint.text.is_empty() and GameManager.is_world_input_allowed() and absf(player.global_position.x - return_point.global_position.x) <= GameManager.STAIR_INTERACTION_RADIUS
-	exit_hint.visible = GameManager.is_world_input_allowed() and absf(player.global_position.x - exit_point.global_position.x) <= GameManager.STAIR_INTERACTION_RADIUS
+		exit_hint.visible = GameManager.is_world_input_allowed() and absf(player.global_position.x - exit_point.global_position.x) <= GameManager.STAIR_INTERACTION_RADIUS
 
 
 func _on_card_stolen(card_id: String) -> void:

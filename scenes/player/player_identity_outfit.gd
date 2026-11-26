@@ -80,7 +80,10 @@ func _sync() -> void:
 		var bounds: Rect2=_accessory_bounds[card_id]
 		var width: float=head.size.x*(0.96 if card_id=="CLEANER" else 0.94)
 		var height: float=width*bounds.size.y/bounds.size.x
-		var top: float=head.position.y-height*(0.10 if card_id=="CLEANER" else 0.40)
+		var top_offset := -0.40
+		if card_id == "CLEANER":
+			top_offset = 0.12 if refreshed else -0.10
+		var top := head.position.y + height * top_offset
 		_head_rect=Rect2(head.position.x+head.size.x*0.02,top,width,height)
 	queue_redraw()
 

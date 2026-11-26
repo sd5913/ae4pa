@@ -17,10 +17,15 @@ z_index = 1
 z_index = 1
 
 [node name="PatrolSlot" type="Node2D" parent="StaffRoot"]
-position = Vector2(1550, 560)
+position = Vector2(1420, 560)
 
 [node name="Staff" parent="StaffRoot/PatrolSlot" instance=ExtResource("patrol")]
 steal_radius = 95.0
+show_theft_footprint = false
+cleaner_behavior_enabled = true
+cleaner_walk_distance = 250.0
+cleaner_walk_speed = 64.0
+patrol_enabled = true
 
 [node name="Task403AcceptSafe" type="Marker2D" parent="Interactions"]
 position = Vector2(1650, 560)

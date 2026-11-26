@@ -88,7 +88,7 @@ func _run() -> void:
 	var story_progress := FileAccess.get_file_as_bytes(story_progress_path)
 	_check(not story_progress.is_empty(), "Completed dialogue writes to the separate story file")
 	var floor_node: Node = main.get_node("World").get_child(0)
-	floor_node.get_node("Player").global_position = floor_node.exit_point.global_position
+	floor_node.player.position.x = floor_node.get_stair_interaction_center(true)
 	_check(game.request_floor_travel(2), "Travel to the real task floor")
 	await process_frame
 	_check(game.offer_task(game.TASK_01_ID), "Offer the cleaning task")

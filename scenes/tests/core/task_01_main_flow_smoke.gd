@@ -35,9 +35,10 @@ func _run() -> void:
 	main.dialogue.hide()
 	main._on_dialogue_finished("V4_INTRO")
 	game.complete_manager_intro()
-	main.get_node("World").get_child(0).get_node("Player").position.x = 3400
+	var floor_node: Node = main.get_node("World").get_child(0)
+	floor_node.player.position.x = floor_node.get_stair_interaction_center(true)
 	game.request_floor_travel(2)
-	var floor_node = main.get_node("World").get_child(0)
+	floor_node = main.get_node("World").get_child(0)
 	var player = floor_node.get_node("Player")
 	Input.action_press("move_right")
 	await create_timer(2.8).timeout

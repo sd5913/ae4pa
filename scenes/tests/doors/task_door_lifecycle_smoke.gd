@@ -32,7 +32,7 @@ func bind_floor() -> void:
 			scheduler.set_process(false)
 
 func travel(number: int) -> void:
-	floor_node.player.global_position.x = 3400 if number > game.current_floor else 192
+	floor_node.player.position.x = floor_node.get_stair_interaction_center(number > game.current_floor)
 	check(game.request_floor_travel(number), "Real stair travel to " + str(number))
 	bind_floor()
 	await settle()
