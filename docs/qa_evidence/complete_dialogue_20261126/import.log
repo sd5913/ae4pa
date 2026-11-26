@@ -1,0 +1,175 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Safe save failed. This may be a permissions problem, but also may happen because you are running a paranoid antivirus. If this is the case, please switch to Windows Defender or disable the 'safe save' option in editor settings. This makes it work, but increases the risk of file corruption in a crash.
+   at: _close (drivers/windows/file_access_windows.cpp:277)
+[   0% ] first_scan_filesystem | Started 项目初始化 (5 steps)
+[   0% ] first_scan_filesystem | 正在扫描文件结构……
+[  16% ] first_scan_filesystem | 正在加载全局类名……
+[  33% ] first_scan_filesystem | 正在校验 GDExtension……
+[  50% ] first_scan_filesystem | 正在创建自动加载脚本……
+[  66% ] first_scan_filesystem | 正在初始化插件……
+[  83% ] first_scan_filesystem | 正在启动文件扫描……
+[ DONE ] first_scan_filesystem
+
+[   0% ] update_scripts_classes | Started 正在注册全局类…… (15 steps)
+[   0% ] update_scripts_classes |
+[   6% ] update_scripts_classes |
+[  12% ] update_scripts_classes |
+[  18% ] update_scripts_classes |
+[  25% ] update_scripts_classes |
+[  31% ] update_scripts_classes |
+[  37% ] update_scripts_classes |
+[  43% ] update_scripts_classes |
+[  50% ] update_scripts_classes |
+[  56% ] update_scripts_classes |
+[  62% ] update_scripts_classes |
+[  68% ] update_scripts_classes |
+[  75% ] update_scripts_classes |
+[  81% ] update_scripts_classes |
+[  87% ] update_scripts_classes |
+[ DONE ] update_scripts_classes
+
+[   0% ] _update_scan_actions | Started 正在扫描动作…… (48 steps)
+[   0% ] _update_scan_actions | angry.png
+[   2% ] _update_scan_actions | blushing.png
+[   4% ] _update_scan_actions | coaxing.png
+[   6% ] _update_scan_actions | dubious.png
+[   8% ] _update_scan_actions | exasperated.png
+[  10% ] _update_scan_actions | hunting.png
+[  12% ] _update_scan_actions | ironic.png
+[  14% ] _update_scan_actions | languid.png
+[  16% ] _update_scan_actions | neutral.png
+[  18% ] _update_scan_actions | pensive.png
+[  20% ] _update_scan_actions | surprised.png
+[  22% ] _update_scan_actions | suspicious.png
+[  24% ] _update_scan_actions | worried.png
+[  26% ] _update_scan_actions | neutral.png
+[  28% ] _update_scan_actions | ominous.png
+[  30% ] _update_scan_actions | sinister_smile.png
+[  32% ] _update_scan_actions | afraid.png
+[  34% ] _update_scan_actions | happy.png
+[  36% ] _update_scan_actions | neutral.png
+[  38% ] _update_scan_actions | playful.png
+[  40% ] _update_scan_actions | pouting.png
+[  42% ] _update_scan_actions | surprised.png
+[  44% ] _update_scan_actions | teasing.png
+[  46% ] _update_scan_actions | checker_halfbody.png
+[  48% ] _update_scan_actions | ear_halfbody.png
+[  51% ] _update_scan_actions | eye_halfbody.png
+[  53% ] _update_scan_actions | hat_halfbody.png
+[  55% ] _update_scan_actions | nose_halfbody.png
+[  57% ] _update_scan_actions | 309_dialogue_en_960x540.png
+[  59% ] _update_scan_actions | 309_dialogue_en_1280x720.png
+[  61% ] _update_scan_actions | 309_dialogue_en_1920x1080.png
+[  63% ] _update_scan_actions | 309_dialogue_zh_960x540.png
+[  65% ] _update_scan_actions | 309_dialogue_zh_1280x720.png
+[  67% ] _update_scan_actions | 309_dialogue_zh_1920x1080.png
+[  69% ] _update_scan_actions | contact_en_960x540.jpg
+[  71% ] _update_scan_actions | contact_en_1280x720.jpg
+[  73% ] _update_scan_actions | contact_en_1920x1080.jpg
+[  75% ] _update_scan_actions | contact_zh_CN_960x540.jpg
+[  77% ] _update_scan_actions | contact_zh_CN_1280x720.jpg
+[  79% ] _update_scan_actions | contact_zh_CN_1920x1080.jpg
+[  81% ] _update_scan_actions | en_960x540_long_narration.png
+[  83% ] _update_scan_actions | en_1280x720_exit_green.png
+[  85% ] _update_scan_actions | zh_CN_960x540_long_guest.png
+[  87% ] _update_scan_actions | zh_CN_1280x720_ending.png
+[  89% ] _update_scan_actions | zh_CN_1280x720_manager_kept.png
+[  91% ] _update_scan_actions | 怪兽旅馆小组合作项目-任务清单v1.csv
+[  93% ] _update_scan_actions | 怪兽旅馆小组合作项目-功能状态v1.csv
+[  95% ] _update_scan_actions | 怪兽旅馆小组合作项目-问题与待办v1.csv
+[ DONE ] _update_scan_actions
+
+[   0% ] reimport | Started 正在导入或重新导入资产 (40 steps)
+[   0% ] reimport | 正在准备重新导入文件……
+[   2% ] reimport | 正在准备重新导入文件……
+[   4% ] reimport | 正在准备重新导入文件……
+[   7% ] reimport | 正在准备重新导入文件……
+[   9% ] reimport | 正在准备重新导入文件……
+[  12% ] reimport | 正在准备重新导入文件……
+[  14% ] reimport | 正在准备重新导入文件……
+[  17% ] reimport | 正在准备重新导入文件……
+[  19% ] reimport | 正在准备重新导入文件……
+[  21% ] reimport | 正在准备重新导入文件……
+[  24% ] reimport | 正在准备重新导入文件……
+[  26% ] reimport | 正在准备重新导入文件……
+[  29% ] reimport | 正在准备重新导入文件……
+[  31% ] reimport | 正在准备重新导入文件……
+[  34% ] reimport | 正在准备重新导入文件……
+[  36% ] reimport | 正在准备重新导入文件……
+[  39% ] reimport | 正在准备重新导入文件……
+[  41% ] reimport | 正在准备重新导入文件……
+[  43% ] reimport | 正在准备重新导入文件……
+[  46% ] reimport | 正在准备重新导入文件……
+[  48% ] reimport | 正在准备重新导入文件……
+[  51% ] reimport | 正在准备重新导入文件……
+[  53% ] reimport | 正在准备重新导入文件……
+[  56% ] reimport | 正在准备重新导入文件……
+[  58% ] reimport | 正在准备重新导入文件……
+[  60% ] reimport | 正在准备重新导入文件……
+[  63% ] reimport | 正在准备重新导入文件……
+[  65% ] reimport | 正在准备重新导入文件……
+[  68% ] reimport | 正在准备重新导入文件……
+[  70% ] reimport | 正在准备重新导入文件……
+[  73% ] reimport | 正在准备重新导入文件……
+[  75% ] reimport | 正在准备重新导入文件……
+[  78% ] reimport | 正在准备重新导入文件……
+[  80% ] reimport | 正在准备重新导入文件……
+[  82% ] reimport | 正在准备重新导入文件……
+[  85% ] reimport | 正在准备重新导入文件……
+[  87% ] reimport | 正在准备重新导入文件……
+[  90% ] reimport | 正在准备重新导入文件……
+[  92% ] reimport | 正在准备重新导入文件……
+[  95% ] reimport | 正在准备重新导入文件……
+[   0% ] reimport | 正在执行重新导入的前置操作……
+[   0% ] reimport | pouting.png
+[   2% ] reimport | surprised.png
+[   4% ] reimport | teasing.png
+[   7% ] reimport | 309_dialogue_en_960x540.png
+[   9% ] reimport | 309_dialogue_en_1280x720.png
+[  12% ] reimport | 309_dialogue_en_1920x1080.png
+[  14% ] reimport | 309_dialogue_zh_960x540.png
+[  17% ] reimport | 309_dialogue_zh_1280x720.png
+[  19% ] reimport | 309_dialogue_zh_1920x1080.png
+[  21% ] reimport | contact_en_960x540.jpg
+[  24% ] reimport | contact_en_1280x720.jpg
+[  26% ] reimport | contact_en_1920x1080.jpg
+[  29% ] reimport | contact_zh_CN_960x540.jpg
+[  31% ] reimport | contact_zh_CN_1280x720.jpg
+[  34% ] reimport | contact_zh_CN_1920x1080.jpg
+[  36% ] reimport | en_960x540_long_narration.png
+[  39% ] reimport | en_1280x720_exit_green.png
+[  41% ] reimport | zh_CN_960x540_long_guest.png
+[  43% ] reimport | zh_CN_1280x720_ending.png
+[  46% ] reimport | zh_CN_1280x720_manager_kept.png
+[  48% ] reimport | angry.png
+[  51% ] reimport | blushing.png
+[  53% ] reimport | coaxing.png
+[  56% ] reimport | dubious.png
+[  58% ] reimport | exasperated.png
+[  60% ] reimport | hunting.png
+[  63% ] reimport | ironic.png
+[  65% ] reimport | languid.png
+[  68% ] reimport | neutral.png
+[  70% ] reimport | pensive.png
+[  73% ] reimport | surprised.png
+[  75% ] reimport | suspicious.png
+[  78% ] reimport | worried.png
+[  80% ] reimport | neutral.png
+[  82% ] reimport | ominous.png
+[  85% ] reimport | sinister_smile.png
+[  87% ] reimport | afraid.png
+[  90% ] reimport | happy.png
+[  92% ] reimport | neutral.png
+[  95% ] reimport | playful.png
+[  97% ] reimport | 正在结束资产导入……
+[ DONE ] reimport
+
+[   0% ] reimport | Started 正在导入或重新导入资产 (40 steps)
+[   0% ] reimport | 正在执行重新导入的后置操作……
+[ DONE ] reimport
+
+[   0% ] loading_editor_layout | Started 正在加载编辑器 (5 steps)
+[   0% ] loading_editor_layout | 正在加载编辑器布局……
+[  16% ] loading_editor_layout | 正在加载停靠面板……
+[ DONE ] loading_editor_layout

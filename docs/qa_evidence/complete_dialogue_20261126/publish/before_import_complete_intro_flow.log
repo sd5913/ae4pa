@@ -1,0 +1,2073 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Cannot open file 'res://.godot/imported/hotel_staff_cjk.otf-0b232f29e80846ccfbc3c6fab743e681.fontdata'.
+   at: load (core/io/resource_format_binary.cpp:1156)
+   GDScript backtrace (most recent call first):
+       [0] _register_font_fallback (res://scripts/localization.gd:32)
+       [1] _ready (res://scripts/localization.gd:11)
+ERROR: Failed loading resource: res://.godot/imported/hotel_staff_cjk.otf-0b232f29e80846ccfbc3c6fab743e681.fontdata.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _register_font_fallback (res://scripts/localization.gd:32)
+       [1] _ready (res://scripts/localization.gd:11)
+ERROR: Failed loading resource: res://assets/final/fonts/hotel_staff_cjk.otf.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _register_font_fallback (res://scripts/localization.gd:32)
+       [1] _ready (res://scripts/localization.gd:11)
+ERROR: Unable to open file: res://.godot/imported/security_card.png-3dbddf941058d0da43b77250cf3e5045.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/security_card.png-3dbddf941058d0da43b77250cf3e5045.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/security_card.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/cleaner_card.png-0684955648fdef487f1f32eb76d77b5f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/cleaner_card.png-0684955648fdef487f1f32eb76d77b5f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/cleaner_card.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/manager_card.png-8ad5c35745e4196d4155670fd18de515.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/manager_card.png-8ad5c35745e4196d4155670fd18de515.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/manager_card.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/security_card.png".
+   at: GDScript::reload (res://scenes/ui/card_display.gd:12)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/cleaner_card.png".
+   at: GDScript::reload (res://scenes/ui/card_display.gd:13)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/manager_card.png".
+   at: GDScript::reload (res://scenes/ui/card_display.gd:14)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+   at: GDScript::reload (res://scenes/interaction_onboarding.gd:0)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/pensive.png-62cb42cb175897ed39aace5c1164007c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/pensive.png-62cb42cb175897ed39aace5c1164007c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/pensive.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/exasperated.png-a0e17109d78bd535c57a6ca0ad6847c2.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/exasperated.png-a0e17109d78bd535c57a6ca0ad6847c2.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/exasperated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/coaxing.png-18e400766ed9853f0c755519d31e5d0f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/coaxing.png-18e400766ed9853f0c755519d31e5d0f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/coaxing.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/suspicious.png-1f75721960cf447c601d46b4f77ee772.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/suspicious.png-1f75721960cf447c601d46b4f77ee772.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/suspicious.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/surprised.png-d9fa11f44c11cb55636bb4e869a389ef.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/surprised.png-d9fa11f44c11cb55636bb4e869a389ef.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/surprised.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/blushing.png-e88d1faf27a3649a0f6ad18b1023703e.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/blushing.png-e88d1faf27a3649a0f6ad18b1023703e.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/blushing.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/hunting.png-eceb39d178ed0a98f2baa85bc0cdd4ae.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/hunting.png-eceb39d178ed0a98f2baa85bc0cdd4ae.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/hunting.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/neutral.png-358524c343c5dcef4eeca3e0e877f0cf.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/neutral.png-358524c343c5dcef4eeca3e0e877f0cf.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/neutral.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/ironic.png-5dd9399cba43d90b3232ed3b8017eaec.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/ironic.png-5dd9399cba43d90b3232ed3b8017eaec.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/ironic.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/angry.png-cd17cbeb3d984ce9e55fd68d7ea9ac0f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/angry.png-cd17cbeb3d984ce9e55fd68d7ea9ac0f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/angry.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/languid.png-6170add90ea7bffb24252fd6acd4c3f5.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/languid.png-6170add90ea7bffb24252fd6acd4c3f5.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/languid.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/worried.png-835508e8c7af4a0ad6163fbfed42d1b1.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/worried.png-835508e8c7af4a0ad6163fbfed42d1b1.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/worried.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/dubious.png-0e3035c05dc78b88df02ab20852d6e79.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/dubious.png-0e3035c05dc78b88df02ab20852d6e79.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/dubious.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/playful.png-bcc38b02bd94951fa38d08704fdcefde.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/playful.png-bcc38b02bd94951fa38d08704fdcefde.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/terese/playful.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/teasing.png-1e69e34cff0bb44ecb3089d5d1f39251.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/teasing.png-1e69e34cff0bb44ecb3089d5d1f39251.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/terese/teasing.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/happy.png-c54328f867aa3d4d2e1418585ec2f10d.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/happy.png-c54328f867aa3d4d2e1418585ec2f10d.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/terese/happy.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/neutral.png-50cc9f29a228fc46c0febdc3e88bb40b.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/neutral.png-50cc9f29a228fc46c0febdc3e88bb40b.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/terese/neutral.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/pouting.png-6123616e900a75ca7c112c94bf18f53f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/pouting.png-6123616e900a75ca7c112c94bf18f53f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/terese/pouting.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/afraid.png-d7c86b764a375ff66b2a803a5aecb499.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/afraid.png-d7c86b764a375ff66b2a803a5aecb499.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/terese/afraid.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/surprised.png-2596a39a0bf1c7c870c01e68169e1fb8.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/surprised.png-2596a39a0bf1c7c870c01e68169e1fb8.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/terese/surprised.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/neutral.png-8e50b6e592743a183cde0ba797c3b106.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/neutral.png-8e50b6e592743a183cde0ba797c3b106.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/manager/neutral.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/sinister_smile.png-6f94653440f0463a56ac64ebefb7cb74.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/sinister_smile.png-6f94653440f0463a56ac64ebefb7cb74.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/manager/sinister_smile.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/ominous.png-69858bd5099ea414ddd60848630d6292.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/ominous.png-69858bd5099ea414ddd60848630d6292.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/manager/ominous.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/carol/pensive.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:5)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/carol/exasperated.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:6)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/carol/coaxing.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:7)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/carol/suspicious.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:8)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/carol/surprised.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:9)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/carol/blushing.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:10)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/carol/hunting.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:11)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/carol/neutral.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:12)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/carol/ironic.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:13)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/carol/angry.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:14)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/carol/languid.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:15)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/carol/worried.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:16)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/carol/dubious.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:17)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/terese/playful.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:20)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/terese/teasing.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:21)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/terese/happy.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:22)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/terese/neutral.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:23)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/terese/pouting.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:24)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/terese/afraid.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:25)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/terese/surprised.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:26)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/manager/neutral.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:29)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/manager/sinister_smile.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:30)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/confirmed_characters_20261126/manager/ominous.png".
+   at: GDScript::reload (res://scenes/ui/confirmed_character_portraits.gd:31)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+   at: GDScript::reload (res://scenes/ui/dialogue_roles.gd:0)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+   at: GDScript::reload (res://scenes/ui/memory_history.gd:0)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+   at: GDScript::reload (res://scenes/room309_reunion.gd:0)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/bedroom_rain.png-83ce306d6133ab2da98c6c8dd95df3ed.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/bedroom_rain.png-83ce306d6133ab2da98c6c8dd95df3ed.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/visual_novel/bedroom_rain.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/cafe_sunset.png-a9849269ed28daec3c7e804c96c6f00c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/cafe_sunset.png-a9849269ed28daec3c7e804c96c6f00c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/visual_novel/cafe_sunset.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/hotel_exterior_rain.png-dc334202d69460122b0c7bc5bce6d0e6.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/hotel_exterior_rain.png-dc334202d69460122b0c7bc5bce6d0e6.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/visual_novel/hotel_exterior_rain.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/hotel_lobby.png-8fda87eee5636acc8ff6236061b0550f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/hotel_lobby.png-8fda87eee5636acc8ff6236061b0550f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/visual_novel/hotel_lobby.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/cleaner_neutral.png-bfce2ec07c5c86de87edda88a2d97b3a.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/cleaner_neutral.png-bfce2ec07c5c86de87edda88a2d97b3a.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/cleaner/cleaner_neutral.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/cleaner_smile.png-6721332c6d49b4587e8608386811da1a.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/cleaner_smile.png-6721332c6d49b4587e8608386811da1a.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/cleaner/cleaner_smile.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/cleaner_surprised.png-618e7af70ed026703f7e538f70bd412a.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/cleaner_surprised.png-618e7af70ed026703f7e538f70bd412a.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/cleaner/cleaner_surprised.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/cleaner_worried.png-2656883faf78cb0cfd12f3d57423da25.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/cleaner_worried.png-2656883faf78cb0cfd12f3d57423da25.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/cleaner/cleaner_worried.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/cleaner_suspicious.png-d1de95b594d615169159a32f56c1194e.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/cleaner_suspicious.png-d1de95b594d615169159a32f56c1194e.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/cleaner/cleaner_suspicious.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/cleaner_stern.png-5afa328eb71471f0d876cf3c7aac0932.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/cleaner_stern.png-5afa328eb71471f0d876cf3c7aac0932.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/cleaner/cleaner_stern.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/security_neutral.png-707cfecab6bbd8b3255f4cf3225c3710.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/security_neutral.png-707cfecab6bbd8b3255f4cf3225c3710.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/security/security_neutral.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/security_smile.png-163a43505b8b4cb61504e092e2f1c206.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/security_smile.png-163a43505b8b4cb61504e092e2f1c206.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/security/security_smile.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/security_surprised.png-e4fae5e31c1f9a5d942fdc5ad1fd450c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/security_surprised.png-e4fae5e31c1f9a5d942fdc5ad1fd450c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/security/security_surprised.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/security_worried.png-d867c79058e3f229848ec17b1ac5eb47.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/security_worried.png-d867c79058e3f229848ec17b1ac5eb47.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/security/security_worried.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/security_suspicious.png-6ba4840e3d8452cbc0660182c2f50571.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/security_suspicious.png-6ba4840e3d8452cbc0660182c2f50571.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/security/security_suspicious.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/security_stern.png-97a263def95196dcef0d296417da9fbb.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/security_stern.png-97a263def95196dcef0d296417da9fbb.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/dialogue_portraits/security/security_stern.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/visual_novel/bedroom_rain.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:21)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/visual_novel/cafe_sunset.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:22)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/visual_novel/hotel_exterior_rain.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:23)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/visual_novel/hotel_lobby.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:24)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/cleaner/cleaner_neutral.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:37)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/cleaner/cleaner_smile.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:38)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/cleaner/cleaner_surprised.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:39)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/cleaner/cleaner_worried.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:40)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/cleaner/cleaner_suspicious.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/cleaner/cleaner_stern.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:42)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/security/security_neutral.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/security/security_smile.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:46)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/security/security_surprised.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:47)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/security/security_worried.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:48)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/security/security_suspicious.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:49)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/dialogue_portraits/security/security_stern.png".
+   at: GDScript::reload (res://scenes/ui/dialogue.gd:50)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed to load script "res://scenes/ui/dialogue.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/phone_frame.png-1f1a7a110605246e81f7e1648836d122.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/phone_frame.png-1f1a7a110605246e81f7e1648836d122.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/phone_frame.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/vibration_marks.png-38ee7d0dbb51ec4602e66643781afefb.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/vibration_marks.png-38ee7d0dbb51ec4602e66643781afefb.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/vibration_marks.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/title_monster_hotel_en.png-a2d10e8a107015a983ce10c9a561dcfc.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/title_monster_hotel_en.png-a2d10e8a107015a983ce10c9a561dcfc.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/title_monster_hotel_en.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_normal.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_pressed.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_disabled.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://scenes/ui/staff_ui_theme.tres.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/dialogue.tscn:53 - Parse Error: [ext_resource] referenced non-existent resource at: res://scenes/ui/staff_ui_theme.tres.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/dialogue.tscn:102 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/vibration_marks.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/dialogue.tscn:110 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/phone_frame.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/dialogue.tscn:272 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/title_monster_hotel_en.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/memory_panel_blank.png-31a5d29a5bafc05f3f52236abd509f9d.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/memory_panel_blank.png-31a5d29a5bafc05f3f52236abd509f9d.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/memory/memory_panel_blank.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_normal.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_pressed.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_disabled.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://scenes/ui/staff_ui_theme.tres.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Cannot open file 'res://.godot/imported/hotel_staff_cjk.otf-0b232f29e80846ccfbc3c6fab743e681.fontdata'.
+   at: load (core/io/resource_format_binary.cpp:1156)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/hotel_staff_cjk.otf-0b232f29e80846ccfbc3c6fab743e681.fontdata.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/fonts/hotel_staff_cjk.otf.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/close.svg-04a5a4d6d4b95c395439a8d560d267e8.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/close.svg-04a5a4d6d4b95c395439a8d560d267e8.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/memory/icons/close.svg.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/memory/memory_panel_blank.png".
+   at: GDScript::reload (res://scenes/ui/memory_ui.gd:4)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ART" constant because the value doesn't have a set type.
+   at: GDScript::reload (res://scenes/ui/memory_ui.gd:4)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://scenes/ui/staff_ui_theme.tres".
+   at: GDScript::reload (res://scenes/ui/memory_ui.gd:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/fonts/hotel_staff_cjk.otf".
+   at: GDScript::reload (res://scenes/ui/memory_ui.gd:44)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/memory/icons/close.svg".
+   at: GDScript::reload (res://scenes/ui/memory_ui.gd:69)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+   at: GDScript::reload (res://scenes/ui/carol_ui_flow.gd:0)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+   at: GDScript::reload (res://scenes/main.gd:0)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed to load script "res://scenes/main.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_normal.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_pressed.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_disabled.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://scenes/ui/staff_ui_theme.tres.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://scenes/ui/staff_ui_theme.tres".
+   at: GDScript::reload (res://scenes/ui/play_overlay.gd:21)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/progress_track.png-39897ae048af5b538280be729bccdaec.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/progress_track.png-39897ae048af5b538280be729bccdaec.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/progress_track.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/hotel_interface/progress_track.png".
+   at: GDScript::reload (res://scenes/ui/interaction_progress.gd:4)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "PROGRESS_TRACK" constant because the value doesn't have a set type.
+   at: GDScript::reload (res://scenes/ui/interaction_progress.gd:4)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Compile Error: Failed to compile depended scripts.
+   at: GDScript::reload (res://scenes/task_ui.gd:0)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed to load script "res://scenes/task_ui.gd" with error "Compilation failed".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/card_slot_active.png-3a55b038e5df90a1ebbc715dd2de928a.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/card_slot_active.png-3a55b038e5df90a1ebbc715dd2de928a.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/card_slot_active.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/card_slot_inactive.png-f2fcfd150f80812df1fc914370505679.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/card_slot_inactive.png-f2fcfd150f80812df1fc914370505679.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/card_slot_inactive.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/hotel_interface/card_slot_active.png".
+   at: GDScript::reload (res://scenes/ui/hud.gd:10)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "ACTIVE_SLOT_FRAME" constant because the value doesn't have a set type.
+   at: GDScript::reload (res://scenes/ui/hud.gd:10)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/ui/hotel_interface/card_slot_inactive.png".
+   at: GDScript::reload (res://scenes/ui/hud.gd:11)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "INACTIVE_SLOT_FRAME" constant because the value doesn't have a set type.
+   at: GDScript::reload (res://scenes/ui/hud.gd:11)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed to load script "res://scenes/ui/hud.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/status_plaque.png-d2bd0fefbaacdacfc56ed891d532332e.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/status_plaque.png-d2bd0fefbaacdacfc56ed891d532332e.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/status_plaque.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Cannot open file 'res://.godot/imported/hotel_staff_cjk.otf-0b232f29e80846ccfbc3c6fab743e681.fontdata'.
+   at: load (core/io/resource_format_binary.cpp:1156)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/hotel_staff_cjk.otf-0b232f29e80846ccfbc3c6fab743e681.fontdata.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/fonts/hotel_staff_cjk.otf.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/hud_theme.tres:6 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/fonts/hotel_staff_cjk.otf.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/hud_theme.tres:6 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/fonts/hotel_staff_cjk.otf.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://scenes/ui/hud_theme.tres.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/bag.svg-e2f70c8b139b2148dcfd51f34bc82a92.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/bag.svg-e2f70c8b139b2148dcfd51f34bc82a92.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/icons/bag.svg.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/journal.svg-5875467d06fc3b7890e7f8efff8bc61f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/journal.svg-5875467d06fc3b7890e7f8efff8bc61f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/icons/journal.svg.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/pause.svg-3cc15a2a5d7699e0458d2ee78bc0289d.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/pause.svg-3cc15a2a5d7699e0458d2ee78bc0289d.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/icons/pause.svg.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/hourglass.svg-43373d1e3039639cc4568a2c4c4ba745.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/hourglass.svg-43373d1e3039639cc4568a2c4c4ba745.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/icons/hourglass.svg.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/status_plaque.png-d2bd0fefbaacdacfc56ed891d532332e.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/status_plaque.png-d2bd0fefbaacdacfc56ed891d532332e.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/status_plaque.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/hud.tscn:15 - Parse Error: [ext_resource] referenced non-existent resource at: res://scenes/ui/hud_theme.tres.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/hud.tscn:105 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/icons/bag.svg.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/hud.tscn:117 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/icons/journal.svg.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/hud.tscn:129 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/icons/pause.svg.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/hud.tscn:141 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/icons/hourglass.svg.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/hud.tscn:159 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/status_plaque.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_normal.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_pressed.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_disabled.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://scenes/ui/staff_ui_theme.tres.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/failure.tscn:43 - Parse Error: [ext_resource] referenced non-existent resource at: res://scenes/ui/staff_ui_theme.tres.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/card_slot_active.png-3a55b038e5df90a1ebbc715dd2de928a.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/card_slot_active.png-3a55b038e5df90a1ebbc715dd2de928a.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/card_slot_active.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/card_slot_inactive.png-f2fcfd150f80812df1fc914370505679.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/card_slot_inactive.png-f2fcfd150f80812df1fc914370505679.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/card_slot_inactive.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not resolve class "res://scenes/ui/hud.gd".
+   at: GDScript::reload (res://scenes/task_hud.gd:1)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed to load script "res://scenes/task_hud.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_normal.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_pressed.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_disabled.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://scenes/ui/staff_ui_theme.tres.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/hotel_cover_background.png-768c3d170bb08fb21a6eacc832354016.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/hotel_cover_background.png-768c3d170bb08fb21a6eacc832354016.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/hotel_cover_background.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/title_monster_hotel_en.png-a2d10e8a107015a983ce10c9a561dcfc.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/title_monster_hotel_en.png-a2d10e8a107015a983ce10c9a561dcfc.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/title_monster_hotel_en.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/main_menu.tscn:18 - Parse Error: [ext_resource] referenced non-existent resource at: res://scenes/ui/staff_ui_theme.tres.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/main_menu.tscn:26 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/hotel_cover_background.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/main_menu.tscn:80 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/title_monster_hotel_en.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/eye_idle_sheet.png-422f44fc6de9cbac3b1ff8887d16445f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/eye_idle_sheet.png-422f44fc6de9cbac3b1ff8887d16445f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/monster_idle/eye_idle_sheet.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/nose_idle_sheet.png-d4d9723e20e6cc557f2ccf509fd2942f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/nose_idle_sheet.png-d4d9723e20e6cc557f2ccf509fd2942f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/monster_idle/nose_idle_sheet.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/hat_idle_sheet.png-fc9388e2cabeee26a838632711770ed4.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/hat_idle_sheet.png-fc9388e2cabeee26a838632711770ed4.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/monster_idle/hat_idle_sheet.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/ear_idle_sheet.png-3d9753d601c1ff47b720ced1d9127b55.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/ear_idle_sheet.png-3d9753d601c1ff47b720ced1d9127b55.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/monster_idle/ear_idle_sheet.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/checker_idle_sheet.png-7574f8b2cdab3a3136e65930f251b7e5.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/checker_idle_sheet.png-7574f8b2cdab3a3136e65930f251b7e5.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/monster_idle/checker_idle_sheet.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/monster_idle/eye_idle_sheet.png".
+   at: GDScript::reload (res://scenes/ui/help.gd:20)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/monster_idle/nose_idle_sheet.png".
+   at: GDScript::reload (res://scenes/ui/help.gd:21)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/monster_idle/hat_idle_sheet.png".
+   at: GDScript::reload (res://scenes/ui/help.gd:22)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/monster_idle/ear_idle_sheet.png".
+   at: GDScript::reload (res://scenes/ui/help.gd:23)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://assets/final/monster_idle/checker_idle_sheet.png".
+   at: GDScript::reload (res://scenes/ui/help.gd:24)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed to load script "res://scenes/ui/help.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_normal.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_pressed.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_disabled.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://scenes/ui/staff_ui_theme.tres.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/handbook_spread.png-c7cea4189efbc53f95327968c52fa97a.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/handbook_spread.png-c7cea4189efbc53f95327968c52fa97a.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/handbook_spread.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/help.tscn:33 - Parse Error: [ext_resource] referenced non-existent resource at: res://scenes/ui/staff_ui_theme.tres.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/help.tscn:55 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/handbook_spread.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/eye_idle_sheet.png-422f44fc6de9cbac3b1ff8887d16445f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/eye_idle_sheet.png-422f44fc6de9cbac3b1ff8887d16445f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/monster_idle/eye_idle_sheet.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/nose_idle_sheet.png-d4d9723e20e6cc557f2ccf509fd2942f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/nose_idle_sheet.png-d4d9723e20e6cc557f2ccf509fd2942f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/monster_idle/nose_idle_sheet.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/hat_idle_sheet.png-fc9388e2cabeee26a838632711770ed4.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/hat_idle_sheet.png-fc9388e2cabeee26a838632711770ed4.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/monster_idle/hat_idle_sheet.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/ear_idle_sheet.png-3d9753d601c1ff47b720ced1d9127b55.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/ear_idle_sheet.png-3d9753d601c1ff47b720ced1d9127b55.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/monster_idle/ear_idle_sheet.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/checker_idle_sheet.png-7574f8b2cdab3a3136e65930f251b7e5.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/checker_idle_sheet.png-7574f8b2cdab3a3136e65930f251b7e5.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/monster_idle/checker_idle_sheet.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not resolve class "res://scenes/ui/help.gd".
+   at: GDScript::reload (res://scenes/notebook.gd:1)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed to load script "res://scenes/notebook.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_normal.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_pressed.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_disabled.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://scenes/ui/staff_ui_theme.tres.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/inventory_case_3_plus_2.png-2faae579208c7eca161fc29f1e2bd25f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/inventory_case_3_plus_2.png-2faae579208c7eca161fc29f1e2bd25f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/inventory_case_3_plus_2.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/bag.tscn:54 - Parse Error: [ext_resource] referenced non-existent resource at: res://scenes/ui/staff_ui_theme.tres.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/bag.tscn:75 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/inventory_case_3_plus_2.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_normal.png-ba8020503d68115a412f4e3852d28183.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_normal.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_hover.png-ca4ba1a33203fbb2ea0647f416bb06d9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_pressed.png-4076eb6f3dcc4a6459a9010cd47ec4e9.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_pressed.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_disabled.png-ffc26f53c273216c7c885bb416bc22df.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_disabled.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary.png-603f63d696b7d7de86cfe05e22fa5e80.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/button_primary_hover.png-af47b6796b1ae838f730d7d44fe7298c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/button_primary_hover.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Unable to open file: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://.godot/imported/toolbar_plate.png-474c149512d8e83b6bd12ed1829202ba.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: res://scenes/ui/staff_ui_theme.tres:132 - Parse Error: [ext_resource] referenced non-existent resource at: res://assets/final/ui/hotel_interface/toolbar_plate.png.
+   at: _printerr (scene/resources/resource_format_text.cpp:41)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed loading resource: res://scenes/ui/staff_ui_theme.tres.
+   at: _load (core/io/resource_loader.cpp:317)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Could not preload resource file "res://scenes/ui/staff_ui_theme.tres".
+   at: GDScript::reload (res://scenes/ui/button_motion.gd:3)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Parse Error: Cannot infer the type of "UI_THEME" constant because the value doesn't have a set type.
+   at: GDScript::reload (res://scenes/ui/button_motion.gd:3)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+ERROR: Failed to load script "res://scenes/ui/button_motion.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:16)
+SCRIPT ERROR: Invalid call. Nonexistent function 'set_progress_file_path_for_test' in base 'Control'.
+   at: _run (res://scenes/tests/core/intro_flow_smoke.gd:23)
+   GDScript backtrace (most recent call first):
+       [0] _run (res://scenes/tests/core/intro_flow_smoke.gd:23)

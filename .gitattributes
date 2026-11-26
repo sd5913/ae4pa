@@ -1,2 +1,5 @@
 # Normalize EOL for all files that Git considers text files.
 * text=auto eol=lf
+
+# Preserve the user-supplied source transcript byte for byte, including its spacing.
+scenes/ui/story_revision_source.txt -text -whitespace

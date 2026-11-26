@@ -273,6 +273,9 @@ func _run() -> void:
 	await _tap()
 	_expect(game.game_state == "WON" and won_count == 1, "Real EXIT E wins exactly once")
 	_expect(not game.request_escape(), "Repeated escape rejected")
+	_expect(main.dialogue.get("_dialogue_id") == "LATE_ENDING", "EXIT opens revised ending dialogue")
+	_expect(main.dialogue.get_node("%Background").visible and main.dialogue.get_node("%Background").texture == main.dialogue.BACKGROUNDS.exterior, "rain ending uses the existing exterior background")
+	await _read_story()
 	var win: Control = main.get_node_or_null("MenuLayer/Win")
 	_expect(win != null and win.visible, "Existing D success panel is actually shown")
 	await _capture("escaped")
@@ -309,6 +312,7 @@ func _run() -> void:
 		_quiet_doors()
 		_player().global_position = _floor().exit_point.global_position
 		await _tap()
+		await _read_story()
 		_expect(win.visible, "Second actual EXIT opens success screen for menu branch")
 		win.get_node("%ReturnButton").pressed.emit()
 		await _settle()

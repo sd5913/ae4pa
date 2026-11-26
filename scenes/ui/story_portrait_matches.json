@@ -1,0 +1,698 @@
+[
+  {
+    "beat_id": "complete_001",
+    "speaker": "Carol",
+    "text": "那家旅馆……",
+    "expression": "沉思"
+  },
+  {
+    "beat_id": "complete_002",
+    "speaker": "Carol",
+    "text": "就是她之前提过的夜班兼职。",
+    "expression": "沉思"
+  },
+  {
+    "beat_id": "complete_004",
+    "speaker": "Carol",
+    "text": "还是你最喜欢的那瓶？",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_005",
+    "speaker": "Terese",
+    "text": "嗯。这味道闻着就高兴。",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_006",
+    "speaker": "Terese",
+    "text": "你先看这个，我找到兼职了！",
+    "expression": "开心"
+  },
+  {
+    "beat_id": "complete_007",
+    "speaker": "Terese",
+    "text": "工资比我上个月做的几份兼职加起来还多。",
+    "expression": "开心"
+  },
+  {
+    "beat_id": "complete_008",
+    "speaker": "Carol",
+    "text": "夜班、工作轻松、工资还特别高。",
+    "expression": "沉思"
+  },
+  {
+    "beat_id": "complete_009",
+    "speaker": "Carol",
+    "text": "这三个词放在一起，通常不像什么好消息。",
+    "expression": "怀疑"
+  },
+  {
+    "beat_id": "complete_010",
+    "speaker": "Terese",
+    "text": "怎么，你挑一个喜欢的词都不行？",
+    "expression": "调侃"
+  },
+  {
+    "beat_id": "complete_011",
+    "speaker": "Carol",
+    "text": "旅馆叫什么？",
+    "expression": "怀疑"
+  },
+  {
+    "beat_id": "complete_012",
+    "speaker": "Terese",
+    "text": "维斯佩拉旅馆！",
+    "expression": "俏皮"
+  },
+  {
+    "beat_id": "complete_013",
+    "speaker": "Carol",
+    "text": "这是名字，还是在提醒你工作时间？",
+    "expression": "扶额无奈"
+  },
+  {
+    "beat_id": "complete_014",
+    "speaker": "Terese",
+    "text": "是不是挺有氛围的？",
+    "expression": "调侃"
+  },
+  {
+    "beat_id": "complete_015",
+    "speaker": "Carol",
+    "text": "挺像恐怖电影开头的。",
+    "expression": "气笑了"
+  },
+  {
+    "beat_id": "complete_016",
+    "speaker": "Terese",
+    "text": "恐怖电影里的人要是都像你一样谨慎，电影十分钟就结束了。",
+    "expression": "调侃"
+  },
+  {
+    "beat_id": "complete_017",
+    "speaker": "Carol",
+    "text": "等一下！我还没读完……",
+    "expression": "思考"
+  },
+  {
+    "beat_id": "complete_018",
+    "speaker": "Carol",
+    "text": "这里写着「员工离店须经管理部门批准」。",
+    "expression": "怀疑"
+  },
+  {
+    "beat_id": "complete_019",
+    "speaker": "Terese",
+    "text": "大概是夜班不能随便旷工吧。",
+    "expression": "开心"
+  },
+  {
+    "beat_id": "complete_020",
+    "speaker": "Carol",
+    "text": "正常公司会写“离职流程”，不会写“离店批准”……",
+    "expression": "怀疑"
+  },
+  {
+    "beat_id": "complete_021",
+    "speaker": "Terese",
+    "text": "我就做三天，又不是卖给他们了。",
+    "expression": "调侃"
+  },
+  {
+    "beat_id": "complete_022",
+    "speaker": "Carol",
+    "text": "……",
+    "expression": "气笑了"
+  },
+  {
+    "beat_id": "complete_023",
+    "speaker": "Terese",
+    "text": "等拿到工资，请你吃顿好的！",
+    "expression": "俏皮"
+  },
+  {
+    "beat_id": "complete_024",
+    "speaker": "Carol",
+    "text": "先把地址发给我。",
+    "expression": "扶额无奈"
+  },
+  {
+    "beat_id": "complete_025",
+    "speaker": "Terese",
+    "text": "发你了，女侦探 ~~",
+    "expression": "开心"
+  },
+  {
+    "beat_id": "complete_026",
+    "speaker": "Carol",
+    "text": "每天结束给我回一条消息。",
+    "expression": "蛊惑"
+  },
+  {
+    "beat_id": "complete_027",
+    "speaker": "Terese",
+    "text": "我要是少回一条，你是不是准备直接冲进去？",
+    "expression": "调侃"
+  },
+  {
+    "beat_id": "complete_028",
+    "speaker": "Carol",
+    "text": "我会先给你打电话。",
+    "expression": "慵懒"
+  },
+  {
+    "beat_id": "complete_029",
+    "speaker": "Terese",
+    "text": "你这人真没情趣。",
+    "expression": "气鼓鼓"
+  },
+  {
+    "beat_id": "complete_030",
+    "speaker": "Carol",
+    "text": "她去上班以后，每天晚上都会给我发消息。",
+    "expression": "沉思"
+  },
+  {
+    "beat_id": "complete_031",
+    "speaker": "Carol",
+    "text": "三天前，消息突然停了。",
+    "expression": "沉思"
+  },
+  {
+    "beat_id": "complete_032",
+    "speaker": "Carol",
+    "text": "没有联系电话，也查不到正常的订房页面。",
+    "expression": "担忧"
+  },
+  {
+    "beat_id": "complete_033",
+    "speaker": "Carol",
+    "text": "如果她真的被困在里面，我不能继续等。",
+    "expression": "坚定"
+  },
+  {
+    "beat_id": "complete_035",
+    "speaker": "Carol",
+    "text": "三楼，309。",
+    "expression": "坚定"
+  },
+  {
+    "beat_id": "complete_036",
+    "speaker": "Carol",
+    "text": "先找到她，再弄清楚这里发生了什么。",
+    "expression": "坚定"
+  },
+  {
+    "beat_id": "complete_037",
+    "speaker": "经理",
+    "text": "晚上好。这个时间很少有客人独自前来。",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_038",
+    "speaker": "Carol",
+    "text": "我不是来住店的。我来找人。Terese，三天前来做夜班兼职的。",
+    "expression": "怀疑"
+  },
+  {
+    "beat_id": "complete_040",
+    "speaker": "经理",
+    "text": "她今早已经办完手续离开了。",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_041",
+    "speaker": "Carol",
+    "text": "几点？从哪扇门走的？",
+    "expression": "怀疑"
+  },
+  {
+    "beat_id": "complete_042",
+    "speaker": "经理",
+    "text": "您可以直接问她。",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_043",
+    "speaker": "Carol",
+    "text": "我要是能问到她，就不用站在这里了。",
+    "expression": "怀疑"
+  },
+  {
+    "beat_id": "complete_045",
+    "speaker": "Carol",
+    "text": "她的东西呢？也带走了？",
+    "expression": "气笑了"
+  },
+  {
+    "beat_id": "complete_046",
+    "speaker": "经理",
+    "text": "离店的员工会自行处理私人物品。",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_047",
+    "speaker": "Carol",
+    "text": "你们的录取通知上说，员工离店要经理批准。我能看看她那张吗？",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_048",
+    "speaker": "经理",
+    "text": "不能。您是她的……？",
+    "expression": "笑里藏刀"
+  },
+  {
+    "beat_id": "complete_049",
+    "speaker": "Carol",
+    "text": "我是她朋友。",
+    "expression": "气笑了"
+  },
+  {
+    "beat_id": "complete_050",
+    "speaker": "经理",
+    "text": "那我只能告诉您，她已经离店了。",
+    "expression": "笑里藏刀"
+  },
+  {
+    "beat_id": "complete_052",
+    "speaker": "经理",
+    "text": "楼上的住客有自己的规矩。如果他们拦住您，最好先听清他们需要什么。",
+    "expression": "阴森"
+  },
+  {
+    "beat_id": "complete_053",
+    "speaker": "Carol",
+    "text": "这是提醒，还是威胁？",
+    "expression": "猎杀时刻"
+  },
+  {
+    "beat_id": "complete_054",
+    "speaker": "经理",
+    "text": "是建议。",
+    "expression": "笑里藏刀"
+  },
+  {
+    "beat_id": "complete_055",
+    "speaker": "经理",
+    "text": "如果遇到麻烦记得找工作人员。",
+    "expression": "笑里藏刀"
+  },
+  {
+    "beat_id": "complete_056",
+    "speaker": "Carol",
+    "text": "包括你吗？",
+    "expression": "狐疑"
+  },
+  {
+    "beat_id": "complete_057",
+    "speaker": "经理",
+    "text": "前台永远愿意为客人提供帮助。",
+    "expression": "笑里藏刀"
+  },
+  {
+    "beat_id": "complete_058",
+    "speaker": "Carol",
+    "text": "我说过，我不是客人。",
+    "expression": "怀疑"
+  },
+  {
+    "beat_id": "complete_059",
+    "speaker": "经理",
+    "text": "现在还不是……",
+    "expression": "阴森"
+  },
+  {
+    "beat_id": "complete_061",
+    "speaker": "长鼻客",
+    "text": "唉！唉！",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_062",
+    "speaker": "Carol",
+    "text": "！？",
+    "expression": "惊讶"
+  },
+  {
+    "beat_id": "complete_063",
+    "speaker": "长鼻客",
+    "text": "你是来打扫的？昨天有人喷了香水，臭味还在，现在又多了一股花味。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_064",
+    "speaker": "Carol",
+    "text": "你鼻子这么灵，闻得出谁上过楼吗？",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_065",
+    "speaker": "长鼻客",
+    "text": "你先把花擦掉。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_067",
+    "speaker": "长鼻客",
+    "text": "这就对了。你袖口都是拖地水的味儿。楼上那些跟我一样的，闻闻就知道你是来做房务的。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_069",
+    "speaker": "长鼻客",
+    "text": "花味没了。还剩一点湿衣服的味道，还有柑橘香。三天前有个人带着这股味道上楼，这几晚偶尔还能闻见。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_070",
+    "speaker": "Carol（心想）",
+    "text": "柑橘香……Terese 最爱喷的就是这个。",
+    "expression": "沉思"
+  },
+  {
+    "beat_id": "complete_071",
+    "speaker": "长鼻客",
+    "text": "你要找人，去问隔壁。楼梯上掉一根线，他都能看半天。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_072",
+    "speaker": "独眼客",
+    "text": "你是来送东西的？我看着他们把包裹收进柜子，今天还没人取。牛皮纸，右下角是我的房号。拿来的时候封条朝外。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_074",
+    "speaker": "独眼客",
+    "text": "编号对，封条也没动。楼上那几个跟我一样，天天盯着谁动过包裹。看见保安证，才知道来的是管包裹的人。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_075",
+    "speaker": "Carol",
+    "text": "三天前有个浅色长发的女生经过。她扎了个墨绿蝴蝶结，你见过吗？",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_076",
+    "speaker": "独眼客",
+    "text": "见过。她跟着前台的人上了三楼。格纹外套搭在胳膊上，一边袖口都拖地了。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_077",
+    "speaker": "Carol",
+    "text": "后来呢？",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_078",
+    "speaker": "独眼客",
+    "text": "没见她下来。倒是送饭的人天天上去。203 盯过那只托盘，你问他。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_080",
+    "speaker": "礼帽客",
+    "text": "劳驾。我的晚茶三天没送到了。房务台说申请还在等经理批准。您若见到经理，请让她瞧一眼。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_082",
+    "speaker": "礼帽客",
+    "text": "终于有人肯签字了。楼上戴礼帽的几位与我一样，有房务上的事，只同经理谈。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_083",
+    "speaker": "Carol",
+    "text": "202 说您见过那个送餐托盘。",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_084",
+    "speaker": "礼帽客",
+    "text": "见过。上面放的是我的茶壶。壶盖缺了一角，隔着走廊我也认得。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_085",
+    "speaker": "Carol",
+    "text": "他们把您的茶送去了哪里？",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_086",
+    "speaker": "礼帽客",
+    "text": "三楼走廊尽头。另有一人份的饭，天天照送。204 为了收盘子的声音，来抱怨过两次。或许他听得更清楚。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_088",
+    "speaker": "大耳客",
+    "text": "就是这一块。每个人走到这里都要拖一下脚。你把它擦干，再去资料柜看看，今晚最后一趟巡房是几点。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_090",
+    "speaker": "Carol",
+    "text": "地毯不响了。巡房记录也在这儿。",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_091",
+    "speaker": "大耳客",
+    "text": "地毯不响，鞋还是会响。楼上那些耳朵跟我一样灵。门一开，你就站着。等门关了再走。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_092",
+    "speaker": "Carol",
+    "text": "你听过楼上收盘子的声音？",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_093",
+    "speaker": "大耳客",
+    "text": "听过。盘子一响，钥匙就从外面转两圈。送饭的人走了，里头才有人拧把手。头两天还拧，今天没拧。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_094",
+    "speaker": "Carol",
+    "text": "所以她出不来。",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_095",
+    "speaker": "大耳客",
+    "text": "门是从外面锁的。你要上楼，先过 205。他那扇门要敲三下。第三下隔一会儿。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_097",
+    "speaker": "门缝客",
+    "text": "这回敲对了。昨晚那个人上来就拧把手，还在我眼前把工牌换了。我跟值班台说过，今晚谁要从这儿上楼，就把通行单办好再来。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_098",
+    "speaker": "Carol",
+    "text": "去哪里办？",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_099",
+    "speaker": "门缝客",
+    "text": "保安从值班资料点领，经理在登记台批。要换身份，走远了再换。楼上跟我一样爱从门缝看人的，最容易记住这种事。袖口明明还是那个袖口，牌子倒换了。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_103",
+    "speaker": "Carol",
+    "text": "今晚还要往 309 送饭？",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_104",
+    "speaker": "门缝客",
+    "text": "是啊。送饭的人经过我门口，会念一遍房号，怕走错。三楼尽头，309。每晚都一样。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_105",
+    "speaker": "Carol",
+    "text": "前台说她今早就离店了。",
+    "expression": "怀疑"
+  },
+  {
+    "beat_id": "complete_106",
+    "speaker": "门缝客",
+    "text": "那今晚这份饭送给谁？",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_109",
+    "speaker": "礼帽客",
+    "text": "劳驾。您是房务的人吗？这三份晚餐算在我的账上，我一份也没见过。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_110",
+    "speaker": "Carol",
+    "text": "您订过晚餐？",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_111",
+    "speaker": "礼帽客",
+    "text": "我只订了茶。问了两次，他们才肯在背面写明饭送到了哪里。您瞧。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_113",
+    "speaker": "Carol",
+    "text": "为什么 309 的饭会算到您这里？",
+    "expression": "怀疑"
+  },
+  {
+    "beat_id": "complete_114",
+    "speaker": "礼帽客",
+    "text": "听说那间房没办正式入住，送了餐也没地方记账。于是他们挑了个有账的人。劳烦您到本层登记台，把那间房登上去。下次送饭，请记到那间房头上。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_117",
+    "speaker": "Carol（心想）",
+    "text": "现在刷保洁证，就能开她的门了。",
+    "expression": "猎杀时刻"
+  },
+  {
+    "beat_id": "complete_133",
+    "speaker": "长鼻客",
+    "text": "怎么一股柑橘味。你们两个，哪一班的？",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_135",
+    "speaker": "Carol",
+    "text": "夜班保洁。她跟我一组。",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_136",
+    "speaker": "长鼻客",
+    "text": "哦。那你跟送东西的人说一声，别再把桶搁我门口了。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_140",
+    "speaker": "大耳客",
+    "text": "你们两个，谁是来值班的？",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_141",
+    "speaker": "Carol",
+    "text": "您需要什么？",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_142",
+    "speaker": "大耳客",
+    "text": "以前一晚上就两趟。今晚楼梯响了四遍，我躺下又坐起来，已经三回了。去把巡房记录拿给我。我想知道还得等到几点。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_144",
+    "speaker": "Carol",
+    "text": "您要的记录。",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_146",
+    "speaker": "大耳客",
+    "text": "下一趟先走左边。好。那我右边这会儿总能清静一下。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_148",
+    "speaker": "Terese（低声）",
+    "text": "他说下一趟先走左边。",
+    "expression": "害怕"
+  },
+  {
+    "beat_id": "complete_149",
+    "speaker": "Carol",
+    "text": "听见了。我们现在上去。",
+    "expression": "气笑了"
+  },
+  {
+    "beat_id": "complete_154",
+    "speaker": "门缝客",
+    "text": "你们也是来拉那扇门的？今晚已经响三次了。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_155",
+    "speaker": "Terese",
+    "text": "平时也这么响吗？",
+    "expression": "害怕"
+  },
+  {
+    "beat_id": "complete_156",
+    "speaker": "门缝客",
+    "text": "平时不会。每天快天亮，有个人会把一张纸塞进我门边那个口子。纸一落下，尽头就亮绿灯。等他走了，灯又变回红的。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_157",
+    "speaker": "Carol",
+    "text": "你见过那张纸吗？",
+    "expression": "平常"
+  },
+  {
+    "beat_id": "complete_158",
+    "speaker": "门缝客",
+    "text": "只看见一角。折起来的，盖过章。你们值班的自己去看。要是办好了，劳驾把门轻轻带上。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_161",
+    "speaker": "Terese",
+    "text": "我在 309 等的，就是这张？",
+    "expression": "惊讶"
+  },
+  {
+    "beat_id": "complete_162",
+    "speaker": "Carol",
+    "text": "嗯。走，我们自己去办。",
+    "expression": "蛊惑"
+  },
+  {
+    "beat_id": "complete_165",
+    "speaker": "门缝客",
+    "text": "对。平时就是这个声音。",
+    "expression": "neutral"
+  },
+  {
+    "beat_id": "complete_167",
+    "speaker": "Terese",
+    "text": "那顿饭还算数。",
+    "expression": "俏皮"
+  },
+  {
+    "beat_id": "complete_168",
+    "speaker": "Carol",
+    "text": "一顿可不够。",
+    "expression": "慵懒"
+  },
+  {
+    "beat_id": "complete_169",
+    "speaker": "Terese",
+    "text": "行！先吃第一顿！",
+    "expression": "开心"
+  }
+]

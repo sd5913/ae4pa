@@ -1,250 +1,158 @@
 [
   {
+    "speaker": "",
+    "text": "Carol 在安全处切回保洁，刷开 309。Terese 扑过来时，Carol 闻见她衣领上还有一点柑橘香。墨绿蝴蝶结已经松了，一缕头发贴在她脸上。",
+    "mode": "narration",
+    "expression": "none",
+    "portrait": false,
+    "scene": "",
+    "source_line": 412,
+    "beat_id": "complete_118",
+    "frame": "approach",
+    "narration": true,
+    "speaker_id": "NARRATOR"
+  },
+  {
     "speaker": "Terese",
-    "text": "Carol……？",
+    "text": "Carol……？我以为又是他们来收盘子。",
+    "mode": "dialogue",
+    "expression": "neutral",
+    "portrait": false,
+    "scene": "",
+    "source_line": 414,
+    "beat_id": "complete_119",
     "frame": "approach",
     "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_id": "TERESE"
   },
   {
     "speaker": "Carol",
-    "text": "是我。小点声，外面还有——",
-    "frame": "approach",
-    "narration": false
-  },
-  {
-    "speaker": "旁白",
-    "text": "她没等Carol说完，便扑过来，紧紧抱住了她。",
-    "frame": "hug",
-    "narration": true
-  },
-  {
-    "speaker": "Terese",
-    "text": "你真的来了……",
+    "text": "是我。你先松一点……我快喘不过气了。",
+    "mode": "dialogue",
+    "expression": "neutral",
+    "portrait": false,
+    "scene": "",
+    "source_line": 416,
+    "beat_id": "complete_120",
     "frame": "hug",
     "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_id": "CAROL"
+  },
+  {
+    "speaker": "",
+    "text": "Terese 松开一点，手还是攥着 Carol 的袖口。",
+    "mode": "narration",
+    "expression": "none",
+    "portrait": false,
+    "scene": "",
+    "source_line": 418,
+    "beat_id": "complete_121",
+    "frame": "hug",
+    "narration": true,
+    "speaker_id": "NARRATOR"
   },
   {
     "speaker": "Carol",
-    "text": "喂……你先松一点，我快喘不过气了。",
+    "text": "第一天晚上，你说下班给我发消息。",
+    "mode": "dialogue",
+    "expression": "neutral",
+    "portrait": false,
+    "scene": "",
+    "source_line": 420,
+    "beat_id": "complete_122",
     "frame": "hug",
-    "narration": false
-  },
-  {
-    "speaker": "旁白",
-    "text": "Carol的手在半空停了一下，还是落在她背上，轻轻拍了两下。",
-    "frame": "hug",
-    "narration": true
+    "narration": false,
+    "speaker_id": "CAROL"
   },
   {
     "speaker": "Terese",
-    "text": "对不起，让你跑到这种地方来。",
+    "text": "他们上班前把手机收走了。我下班去拿，经理说得做满三天。我说工资也不要了，她就让我到这儿等离店批准。",
+    "mode": "dialogue",
+    "expression": "neutral",
+    "portrait": false,
+    "scene": "",
+    "source_line": 422,
+    "beat_id": "complete_123",
     "frame": "hug",
     "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
-  },
-  {
-    "speaker": "Terese",
-    "text": "可我真的好高兴。听见开门声的时候，我还以为又是他们。",
-    "frame": "hug",
-    "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_id": "TERESE"
   },
   {
     "speaker": "Carol",
-    "text": "都敢给我发求救消息了，现在还说这些。",
-    "frame": "hug",
-    "narration": false
-  },
-  {
-    "speaker": "Terese",
-    "text": "谢谢你来找我。",
-    "frame": "hug",
-    "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
-  },
-  {
-    "speaker": "Terese",
-    "text": "我一直在想，只要能再见到你，我一定要告诉你——",
+    "text": "然后呢？",
+    "mode": "dialogue",
+    "expression": "neutral",
+    "portrait": false,
+    "scene": "",
+    "source_line": 424,
+    "beat_id": "complete_124",
     "frame": "hug",
     "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_id": "CAROL"
   },
   {
     "speaker": "Terese",
-    "text": "你对我很重要。我真的很珍惜你，不只是今天。",
+    "text": "她在外面锁了门。第二天我问她批了没有，她说……前台根本没收到过我的申请。",
+    "mode": "dialogue",
+    "expression": "neutral",
+    "portrait": false,
+    "scene": "",
+    "source_line": 426,
+    "beat_id": "complete_125",
     "frame": "hug",
     "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_id": "TERESE"
   },
   {
-    "speaker": "Carol",
-    "text": "……突然说这么认真干什么。",
+    "speaker": "",
+    "text": "Carol 低头看了一眼桌上那份没动过的饭。",
+    "mode": "narration",
+    "expression": "none",
+    "portrait": false,
+    "scene": "",
+    "source_line": 428,
+    "beat_id": "complete_126",
     "frame": "hug",
-    "narration": false
+    "narration": true,
+    "speaker_id": "NARRATOR"
+  },
+  {
+    "speaker": "Carol",
+    "text": "还能走吗？",
+    "mode": "dialogue",
+    "expression": "neutral",
+    "portrait": false,
+    "scene": "",
+    "source_line": 430,
+    "beat_id": "complete_127",
+    "frame": "leave",
+    "narration": false,
+    "speaker_id": "CAROL"
   },
   {
     "speaker": "Terese",
-    "text": "因为我怕以后没机会说。",
-    "frame": "hug",
-    "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
-  },
-  {
-    "speaker": "Carol",
-    "text": "别胡说。",
-    "frame": "hug",
-    "narration": false
-  },
-  {
-    "speaker": "旁白",
-    "text": "Carol抱着她的手收紧了一瞬。",
-    "frame": "hug",
-    "narration": true
-  },
-  {
-    "speaker": "Carol",
-    "text": "我都找到这里了，就会带你出去。",
-    "frame": "hug",
-    "narration": false
-  },
-  {
-    "speaker": "Terese",
-    "text": "嗯。我相信你。",
-    "frame": "hug",
-    "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
-  },
-  {
-    "speaker": "旁白",
-    "text": "Terese终于松开手。Carol把手递到她面前，等她握住。",
-    "frame": "leave",
-    "narration": true
-  },
-  {
-    "speaker": "Carol",
-    "text": "还能走吗？有没有哪里受伤？",
-    "frame": "leave",
-    "narration": false
-  },
-  {
-    "speaker": "Terese",
-    "text": "能走。没受伤，就是有点怕。",
+    "text": "能。楼下员工通道锁了。我听送饭的人说，五楼最右边有个消防出口。",
+    "mode": "dialogue",
+    "expression": "neutral",
+    "portrait": false,
+    "scene": "",
+    "source_line": 432,
+    "beat_id": "complete_128",
     "frame": "leave",
     "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_id": "TERESE"
   },
   {
     "speaker": "Carol",
-    "text": "那就跟在我后面，别乱跑，也别松手。",
-    "frame": "leave",
-    "narration": false
-  },
-  {
-    "speaker": "Terese",
-    "text": "好。你去哪儿，我就跟到哪儿。",
+    "text": "好。你指路，我走前面。",
+    "mode": "dialogue",
+    "expression": "neutral",
+    "portrait": false,
+    "scene": "",
+    "source_line": 434,
+    "beat_id": "complete_129",
     "frame": "leave",
     "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
-  },
-  {
-    "speaker": "Carol",
-    "text": "……现在倒是听话了。",
-    "frame": "leave",
-    "narration": false
-  },
-  {
-    "speaker": "Carol",
-    "text": "楼下的路还能走吗？",
-    "frame": "leave",
-    "narration": false
-  },
-  {
-    "speaker": "Terese",
-    "text": "他们把下面的员工通道锁上了。不过五楼有消防出口，我听夜班的人说过。",
-    "frame": "leave",
-    "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
-  },
-  {
-    "speaker": "Carol",
-    "text": "那就上五楼。",
-    "frame": "leave",
-    "narration": false
-  },
-  {
-    "speaker": "Terese",
-    "text": "这次换我帮你认路。",
-    "frame": "leave",
-    "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
-  },
-  {
-    "speaker": "Carol",
-    "text": "行。看见不对劲就告诉我，别自己往前冲。",
-    "frame": "leave",
-    "narration": false
-  },
-  {
-    "speaker": "Terese",
-    "text": "知道啦。等出去了，我请你吃饭。",
-    "frame": "leave",
-    "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
-  },
-  {
-    "speaker": "Carol",
-    "text": "一顿可不够。",
-    "frame": "leave",
-    "narration": false
-  },
-  {
-    "speaker": "Terese",
-    "text": "那就很多顿。以后你需要我，我也一定会来。",
-    "frame": "leave",
-    "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
-  },
-  {
-    "speaker": "Carol",
-    "text": "先把自己照顾好。",
-    "frame": "leave",
-    "narration": false
-  },
-  {
-    "speaker": "旁白",
-    "text": "Carol把她往身后带了带，先一步望向门外。",
-    "frame": "leave",
-    "narration": true
-  },
-  {
-    "speaker": "Carol",
-    "text": "走了。我带你出去。",
-    "frame": "leave",
-    "narration": false
-  },
-  {
-    "speaker": "Terese",
-    "text": "嗯，跟着你。",
-    "frame": "leave",
-    "narration": false,
-    "speaker_id": "friend",
-    "speaker_en": "Terese"
+    "speaker_id": "CAROL"
   }
 ]
