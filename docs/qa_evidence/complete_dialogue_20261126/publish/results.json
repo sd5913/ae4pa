@@ -1,0 +1,14 @@
+[
+  {
+    "test": "complete_dialogue",
+    "exit": 0
+  },
+  {
+    "test": "intro_flow",
+    "exit": 0
+  },
+  {
+    "test": "full_mainline",
+    "exit": 0
+  }
+]

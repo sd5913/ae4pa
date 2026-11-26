@@ -178,3 +178,9 @@ PR #74 合并前：独立后段夹具481cd5c已完成中英文Windows定向复�
 - [x] Windows功能/完整新局至EXIT/跨进程存读/中英三尺寸画面和输入复测，见[证据](docs/qa_evidence/complete_dialogue_20261126/README.md)。
 - [ ] 真人连续试玩、macOS及导出包验收。
 - [ ] 当前本地分支提交、推送、合并（尚未获得本次授权）。
+
+### 发布候选复核（2026-11-26）
+
+- [x] 用户已授权同步main、提交、推送和合入；已核对main并形成c895c0a候选。
+- [x] 干净检出导入、170段对白/23表情、序章、完整八任务至EXIT复测通过，[证据](docs/qa_evidence/complete_dialogue_20261126/publish/README.md)。
+- 远端CI与最终合并结果见本次GitHub合并请求；旧的未授权记录为历史状态。
