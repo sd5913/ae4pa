@@ -90,9 +90,8 @@ func _ready() -> void:
 		button.pressed.connect(open.bind(mode))
 		tabs.add_child(button)
 		_tabs[mode] = button
-	_auto.custom_minimum_size.y = 40
+	_auto.custom_minimum_size = Vector2(160, 40)
 	_auto.pressed.connect(func() -> void: _automatic = not _automatic; _selected = -1 if _automatic else 0; refresh())
-	_content.add_child(_auto)
 	_filter.item_selected.connect(func(_value: int) -> void: _render_history())
 	_content.add_child(_filter)
 	_scroll.size_flags_vertical = Control.SIZE_EXPAND_FILL
@@ -110,6 +109,7 @@ func _ready() -> void:
 	_status.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_status.add_theme_font_size_override("font_size",14)
 	footer.add_child(_status)
+	footer.add_child(_auto)
 	var back := Button.new()
 	back.text = "返回"
 	back.custom_minimum_size = Vector2(110,44)
@@ -209,20 +209,57 @@ func _render_slots() -> void:
 		var id := -1 if _automatic else i
 		var slot := _slot(id)
 		var button := Button.new()
-		button.custom_minimum_size.y = 126
+		button.custom_minimum_size = Vector2(288, 176)
 		button.toggle_mode = true
 		button.button_group = group
 		button.button_pressed = id == _selected
 		button.add_theme_font_size_override("font_size",17)
 		button.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
-		button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		button.alignment = HORIZONTAL_ALIGNMENT_CENTER
+		button.clip_contents = true
 		var heading := tr("自动记忆") if id == -1 else tr("记忆 %02d") % (i+1)
 		var detail := tr("完整存档接口待 A 接入") if not is_instance_valid(backend) else tr("尚未留下记忆")
 		if slot.status == "VALID":
 			detail = "%s\n%s\n%s · %s" % [slot.get("location",""), tr(str(slot.get("task_name",""))),slot.get("saved_at",""),slot.get("play_time","")]
 			detail += "\n" + tr("Terese已获救") if slot.get("has_friend",false) else "\n"+tr("Terese尚未获救")
 		elif slot.status not in ["VALID","EMPTY"]: detail = tr("记忆暂时无法读取")
-		button.text = heading + "\n" + detail
+		button.text = ""
+		button.tooltip_text = heading + "\n" + detail
+		var preview := TextureRect.new()
+		preview.name = "Preview"
+		preview.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		preview.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+		button.add_child(preview)
+		preview.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		preview.offset_left = 10
+		preview.offset_top = 10
+		preview.offset_right = -10
+		preview.offset_bottom = -44
+		var preview_path := str(slot.get("preview_path", ""))
+		if not preview_path.is_empty() and ResourceLoader.exists(preview_path):
+			preview.texture = load(preview_path)
+		var placeholder := Label.new()
+		placeholder.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		placeholder.text = (str(slot.get("location", "")) + "\n" + tr(str(slot.get("task_name", "")))) if slot.status == "VALID" else tr("尚未留下记忆") if slot.status == "EMPTY" else tr("记忆暂时无法读取")
+		placeholder.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		placeholder.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		placeholder.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+		placeholder.add_theme_font_size_override("font_size", 18)
+		preview.add_child(placeholder)
+		placeholder.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		placeholder.visible = preview.texture == null
+		var caption := Label.new()
+		caption.name = "Caption"
+		caption.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		caption.text = heading + (" · " + str(slot.get("saved_at", "")).replace("T", " ") if slot.status == "VALID" else "")
+		caption.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		caption.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		caption.add_theme_font_size_override("font_size", 16)
+		button.add_child(caption)
+		caption.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_WIDE)
+		caption.offset_top = -40
+		caption.offset_bottom = -6
 		button.pressed.connect(func() -> void: _selected = id; _update_action(); button.grab_focus())
 		_grid.add_child(button)
 	_update_action()
@@ -285,18 +322,22 @@ func _execute_action() -> void:
 
 func _layout() -> void:
 	var viewport := _root.get_viewport_rect().size
-	var width := minf(1160, minf(viewport.x-32,(viewport.y-32)*1586.0/992.0))
-	_board.size = Vector2(width,width*992.0/1586.0)
-	_board.position = (viewport-_board.size)*0.5
-	_content.offset_left = width*0.105
-	_content.offset_right = -width*0.105
-	_content.offset_top = _board.size.y*0.13
-	_content.offset_bottom = -_board.size.y*0.14
-	var content_width := width*0.79
-	_grid.columns = 2 if viewport.x < 1000 else 3
-	_grid.custom_minimum_size.x = content_width-18
-	_history.custom_minimum_size.x = content_width-18
-	for child in _grid.get_children(): child.custom_minimum_size.x = (content_width-18-10*(_grid.columns-1))/_grid.columns
+	# One design canvas scales uniformly. Container widths are the same for every row.
+	_board.size = Vector2(1160, 1160.0 * 992.0 / 1586.0)
+	var ratio := minf((viewport.x - 32) / _board.size.x, (viewport.y - 32) / _board.size.y)
+	_board.scale = Vector2.ONE * ratio
+	_board.position = (viewport - _board.size * ratio) * 0.5
+	_content.offset_left = 120
+	_content.offset_right = -120
+	_content.offset_top = 84
+	_content.offset_bottom = -100
+	_grid.columns = 1 if _automatic else 3
+	_grid.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_history.size_flags_horizontal = Control.SIZE_EXPAND_FILL
+	_grid.custom_minimum_size.x = 920
+	_history.custom_minimum_size.x = 920
+	for child in _grid.get_children():
+		child.custom_minimum_size.x = (920.0 - 10 * (_grid.columns - 1)) / _grid.columns
 
 func _input(event: InputEvent) -> void:
 	if not _root.visible: return

@@ -30,6 +30,7 @@ var _last_task_display := ""
 
 
 func _ready() -> void:
+	_arrange_edge_hud()
 	add_child(preload("res://scenes/ui/stamina_display.gd").new())
 	%BagButton.pressed.connect(func() -> void: bag_requested.emit())
 	%NotebookButton.pressed.connect(func() -> void: notebook_requested.emit())
@@ -57,6 +58,39 @@ func _ready() -> void:
 	stack.move_child(stack.get_node("TaskPlate"), 0)
 	stack.move_child(%NoticeRow, stack.get_child_count() - 1)
 	_refresh()
+
+func _arrange_edge_hud() -> void:
+	# Keep the original unique nodes and signal entry points for A's adapters.
+	var right := $Margin/Groups/Right
+	right.custom_minimum_size.x = 256
+	$Margin.add_theme_constant_override("margin_right", 88)
+	$Margin/Groups/Right/Readout/FloorColumn.hide()
+	var hint: Label = %SwitchHint
+	hint.reparent(right)
+	var rail := Control.new()
+	rail.name = "EdgeActions"
+	rail.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	add_child(rail)
+	var index := 0
+	for id in ["BagButton", "NotebookButton", "PauseButton", "TaskButton"]:
+		var button: Button = get_node("%" + id)
+		var caption := button.text
+		button.reparent(rail)
+		button.set_anchors_and_offsets_preset(Control.PRESET_TOP_RIGHT)
+		button.offset_top = 24 + index * 56
+		button.offset_bottom = 72 + index * 56
+		button.offset_right = -8
+		button.set_script(preload("res://scenes/ui/edge_action.gd"))
+		button.configure(caption)
+		index += 1
+	for slot in [$Margin/Groups/Right/Readout/SlotA, $Margin/Groups/Right/Readout/SlotB]:
+		slot.custom_minimum_size.x = 120
+		slot.get_node("Image").custom_minimum_size = Vector2(120, 112)
+		var art: TextureRect = slot.get_node("Image").get_child(1)
+		art.offset_left = 26
+		art.offset_right = -26
+		art.offset_top = 16
+		art.offset_bottom = -18
 
 
 func _notification(what: int) -> void:

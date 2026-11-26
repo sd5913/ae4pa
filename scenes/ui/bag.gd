@@ -25,6 +25,8 @@ var _hovered_owned_index := -1
 
 
 func _ready() -> void:
+	resized.connect(_fit_case)
+	_fit_case()
 	visibility_changed.connect(_sync_modal_state)
 	CardManager.cards_changed.connect(_refresh_cards)
 	_owned_cards.item_selected.connect(_on_card_selected)
@@ -43,6 +45,15 @@ func _ready() -> void:
 	var flow := preload("res://scenes/ui/carol_ui_flow.gd").new()
 	flow.name = "CarolUIFlow"
 	add_child(flow)
+
+func _fit_case() -> void:
+	# Scale the entire existing case uniformly, reserving space for the outside X.
+	var ratio := minf(1.0, minf((size.x - 48) / 1216.0, (size.y - 48) / 650.0))
+	$Case.scale = Vector2.ONE * maxf(0.3, ratio)
+	$Case.offset_left = -608.0 * ratio
+	$Case.offset_right = $Case.offset_left + 1128
+	$Case.offset_top = -310.0 * ratio
+	$Case.offset_bottom = $Case.offset_top + 578
 
 
 func _notification(what: int) -> void:
