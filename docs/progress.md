@@ -1388,3 +1388,10 @@ Added 27 approved PNGs under art_sources/confirmed_characters_20261125 with SHA-
 - 1F 三名员工的背后偷卡范围扩大至 145 场景单位，隐藏脚下矩形。保洁在清洁间 x=2645–3115 往返，4F 巡房员工在 402 与 403 之间 x=1420–1670 往返并停留。保洁头巾降低，背包三个卡位同时校准卡片、选中、焦点与拖放区域。309 CG 复用咖啡馆对白框，仍由真实拍次和救援流程负责历史与结算。
 - 含员工偷取步骤的 201、202、203、302、403 从接任务起计 120 秒。204、205 为 210 秒，501 为 180 秒。旧档保持写入时的剩余时间，重接任务使用当前时限。
 - Godot 4.7.2 的底座、时限目录、任务检查点、楼梯选层、门生命周期、普通怪规则、员工与工作点、换装、309 拍次与救援、403/501、从新局到 EXIT 和两进程存读回归通过。macOS Compatibility 图形测试通过楼梯与选层、中文 1280×720 和英文 960×540 背包点击／键盘／拖放与 309 对话布局。测试使用了位置及前置条件夹具，真人连续计时试玩和 Windows 导出尚未执行。
+
+### 2026-11-26 Music asset delivery (Asia/Hong_Kong)
+
+- Pulled shared `main@4ae5577b2e6455372366b21e21a12b08fb0d96a7` with `git pull --ff-only origin main`; this delivery uses `assets/music-20261126`. Preserved unrelated local Linux build work separately for restoration after the asset commit.
+- Moved the six user-supplied MP3, WAV and M4A files into `assets/music/`, using `propulsive_tension_2` and `the_haunted_ballroom_1` as filename stems. SHA-256 checks confirmed every audio file retained its original bytes and metadata. Added four generated MP3/WAV import descriptions and [music integration notes](../assets/music/README.md), including the embedded Suno/artist attribution and M4A source-only status.
+- Linux / Godot `4.7.2.stable.arch_linux.ed1daf0bf`: imported a clean copy of the pulled source plus the new assets with `godot --headless --path /tmp/ae4pa-music-4734xdlq/verify --editor --import --quit` (exit 0, no error/warning diagnostics). A temporary `music_probe.gd` loaded all four MP3/WAV AudioStream resources and verified 67.88/123.64-second durations (exit 0). The existing `foundation_smoke.gd` passed in the same checkout (exit 0).
+- `ffmpeg -nostdin -v error -xerror -i <file> -map 0:a:0 -f null -` decoded all six supplied files (each exit 0). Verification logs and the temporary probe are under `/tmp/ae4pa-music-4734xdlq/`. This is an asset delivery; playback placement, volume, looping, listening checks, exports and cross-platform playback remain unverified. No game scripts, scenes or project settings changed.
