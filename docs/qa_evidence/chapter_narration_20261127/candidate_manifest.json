@@ -1,0 +1,18 @@
+{
+  "base_sha": "67c27fd8ae16c690e63e91d5c672f0ac892c6cb0",
+  "branch": "work/story-chapter-cues-20261127",
+  "files_sha256": {
+    "cg309_reunion/reunion_cg.gd": "0359b85f04473dafc470e93d76a4e3370ccb64ed461f18082641bac23abe5fb0",
+    "localization/en.po": "9589352acf5054c53703969e06d071e5d6bfc56022766bedaaa4581e6732dad0",
+    "scenes/tests/ui/complete_dialogue_review.gd": "08dee0bfb12544d2d0d972aa9c3101fe1c62b718380302f5af80bded2a2515c5",
+    "scenes/tests/ui/complete_dialogue_smoke.gd": "e81b42a37bb1b6e0958569a497d4c5d46ebf318deba9049b63e1a3bbb0ff83e5",
+    "scenes/tests/ui/story_surface_smoke.gd": "16f428218cd17c5e581e8ed1ac273d93df67bd3daf024a75391b426dcc272817",
+    "scenes/ui/dialogue.gd": "df0b5793665d22203713272b3f30ad19978ecf6a7de71b3205e2539138a53f73",
+    "scenes/ui/chapter_card.gd": "4c6e76a70a4944063d15fd68cf8bcd9bac16be3643843d04f05398c508478605",
+    "scenes/ui/chapter_card.gd.uid": "4c9ee9968faf4586a37c15c63dbaf8fc3ac2e41e3a8915b596f7515bde07b164",
+    "scenes/tests/ui/chapter_narration_review.gd": "68fc4647ac73295a26beba92980b8d2e264be07551e16a7fc2e581c406035d64",
+    "scenes/tests/ui/chapter_narration_review.gd.uid": "a1f48212a4b7a7dbcfd5a071924040c6e1edab67918349e877dca15ac22f4fa0",
+    "cg309_reunion/assets/room309_empty.png": "76c83df2b2943ab92b4d7996196a01a7e108371612c85d5725b27221c2f47302",
+    "cg309_reunion/assets/room309_empty.png.import": "67581b613c8cdd3ec83324e20693213f58521fa0c6c918864261153ee78c99ee"
+  }
+}

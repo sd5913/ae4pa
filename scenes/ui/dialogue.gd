@@ -75,6 +75,8 @@ var _world_story := false
 var _world_background := ""
 var _phone_tween: Tween
 var _scene_tween: Tween
+var _chapter_card: Control
+var _chapter_seen: Dictionary = {}
 
 @onready var _background: TextureRect = %Background
 @onready var _fade: ColorRect = %Fade
@@ -95,6 +97,12 @@ var _scene_tween: Tween
 
 
 func _ready() -> void:
+	_chapter_card = preload("res://scenes/ui/chapter_card.gd").new()
+	add_child(_chapter_card)
+	_chapter_card.closed.connect(func():
+		if is_instance_valid(_memory_rail): _memory_rail.show()
+		_show_story_beat()
+	)
 	if presentation_only:
 		set_process_input(false)
 	else:
@@ -158,6 +166,11 @@ func _input(event: InputEvent) -> void:
 		return
 	if not visible or _dialogue_id.is_empty():
 		return
+	if _chapter_card.active:
+		var chapter_result: int = _pointer.feed(event, [get_global_rect()], not _chapter_card.ready_to_continue)
+		if chapter_result == _pointer.ADVANCE: _chapter_card.dismiss()
+		if chapter_result != _pointer.IGNORE: get_viewport().set_input_as_handled()
+		return
 	# Skip owns its gesture and must not also advance the story underneath.
 	if event is InputEventMouse or event is InputEventScreenTouch or event is InputEventScreenDrag:
 		if _skip_button.visible and _skip_button.get_global_rect().has_point(event.position):
@@ -180,6 +193,8 @@ func _input(event: InputEvent) -> void:
 
 
 func show_dialogue(dialogue_id: String) -> void:
+	_chapter_card.cancel()
+	_chapter_seen.clear()
 	_world_story = false
 	_background.show()
 	$Tint.show()
@@ -237,6 +252,8 @@ func show_dialogue(dialogue_id: String) -> void:
 
 
 func cancel_presentation() -> void:
+	_chapter_card.cancel()
+	if is_instance_valid(_memory_rail): _memory_rail.show()
 	_world_story = false
 	_history_serial += 1
 	_pointer.reset()
@@ -303,7 +320,22 @@ func show_story_sequence(dialogue_id: String, rows: Array, background_scene: Str
 	show()
 	return true
 
+const BACKGROUND_NARRATION_PREFIXES := ["几天前，咖啡馆。", "回到雨夜。", "经理翻开登记簿。", "Carol 向前一步。", "楼上传来一声关门声。", "Carol 推开消防门。", "两人走进雨里。"]
+static func uses_background_narration(text: String) -> bool:
+	for prefix: String in BACKGROUND_NARRATION_PREFIXES:
+		if text.begins_with(prefix): return true
+	return false
+func present_background_narration(text: String) -> void:
+	_background.hide(); $Tint.hide()
+	_sms_panel.hide(); _frame.hide(); _speaker.hide(); _line.hide()
+	_portrait.hide(); _portrait.texture = null; _story_title.hide()
+	_cue.text = text
+	_cue.show()
+	show()
 func present_revision_beat(beat: Dictionary) -> void:
+	if uses_background_narration(str(beat["text"])):
+		present_background_narration(tr(str(beat["text"])))
+		return
 	var speaker: String = beat.get("speaker", "")
 	var role := DialogueRoles.from_speaker(speaker)
 	present_character_beat(role, str(beat["text"]))
@@ -392,6 +424,9 @@ func set_skip_transitions_for_test(skip: bool) -> void:
 	_skip_transitions = skip
 	if skip and is_node_ready():
 		_finish_phone_animation()
+		if _chapter_card.active:
+			_chapter_card.cancel()
+			_show_story_beat()
 
 
 func reset_progress_file_for_test() -> void:
@@ -456,10 +491,21 @@ func _show_line() -> void:
 
 
 func _show_story_beat() -> void:
+	if _chapter_card.active:
+		return
 	if _beats.is_empty() or _line_index >= _beats.size():
 		return
-	_record_history.call_deferred(_line_index, _history_serial)
 	var beat: Dictionary = _beats[_line_index]
+	if _dialogue_id == V4_INTRO_ID and not _skip_transitions and not _chapter_seen.has(_line_index):
+		if _line_index == 0 or beat.scene != _beats[_line_index - 1].scene:
+			_chapter_seen[_line_index] = true
+			var number := 1 if _line_index == 0 else 2 if beat.scene == "cafe" else 3 if beat.scene == "bedroom" else 4
+			var location: String = {"bedroom":"卧室", "cafe":"咖啡馆回忆", "exterior":"旅馆外"}[beat.scene]
+			_frame.hide(); _line.hide(); _speaker.hide(); _portrait.hide(); _cue.hide(); _story_title.hide()
+			if is_instance_valid(_memory_rail): _memory_rail.hide()
+			_chapter_card.present(tr("序章 %d") % number, tr(location))
+			return
+	_record_history.call_deferred(_line_index, _history_serial)
 	if _world_story:
 		present_revision_beat(beat)
 		if not _world_background.is_empty():
@@ -677,12 +723,12 @@ func _set_scene(scene_id: String, fade: bool) -> void:
 	_fade.color.a = 0.0
 	if _scene_tween != null: _scene_tween.kill()
 	_scene_tween = create_tween()
-	_scene_tween.tween_property(_fade, "color:a", 1.0, 0.22).from(0.0)
+	_scene_tween.tween_property(_fade, "color:a", 1.0, 0.55).from(0.0)
 	_scene_tween.tween_callback(func() -> void:
 		_background.texture = BACKGROUNDS[scene_id]
 		var reveal_tween := create_tween()
 		_scene_tween = reveal_tween
-		reveal_tween.tween_property(_fade, "color:a", 0.0, 0.32).from(1.0)
+		reveal_tween.tween_property(_fade, "color:a", 0.0, 0.65).from(1.0)
 		reveal_tween.finished.connect(func() -> void:
 			_transition_in_progress = false
 			_scene_tween = null
@@ -692,6 +738,9 @@ func _set_scene(scene_id: String, fade: bool) -> void:
 
 
 func _advance() -> void:
+	if _chapter_card.active:
+		_chapter_card.dismiss()
+		return
 	if _dialogue_id.is_empty() or _transition_in_progress:
 		return
 	if _phone_tween != null:
@@ -722,6 +771,8 @@ func _advance() -> void:
 
 
 func _finish() -> void:
+	_chapter_card.cancel()
+	if is_instance_valid(_memory_rail): _memory_rail.show()
 	if _dialogue_id.is_empty():
 		return
 	_finish_phone_animation()
@@ -774,6 +825,7 @@ func _build_memory_rail() -> void:
 		_memory_rail.add_child(button)
 
 func _record_history(index: int, serial: int) -> void:
+	if _chapter_card.active: return
 	if preload("res://scenes/ui/memory_ui.gd").is_open(): return
 	if not is_visible_in_tree() or _line_index != index or _history_serial != serial or _dialogue_id.is_empty(): return
 	var who := _history_speaker

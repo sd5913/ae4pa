@@ -46,7 +46,7 @@ func run() -> void:
 					check(portrait.texture == Portraits.portrait(beat.speaker, beat.expression), "exact authored expression: " + beat.text)
 			else:
 				check(portrait.texture == null, "narration/CG clears preceding portrait")
-				check(dialogue.get_node("%Line").position.x < dialogue.size.x * 0.15, "blank layout reclaims portrait column")
+				check(dialogue.get_node("%StageCue").visible and not dialogue.get_node("%DialogueFrame").visible if dialogue.uses_background_narration(beat.text) else dialogue.get_node("%Line").position.x < dialogue.size.x * 0.15, "background narration or full-width blank layout")
 	check(count == 170, "all 170 full-list beats included")
 	dialogue.cancel_presentation()
 	root.get_node("Localization").set_language("zh_CN")

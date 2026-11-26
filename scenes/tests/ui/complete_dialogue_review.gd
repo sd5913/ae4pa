@@ -14,13 +14,16 @@ func shot(name: String) -> void:
 	await settle()
 	var body: Label = dialogue.get_node("%Line")
 	var panel: Control = dialogue.get_node("%DialogueFrame")
-	check(panel.get_global_rect().encloses(body.get_global_rect()), "text inside frame " + name)
+	var cue: Label = dialogue.get_node("%StageCue")
+	if cue.visible:
+		body = cue
+	check(not panel.visible if cue.visible else panel.get_global_rect().encloses(body.get_global_rect()), "background narration or framed text " + name)
 	check(Rect2(Vector2.ZERO,dialogue.size).encloses(body.get_global_rect()), "text inside viewport " + name)
 	check(body.get_minimum_size().y <= body.size.y + 1, "all text lines fit " + name)
 	var portrait: Control = dialogue.get_node("%Portrait")
 	if portrait.visible:
 		check(portrait.get_rect().end.x <= body.position.x, "portrait does not overlap text " + name)
-	else:
+	elif not cue.visible:
 		check(body.position.x < dialogue.size.x * 0.15, "full-width text " + name)
 	await RenderingServer.frame_post_draw
 	check(root.get_texture().get_image().save_png(evidence.path_join(name + ".png")) == OK, "capture " + name)

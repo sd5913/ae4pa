@@ -2780,3 +2780,21 @@ msgstr "Are you here to clean? Someone sprayed perfume yesterday. The stink is s
 
 msgid "行！先吃第一顿！"
 msgstr "Deal! Let's start with the first one!"
+
+msgid "序章 %d"
+msgstr "PROLOGUE %d"
+
+msgid "卧室"
+msgstr "Bedroom"
+
+msgid "咖啡馆回忆"
+msgstr "A Memory at the Cafe"
+
+msgid "旅馆外"
+msgstr "Outside the Hotel"
+
+msgid "重逢"
+msgstr "Reunion"
+
+msgid "点击或按 E 继续"
+msgstr "Click or press E to continue"
