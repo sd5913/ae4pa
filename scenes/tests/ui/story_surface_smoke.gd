@@ -38,7 +38,8 @@ func run() -> void:
 	check(menu.get("_ready_for_input"), "cover opening finishes with interactive buttons")
 	await shot("menu")
 	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
-	check(dialogue.get("_line_index") == 0 and dialogue.get_node("%Portrait").visible, "complete prologue opens with Carol in the bedroom")
+	check(dialogue.get("_line_index") == 0 and (dialogue._chapter_card.active or dialogue.get_node("%Portrait").visible), "complete prologue opens at the first bedroom beat")
+	dialogue.set_skip_transitions_for_test(true)
 	# The complete source no longer includes phone messages. Keep reusable SMS
 	# gesture coverage through an explicit fixture, then continue the real intro.
 	dialogue.set_skip_transitions_for_test(false)
@@ -146,8 +147,9 @@ func run() -> void:
 	while dialogue.get("_beats")[dialogue.get("_line_index")].mode != "narration": dialogue._advance()
 	var cue_index: int = dialogue.get("_line_index")
 	await shot("narration")
-	click(dialogue.get_node("%DialogueFrame").get_global_rect().get_center())
-	check(dialogue.get("_line_index") == cue_index + 1, "full-width narration panel advances one beat")
+	check(dialogue.get_node("%StageCue").visible and not dialogue.get_node("%DialogueFrame").visible, "cafe narration appears on its background")
+	click(dialogue.get_node("%StageCue").get_global_rect().get_center())
+	check(dialogue.get("_line_index") == cue_index + 1, "background narration advances one beat")
 	dialogue.reset_progress_file_for_test()
 	main._show_menu()
 	await settle()

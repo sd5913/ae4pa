@@ -27,6 +27,8 @@ var _textures: Dictionary = {}
 var _run_token := 0
 var _pointer := preload("res://scenes/ui/story_pointer.gd").new()
 var _displayed_index := -1
+var _chapter_card: Control
+var _show_chapter := true
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -55,6 +57,10 @@ func _build_ui() -> void:
 	add_child(_dialogue)
 	_panel = _dialogue.get_node("%DialogueFrame")
 	_speaker = _dialogue.get_node("%Speaker")
+	_chapter_card = preload("res://scenes/ui/chapter_card.gd").new()
+	_chapter_card.theme = _dialogue.theme
+	add_child(_chapter_card)
+	_chapter_card.closed.connect(_show_next)
 
 func _new_frame() -> TextureRect:
 	var node := TextureRect.new()
@@ -67,6 +73,7 @@ func _new_frame() -> TextureRect:
 
 func play() -> void:
 	_pointer.reset()
+	_chapter_card.cancel()
 	_stop_tweens()
 	_run_token += 1
 	_index = -1
@@ -86,9 +93,17 @@ func play() -> void:
 		hide()
 		push_error("309 dialogue is empty; completion was not emitted")
 		return
-	_show_next()
+	if _show_chapter and not "--ui-smoke" in OS.get_cmdline_user_args():
+		_front.texture = preload("res://cg309_reunion/assets/room309_empty.png")
+		_dialogue.hide()
+		_chapter_card.present("309", tr("重逢"))
+	else:
+		_show_next()
 
 func advance() -> void:
+	if _chapter_card.active:
+		_chapter_card.dismiss()
+		return
 	if not _playing or _transitioning or _displayed_index != _index:
 		return
 	_show_next()
@@ -163,11 +178,17 @@ func cancel() -> void:
 	_run_token += 1
 	_playing = false
 	_transitioning = false
+	_chapter_card.cancel()
 	_stop_tweens()
 	hide()
 
 func _input(event: InputEvent) -> void:
 	if not _playing or not visible:
+		return
+	if _chapter_card.active:
+		var chapter_result: int = _pointer.feed(event, [get_global_rect()], not _chapter_card.ready_to_continue)
+		if chapter_result == _pointer.ADVANCE: _chapter_card.dismiss()
+		if chapter_result != _pointer.IGNORE: get_viewport().set_input_as_handled()
 		return
 	var surfaces: Array[Rect2] = [_panel.get_global_rect()]
 	if _speaker.visible:
