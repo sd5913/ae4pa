@@ -29,6 +29,13 @@ func same_region(a: Image, b: Image, region: Rect2i) -> bool:
 		for x in range(region.position.x,region.end.x):
 			if a.get_pixel(x,y) != b.get_pixel(x,y): return false
 	return true
+func check_cleaner_headscarf(pose: Dictionary, view: Dictionary, context: String) -> void:
+	var source: Rect2 = pose.source
+	var destination: Rect2 = pose.destination
+	var head: Rect2 = pose.head_source
+	var scarf: Rect2 = view.headwear_rect
+	var head_top := destination.position.y + head.position.y * (destination.size.y / source.size.y)
+	check(scarf.position.y >= head_top and scarf.size.y > 0.0, "Cleaner scarf sits on the refreshed head: " + context)
 func finish() -> void:
 	for message in failures: print("FAIL: ",message)
 	if failures.is_empty(): print("PASS: player_identity_outfit_smoke")
@@ -65,12 +72,16 @@ func run() -> void:
 		check(view["card_id"]==role,"Snapshot-only restore updates "+role)
 		check(view["headwear"]=={"CLEANER":"headscarf","SECURITY":"cap","MANAGER":"NONE"}[role],"Correct single headwear for "+role)
 		check(view["jacket"]==(role=="MANAGER"),"Only manager changes upper garment")
+		if role == "CLEANER":
+			check_cleaner_headscarf(artwork.get_render_pose(), view, "idle")
 		for frame in range(WALK_FRAMES):
 			artwork.set_walking(true)
 			artwork.set("_phase",(float(frame) + 0.5) / WALK_FRAMES)
 			await settle()
 			var pose: Dictionary=artwork.get_render_pose()
 			check(outfit.get_outfit_view()["frame"]==frame and pose["frame"]==frame,"Outfit uses exact walking frame %s/%d"%[role,frame])
+			if role == "CLEANER":
+				check_cleaner_headscarf(pose, outfit.get_outfit_view(), "walk frame %d" % frame)
 		for direction in [-1,1]:
 			player.facing_direction=direction
 			player.visual.scale.x=direction
@@ -80,6 +91,8 @@ func run() -> void:
 		artwork.set_cleaning_visual(true)
 		await settle()
 		check(outfit.get_outfit_view()["frame"]==8,"Cleaning uses actual bent-head frame for "+role)
+		if role == "CLEANER":
+			check_cleaner_headscarf(artwork.get_render_pose(), outfit.get_outfit_view(), "cleaning")
 		artwork.set_cleaning_visual(false)
 	# Q uses actual B state; collecting an inactive third card must not layer its costume.
 	await identity("CLEANER")

@@ -43,7 +43,7 @@ func _run() -> void:
 	_expect(not game.call("can_retry_current_task"), "Active task cannot be retried")
 	await _travel(1)
 	var previous_cleaner: Node = _floor().get_node("StaffRoot/CleanerSlot/Staff")
-	_player().global_position.x = 3400.0
+	_player().position.x = _floor().get_stair_interaction_center(true)
 	await _settle()
 	game.call("request_floor_travel", 2)
 	previous_cleaner.emit_signal("task_failure_requested", "STAFF_CAUGHT", "STAFF_CLEANER_1F")
@@ -115,7 +115,7 @@ func _run() -> void:
 	_expect(game.call("get_world_flags").get("stain_201_cleaned", false), "A stores the accepted cleaning fact")
 	_expect(not game.call("get_world_flags").get("passage_201_unlocked", false), "Cleaning does not open the passage")
 	game.call("_process", 5.0)
-	_expect(game.get("remaining_time") == 205.0, "Ready task still uses the same clock")
+	_expect(game.get("remaining_time") == 115.0, "Ready task still uses the same clock")
 	await _travel(1)
 	await _travel(2)
 	spot = _floor().get_node("Interactions/Stain201Slot/CleaningSpot")
@@ -123,7 +123,7 @@ func _run() -> void:
 	await _travel(1)
 	game.call("set_modal_open", "FAILURE", true)
 	game.call("set_modal_open", "FAILURE", false)
-	game.call("_process", 205.0)
+	game.call("_process", 115.0)
 	_expect(game.get("task_status") == "FAILED", "Timeout before delivery fails from another floor")
 	var active: int = cards.get("active_slot")
 	await _action("switch_id", true)
@@ -165,7 +165,7 @@ func _run() -> void:
 	cards.disconnect("cards_changed", on_cards)
 	cards.disconnect("identity_changed", on_identity)
 	_expect(_floor().get_node("Interactions/Stain201Slot/CleaningSpot").visible, "Rebuilt stain is available again after rollback")
-	_expect(game.call("accept_task", "TASK_01_CLEAN") and game.get("remaining_time") == 210.0, "Reacceptance starts the full configured time")
+	_expect(game.call("accept_task", "TASK_01_CLEAN") and game.get("remaining_time") == 120.0, "Reacceptance starts the full configured time")
 	await _travel(1)
 	var cleaner: Node2D = _floor().get_node("StaffRoot/CleanerSlot/Staff")
 	_stop_turns(cleaner)
@@ -232,7 +232,7 @@ func _player() -> Node2D:
 
 
 func _travel(destination: int) -> void:
-	_player().global_position.x = 3400.0 if destination > game.get("current_floor") else 192.0
+	_player().global_position.x = _floor().get_stair_interaction_center(destination > game.get("current_floor"))
 	await _settle()
 	_expect(game.call("request_floor_travel", destination), "Legitimate stairs travel to %dF" % destination)
 	await _settle()

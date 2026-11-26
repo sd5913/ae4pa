@@ -14,6 +14,9 @@ const ROLE_NAMES := {"CLEANER": "保洁", "SECURITY": "保安", "MANAGER": "经�
 @export var reward_id: String = ""
 @export var requires_task_eligibility: bool = false
 @export var steal_radius: float = 55.0
+## Optional rear-only reach. The original area still controls frontal risk and suspicion.
+@export var rear_steal_radius: float = 0.0
+@export var show_theft_footprint: bool = true
 @export var steal_hold_time: float = 0.8
 @export var turn_warning_time: float = 0.4
 @export var turn_interval_min: float = 0.0
@@ -25,6 +28,7 @@ const ROLE_NAMES := {"CLEANER": "保洁", "SECURITY": "保安", "MANAGER": "经�
 
 var _player: HotelPlayer
 var _player_in_range: bool = false
+var _rear_steal_area: Area2D
 var _is_stealing: bool = false
 var _card_feedback_active: bool = false
 var _steal_elapsed: float = 0.0
@@ -63,6 +67,8 @@ func _ready() -> void:
 	var rectangle: RectangleShape2D = steal_shape.shape.duplicate() as RectangleShape2D
 	rectangle.size.x = steal_radius * 2.0
 	steal_shape.shape = rectangle
+	if rear_steal_radius > steal_radius:
+		_setup_rear_steal_area(rectangle)
 	_artwork.set_character(card_id.to_lower())
 	_update_facing_visual()
 	_turn_rng.randomize()
@@ -75,6 +81,23 @@ func _ready() -> void:
 	CardManager.cards_changed.connect(_on_cards_changed)
 	CardManager.identity_changed.connect(_on_identity_changed)
 	_update_card_marker()
+
+
+func _setup_rear_steal_area(base_shape: RectangleShape2D) -> void:
+	_rear_steal_area = Area2D.new()
+	_rear_steal_area.name = "RearStealArea"
+	_rear_steal_area.collision_layer = 0
+	_rear_steal_area.collision_mask = steal_area.collision_mask
+	_rear_steal_area.monitorable = false
+	var collision := CollisionShape2D.new()
+	collision.position = steal_shape.position
+	var extended_shape := RectangleShape2D.new()
+	extended_shape.size = Vector2(rear_steal_radius * 2.0, base_shape.size.y)
+	collision.shape = extended_shape
+	_rear_steal_area.add_child(collision)
+	_rear_steal_area.body_entered.connect(_on_rear_steal_area_changed)
+	_rear_steal_area.body_exited.connect(_on_rear_steal_area_changed)
+	add_child(_rear_steal_area)
 
 
 func setup(player: HotelPlayer) -> void:
@@ -172,7 +195,7 @@ func try_steal() -> bool:
 func begin_steal() -> bool:
 	if (
 		_player == null
-		or not _player_in_range
+		or not is_player_in_range()
 		or not _interaction_enabled
 		or _is_alerted
 		or GameManager.game_state != "PLAYING"
@@ -241,7 +264,7 @@ func get_interaction_block_reason() -> String:
 		return "ALERTED"
 	if _is_suspicious:
 		return "CURIOUS"
-	if not _player_in_range:
+	if not is_player_in_range():
 		return "OUT_OF_RANGE"
 	if not _interaction_enabled:
 		return "DISABLED"
@@ -310,7 +333,11 @@ func _show_feedback(message: String, success: bool = true) -> void:
 
 
 func is_player_in_range() -> bool:
-	return _player_in_range
+	return _player_in_range or (
+		_rear_steal_area != null
+		and is_player_behind()
+		and _rear_steal_area.overlaps_body(_player)
+	)
 
 
 func is_observing_player() -> bool:
@@ -334,7 +361,7 @@ func _is_player_movement_input_active() -> bool:
 
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("interact") and not event.is_echo() and _player_in_range:
+	if event.is_action_pressed("interact") and not event.is_echo() and is_player_in_range():
 		begin_steal()
 		get_viewport().set_input_as_handled()
 	elif event.is_action_released("interact") and _is_stealing:
@@ -348,7 +375,7 @@ func _process(delta: float) -> void:
 	_artwork.set_walking(not position.is_equal_approx(position_before_walk))
 	if not _is_stealing:
 		return
-	if not _interaction_enabled or GameManager.game_state != "PLAYING" or not _player_in_range or _player == null:
+	if not _interaction_enabled or GameManager.game_state != "PLAYING" or not is_player_in_range() or _player == null:
 		cancel_steal()
 		return
 	if _is_player_movement_input_active() or not _player.global_position.is_equal_approx(_steal_player_position):
@@ -374,7 +401,15 @@ func _on_steal_area_body_entered(body: Node2D) -> void:
 func _on_steal_area_body_exited(body: Node2D) -> void:
 	if body == _player:
 		_player_in_range = false
-		_cancel_steal("OUT_OF_RANGE")
+		if not is_player_in_range():
+			_cancel_steal("OUT_OF_RANGE")
+		_emit_interaction_state()
+
+
+func _on_rear_steal_area_changed(body: Node2D) -> void:
+	if body == _player:
+		if not is_player_in_range():
+			_cancel_steal("OUT_OF_RANGE")
 		_emit_interaction_state()
 
 

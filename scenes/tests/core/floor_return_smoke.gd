@@ -17,11 +17,13 @@ func _run() -> void:
 	game.call("start_game")
 	await process_frame
 	_expect(game.call("get_available_floors").is_empty(), "1F stair is locked before manager dialogue")
+	host.get_child(0).player.position.x = host.get_child(0).get_stair_interaction_center(true)
 	_expect(not game.call("request_floor_travel", 2), "No dialogue blocks 2F even at the stair")
+	host.get_child(0).player.position.x = 192.0
 	game.call("complete_manager_intro")
 	_expect(game.call("get_available_floors") == [2], "Manager dialogue opens 2F without cards")
 	_expect(not game.call("request_floor_travel", 2), "Remote request cannot activate distant stairs")
-	host.get_child(0).get_node("Player").global_position.x = 3400.0
+	host.get_child(0).player.global_position.x = host.get_child(0).get_stair_interaction_center(true)
 	_expect(game.call("request_floor_travel", 2), "1F right stair reaches 2F")
 	await process_frame
 	_expect(game.get("current_floor") == 2 and cards.call("get_owned_cards").is_empty(), "Travel does not require or invent cards")
@@ -31,12 +33,13 @@ func _run() -> void:
 	_expect(game.call("accept_task", "TASK_01_CLEAN"), "201 task begins")
 	game.call("_process", 10.0)
 	var time_before_return: float = game.get("remaining_time")
+	host.get_child(0).player.position.x = host.get_child(0).get_stair_interaction_center(false)
 	_expect(game.call("request_floor_travel", 1), "2F left stair returns to 1F")
 	await process_frame
 	_expect(game.get("current_floor") == 1, "Return loads 1F")
 	_expect(host.get_child(0).get_node("Player").global_position.x > 3200.0, "Return appears near the right stair")
 	_expect(game.get("current_task_id") == "TASK_01_CLEAN" and game.get("task_status") == "ACTIVE", "Task survives return")
-	_expect(game.get("remaining_time") <= time_before_return and game.get("remaining_time") > 190.0, "Return preserves remaining time")
+	_expect(game.get("remaining_time") <= time_before_return and game.get("remaining_time") > 100.0, "Return preserves remaining time")
 	_expect(game.call("get_available_floors") == [2], "Visited 2F remains reachable")
 	_expect(not game.call("request_floor_travel", 3), "A number cannot skip 2F")
 	host.queue_free()

@@ -38,6 +38,7 @@ func end() -> void:
 	board.get("_accept_button").pressed.emit()
 	await settle()
 	var staff: Node = floor_node().get_node("StaffRoot/PatrolSlot/Staff")
+	staff.set_cleaner_behavior_enabled(false) # Freeze the patrol before positioning the theft fixture.
 	staff.facing_direction = 1
 	for name in ["TurnTimer", "TurnWarningTimer", "BehaviorTimer", "SuspicionTimer"]: staff.get_node(name).stop()
 	await move_to(staff.global_position.x - 40)

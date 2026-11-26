@@ -86,7 +86,7 @@ func _run() -> void:
 	_expect(not game.call("is_world_input_allowed"), "Task offer registers its modal")
 	game.call("_process", 10.0)
 	_expect(game.get("remaining_time") == 0.0, "Reading an offer never starts the task clock")
-	_expect("210" in str(board.get("_hint").text) and "CLEANER" in str(board.get("_hint").text), "Offer explains required identity and the full limit")
+	_expect("120" in str(board.get("_hint").text) and "CLEANER" in str(board.get("_hint").text), "Offer explains required identity and the full limit")
 	var waiting_position: Vector2 = _player().global_position
 	Input.action_press("move_right")
 	await _settle()
@@ -106,7 +106,7 @@ func _run() -> void:
 	_accept()
 	_expect(not game.call("is_world_input_allowed"), "Accepting an offer preserves another page's modal")
 	game.call("_process", 10.0)
-	_expect(game.get("remaining_time") == 210.0, "Accepted task stays frozen until all modals close")
+	_expect(game.get("remaining_time") == 120.0, "Accepted task stays frozen until all modals close")
 	game.call("set_modal_open", "OTHER_PAGE", false)
 	game.set_process(false) # Explicit task-clock fixture from here onward.
 	_player().global_position.x = 192.0
@@ -115,7 +115,7 @@ func _run() -> void:
 	_expect(game.get("current_floor") == 2, "Held E from opening/accepting UI cannot also use the stairs")
 	await _action("interact", false)
 	await process_frame
-	_expect("3:30" in hud.get_node("%RemainingTime").text, "D HUD reads the actual task time")
+	_expect("2:00" in hud.get_node("%RemainingTime").text, "D HUD reads the actual task time")
 	_expect("STAIN_201" not in hud.get_node("%Objective").text and "ACTIVE" not in hud.get_node("%RemainingTime").text, "F5 HUD uses player-facing objectives and status names")
 	await _check_pause()
 	await _travel(1)
@@ -168,7 +168,7 @@ func _run() -> void:
 	await _action("interact", false)
 	_expect(not progress_ui.visible, "Completion hides the interaction hint")
 	_expect(game.get("task_status") == "READY_TO_SUBMIT", "Real cleaning reaches delivery, not settlement")
-	game.call("_process", 210.0)
+	game.call("_process", 120.0)
 	_expect(failure.visible and not board.visible, "Timeout opens one failure page, not overlapping task/failure panels")
 	_expect("超时" in failure.get_node("%Reason").text and "超时" in failure.get_node("Center/Panel/Content/Title").text, "Timeout heading and reason describe timeout, not a catch")
 	_expect(not failure.get_node("%RetryButton").disabled, "A enables D retry from the real checkpoint query")
@@ -244,7 +244,7 @@ func _run() -> void:
 	await _drain(dialogue)
 	await _reach_offer(dialogue)
 	_accept()
-	game.call("_process", 210.0)
+	game.call("_process", 120.0)
 	_expect(failure.visible, "New session can reach another real task failure")
 	failure.get_node("%MenuButton").pressed.emit()
 	_expect(menu.visible and game.get("game_state") == "MENU" and not dialogue.visible and not board.visible and not failure.visible, "Failure menu button returns to the real menu")
@@ -285,8 +285,8 @@ func _check_components() -> void:
 	standalone_board.get("_accept_button").pressed.emit()
 	cards.call("collect_card", "CLEANER")
 	await process_frame
-	_expect(game.get("task_status") == "ACTIVE" and game.get("remaining_time") == 210.0, "Standalone D accept button calls the real task API")
-	_expect(standalone_hud.get_node("%ActiveCardValue").text == "保洁工作证" and "3:30" in standalone_hud.get_node("%RemainingTime").text, "Standalone D HUD reads real card and clock values")
+	_expect(game.get("task_status") == "ACTIVE" and game.get("remaining_time") == 120.0, "Standalone D accept button calls the real task API")
+	_expect(standalone_hud.get_node("%ActiveCardValue").text == "保洁工作证" and "2:00" in standalone_hud.get_node("%RemainingTime").text, "Standalone D HUD reads real card and clock values")
 	standalone_failure.show_failure("STAFF_CAUGHT")
 	_expect(standalone_failure.get_node("%Reason").text == "偷窃被发现" and standalone_failure.get_node("%RetryButton").disabled, "Standalone D failure scene displays caught feedback; retry awaits A's adapter")
 	standalone_board.queue_free()
@@ -343,7 +343,7 @@ func _steal() -> void:
 
 func _check_denied_stair() -> void:
 	# Exercise the selector using the floor's connected request signal from a valid stair range.
-	_player().global_position.x = 3400.0
+	_player().position.x = _floor().get_stair_interaction_center(true)
 	await _settle()
 	_expect(not game.call("get_stair_destinations").is_empty(), "Player fixture is within a real stair destination range")
 	_floor().floor_selection_requested.emit()
@@ -377,7 +377,7 @@ func _check_pause() -> void:
 
 
 func _travel(destination: int) -> void:
-	_player().global_position.x = 3400.0 if destination > game.get("current_floor") else 192.0
+	_player().global_position.x = _floor().get_stair_interaction_center(destination > game.get("current_floor"))
 	await _settle()
 	# This smoke starts at the connected selector signal; the separate floor-flow suite covers E input.
 	_floor().floor_selection_requested.emit()

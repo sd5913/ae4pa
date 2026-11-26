@@ -53,11 +53,12 @@ func _retry() -> void:
 	_quiet_doors()
 func _patrol() -> Node:
 	var staff: Node = _floor().get_node("StaffRoot/PatrolSlot/Staff")
+	staff.set_cleaner_behavior_enabled(false) # Freeze the patrol before positioning the theft fixture.
 	staff.facing_direction = 1
 	for name in ["TurnTimer", "TurnWarningTimer", "BehaviorTimer", "SuspicionTimer"]: staff.get_node(name).stop()
 	return staff
 func _travel(destination: int) -> void:
-	_player().global_position = (_floor().exit_point if destination > game.current_floor else _floor().return_point).global_position
+	_player().position.x = _floor().get_stair_interaction_center(destination > game.current_floor)
 	await _settle()
 	_expect(game.request_floor_travel(destination), "Legal stair travel to %dF" % destination)
 	await _settle()
@@ -130,7 +131,7 @@ func _run() -> void:
 	await _read_story()
 	_expect(game.task_status == "AVAILABLE" and game.remaining_time == 0, "Intro and closing do not start task clock")
 	await _accept()
-	_expect(game.task_status == "ACTIVE" and game.remaining_time == 180 and game.get("_task_checkpoint").get("floor") == 4, "403 accepts with real checkpoint")
+	_expect(game.task_status == "ACTIVE" and game.remaining_time == 120 and game.get("_task_checkpoint").get("floor") == 4, "403 accepts with real checkpoint")
 	await _settle()
 	var hud_objective: Label = main.get_node("TaskLayer/HUD").get_node("%Objective")
 	_expect(hud_objective.text == ("Stand behind the patrol staff member and hold E to take the patrol log." if english else "在巡房员工身后站定，长按E偷取巡房记录。"), "403 HUD shows the live patrol objective in the selected language")
@@ -160,7 +161,7 @@ func _run() -> void:
 	_expect("403" in hud_objective.text and ("deliver" in hud_objective.text.to_lower() if english else "交付" in hud_objective.text), "403 HUD directs Carol back to Room 403 for delivery")
 	_expect(cards.export_snapshot() == prior_cards and not game.get_available_floors().has(5), "File is not a card and no5F before delivery")
 	await _capture("patrol_ready")
-	game._process(180)
+	game._process(120)
 	await _settle()
 	await _retry()
 	_expect(not game.get_world_flags().get("patrol_collected", false) and _patrol().is_reward_available(), "403 timeout restores stolen file")

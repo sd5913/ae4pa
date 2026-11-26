@@ -2,6 +2,8 @@ extends Control
 
 signal dialogue_finished(dialogue_id: String)
 
+@export var presentation_only := false
+
 const INTRO_LINES: Array[String] = [
 	"他们不让我离开……我在309号房。",
 	"前往 309 房间，营救被困的同伴。",
@@ -90,8 +92,11 @@ var _scene_tween: Tween
 
 
 func _ready() -> void:
-	add_to_group("memory_dialogue_surface")
-	_build_memory_rail()
+	if presentation_only:
+		set_process_input(false)
+	else:
+		add_to_group("memory_dialogue_surface")
+		_build_memory_rail()
 	visible = false
 	_skip_transitions = "--ui-smoke" in OS.get_cmdline_user_args()
 	visibility_changed.connect(_restore_hidden_surface)
@@ -280,6 +285,24 @@ func present_character_beat(character_id: String, text: String) -> void:
 	_portrait.visible = _portrait.texture != null
 	_fit_dialogue_text.call_deferred()
 	show()
+
+## Render artwork-owned dialogue without starting a story session or recording history.
+func present_caption(speaker: String, text: String) -> void:
+	_background.hide()
+	$Tint.hide()
+	_sms_panel.hide()
+	_portrait.hide()
+	_cue.hide()
+	_story_title.hide()
+	_skip_button.hide()
+	_frame.show()
+	_speaker.text = speaker
+	_speaker.visible = not speaker.is_empty()
+	_line.text = text
+	_line.show()
+	show()
+	_fit_dialogue_text.call_deferred()
+
 
 func mute_world_prompts() -> void:
 	if not _muted_surfaces.is_empty(): return

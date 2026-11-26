@@ -35,11 +35,12 @@ func _run() -> void:
 	_expect(not cleaner.call("is_stealing") and game.get("game_state") == "PLAYING", "Unaccepted front E is a hint, never a theft or catch")
 	_expect(cards.call("get_owned_cards").is_empty(), "Unaccepted E cannot grant cards")
 	game.call("complete_manager_intro")
-	player.global_position.x = 3400.0
+	player.position.x = floor_node.get_stair_interaction_center(true)
 	await _settle()
 	_expect(game.call("request_floor_travel", 2), "Real stairs reach 2F without cards")
 	_expect(game.call("offer_task", "TASK_01_CLEAN"), "Real task can be offered")
 	_expect(game.call("accept_task", "TASK_01_CLEAN"), "Task acceptance starts eligibility")
+	host.get_child(0).player.position.x = host.get_child(0).get_stair_interaction_center(false)
 	_expect(game.call("request_floor_travel", 1), "Return to 1F preserves the task")
 	floor_node = host.get_child(0)
 	player = floor_node.get_node("Player")
@@ -47,7 +48,7 @@ func _run() -> void:
 	_stop_turns(floor_node)
 	await _approach_cleaner_rear(cleaner, player)
 	# Put the stair in the same range: eligible employee has priority over stairs.
-	floor_node.get_node("Interactions/ExitPoint").global_position = cleaner.global_position
+	floor_node.upstairs_stair_range = Vector2(player.position.x - 70.0, player.position.x + 70.0)
 	_expect(floor_node.call("get_interaction_target_id") == "STAFF_CLEANER_1F", "Eligible work wins over overlapping stairs")
 	await _action("interact", true)
 	_expect(cleaner.call("is_stealing") and game.get("current_floor") == 1, "One E begins one theft without traveling")
@@ -75,7 +76,7 @@ func _run() -> void:
 	await _action("interact", false)
 	await _approach_cleaner_rear(cleaner, player)
 	await _action("interact", true)
-	player.global_position.x = cleaner.global_position.x - 100.0 * cleaner.facing_direction
+	player.global_position.x = cleaner.global_position.x - 170.0 * cleaner.facing_direction
 	await _settle()
 	_expect(not cleaner.call("is_stealing"), "Leaving the detection range cancels the locked target")
 	await _action("interact", false)
@@ -86,13 +87,12 @@ func _run() -> void:
 	await _action("interact", false)
 	await create_timer(0.9).timeout
 	_expect(cards.call("get_owned_cards").is_empty(), "Unloaded employee cannot grant a delayed reward")
+	host.get_child(0).player.position.x = host.get_child(0).get_stair_interaction_center(false)
 	_expect(game.call("request_floor_travel", 1), "Return after cancellation preserves the active task")
 	floor_node = host.get_child(0)
 	player = floor_node.get_node("Player")
 	cleaner = floor_node.get_node("StaffRoot/CleanerSlot/Staff")
 	_stop_turns(floor_node)
-	# Moving the stair back avoids accidental travel after card collection.
-	floor_node.get_node("Interactions/ExitPoint").global_position.x = 3400.0
 	await _approach_cleaner_rear(cleaner, player)
 	await _action("interact", true)
 	await create_timer(0.9).timeout
@@ -100,7 +100,7 @@ func _run() -> void:
 	_expect(cards.call("has_card", "CLEANER"), "Accepted task still uses real B theft and card collection")
 	_expect(cards.get("active_card") == "CLEANER", "First real theft activates the card despite earlier empty-slot cancellation Q")
 	var time_before: float = game.get("remaining_time")
-	player.global_position.x = 3400.0
+	player.position.x = floor_node.get_stair_interaction_center(true)
 	await _settle()
 	game.call("set_modal_open", "PAUSE", true)
 	_expect(not game.call("request_floor_travel", 2), "A modal blocks direct stair requests too")
@@ -126,9 +126,9 @@ func _run() -> void:
 	await _action("interact", false)
 	_expect(cleaning_spot.is_completed() and game.get("task_status") == "READY_TO_SUBMIT", "Formal CleaningSpot signal reaches ready-to-submit")
 	_expect(not game.call("get_world_flags").get("passage_201_unlocked", false), "Cleaning alone leaves the passage locked")
-	player.global_position.x = 192.0
+	player.position.x = floor_node.get_stair_interaction_center(false)
 	_expect(game.call("request_floor_travel", 1), "Cleaned task can return downstairs before delivery")
-	host.get_child(0).get_node("Player").global_position.x = 3400.0
+	host.get_child(0).player.position.x = host.get_child(0).get_stair_interaction_center(true)
 	_expect(game.call("request_floor_travel", 2), "Ready-to-submit task can revisit 2F")
 	floor_node = host.get_child(0)
 	player = floor_node.get_node("Player")
@@ -142,16 +142,16 @@ func _run() -> void:
 	player.global_position.x = 1500.0
 	await _settle()
 	_expect(player.global_position.x > 1250.0, "Delivery releases the actual player bounds")
-	player.global_position.x = 192.0
+	player.position.x = floor_node.get_stair_interaction_center(false)
 	_expect(game.call("request_floor_travel", 1), "Completed task can return downstairs")
-	host.get_child(0).get_node("Player").global_position.x = 3400.0
+	host.get_child(0).player.position.x = host.get_child(0).get_stair_interaction_center(true)
 	_expect(game.call("request_floor_travel", 2), "Completed task can revisit 2F")
 	player = host.get_child(0).get_node("Player")
 	player.global_position.x = 1500.0
 	await _settle()
 	_expect(player.global_position.x > 1250.0, "Reloaded floor derives its unlocked bounds from A state")
 	_expect(not game.call("request_floor_travel", 3), "Task 01 does not implement or bypass task 02")
-	player.global_position.x = 192.0
+	player.position.x = floor_node.get_stair_interaction_center(false)
 	await _action("interact", true)
 	_expect(game.get("current_floor") == 1, "One E returns to 1F")
 	await _action("interact", true)

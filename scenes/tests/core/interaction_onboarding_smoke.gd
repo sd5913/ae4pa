@@ -87,20 +87,48 @@ func run() -> void:
 	g.complete_manager_intro()
 	g.set_process(false)
 	var f: Node = floor_node()
-	var marker: Node = f.get_node_or_null("InteractionMarkers")
-	check(marker != null, "Formal floor has visible stair range markers")
-	f.player.position.x = f.exit_point.position.x - 69
+	check(not f.has_node("InteractionMarkers"), "Ordinary stairs have no on-floor guide buttons")
+	f.player.position.x = 3315.0
 	await settle()
 	await capture("stair_range")
-	check(g.get_stair_destinations().has(2), "69px inside stairs permits existing destination")
-	if marker != null: check(marker.is_in_stair_range(f.exit_point), "Marker matches actual inside range")
-	f.player.position.x = f.exit_point.position.x - 71
+	check(g.get_stair_destinations().has(2), "Standing on the first step art can select 2F")
+	check(not f.exit_hint.visible, "The old on-floor E label stays hidden")
+	await tap("interact")
+	var floor_overlay: Node = main.get_node("TaskLayer/PlayOverlay")
+	check(floor_overlay.visible and floor_overlay.get("_choices").get_child_count() == 1, "E at the stairs opens the real floor selector")
+	floor_overlay.get("_choices").get_child(0).pressed.emit()
 	await settle()
-	check(g.get_stair_destinations().is_empty(), "71px outside stairs cannot travel")
-	if marker != null: check(not marker.is_in_stair_range(f.exit_point), "Marker matches actual outside range")
+	check(g.current_floor == 2, "Choosing a destination at the first step travels normally")
+	f = floor_node()
+	f.player.position.x = 275.0
+	await tap("interact")
+	check(floor_overlay.visible and not g.is_world_input_allowed(), "2F left step opens a modal that pauses world travel")
+	check(floor_overlay.get("_choices").get_child_count() == 1 and floor_overlay.get("_choices").get_child(0).text == "1F", "2F left step offers 1F")
+	floor_overlay.get("_choices").get_child(0).pressed.emit()
+	await settle()
+	check(g.current_floor == 1, "Selecting 1F from the actual 2F left step works")
+	f = floor_node()
+	f.player.position.x = 3455.0
+	await tap("interact")
+	check(g.get_stair_destinations().is_empty() and not floor_overlay.visible, "Beyond the artwork is outside the new stairs")
+	g._load_floor(3) # Geometry fixture; the full mainline exercises the unlock.
+	await settle()
+	var third: Node = floor_node()
+	third.player.position.x = 250.0
+	check(third.is_player_at_stair(false) and not third.return_hint.visible, "3F left step recognizes its aligned range with the guide hidden")
+	third.player.position.x = 325.0
+	check(not third.is_player_at_stair(false), "3F left stairs end at the edge of the artwork")
+	third.player.position.x = 250.0
+	await tap("interact")
+	var choices: Node = floor_overlay.get("_choices")
+	check(floor_overlay.visible and choices.get_child_count() == 2, "3F left step retains the multi-floor selector")
+	floor_overlay.close_page()
+	check(g.request_floor_travel(1), "Selecting a visited nonadjacent floor is still allowed")
+	await settle()
+	f = floor_node()
 	g.current_task_id = g.TASK_01_ID
 	g.task_status = "ACTIVE"
-	g.remaining_time = 240
+	g.remaining_time = 120
 	var staff: Node = f.get_node("StaffRoot/CleanerSlot/Staff")
 	staff.patrol_enabled = false
 	staff.set_cleaner_behavior_enabled(false)
@@ -113,7 +141,7 @@ func run() -> void:
 	if guide != null: guide._process(0)
 	check(guide != null, "Eligible staff has a rear-side visual guide")
 	if guide != null:
-		check(guide.visible and guide.get_rear_direction() == -1, "Guide shows actual left rear side: " + str([guide.visible,guide.get_rear_direction(),staff.is_task_eligible(),staff.is_reward_available(),g.is_world_input_allowed(),f.player.position.x,staff.global_position.x]))
+		check(not staff.show_theft_footprint and guide.get_rear_direction() == -1, "Hidden guide still calculates the actual rear side: " + str([guide.visible,guide.get_rear_direction(),staff.is_task_eligible(),staff.is_reward_available(),g.is_world_input_allowed(),f.player.position.x,staff.global_position.x]))
 		staff.facing_direction = -1
 		await settle()
 		check(guide.get_rear_direction() == 1, "Guide follows real staff turning")
@@ -175,8 +203,8 @@ func run() -> void:
 	main.bag.get_node("%EquipSlotA").pressed.emit()
 	main.bag.close_bag()
 	await settle()
-	check(c.active_card == "NONE" and c.get_equipped_cards() == ["CLEANER", "NONE"], "Equipping an inactive slot does not implicitly change the current identity")
-	await tap("switch_id")
+	check(c.active_card == c.get_equipped_cards()[c.active_slot] and c.get_equipped_cards() == ["CLEANER", "NONE"], "Equip preserves the active slot and derives identity from it")
+	if c.active_card != "CLEANER": await tap("switch_id")
 	await settle()
 	check(c.active_card == "CLEANER" and outfit.get("card_id") == "CLEANER", "Manual activation synchronizes identity and outfit")
 	staff.set_cleaner_behavior_enabled(false)
@@ -252,7 +280,7 @@ func run() -> void:
 	g.get("_completed_task_ids").assign(g.TUTORIAL_TASKS.slice(0,4))
 	g.current_task_id = g.TUTORIAL_05_ID
 	g.task_status = "ACTIVE"
-	g.remaining_time = 240
+	g.remaining_time = 120
 	g.set("_world_flags", {"tutorial_room_205_revealed": true, "passage_201_unlocked": true, "passage_202_unlocked": true, "passage_203_unlocked": true, "passage_204_unlocked": true})
 	g._load_floor(2)
 	await settle()

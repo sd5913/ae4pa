@@ -113,6 +113,7 @@ func _run_test_failure_recovery_checks() -> void:
 		_expect(not work_cleaner.get_node("TurnWarning").visible, "Retry incorrectly displayed a normal turn icon.")
 
 	CardManager.collect_card("SECURITY")
+	CardManager.equip_card("SECURITY", 0)
 	_expect(CardManager.active_card == "SECURITY", "SECURITY should remain active for the unequipped CLEANER check.")
 
 	work_cleaner.set_cleaner_behavior_enabled(false)
@@ -135,6 +136,7 @@ func _run_test_failure_recovery_checks() -> void:
 	_expect(work_cleaner.is_suspicious(), "Owned but unequipped CLEANER should still look like a stranger.")
 	_expect(not work_cleaner.begin_steal(), "Owned CLEANER was offered a second time.")
 	_expect(GameManager.game_state == "PLAYING", "Duplicate steal attempt incorrectly caused failure.")
+	CardManager.equip_card("CLEANER", 1)
 	CardManager.switch_active()
 	_expect(CardManager.active_card == "CLEANER", "CLEANER could not become the active identity.")
 	_expect(not work_cleaner.is_suspicious(), "Equipping CLEANER did not clear curiosity.")
@@ -159,6 +161,8 @@ func _run_snapshot_checks() -> void:
 	CardManager.reset_for_new_game()
 	CardManager.collect_card("CLEANER")
 	CardManager.collect_card("SECURITY")
+	CardManager.equip_card("CLEANER", 0)
+	CardManager.equip_card("SECURITY", 1)
 	CardManager.switch_active()
 	var snapshot: Dictionary = CardManager.export_snapshot()
 	_expect(CardManager.create_snapshot() == snapshot, "create_snapshot alias differs from export_snapshot.")

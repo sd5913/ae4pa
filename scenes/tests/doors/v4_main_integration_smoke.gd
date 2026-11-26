@@ -32,7 +32,7 @@ func _run() -> void:
 	_expect(dialogue.visible, "Real E opens manager dialogue")
 	await _drain(dialogue)
 	_expect(game.has_completed_manager_intro(), "Real dialogue completion unlocks 2F")
-	player.position.x = 3400
+	player.position.x = player.get_parent().get_stair_interaction_center(true)
 	for frame: int in range(4):
 		await physics_frame
 	await _e(false) # Explicit release after closing manager UI, as a player must do.

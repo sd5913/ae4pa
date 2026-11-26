@@ -69,12 +69,13 @@ func _run() -> void:
 	_expect(not game.call("has_completed_manager_intro") and not dialogue.visible, "Core new game resets conversation state")
 	# Preserve the explicit manager-completion fixture for the remaining core tests.
 	panel.get_node("Row1/Intro").emit_signal("pressed")
-	core.get_node("World").get_child(0).get_node("Player").global_position.x = 3400.0
+	floor_node = core.get_node("World").get_child(0)
+	floor_node.player.global_position.x = floor_node.get_stair_interaction_center(true)
 	_expect(game.call("request_floor_travel", 2), "Core reuses real manager-gated floor loading")
 	panel.get_node("Row1/Offer").emit_signal("pressed")
 	_expect(game.get("task_status") == "AVAILABLE" and is_zero_approx(game.get("remaining_time")), "Developer offer does not begin time")
 	panel.get_node("Row1/Accept").emit_signal("pressed")
-	_expect(game.get("task_status") == "ACTIVE" and is_equal_approx(game.get("remaining_time"), 210.0), "Developer acceptance uses the real task limit")
+	_expect(game.get("task_status") == "ACTIVE" and is_equal_approx(game.get("remaining_time"), 120.0), "Developer acceptance uses the real task limit")
 	panel.get_node("Row2/Pause").emit_signal("pressed")
 	var stopped: float = game.get("remaining_time")
 	game.call("_process", 20.0)

@@ -43,7 +43,7 @@ func read_carol() -> void:
 	check(flow.get("_mode") == "", "Carol dialogue returns normal input")
 func travel(f: int) -> void:
 	await read_carol()
-	await move_to(3400 if f > g.current_floor else 192)
+	await move_to(floor_node().get_stair_interaction_center(f > g.current_floor))
 	check(g.request_floor_travel(f), "actual stair travel " + str(f))
 	await settle()
 func walk_to(x: float) -> void:

@@ -3,7 +3,9 @@ var main: Node
 var game: Node
 var cards: Node
 var errors: Array[String] = []
-func _initialize() -> void: run.call_deferred()
+func _initialize() -> void:
+	create_timer(50.0).timeout.connect(func(): print("FAIL: reunion host fixture timed out"); quit(1))
+	run.call_deferred()
 func check(ok: bool, message: String) -> void:
 	print(("PASS: " if ok else "FAIL: ")+message)
 	if not ok: errors.append(message)
@@ -44,16 +46,18 @@ func shot(id: String) -> void:
 func run() -> void:
 	game = root.get_node("GameManager")
 	cards = root.get_node("CardManager")
-	root.get_node("Localization").set_language("zh_CN")
+	TranslationServer.set_locale("zh_CN")
 	main = load("res://scenes/main.tscn").instantiate()
 	root.add_child(main)
+	main.get_node("MemoryService").storage_root = "user://reunion_309_smoke"
+	main.get_node("MenuLayer/Bag/CarolUIFlow")._tutorial_seen = true
 	await settle()
 	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
 	main.dialogue.hide()
 	main._on_dialogue_finished("V4_INTRO")
 	game.complete_manager_intro()
 	game.set_process(false)
-	player().position.x = 3400
+	player().position.x = floor_node().get_stair_interaction_center(true)
 	check(game.request_floor_travel(2),"prerequisite fixture travels to2F")
 	await settle()
 	game.offer_task("TASK_01_CLEAN")
@@ -61,6 +65,7 @@ func run() -> void:
 	main.get_node("TaskLayer/MissionBoard").hide()
 	game.accept_task("TASK_01_CLEAN")
 	cards.collect_card("CLEANER")
+	check(cards.equip_card("CLEANER", 0), "fixture equips collected cleaner in slot A")
 	game.record_work_result("STAIN_201")
 	game.submit_task("TASK_01_CLEAN")
 	drain_monster()
@@ -68,13 +73,14 @@ func run() -> void:
 	main.get_node("TaskLayer/MissionBoard").hide()
 	game.accept_task("TASK_02_PARCEL")
 	cards.collect_card("SECURITY")
+	check(cards.equip_card("SECURITY", 1), "fixture equips collected security in slot B")
 	cards.switch_active()
 	game.record_work_result("PARCEL_CABINET_2F")
 	game.submit_task("TASK_02_PARCEL")
 	drain_monster()
 	check(load("res://scenes/tests/core/tutorial_test_setup.gd").complete_remaining(game, cards, main),"explicit203–205 fixture for independent309 regression")
 	main.get_node("TaskLayer/MissionBoard").hide()
-	player().position.x = 3400
+	player().position.x = floor_node().get_stair_interaction_center(true)
 	check(game.request_floor_travel(3),"real3F permission after five tutorial deliveries")
 	await settle()
 	game.offer_task("TASK_03_AUTHORIZE")
@@ -135,7 +141,7 @@ func run() -> void:
 			root.size = Vector2i(960, 540)
 			await settle()
 			await shot("small-long-line")
-			check(cg.get("_line").get_line_count() <= 3, "small window wraps long Chinese without shrinking")
+			check(cg.get_node("Dialogue/%Line").get_line_count() <= 3, "small window wraps long Chinese without shrinking")
 			root.size = Vector2i(1280, 720)
 		await tap(i%2==1)
 	check(game.has_friend and completions.size() == 1,"last beat settles real rescue exactly once")
@@ -149,7 +155,7 @@ func run() -> void:
 	player().position = floor_node().get_node("Interactions/RescuePoint").position
 	await tap()
 	check(not is_instance_valid(host.cg) and floor_node().find_children("Persica","",false,false).size() == 1,"revisit neither replays nor duplicates")
-	player().position.x = 3400
+	player().position.x = floor_node().get_stair_interaction_center(true)
 	check(game.request_floor_travel(4),"existing route opens4F after rescue")
 	await settle()
 	check(floor_node().has_node("Persica"),"follower survives floor reload by real rescue fact")

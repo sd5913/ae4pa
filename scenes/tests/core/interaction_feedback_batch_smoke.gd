@@ -58,7 +58,7 @@ func _run() -> void:
 	game._load_floor(5)
 	await _settle()
 	floor_node = main.get_node("World").get_child(0)
-	floor_node.player.global_position = floor_node.exit_point.global_position
+	floor_node.player.position.x = floor_node.get_stair_interaction_center(true)
 	await _settle()
 	_expect(game.can_escape(), "EXIT fixture satisfies actual escape guards")
 	# Close a real modal with E held, release, then attempt exactly one new E press.

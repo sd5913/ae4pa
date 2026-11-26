@@ -60,7 +60,7 @@ func _run() -> void:
 	game.call("complete_manager_intro")
 	main.call("_on_dialogue_finished", "WRONG_ID")
 	player = main.get_node("World").get_child(0).get_node("Player")
-	player.global_position.x = 3400.0
+	player.position.x = player.get_parent().get_stair_interaction_center(true)
 	game.call("request_floor_travel", 2)
 	player = main.get_node("World").get_child(0).get_node("Player")
 	player.global_position.x = 580.0

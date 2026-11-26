@@ -47,7 +47,7 @@ func _run() -> void:
 	main.dialogue._finish() # Explicit prologue fixture still uses D's real finish event.
 	game.complete_manager_intro()
 	game.set_process(false)
-	_player().position.x = 3400
+	_player().position.x = _player().get_parent().get_stair_interaction_center(true)
 	_expect(game.request_floor_travel(2), "Fixture reaches2F through validated stair")
 	_expect(_floor().get_node("StaffRoot").get_child_count() == 0, "No card staff on2F")
 	_player().position.x = 580
@@ -86,16 +86,16 @@ func _run() -> void:
 			break
 		await _tap()
 	_expect(board.visible and game.current_task_id == "TASK_02_PARCEL" and game.task_status == "AVAILABLE" and game.remaining_time == 0, "Dialogue finish opens actual202 offer without starting time")
-	_expect("202" in board.get("_title").text and "180" in board.get("_hint").text, "202 title and real limit replace stale201 details")
+	_expect("202" in board.get("_title").text and "120" in board.get("_hint").text, "202 title and real limit replace stale201 details")
 	board.hide()
 	await _tap()
 	_expect(board.visible and main.get("_active_dialogue_id").is_empty(), "E reopens202 offer without replaying intro")
 	board._accept_button.pressed.emit()
 	await _settle()
-	_expect(game.task_status == "ACTIVE" and game.remaining_time == 180 and game.get_pending_monster_encounter().is_empty(), "Real acceptance starts202 and resolves its own contact")
+	_expect(game.task_status == "ACTIVE" and game.remaining_time == 120 and game.get_pending_monster_encounter().is_empty(), "Real acceptance starts202 and resolves its own contact")
 	await _tap("pause")
 	game._process(10)
-	_expect(game.remaining_time == 180 and not game.is_world_input_allowed(), "Real202 pause freezes its clock")
+	_expect(game.remaining_time == 120 and not game.is_world_input_allowed(), "Real202 pause freezes its clock")
 	main.get_node("TaskLayer/PlayOverlay").get("_close").pressed.emit()
 	await _settle()
 	Input.action_press("move_right")
@@ -122,7 +122,7 @@ func _run() -> void:
 	await _travel(2)
 	_expect(_floor().get_node("Interactions/ParcelCabinet2F").is_completed() and game.task_status == "READY_TO_SUBMIT" and cards.has_card("SECURITY"), "Real stair revisit retains parcel and card without reoffering")
 	# Actual front theft failure is covered after restoring an acceptance checkpoint.
-	game._process(180)
+	game._process(120)
 	await _settle()
 	var failure = main.get_node("TaskLayer/Failure")
 	_expect(failure.visible and game.task_status == "FAILED", "Parcel-not-delivered timeout opens real failure UI")
@@ -213,7 +213,7 @@ func _run() -> void:
 
 func _travel(destination: int, position_fixture: bool = true) -> void:
 	if position_fixture:
-		_player().position.x = 3400 if destination > game.current_floor else 192
+		_player().position.x = _player().get_parent().get_stair_interaction_center(destination > game.current_floor)
 		await _settle()
 	await _tap()
 	var overlay = main.get_node("TaskLayer/PlayOverlay")

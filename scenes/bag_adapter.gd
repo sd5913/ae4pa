@@ -4,7 +4,8 @@ var _drop_targets: Array[Panel] = []
 
 func _ready() -> void:
 	super._ready()
-	_owned_cards.set_drag_forwarding(_card_drag_data, Callable(), Callable())
+	for index in _owned_hit_regions.size():
+		_owned_hit_regions[index].set_drag_forwarding(_card_drag_from_slot.bind(index), Callable(), Callable())
 	for slot in range(2):
 		var target := Panel.new()
 		target.name = "CardDrop" + ("A" if slot == 0 else "B")
@@ -31,19 +32,24 @@ func _notification(what: int) -> void:
 			style.border_color.a = 0.9 if what == NOTIFICATION_DRAG_BEGIN else 0.0
 
 func _card_drag_data(at_position: Vector2) -> Variant:
-	var index := _owned_cards.get_item_at_position(at_position, true)
-	if index < 0: return null
+	var global_position := _owned_cards.get_global_transform() * at_position
+	for index in _owned_hit_regions.size():
+		if _owned_hit_regions[index].get_global_rect().has_point(global_position):
+			return _card_drag_from_slot(at_position, index)
+	return null
+
+func _card_drag_from_slot(_at_position: Vector2, index: int) -> Variant:
+	if index < 0 or index >= _owned_cards.item_count: return null
 	var id := str(_owned_cards.get_item_metadata(index))
 	if not CardManager.has_card(id): return null
-	_owned_cards.select(index)
-	_on_card_selected(index)
+	_select_owned_card(index)
 	var preview := TextureRect.new()
 	preview.texture = CardDisplay.art_for(id)
 	preview.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	preview.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	preview.size = Vector2(90,108)
 	preview.modulate.a = 0.85
-	_owned_cards.set_drag_preview(preview)
+	_owned_hit_regions[index].set_drag_preview(preview)
 	return {"source": get_instance_id(), "card_id": id}
 
 func _can_drop_card(_at_position: Vector2, data: Variant, slot: int) -> bool:
@@ -87,6 +93,7 @@ func _refresh_cards() -> void:
 		_status.text = _selection_hint(selected)
 	elif not CardManager.get_owned_cards().is_empty():
 		_status.text = tr("收藏保留全部证件。拖到A／B槽，关闭后按Q切当前身份。")
+	_refresh_owned_highlights()
 
 func _selection_hint(id: String) -> String:
 	var slot := CardManager.get_equipped_cards().find(id)

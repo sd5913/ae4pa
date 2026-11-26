@@ -1,10 +1,12 @@
 extends RefCounted
 ## V4 task data only. A enables gameplay by milestone, independently of this catalog.
 
+const THEFT_TASK_TIME_LIMIT := 120.0
+
 const TASKS: Dictionary = {
 	"TASK_01_CLEAN": {
 		"name": "打扫走廊", "location": "2F · 201", "offer_floor": 2, "room_id": "201",
-		"prerequisites": ["MANAGER_INTRO"], "time_limit": 210.0,
+		"prerequisites": ["MANAGER_INTRO"], "time_limit": THEFT_TASK_TIME_LIMIT,
 		"required_card": "CLEANER", "staff_target_id": "STAFF_CLEANER_1F",
 		"target_id": "STAIN_201", "work_type": "CLEAN", "work_floor": 2,
 		"steps": ["GET_CLEANER", "CLEAN_STAIN", "RETURN_TO_201"],
@@ -13,7 +15,7 @@ const TASKS: Dictionary = {
 	},
 	"TASK_02_PARCEL": {
 		"name": "遗失的包裹", "location": "2F · 202", "offer_floor": 2, "room_id": "202",
-		"prerequisites": ["TASK_01_CLEAN"], "time_limit": 180.0,
+		"prerequisites": ["TASK_01_CLEAN"], "time_limit": THEFT_TASK_TIME_LIMIT,
 		"required_card": "SECURITY", "staff_target_id": "STAFF_SECURITY_1F",
 		"target_id": "PARCEL_CABINET_2F", "work_type": "PICKUP", "work_floor": 2,
 		"steps": ["GET_SECURITY", "PICKUP_PARCEL", "RETURN_TO_202"],
@@ -22,7 +24,7 @@ const TASKS: Dictionary = {
 	},
 	"TASK_T03_ROOM_SERVICE": {
 		"name": "二楼房务申请", "location": "2F · 203", "offer_floor": 2, "room_id": "203",
-		"prerequisites": ["TASK_02_PARCEL"], "time_limit": 240.0,
+		"prerequisites": ["TASK_02_PARCEL"], "time_limit": THEFT_TASK_TIME_LIMIT,
 		"required_card": "MANAGER", "required_cards": ["MANAGER"], "staff_target_id": "STAFF_MANAGER_1F",
 		"target_id": "ROOM_SERVICE_203", "work_type": "AUTHORIZE", "work_floor": 2,
 		"steps": ["GET_MANAGER", "APPROVE_ROOM_SERVICE", "RETURN_TO_203"],
@@ -56,7 +58,7 @@ const TASKS: Dictionary = {
 	},
 	"TASK_03_AUTHORIZE": {
 		"name": "取得管理授权", "location": "3F · 302／309 登记台", "offer_floor": 3, "room_id": "302",
-		"prerequisites": ["TASK_T05_TRANSIT"], "time_limit": 240.0,
+		"prerequisites": ["TASK_T05_TRANSIT"], "time_limit": THEFT_TASK_TIME_LIMIT,
 		"required_card": "MANAGER", "staff_target_id": "STAFF_MANAGER_1F",
 		"target_id": "REGISTER_309", "work_type": "AUTHORIZE", "work_floor": 3,
 		"steps": ["GET_MANAGER", "EQUIP_MANAGER", "AUTHORIZE_309"],
@@ -65,7 +67,7 @@ const TASKS: Dictionary = {
 	},
 	"TASK_04_PATROL": {
 		"name": "夜班巡房记录", "location": "4F · 403", "offer_floor": 4, "room_id": "403",
-		"prerequisites": ["HAS_FRIEND"], "time_limit": 180.0,
+		"prerequisites": ["HAS_FRIEND"], "time_limit": THEFT_TASK_TIME_LIMIT,
 		"required_card": "", "required_cards": [], "staff_target_id": "STAFF_PATROL_4F",
 		"checkpoint_marker": "Task403AcceptSafe", "monster": "EAR",
 		"instructions": "到本层巡房员工身后站定，长按E偷取巡房记录，再返回403按E交付。文件不是工作证，不要求特定身份；交付后才开放5F。",

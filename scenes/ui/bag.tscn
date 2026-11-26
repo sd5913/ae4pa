@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3]
+[gd_scene load_steps=10 format=3]
 
 [ext_resource type="Script" path="res://scenes/ui/bag.gd" id="1_script"]
 [ext_resource type="Theme" path="res://scenes/ui/staff_ui_theme.tres" id="2_theme"]
@@ -21,7 +21,26 @@ corner_radius_top_right = 9
 corner_radius_bottom_right = 9
 corner_radius_bottom_left = 9
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_focus"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_focused_slot"]
+bg_color = Color(0.83, 0.66, 0.38, 0.18)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.99, 0.9, 0.68, 1)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hovered_slot"]
+bg_color = Color(0.83, 0.66, 0.38, 0.10)
+corner_radius_top_left = 9
+corner_radius_top_right = 9
+corner_radius_bottom_right = 9
+corner_radius_bottom_left = 9
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_slot"]
 
 [node name="Bag" type="Control"]
 visible = false
@@ -59,19 +78,20 @@ expand_mode = 1
 [node name="OwnedCards" type="ItemList" parent="Case"]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 100.0
+offset_left = 86.0
 offset_top = 211.0
-offset_right = 637.0
+offset_right = 623.0
 offset_bottom = 429.0
+mouse_filter = 2
 theme_override_colors/font_color = Color(0.97, 0.88, 0.68, 1)
 theme_override_colors/font_selected_color = Color(1, 0.94, 0.75, 1)
 theme_override_font_sizes/font_size = 15
 theme_override_constants/h_separation = 26
 theme_override_constants/icon_margin = 8
 theme_override_styles/panel = SubResource("StyleBoxEmpty_list")
-theme_override_styles/selected = SubResource("StyleBoxFlat_selection")
-theme_override_styles/selected_focus = SubResource("StyleBoxFlat_selection")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_focus")
+theme_override_styles/selected = SubResource("StyleBoxEmpty_slot")
+theme_override_styles/selected_focus = SubResource("StyleBoxEmpty_slot")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_slot")
 allow_reselect = true
 max_columns = 3
 same_column_width = true
@@ -81,6 +101,49 @@ fixed_icon_size = Vector2i(112, 112)
 focus_neighbor_bottom = NodePath("../CloseButton")
 focus_next = NodePath("../EquipSlotA")
 focus_previous = NodePath("../CloseButton")
+
+[node name="OwnedHitRegions" type="Control" parent="Case"]
+layout_mode = 0
+mouse_filter = 2
+
+[node name="First" type="Panel" parent="Case/OwnedHitRegions"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 216.0
+offset_right = 246.0
+offset_bottom = 427.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_slot")
+theme_override_styles/empty_slot = SubResource("StyleBoxEmpty_slot")
+theme_override_styles/selected_slot = SubResource("StyleBoxFlat_selection")
+theme_override_styles/focused_slot = SubResource("StyleBoxFlat_focused_slot")
+theme_override_styles/hovered_slot = SubResource("StyleBoxFlat_hovered_slot")
+
+[node name="Second" type="Panel" parent="Case/OwnedHitRegions"]
+layout_mode = 0
+offset_left = 285.0
+offset_top = 216.0
+offset_right = 423.0
+offset_bottom = 427.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_slot")
+theme_override_styles/empty_slot = SubResource("StyleBoxEmpty_slot")
+theme_override_styles/selected_slot = SubResource("StyleBoxFlat_selection")
+theme_override_styles/focused_slot = SubResource("StyleBoxFlat_focused_slot")
+theme_override_styles/hovered_slot = SubResource("StyleBoxFlat_hovered_slot")
+
+[node name="Third" type="Panel" parent="Case/OwnedHitRegions"]
+layout_mode = 0
+offset_left = 461.0
+offset_top = 216.0
+offset_right = 599.0
+offset_bottom = 427.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_slot")
+theme_override_styles/empty_slot = SubResource("StyleBoxEmpty_slot")
+theme_override_styles/selected_slot = SubResource("StyleBoxFlat_selection")
+theme_override_styles/focused_slot = SubResource("StyleBoxFlat_focused_slot")
+theme_override_styles/hovered_slot = SubResource("StyleBoxFlat_hovered_slot")
 
 [node name="OwnedHeading" type="Label" parent="Case"]
 layout_mode = 0

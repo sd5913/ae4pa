@@ -21,8 +21,8 @@ func _run() -> void:
 	game.get("_world_flags")["rescue_309_completed"] = true
 	_expect(game.can_offer_task("TASK_04_PATROL"), "HAS_FRIEND reads the real rescue fact")
 	_expect(not game.is_interaction_allowed("STAFF_PATROL_4F"), "No patrol theft before accepting")
-	_expect(game.offer_task("TASK_04_PATROL") and game.accept_task("TASK_04_PATROL"), "403 accepts with 180-second clock")
-	_expect(game.remaining_time == 180, "403 limit is 180")
+	_expect(game.offer_task("TASK_04_PATROL") and game.accept_task("TASK_04_PATROL"), "403 accepts with 120-second clock")
+	_expect(game.remaining_time == 120, "403 limit is 120")
 	_expect(game.is_interaction_allowed("STAFF_PATROL_4F"), "Patrol reward is eligible without an empty card requirement")
 	_expect(not game.record_work_result("STAFF_PATROL_4F"), "Generic work callback cannot forge a stolen file")
 	if game.has_method("record_task_item_result"):
@@ -41,6 +41,8 @@ func _run() -> void:
 		_expect(game.offer_task("TASK_05_EXIT") and game.accept_task("TASK_05_EXIT"), "501 uses actual prior task and rescue prerequisite")
 		cards.collect_card("CLEANER")
 		cards.collect_card("MANAGER")
+		cards.equip_card("CLEANER", 0)
+		cards.equip_card("MANAGER", 1)
 		_expect(not game.record_work_result("EXIT_REGISTER_5F"), "Standby manager cannot approve exit")
 		cards.switch_active()
 		_expect(game.record_work_result("EXIT_REGISTER_5F"), "Current manager approves exit")

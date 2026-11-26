@@ -13,6 +13,7 @@
 
 [node name="Floor2" instance=ExtResource("1_base")]
 floor_number = 2
+downstairs_stair_range = Vector2(222, 337)
 task_01_barrier_x = 1250.0
 task_02_barrier_x = 1500.0
 
