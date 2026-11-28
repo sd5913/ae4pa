@@ -1389,6 +1389,11 @@ Added 27 approved PNGs under art_sources/confirmed_characters_20261125 with SHA-
 - 含员工偷取步骤的 201、202、203、302、403 从接任务起计 120 秒。204、205 为 210 秒，501 为 180 秒。旧档保持写入时的剩余时间，重接任务使用当前时限。
 - Godot 4.7.2 的底座、时限目录、任务检查点、楼梯选层、门生命周期、普通怪规则、员工与工作点、换装、309 拍次与救援、403/501、从新局到 EXIT 和两进程存读回归通过。macOS Compatibility 图形测试通过楼梯与选层、中文 1280×720 和英文 960×540 背包点击／键盘／拖放与 309 对话布局。测试使用了位置及前置条件夹具，真人连续计时试玩和 Windows 导出尚未执行。
 
+### 2026-11-26 Music asset delivery
+
+- Added the six supplied MP3, WAV, and M4A files under `assets/music/`, preserving their original bytes and metadata; the MP3/WAV imports and music README are included.
+- Godot 4.7.2 Linux import and resource-duration probes, foundation smoke, FFmpeg decode of all six files, and SHA-256 comparisons passed on the asset branch. Playback integration, listening checks, exports, and cross-platform playback remain unverified.
+
 ### 2026-11-26 C：按用户新稿更新剧情（本地未提交）
 
 - 基于 main@4ae5577，新建 work/member-C-story-revision-20261126。完整接入用户新稿 149 条对白／旁白／文书，覆盖三天前旧聊天、咖啡馆、经理谎称离店、201–205 线索、302 登记、309 重逢、警报、403、501 与雨夜结尾。任务、身份、时限和胜利判定继续由现有组件负责；旧游戏标题保持。
@@ -1430,3 +1435,10 @@ Windows Godot4.7.2：逐句170段、底座、正式序章输入、独立序章�
 2026-11-28 罩层浓度追加：棕色染层由18%–26%提高到35%–45%，继续保留场景色相。仅材质参数变化，Compatibility双语三尺寸84幅复查退出0。见[最新不透明度记录](qa_evidence/animated_chapters_20261128/color_revision/README.md)。
 
 2026-11-28 报幕发布接力：用户已授权提交、push及合入main。本次只发布报幕，人物放大8%和其他候选美术仍独立保留本地。已移除人物尺寸增量后复测确切暂存候选：四项功能及中英三尺寸84幅Compatibility检查全部退出0。[发布候选、指纹、复核范围与日志](qa_evidence/animated_chapters_20261128/publish/README.md)。最终远端CI和合并状态以本次PR为准。
+
+## 2026-11-28 主线背景音乐
+
+- 在主场景中用一个播放器循环播放两首 MP3。开始新局和序章播放 The Haunted Ballroom-1，309 重逢 CG 完成且救援结算后切至 Propulsive Tension-2。读档按救援状态选曲，返回主菜单停止播放。
+- 两首以 -12 dB 播放，切曲直接衔接。完整主线回归增加 309 前后曲目、循环配置、返回主菜单及重开新局的断言。实际听感和音量平衡留待真人试听。
+- macOS Godot 4.7.2 导入及底座回归退出 0。临时探针通过菜单静音、新局循环、实际救援结算接口切曲、返回菜单与重新开局检查。探针对 309 的前置状态使用夹具。
+- 完整主线回归和本地化回归通过。首次 Windows 构建检查发现 Godot 退出时保留 MP3 播放资源，主场景退出时显式停止并清空播放器后，本地化回归退出 0，日志无错误诊断。
