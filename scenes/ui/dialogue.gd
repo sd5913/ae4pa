@@ -16,6 +16,7 @@ const V4_INTRO_ID := "V4_INTRO"
 const V4_MANAGER_ID := "V4_MANAGER_TALK"
 const SCRIPT_PATH := "res://scenes/ui/intro_script.tsv"
 const DEFAULT_PROGRESS_PATH := "user://intro_progress.cfg"
+const STORY_REVISION := "20261126_complete_confirmed_expressions"
 const BACKGROUNDS := {
 	"bedroom": preload("res://assets/final/ui/visual_novel/bedroom_rain.png"),
 	"cafe": preload("res://assets/final/ui/visual_novel/cafe_sunset.png"),
@@ -70,8 +71,12 @@ var _muted_surfaces: Array[Dictionary] = []
 var _sms_scroll_generation := 0
 var _portrait_region_cache: Dictionary = {}
 var _phone_waiting_for_open := false
+var _world_story := false
+var _world_background := ""
 var _phone_tween: Tween
 var _scene_tween: Tween
+var _chapter_card: Control
+var _chapter_seen: Dictionary = {}
 
 @onready var _background: TextureRect = %Background
 @onready var _fade: ColorRect = %Fade
@@ -92,6 +97,13 @@ var _scene_tween: Tween
 
 
 func _ready() -> void:
+	_chapter_card = preload("res://scenes/ui/chapter_card.gd").new()
+	add_child(_chapter_card)
+	_chapter_card.closed.connect(func():
+		if is_instance_valid(_memory_rail): _memory_rail.show()
+		_skip_button.visible = not _world_story and _can_skip_current_dialogue()
+		_show_story_beat()
+	)
 	if presentation_only:
 		set_process_input(false)
 	else:
@@ -120,6 +132,10 @@ func _notification(what: int) -> void:
 func _fit_dialogue_text() -> void:
 	if not is_node_ready() or not _line.visible or not _frame.visible:
 		return
+	# Narration and full-frame CG captions use the complete panel width.
+	var has_portrait := _portrait.visible and _portrait.texture != null
+	_frame.offset_left = size.x * ((0.185 if has_portrait else 0.09) - _frame.anchor_left)
+	_line.offset_left = size.x * ((0.34 if has_portrait else 0.12) - _line.anchor_left)
 	# Grow paragraphs within the panel, independent of the removed action button.
 	var bottom := size.y * 0.91
 	var top := minf(size.y * 0.763, bottom - _line.get_minimum_size().y)
@@ -128,14 +144,14 @@ func _fit_dialogue_text() -> void:
 	_frame.offset_top = minf(0.0, top - 32.0 - size.y * _frame.anchor_top)
 	_speaker.offset_top = _frame.position.y - 28.0 - size.y * _speaker.anchor_top
 	_speaker.offset_bottom = _frame.position.y + 24.0 - size.y * _speaker.anchor_bottom
-	if _portrait.texture != null:
+	if has_portrait:
 		var height := minf(size.y * 0.52, size.x * 0.265 / _portrait.texture.get_width() * _portrait.texture.get_height())
 		var width := height * _portrait.texture.get_width() / _portrait.texture.get_height()
 		_portrait.offset_left = size.x * 0.325 - width - size.x * _portrait.anchor_left
 		_portrait.offset_right = size.x * 0.325 - size.x * _portrait.anchor_right
 		_portrait.offset_top = size.y * 0.95 - height - size.y * _portrait.anchor_top
 	# One stable nameplate baseline for every character, including missing portraits.
-	var name_left := size.x * 0.34
+	var name_left := size.x * (0.34 if has_portrait else 0.12)
 	_speaker.offset_left = name_left - size.x * _speaker.anchor_left
 	_speaker.offset_right = name_left + maxf(160.0, _speaker.get_minimum_size().x + 24.0) - size.x * _speaker.anchor_right
 
@@ -150,6 +166,11 @@ func _input(event: InputEvent) -> void:
 		_pointer.reset()
 		return
 	if not visible or _dialogue_id.is_empty():
+		return
+	if _chapter_card.active:
+		var chapter_result: int = _pointer.feed(event, [get_global_rect()], not _chapter_card.ready_to_continue)
+		if chapter_result == _pointer.ADVANCE: _chapter_card.dismiss()
+		if chapter_result != _pointer.IGNORE: get_viewport().set_input_as_handled()
 		return
 	# Skip owns its gesture and must not also advance the story underneath.
 	if event is InputEventMouse or event is InputEventScreenTouch or event is InputEventScreenDrag:
@@ -173,6 +194,11 @@ func _input(event: InputEvent) -> void:
 
 
 func show_dialogue(dialogue_id: String) -> void:
+	_chapter_card.cancel()
+	_chapter_seen.clear()
+	_world_story = false
+	_background.show()
+	$Tint.show()
 	_history_serial += 1
 	_pointer.reset()
 	_finish_phone_animation()
@@ -216,7 +242,7 @@ func show_dialogue(dialogue_id: String) -> void:
 		_:
 			_dialogue_id = ""
 			return
-	_skip_button.visible = _can_skip_current_dialogue()
+	_skip_button.visible = _can_skip_current_dialogue() and not _chapter_card.active
 	if dialogue_id == V4_INTRO_ID:
 		_skip_button.text = "跳过已读序章"
 	elif dialogue_id == V4_MANAGER_ID:
@@ -227,6 +253,9 @@ func show_dialogue(dialogue_id: String) -> void:
 
 
 func cancel_presentation() -> void:
+	_chapter_card.cancel()
+	if is_instance_valid(_memory_rail): _memory_rail.show()
+	_world_story = false
 	_history_serial += 1
 	_pointer.reset()
 	_dialogue_id = ""
@@ -246,6 +275,7 @@ func cancel_presentation() -> void:
 func show_task_dialogue(dialogue_id: String, speaker: String, lines: Array[String]) -> bool:
 	if lines.is_empty() or not _dialogue_id.is_empty():
 		return false
+	_world_story = false
 	_history_serial += 1
 	_history_speaker = speaker
 	_finish_phone_animation()
@@ -264,6 +294,62 @@ func show_task_dialogue(dialogue_id: String, speaker: String, lines: Array[Strin
 		mute_world_prompts()
 	show()
 	return true
+
+
+## Heterogeneous world dialogue using the same input/history/completion contract.
+func show_story_sequence(dialogue_id: String, rows: Array, background_scene: String = "") -> bool:
+	if rows.is_empty() or not _dialogue_id.is_empty(): return false
+	_chapter_card.cancel()
+	_chapter_seen.clear()
+	_history_serial += 1
+	_pointer.reset()
+	_finish_phone_animation()
+	_dialogue_id = dialogue_id
+	_world_story = true
+	_world_background = background_scene
+	if not background_scene.is_empty(): _set_scene(background_scene, false)
+	_line_index = 0
+	_lines.clear()
+	_beats.clear()
+	for source: Dictionary in rows:
+		var beat := source.duplicate(true)
+		beat["scene"] = _current_scene
+		_beats.append(beat)
+	_skip_button.hide()
+	_background.hide()
+	$Tint.hide()
+	mute_world_prompts()
+	_show_story_beat()
+	show()
+	return true
+
+const BACKGROUND_NARRATION_PREFIXES := ["几天前，咖啡馆。", "回到雨夜。", "经理翻开登记簿。", "Carol 向前一步。", "楼上传来一声关门声。", "Carol 推开消防门。", "两人走进雨里。"]
+static func uses_background_narration(text: String) -> bool:
+	for prefix: String in BACKGROUND_NARRATION_PREFIXES:
+		if text.begins_with(prefix): return true
+	return false
+func present_background_narration(text: String) -> void:
+	_background.hide(); $Tint.hide()
+	_sms_panel.hide(); _frame.hide(); _speaker.hide(); _line.hide()
+	_portrait.hide(); _portrait.texture = null; _story_title.hide()
+	_cue.text = text
+	_cue.show()
+	show()
+func present_revision_beat(beat: Dictionary) -> void:
+	if uses_background_narration(str(beat["text"])):
+		present_background_narration(tr(str(beat["text"])))
+		return
+	var speaker: String = beat.get("speaker", "")
+	var role := DialogueRoles.from_speaker(speaker)
+	present_character_beat(role, str(beat["text"]))
+	_speaker.text = tr(speaker)
+	_speaker.visible = not speaker.is_empty()
+	if not beat.get("portrait", false):
+		_portrait.texture = null
+		_portrait.hide()
+	elif not ConfirmedPortraits.role(speaker).is_empty():
+		_display_portrait(speaker, str(beat.get("expression", "neutral")))
+	_fit_dialogue_text.call_deferred()
 
 
 ## Passive reuse of the same story scene; the adapter owns input, modal and completion.
@@ -292,6 +378,7 @@ func present_caption(speaker: String, text: String) -> void:
 	$Tint.hide()
 	_sms_panel.hide()
 	_portrait.hide()
+	_portrait.texture = null
 	_cue.hide()
 	_story_title.hide()
 	_skip_button.hide()
@@ -329,7 +416,7 @@ func has_completed_intro() -> bool:
 	var config := ConfigFile.new()
 	if config.load(_progress_path) != OK:
 		return false
-	return config.get_value("story", "intro_and_manager_read", false) == true
+	return config.get_value("story", "revision", "") == STORY_REVISION and config.get_value("story", "intro_and_manager_read", false) == true
 
 
 func set_progress_file_path_for_test(path: String) -> void:
@@ -340,6 +427,9 @@ func set_skip_transitions_for_test(skip: bool) -> void:
 	_skip_transitions = skip
 	if skip and is_node_ready():
 		_finish_phone_animation()
+		if _chapter_card.active:
+			_chapter_card.cancel()
+			_show_story_beat()
 
 
 func reset_progress_file_for_test() -> void:
@@ -404,11 +494,42 @@ func _show_line() -> void:
 
 
 func _show_story_beat() -> void:
+	if _chapter_card.active:
+		return
 	if _beats.is_empty() or _line_index >= _beats.size():
 		return
-	_record_history.call_deferred(_line_index, _history_serial)
 	var beat: Dictionary = _beats[_line_index]
+	if _dialogue_id == "LATE_ENDING" and _line_index == 0 and not _skip_transitions and not _chapter_seen.has(0):
+		_chapter_seen[0] = true
+		_background.show(); $Tint.show()
+		_frame.hide(); _line.hide(); _speaker.hide(); _portrait.hide(); _cue.hide(); _story_title.hide()
+		_skip_button.hide()
+		if is_instance_valid(_memory_rail): _memory_rail.hide()
+		_chapter_card.present(tr("终章"), tr("共赴长夜"), "ending")
+		return
+	if _dialogue_id == V4_INTRO_ID and not _skip_transitions and not _chapter_seen.has(_line_index):
+		if _line_index == 0 or beat.scene != _beats[_line_index - 1].scene:
+			_chapter_seen[_line_index] = true
+			var number := 1 if _line_index == 0 else 2 if beat.scene == "cafe" else 3 if beat.scene == "bedroom" else 4
+			var location: String = {"bedroom":"卧室", "cafe":"咖啡馆回忆", "exterior":"旅馆外"}[beat.scene]
+			_frame.hide(); _line.hide(); _speaker.hide(); _portrait.hide(); _cue.hide(); _story_title.hide()
+			if is_instance_valid(_memory_rail): _memory_rail.hide()
+			_skip_button.hide()
+			_chapter_card.present(tr("序章 %d") % number, tr(location), ["bedroom_1", "cafe_2", "bedroom_3", "exterior_4"][number - 1])
+			return
+	_record_history.call_deferred(_line_index, _history_serial)
+	if _world_story:
+		present_revision_beat(beat)
+		if not _world_background.is_empty():
+			_background.show()
+			$Tint.show()
+		return
 	var mode: String = beat.mode
+	if mode == "narration":
+		present_revision_beat(beat)
+		_background.show()
+		$Tint.show()
+		return
 	_speaker.visible = mode == "dialogue"
 	_line.visible = mode == "dialogue"
 	_speaker.text = "Carol" if beat.speaker in ["女主", "安", "Carol"] else tr("Terese") if beat.speaker in ["闺蜜", "Terese", "Persica", "friend"] else beat.speaker
@@ -420,8 +541,11 @@ func _show_story_beat() -> void:
 		_frame.hide()
 		_portrait.hide()
 		_add_sms_message(str(beat.speaker), str(beat.text))
-		if _line_index == 0 and not _skip_transitions:
-			_animate_phone_notification()
+		if _sms_history.get_child_count() == 1 and not _skip_transitions:
+			# This is an old conversation, not an incoming rescue message.
+			_phone_chat.hide()
+			_phone_notification.show()
+			_phone_waiting_for_open = true
 	elif mode == "cue":
 		_sms_panel.hide()
 		_frame.hide()
@@ -535,6 +659,10 @@ func _scroll_sms_to_message(row: Control) -> void:
 
 
 func _display_portrait(speaker: String, expression: String) -> void:
+	if expression == "none":
+		_portrait.texture = null
+		_portrait.hide()
+		return
 	if not ConfirmedPortraits.role(speaker).is_empty():
 		_portrait.texture = ConfirmedPortraits.portrait(speaker, expression)
 		_portrait.show()
@@ -607,12 +735,12 @@ func _set_scene(scene_id: String, fade: bool) -> void:
 	_fade.color.a = 0.0
 	if _scene_tween != null: _scene_tween.kill()
 	_scene_tween = create_tween()
-	_scene_tween.tween_property(_fade, "color:a", 1.0, 0.22).from(0.0)
+	_scene_tween.tween_property(_fade, "color:a", 1.0, 0.55).from(0.0)
 	_scene_tween.tween_callback(func() -> void:
 		_background.texture = BACKGROUNDS[scene_id]
 		var reveal_tween := create_tween()
 		_scene_tween = reveal_tween
-		reveal_tween.tween_property(_fade, "color:a", 0.0, 0.32).from(1.0)
+		reveal_tween.tween_property(_fade, "color:a", 0.0, 0.65).from(1.0)
 		reveal_tween.finished.connect(func() -> void:
 			_transition_in_progress = false
 			_scene_tween = null
@@ -622,6 +750,9 @@ func _set_scene(scene_id: String, fade: bool) -> void:
 
 
 func _advance() -> void:
+	if _chapter_card.active:
+		_chapter_card.dismiss()
+		return
 	if _dialogue_id.is_empty() or _transition_in_progress:
 		return
 	if _phone_tween != null:
@@ -652,6 +783,8 @@ func _advance() -> void:
 
 
 func _finish() -> void:
+	_chapter_card.cancel()
+	if is_instance_valid(_memory_rail): _memory_rail.show()
 	if _dialogue_id.is_empty():
 		return
 	_finish_phone_animation()
@@ -670,6 +803,7 @@ func _save_intro_read() -> void:
 	if config.load(_progress_path) != OK:
 		config = ConfigFile.new()
 	config.set_value("story", "intro_and_manager_read", true)
+	config.set_value("story", "revision", STORY_REVISION)
 	var error := config.save(_progress_path)
 	if error != OK:
 		push_error("Unable to save completed intro state: " + error_string(error))
@@ -703,6 +837,7 @@ func _build_memory_rail() -> void:
 		_memory_rail.add_child(button)
 
 func _record_history(index: int, serial: int) -> void:
+	if _chapter_card.active: return
 	if preload("res://scenes/ui/memory_ui.gd").is_open(): return
 	if not is_visible_in_tree() or _line_index != index or _history_serial != serial or _dialogue_id.is_empty(): return
 	var who := _history_speaker

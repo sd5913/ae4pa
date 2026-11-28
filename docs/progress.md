@@ -1389,9 +1389,49 @@ Added 27 approved PNGs under art_sources/confirmed_characters_20261125 with SHA-
 - 含员工偷取步骤的 201、202、203、302、403 从接任务起计 120 秒。204、205 为 210 秒，501 为 180 秒。旧档保持写入时的剩余时间，重接任务使用当前时限。
 - Godot 4.7.2 的底座、时限目录、任务检查点、楼梯选层、门生命周期、普通怪规则、员工与工作点、换装、309 拍次与救援、403/501、从新局到 EXIT 和两进程存读回归通过。macOS Compatibility 图形测试通过楼梯与选层、中文 1280×720 和英文 960×540 背包点击／键盘／拖放与 309 对话布局。测试使用了位置及前置条件夹具，真人连续计时试玩和 Windows 导出尚未执行。
 
-### 2026-11-26 Music asset delivery (Asia/Hong_Kong)
+### 2026-11-26 Music asset delivery
 
-- Pulled shared `main@4ae5577b2e6455372366b21e21a12b08fb0d96a7` with `git pull --ff-only origin main`; this delivery uses `assets/music-20261126`. Preserved unrelated local Linux build work separately for restoration after the asset commit.
-- Moved the six user-supplied MP3, WAV and M4A files into `assets/music/`, using `propulsive_tension_2` and `the_haunted_ballroom_1` as filename stems. SHA-256 checks confirmed every audio file retained its original bytes and metadata. Added four generated MP3/WAV import descriptions and [music integration notes](../assets/music/README.md), including the embedded Suno/artist attribution and M4A source-only status.
-- Linux / Godot `4.7.2.stable.arch_linux.ed1daf0bf`: imported a clean copy of the pulled source plus the new assets with `godot --headless --path /tmp/ae4pa-music-4734xdlq/verify --editor --import --quit` (exit 0, no error/warning diagnostics). A temporary `music_probe.gd` loaded all four MP3/WAV AudioStream resources and verified 67.88/123.64-second durations (exit 0). The existing `foundation_smoke.gd` passed in the same checkout (exit 0).
-- `ffmpeg -nostdin -v error -xerror -i <file> -map 0:a:0 -f null -` decoded all six supplied files (each exit 0). Verification logs and the temporary probe are under `/tmp/ae4pa-music-4734xdlq/`. This is an asset delivery; playback placement, volume, looping, listening checks, exports and cross-platform playback remain unverified. No game scripts, scenes or project settings changed.
+- Added the six supplied MP3, WAV, and M4A files under `assets/music/`, preserving their original bytes and metadata; the MP3/WAV imports and music README are included.
+- Godot 4.7.2 Linux import and resource-duration probes, foundation smoke, FFmpeg decode of all six files, and SHA-256 comparisons passed on the asset branch. Playback integration, listening checks, exports, and cross-platform playback remain unverified.
+
+### 2026-11-26 C：按用户新稿更新剧情（本地未提交）
+
+- 基于 main@4ae5577，新建 work/member-C-story-revision-20261126。完整接入用户新稿 149 条对白／旁白／文书，覆盖三天前旧聊天、咖啡馆、经理谎称离店、201–205 线索、302 登记、309 重逢、警报、403、501 与雨夜结尾。任务、身份、时限和胜利判定继续由现有组件负责；旧游戏标题保持。
+- 按用户明确回复，仅说话人和整句文本完全相同的四句保留原表情；改写或新增台词左侧半身立绘留空并清纹理。Carol 沿用组员版本，Terese 与经理沿用用户版本，经理仍 neutral；已有整屏 CG 保留，换为新稿 12 拍。新增版本化已读标记、结算后警报、结束对白后成功页和出口交付红绿灯。
+- Windows Godot 4.7.2：底座、序章、逐句与立绘、本地化、后段、完整新局至实际 EXIT、旧人物版本、309 救援、两进程存读回归均退出 0。Compatibility 原生中英三尺寸 60 状态及 CG 两语三尺寸检查通过；E／鼠标／滚轮／拖动／触屏去重与返回菜单回归通过。初始旧预期／夹具失败及编辑器 Safe save failed 诊断保留，未放宽最终 EXIT 断言。
+- [完整证据、命令、散列与限制](qa_evidence/story_revision_20261126/README.md)。未执行本分支真人完整计时试玩、macOS／另一台设备或二进制导出；没有提交、推送或合并。原试玩工作区及窗口未修改。
+
+## 2026-11-26 完整对话清单及确认表情接入
+
+本地 `work/member-C-story-revision-20261126` 基于 main@4ae5577，按用户 `对话清单.txt` 接入全部170段，恢复卧室→咖啡馆→卧室→旅馆外，补齐经理结尾。Carol13、Terese7、经理3张确认原图替换半身对白及Carol任务教学；五怪沿用固定图，原图逐字节保留。思考对应沉思、坚定对应猎杀时刻，狐疑与怀疑分别映射。旁白/CG文字框铺开，309保留三幅整幅CG与12段新文本、不叠半身。旧149段与空立绘策略已被本次用户要求替代。
+
+Windows Godot4.7.2：逐句170段、底座、正式序章输入、独立序章预览、本地化、完整新局八项任务至EXIT、后段、309、两进程存读全部退出0；106幅中英三尺寸/全表情画面及CG三尺寸检查通过，真实窗口输入和返回菜单检查通过。初始夹具错误已修复并保留日志；既有safe-save及203/205诊断详见[证据](qa_evidence/complete_dialogue_20261126/README.md)。未进行真人连续试玩、macOS和导出，尚未提交/推送/合并。下次从本工作区新游戏复核表情与语气；原稿、逐句映射、哈希和截图均已归档。
+
+## 2026-11-26 同步 main 与发布候选复核
+
+用户已授权提交、push及合入main。远端main与开发基线4ae5577一致，无冲突；运行时代码与确认立绘已提交至c895c0a。独立干净检出导入、逐句170段/23表情、正式序章和完整新局八项任务至实际EXIT均退出0。既有无关导入文件保留本地未提交。[审查、命令和提交指纹](qa_evidence/complete_dialogue_20261126/publish/README.md)。GitHub远端检查与最终合并状态以本次PR为准；前文未提交/未授权属于接入时历史状态。
+
+
+## 2026-11-27 场景报幕与旁白位置
+
+完整170段与确认表情已由PR #86合入main@67c27fd8；本轮从该提交建立work/story-chapter-cues-20261127，新增四处序章和309重逢报幕、无人场景背景、淡入停留与点击/E继续，延长切场淡入淡出。七段指定旁白改为背景字；按用户随后修正，309开头长旁白保留底部整宽框。没有删改剧情段落。
+
+独立无缓存候选导入和七项定向功能检查退出0，含170段逐句/23表情、正式序章、309双语12拍和新局八任务到实际EXIT。Compatibility中英三尺寸78幅检查与合成输入通过；修复报幕刷新暴露人物和历史提前写入。命令、候选散列、初次失败、画面及未测范围见[本轮证据](qa_evidence/chapter_narration_20261127/README.md)。本轮未提交、推送、合并；真人、跨设备/macOS、导出和存读专项未测。
+
+
+2026-11-27发布接力：用户现已授权本轮提交、push和合入main；同步远端后确认基线仍为67c27fd8，沿用本轮候选散列与已完成验证。最终远端CI和合并状态以本轮PR为准。
+
+
+## 2026-11-28 已确认动效报幕接入（本地）
+
+`work/animated-chapter-cards-20261128` 基于 bcf13b1，保留上一项人物尺寸增量，将原五处报幕替换为已确认的棕金纸纹动效，并在逃离 CG 前新增「终章 · 共赴长夜」。罩层实时处理下层原场景，透明文字和装饰分层播放，不使用设计预览中的生成场景图替换原背景；报幕期间隐藏跳过按钮。入场 2.8 秒、点击/E 后退场 0.85 秒，首句和原结算接口保留。
+
+独立无缓存候选导入、F5 底座／正式开场／本地化／完整新局八任务至 EXIT 四项功能回归，以及中英三尺寸 84 幅 Compatibility 实际报幕与旁白检查均退出 0。长英文标题的菱形避让修正后重跑图形矩阵；实际工程新增资源导入亦退出 0。未提交、推送或导出；真人、跨平台与存读专项未测。见[本轮代码、命令、指纹与实际画面](qa_evidence/animated_chapters_20261128/README.md)。
+
+## 2026-11-28 报幕罩层保色修订（本地）
+
+按用户实机反馈，罩层改为保留原场景色相、叠加半透明暖棕纸纹，取消先灰度化后整体棕色映射；标题附近柔和压暗。唯一运行差异为chapter_paper.gdshader，文字、装饰、时间、剧情和输入未改。独立验证副本重新导入退出0，最终材质中英三尺寸84幅Compatibility报幕/旁白与门控复查退出0。未重新执行完整主线或导出；原运行中的游戏须重启加载。见[保色修订证据](qa_evidence/animated_chapters_20261128/color_revision/README.md)。未提交推送。
+
+2026-11-28 罩层浓度追加：棕色染层由18%–26%提高到35%–45%，继续保留场景色相。仅材质参数变化，Compatibility双语三尺寸84幅复查退出0。见[最新不透明度记录](qa_evidence/animated_chapters_20261128/color_revision/README.md)。
+
+2026-11-28 报幕发布接力：用户已授权提交、push及合入main。本次只发布报幕，人物放大8%和其他候选美术仍独立保留本地。已移除人物尺寸增量后复测确切暂存候选：四项功能及中英三尺寸84幅Compatibility检查全部退出0。[发布候选、指纹、复核范围与日志](qa_evidence/animated_chapters_20261128/publish/README.md)。最终远端CI和合并状态以本次PR为准。

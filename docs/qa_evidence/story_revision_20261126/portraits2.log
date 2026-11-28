@@ -1,0 +1,31 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+PASS terese:neutral canvas
+PASS terese:happy canvas
+PASS terese:teasing canvas
+PASS terese:playful canvas
+PASS manager:neutral canvas
+PASS Carol bypasses personal portrait overrides
+PASS Carol shared adapter retains team version
+PASS manager fixed neutral
+PASS manager fixed surprised
+PASS manager fixed stern
+PASS manager fixed worried
+PASS Terese playful distinct from teasing
+PASS rewritten cafe lines blank; exact unchanged Terese line keeps teasing
+PASS Carol team expression neutral
+PASS Carol team expression smile
+PASS Carol team expression surprised
+PASS Carol team expression worried
+PASS Carol team expression suspicious
+PASS Carol team expression stern
+PASS Carol team expression pensive
+PASS Carol team expression concerned
+PASS Carol team expression curious
+PASS Carol team expression determined
+PASS Carol task/tutorial retains team portrait
+PASS formal scene Terese:neutral
+PASS formal scene Terese:happy
+PASS formal scene Terese:teasing
+PASS formal scene Terese:playful
+PASS formal scene 经理:neutral

@@ -51,7 +51,7 @@ func _run() -> void:
 	_expect(dialogue.get("_line_index") == index + 1, "A real E advances exactly one story beat")
 	var mouse := InputEventMouseButton.new()
 	mouse.button_index = MOUSE_BUTTON_LEFT
-	mouse.position = root.get_final_transform() * dialogue.get_node("%SMSScroll").get_global_rect().get_center()
+	mouse.position = root.get_final_transform() * dialogue.get_node("%DialogueFrame").get_global_rect().get_center()
 	mouse.pressed = true
 	Input.parse_input_event(mouse)
 	await process_frame

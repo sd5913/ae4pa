@@ -14,7 +14,7 @@ const MONSTER_PAGES := [
 	{"id": "NOSE", "name": "长鼻客", "art": "nose", "rule": "游玩中，门 OPEN 且在范围内：当前卡非 CLEANER → WRONG_CARD；用保洁卡或等关门。"},
 	{"id": "HAT", "name": "礼帽客", "art": "hat", "rule": "游玩中，门 OPEN 且在范围内：当前卡非 MANAGER → WRONG_CARD；用经理卡或等关门。"},
 	{"id": "EAR", "name": "大耳客", "art": "ear", "rule": "游玩中，门 OPEN 且在范围内仍移动 → MOVED_NEAR_EAR；停步，等门关再走。"},
-	{"id": "CHECKER", "name": "核验客", "art": "checker", "rule": "游玩中，门 OPEN 且在范围内主动切卡或更换佩戴槽 → SWITCHED_NEAR_CHECKER；提前选卡，门前不换证。"},
+	{"id": "CHECKER", "name": "门缝客", "art": "checker", "rule": "游玩中，门 OPEN 且在范围内主动切卡或更换佩戴槽 → SWITCHED_NEAR_CHECKER；提前选卡，门前不换证。"},
 ]
 const MONSTER_SHEETS := {
 	"EYE": preload("res://assets/final/monster_idle/eye_idle_sheet.png"),

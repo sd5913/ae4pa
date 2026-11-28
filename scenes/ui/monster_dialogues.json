@@ -2,32 +2,88 @@
   "NOSE": {
     "INTRO": [
       [
+        "",
+        "长鼻客探出门，鼻尖几乎碰到地毯。",
+        {
+          "speaker": "",
+          "text": "长鼻客探出门，鼻尖几乎碰到地毯。",
+          "mode": "narration",
+          "expression": "none",
+          "portrait": false,
+          "scene": "",
+          "source_line": 254,
+          "beat_id": "complete_060"
+        }
+      ],
+      [
         "长鼻客",
-        "停、停！别再往前踩了。"
+        "唉！唉！",
+        {
+          "speaker": "长鼻客",
+          "text": "唉！唉！",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 256,
+          "beat_id": "complete_061"
+        }
       ],
       [
         "Carol",
-        "怎么了？"
+        "！？",
+        {
+          "speaker": "Carol",
+          "text": "！？",
+          "mode": "dialogue",
+          "expression": "惊讶",
+          "portrait": true,
+          "scene": "",
+          "source_line": 258,
+          "beat_id": "complete_062"
+        }
       ],
       [
         "长鼻客",
-        "这股味道……你没闻见？地毯都脏成这样了！"
+        "你是来打扫的？昨天有人喷了香水，臭味还在，现在又多了一股花味。",
+        {
+          "speaker": "长鼻客",
+          "text": "你是来打扫的？昨天有人喷了香水，臭味还在，现在又多了一股花味。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 261,
+          "beat_id": "complete_063"
+        }
       ],
       [
         "Carol",
-        "我只是来找人的。"
+        "你鼻子这么灵，闻得出谁上过楼吗？",
+        {
+          "speaker": "Carol",
+          "text": "你鼻子这么灵，闻得出谁上过楼吗？",
+          "mode": "dialogue",
+          "expression": "平常",
+          "portrait": true,
+          "scene": "",
+          "source_line": 263,
+          "beat_id": "complete_064"
+        }
       ],
       [
         "长鼻客",
-        "找人也不能踩着脏东西到处走。让负责清洁的人来。"
-      ],
-      [
-        "Carol",
-        "清理干净，你就让我过去？"
-      ],
-      [
-        "长鼻客",
-        "先打扫，再回来让我闻闻。别拿工作证晃一下就想走。"
+        "你先把花擦掉。",
+        {
+          "speaker": "长鼻客",
+          "text": "你先把花擦掉。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 266,
+          "beat_id": "complete_065"
+        }
       ]
     ],
     "MISSING_CARD": [
@@ -58,24 +114,88 @@
     ],
     "DELIVERED": [
       [
-        "Carol",
-        "已经清理干净了。"
+        "",
+        "Carol 回一楼，从保洁身后取得工作证。她在安全处把证装进槽里，切为当前保洁。回到二楼，她清理污渍，再回 201 交付。",
+        {
+          "speaker": "",
+          "text": "Carol 回一楼，从保洁身后取得工作证。她在安全处把证装进槽里，切为当前保洁。回到二楼，她清理污渍，再回 201 交付。",
+          "mode": "narration",
+          "expression": "none",
+          "portrait": false,
+          "scene": "",
+          "source_line": 268,
+          "beat_id": "complete_066"
+        }
       ],
       [
         "长鼻客",
-        "嗯……等等。"
+        "这就对了。你袖口都是拖地水的味儿。楼上那些跟我一样的，闻闻就知道你是来做房务的。",
+        {
+          "speaker": "长鼻客",
+          "text": "这就对了。你袖口都是拖地水的味儿。楼上那些跟我一样的，闻闻就知道你是来做房务的。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 270,
+          "beat_id": "complete_067"
+        }
+      ],
+      [
+        "",
+        "他转头朝楼梯闻了闻。",
+        {
+          "speaker": "",
+          "text": "他转头朝楼梯闻了闻。",
+          "mode": "narration",
+          "expression": "none",
+          "portrait": false,
+          "scene": "",
+          "source_line": 272,
+          "beat_id": "complete_068"
+        }
       ],
       [
         "长鼻客",
-        "没有了。那股难闻的味道，总算没有了。"
+        "花味没了。还剩一点湿衣服的味道，还有柑橘香。三天前有个人带着这股味道上楼，这几晚偶尔还能闻见。",
+        {
+          "speaker": "长鼻客",
+          "text": "花味没了。还剩一点湿衣服的味道，还有柑橘香。三天前有个人带着这股味道上楼，这几晚偶尔还能闻见。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 274,
+          "beat_id": "complete_069"
+        }
       ],
       [
-        "Carol",
-        "现在可以过去了吗？"
+        "Carol（心想）",
+        "柑橘香……Terese 最爱喷的就是这个。",
+        {
+          "speaker": "Carol（心想）",
+          "text": "柑橘香……Terese 最爱喷的就是这个。",
+          "mode": "dialogue",
+          "expression": "沉思",
+          "portrait": true,
+          "scene": "",
+          "source_line": 276,
+          "beat_id": "complete_070"
+        }
       ],
       [
         "长鼻客",
-        "走吧，走吧。鞋底也注意一点。"
+        "你要找人，去问隔壁。楼梯上掉一根线，他都能看半天。",
+        {
+          "speaker": "长鼻客",
+          "text": "你要找人，去问隔壁。楼梯上掉一根线，他都能看半天。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 279,
+          "beat_id": "complete_071"
+        }
       ]
     ],
     "COMPLETED": [
@@ -89,31 +209,17 @@
     "INTRO": [
       [
         "独眼客",
-        "站住。你从保管柜那边过来的？"
-      ],
-      [
-        "Carol",
-        "没有，我刚上来。"
-      ],
-      [
-        "独眼客",
-        "我的包裹还在里面。替我拿来。"
-      ],
-      [
-        "Carol",
-        "为什么不自己去？"
-      ],
-      [
-        "独眼客",
-        "柜子只认保安权限。你去想办法。"
-      ],
-      [
-        "Carol",
-        "拿来以后，你就让我过去？"
-      ],
-      [
-        "独眼客",
-        "东西完整地送到我手上，再谈。"
+        "你是来送东西的？我看着他们把包裹收进柜子，今天还没人取。牛皮纸，右下角是我的房号。拿来的时候封条朝外。",
+        {
+          "speaker": "独眼客",
+          "text": "你是来送东西的？我看着他们把包裹收进柜子，今天还没人取。牛皮纸，右下角是我的房号。拿来的时候封条朝外。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 285,
+          "beat_id": "complete_072"
+        }
       ]
     ],
     "MISSING_CARD": [
@@ -136,24 +242,88 @@
     ],
     "DELIVERED": [
       [
+        "",
+        "Carol 回一楼取得保安证，切成当前保安。从二楼的保管柜领出包裹后，她带回 202。独眼客沿封条看了一圈，才伸手接。",
+        {
+          "speaker": "",
+          "text": "Carol 回一楼取得保安证，切成当前保安。从二楼的保管柜领出包裹后，她带回 202。独眼客沿封条看了一圈，才伸手接。",
+          "mode": "narration",
+          "expression": "none",
+          "portrait": false,
+          "scene": "",
+          "source_line": 287,
+          "beat_id": "complete_073"
+        }
+      ],
+      [
+        "独眼客",
+        "编号对，封条也没动。楼上那几个跟我一样，天天盯着谁动过包裹。看见保安证，才知道来的是管包裹的人。",
+        {
+          "speaker": "独眼客",
+          "text": "编号对，封条也没动。楼上那几个跟我一样，天天盯着谁动过包裹。看见保安证，才知道来的是管包裹的人。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 289,
+          "beat_id": "complete_074"
+        }
+      ],
+      [
         "Carol",
-        "你的包裹。"
+        "三天前有个浅色长发的女生经过。她扎了个墨绿蝴蝶结，你见过吗？",
+        {
+          "speaker": "Carol",
+          "text": "三天前有个浅色长发的女生经过。她扎了个墨绿蝴蝶结，你见过吗？",
+          "mode": "dialogue",
+          "expression": "平常",
+          "portrait": true,
+          "scene": "",
+          "source_line": 291,
+          "beat_id": "complete_075"
+        }
       ],
       [
         "独眼客",
-        "放这儿。让我看看。"
-      ],
-      [
-        "独眼客",
-        "封条没动，编号也对。"
+        "见过。她跟着前台的人上了三楼。格纹外套搭在胳膊上，一边袖口都拖地了。",
+        {
+          "speaker": "独眼客",
+          "text": "见过。她跟着前台的人上了三楼。格纹外套搭在胳膊上，一边袖口都拖地了。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 294,
+          "beat_id": "complete_076"
+        }
       ],
       [
         "Carol",
-        "检查完了？"
+        "后来呢？",
+        {
+          "speaker": "Carol",
+          "text": "后来呢？",
+          "mode": "dialogue",
+          "expression": "平常",
+          "portrait": true,
+          "scene": "",
+          "source_line": 296,
+          "beat_id": "complete_077"
+        }
       ],
       [
         "独眼客",
-        "完了。你可以走了。"
+        "没见她下来。倒是送饭的人天天上去。203 盯过那只托盘，你问他。",
+        {
+          "speaker": "独眼客",
+          "text": "没见她下来。倒是送饭的人天天上去。203 盯过那只托盘，你问他。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 299,
+          "beat_id": "complete_078"
+        }
       ]
     ],
     "COMPLETED": [
@@ -166,32 +336,32 @@
   "HAT": {
     "INTRO": [
       [
-        "礼帽客",
-        "请稍候。我的房务申请，似乎还没有得到答复。"
-      ],
-      [
-        "Carol",
-        "我不是来处理房务的。"
-      ],
-      [
-        "礼帽客",
-        "那真遗憾。这条通道，目前恐怕不便开放。"
-      ],
-      [
-        "Carol",
-        "要怎样你才肯让我过去？"
-      ],
-      [
-        "礼帽客",
-        "请找一位有管理权限的人，到二楼登记台批准申请。"
-      ],
-      [
-        "Carol",
-        "然后回来告诉你？"
+        "",
+        "礼帽客把空茶杯摆回杯碟正中。",
+        {
+          "speaker": "",
+          "text": "礼帽客把空茶杯摆回杯碟正中。",
+          "mode": "narration",
+          "expression": "none",
+          "portrait": false,
+          "scene": "",
+          "source_line": 305,
+          "beat_id": "complete_079"
+        }
       ],
       [
         "礼帽客",
-        "劳烦您了。手续齐全，大家都方便。"
+        "劳驾。我的晚茶三天没送到了。房务台说申请还在等经理批准。您若见到经理，请让她瞧一眼。",
+        {
+          "speaker": "礼帽客",
+          "text": "劳驾。我的晚茶三天没送到了。房务台说申请还在等经理批准。您若见到经理，请让她瞧一眼。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 307,
+          "beat_id": "complete_080"
+        }
       ]
     ],
     "MISSING_CARD": [
@@ -214,24 +384,88 @@
     ],
     "DELIVERED": [
       [
+        "",
+        "Carol 回一楼取得经理证。在安全处，她把经理证换进装备槽并切为当前身份，再到二楼房务台批准申请，返回 203 交付。",
+        {
+          "speaker": "",
+          "text": "Carol 回一楼取得经理证。在安全处，她把经理证换进装备槽并切为当前身份，再到二楼房务台批准申请，返回 203 交付。",
+          "mode": "narration",
+          "expression": "none",
+          "portrait": false,
+          "scene": "",
+          "source_line": 309,
+          "beat_id": "complete_081"
+        }
+      ],
+      [
+        "礼帽客",
+        "终于有人肯签字了。楼上戴礼帽的几位与我一样，有房务上的事，只同经理谈。",
+        {
+          "speaker": "礼帽客",
+          "text": "终于有人肯签字了。楼上戴礼帽的几位与我一样，有房务上的事，只同经理谈。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 311,
+          "beat_id": "complete_082"
+        }
+      ],
+      [
         "Carol",
-        "你的申请已经批准了。"
+        "202 说您见过那个送餐托盘。",
+        {
+          "speaker": "Carol",
+          "text": "202 说您见过那个送餐托盘。",
+          "mode": "dialogue",
+          "expression": "平常",
+          "portrait": true,
+          "scene": "",
+          "source_line": 313,
+          "beat_id": "complete_083"
+        }
       ],
       [
         "礼帽客",
-        "如此甚好。让我确认一下。"
-      ],
-      [
-        "礼帽客",
-        "手续齐全，多谢您费心。"
+        "见过。上面放的是我的茶壶。壶盖缺了一角，隔着走廊我也认得。",
+        {
+          "speaker": "礼帽客",
+          "text": "见过。上面放的是我的茶壶。壶盖缺了一角，隔着走廊我也认得。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 316,
+          "beat_id": "complete_084"
+        }
       ],
       [
         "Carol",
-        "那这条路……"
+        "他们把您的茶送去了哪里？",
+        {
+          "speaker": "Carol",
+          "text": "他们把您的茶送去了哪里？",
+          "mode": "dialogue",
+          "expression": "平常",
+          "portrait": true,
+          "scene": "",
+          "source_line": 318,
+          "beat_id": "complete_085"
+        }
       ],
       [
         "礼帽客",
-        "自然。请便。"
+        "三楼走廊尽头。另有一人份的饭，天天照送。204 为了收盘子的声音，来抱怨过两次。或许他听得更清楚。",
+        {
+          "speaker": "礼帽客",
+          "text": "三楼走廊尽头。另有一人份的饭，天天照送。204 为了收盘子的声音，来抱怨过两次。或许他听得更清楚。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 321,
+          "beat_id": "complete_086"
+        }
       ]
     ],
     "COMPLETED": [
@@ -244,40 +478,32 @@
   "EAR": {
     "INTRO": [
       [
-        "大耳客",
-        "嘘。先别走。"
-      ],
-      [
-        "Carol",
-        "你听见什么了？"
-      ],
-      [
-        "大耳客",
-        "鞋底拖过脏地毯的声音。来回，来回……一直不停。"
-      ],
-      [
-        "Carol",
-        "你想让我打扫？"
-      ],
-      [
-        "大耳客",
-        "把那一处清理掉。还有，拿今晚的巡房记录来。"
-      ],
-      [
-        "Carol",
-        "巡房记录在哪里？"
+        "",
+        "Carol 的鞋底擦过湿地毯。门里的人闭上眼，等那一声过去。",
+        {
+          "speaker": "",
+          "text": "Carol 的鞋底擦过湿地毯。门里的人闭上眼，等那一声过去。",
+          "mode": "narration",
+          "expression": "none",
+          "portrait": false,
+          "scene": "",
+          "source_line": 327,
+          "beat_id": "complete_087"
+        }
       ],
       [
         "大耳客",
-        "二楼的资料柜。保安才能领。"
-      ],
-      [
-        "Carol",
-        "先打扫，再去拿记录。对吗？"
-      ],
-      [
-        "大耳客",
-        "对。回来时，轻一点。"
+        "就是这一块。每个人走到这里都要拖一下脚。你把它擦干，再去资料柜看看，今晚最后一趟巡房是几点。",
+        {
+          "speaker": "大耳客",
+          "text": "就是这一块。每个人走到这里都要拖一下脚。你把它擦干，再去资料柜看看，今晚最后一趟巡房是几点。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 329,
+          "beat_id": "complete_088"
+        }
       ]
     ],
     "MISSING_CARD": [
@@ -316,24 +542,102 @@
     ],
     "DELIVERED": [
       [
+        "",
+        "Carol 装上保洁证和保安证。她用保洁身份清理污渍，换成保安身份领取巡房记录，然后回 204 交付。",
+        {
+          "speaker": "",
+          "text": "Carol 装上保洁证和保安证。她用保洁身份清理污渍，换成保安身份领取巡房记录，然后回 204 交付。",
+          "mode": "narration",
+          "expression": "none",
+          "portrait": false,
+          "scene": "",
+          "source_line": 331,
+          "beat_id": "complete_089"
+        }
+      ],
+      [
         "Carol",
-        "清理好了。巡房记录也拿来了。"
+        "地毯不响了。巡房记录也在这儿。",
+        {
+          "speaker": "Carol",
+          "text": "地毯不响了。巡房记录也在这儿。",
+          "mode": "dialogue",
+          "expression": "平常",
+          "portrait": true,
+          "scene": "",
+          "source_line": 333,
+          "beat_id": "complete_090"
+        }
       ],
       [
         "大耳客",
-        "纸放下。慢一点。"
-      ],
-      [
-        "大耳客",
-        "嗯……今晚的安排，都在这里。"
+        "地毯不响，鞋还是会响。楼上那些耳朵跟我一样灵。门一开，你就站着。等门关了再走。",
+        {
+          "speaker": "大耳客",
+          "text": "地毯不响，鞋还是会响。楼上那些耳朵跟我一样灵。门一开，你就站着。等门关了再走。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 336,
+          "beat_id": "complete_091"
+        }
       ],
       [
         "Carol",
-        "我可以过去了？"
+        "你听过楼上收盘子的声音？",
+        {
+          "speaker": "Carol",
+          "text": "你听过楼上收盘子的声音？",
+          "mode": "dialogue",
+          "expression": "平常",
+          "portrait": true,
+          "scene": "",
+          "source_line": 338,
+          "beat_id": "complete_092"
+        }
       ],
       [
         "大耳客",
-        "可以。门开着的时候，记得停下脚步。"
+        "听过。盘子一响，钥匙就从外面转两圈。送饭的人走了，里头才有人拧把手。头两天还拧，今天没拧。",
+        {
+          "speaker": "大耳客",
+          "text": "听过。盘子一响，钥匙就从外面转两圈。送饭的人走了，里头才有人拧把手。头两天还拧，今天没拧。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 341,
+          "beat_id": "complete_093"
+        }
+      ],
+      [
+        "Carol",
+        "所以她出不来。",
+        {
+          "speaker": "Carol",
+          "text": "所以她出不来。",
+          "mode": "dialogue",
+          "expression": "平常",
+          "portrait": true,
+          "scene": "",
+          "source_line": 343,
+          "beat_id": "complete_094"
+        }
+      ],
+      [
+        "大耳客",
+        "门是从外面锁的。你要上楼，先过 205。他那扇门要敲三下。第三下隔一会儿。",
+        {
+          "speaker": "大耳客",
+          "text": "门是从外面锁的。你要上楼，先过 205。他那扇门要敲三下。第三下隔一会儿。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 346,
+          "beat_id": "complete_095"
+        }
       ]
     ],
     "COMPLETED": [
@@ -346,40 +650,60 @@
   "CHECKER": {
     "INTRO": [
       [
-        "核验客",
-        "停止通行。备案未完成。"
+        "",
+        "Carol 敲了两下，等了一会儿，再敲第三下。门开了一指宽。",
+        {
+          "speaker": "",
+          "text": "Carol 敲了两下，等了一会儿，再敲第三下。门开了一指宽。",
+          "mode": "narration",
+          "expression": "none",
+          "portrait": false,
+          "scene": "",
+          "source_line": 353,
+          "beat_id": "complete_096"
+        }
+      ],
+      [
+        "门缝客",
+        "这回敲对了。昨晚那个人上来就拧把手，还在我眼前把工牌换了。我跟值班台说过，今晚谁要从这儿上楼，就把通行单办好再来。",
+        {
+          "speaker": "门缝客",
+          "text": "这回敲对了。昨晚那个人上来就拧把手，还在我眼前把工牌换了。我跟值班台说过，今晚谁要从这儿上楼，就把通行单办好再来。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 355,
+          "beat_id": "complete_097"
+        }
       ],
       [
         "Carol",
-        "还需要什么？"
+        "去哪里办？",
+        {
+          "speaker": "Carol",
+          "text": "去哪里办？",
+          "mode": "dialogue",
+          "expression": "平常",
+          "portrait": true,
+          "scene": "",
+          "source_line": 357,
+          "beat_id": "complete_098"
+        }
       ],
       [
-        "核验客",
-        "两项。领取通行单，完成管理批准。"
-      ],
-      [
-        "Carol",
-        "去哪里领？"
-      ],
-      [
-        "核验客",
-        "二楼值班资料点。领取需要保安权限。"
-      ],
-      [
-        "Carol",
-        "批准要用经理身份？"
-      ],
-      [
-        "核验客",
-        "正确。办理完毕后，返回核验。"
-      ],
-      [
-        "Carol",
-        "明白了。"
-      ],
-      [
-        "核验客",
-        "证件提前准备。核验期间，不得更换。"
+        "门缝客",
+        "保安从值班资料点领，经理在登记台批。要换身份，走远了再换。楼上跟我一样爱从门缝看人的，最容易记住这种事。袖口明明还是那个袖口，牌子倒换了。",
+        {
+          "speaker": "门缝客",
+          "text": "保安从值班资料点领，经理在登记台批。要换身份，走远了再换。楼上跟我一样爱从门缝看人的，最容易记住这种事。袖口明明还是那个袖口，牌子倒换了。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 360,
+          "beat_id": "complete_099"
+        }
       ]
     ],
     "MISSING_CARD": [
@@ -390,17 +714,17 @@
     ],
     "WORK_PENDING": [
       [
-        "核验客",
+        "门缝客",
         "第一项未完成。请先领取通行单。"
       ]
     ],
     "PICKUP_ONLY": [
       [
-        "核验客",
+        "门缝客",
         "文件已领取。"
       ],
       [
-        "核验客",
+        "门缝客",
         "管理批准缺失。请前往登记台。"
       ]
     ],
@@ -418,29 +742,121 @@
     ],
     "DELIVERED": [
       [
+        "",
+        "Carol 以保安身份领到待审通行单，再到安全登记台切为经理批准。通行单下面，压着今夜的送餐记录。",
+        {
+          "speaker": "",
+          "text": "Carol 以保安身份领到待审通行单，再到安全登记台切为经理批准。通行单下面，压着今夜的送餐记录。",
+          "mode": "narration",
+          "expression": "none",
+          "portrait": false,
+          "scene": "",
+          "source_line": 362,
+          "beat_id": "complete_100"
+        }
+      ],
+      [
+        "",
+        "309 · 夜班临时员工 Terese · 今夜送餐一份 · 离店待批",
+        {
+          "speaker": "",
+          "text": "309 · 夜班临时员工 Terese · 今夜送餐一份 · 离店待批",
+          "mode": "narration",
+          "expression": "none",
+          "portrait": false,
+          "scene": "",
+          "source_line": 364,
+          "beat_id": "complete_101"
+        }
+      ],
+      [
+        "",
+        "Carol 回到 205，按原来的节奏敲门，把批好的通行单放进门旁的收件夹。",
+        {
+          "speaker": "",
+          "text": "Carol 回到 205，按原来的节奏敲门，把批好的通行单放进门旁的收件夹。",
+          "mode": "narration",
+          "expression": "none",
+          "portrait": false,
+          "scene": "",
+          "source_line": 366,
+          "beat_id": "complete_102"
+        }
+      ],
+      [
         "Carol",
-        "这是批准后的通行单。"
+        "今晚还要往 309 送饭？",
+        {
+          "speaker": "Carol",
+          "text": "今晚还要往 309 送饭？",
+          "mode": "dialogue",
+          "expression": "平常",
+          "portrait": true,
+          "scene": "",
+          "source_line": 368,
+          "beat_id": "complete_103"
+        }
       ],
       [
-        "核验客",
-        "文件编号一致。"
+        "门缝客",
+        "是啊。送饭的人经过我门口，会念一遍房号，怕走错。三楼尽头，309。每晚都一样。",
+        {
+          "speaker": "门缝客",
+          "text": "是啊。送饭的人经过我门口，会念一遍房号，怕走错。三楼尽头，309。每晚都一样。",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 371,
+          "beat_id": "complete_104"
+        }
       ],
       [
-        "核验客",
-        "管理批准有效。"
+        "Carol",
+        "前台说她今早就离店了。",
+        {
+          "speaker": "Carol",
+          "text": "前台说她今早就离店了。",
+          "mode": "dialogue",
+          "expression": "怀疑",
+          "portrait": true,
+          "scene": "",
+          "source_line": 373,
+          "beat_id": "complete_105"
+        }
       ],
       [
-        "核验客",
-        "备案完成，允许通行。"
+        "门缝客",
+        "那今晚这份饭送给谁？",
+        {
+          "speaker": "门缝客",
+          "text": "那今晚这份饭送给谁？",
+          "mode": "dialogue",
+          "expression": "neutral",
+          "portrait": true,
+          "scene": "",
+          "source_line": 376,
+          "beat_id": "complete_106"
+        }
       ],
       [
-        "Carol（心想）",
-        "总算能继续往三楼走了。"
+        "",
+        "门合上。Carol 朝二楼右端的楼梯走去。",
+        {
+          "speaker": "",
+          "text": "门合上。Carol 朝二楼右端的楼梯走去。",
+          "mode": "narration",
+          "expression": "none",
+          "portrait": false,
+          "scene": "",
+          "source_line": 378,
+          "beat_id": "complete_107"
+        }
       ]
     ],
     "COMPLETED": [
       [
-        "核验客",
+        "门缝客",
         "已完成核验，无须重复提交。"
       ]
     ]

@@ -1,10 +1,14 @@
 # English localization for Monster Staff Access.
 # Simplified Chinese source strings are the message IDs.
+
 msgid ""
 msgstr ""
 "Language: en\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "夜班旅馆"
+msgstr "Night Shift Hotel"
 
 msgid "有人正在看着你，不能在这里更换身份。先离开对方视线。"
 msgstr "Someone is watching. You cannot change identities here. Move out of sight first."
@@ -2257,3 +2261,546 @@ msgstr "Could not write the save. Try again."
 
 msgid "此版本无法读取这段记忆"
 msgstr "This game version cannot read this save."
+
+msgid "雨打在卧室窗上。Carol 打开聊天记录。Terese 的最后一条消息停在三天前。"
+msgstr "Rain taps against the bedroom window. Carol opens the chat. Terese's last message is from three days ago."
+
+msgid "到门口了"
+msgstr "At the entrance"
+
+msgid "照片上看起来没这么旧"
+msgstr "Didn't look this old in the photos"
+
+msgid "你还可以掉头。"
+msgstr "You can still turn back."
+
+msgid "来都来了"
+msgstr "I'm here already"
+
+msgid "我先去上班啦，下班跟你说"
+msgstr "Off to work now. I'll text you after my shift"
+
+msgid "往下滑，后面的消息都在同一边。"
+msgstr "She scrolls down. All the messages after that are on the same side."
+
+msgid "下班了？"
+msgstr "Finished work?"
+
+msgid "你今天回来吗？"
+msgstr "Are you coming back today?"
+
+msgid "Terese，看到回我一下。"
+msgstr "Terese, reply when you see this."
+
+msgid "几天前，咖啡馆。Terese 把录取通知推过来。浅色长发滑到肩前，墨绿蝴蝶结歪了一点。Carol 闻到一股熟悉的柑橘香。"
+msgstr "A few days earlier, at a cafe. Terese slides over an offer letter. Her pale hair falls over her shoulder, her dark green bow slightly crooked. Carol recognizes the citrus scent."
+
+msgid "还是你最喜欢的那瓶？"
+msgstr "Still your favorite perfume?"
+
+msgid "嗯。这味道闻着就高兴。你先看这个，我找到兼职了！"
+msgstr "Mm-hm. This scent makes me happy. Look at this first. I found a part-time job!"
+
+msgid "夜班，三天。工资开得倒是挺高。"
+msgstr "Three night shifts. The pay is certainly generous."
+
+msgid "怎么，你挑一个喜欢的词都不行？"
+msgstr "What, can't you pick one nice word?"
+
+msgid "我还没读完。这里写着「员工离店须经管理部门批准」。"
+msgstr "I haven't finished reading. It says, \"Staff must obtain management approval before leaving the hotel.\""
+
+msgid "我就做三天。等拿到工资，请你吃顿好的。"
+msgstr "It's only three days. When I get paid, I'll treat you to a good meal."
+
+msgid "先把地址发给我。每天结束给我回一条消息。"
+msgstr "Send me the address first. Text me after every shift."
+
+msgid "发你了，女侦探。我要是少回一条，你是不是准备直接冲进去？"
+msgstr "Sent, detective. If I miss a message, are you going to charge straight in?"
+
+msgid "我会先给你打电话。"
+msgstr "I'll call you first."
+
+msgid "回到雨夜。通知上的最后一班今早就结束了。电话还是没人接。Carol 拿起外套，按录取通知上的地址去了旅馆。"
+msgstr "Back in the rainy night. The last shift on the offer ended this morning. Still no answer. Carol takes her coat and heads to the address on the letter."
+
+msgid "晚上好。这个时间很少有客人独自前来。"
+msgstr "Good evening. Few guests arrive alone at this hour."
+
+msgid "我不是来住店的。我来找人。Terese，三天前来做夜班兼职的。"
+msgstr "I'm not here for a room. I'm looking for Terese. She started a night-shift job three days ago."
+
+msgid "经理翻开登记簿。手指停在一行字上。"
+msgstr "The manager opens the register. Her finger stops on a line."
+
+msgid "她今早已经办完手续离开了。"
+msgstr "She completed the paperwork and left this morning."
+
+msgid "几点？从哪扇门走的？"
+msgstr "What time? Through which door?"
+
+msgid "您可以直接问她。"
+msgstr "You can ask her directly."
+
+msgid "我要是能问到她，就不用站在这里了。"
+msgstr "If I could reach her, I wouldn't be standing here."
+
+msgid "Carol 向前一步。经理把登记簿合上。"
+msgstr "Carol steps forward. The manager closes the register."
+
+msgid "她的东西呢？也带走了？"
+msgstr "What about her things? Did she take those too?"
+
+msgid "离店的员工会自行处理私人物品。"
+msgstr "Departing staff handle their own personal belongings."
+
+msgid "你们的录取通知上说，员工离店要经理批准。我能看看她那张吗？"
+msgstr "Your offer says staff need the manager's approval to leave. Can I see hers?"
+
+msgid "不能。您在这里有亲属关系吗？"
+msgstr "No. Are you a relative?"
+
+msgid "我是她朋友。"
+msgstr "I'm her friend."
+
+msgid "那我只能告诉您，她已经离店了。"
+msgstr "Then all I can tell you is that she has left."
+
+msgid "楼上传来一声关门声。Carol 转头望向楼梯。"
+msgstr "A door slams upstairs. Carol turns toward the stairs."
+
+msgid "楼上的住客有自己的规矩。如果他们拦住您，最好先听清他们需要什么。"
+msgstr "The guests upstairs have their own rules. If they stop you, listen carefully to what they need."
+
+msgid "长鼻客探出门，鼻尖几乎碰到地毯。"
+msgstr "The Long-Nosed Guest leans out, his nose almost touching the carpet."
+
+msgid "停。你是来打扫的？昨天有人喷了香水，臭味还在，现在又多了一股花味。"
+msgstr "Stop. Are you here to clean? Someone wore perfume yesterday. That stink is still here, and now there's a floral smell too."
+
+msgid "你鼻子这么灵，闻得出谁上过楼吗？"
+msgstr "With a nose like that, can you tell who's been upstairs?"
+
+msgid "你先把花擦掉。"
+msgstr "Wipe away the flowers first."
+
+msgid "Carol 回一楼，从保洁身后取得工作证。她在安全处把证装进槽里，切为当前保洁。回到二楼，她清理污渍，再回 201 交付。"
+msgstr "Carol returns to 1F and takes the cleaner's ID from behind them. In a safe spot, she equips and activates it. Back on 2F, she cleans the stain and returns to Room 201."
+
+msgid "这就对了。你袖口都是拖地水的味儿。楼上那些跟我一样的，闻闻就知道你是来做房务的。"
+msgstr "That's better. Your cuffs smell of mop water. The ones upstairs with noses like mine will know you're housekeeping just by sniffing."
+
+msgid "他转头朝楼梯闻了闻。"
+msgstr "He turns and sniffs toward the stairs."
+
+msgid "花味没了。还剩一点湿衣服的味道，还有柑橘香。三天前有个人带着这股味道上楼，这几晚偶尔还能闻见。"
+msgstr "The flowers are gone. A little wet clothing left, and citrus. Someone wearing that scent went upstairs three days ago. I still catch it some nights."
+
+msgid "柑橘香……Terese 最爱喷的就是这个。"
+msgstr "Citrus... That's Terese's favorite perfume."
+
+msgid "你要找人，去问隔壁。楼梯上掉一根线，他都能看半天。"
+msgstr "Looking for someone? Ask next door. He could stare at a loose thread on the stairs all day."
+
+msgid "你是来送东西的？我看着他们把包裹收进柜子，今天还没人取。牛皮纸，右下角是我的房号。拿来的时候封条朝外。"
+msgstr "Here to deliver something? I watched them put my parcel in the cabinet. Nobody has collected it today. Brown paper, my room number at the bottom right. Bring it seal facing out."
+
+msgid "Carol 回一楼取得保安证，切成当前保安。从二楼的保管柜领出包裹后，她带回 202。独眼客沿封条看了一圈，才伸手接。"
+msgstr "Carol collects the security ID on 1F and activates it. She retrieves the parcel from the cabinet on 2F and brings it to Room 202. The One-Eyed Guest inspects the seal before taking it."
+
+msgid "编号对，封条也没动。楼上那几个跟我一样，天天盯着谁动过包裹。看见保安证，才知道来的是管包裹的人。"
+msgstr "Right number, seal intact. The ones upstairs with eyes like mine watch who touches the parcels. A security ID tells them you're responsible for deliveries."
+
+msgid "三天前有个浅色长发的女生经过。她扎了个墨绿蝴蝶结，你见过吗？"
+msgstr "A girl with pale, long hair came through three days ago. Dark green bow. Did you see her?"
+
+msgid "见过。她跟着前台的人上了三楼。格纹外套搭在胳膊上，一边袖口都拖地了。"
+msgstr "Yes. She followed someone from reception up to 3F. Plaid coat over her arm, one cuff dragging on the floor."
+
+msgid "后来呢？"
+msgstr "And after that?"
+
+msgid "没见她下来。倒是送饭的人天天上去。203 盯过那只托盘，你问他。"
+msgstr "Never saw her come down. Someone takes food upstairs every day, though. Room 203 was watching that tray. Ask him."
+
+msgid "礼帽客把空茶杯摆回杯碟正中。"
+msgstr "The Top-Hat Guest places his empty cup precisely in the center of its saucer."
+
+msgid "劳驾。我的晚茶三天没送到了。房务台说申请还在等经理批准。您若见到经理，请让她瞧一眼。"
+msgstr "Excuse me. My evening tea hasn't arrived for three days. Housekeeping says the request awaits the manager's approval. If you see her, please ask her to look at it."
+
+msgid "Carol 回一楼取得经理证。在安全处，她把经理证换进装备槽并切为当前身份，再到二楼房务台批准申请，返回 203 交付。"
+msgstr "Carol takes the manager's ID on 1F. In a safe place, she equips and activates it, approves the request at the 2F housekeeping desk, then returns to Room 203."
+
+msgid "终于有人肯签字了。楼上戴礼帽的几位与我一样，有房务上的事，只同经理谈。"
+msgstr "At last, someone willing to sign. The top-hatted guests upstairs are just like me. We discuss housekeeping only with the manager."
+
+msgid "202 说您见过那个送餐托盘。"
+msgstr "Room 202 said you saw the meal tray."
+
+msgid "见过。上面放的是我的茶壶。壶盖缺了一角，隔着走廊我也认得。"
+msgstr "I did. It carried my teapot. There's a chip in the lid. I'd recognize it from across the corridor."
+
+msgid "他们把您的茶送去了哪里？"
+msgstr "Where did they take your tea?"
+
+msgid "三楼走廊尽头。另有一人份的饭，天天照送。204 为了收盘子的声音，来抱怨过两次。或许他听得更清楚。"
+msgstr "The end of the corridor on 3F. And a meal for one, every day. Room 204 has complained twice about the plates being collected. Perhaps he heard more."
+
+msgid "Carol 的鞋底擦过湿地毯。门里的人闭上眼，等那一声过去。"
+msgstr "Carol's sole scrapes the wet carpet. Inside, the guest closes his eyes and waits for the sound to stop."
+
+msgid "就是这一块。每个人走到这里都要拖一下脚。你把它擦干，再去资料柜看看，今晚最后一趟巡房是几点。"
+msgstr "Right there. Everyone drags a foot over that patch. Dry it, then check the records cabinet. What time is tonight's final patrol?"
+
+msgid "Carol 装上保洁证和保安证。她用保洁身份清理污渍，换成保安身份领取巡房记录，然后回 204 交付。"
+msgstr "Carol equips the cleaner and security IDs. She cleans the stain as the cleaner, switches to security for the patrol record, then returns to Room 204."
+
+msgid "地毯不响了。巡房记录也在这儿。"
+msgstr "The carpet's quiet now. Here's the patrol record too."
+
+msgid "地毯不响，鞋还是会响。楼上那些耳朵跟我一样灵。门一开，你就站着。等门关了再走。"
+msgstr "The carpet is quiet. Shoes still make noise. The ones upstairs hear as well as I do. Stand still while a door is open. Move after it closes."
+
+msgid "你听过楼上收盘子的声音？"
+msgstr "Have you heard plates being collected upstairs?"
+
+msgid "听过。盘子一响，钥匙就从外面转两圈。送饭的人走了，里头才有人拧把手。头两天还拧，今天没拧。"
+msgstr "Yes. The plates clatter, then a key turns twice outside. Once the server leaves, someone inside tries the handle. They tried the first two days. Not today."
+
+msgid "所以她出不来。"
+msgstr "So she can't get out."
+
+msgid "门是从外面锁的。你要上楼，先过 205。他那扇门要敲三下。第三下隔一会儿。"
+msgstr "Locked from outside. If you're going up, get past Room 205 first. Knock three times. Pause before the third."
+
+msgid "Carol 敲了两下，等了一会儿，再敲第三下。门开了一指宽。"
+msgstr "Carol knocks twice, waits, then knocks a third time. The door opens a finger's width."
+
+msgid "这回敲对了。昨晚那个人上来就拧把手，还在我眼前把工牌换了。我跟值班台说过，今晚谁要从这儿上楼，就把通行单办好再来。"
+msgstr "You got it right this time. Last night someone grabbed the handle, then changed their badge right in front of me. I told the duty desk: anyone going upstairs tonight needs a transit form first."
+
+msgid "去哪里办？"
+msgstr "Where do I get one?"
+
+msgid "保安从值班资料点领，经理在登记台批。要换身份，走远了再换。楼上跟我一样爱从门缝看人的，最容易记住这种事。袖口明明还是那个袖口，牌子倒换了。"
+msgstr "Security collects it from the duty records point. A manager approves it at the register. Change identities farther away. The ones upstairs who watch through door gaps remember these things. Same cuffs, different badge."
+
+msgid "Carol 以保安身份领到待审通行单，再到安全登记台切为经理批准。通行单下面，压着今夜的送餐记录。"
+msgstr "As security, Carol collects a pending transit form, then switches to manager at the safe registration desk to approve it. Under the form lies tonight's meal record."
+
+msgid "309 · 夜班临时员工 Terese · 今夜送餐一份 · 离店待批"
+msgstr "309 · Temporary night staff: Terese · One meal tonight · Departure pending approval"
+
+msgid "Carol 回到 205，按原来的节奏敲门，把批好的通行单放进门旁的收件夹。"
+msgstr "Carol returns to Room 205, knocks in the same rhythm, and places the approved form in the holder beside the door."
+
+msgid "今晚还要往 309 送饭？"
+msgstr "They're still sending food to Room 309 tonight?"
+
+msgid "是啊。送饭的人经过我门口，会念一遍房号，怕走错。三楼尽头，309。每晚都一样。"
+msgstr "Yes. The server reads the room number passing my door, so they don't get it wrong. End of the corridor on 3F. Room 309. Every night."
+
+msgid "前台说她今早就离店了。"
+msgstr "Reception said she left this morning."
+
+msgid "那今晚这份饭送给谁？"
+msgstr "Then who is tonight's meal for?"
+
+msgid "门合上。Carol 朝二楼右端的楼梯走去。"
+msgstr "The door closes. Carol heads for the stairs at the right end of 2F."
+
+msgid "礼帽客站在门边，手里捏着三张账单。每张都折在同一个地方。"
+msgstr "The Top-Hat Guest stands beside his door with three bills, all folded in the same place."
+
+msgid "劳驾。您是房务的人吗？这三份晚餐算在我的账上，我一份也没见过。"
+msgstr "Excuse me. Are you housekeeping? I've been charged for these three dinners. I haven't seen a single one."
+
+msgid "您订过晚餐？"
+msgstr "Did you order dinner?"
+
+msgid "我只订了茶。问了两次，他们才肯在背面写明饭送到了哪里。您瞧。"
+msgstr "Only tea. I asked twice before they wrote the destination on the back. Look."
+
+msgid "Carol 翻过账单。背面写着「309 · 临时安置」。"
+msgstr "Carol turns the bills over. On the back: \"309 · Temporary accommodation.\""
+
+msgid "为什么 309 的饭会算到您这里？"
+msgstr "Why are Room 309's meals on your bill?"
+
+msgid "听说那间房没办正式入住，送了餐也没地方记账。于是他们挑了个有账的人。劳烦您到本层登记台，把那间房登上去。下次送饭，请记到那间房头上。"
+msgstr "Apparently it has no formal registration, so there's nowhere to charge the meals. They picked someone with an account. Please register that room at this floor's desk. Put the next meal on its own bill."
+
+msgid "Carol 用经理证批准 309 入住。登记台的房务权限随即更新。"
+msgstr "Carol approves Room 309's registration with the manager ID. The housekeeping permissions update immediately."
+
+msgid "309 已登记。保洁工作证可开启房门。"
+msgstr "Room 309 registered. Cleaner ID can now open the door."
+
+msgid "现在刷保洁证，就能开她的门了。"
+msgstr "Now I can open her door with the cleaner ID."
+
+msgid "Carol 在安全处切回保洁，刷开 309。Terese 扑过来时，Carol 闻见她衣领上还有一点柑橘香。墨绿蝴蝶结已经松了，一缕头发贴在她脸上。"
+msgstr "In a safe spot, Carol switches to cleaner and opens Room 309. As Terese rushes into her arms, Carol catches the citrus scent lingering on her collar. Her dark green bow has loosened, a strand of hair stuck to her face."
+
+msgid "Carol……？我以为又是他们来收盘子。"
+msgstr "Carol...? I thought they were collecting the plates again."
+
+msgid "是我。你先松一点……我快喘不过气了。"
+msgstr "It's me. Loosen your grip a little... I can barely breathe."
+
+msgid "Terese 松开一点，手还是攥着 Carol 的袖口。"
+msgstr "Terese eases her grip, but keeps hold of Carol's sleeve."
+
+msgid "第一天晚上，你说下班给我发消息。"
+msgstr "On your first night, you said you'd text me after work."
+
+msgid "他们上班前把手机收走了。我下班去拿，经理说得做满三天。我说工资也不要了，她就让我到这儿等离店批准。"
+msgstr "They took my phone before the shift. When I asked for it back, the manager said I had to finish all three days. I said I didn't even want the pay. She told me to wait here for departure approval."
+
+msgid "她在外面锁了门。第二天我问她批了没有，她说……前台根本没收到过我的申请。"
+msgstr "She locked the door from outside. The next day I asked whether it was approved. She said... reception had never received my application."
+
+msgid "Carol 低头看了一眼桌上那份没动过的饭。"
+msgstr "Carol glances down at the untouched meal on the table."
+
+msgid "还能走吗？"
+msgstr "Can you walk?"
+
+msgid "能。楼下员工通道锁了。我听送饭的人说，五楼最右边有个消防出口。"
+msgstr "Yes. The staff passage downstairs is locked. I heard the server say there's a fire exit at the far right of 5F."
+
+msgid "好。你指路，我走前面。"
+msgstr "All right. You show the way. I'll go first."
+
+msgid "两人绕过楼梯转角。送餐员推开 309 的门。片刻后，警铃响了。"
+msgstr "They round the stairs. The server opens Room 309. Moments later, an alarm rings."
+
+msgid "各位住客，请协助值班人员核验。有人看见两名人类走进员工楼梯。若有人从您门前经过，请查看工作证。有情况请拨前台。"
+msgstr "Guests, please assist duty staff with verification. Two humans were seen entering the staff stairwell. Check the work ID of anyone passing your door. Contact reception if you notice anything."
+
+msgid "经过一扇客房门时，长鼻客探出头，闻了一下，皱起鼻子。"
+msgstr "As they pass a room, the Long-Nosed Guest leans out, sniffs, and wrinkles his nose."
+
+msgid "怎么一股柑橘味。你们两个，哪一班的？"
+msgstr "Why do I smell citrus? You two, which shift?"
+
+msgid "Carol 亮出当前启用的保洁证。"
+msgstr "Carol shows her active cleaner ID."
+
+msgid "夜班保洁。她跟我一组。"
+msgstr "Night cleaning. She's with me."
+
+msgid "哦。那你跟送东西的人说一声，别再把桶搁我门口了。"
+msgstr "Oh. Tell the delivery staff to stop leaving their bucket outside my door."
+
+msgid "长鼻客缩回去关门。两人走过门口。楼梯下方传来钥匙碰撞的声音。"
+msgstr "He retreats and shuts the door. They pass. Keys jingle at the foot of the stairs."
+
+msgid "你查楼上，我回 309 看看门锁。"
+msgstr "You check upstairs. I'll go back to Room 309 and look at the lock."
+
+msgid "403 开门。Carol 停下，Terese 也收住了脚步。"
+msgstr "Room 403 opens. Carol stops, and Terese stops with her."
+
+msgid "你们两个，谁是来值班的？"
+msgstr "You two. Which of you is on duty?"
+
+msgid "您需要什么？"
+msgstr "What do you need?"
+
+msgid "以前一晚上就两趟。今晚楼梯响了四遍，我躺下又坐起来，已经三回了。去把巡房记录拿给我。我想知道还得等到几点。"
+msgstr "It used to be two rounds a night. Tonight I've heard the stairs four times. I've got up from bed three times already. Bring me the patrol record. I want to know how much longer I have to wait."
+
+msgid "巡房员工正拿着记录挨扇门查看。Carol 等他停下，从身后取走记录，再回到 403。"
+msgstr "The patrol staff member checks each door with the record in hand. Carol waits for them to stop, takes it from behind, and returns to Room 403."
+
+msgid "您要的记录。"
+msgstr "The record you wanted."
+
+msgid "大耳客把纸展开，用手指沿着一行字慢慢划过去。"
+msgstr "The Big-Eared Guest unfolds the sheet and slowly traces a line with his finger."
+
+msgid "下一趟先走左边。好。那我右边这会儿总能清静一下。"
+msgstr "Next round starts on the left. Good. Perhaps the right side can be quiet for a while."
+
+msgid "他把门关上。Terese 看了一眼右端的楼梯。"
+msgstr "He closes the door. Terese glances at the stairs on the right."
+
+msgid "他说下一趟先走左边。"
+msgstr "He said the next round starts on the left."
+
+msgid "听见了。我们现在上去。"
+msgstr "I heard. We go up now."
+
+msgid "到了五楼，Terese 拉了拉 Carol 的袖口，指向走廊尽头。消防门上方亮着一盏红灯。两名值班员工在那里停下。"
+msgstr "On 5F, Terese tugs Carol's sleeve and points down the corridor. A red light glows above the fire door. Two duty staff stop beside it."
+
+msgid "门锁试过了。红灯还亮着，这边出不去。"
+msgstr "Tried the lock. The red light's still on. No way out here."
+
+msgid "那就去查楼梯。前台说有人看见那两个人往楼上走。"
+msgstr "Then check the stairs. Reception says someone saw those two heading up."
+
+msgid "两人走远了。Carol 刚要往出口去，身旁的门开了一指宽。"
+msgstr "They walk away. Carol starts toward the exit, but a nearby door opens a finger's width."
+
+msgid "你们也是来拉那扇门的？今晚已经响三次了。"
+msgstr "Are you here to pull that door too? It's rattled three times tonight."
+
+msgid "平时也这么响吗？"
+msgstr "Does it usually make that much noise?"
+
+msgid "平时不会。每天快天亮，有个人会把一张纸塞进我门边那个口子。纸一落下，尽头就亮绿灯。等他走了，灯又变回红的。"
+msgstr "Not usually. Just before dawn, someone slips a sheet into the slot beside my door. The moment it drops, the light at the end turns green. After they leave, it goes red again."
+
+msgid "你见过那张纸吗？"
+msgstr "Have you seen the sheet?"
+
+msgid "只看见一角。折起来的，盖过章。你们值班的自己去看。要是办好了，劳驾把门轻轻带上。"
+msgstr "Only a corner. Folded, with a stamp. You're staff. Go and look. If you sort it out, please close the door quietly."
+
+msgid "Carol 俯身看了一眼收件口。投递口上方贴着一张磨旧的标签。"
+msgstr "Carol bends to inspect the slot. Above it is a worn label."
+
+msgid "夜班离店单 · 批准后投递"
+msgstr "Night-shift departure form · Submit after approval"
+
+msgid "我在 309 等的，就是这张？"
+msgstr "Is that what I've been waiting for in Room 309?"
+
+msgid "嗯。走，我们自己去办。"
+msgstr "Yes. Come on. We'll do it ourselves."
+
+msgid "Carol 在安全登记台切为经理，在离店单上写下 Terese 的名字，又在陪同栏填上自己。盖章后，两人回到 501，把单投进收件口。"
+msgstr "At the safe registration desk, Carol switches to manager. She writes Terese's name on the departure form and her own in the accompanying person field. They stamp it, return to Room 501, and put it in the slot."
+
+msgid "纸落下去，轻轻响了一声。走廊尽头的灯变绿了。"
+msgstr "The sheet drops with a soft sound. At the end of the corridor, the light turns green."
+
+msgid "对。平时就是这个声音。"
+msgstr "Yes. That's the sound it usually makes."
+
+msgid "Carol 推开消防门。外面是雨声。她等 Terese 跨出去，才把门轻轻带上。"
+msgstr "Carol opens the fire door. Rain sounds outside. She waits for Terese to step through, then closes it quietly."
+
+msgid "那顿饭还算数。"
+msgstr "That meal I promised still stands."
+
+msgid "一顿可不够。"
+msgstr "One won't be enough."
+
+msgid "行。先吃第一顿。"
+msgstr "Fine. Let's start with the first one."
+
+msgid "两人走进雨里。"
+msgstr "They walk out into the rain."
+
+msgid "三天前的聊天记录"
+msgstr "Chat history · three days ago"
+
+msgid "门缝客"
+msgstr "Door-Gap Guest"
+
+msgid "Carol（心想）"
+msgstr "Carol (thinking)"
+
+msgid "Terese（低声）"
+msgstr "Terese (quietly)"
+
+msgid "前台（广播）"
+msgstr "Reception (broadcast)"
+
+msgid "员工（楼下）"
+msgstr "Staff (downstairs)"
+
+msgid "值班员工"
+msgstr "Duty staff"
+
+msgid "另一名员工"
+msgstr "Other staff"
+
+msgid "门缝客开门时不要在门前换证。先在安全处准备，保持身份经过。"
+msgstr "Do not change IDs in front of the Door-Gap Guest while the door is open. Prepare somewhere safe and keep the same identity as you pass."
+
+msgid "门缝客面前更换了工作证"
+msgstr "Changed work ID in front of the Door-Gap Guest"
+
+msgid "嗯。这味道闻着就高兴。"
+msgstr "Yes. This scent always cheers me up."
+
+msgid "你先看这个，我找到兼职了！"
+msgstr "Look at this first. I found a part-time job!"
+
+msgid "维斯佩拉旅馆！"
+msgstr "HOTEL VESPERA!"
+
+msgid "等一下！我还没读完……"
+msgstr "Wait! I haven't finished reading..."
+
+msgid "这里写着「员工离店须经管理部门批准」。"
+msgstr "It says here: 'Employees may leave only with management approval.'"
+
+msgid "正常公司会写“离职流程”，不会写“离店批准”……"
+msgstr "A normal company would say 'resignation procedure,' not 'permission to leave'..."
+
+msgid "我就做三天，又不是卖给他们了。"
+msgstr "I'm only working there for three days. It's not like I'm selling myself to them."
+
+msgid "……"
+msgstr "..."
+
+msgid "等拿到工资，请你吃顿好的！"
+msgstr "Once I get paid, I'll treat you to a proper meal!"
+
+msgid "发你了，女侦探 ~~"
+msgstr "Sent it, Miss Detective ~~"
+
+msgid "我要是少回一条，你是不是准备直接冲进去？"
+msgstr "If I miss one message, are you going to charge right in?"
+
+msgid "不能。您是她的……？"
+msgstr "No. And you are her... ?"
+
+msgid "如果遇到麻烦记得找工作人员。"
+msgstr "If you run into trouble, remember to ask a member of staff."
+
+msgid "现在还不是……"
+msgstr "Not yet..."
+
+msgid "唉！唉！"
+msgstr "Oh, dear! Oh, dear!"
+
+msgid "！？"
+msgstr "!?"
+
+msgid "你是来打扫的？昨天有人喷了香水，臭味还在，现在又多了一股花味。"
+msgstr "Are you here to clean? Someone sprayed perfume yesterday. The stink is still here, and now there's a floral smell too."
+
+msgid "行！先吃第一顿！"
+msgstr "Deal! Let's start with the first one!"
+
+msgid "序章 %d"
+msgstr "PROLOGUE %d"
+
+msgid "卧室"
+msgstr "Bedroom"
+
+msgid "咖啡馆回忆"
+msgstr "A Memory at the Cafe"
+
+msgid "旅馆外"
+msgstr "Outside the Hotel"
+
+msgid "重逢"
+msgstr "Reunion"
+
+msgid "点击或按 E 继续"
+msgstr "Click or press E to continue"
+
+msgid "终章"
+msgstr "FINAL CHAPTER"
+
+msgid "共赴长夜"
+msgstr "Into the Night, Together"

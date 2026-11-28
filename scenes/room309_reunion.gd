@@ -58,6 +58,8 @@ func _finished() -> void:
 	GameManager.set_modal_open(MODAL, false)
 	var succeeded := GameManager.rescue_friend()
 	cancel()
+	if succeeded:
+		get_parent().get_node("LateMainline").play_alarm()
 	get_parent()._show_notice(GameManager.get_story_objective() if succeeded else "救援未结算：请确认309前置与其他模态状态。")
 	get_viewport().set_input_as_handled()
 

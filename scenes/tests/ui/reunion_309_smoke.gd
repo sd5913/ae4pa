@@ -53,8 +53,7 @@ func run() -> void:
 	main.get_node("MenuLayer/Bag/CarolUIFlow")._tutorial_seen = true
 	await settle()
 	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
-	main.dialogue.hide()
-	main._on_dialogue_finished("V4_INTRO")
+	main.dialogue._finish()
 	game.complete_manager_intro()
 	game.set_process(false)
 	player().position.x = floor_node().get_stair_interaction_center(true)
@@ -93,6 +92,7 @@ func run() -> void:
 	cards.collect_card("MANAGER")
 	cards.equip_card("MANAGER",1)
 	check(game.record_work_result("REGISTER_309"),"manager approval still requires manager")
+	while main.dialogue.visible: await tap()
 	await tap()
 	check(not is_instance_valid(host.cg) and not game.has_friend,"manager cannot open309 despite owning cleaner")
 	cards.switch_active()
@@ -102,7 +102,7 @@ func run() -> void:
 	check(is_instance_valid(host.cg) and host.cg.visible,"real floor E opens CG")
 	if not is_instance_valid(host.cg): quit(1); return
 	var cg: Control = host.cg
-	check(cg.get("_beats").size() == 36,"36 original Chinese beats")
+	check(cg.get("_beats").size() == 12,"12 revised Chinese beats")
 	check(not game.has_friend and not game.get_available_floors().has(4),"opening CG does not rescue or open4F")
 	check(not game.is_world_input_allowed() and not main.get_node("TaskLayer").visible,"CG hides HUD and locks world")
 	await shot("approach")
@@ -134,17 +134,19 @@ func run() -> void:
 	if not is_instance_valid(cg): quit(1); return
 	var completions: Array = []
 	cg.rescue_cg_finished.connect(func(): completions.append(true))
-	for i in range(36):
+	for i in range(12):
 		if cg.get("_transitioning"): await create_timer(0.5).timeout
-		if i == 18: await shot("leave")
-		if i == 25:
+		if i == 9: await shot("leave")
+		if i == 5:
 			root.size = Vector2i(960, 540)
 			await settle()
 			await shot("small-long-line")
-			check(cg.get_node("Dialogue/%Line").get_line_count() <= 3, "small window wraps long Chinese without shrinking")
+			check(cg.get_node("Dialogue/%DialogueFrame").get_global_rect().encloses(cg.get_node("Dialogue/%Line").get_global_rect()), "small window fits revised long Chinese caption")
 			root.size = Vector2i(1280, 720)
 		await tap(i%2==1)
 	check(game.has_friend and completions.size() == 1,"last beat settles real rescue exactly once")
+	check(main.dialogue.get("_dialogue_id") == "LATE_ALARM", "alarm follows the revised CG")
+	while main.dialogue.visible: await tap()
 	check(floor_node().has_node("Persica") and game.get_available_floors().has(4),"one real follower and4F access")
 	await shot("following")
 	var companion: Node2D = floor_node().get_node("Persica")

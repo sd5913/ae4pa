@@ -186,7 +186,7 @@ func get_monster_guide(kind: String) -> Dictionary:
 		"EYE": {"name": "独眼客", "text": "独眼客只认可保安身份。将保安工作证切为当前身份后再经过。"},
 		"HAT": {"name": "礼帽客", "text": "礼帽客只认可经理身份。先在安全处切为当前经理，再经过。"},
 		"EAR": {"name": "大耳客", "text": "大耳客开门时请停下不动，等门关闭再走。换证不能代替静止。"},
-		"CHECKER": {"name": "核验客", "text": "核验客开门时不要在门前换证。先在安全处准备，保持身份经过。"},
+		"CHECKER": {"name": "门缝客", "text": "门缝客开门时不要在门前换证。先在安全处准备，保持身份经过。"},
 	}
 	return guides.get(kind, {}).duplicate()
 

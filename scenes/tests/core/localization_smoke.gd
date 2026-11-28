@@ -65,12 +65,12 @@ func _run() -> void:
 	var story_progress_path := "user://localization_smoke_progress.cfg"
 	dialogue.set_progress_file_path_for_test(story_progress_path)
 	dialogue.set_skip_transitions_for_test(true)
-	var sms: Control = dialogue.get_node("%SMSHistory")
-	var history_row := sms.get_child(0)
+	var story_index: int = dialogue.get("_line_index")
+	var story_text: String = dialogue.get_node("%Line").text
 	_choose(selector, 1)
 	await process_frame
-	_check(sms.get_child_count() == 1 and sms.get_child(0) == history_row and dialogue.get("_line_index") == 0,
-		"Language refresh preserves the current story beat and SMS history")
+	_check(dialogue.get("_line_index") == story_index and dialogue.get_node("%Line").text == story_text,
+		"Language refresh preserves the current authored story beat")
 	_choose(selector, 0)
 	for _beat in range(80):
 		if not dialogue.visible:

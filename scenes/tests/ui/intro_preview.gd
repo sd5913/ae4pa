@@ -43,11 +43,13 @@ func _run_smoke() -> void:
 	dialogue.show_dialogue("V4_INTRO")
 	await get_tree().process_frame
 	await get_tree().process_frame
-	_check(dialogue.visible and dialogue._beats.size() > 50, "V4 intro opens with full TSV content", failures)
+	_check(dialogue.visible and dialogue._beats.size() == 37, "Revised intro opens with full TSV content", failures)
 	_check(not dialogue.get_node("%SkipButton").visible, "First-run intro cannot be skipped", failures)
 	_check(dialogue.get_node("%Background").texture != null, "Intro background texture is loaded", failures)
-	_check(dialogue.get_node("%SMSPanel").visible and not dialogue.get_node("%Line").visible, "SMS shown only in chat UI", failures)
-	_check(dialogue.get_node("%SMSHistory").get_child_count() == 1, "First SMS appears once", failures)
+	_check(dialogue.get_node("%Portrait").visible and dialogue._beats[0].scene == "bedroom", "Bedroom opens with approved Carol", failures)
+	dialogue._advance()
+	_check(not dialogue.get_node("%SMSPanel").visible and dialogue.get_node("%Line").visible, "Authored bedroom dialogue uses the story frame", failures)
+	_check(dialogue._beats[1].text == "就是她之前提过的夜班兼职。", "Second bedroom line preserved", failures)
 	var first_index: int = dialogue._line_index
 	var key := InputEventAction.new()
 	key.action = "interact"
@@ -56,7 +58,7 @@ func _run_smoke() -> void:
 	_check(dialogue._line_index == first_index + 1, "E action advances one beat", failures)
 	var mouse := InputEventMouseButton.new()
 	mouse.button_index = MOUSE_BUTTON_LEFT
-	mouse.position = dialogue.get_node("%SMSScroll").get_global_rect().get_center()
+	mouse.position = dialogue.get_node("%DialogueFrame").get_global_rect().get_center()
 	mouse.pressed = true
 	dialogue._input(mouse)
 	mouse = mouse.duplicate()
@@ -67,7 +69,7 @@ func _run_smoke() -> void:
 	_check(_completed == ["V4_INTRO"], "Intro completion emits V4_INTRO once", failures)
 	dialogue.show_dialogue("V4_MANAGER_TALK")
 	_check(not dialogue.get_node("%SkipButton").visible, "First-run manager conversation cannot be skipped", failures)
-	_check(dialogue.get_node("%Portrait").texture != null and dialogue.get_node("%Speaker").text == "经理", "Manager portrait and speaker display", failures)
+	_check(dialogue.get_node("%Portrait").visible and dialogue.get_node("%Speaker").text == "经理", "Manager opens with approved portrait", failures)
 	await _drain_dialogue(failures)
 	_check(_completed == ["V4_INTRO", "V4_MANAGER_TALK"], "Manager completion emits its own ID once", failures)
 	_check(dialogue.has_completed_intro(), "Read flag saved only after manager conversation", failures)

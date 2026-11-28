@@ -24,6 +24,7 @@ func _settle() -> void:
 
 func _ready_for_capture() -> void:
 	_main.get_node("TaskLayer/MonsterDialogue").cancel_dialogue()
+	_main.get_node("LateMainline")._clear()
 	_main.dialogue.cancel_presentation()
 	_game.set_modal_open("STORY_DIALOGUE", false)
 	_game.set_modal_open("LATE_TASK_STORY", false)
@@ -156,7 +157,7 @@ func _run_save_phase() -> void:
 	_check(is_instance_valid(reunion.cg) and not _game.has_friend, "actual 309 CG opens without settling rescue")
 	_check(not _service.can_save_memory().allowed, "309 CG blocks saves")
 	await _shot("309")
-	for index in range(36):
+	for index in range(reunion.cg.get("_beats").size()):
 		if not is_instance_valid(reunion.cg): break
 		while reunion.cg.get("_transitioning") or reunion.cg.get("_displayed_index") != reunion.cg.get("_index"):
 			await process_frame
@@ -164,6 +165,8 @@ func _run_save_phase() -> void:
 		_check(not _game.has_friend, "recording does not settle rescue")
 		reunion.cg.advance()
 	_check(_game.has_friend, "actual 309 CG completion settles rescue")
+	_check(_main.dialogue.get("_dialogue_id") == "LATE_ALARM" and not _service.can_save_memory().allowed, "new alarm remains a modal reading until complete")
+	while _main.dialogue.visible: _main.dialogue._advance()
 	_cards.switch_active()
 	await _ready_for_capture()
 	await _save_slot(3, "309 rescue after settlement")
@@ -239,7 +242,7 @@ func _run_load_phase() -> void:
 	_check(not _game.has_friend and not _floor().has_node("Persica"), "pre-rescue load creates no follower")
 	await _load_slot(3, "309 rescue after settlement")
 	_check(_game.has_friend and _floor().get_children().filter(func(node): return node.name == "Persica").size() == 1, "post-rescue load creates exactly one follower")
-	_check(_history.entries.filter(func(entry): return entry.chapter == "309_REUNION").size() == 36, "actual CG history restored from disk")
+	_check(_history.entries.filter(func(entry): return entry.chapter == "309_REUNION").size() == 12, "all twelve revised CG reading records restored from disk")
 	_ui.open("history")
 	await _shot("history")
 	_ui.close_page()

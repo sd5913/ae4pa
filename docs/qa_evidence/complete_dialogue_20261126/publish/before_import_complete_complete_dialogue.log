@@ -1,0 +1,144 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+ERROR: Unable to open file: res://.godot/imported/pensive.png-62cb42cb175897ed39aace5c1164007c.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pensive.png-62cb42cb175897ed39aace5c1164007c.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/pensive.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/exasperated.png-a0e17109d78bd535c57a6ca0ad6847c2.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/exasperated.png-a0e17109d78bd535c57a6ca0ad6847c2.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/exasperated.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/coaxing.png-18e400766ed9853f0c755519d31e5d0f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/coaxing.png-18e400766ed9853f0c755519d31e5d0f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/coaxing.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/suspicious.png-1f75721960cf447c601d46b4f77ee772.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/suspicious.png-1f75721960cf447c601d46b4f77ee772.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/suspicious.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/surprised.png-d9fa11f44c11cb55636bb4e869a389ef.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/surprised.png-d9fa11f44c11cb55636bb4e869a389ef.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/surprised.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/blushing.png-e88d1faf27a3649a0f6ad18b1023703e.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/blushing.png-e88d1faf27a3649a0f6ad18b1023703e.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/blushing.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/hunting.png-eceb39d178ed0a98f2baa85bc0cdd4ae.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/hunting.png-eceb39d178ed0a98f2baa85bc0cdd4ae.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/hunting.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/neutral.png-358524c343c5dcef4eeca3e0e877f0cf.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/neutral.png-358524c343c5dcef4eeca3e0e877f0cf.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/neutral.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/ironic.png-5dd9399cba43d90b3232ed3b8017eaec.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/ironic.png-5dd9399cba43d90b3232ed3b8017eaec.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/ironic.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/angry.png-cd17cbeb3d984ce9e55fd68d7ea9ac0f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/angry.png-cd17cbeb3d984ce9e55fd68d7ea9ac0f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/angry.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/languid.png-6170add90ea7bffb24252fd6acd4c3f5.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/languid.png-6170add90ea7bffb24252fd6acd4c3f5.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/languid.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/worried.png-835508e8c7af4a0ad6163fbfed42d1b1.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/worried.png-835508e8c7af4a0ad6163fbfed42d1b1.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/worried.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/dubious.png-0e3035c05dc78b88df02ab20852d6e79.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/dubious.png-0e3035c05dc78b88df02ab20852d6e79.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/carol/dubious.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/playful.png-bcc38b02bd94951fa38d08704fdcefde.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/playful.png-bcc38b02bd94951fa38d08704fdcefde.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/terese/playful.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/teasing.png-1e69e34cff0bb44ecb3089d5d1f39251.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/teasing.png-1e69e34cff0bb44ecb3089d5d1f39251.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/terese/teasing.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/happy.png-c54328f867aa3d4d2e1418585ec2f10d.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/happy.png-c54328f867aa3d4d2e1418585ec2f10d.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/terese/happy.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/neutral.png-50cc9f29a228fc46c0febdc3e88bb40b.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/neutral.png-50cc9f29a228fc46c0febdc3e88bb40b.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/terese/neutral.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/pouting.png-6123616e900a75ca7c112c94bf18f53f.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/pouting.png-6123616e900a75ca7c112c94bf18f53f.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/terese/pouting.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/afraid.png-d7c86b764a375ff66b2a803a5aecb499.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/afraid.png-d7c86b764a375ff66b2a803a5aecb499.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/terese/afraid.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/surprised.png-2596a39a0bf1c7c870c01e68169e1fb8.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/surprised.png-2596a39a0bf1c7c870c01e68169e1fb8.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/terese/surprised.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/neutral.png-8e50b6e592743a183cde0ba797c3b106.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/neutral.png-8e50b6e592743a183cde0ba797c3b106.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/manager/neutral.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/sinister_smile.png-6f94653440f0463a56ac64ebefb7cb74.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/sinister_smile.png-6f94653440f0463a56ac64ebefb7cb74.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/manager/sinister_smile.png.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Unable to open file: res://.godot/imported/ominous.png-69858bd5099ea414ddd60848630d6292.ctex.
+   at: _load_data (scene/resources/compressed_texture.cpp:45)
+ERROR: Failed loading resource: res://.godot/imported/ominous.png-69858bd5099ea414ddd60848630d6292.ctex.
+   at: _load (core/io/resource_loader.cpp:317)
+ERROR: Failed loading resource: res://assets/final/confirmed_characters_20261126/manager/ominous.png.
+   at: _load (core/io/resource_loader.cpp:317)
+SCRIPT ERROR: Parse Error: Could not resolve external class member "PORTRAITS".
+   at: GDScript::reload (res://scenes/tests/ui/complete_dialogue_smoke.gd:11)
+ERROR: Failed to load script "res://scenes/tests/ui/complete_dialogue_smoke.gd" with error "Parse error".
+   at: load (modules/gdscript/gdscript_resource_format.cpp:46)

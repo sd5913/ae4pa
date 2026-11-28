@@ -1,0 +1,446 @@
+[
+  {
+    "role": "carol",
+    "expression": "pensive",
+    "label": "沉思",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Carol_沉思.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/carol/pensive.png",
+    "sha256": "18d2358ab582ac2b92fcd548e1779bf5ff43f5a63d038bf9fb4d12afc31d79b6",
+    "size": [
+      1058,
+      1487
+    ],
+    "bounds": [
+      118,
+      38,
+      892,
+      1451
+    ]
+  },
+  {
+    "role": "carol",
+    "expression": "exasperated",
+    "label": "扶额无奈",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Carol_扶额无奈.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/carol/exasperated.png",
+    "sha256": "1a9fed8722a788413e0d39eaad157917f74aefb59915958a625957107d646794",
+    "size": [
+      1182,
+      1330
+    ],
+    "bounds": [
+      61,
+      33,
+      945,
+      1322
+    ]
+  },
+  {
+    "role": "carol",
+    "expression": "coaxing",
+    "label": "蛊惑",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Carol_蛊惑.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/carol/coaxing.png",
+    "sha256": "937ab1d3e08460061c459b18d67ab6d3b225b8652117290357f9d0221ecdaa9c",
+    "size": [
+      1024,
+      1536
+    ],
+    "bounds": [
+      88,
+      8,
+      964,
+      1533
+    ]
+  },
+  {
+    "role": "carol",
+    "expression": "suspicious",
+    "label": "怀疑",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Carol_怀疑.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/carol/suspicious.png",
+    "sha256": "b326a20d0a3b3e1f3a81067f52f075ad9b1d9818b6578b0fdf74b7e286f0eb02",
+    "size": [
+      1058,
+      1487
+    ],
+    "bounds": [
+      118,
+      31,
+      923,
+      1467
+    ]
+  },
+  {
+    "role": "carol",
+    "expression": "surprised",
+    "label": "惊讶",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Carol_惊讶.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/carol/surprised.png",
+    "sha256": "8662701da6790efb4fe0ed0b83392793235e1082319f5d1ae8e4c240b0e304cf",
+    "size": [
+      1058,
+      1487
+    ],
+    "bounds": [
+      122,
+      31,
+      952,
+      1470
+    ]
+  },
+  {
+    "role": "carol",
+    "expression": "blushing",
+    "label": "脸红",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Carol_脸红.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/carol/blushing.png",
+    "sha256": "9182bcccf5f82ee90a0e5bb2d1fb47a0ce4bfefe9df04e4e4a50307004c7e75e",
+    "size": [
+      1182,
+      1330
+    ],
+    "bounds": [
+      62,
+      29,
+      975,
+      1312
+    ]
+  },
+  {
+    "role": "carol",
+    "expression": "hunting",
+    "label": "猎杀时刻",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Carol_猎杀时刻.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/carol/hunting.png",
+    "sha256": "4d1bec64ddc443c35149882381a30e937637ed8faaefd0f4dcc0ded5f5f9cd8d",
+    "size": [
+      1024,
+      1536
+    ],
+    "bounds": [
+      93,
+      7,
+      956,
+      1532
+    ]
+  },
+  {
+    "role": "carol",
+    "expression": "neutral",
+    "label": "平常",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Carol_平常.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/carol/neutral.png",
+    "sha256": "0eef74b042fdd073288325758bc6b93817c1c6d03fe3ef91af9925c4daa2a2d5",
+    "size": [
+      1103,
+      1426
+    ],
+    "bounds": [
+      155,
+      37,
+      949,
+      1412
+    ]
+  },
+  {
+    "role": "carol",
+    "expression": "ironic",
+    "label": "气笑了",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Carol_气笑了.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/carol/ironic.png",
+    "sha256": "e11936af7324247e802f65cf3fdb4a9c8f3f79ad48058f47317ebb8133c0f504",
+    "size": [
+      1182,
+      1330
+    ],
+    "bounds": [
+      220,
+      26,
+      977,
+      1321
+    ]
+  },
+  {
+    "role": "carol",
+    "expression": "angry",
+    "label": "生气",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Carol_生气.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/carol/angry.png",
+    "sha256": "cbe094bc78e57ce12ab59899b0b4b80450f73fc3369d71d04d640fef6bcf5923",
+    "size": [
+      1182,
+      1330
+    ],
+    "bounds": [
+      62,
+      28,
+      982,
+      1312
+    ]
+  },
+  {
+    "role": "carol",
+    "expression": "languid",
+    "label": "慵懒",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Carol_慵懒.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/carol/languid.png",
+    "sha256": "8a4a9a9affddd652a62b64143fa997b60f614b0efabfd48f42020d75917f92ba",
+    "size": [
+      1182,
+      1330
+    ],
+    "bounds": [
+      243,
+      16,
+      927,
+      1318
+    ]
+  },
+  {
+    "role": "carol",
+    "expression": "worried",
+    "label": "担忧",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Carol_担忧.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/carol/worried.png",
+    "sha256": "71377d6da2d378ea7784a08da4a17b1a82668fcc2f406e39d9875bb1267b2597",
+    "size": [
+      1103,
+      1426
+    ],
+    "bounds": [
+      169,
+      27,
+      942,
+      1415
+    ]
+  },
+  {
+    "role": "carol",
+    "expression": "dubious",
+    "label": "狐疑",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Carol_狐疑.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/carol/dubious.png",
+    "sha256": "d48a8d0e8b98da205d81faae427e1d2778597c0d24c2a5406b2b8e5c43f56489",
+    "size": [
+      1182,
+      1330
+    ],
+    "bounds": [
+      235,
+      12,
+      995,
+      1328
+    ]
+  },
+  {
+    "role": "terese",
+    "expression": "playful",
+    "label": "俏皮",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Terese_俏皮.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/terese/playful.png",
+    "sha256": "e4ebbc03ce3e8bad4f53234395e2ccbc003ef09359be1e86452faa8ebdec55dc",
+    "size": [
+      1182,
+      1176
+    ],
+    "bounds": [
+      211,
+      3,
+      1105,
+      1176
+    ]
+  },
+  {
+    "role": "terese",
+    "expression": "teasing",
+    "label": "调侃",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Terese_调侃.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/terese/teasing.png",
+    "sha256": "75b87fe11e2934a49de723d906301ce5bb49bbfec0311d5881d91076db83c2da",
+    "size": [
+      1280,
+      1440
+    ],
+    "bounds": [
+      225,
+      34,
+      1134,
+      1440
+    ]
+  },
+  {
+    "role": "terese",
+    "expression": "happy",
+    "label": "开心",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Terese_开心.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/terese/happy.png",
+    "sha256": "c6d096b84b3fd12597d4b78d2d0e9dccc7432f8ba23fbd1f94c247f69aa42b61",
+    "size": [
+      1280,
+      1440
+    ],
+    "bounds": [
+      295,
+      32,
+      1121,
+      1440
+    ]
+  },
+  {
+    "role": "terese",
+    "expression": "neutral",
+    "label": "平常",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Terese_平常.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/terese/neutral.png",
+    "sha256": "096035e77baec9738d5942139cfccb76cdfa04d637c014b0a23702d37d4220f2",
+    "size": [
+      1280,
+      1440
+    ],
+    "bounds": [
+      220,
+      35,
+      1109,
+      1440
+    ]
+  },
+  {
+    "role": "terese",
+    "expression": "pouting",
+    "label": "气鼓鼓",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Terese_气鼓鼓.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/terese/pouting.png",
+    "sha256": "2e7604e3187bd593f9008f4e903533919562cdc44d35ba2014cff4be3a2619ba",
+    "size": [
+      1182,
+      1330
+    ],
+    "bounds": [
+      192,
+      7,
+      1066,
+      1330
+    ]
+  },
+  {
+    "role": "terese",
+    "expression": "afraid",
+    "label": "害怕",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Terese_害怕.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/terese/afraid.png",
+    "sha256": "a02ba005bd30b410171dcaf1c6c5f4ec75c5f442b43e28b1bef95eacfe654409",
+    "size": [
+      1182,
+      1330
+    ],
+    "bounds": [
+      239,
+      28,
+      1039,
+      1330
+    ]
+  },
+  {
+    "role": "terese",
+    "expression": "surprised",
+    "label": "惊讶",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Terese_惊讶.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/terese/surprised.png",
+    "sha256": "6a49681fff235397ad494829f26f256cda5a24faff9f08fba10544d0d861f310",
+    "size": [
+      1199,
+      1312
+    ],
+    "bounds": [
+      215,
+      6,
+      1166,
+      1312
+    ]
+  },
+  {
+    "role": "manager",
+    "expression": "neutral",
+    "label": "平常",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Manager_平常.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/manager/neutral.png",
+    "sha256": "0b7a6cdaad92b5454973451e3730a9d3a9e48fdd4f2ca226792c824f3ed17184",
+    "size": [
+      1280,
+      1440
+    ],
+    "bounds": [
+      244,
+      35,
+      1066,
+      1440
+    ]
+  },
+  {
+    "role": "manager",
+    "expression": "sinister_smile",
+    "label": "笑里藏刀",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Manager_笑里藏刀.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/manager/sinister_smile.png",
+    "sha256": "0c0e52661f6c7c258f0b2d1f432d85c136df83bd6e9aba13c1ee7fa87bbcbb1f",
+    "size": [
+      1182,
+      1330
+    ],
+    "bounds": [
+      233,
+      26,
+      997,
+      1330
+    ]
+  },
+  {
+    "role": "manager",
+    "expression": "ominous",
+    "label": "阴森",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\角色\\立绘\\Manager_阴森.png",
+    "resource": "res://assets/final/confirmed_characters_20261126/manager/ominous.png",
+    "sha256": "88af76efdb05522713b5f88f4f50e41db62b9b472665f27e02cbe805fc2199ee",
+    "size": [
+      1182,
+      1330
+    ],
+    "bounds": [
+      230,
+      26,
+      997,
+      1330
+    ]
+  },
+  {
+    "role": "NOSE",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\monster_halfbody_portraits_v1\\nose_halfbody.png",
+    "resource": "res://assets/final/monster_dialogue_portraits_v1/nose_halfbody.png",
+    "sha256": "a0acddb6c486e665de2bdbef8a23c9ed35ca0f8dd147cfa5c7d9ddd21487a098"
+  },
+  {
+    "role": "EYE",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\monster_halfbody_portraits_v1\\eye_halfbody.png",
+    "resource": "res://assets/final/monster_dialogue_portraits_v1/eye_halfbody.png",
+    "sha256": "1dc2969e9c882a789ef39f45c9aa1762cf505d030049bb70a22fb56f5e775764"
+  },
+  {
+    "role": "HAT",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\monster_halfbody_portraits_v1\\hat_halfbody.png",
+    "resource": "res://assets/final/monster_dialogue_portraits_v1/hat_halfbody.png",
+    "sha256": "ee089bd9587e8702948ce6195fd74a5a5786ccff46a960648ad33ba369e670c7"
+  },
+  {
+    "role": "CHECKER",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\monster_halfbody_portraits_v1\\checker_halfbody.png",
+    "resource": "res://assets/final/monster_dialogue_portraits_v1/checker_halfbody.png",
+    "sha256": "ce55407434294ba1813e10a77418523ef773f08d421a911b628886d1c50e73a1"
+  },
+  {
+    "role": "EAR",
+    "source": "G:\\polyu\\SD5913\\期末游戏\\美术\\monster_halfbody_portraits_v1\\ear_halfbody.png",
+    "resource": "res://assets/final/monster_dialogue_portraits_v1/ear_halfbody.png",
+    "sha256": "9c4e1b89d6d778cfeffccffa358cb177c2c3ac29fef43b6e685fc53e65abc069"
+  }
+]

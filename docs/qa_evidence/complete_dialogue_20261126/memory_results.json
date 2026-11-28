@@ -1,0 +1,10 @@
+[
+  {
+    "phase": "save",
+    "exit": 0
+  },
+  {
+    "phase": "load",
+    "exit": 0
+  }
+]

@@ -1,0 +1,30 @@
+[
+  {
+    "name": "complete_dialogue",
+    "exit_code": 0
+  },
+  {
+    "name": "intro_flow",
+    "exit_code": 0
+  },
+  {
+    "name": "full_mainline_escape",
+    "exit_code": 0
+  },
+  {
+    "name": "reunion_zh",
+    "exit_code": 0
+  },
+  {
+    "name": "reunion_en",
+    "exit_code": 0
+  },
+  {
+    "name": "story_surface",
+    "exit_code": 0
+  },
+  {
+    "name": "localization",
+    "exit_code": 0
+  }
+]
