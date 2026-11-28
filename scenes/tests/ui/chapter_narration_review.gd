@@ -61,11 +61,11 @@ func run() -> void:
 			check(dialogue._chapter_card.active and not dialogue.get_node("%Portrait").visible and not dialogue.get_node("%DialogueFrame").visible, "chapter hides characters and dialogue")
 			press_e(dialogue)
 			check(dialogue._chapter_card.active and dialogue._line_index == starts[i], "early E cannot skip chapter or first sentence")
-			await create_timer(2.0).timeout
+			await create_timer(2.95).timeout
 			await shot(dialogue, locale + "_chapter_%d" % (i+1))
 			if i % 2 == 0: click(dialogue)
 			else: press_e(dialogue)
-			await create_timer(0.4).timeout
+			await create_timer(0.95).timeout
 			check(not dialogue._chapter_card.active and dialogue._line_index == starts[i], "dismiss reveals first beat without consuming it")
 			dialogue._chapter_card.cancel()
 		dialogue.cancel_presentation()
@@ -90,7 +90,7 @@ func run() -> void:
 		check(cg._chapter_card.active and cg._index == -1 and cg._displayed_index == -1, "309 chapter does not record or settle any CG beat")
 		press_e(cg)
 		check(cg._chapter_card.active, "309 early input locked")
-		await create_timer(2.0).timeout
+		await create_timer(2.95).timeout
 		await shot(cg._dialogue,locale + "_chapter_309")
 		click(cg)
 		await create_timer(1.0).timeout
@@ -100,6 +100,23 @@ func run() -> void:
 		check(not cg._chapter_card.active, "cancel clears chapter")
 		cg.queue_free()
 		await settle()
+		dialogue.show_story_sequence("LATE_ENDING", load("res://scenes/ui/story_revision.gd").beats("ending"), "exterior")
+		check(dialogue._chapter_card.active and dialogue._chapter_card._card_id == "ending" and dialogue._line_index == 0, "ending chapter precedes its first CG beat")
+		check(not dialogue.get_node("%SkipButton").visible and not dialogue.get_node("%Portrait").visible and not dialogue.get_node("%StageCue").visible, "ending chapter hides underlying controls and narration")
+		dialogue._show_story_beat()
+		press_e(dialogue)
+		check(dialogue._chapter_card.active and dialogue._line_index == 0, "ending refresh and early E do not expose or consume first beat")
+		await create_timer(2.95).timeout
+		await shot(dialogue, locale + "_chapter_ending")
+		click(dialogue)
+		press_e(dialogue) # Repeated input while fading cannot leak into the story.
+		await create_timer(0.95).timeout
+		check(not dialogue._chapter_card.active and dialogue._line_index == 0 and dialogue.get_node("%StageCue").visible, "ending dismissal reveals the first narration exactly once")
+		dialogue.cancel_presentation()
+		dialogue.show_story_sequence("LATE_ENDING", load("res://scenes/ui/story_revision.gd").beats("ending"), "exterior")
+		dialogue.cancel_presentation()
+		await create_timer(0.95).timeout
+		check(not dialogue.visible and not dialogue._chapter_card.active and dialogue._dialogue_id.is_empty(), "cancel cannot resurrect the ending or emit completion")
 	dialogue.queue_free()
 	await process_frame
 	print("CHAPTER_NARRATION: %s; %d captures" % ["PASS" if failures.is_empty() else "FAIL", captures])

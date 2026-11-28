@@ -2798,3 +2798,9 @@ msgstr "Reunion"
 
 msgid "点击或按 E 继续"
 msgstr "Click or press E to continue"
+
+msgid "终章"
+msgstr "FINAL CHAPTER"
+
+msgid "共赴长夜"
+msgstr "Into the Night, Together"

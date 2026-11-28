@@ -96,7 +96,7 @@ func play() -> void:
 	if _show_chapter and not "--ui-smoke" in OS.get_cmdline_user_args():
 		_front.texture = preload("res://cg309_reunion/assets/room309_empty.png")
 		_dialogue.hide()
-		_chapter_card.present("309", tr("重逢"))
+		_chapter_card.present("309", tr("重逢"), "reunion_309")
 	else:
 		_show_next()
 

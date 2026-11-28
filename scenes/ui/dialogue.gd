@@ -101,6 +101,7 @@ func _ready() -> void:
 	add_child(_chapter_card)
 	_chapter_card.closed.connect(func():
 		if is_instance_valid(_memory_rail): _memory_rail.show()
+		_skip_button.visible = not _world_story and _can_skip_current_dialogue()
 		_show_story_beat()
 	)
 	if presentation_only:
@@ -241,7 +242,7 @@ func show_dialogue(dialogue_id: String) -> void:
 		_:
 			_dialogue_id = ""
 			return
-	_skip_button.visible = _can_skip_current_dialogue()
+	_skip_button.visible = _can_skip_current_dialogue() and not _chapter_card.active
 	if dialogue_id == V4_INTRO_ID:
 		_skip_button.text = "跳过已读序章"
 	elif dialogue_id == V4_MANAGER_ID:
@@ -298,6 +299,8 @@ func show_task_dialogue(dialogue_id: String, speaker: String, lines: Array[Strin
 ## Heterogeneous world dialogue using the same input/history/completion contract.
 func show_story_sequence(dialogue_id: String, rows: Array, background_scene: String = "") -> bool:
 	if rows.is_empty() or not _dialogue_id.is_empty(): return false
+	_chapter_card.cancel()
+	_chapter_seen.clear()
 	_history_serial += 1
 	_pointer.reset()
 	_finish_phone_animation()
@@ -496,6 +499,14 @@ func _show_story_beat() -> void:
 	if _beats.is_empty() or _line_index >= _beats.size():
 		return
 	var beat: Dictionary = _beats[_line_index]
+	if _dialogue_id == "LATE_ENDING" and _line_index == 0 and not _skip_transitions and not _chapter_seen.has(0):
+		_chapter_seen[0] = true
+		_background.show(); $Tint.show()
+		_frame.hide(); _line.hide(); _speaker.hide(); _portrait.hide(); _cue.hide(); _story_title.hide()
+		_skip_button.hide()
+		if is_instance_valid(_memory_rail): _memory_rail.hide()
+		_chapter_card.present(tr("终章"), tr("共赴长夜"), "ending")
+		return
 	if _dialogue_id == V4_INTRO_ID and not _skip_transitions and not _chapter_seen.has(_line_index):
 		if _line_index == 0 or beat.scene != _beats[_line_index - 1].scene:
 			_chapter_seen[_line_index] = true
@@ -503,7 +514,8 @@ func _show_story_beat() -> void:
 			var location: String = {"bedroom":"卧室", "cafe":"咖啡馆回忆", "exterior":"旅馆外"}[beat.scene]
 			_frame.hide(); _line.hide(); _speaker.hide(); _portrait.hide(); _cue.hide(); _story_title.hide()
 			if is_instance_valid(_memory_rail): _memory_rail.hide()
-			_chapter_card.present(tr("序章 %d") % number, tr(location))
+			_skip_button.hide()
+			_chapter_card.present(tr("序章 %d") % number, tr(location), ["bedroom_1", "cafe_2", "bedroom_3", "exterior_4"][number - 1])
 			return
 	_record_history.call_deferred(_line_index, _history_serial)
 	if _world_story:
