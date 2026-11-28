@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/propulsive_tension_2.mp3-1f99c98cd791fb766e0c
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

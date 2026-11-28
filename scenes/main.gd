@@ -4,6 +4,8 @@ extends Node2D
 const STORY_MODAL: String = "STORY_DIALOGUE"
 const TASK_02_INTRO: String = "TASK_02_INTRO"
 const TASK_03_INTRO: String = "TASK_03_INTRO"
+const HOTEL_MUSIC := preload("res://assets/music/the_haunted_ballroom_1.mp3")
+const ESCAPE_MUSIC := preload("res://assets/music/propulsive_tension_2.mp3")
 var _active_dialogue_id: String = ""
 var _autosave_pending := false
 var _notice_template := ""
@@ -16,6 +18,7 @@ var _notice_arguments: Array = []
 @onready var menu: Control = $MenuLayer/MainMenu
 @onready var notebook: Control = $MenuLayer/Notebook
 @onready var bag: Control = $MenuLayer/Bag
+@onready var background_music: AudioStreamPlayer = $BackgroundMusic
 
 
 func _ready() -> void:
@@ -29,6 +32,7 @@ func _ready() -> void:
 	reunion.name = "Room309Reunion"
 	add_child(reunion)
 	GameManager.state_changed.connect(_on_state_changed)
+	GameManager.friend_rescued.connect(_sync_background_music)
 	CardManager.cards_changed.connect(_on_cards_changed)
 	GameManager.floor_changed.connect(_on_floor_changed)
 	GameManager.game_failed.connect(_on_game_failed)
@@ -140,7 +144,10 @@ func restore_memory_document(document: Dictionary) -> bool:
 	if carol_flow != null and not carol_flow.restore_memory_ui_state(state.carol_ui): return false
 	menu.hide()
 	$TaskLayer.show()
-	return GameManager.game_state == "PLAYING" and GameManager.current_floor == state.game.current_floor
+	if GameManager.game_state != "PLAYING" or GameManager.current_floor != state.game.current_floor:
+		return false
+	_sync_background_music()
+	return true
 
 
 func _bind_monster_visuals() -> void:
@@ -216,7 +223,16 @@ func _start_session() -> void:
 	dialogue.hide()
 	$TaskLayer.close_views()
 	GameManager.start_game()
+	_sync_background_music()
 	_show_story_dialogue("V4_INTRO")
+
+
+func _sync_background_music() -> void:
+	var track: AudioStream = ESCAPE_MUSIC if GameManager.has_friend else HOTEL_MUSIC
+	if background_music.playing and background_music.stream == track:
+		return
+	background_music.stream = track
+	background_music.play()
 
 
 func _show_story_dialogue(dialogue_id: String) -> void:
@@ -271,6 +287,10 @@ func _exit_tree() -> void:
 
 
 func _on_state_changed(new_state: String) -> void:
+	if new_state == "MENU":
+		background_music.stop()
+	elif new_state == "PLAYING" and background_music.playing:
+		_sync_background_music()
 	if new_state != "PLAYING": _autosave_pending = false
 	if new_state in ["FAILED", "RESTORING", "LOADING", "MENU", "WON"]:
 		notebook.close_help()

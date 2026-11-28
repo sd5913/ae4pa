@@ -7,6 +7,8 @@ func end() -> void:
 	if not failures.is_empty():
 		await _finish_chain()
 		return
+	var music: AudioStreamPlayer = main.get_node("BackgroundMusic")
+	_check_music(music, "the_haunted_ballroom_1.mp3")
 	await move_to(floor_node().get_node("DoorRoot/Room302").position.x - 116)
 	check(main.dialogue.visible, "full run enters real302 intro")
 	await drain_story()
@@ -28,11 +30,13 @@ func end() -> void:
 	if not is_instance_valid(host.cg):
 		await _finish_chain()
 		return
+	_check_music(music, "the_haunted_ballroom_1.mp3")
 	for i in range(60):
 		if not is_instance_valid(host.cg): break
 		if host.cg.get("_transitioning"): await create_timer(0.5).timeout
 		await tap()
 	check(g.has_friend and floor_node().has_node("Persica"), "full run actual revised rescue enables follower")
+	_check_music(music, "propulsive_tension_2.mp3")
 	check(main.dialogue.visible and main.dialogue.get("_dialogue_id") == "LATE_ALARM", "rescue hands off to the alarm without leaking world input")
 	await drain_story()
 	await travel(4)
@@ -71,7 +75,16 @@ func end() -> void:
 	check(g.game_state == "WON" and main.dialogue.get("_dialogue_id") == "LATE_ENDING" and not main.get_node("MenuLayer/Win").visible, "actual EXIT plays the rain ending before showing success")
 	await drain_story()
 	check(g.game_state == "WON" and main.get_node("MenuLayer/Win").visible, "normal new game through all eight tasks/309 to actualEXIT success")
+	main._show_menu()
+	check(not music.playing, "returning to the menu stops background music")
+	main._start_session()
+	_check_music(music, "the_haunted_ballroom_1.mp3")
 	await _finish_chain()
+
+func _check_music(player: AudioStreamPlayer, filename: String) -> void:
+	var track := player.stream as AudioStreamMP3
+	check(player.playing and track != null and track.loop and track.resource_path.get_file() == filename,
+		"looping background music plays " + filename)
 
 func travel_exit() -> void:
 	await move_to(floor_node().exit_point.global_position.x)

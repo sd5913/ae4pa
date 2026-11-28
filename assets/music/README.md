@@ -15,7 +15,7 @@ no additional license terms were supplied.
 
 ## Godot Integration
 
-Use the MP3 files for compressed playback, for example:
+The main scene plays the MP3 files as looping background music:
 
 ```text
 res://assets/music/propulsive_tension_2.mp3
@@ -26,5 +26,6 @@ WAV files are uncompressed alternatives. M4A files are preserved source copies;
 Godot's built-in audio importers do not support this format. Do not reference
 them as AudioStream resources.
 
-This delivery adds assets only. Scene assignment, volume, looping, transitions,
-and listening checks remain for the playback integration stage.
+New games start The Haunted Ballroom-1 with the prologue. Completing the 309
+rescue switches to Propulsive Tension-2. Loaded memories resume the track that
+matches their rescue progress. Returning to the main menu stops the music.
