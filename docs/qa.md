@@ -547,3 +547,6 @@ Windows / Godot 4.7.2.stable.official.ed1daf0bf，独立验证目录同步上述
 
 发布候选已无缓存导入，正式开场、194 段对白、翻译及完整八任务到 EXIT 均退出 0；Compatibility 中英三尺寸 54 张实际手机画面通过并查看。首轮远端翻译 PASS 后仍有退出资源错误，因此测试在引擎运行时释放主场景并等待四帧，不放宽任何断言或 CI 错误规则。图形额外推进追踪到测试 helper 之外的一次输入分发，截图夹具隔离原生窗口输入后复跑通过；实际输入分发仍由正式开场检查覆盖。临时诊断未进入游戏运行代码。见[最终来源、命令、日志、指纹与画面](qa_evidence/phone_intro_restore_20261129/publish/README.md)。主线与测试当前结论以此条及 PR #90 最新 head CI 为准；历史失败保留，未新增真人／跨平台／存读迁移验收。
 2026-11-29 PR #90 退出诊断：398e47a 的构建仍在翻译断言全部通过后报告两个 ObjectDB 实例及一个资源未释放，单纯释放主场景未解决远端退出检查；不得视为已修复。仅对该检查增加 --verbose 输出以定位资源路径，保留 grep 错误失败条件和全部断言。远端修订与最终结论继续记录于 PR #90。
+## 2026-11-29 PR #90 音频退出残留定位
+
+--verbose 远端日志已确认残留为 the_haunted_ballroom_1.mp3 的 AudioStreamMP3 / AudioStreamPlaybackMP3，并非对白数据或图片。释放主场景后固定四帧在高帧率 headless 环境中可能早于下一次音频混音，因此本地化测试改为使用 WeakRef 观察播放实例，在最多一秒内等待实际释放，并新增失败断言；未改音乐运行逻辑或忽略 CI 错误。本地正常模式检查退出 0，证据见[精确资源名称](qa_evidence/phone_intro_restore_20261129/publish/ci_audio_leak_excerpt.log)与[释放断言结果](qa_evidence/phone_intro_restore_20261129/publish/localization_audio_release.log)；最新 head 的远端检查待完成。

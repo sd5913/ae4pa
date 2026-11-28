@@ -40,7 +40,7 @@
     "path": "localization/en.po"
   },
   {
-    "sha256": "2abfc994dfcef9b93693b3a43a345340ab49205c4e124ebcdbc559224fe9f2a6",
+    "sha256": "4841a655fde6ee1758bb2815ea42ffee5c6065bc69588ae65c4c82db60e358c4",
     "path": "scenes/tests/core/localization_smoke.gd"
   },
   {

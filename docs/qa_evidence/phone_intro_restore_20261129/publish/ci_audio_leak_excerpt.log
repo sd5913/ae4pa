@@ -1,0 +1,11 @@
+Source: GitHub Actions run 46167715079, job 141048848452, head 286e15b
+https://github.com/sd5913/ae4pa/actions/runs/46167715079/job/141048848452
+2026-11-28T16:58:47.7192469Z LOCALIZATION_SMOKE: PASS
+2026-11-28T16:58:47.7789522Z WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+2026-11-28T16:58:47.7792323Z ERROR: 1 resources still in use at exit.
+2026-11-28T16:58:47.7947567Z Leaked instance: AudioStreamMP3:9223372088193058291 - Reference count: 1
+2026-11-28T16:58:47.7948041Z Leaked instance: AudioStreamPlaybackMP3:9223372232057686959 - Reference count: 1
+2026-11-28T16:58:47.7949541Z Resource still in use: res://assets/music/the_haunted_ballroom_1.mp3 (AudioStreamMP3)
+2026-11-28T16:58:47.8167212Z LOCALIZATION_SMOKE: PASS
+2026-11-28T16:58:47.8177100Z ERROR: 1 resources still in use at exit.
+2026-11-28T16:58:47.8189950Z ##[error]Process completed with exit code 1.

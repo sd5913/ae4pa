@@ -24,3 +24,5 @@
 - 截图夹具现关闭该节点的自动输入接收，仍通过原 `_input` 方法注入键盘／指针事件并执行原全部断言；正式输入分发由独立 intro_flow_smoke 继续覆盖。显式 `RenderingServer.force_draw(false)` 避免隐藏验证窗口等待 `frame_post_draw` 停顿。临时诊断已从运行代码移除，复跑 54 张全部通过。
 
 未新增真人连续试玩、存读迁移、跨平台实机或导出验收；远端导出与合并状态以 PR #90 最新 head 的 GitHub Actions 为准。历史证据和失败均保留。
+
+2026-11-29 最终退出修订：详见 ci_audio_leak_excerpt.log。远端残留确认为旅馆背景音乐的 AudioStreamMP3／AudioStreamPlaybackMP3。固定四帧未保证音频线程已混音释放；现在以 WeakRef 观察停止后的播放实例，在一秒上限内等待并断言释放，不更改音乐播放或 CI 失败条件。本地无 --ui-smoke 的 localization_audio_release.log 退出 0。runtime_sha256.json 已更新对应测试文件散列；游戏运行代码仍为 e8c3175。
