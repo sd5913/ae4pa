@@ -1442,3 +1442,24 @@ Windows Godot4.7.2：逐句170段、底座、正式序章输入、独立序章�
 - 两首以 -12 dB 播放，切曲直接衔接。完整主线回归增加 309 前后曲目、循环配置、返回主菜单及重开新局的断言。实际听感和音量平衡留待真人试听。
 - macOS Godot 4.7.2 导入及底座回归退出 0。临时探针通过菜单静音、新局循环、实际救援结算接口切曲、返回菜单与重新开局检查。探针对 309 的前置状态使用夹具。
 - 完整主线回归和本地化回归通过。首次 Windows 构建检查发现 Godot 退出时保留 MP3 播放资源，主场景退出时显式停止并清空播放器后，本地化回归退出 0，日志无错误诊断。
+
+## 2026-11-28 A001 台词修订（本地）
+
+按用户要求，将 Carol 的 A001（complete_035）由「三楼，309。」改为「维斯佩拉……」，保留「坚定」表情；同步 story_revision_source.txt、story_revision.json、intro_script.tsv、story_portrait_matches.json 和 en.po（Vespera…）。基于 352394fe15cdd70c70689c0bfbbc10e2c41ce958 工作树，保留已有立绘尺寸与文档增量；本次未提交推送。
+
+Windows / Godot 4.7.2.stable.official.ed1daf0bf，独立验证目录同步上述五个文件后执行 `--headless --editor --import --quit`、`--headless --script res://scenes/tests/ui/complete_dialogue_smoke.gd -- --ui-smoke`、`--headless --script res://scenes/tests/core/localization_smoke.gd -- --ui-smoke`，均退出 0；170 段对白与 23 种表情、正式开场内容一致性、英文翻译检查通过。另核对 A001 的角色、文本和表情元数据一致。导入日志有一次 Windows 文件 safe-save 诊断，未见脚本错误，两项运行检查通过；未做画面、完整通关、导出或跨平台复测。日志见 [本轮证据](qa_evidence/a001_vespera_20261128/)；后续入口仍为 A001。
+## 2026-11-29 恢复序章一后的原手机聊天（本地）
+
+按用户要求，从历史版本原样恢复 21 条聊天气泡与 3 段电话／输入状态提示，接在「序章 1 · 卧室」报幕后。复用原手机界面和摇晃动画，恢复「1 条新消息」通知，原 170 段及 A001「维斯佩拉……」保留。独立验证目录及源工程导入退出 0；194 段对白／表情、正式开场、翻译、输入组件、独立预览和六处报幕门控六项检查退出 0；中英三尺寸 Compatibility 实际开场 54 张复跑通过并已检查。首轮图形索引断言失败及复跑诊断、导入 safe-save 提示均保留，未把未定位的首轮失败说成已修复；未复测完整通关、存读迁移、导出和跨平台。见[来源、命令、指纹、画面与限制](qa_evidence/phone_intro_restore_20261129/README.md)。未提交推送；原有立绘尺寸改动保留。下次从正式新游戏「序章 1」后查看手机。
+
+## 2026-11-29 手机聊天与 A001 发布候选
+
+用户已授权 push 并合入 main。发布分支 `work/restore-phone-intro-20261129` 基于最新 `main@9d8a09ab585af528d5ba85b7e7b2a711481a63c7`，保留音乐 PR #85；只加入手机聊天恢复、A001 台词修订和相关测试证据，排除独立的人物放大 8% 及候选美术。上述历史工作树检查含该人物增量，不能直接记作此发布候选画面；本分支将由精确 head 的 GitHub CI 检查，合并以该结果为准。已按 pr-risk-review 核对输入门控、信号与状态归属、JSON／TSV 一致性、资源／UID 和英文键；当前差异未发现可复现的新增阻塞，首轮图形索引失败原因仍未定位，历史日志保留。独立无缓存导入与发布候选复核在本地继续进行。
+
+## 2026-11-29 PR #90 发布复核与测试清理
+
+发布候选已无缓存导入，正式开场、194 段对白、翻译及完整八任务到 EXIT 均退出 0；Compatibility 中英三尺寸 54 张实际手机画面通过并查看。首轮远端翻译 PASS 后仍有退出资源错误，因此测试在引擎运行时释放主场景并等待四帧，不放宽任何断言或 CI 错误规则。图形额外推进追踪到测试 helper 之外的一次输入分发，截图夹具隔离原生窗口输入后复跑通过；实际输入分发仍由正式开场检查覆盖。临时诊断未进入游戏运行代码。见[最终来源、命令、日志、指纹与画面](qa_evidence/phone_intro_restore_20261129/publish/README.md)。主线与测试当前结论以此条及 PR #90 最新 head CI 为准；历史失败保留，未新增真人／跨平台／存读迁移验收。
+2026-11-29 PR #90 退出诊断：398e47a 的构建仍在翻译断言全部通过后报告两个 ObjectDB 实例及一个资源未释放，单纯释放主场景未解决远端退出检查；不得视为已修复。仅对该检查增加 --verbose 输出以定位资源路径，保留 grep 错误失败条件和全部断言。远端修订与最终结论继续记录于 PR #90。
+## 2026-11-29 PR #90 音频退出残留定位
+
+--verbose 远端日志已确认残留为 the_haunted_ballroom_1.mp3 的 AudioStreamMP3 / AudioStreamPlaybackMP3，并非对白数据或图片。释放主场景后固定四帧在高帧率 headless 环境中可能早于下一次音频混音，因此本地化测试改为使用 WeakRef 观察播放实例，在最多一秒内等待实际释放，并新增失败断言；未改音乐运行逻辑或忽略 CI 错误。本地正常模式检查退出 0，证据见[精确资源名称](qa_evidence/phone_intro_restore_20261129/publish/ci_audio_leak_excerpt.log)与[释放断言结果](qa_evidence/phone_intro_restore_20261129/publish/localization_audio_release.log)；最新 head 的远端检查待完成。

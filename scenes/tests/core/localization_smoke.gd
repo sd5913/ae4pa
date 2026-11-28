@@ -143,6 +143,22 @@ func _run() -> void:
 	_check(FileAccess.get_file_as_bytes(story_progress_path) == story_progress,
 		"Locale changes leave the story progress file intact")
 	DirAccess.remove_absolute(story_progress_path)
+	# Release the real scene while the engine is still running so pending SMS
+	# layout callbacks and the looping audio player finish before process exit.
+	var music: AudioStreamPlayer = main.get_node("BackgroundMusic")
+	var music_playback: WeakRef
+	if music.playing:
+		music_playback = weakref(music.get_stream_playback())
+	main.queue_free()
+	for frame in range(4):
+		await process_frame
+	# Headless Linux can run four frames before the audio thread's next mix.
+	# Observe the actual playback release rather than assuming frame count is time.
+	var release_deadline := Time.get_ticks_msec() + 1000
+	while music_playback != null and music_playback.get_ref() != null and Time.get_ticks_msec() < release_deadline:
+		await create_timer(0.01).timeout
+	_check(music_playback == null or music_playback.get_ref() == null,
+		"Background music playback releases after unloading the real main scene")
 	_finish()
 
 

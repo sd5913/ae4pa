@@ -1,4 +1,28 @@
 # scene	speaker	expression	mode	text
+bedroom	闺蜜	calm	sms	你睡了吗？
+bedroom	闺蜜	calm	sms	能来接我吗
+bedroom	女主	surprised	sms	现在？
+bedroom	女主	worried	sms	你终于舍得回消息了。你这几天去哪了？
+bedroom	闺蜜	anxious	sms	我还在之前说过的那家旅馆
+bedroom	闺蜜	afraid	sms	他们不让我离开
+bedroom	女主	surprised	sms	“他们”是谁？
+bedroom	女主	determined	sms	你先把地址发给我。
+bedroom	闺蜜	afraid	sms	三楼
+bedroom	闺蜜	afraid	sms	309号房
+bedroom	女主	worried	sms	你报警了吗？
+bedroom	女主	determined	sms	我现在给你打电话。
+bedroom	系统	none	cue	电话只响一声便挂断。
+bedroom	闺蜜	afraid	sms	不要打
+bedroom	闺蜜	afraid	sms	他们会听见
+bedroom	女主	surprised	sms	谁会听见？
+bedroom	女主	worried	sms	你房间里有人？
+bedroom	系统	none	cue	“对方正在输入”出现又消失。
+bedroom	闺蜜	afraid	sms	别相信这里的工作人员
+bedroom	闺蜜	afraid	sms	他们看起来和正常人一样
+bedroom	女主	surprised	sms	什么意思？
+bedroom	闺蜜	anxious	sms	我现在不能继续发消息了
+bedroom	闺蜜	afraid	sms	快一点
+bedroom	系统	none	cue	Carol又拨了一次，电话里依然只有“对方暂时无法接听”的提示。她退出通话，翻出几天前收到的兼职录取通知。
 bedroom	Carol	沉思	dialogue	那家旅馆……
 bedroom	Carol	沉思	dialogue	就是她之前提过的夜班兼职。
 cafe		none	narration	几天前，咖啡馆。Terese 把录取通知推过来。浅色长发滑到肩前，墨绿蝴蝶结歪了一点。Carol 闻到一股熟悉的柑橘香。
@@ -33,7 +57,7 @@ bedroom	Carol	沉思	dialogue	三天前，消息突然停了。
 bedroom	Carol	担忧	dialogue	没有联系电话，也查不到正常的订房页面。
 bedroom	Carol	坚定	dialogue	如果她真的被困在里面，我不能继续等。
 exterior		none	narration	回到雨夜。通知上的最后一班今早就结束了。电话还是没人接。Carol 拿起外套，按录取通知上的地址去了旅馆。
-exterior	Carol	坚定	dialogue	三楼，309。
+exterior	Carol	坚定	dialogue	维斯佩拉……
 exterior	Carol	坚定	dialogue	先找到她，再弄清楚这里发生了什么。
 exterior	标题	none	title	怪物员工通道
 lobby	经理	平常	dialogue	晚上好。这个时间很少有客人独自前来。

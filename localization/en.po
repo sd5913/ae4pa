@@ -1046,8 +1046,8 @@ msgstr "If she's really trapped in there, I can't keep waiting."
 msgid "雨夜旅馆外景，暖光只从入口透出。"
 msgstr "Rain falls outside the hotel. Only the entrance gives off a warm light."
 
-msgid "三楼，309。"
-msgstr "Third floor. Room 309."
+msgid "维斯佩拉……"
+msgstr "Vespera…"
 
 msgid "先找到她，再弄清楚这里发生了什么。"
 msgstr "Find her first. Then figure out what happened here."

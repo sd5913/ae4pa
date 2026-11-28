@@ -1,0 +1,218 @@
+[
+  {
+    "sha256": "9000ea9716796196c0feae780dea2551eedc20e77c4390bc99c36d2acb5b0e01",
+    "path": "en_1280x720_beat_03.png"
+  },
+  {
+    "sha256": "01f0efb956858bdf814dcd6517f55620d8349ad4d709892e6ad393a5e0196377",
+    "path": "en_1280x720_beat_18.png"
+  },
+  {
+    "sha256": "bc7df923d6562c8d56f25612f5832c5519e3de1f0ed7ba5786d813aa0187f4c2",
+    "path": "en_1280x720_beat_23.png"
+  },
+  {
+    "sha256": "885c7783298d7b48f82f6f2ab0a30acbb7ebdf2653402dad25bb207b9565a194",
+    "path": "en_1280x720_carol_after_phone.png"
+  },
+  {
+    "sha256": "d8ae715236b0750af47910d35c8eb216892045f2a8bfebf8c69dc45ebe190f52",
+    "path": "en_1280x720_chapter_1.png"
+  },
+  {
+    "sha256": "dd877a432110c75f6b356112ed3e1a4f6cf8a4ead7c52243a211a3b77ad7a766",
+    "path": "en_1280x720_chat_first.png"
+  },
+  {
+    "sha256": "f6f0c8828fc0ba6c6904fdfcf084d3c101caba6c123585cb3437fc74d34126ca",
+    "path": "en_1280x720_notification.png"
+  },
+  {
+    "sha256": "8069cfe36310280e265d6756d8a347c44d8cd63de818cb4f26a92c700a6af99c",
+    "path": "en_1280x720_shake_a.png"
+  },
+  {
+    "sha256": "1d761a1cf00c7c44e8687831bcdc6408997e1f09022ebfc5a97767ab1274d45f",
+    "path": "en_1280x720_shake_b.png"
+  },
+  {
+    "sha256": "c41fd527bd65067f5866940f5219034584f91079418dee2fa0db7d261454646a",
+    "path": "en_1920x1080_beat_03.png"
+  },
+  {
+    "sha256": "a3d9dc2682b377e9f70d315739c3a5d0884edabf6bda209757c5f13afeb17cfc",
+    "path": "en_1920x1080_beat_18.png"
+  },
+  {
+    "sha256": "d9b2bab3a24853c0c12165bbb8c9de084111a379866d35c540ba80172a6a7429",
+    "path": "en_1920x1080_beat_23.png"
+  },
+  {
+    "sha256": "92314000467d79c8d19af60821b9b701aec3250e68bc429184489ecde8c69db8",
+    "path": "en_1920x1080_carol_after_phone.png"
+  },
+  {
+    "sha256": "1077e554fdf090fedde16be9110ed6aded21f9c6034627c226fb483ee5a4ecf7",
+    "path": "en_1920x1080_chapter_1.png"
+  },
+  {
+    "sha256": "7a5647e9d2504e039f85c663e60c6d4dc98a5141d80c88974d844ad45fae7fe9",
+    "path": "en_1920x1080_chat_first.png"
+  },
+  {
+    "sha256": "6613433a70268b96eed2a6437b8c3c271317a4d875713e3327cf6e9c0c24f0c9",
+    "path": "en_1920x1080_notification.png"
+  },
+  {
+    "sha256": "0b2cbe4b3152a7f4474f51df8f0713103ea90d998161b25ebf861239840c3bc7",
+    "path": "en_1920x1080_shake_a.png"
+  },
+  {
+    "sha256": "14607846483120a206294e6e17e792eb80155b3a07fbccc4120918b5d595099d",
+    "path": "en_1920x1080_shake_b.png"
+  },
+  {
+    "sha256": "f91798e3ccc1e7ae0d5d5b159ac23870add72a1ebe1da7a363237270927f2033",
+    "path": "en_960x540_beat_03.png"
+  },
+  {
+    "sha256": "7ab4f0feb31c0fd863dc7fb03d2e500fd7a3888964f5001fe48e486ce3017b7b",
+    "path": "en_960x540_beat_18.png"
+  },
+  {
+    "sha256": "76cc659348d59f5a8a335060218bb029725af2969c7ce3e5ede57e68a6ad68b5",
+    "path": "en_960x540_beat_23.png"
+  },
+  {
+    "sha256": "519987753ef0cfd1b2a6fc961182d01b3d68be657b24b487e52f0b4b49ee8ae7",
+    "path": "en_960x540_carol_after_phone.png"
+  },
+  {
+    "sha256": "0b98844b6d398d7657ff0dfafa8899058a7493817a3d43a1451881c61fec4944",
+    "path": "en_960x540_chapter_1.png"
+  },
+  {
+    "sha256": "bd14efb9978e1dfe83b117c37f5fd8f00679241e728e42b3a639994eeb52a490",
+    "path": "en_960x540_chat_first.png"
+  },
+  {
+    "sha256": "7a4be10b0cce5299c01c374aaadfe7f33d1c4ff513be99e313c3b21c95962a2b",
+    "path": "en_960x540_notification.png"
+  },
+  {
+    "sha256": "318fdc3f918d6f0f6059d59ae04066d3ecf2db4d97874a62d6d26a65a27395fe",
+    "path": "en_960x540_shake_a.png"
+  },
+  {
+    "sha256": "cd245c9b7d6ab014f99771d1e8a288b7aec50cc437f236a4ff47a2c94ac737cb",
+    "path": "en_960x540_shake_b.png"
+  },
+  {
+    "sha256": "211a1043102a555c7b1cd8ee993cadb43d501d2c5d4241ae94da1c9d663e60d7",
+    "path": "zh_CN_1280x720_beat_03.png"
+  },
+  {
+    "sha256": "0a49e542ba6362c8d0c9465db9576a49b3ed68ebc2721c82bc2073de2514c9e5",
+    "path": "zh_CN_1280x720_beat_18.png"
+  },
+  {
+    "sha256": "9a201589505f1b8709fe0c6c86174fc96ef8af553c1e40a19a3b6a5d509a08e2",
+    "path": "zh_CN_1280x720_beat_23.png"
+  },
+  {
+    "sha256": "56249c4996f9cef867ef8e8ce338d1896a3211c81f09ecd06e9e79bf8cf6dc24",
+    "path": "zh_CN_1280x720_carol_after_phone.png"
+  },
+  {
+    "sha256": "7c67385cc30977310c7f47d3c6c867eb79563626ea5059ecd6660b834eec7b85",
+    "path": "zh_CN_1280x720_chapter_1.png"
+  },
+  {
+    "sha256": "61a76b996ee56c4d5de215c632ceaab2f0a48c9d6f7a43b677d85ee27d45f667",
+    "path": "zh_CN_1280x720_chat_first.png"
+  },
+  {
+    "sha256": "e1eda33b5ef72d61398e7cba25b9ba28ebfc78b6950a788fc20d5f82e705f0bb",
+    "path": "zh_CN_1280x720_notification.png"
+  },
+  {
+    "sha256": "d3bd0277da31601da0988b3130921a1300b196935a1065057c187dc88f440bda",
+    "path": "zh_CN_1280x720_shake_a.png"
+  },
+  {
+    "sha256": "ea5a9f5051ed317dfe23a67c06696eaca91b00f0cadce9de73e2120443cbe0fb",
+    "path": "zh_CN_1280x720_shake_b.png"
+  },
+  {
+    "sha256": "23df9497c9944db8b5ae24dd641609e2543e09173c6f7968c61a50faace600f9",
+    "path": "zh_CN_1920x1080_beat_03.png"
+  },
+  {
+    "sha256": "d3e8ca1337238053226b60bf0cd3944c3446b3993bbfa789b95c0b9c0572a2f1",
+    "path": "zh_CN_1920x1080_beat_18.png"
+  },
+  {
+    "sha256": "89aeb7199e657610af2c7a95ad57a0fae306275aedcfe57badfd92fa555360f0",
+    "path": "zh_CN_1920x1080_beat_23.png"
+  },
+  {
+    "sha256": "56a6a6909f5cd3376e1cf5cdea743225f7a9465d00ecba09c4fcecccb6a0b739",
+    "path": "zh_CN_1920x1080_carol_after_phone.png"
+  },
+  {
+    "sha256": "5f47cce2a2ce548968772e42b44f687ed6a17788a7bab89548e92ea54676da8d",
+    "path": "zh_CN_1920x1080_chapter_1.png"
+  },
+  {
+    "sha256": "035b63b9dcb65b770ab700d78faab056af2631731dfde5ac1cdb4c442182d2be",
+    "path": "zh_CN_1920x1080_chat_first.png"
+  },
+  {
+    "sha256": "f3cda933b2620fd6f2c4e10b217349064e172f593a0cc048b3e1beafe8e6fd94",
+    "path": "zh_CN_1920x1080_notification.png"
+  },
+  {
+    "sha256": "44a9a9e9aad860e920899a12c77c348ca17868eb173627aa4beeda69eaa2237a",
+    "path": "zh_CN_1920x1080_shake_a.png"
+  },
+  {
+    "sha256": "be3aac96831b438bc38cafce305d8bedd16cebf0d24cbe6ca19ee6ccc1a6e99c",
+    "path": "zh_CN_1920x1080_shake_b.png"
+  },
+  {
+    "sha256": "41a39ed9e83d0c33428a0afe1d204a545da3322e1a8495273b15444f51f9bada",
+    "path": "zh_CN_960x540_beat_03.png"
+  },
+  {
+    "sha256": "88ff2df071b962102c745baf021272d7995da1d5a3a2c9a5156f772d868d5f2c",
+    "path": "zh_CN_960x540_beat_18.png"
+  },
+  {
+    "sha256": "251082d112eb9c75e4dc3ed803e2d70a0686317119c31ee9904e8334950686a8",
+    "path": "zh_CN_960x540_beat_23.png"
+  },
+  {
+    "sha256": "760cbb7a06d4bb1a791da19866079978721cd9ca518779621c66a2b41b3b6674",
+    "path": "zh_CN_960x540_carol_after_phone.png"
+  },
+  {
+    "sha256": "6982c7aa10da59c04168de9cb5eb34483a0c711e371cf6b04e8fa07453e7bbdd",
+    "path": "zh_CN_960x540_chapter_1.png"
+  },
+  {
+    "sha256": "2a0a12660ea26584f34a23f4ce01c25b173a3acfcd5cd3ddf11f29d9ad81a5a2",
+    "path": "zh_CN_960x540_chat_first.png"
+  },
+  {
+    "sha256": "85abed884a50df3998b60aebbaad6ef04e1fcf01555604a3850e6aa385a0f9b0",
+    "path": "zh_CN_960x540_notification.png"
+  },
+  {
+    "sha256": "823ab8bb37b8c96fdb1ef44126806b46cea6a4ceca1e69cae5850e2cc98cca40",
+    "path": "zh_CN_960x540_shake_a.png"
+  },
+  {
+    "sha256": "64829248ac37cfab09802c041e57eca9c6808363fb8dc2d4fe41806be96b17f5",
+    "path": "zh_CN_960x540_shake_b.png"
+  }
+]

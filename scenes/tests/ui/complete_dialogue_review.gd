@@ -52,7 +52,9 @@ func run() -> void:
 	for text: String in ["那家旅馆……", "这里写着「员工离店须经管理部门批准」。", "你这人真没情趣。", "没有联系电话，也查不到正常的订房页面。", "先找到她，再弄清楚这里发生了什么。"]:
 		for beat: Dictionary in intro:
 			if beat.text == text: samples.append([beat,beat.scene])
-	samples.append([intro[2],"cafe"])
+	for beat: Dictionary in intro:
+		if beat.text.begins_with("几天前，咖啡馆。"):
+			samples.append([beat,"cafe"])
 	for sample: Array in [["lobby","不能。您是她的……？"],["lobby","现在还不是……"],["lobby","包括你吗？"],["checker_intro","保安从值班资料点领，经理在登记台批。要换身份，走远了再换。楼上跟我一样爱从门缝看人的，最容易记住这种事。袖口明明还是那个袖口，牌子倒换了。"],["403_delivered","他说下一趟先走左边。"],["501_intro","我在 309 等的，就是这张？"],["ending","一顿可不够。"]]:
 		for beat: Dictionary in data[sample[0]]:
 			if beat.text == sample[1]: samples.append([beat,"lobby" if sample[0] == "lobby" else "exterior" if sample[0] == "ending" else ""])

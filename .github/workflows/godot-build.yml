@@ -85,7 +85,7 @@ jobs:
 
       - name: Validate game entry and localization
         run: |
-          godot --headless --path . --script res://scenes/tests/core/localization_smoke.gd \
+          godot --headless --verbose --path . --script res://scenes/tests/core/localization_smoke.gd \
             2>&1 | tee "$RUNNER_TEMP/localization.log"
           grep -Fx 'LOCALIZATION_SMOKE: PASS' "$RUNNER_TEMP/localization.log"
           if grep -E '^(SCRIPT )?ERROR:' "$RUNNER_TEMP/localization.log"; then

@@ -1,0 +1,50 @@
+[
+  {
+    "sha256": "5905267e28ad103c16cee80ffa72bccbb95e1db90ca175dd09e888484bf66fe7",
+    "path": "project.godot"
+  },
+  {
+    "sha256": "9b0beb0324dae2a532746f1b5160eee426d01bed827fa81b893a7f1da1fbfaf1",
+    "path": "scenes/main.gd"
+  },
+  {
+    "sha256": "0b6d0561a4d64cb76cfe3785641155361fa55440a091bce53af80cfce51eec50",
+    "path": "scenes/main.tscn"
+  },
+  {
+    "sha256": "a111cd86929652726aa001bac7c944dcc0db193015a24387da9abbfa2c5700a5",
+    "path": "scenes/ui/dialogue.gd"
+  },
+  {
+    "sha256": "2000213e8716561fc83d13d1d6416f59e61a7fb0aa712581a303c88cd8124c2b",
+    "path": "scenes/ui/dialogue.tscn"
+  },
+  {
+    "sha256": "d8c9de0aa909be9cef93b87061bb8142fde9562d14afe2a542b682f6ef31ca12",
+    "path": "scenes/ui/intro_script.tsv"
+  },
+  {
+    "sha256": "8f3a09938e5aa848c98a1572cef9943d9a4f117dd5c59fc86026ed8146a17f21",
+    "path": "scenes/ui/story_revision.json"
+  },
+  {
+    "sha256": "0d66c37c6f18ee58d98fa80795312a7a573b07bc3e9fd23fca72b964b077ef16",
+    "path": "scenes/ui/story_portrait_matches.json"
+  },
+  {
+    "sha256": "6305a219f20dd2277bd7d04c58cb066653b850c1eff6f7d5957c503ba0e9174e",
+    "path": "scenes/ui/story_revision_source.txt"
+  },
+  {
+    "sha256": "40262455551c61d6a09079971d9536157b77ec25b12303d0f973a7ef122101c3",
+    "path": "localization/en.po"
+  },
+  {
+    "sha256": "4841a655fde6ee1758bb2815ea42ffee5c6065bc69588ae65c4c82db60e358c4",
+    "path": "scenes/tests/core/localization_smoke.gd"
+  },
+  {
+    "sha256": "571f106ca68c1b7d907e046560a2190540c0a6e0e0a23043b764fe3c8270055d",
+    "path": "scenes/tests/ui/phone_intro_review.gd"
+  }
+]

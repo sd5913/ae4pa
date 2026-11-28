@@ -196,3 +196,8 @@ PR #74 合并前：独立后段夹具481cd5c已完成中英文Windows定向复�
 
 
 2026-11-27发布接力：用户现已授权本轮提交、push和合入main；同步远端后确认基线仍为67c27fd8，沿用本轮候选散列与已完成验证。最终远端CI和合并状态以本轮PR为准。
+
+2026-11-29 PR #90 退出诊断：398e47a 的构建仍在翻译断言全部通过后报告两个 ObjectDB 实例及一个资源未释放，单纯释放主场景未解决远端退出检查；不得视为已修复。仅对该检查增加 --verbose 输出以定位资源路径，保留 grep 错误失败条件和全部断言。远端修订与最终结论继续记录于 PR #90。
+## 2026-11-29 PR #90 音频退出残留定位
+
+--verbose 远端日志已确认残留为 the_haunted_ballroom_1.mp3 的 AudioStreamMP3 / AudioStreamPlaybackMP3，并非对白数据或图片。释放主场景后固定四帧在高帧率 headless 环境中可能早于下一次音频混音，因此本地化测试改为使用 WeakRef 观察播放实例，在最多一秒内等待实际释放，并新增失败断言；未改音乐运行逻辑或忽略 CI 错误。本地正常模式检查退出 0，证据见[精确资源名称](docs/qa_evidence/phone_intro_restore_20261129/publish/ci_audio_leak_excerpt.log)与[释放断言结果](docs/qa_evidence/phone_intro_restore_20261129/publish/localization_audio_release.log)；最新 head 的远端检查待完成。
