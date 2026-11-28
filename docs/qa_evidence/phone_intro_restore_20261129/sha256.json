@@ -1,0 +1,290 @@
+[
+  {
+    "sha256": "cfa5ca7c0ace25c87e576a706f14d56a9e83290c5f3981d18345e9f0dcd13576",
+    "path": "matrix.png"
+  },
+  {
+    "sha256": "53bed52ba0c44f3451152976d46f6939446da20d083e336c762811d7d93defa9",
+    "path": "README.md"
+  },
+  {
+    "sha256": "9000ea9716796196c0feae780dea2551eedc20e77c4390bc99c36d2acb5b0e01",
+    "path": "captures/en_1280x720_beat_03.png"
+  },
+  {
+    "sha256": "01f0efb956858bdf814dcd6517f55620d8349ad4d709892e6ad393a5e0196377",
+    "path": "captures/en_1280x720_beat_18.png"
+  },
+  {
+    "sha256": "bc7df923d6562c8d56f25612f5832c5519e3de1f0ed7ba5786d813aa0187f4c2",
+    "path": "captures/en_1280x720_beat_23.png"
+  },
+  {
+    "sha256": "f593171e6a889f74b2ed76c1ee8ee530972dedbe941855f4ed420ce92d119579",
+    "path": "captures/en_1280x720_carol_after_phone.png"
+  },
+  {
+    "sha256": "f70e8e2e9f3dc7f24ec988752923fc870877ae5eec2f6dfe14907d81a5058250",
+    "path": "captures/en_1280x720_chapter_1.png"
+  },
+  {
+    "sha256": "dd877a432110c75f6b356112ed3e1a4f6cf8a4ead7c52243a211a3b77ad7a766",
+    "path": "captures/en_1280x720_chat_first.png"
+  },
+  {
+    "sha256": "f6f0c8828fc0ba6c6904fdfcf084d3c101caba6c123585cb3437fc74d34126ca",
+    "path": "captures/en_1280x720_notification.png"
+  },
+  {
+    "sha256": "194149714404996718b10376d36a1f45fdff42e60ef3cfa3960c63e03e0f409b",
+    "path": "captures/en_1280x720_shake_a.png"
+  },
+  {
+    "sha256": "546477334b9d11bca7bfb82aa12433f11699b84b2840b822d2e9f3d548e459b6",
+    "path": "captures/en_1280x720_shake_b.png"
+  },
+  {
+    "sha256": "c41fd527bd65067f5866940f5219034584f91079418dee2fa0db7d261454646a",
+    "path": "captures/en_1920x1080_beat_03.png"
+  },
+  {
+    "sha256": "a3d9dc2682b377e9f70d315739c3a5d0884edabf6bda209757c5f13afeb17cfc",
+    "path": "captures/en_1920x1080_beat_18.png"
+  },
+  {
+    "sha256": "d9b2bab3a24853c0c12165bbb8c9de084111a379866d35c540ba80172a6a7429",
+    "path": "captures/en_1920x1080_beat_23.png"
+  },
+  {
+    "sha256": "9c9df52ce3318a622241c492ef80984cc640d525b4fe6b461f2b56dcad385bc1",
+    "path": "captures/en_1920x1080_carol_after_phone.png"
+  },
+  {
+    "sha256": "fc70efafbf4e85bb0e96a6ddeabd105fbc2ba6f59d073806ede018c26785f33c",
+    "path": "captures/en_1920x1080_chapter_1.png"
+  },
+  {
+    "sha256": "7a5647e9d2504e039f85c663e60c6d4dc98a5141d80c88974d844ad45fae7fe9",
+    "path": "captures/en_1920x1080_chat_first.png"
+  },
+  {
+    "sha256": "6613433a70268b96eed2a6437b8c3c271317a4d875713e3327cf6e9c0c24f0c9",
+    "path": "captures/en_1920x1080_notification.png"
+  },
+  {
+    "sha256": "02d1ae7ee7fd5c51816ab4b895382abf92461f2cdb49cf79aa6082e874cc2ac4",
+    "path": "captures/en_1920x1080_shake_a.png"
+  },
+  {
+    "sha256": "96ea359e4cd551f7aa434d795f6426688bbe3891dba21015408beda78cfe10a6",
+    "path": "captures/en_1920x1080_shake_b.png"
+  },
+  {
+    "sha256": "f91798e3ccc1e7ae0d5d5b159ac23870add72a1ebe1da7a363237270927f2033",
+    "path": "captures/en_960x540_beat_03.png"
+  },
+  {
+    "sha256": "7ab4f0feb31c0fd863dc7fb03d2e500fd7a3888964f5001fe48e486ce3017b7b",
+    "path": "captures/en_960x540_beat_18.png"
+  },
+  {
+    "sha256": "76cc659348d59f5a8a335060218bb029725af2969c7ce3e5ede57e68a6ad68b5",
+    "path": "captures/en_960x540_beat_23.png"
+  },
+  {
+    "sha256": "b8174ab0ca68e6229e80b121207df39d4b06fe92e6b722fa468f78956890ded3",
+    "path": "captures/en_960x540_carol_after_phone.png"
+  },
+  {
+    "sha256": "360bd646d3ffe3377aa7086b5278bdee475edc2cb0db2c77529b7f49686a6acd",
+    "path": "captures/en_960x540_chapter_1.png"
+  },
+  {
+    "sha256": "bd14efb9978e1dfe83b117c37f5fd8f00679241e728e42b3a639994eeb52a490",
+    "path": "captures/en_960x540_chat_first.png"
+  },
+  {
+    "sha256": "7a4be10b0cce5299c01c374aaadfe7f33d1c4ff513be99e313c3b21c95962a2b",
+    "path": "captures/en_960x540_notification.png"
+  },
+  {
+    "sha256": "d668a5430a7a24206150741a1e913f3c48422d77827854d415c0d687e2a39bdd",
+    "path": "captures/en_960x540_shake_a.png"
+  },
+  {
+    "sha256": "41a1e1710e895672fdb2ae0efa5d50ed8b4baf7c1990e638b55684c49e61bb74",
+    "path": "captures/en_960x540_shake_b.png"
+  },
+  {
+    "sha256": "211a1043102a555c7b1cd8ee993cadb43d501d2c5d4241ae94da1c9d663e60d7",
+    "path": "captures/zh_CN_1280x720_beat_03.png"
+  },
+  {
+    "sha256": "0a49e542ba6362c8d0c9465db9576a49b3ed68ebc2721c82bc2073de2514c9e5",
+    "path": "captures/zh_CN_1280x720_beat_18.png"
+  },
+  {
+    "sha256": "9a201589505f1b8709fe0c6c86174fc96ef8af553c1e40a19a3b6a5d509a08e2",
+    "path": "captures/zh_CN_1280x720_beat_23.png"
+  },
+  {
+    "sha256": "b9e84f92215f7663fa1ea14c9bfaa170482eb6979092ae0f67898c47d1d47432",
+    "path": "captures/zh_CN_1280x720_carol_after_phone.png"
+  },
+  {
+    "sha256": "159eacb5840f8124e7af586bbd93ab1169fc1e055ffc3937bcb8541fc9929ddf",
+    "path": "captures/zh_CN_1280x720_chapter_1.png"
+  },
+  {
+    "sha256": "61a76b996ee56c4d5de215c632ceaab2f0a48c9d6f7a43b677d85ee27d45f667",
+    "path": "captures/zh_CN_1280x720_chat_first.png"
+  },
+  {
+    "sha256": "e1eda33b5ef72d61398e7cba25b9ba28ebfc78b6950a788fc20d5f82e705f0bb",
+    "path": "captures/zh_CN_1280x720_notification.png"
+  },
+  {
+    "sha256": "d5ad160ded7a89e6de8f7017377fc3b419a50267b62368bf7475fdcdad549dff",
+    "path": "captures/zh_CN_1280x720_shake_a.png"
+  },
+  {
+    "sha256": "6838f43191af8955fde2a5b3bf8bac9aab94e483c349214362ab15ef3775936d",
+    "path": "captures/zh_CN_1280x720_shake_b.png"
+  },
+  {
+    "sha256": "23df9497c9944db8b5ae24dd641609e2543e09173c6f7968c61a50faace600f9",
+    "path": "captures/zh_CN_1920x1080_beat_03.png"
+  },
+  {
+    "sha256": "d3e8ca1337238053226b60bf0cd3944c3446b3993bbfa789b95c0b9c0572a2f1",
+    "path": "captures/zh_CN_1920x1080_beat_18.png"
+  },
+  {
+    "sha256": "89aeb7199e657610af2c7a95ad57a0fae306275aedcfe57badfd92fa555360f0",
+    "path": "captures/zh_CN_1920x1080_beat_23.png"
+  },
+  {
+    "sha256": "74eb9d362bb285474dc8ad5063953f2513a7fbb239dc2fd60dabefae517cc7d0",
+    "path": "captures/zh_CN_1920x1080_carol_after_phone.png"
+  },
+  {
+    "sha256": "5aff389a3f7adf20d93dacbbd09ec75ab54ce548071b96d0dfc0991d22b879f0",
+    "path": "captures/zh_CN_1920x1080_chapter_1.png"
+  },
+  {
+    "sha256": "035b63b9dcb65b770ab700d78faab056af2631731dfde5ac1cdb4c442182d2be",
+    "path": "captures/zh_CN_1920x1080_chat_first.png"
+  },
+  {
+    "sha256": "f3cda933b2620fd6f2c4e10b217349064e172f593a0cc048b3e1beafe8e6fd94",
+    "path": "captures/zh_CN_1920x1080_notification.png"
+  },
+  {
+    "sha256": "71351ce4b31dd28fdcd319606d10a3b0236158267467a75f592aec071cbd7904",
+    "path": "captures/zh_CN_1920x1080_shake_a.png"
+  },
+  {
+    "sha256": "220aee70ccf40e64449d829ffe06b0b28a1dc464a952043293a5aae63144b010",
+    "path": "captures/zh_CN_1920x1080_shake_b.png"
+  },
+  {
+    "sha256": "41a39ed9e83d0c33428a0afe1d204a545da3322e1a8495273b15444f51f9bada",
+    "path": "captures/zh_CN_960x540_beat_03.png"
+  },
+  {
+    "sha256": "88ff2df071b962102c745baf021272d7995da1d5a3a2c9a5156f772d868d5f2c",
+    "path": "captures/zh_CN_960x540_beat_18.png"
+  },
+  {
+    "sha256": "251082d112eb9c75e4dc3ed803e2d70a0686317119c31ee9904e8334950686a8",
+    "path": "captures/zh_CN_960x540_beat_23.png"
+  },
+  {
+    "sha256": "d7d7f93daea320fdcc58deb9dd7d8aecc077b77711d0e57a4b25b5258a4c307a",
+    "path": "captures/zh_CN_960x540_carol_after_phone.png"
+  },
+  {
+    "sha256": "0fa7f96471eb19103a505aa5a70f7a2542de3dd3539b22bf4dd188ca7d3dce77",
+    "path": "captures/zh_CN_960x540_chapter_1.png"
+  },
+  {
+    "sha256": "2a0a12660ea26584f34a23f4ce01c25b173a3acfcd5cd3ddf11f29d9ad81a5a2",
+    "path": "captures/zh_CN_960x540_chat_first.png"
+  },
+  {
+    "sha256": "85abed884a50df3998b60aebbaad6ef04e1fcf01555604a3850e6aa385a0f9b0",
+    "path": "captures/zh_CN_960x540_notification.png"
+  },
+  {
+    "sha256": "c69dba7ac535262a910de2e1f717a407cd482b2917153cdbeaee2a49bcbeb6c1",
+    "path": "captures/zh_CN_960x540_shake_a.png"
+  },
+  {
+    "sha256": "f12f2ba65a957b34640b66cd0d5cfa96fda16d93434f3207eef93864b37ed254",
+    "path": "captures/zh_CN_960x540_shake_b.png"
+  },
+  {
+    "sha256": "668592eec51f5777e7ca4f1929cf521df475ee9a5598f729e0cee24562850c28",
+    "path": "logs/phone_chapters.log"
+  },
+  {
+    "sha256": "723bb7736ab31ea7e9f03b35c600b7738dd31ee7ac1498fc68b5146578b8dd4c",
+    "path": "logs/phone_dialogue.log"
+  },
+  {
+    "sha256": "d733c5e8dc5dc229beb935d1f5c19281a892202c7de9b5437fe8506e68dccfd7",
+    "path": "logs/phone_graphics_initial.log"
+  },
+  {
+    "sha256": "5119f6fe858de9f20b819429a6b98def5ca63e4ba1c20ddce6ba0671b32cacc8",
+    "path": "logs/phone_graphics.log"
+  },
+  {
+    "sha256": "96feb63250997448134dba236ea425088b907011f2dde00e459ea1a35df49fd2",
+    "path": "logs/phone_import.log"
+  },
+  {
+    "sha256": "6451e717837905908a2bd36e4adb3fe8cf1baa83d4be6d06bc609eb9b7257a00",
+    "path": "logs/phone_intro_flow.log"
+  },
+  {
+    "sha256": "b35705ed5bca49b3e571c5195413dd62ca70897d4a8c8d090cd0c68eedd4c3d7",
+    "path": "logs/phone_localization.log"
+  },
+  {
+    "sha256": "459fe05dee9befe76aa891e26ae59c23c7e921d6d61348b2be687047a460f52f",
+    "path": "logs/phone_preview.log"
+  },
+  {
+    "sha256": "4a8dc72c8b609b36005a5a3bacd3c5a264de640e5344f3b61c1f4e98f499b7e2",
+    "path": "logs/phone_source_import.log"
+  },
+  {
+    "sha256": "bfc760deb242d778968533dae132c91ef76e614a3d5e0eda587aa369a181fc70",
+    "path": "logs/phone_surface.log"
+  },
+  {
+    "sha256": "feb0f5441a80e66d87d779ac9cc966881a49d519dda2dbdf6e40d64931560886",
+    "path": "scenes/ui/dialogue.gd"
+  },
+  {
+    "sha256": "2000213e8716561fc83d13d1d6416f59e61a7fb0aa712581a303c88cd8124c2b",
+    "path": "scenes/ui/dialogue.tscn"
+  },
+  {
+    "sha256": "d8c9de0aa909be9cef93b87061bb8142fde9562d14afe2a542b682f6ef31ca12",
+    "path": "scenes/ui/intro_script.tsv"
+  },
+  {
+    "sha256": "8f3a09938e5aa848c98a1572cef9943d9a4f117dd5c59fc86026ed8146a17f21",
+    "path": "scenes/ui/story_revision.json"
+  },
+  {
+    "sha256": "d6c438227a6de570f59544684c10867173412dfe4cdaa67c0505383e8944a0df",
+    "path": "scenes/tests/ui/phone_intro_review.gd"
+  },
+  {
+    "sha256": "40262455551c61d6a09079971d9536157b77ec25b12303d0f973a7ef122101c3",
+    "path": "localization/en.po"
+  }
+]

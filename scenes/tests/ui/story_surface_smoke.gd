@@ -38,23 +38,19 @@ func run() -> void:
 	check(menu.get("_ready_for_input"), "cover opening finishes with interactive buttons")
 	await shot("menu")
 	main.get_node("MenuLayer/MainMenu/%StartButton").pressed.emit()
-	check(dialogue.get("_line_index") == 0 and (dialogue._chapter_card.active or dialogue.get_node("%Portrait").visible), "complete prologue opens at the first bedroom beat")
-	dialogue.set_skip_transitions_for_test(true)
-	# The complete source no longer includes phone messages. Keep reusable SMS
-	# gesture coverage through an explicit fixture, then continue the real intro.
+	check(dialogue.get("_line_index") == 0 and (dialogue._chapter_card.active or dialogue.get_node("%SMSPanel").visible), "prologue opens at the restored phone beat behind chapter one")
+	dialogue.cancel_presentation()
 	dialogue.set_skip_transitions_for_test(false)
-	var fixture: Array[Dictionary] = [{"scene":"bedroom","speaker":"","expression":"none","mode":"cue","text":"手机组件测试"}]
-	for text: String in ["到门口了","照片上看起来没这么旧","你还可以掉头。","来都来了","我先去上班啦，下班跟你说","下班了？","你今天回来吗？","Terese，看到回我一下。"]:
-		fixture.append({"scene":"bedroom","speaker":"Terese","expression":"none","mode":"sms","text":text})
-	fixture.append_array(dialogue.get("_beats"))
-	dialogue._beats.assign(fixture)
-	dialogue._show_story_beat()
-	click(Vector2(30, 300))
+	dialogue.show_dialogue("V4_INTRO")
+	check(dialogue._chapter_card.active and not dialogue.get_node("%SMSPanel").visible, "chapter one precedes the phone")
+	await create_timer(2.95).timeout
+	dialogue._chapter_card.dismiss()
+	await create_timer(0.95).timeout
 	var first_sms: int = dialogue.get("_line_index")
 	var phone_deadline := Time.get_ticks_msec() + 5000
 	while not dialogue.get("_phone_waiting_for_open") and Time.get_ticks_msec() < phone_deadline:
 		await process_frame
-	check(dialogue.visible and first_sms == 1, "narration leads to archived SMS with no auto advance")
+	check(dialogue.visible and first_sms == 0, "chapter dismissal leads to original incoming SMS with no auto advance")
 	check(dialogue.get_node_or_null("%ContinueButton") == null, "continue button and its focus target removed")
 	check(not dialogue.get_node("%SkipButton").visible, "first reading cannot skip")
 	click(Vector2(30, 300))

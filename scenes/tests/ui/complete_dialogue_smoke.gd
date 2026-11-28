@@ -44,10 +44,13 @@ func run() -> void:
 				check(portrait.texture != null, "approved portrait resolves")
 				if not Portraits.role(beat.speaker).is_empty():
 					check(portrait.texture == Portraits.portrait(beat.speaker, beat.expression), "exact authored expression: " + beat.text)
+			elif beat.mode == "sms":
+				check(dialogue.get_node("%SMSPanel").visible and not dialogue.get_node("%DialogueFrame").visible, "restored SMS uses original phone")
+				check(portrait.texture == null, "SMS clears portrait")
 			else:
 				check(portrait.texture == null, "narration/CG clears preceding portrait")
-				check(dialogue.get_node("%StageCue").visible and not dialogue.get_node("%DialogueFrame").visible if dialogue.uses_background_narration(beat.text) else dialogue.get_node("%Line").position.x < dialogue.size.x * 0.15, "background narration or full-width blank layout")
-	check(count == 170, "all 170 full-list beats included")
+				check(dialogue.get_node("%StageCue").visible and not dialogue.get_node("%DialogueFrame").visible if beat.mode == "cue" or dialogue.uses_background_narration(beat.text) else dialogue.get_node("%Line").position.x < dialogue.size.x * 0.15, "background narration or full-width blank layout")
+	check(count == 194, "original 170 full-list beats plus 24 restored phone/cue beats included")
 	dialogue.cancel_presentation()
 	root.get_node("Localization").set_language("zh_CN")
 	dialogue.set_skip_transitions_for_test(true)
@@ -60,7 +63,7 @@ func run() -> void:
 	var expected: Array[String] = []
 	for beat: Dictionary in data.intro: expected.append(beat.text)
 	check(scenes == ["bedroom", "cafe", "bedroom", "exterior"], "bedroom/cafe/bedroom/exterior restored in order")
-	check(actual == expected and actual[0] == "那家旅馆……", "actual intro uses complete authored content")
+	check(actual == expected and actual[0] == "你睡了吗？" and actual[24] == "那家旅馆……", "actual intro uses complete authored content")
 	dialogue.cancel_presentation()
 	dialogue.show_dialogue("V4_MANAGER_TALK")
 	check(dialogue._beats.size() == 23 and dialogue._beats[-1].text == "现在还不是……", "complete manager scene including restored ending")
@@ -83,5 +86,5 @@ func run() -> void:
 	check(finished.size() == 1, "extra input cannot repeat completion")
 	main.queue_free()
 	await process_frame
-	if failures.is_empty(): print("PASS: 170 beats, 23 approved expressions, four prologue scenes, manager ending, monster/CG routing, English and completion isolation")
+	if failures.is_empty(): print("PASS: 194 beats including original phone chat, 23 approved expressions, four prologue scenes, manager ending, monster/CG routing, English and completion isolation")
 	quit(0 if failures.is_empty() else 1)

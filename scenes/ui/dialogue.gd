@@ -202,6 +202,7 @@ func show_dialogue(dialogue_id: String) -> void:
 	_history_serial += 1
 	_pointer.reset()
 	_finish_phone_animation()
+	_sms_panel.hide()
 	var old_scene := _current_scene
 	_dialogue_id = dialogue_id
 	_line_index = 0
@@ -336,6 +337,13 @@ func present_background_narration(text: String) -> void:
 	_cue.show()
 	show()
 func present_revision_beat(beat: Dictionary) -> void:
+	if beat.get("mode", "") == "sms":
+		_present_phone_message(beat)
+		show()
+		return
+	if beat.get("mode", "") == "cue":
+		present_background_narration(tr(str(beat["text"])))
+		return
 	if uses_background_narration(str(beat["text"])):
 		present_background_narration(tr(str(beat["text"])))
 		return
@@ -537,15 +545,7 @@ func _show_story_beat() -> void:
 	_cue.hide()
 	_story_title.hide()
 	if mode == "sms":
-		_sms_panel.show()
-		_frame.hide()
-		_portrait.hide()
-		_add_sms_message(str(beat.speaker), str(beat.text))
-		if _sms_history.get_child_count() == 1 and not _skip_transitions:
-			# This is an old conversation, not an incoming rescue message.
-			_phone_chat.hide()
-			_phone_notification.show()
-			_phone_waiting_for_open = true
+		_present_phone_message(beat)
 	elif mode == "cue":
 		_sms_panel.hide()
 		_frame.hide()
@@ -562,6 +562,20 @@ func _show_story_beat() -> void:
 		_frame.show()
 		_display_portrait(str(beat.speaker), str(beat.expression))
 		_fit_dialogue_text.call_deferred()
+
+
+func _present_phone_message(beat: Dictionary) -> void:
+	_sms_panel.show()
+	_frame.hide()
+	_speaker.hide()
+	_line.hide()
+	_cue.hide()
+	_story_title.hide()
+	_portrait.hide()
+	_portrait.texture = null
+	_add_sms_message(str(beat.speaker), str(beat.text))
+	if _sms_history.get_child_count() == 1 and not _skip_transitions:
+		_animate_phone_notification()
 
 
 func _animate_phone_notification() -> void:

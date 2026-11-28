@@ -43,13 +43,13 @@ func _run_smoke() -> void:
 	dialogue.show_dialogue("V4_INTRO")
 	await get_tree().process_frame
 	await get_tree().process_frame
-	_check(dialogue.visible and dialogue._beats.size() == 37, "Revised intro opens with full TSV content", failures)
+	_check(dialogue.visible and dialogue._beats.size() == 61, "Revised intro opens with full TSV content", failures)
 	_check(not dialogue.get_node("%SkipButton").visible, "First-run intro cannot be skipped", failures)
 	_check(dialogue.get_node("%Background").texture != null, "Intro background texture is loaded", failures)
-	_check(dialogue.get_node("%Portrait").visible and dialogue._beats[0].scene == "bedroom", "Bedroom opens with approved Carol", failures)
+	_check(dialogue.get_node("%SMSPanel").visible and dialogue._beats[0].text == "你睡了吗？", "Bedroom opens with restored original phone chat", failures)
 	dialogue._advance()
-	_check(not dialogue.get_node("%SMSPanel").visible and dialogue.get_node("%Line").visible, "Authored bedroom dialogue uses the story frame", failures)
-	_check(dialogue._beats[1].text == "就是她之前提过的夜班兼职。", "Second bedroom line preserved", failures)
+	_check(dialogue.get_node("%SMSPanel").visible and not dialogue.get_node("%DialogueFrame").visible, "Original messages use the phone surface", failures)
+	_check(dialogue._beats[1].text == "能来接我吗", "Second original phone message preserved", failures)
 	var first_index: int = dialogue._line_index
 	var key := InputEventAction.new()
 	key.action = "interact"
@@ -58,7 +58,7 @@ func _run_smoke() -> void:
 	_check(dialogue._line_index == first_index + 1, "E action advances one beat", failures)
 	var mouse := InputEventMouseButton.new()
 	mouse.button_index = MOUSE_BUTTON_LEFT
-	mouse.position = dialogue.get_node("%DialogueFrame").get_global_rect().get_center()
+	mouse.position = dialogue.get_node("%SMSScroll").get_global_rect().get_center()
 	mouse.pressed = true
 	dialogue._input(mouse)
 	mouse = mouse.duplicate()

@@ -53,6 +53,7 @@ func run() -> void:
 		check(starts.size() == 4, "four prologue chapters")
 		for i in range(starts.size()):
 			if i > 0:
+				dialogue._finish_phone_animation() # Fixture jumps past the restored phone; its real flow has a separate review.
 				dialogue._line_index = starts[i] - 1
 				dialogue._set_scene(dialogue._beats[starts[i]-1].scene, false)
 				dialogue._show_story_beat()

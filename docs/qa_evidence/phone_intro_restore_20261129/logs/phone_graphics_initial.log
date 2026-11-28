@@ -1,0 +1,55 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 546.30 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3070 Laptop GPU
+
+FAIL: each input advances once without repeating shake 1
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 2
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 3
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 4
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 5
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 6
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 7
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 8
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 9
+FAIL: message uses original phone
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 10
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 11
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 12
+FAIL: original call/typing stage cue retained
+FAIL: each input advances once without repeating shake 13
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 14
+FAIL: message uses original phone
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 15
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 16
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 17
+FAIL: original call/typing stage cue retained
+FAIL: each input advances once without repeating shake 18
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 19
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 20
+FAIL: message uses original phone
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 21
+FAIL: message uses original phone
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake 22
+FAIL: message uses original phone
+FAIL: each input advances once without repeating shake 23
+FAIL: original call/typing stage cue retained
+FAIL: phone returns to current Carol dialogue without an extra chapter
+PHONE_INTRO_REVIEW: FAIL; 54 captures
