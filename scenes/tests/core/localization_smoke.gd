@@ -143,6 +143,11 @@ func _run() -> void:
 	_check(FileAccess.get_file_as_bytes(story_progress_path) == story_progress,
 		"Locale changes leave the story progress file intact")
 	DirAccess.remove_absolute(story_progress_path)
+	# Release the real scene while the engine is still running so pending SMS
+	# layout callbacks and the looping audio player finish before process exit.
+	main.queue_free()
+	for frame in range(4):
+		await process_frame
 	_finish()
 
 

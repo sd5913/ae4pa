@@ -27,6 +27,7 @@ func settle() -> void:
 
 func press_e() -> void:
 	var event := InputEventKey.new()
+	event.device = 77
 	event.physical_keycode = KEY_E
 	event.pressed = true
 	dialogue._input(event)
@@ -34,6 +35,7 @@ func press_e() -> void:
 func click(point: Vector2) -> void:
 	var event := InputEventMouseButton.new()
 	event.position = point
+	event.device = 77
 	event.button_index = MOUSE_BUTTON_LEFT
 	event.pressed = true
 	dialogue._input(event)
@@ -43,7 +45,8 @@ func click(point: Vector2) -> void:
 func shot(name: String) -> void:
 	await settle()
 	if evidence.is_empty() or DisplayServer.get_name() == "headless": return
-	await RenderingServer.frame_post_draw
+	# Render explicitly when the verification window is hidden or loses focus.
+	RenderingServer.force_draw(false)
 	check(root.get_texture().get_image().save_png(evidence.path_join(name + ".png")) == OK, "capture " + name)
 	captures += 1
 
@@ -55,6 +58,10 @@ func run() -> void:
 	await settle()
 	main.get_node("MenuLayer/MainMenu")._finish_opening()
 	dialogue = main.get_node("StoryLayer/Dialogue")
+	# The fixture calls the real handler below; native desktop events must not
+	# interleave an extra click while a screenshot waits for the next frame.
+	# The main-flow smoke separately covers normal viewport input dispatch.
+	dialogue.set_process_input(false)
 	dialogue.set_progress_file_path_for_test("user://phone_intro_review.cfg")
 	dialogue.reset_progress_file_for_test()
 	dialogue.dialogue_finished.connect(func(id: String): completed.append(id))

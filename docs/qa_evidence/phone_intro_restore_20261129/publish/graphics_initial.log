@@ -1,0 +1,107 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+OpenGL API 3.3.0 NVIDIA 546.30 - Compatibility - Using Device: NVIDIA - NVIDIA GeForce RTX 3070 Laptop GPU
+
+CASE zh_CN_960x540_
+CASE zh_CN_1280x720_
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=1 actual=2 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=2 actual=4 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=3 actual=5 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=4 actual=6 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=5 actual=7 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=6 actual=8 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=7 actual=9 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=8 actual=10 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=9 actual=11 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=10 actual=12 tween=false transition=false
+FAIL: message uses original phone
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=11 actual=13 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=12 actual=14 tween=false transition=false
+FAIL: original call/typing stage cue retained
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=13 actual=15 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=14 actual=16 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=15 actual=17 tween=false transition=false
+FAIL: message uses original phone
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=16 actual=18 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=17 actual=19 tween=false transition=false
+FAIL: original call/typing stage cue retained
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=18 actual=20 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=19 actual=21 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=20 actual=22 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=21 actual=23 tween=false transition=false
+FAIL: message uses original phone
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=22 actual=24 tween=false transition=false
+FAIL: message uses original phone
+FAIL: each input advances once without repeating shake zh_CN_1280x720_ expected=23 actual=25 tween=false transition=false
+FAIL: original call/typing stage cue retained
+FAIL: phone returns to current Carol dialogue without an extra chapter
+CASE zh_CN_1920x1080_
+CASE en_960x540_
+FAIL: each input advances once without repeating shake en_960x540_ expected=1 actual=2 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=2 actual=3 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=3 actual=4 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=4 actual=5 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=5 actual=6 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=6 actual=7 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=7 actual=8 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=8 actual=9 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=9 actual=10 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=10 actual=11 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=11 actual=12 tween=false transition=false
+FAIL: message uses original phone
+FAIL: each input advances once without repeating shake en_960x540_ expected=12 actual=13 tween=false transition=false
+FAIL: original call/typing stage cue retained
+FAIL: each input advances once without repeating shake en_960x540_ expected=13 actual=14 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=14 actual=15 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=15 actual=16 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=16 actual=17 tween=false transition=false
+FAIL: message uses original phone
+FAIL: each input advances once without repeating shake en_960x540_ expected=17 actual=18 tween=false transition=false
+FAIL: original call/typing stage cue retained
+FAIL: each input advances once without repeating shake en_960x540_ expected=18 actual=19 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=19 actual=20 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=20 actual=21 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=21 actual=22 tween=false transition=false
+FAIL: original bubble wording and wrapped height
+FAIL: each input advances once without repeating shake en_960x540_ expected=22 actual=23 tween=false transition=false
+FAIL: message uses original phone
+FAIL: each input advances once without repeating shake en_960x540_ expected=23 actual=24 tween=false transition=false
+FAIL: original call/typing stage cue retained
+FAIL: phone returns to current Carol dialogue without an extra chapter
+CASE en_1280x720_
+CASE en_1920x1080_
+PHONE_INTRO_REVIEW: FAIL; 54 captures
