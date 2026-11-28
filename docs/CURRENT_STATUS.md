@@ -92,3 +92,5 @@ C最终同步3563072已保留PR #76存档集成（main@4e6405a）；此前D记�
 按用户实机反馈，罩层改为保留原场景色相、叠加半透明暖棕纸纹，取消先灰度化后整体棕色映射；标题附近柔和压暗。唯一运行差异为chapter_paper.gdshader，文字、装饰、时间、剧情和输入未改。独立验证副本重新导入退出0，最终材质中英三尺寸84幅Compatibility报幕/旁白与门控复查退出0。未重新执行完整主线或导出；原运行中的游戏须重启加载。见[保色修订证据](qa_evidence/animated_chapters_20261128/color_revision/README.md)。未提交推送。
 
 2026-11-28 罩层浓度追加：棕色染层由18%–26%提高到35%–45%，继续保留场景色相。仅材质参数变化，Compatibility双语三尺寸84幅复查退出0。见[最新不透明度记录](qa_evidence/animated_chapters_20261128/color_revision/README.md)。
+
+2026-11-28 报幕发布接力：用户已授权提交、push及合入main。本次只发布报幕，人物放大8%和其他候选美术仍独立保留本地。已移除人物尺寸增量后复测确切暂存候选：四项功能及中英三尺寸84幅Compatibility检查全部退出0。[发布候选、指纹、复核范围与日志](qa_evidence/animated_chapters_20261128/publish/README.md)。最终远端CI和合并状态以本次PR为准。
