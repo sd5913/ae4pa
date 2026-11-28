@@ -281,6 +281,8 @@ func _sync_story_controls() -> void:
 
 
 func _exit_tree() -> void:
+	background_music.stop()
+	background_music.stream = null
 	notebook.close_help()
 	bag.close_bag()
 	GameManager.set_modal_open(STORY_MODAL, false)
