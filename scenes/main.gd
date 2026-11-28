@@ -6,6 +6,7 @@ const TASK_02_INTRO: String = "TASK_02_INTRO"
 const TASK_03_INTRO: String = "TASK_03_INTRO"
 const HOTEL_MUSIC := preload("res://assets/music/the_haunted_ballroom_1.mp3")
 const ESCAPE_MUSIC := preload("res://assets/music/propulsive_tension_2.mp3")
+const FINALE_MUSIC := preload("res://assets/music/the_final_word.mp3")
 var _active_dialogue_id: String = ""
 var _autosave_pending := false
 var _notice_template := ""
@@ -228,7 +229,14 @@ func _start_session() -> void:
 
 
 func _sync_background_music() -> void:
-	var track: AudioStream = ESCAPE_MUSIC if GameManager.has_friend else HOTEL_MUSIC
+	_play_background_music(ESCAPE_MUSIC if GameManager.has_friend else HOTEL_MUSIC)
+
+
+func play_finale_music() -> void:
+	_play_background_music(FINALE_MUSIC)
+
+
+func _play_background_music(track: AudioStream) -> void:
 	if background_music.playing and background_music.stream == track:
 		return
 	background_music.stream = track
@@ -259,6 +267,8 @@ func _show_story_dialogue(dialogue_id: String) -> void:
 
 
 func _on_dialogue_finished(dialogue_id: String) -> void:
+	if dialogue_id == "LATE_ENDING" and background_music.stream == FINALE_MUSIC:
+		background_music.stop()
 	if dialogue_id != _active_dialogue_id:
 		return
 	_active_dialogue_id = ""

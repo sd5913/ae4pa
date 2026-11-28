@@ -15,7 +15,7 @@ no additional license terms were supplied.
 
 ## Godot Integration
 
-The main scene plays the MP3 files as looping background music:
+The main scene plays these two MP3 files as looping background music:
 
 ```text
 res://assets/music/propulsive_tension_2.mp3
@@ -29,3 +29,10 @@ them as AudioStream resources.
 New games start The Haunted Ballroom-1 with the prologue. Completing the 309
 rescue switches to Propulsive Tension-2. Loaded memories resume the track that
 matches their rescue progress. Returning to the main menu stops the music.
+
+## Finale score
+
+The user supplied The Final Word as an Opus track in an M4A container.
+The Godot resource is `res://assets/music/the_final_word.mp3`.
+It plays once from the finale chapter card through the ending dialogue, then stops
+when the success screen appears.

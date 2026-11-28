@@ -71,9 +71,14 @@ func end() -> void:
 	await move_to(floor_node().get_node("DoorRoot/Room501").position.x - 50)
 	await tap()
 	await drain_story()
+	_check_music(music, "propulsive_tension_2.mp3")
 	await travel_exit()
 	check(g.game_state == "WON" and main.dialogue.get("_dialogue_id") == "LATE_ENDING" and not main.get_node("MenuLayer/Win").visible, "actual EXIT plays the rain ending before showing success")
+	var finale := music.stream as AudioStreamMP3
+	check(music.playing and finale != null and not finale.loop and finale.resource_path.get_file() == "the_final_word.mp3",
+		"the finale chapter card switches to The Final Word once")
 	await drain_story()
+	check(not music.playing, "the finale score stops when the dialogue ends")
 	check(g.game_state == "WON" and main.get_node("MenuLayer/Win").visible, "normal new game through all eight tasks/309 to actualEXIT success")
 	main._show_menu()
 	check(not music.playing, "returning to the menu stops background music")
