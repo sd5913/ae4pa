@@ -74,7 +74,10 @@ func _open_sequence(id: String, rows: Array) -> void:
 	_dialogue_id = "LATE_" + id
 	GameManager.set_modal_open(MODAL, true)
 	main.get_node("TaskLayer").hide()
-	if not dialogue.show_story_sequence(_dialogue_id, rows, "exterior" if id == "ENDING" else ""): _clear()
+	if not dialogue.show_story_sequence(_dialogue_id, rows, "exterior" if id == "ENDING" else ""):
+		_clear()
+	elif id == "ENDING":
+		main.play_finale_music()
 
 func _finished(id: String) -> void:
 	if id != _dialogue_id: return
